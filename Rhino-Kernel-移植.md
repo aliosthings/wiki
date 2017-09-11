@@ -53,7 +53,7 @@ aos-cube安装配置 (ubuntu)：
 
 ### 2.2.2 时钟中断
 * 节拍率（HZ）  
-节拍率是Rhino运行的原动力，其通过系统定时器设置，通常为100，即每秒有100次系统定时中断（cortex-m中使用SysTick定时器），其宏定义为：**YUNOS_CONFIG_TICKS_PER_SECOND**。
+节拍率是Rhino运行的原动力，其通过系统定时器设置，通常为100，即每秒有100次系统定时中断（cortex-m中使用SysTick定时器），其宏定义为：**_YUNOS_CONFIG_TICKS_PER_SECOND_**。
 * 中断处理  
 为了驱动Rhino的运行，需要在中断处理函数中调用yunos_tick_proc这个函数。示例代码如下:  
 ```
@@ -74,8 +74,8 @@ int main(int argc, char **argv) {
 }
 ``` 
 注意：  
-(1) main函数中首先需要初始化堆这块，具体的注意事项请参考下面的soc_impl.c的移植。  
-(2) driver_init()里面不会产生中断，不然整个系统在yunos_start()起来之前会挂掉。
+**_(1) main函数中首先需要初始化堆这块，具体的注意事项请参考下面的soc_impl.c的移植。_**  
+**_(2) driver_init()里面不会产生中断，不然整个系统在yunos_start()起来之前会挂掉。_**
 
 ### 2.2.4 C库移植
 目前系统使用newlib仓库，newlib的移植由于具有通用性，已经统一到系统utility/libc下
@@ -99,10 +99,10 @@ int main(int argc, char **argv) {
 该接口主要完成启动系统第一个任务。
 
 * void *cpu_task_stack_init(cpu_stack_t *base,size_t size, void *arg,task_entry_t entry)  
-该接口主要完成任务堆栈的初始化，其中size以字长为单位。
+该接口主要完成任务堆栈的初始化，其中size以**字长**为单位。
 
 * int32_t cpu_bitmap_clz(uint32_t val)  
-该接口主要是通过类似Arm中的clz指令实现位图的快速查找，在YUNOS_CONFIG_BITMAP_HW宏打开（置1）时实现该接口，在未打开时默认使用Rhino中的软件算法查找。
+该接口主要是通过类似Arm中的clz指令实现位图的快速查找，在**YUNOS_CONFIG_BITMAP_HW**宏打开（置1）时实现该接口，在未打开时默认使用Rhino中的软件算法查找。
 
 * YUNOS_INLINE uint8_t cpu_cur_get(void)  
 该接口在port.h中默认的单核实现如下：
@@ -112,9 +112,16 @@ YUNOS_INLINE uint8_t cpu_cur_get(void) {
 }
 ```
 注意：  
-上述所有的移植接口都应该在port.h里面存在，可以参考现有平台的port.h的实现。
+**_上述所有的移植接口都应该在port.h里面存在，可以参考现有平台的port.h的实现。_**
 
 ### 2.3.2 内核特性移植
+内核特性移植主要是通过修改k_config.h来配置kernel的模块使能。  
+最简单的方法是copy一个现有工程的k_config.h来快速达到移植的目的。  
+除此之外还需要实现k_soc.h里面定义的一些必要的接口，比如内存分配这块。  
+最简单的方法是copy一个现有工程的soc_impl.c来快速达到移植的目的。  
+**_soc_impl.c里面必须要实现的是内存分配这块的配置g_mm_region，具体的如何设置请参考相应的工程文件。_  **
+
+### 2.3.3 调试模块移植
 * 串口驱动移植  
 串口主要用于打印日志。打印主要是使用printf,使用newlib的前提下需要对接_write_r这个函数。  
 
