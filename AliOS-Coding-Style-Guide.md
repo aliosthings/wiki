@@ -1,6 +1,7 @@
 # Coding Style Guide
 ------
-![001](https://img.alicdn.com/tfs/TB1U2HndgoQMeJjy0FpXXcTxpXa-1240-1753.jpg)
+>
+![001](https://img.alicdn.com/tfs/TB1U2HndgoQMeJjy0FpXXcTxpXa-1240-1753.jpg) <i
 ![002](https://img.alicdn.com/tfs/TB1mS_jdgoQMeJjy1XaXXcSsFXa-1240-1753.jpg)
 ![003](https://img.alicdn.com/tfs/TB1cIjodgoQMeJjy0FnXXb8gFXa-1240-1753.jpg)
 ![004](https://img.alicdn.com/tfs/TB1XTPmdgMPMeJjy1XbXXcwxVXa-1240-1753.jpg)
