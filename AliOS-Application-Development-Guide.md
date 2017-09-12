@@ -6,19 +6,19 @@
 
 ## MK3060模组
 MK3060模组ARM核的Wi-Fi模组，可以运行AliOS。
-![](https://img.alicdn.com/tfs/TB1YUSBdwMPMeJjy1XbXXcwxVXa-2336-4160.jpg)
+![](https://img.alicdn.com/tfs/TB1dkGJdwoQMeJjy0FoXXcShVXa-4160-2336.jpg)
 
 ## 串口线
 MK3060的串口已经通过miniusb接口接出，只需要通过miniusb-usb线将串口与PC连接起来。
-![](https://img.alicdn.com/tfs/TB1AUWBdwMPMeJjy1XbXXcwxVXa-2336-4160.jpg)
+![](https://img.alicdn.com/tfs/TB16paGdwoQMeJjy0FnXXb8gFXa-4160-2336.jpg)
 
 ## 调试器
 支持Jlink调试器。
-![](https://img.alicdn.com/tfs/TB1mTGGdwMPMeJjy1XcXXXpppXa-4160-2336.jpg)
+![](https://img.alicdn.com/tfs/TB1AOuudwMPMeJjy1XdXXasrXXa-4160-2336.jpg)
 
 ## 连接示例
 下图展示了连接好的硬件环境。
-![](https://img.alicdn.com/tfs/TB1ZUOBdwMPMeJjy1XbXXcwxVXa-2336-4160.jpg)
+![](https://img.alicdn.com/tfs/TB1niqudwMPMeJjy1XdXXasrXXa-4160-2336.jpg)
 
 # 开发环境搭建
 AliOS开发环境的搭建请参照：[AliOS Environment Setup](https://github.com/alibaba/AliOS/wiki/AliOS-Environment-Setup)
@@ -96,6 +96,7 @@ Makefile用于指定应用的名称、使用到的源文件、依赖的组件、
 
 ## 编译、烧录和运行
 请按照前述章节对helloworld应用进行编译和烧录，烧录后启动模组，helloworld应用启动后串口打印如下：
+
 ![](https://img.alicdn.com/tfs/TB11fSrdwMPMeJjy1XdXXasrXXa-231-161.png)
 
 # AliOS开发组件介绍
@@ -113,6 +114,7 @@ AliOS应用开发中可以支持命令行，并且可以添加用户自定义命
 `int cli_unregister_command(const struct cli_command *command); //撤销命令`
 
 下图展示了一个实际示例应用中的命令列表。
+
 ![](https://img.alicdn.com/tfs/TB1ETiGdwMPMeJjy1XcXXXpppXa-447-367.png)
 
 ## log
