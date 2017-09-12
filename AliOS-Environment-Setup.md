@@ -32,7 +32,7 @@ $ sudo apt-get install -y libssl-dev libssl-dev:i386
 $ sudo apt-get install -y libncurses5-dev libncurses5-dev:i386
 $ sudo apt-get install -y libreadline-dev libreadline-dev:i386
 $ sudo apt-get install -y python-pip
-$ sudo pip install aos-cube`
+$ sudo pip install aos-cube
 ```
 
 在AliOS源码的目录下面，运行：
