@@ -267,7 +267,24 @@ extern "C" {
     数据结构类型以“_t”结尾，枚举变量类型以“_e”结尾，回调函数类型以“_cb”结尾；或所有类型以“_t”作为后缀。字符均小写。
 
 - [x] **示例**：
- 
+```c
+typedef int (*xxx0_cb)(...);
+
+typedef struct {
+    ...
+} xxx1_t;
+
+typedef struct xxx2_s {
+    struct xxx2_s *x;
+    ...
+} xxx2_t;
+
+typedef enum {
+    ...
+} xxx3_e;
+
+```
+
 ### 5.4 变量命名
 - [x] **原则**：
 
