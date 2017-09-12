@@ -22,6 +22,8 @@ AliOS默认带有Linux交叉工具链，Windows下面的工具链可以在[GCC](
 编译mk3060板子的helloworld示例程序。
 
 # Linux环境配置
+首先确认Python 2.7版本存在，aos-cube依赖Python 2.7版本。
+
 以Ubuntu 16.04 LTS (Xenial Xerus) 64-bit PC版本为例，安装下列pkg：
 
 ```
