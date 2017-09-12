@@ -358,7 +358,23 @@ typedef enum {
     若多行变量定义均需注释，则最长变量定义留一个空格，其他注释与其对齐。
 
 - [x] **示例**：
- 
+```c
+int func1(void)
+{
+    int ret; /* return value */
+    ...
+    return 0;
+}
+
+int func2(void)
+{
+    int ret;   /* return value */
+    int value; /* value */
+    ...
+    return 0;
+}
+``` 
+
 ### 6.4 编译宏注释
 - [x] **原则**：
 
