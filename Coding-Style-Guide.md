@@ -59,8 +59,10 @@
 - [x] **示例**：
 
     在比较复杂的项目时，建议目录结构如下：
- 
+![01](https://img.alicdn.com/tfs/TB1G7lQdwMPMeJjy1XcXXXpppXa-432-281.png) 
+
     在项目相对简单时，建议目录结构如下：
+![02](https://img.alicdn.com/tfs/TB1r5dIdwoQMeJjy1XaXXcSsFXa-461-217.png)
 
 ------
 ## 2 系统组件
