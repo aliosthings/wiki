@@ -96,11 +96,12 @@ AliOS应用开发中可以支持命令行，并且可以添加用户自定义命
 `$(NAME)_COMPONENTS += cli`
 ### 接口举例
 ```
-int cli_register_command(const struct cli_command *command); //注册一个命令
-
-int cli_register_commands(const struct cli_command *commands, int num_commands); //注册多个命令
-
-int cli_unregister_command(const struct cli_command *command); //撤销命令
+//注册一个命令
+int cli_register_command(const struct cli_command *command);
+//注册多个命令
+int cli_register_commands(const struct cli_command *commands, int num_commands);
+//撤销命令
+int cli_unregister_command(const struct cli_command *command);
 ```
 
 下图展示了一个实际示例应用中的命令列表。
