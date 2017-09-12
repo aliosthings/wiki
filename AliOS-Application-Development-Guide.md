@@ -5,7 +5,7 @@
 本文以庆科MK3060模组为例。AliOS还可以运行在其他模组上，硬件环境的搭建请参照本节。
 
 ## MK3060模组
-MK3060模组ARM核的Wi-Fi模组，可以运行AliOS。
+MK3060是ARM核的Wi-Fi模组，可以运行AliOS。
 ![](https://img.alicdn.com/tfs/TB1dkGJdwoQMeJjy0FoXXcShVXa-4160-2336.jpg)
 
 ## 串口线
@@ -34,7 +34,7 @@ Makefile用于指定应用的名称、使用到的源文件、依赖的组件、
 NAME := helloworld  ## 指定应用名称
 $(NAME)_SOURCES := helloworld.c  ## 指定使用的源文件
 $(NAME)_COMPONENTS += cli  ## 指定依赖的组件，本例使用cli组件
-GLOBAL_DEFINES      += YOS_NO_WIFI ## 定义全局符号
+GLOBAL_DEFINES += YOS_NO_WIFI ## 定义全局符号
 ```
 ## 添加源码
 所有的源码文件放置在应用工程目录下，开发者可以根据自行组织源码文件/目录。AliOS的应用程序入口为：
@@ -96,11 +96,8 @@ AliOS应用开发中可以支持命令行，并且可以添加用户自定义命
 `$(NAME)_COMPONENTS += cli`
 ### 接口举例
 ```
-//注册一个命令
 int cli_register_command(const struct cli_command *command);
-//注册多个命令
 int cli_register_commands(const struct cli_command *commands, int num_commands);
-//撤销命令
 int cli_unregister_command(const struct cli_command *command);
 ```
 
@@ -110,5 +107,99 @@ int cli_unregister_command(const struct cli_command *command);
 
 ## log
 使用“log”组件可以定义和使用不同级别的日志打印。
+### 头文件：
+`aos/log.h`
+### 组件依赖：
+`$(NAME)_COMPONENTS += log`
+
+###接口示例：
+```
+LOGF_IMPL(mod, fmt, ##__VA_ARGS__)
+LOGE_IMPL(mod, fmt, ##__VA_ARGS__)
+LOGW_IMPL(mod, fmt, ##__VA_ARGS__)
+LOGI_IMPL(mod, fmt, ##__VA_ARGS__)
+LOGD_IMPL(mod, fmt, ##__VA_ARGS__)
+LOG_IMPL(fmt, ##__VA_ARGS__)
+```
+
+## yloop
+
+## kv
+kv组件用于永久性存储键(Key)-值(Value)类型数据，如系统配置信息等。
+### 头文件：
+`aos/kv.h`
+### 组件依赖：
+`$(NAME)_COMPONENTS += kv`
+### 接口示例：
+```
+int aos_kv_set(const char *key, const void *value, int len, int sync);
+int aos_kv_get(const char *key, void *buffer, int *buffer_len);
+int aos_kv_del(const char *key);
+```
+
+## alink
+alink组件用于alink上云连接服务，如配网、数据上报alink等。
+### 头文件：
+`aos/alink.h`
+### 组件依赖：
+`$(NAME)_COMPONENTS += protocol.alink`
+### 接口示例：
+```
+int alink_start(void);
+int alink_end(void);
+int alink_report(const char *method, char *json_buffer);
+int alink_register_callback(unsigned char cb_type, void *cb_func);
+int awss_start(void);
+```
+
+## kernel
+所有kernel提供的组件，包括内存管理、任务管理、timer、锁、信号量、计时等接口和服务。
+### 头文件：
+`aos/kernel.h`
+### 组件依赖：
+依赖此组件不需要显式指定。
+### 接口示例：
+```
+void *aos_malloc(unsigned int size);
+void *aos_zalloc(unsigned int size);
+void aos_free(void *mem);
+int aos_task_new(const char *name, void (*fn)(void *), void *arg,
+                 int stack_size);
+void aos_task_exit(int code);
+int aos_mutex_new(aos_mutex_t *mutex);
+int aos_sem_new(aos_sem_t *sem, int count);
+int aos_queue_new(aos_queue_t *queue, void *buf, unsigned int size,
+                  int max_msg);
+int aos_timer_new(aos_timer_t *timer, void (*fn)(void *, void *),
+                  void *arg, int ms, int repeat);
+int aos_work_sched(aos_work_t *work);
+void aos_msleep(int ms);
+```
+
+## network
+network组件提供网络服务，如通用的和符合POSIX标准的socket接口。
+### 头文件：
+`aos/network.h`
+### 组件依赖：
+不需要显式申明。
+### 接口示例：
+```
+int socket (int namespace, int style, int protocol);
+int send (int socket, void *buffer, size_t size, int flags);
+int sendto (int socket, void *buffer, size_t size, int flags, struct sockaddr *addr, socklen_t length);
+int recv (int socket, void *buffer, size_t size, int flags);
+int recvfrom (int socket, void *buffer, size_t size, int flags, struct sockaddr *addr, socklen_t 
+ *lengthptr);
+int listen (int socket, int n);
+int bind (int socket, struct sockaddr *addr, socklen_t length);
+int accept (int socket, struct sockaddr *addr, socklen_t *length_ptr);
+ int accept (int socket, struct sockaddr *addr, socklen_t *length_ptr);
+int select (int nfds, fd_set *read-fds, fd_set *write-fds, fd_set *except-fds, struct timeval *timeout);
+int close (int filedes);
+```
+
+## vfs
 
 # 总结
+本文描述了基于AliOS的应用模型，介绍了软硬件开发环境的搭建、应用开发的基本步骤。以helloworld为例，展示了如何基于AliOS进行应用开发。本文最后，还介绍了AliOS提供的丰富组件和接口，以及如何利用这个组件进行应用开发。
+想了解AliOS更详细的信息，请访问。
