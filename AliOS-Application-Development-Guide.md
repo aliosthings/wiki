@@ -30,18 +30,15 @@ AliOS的应用开发步骤主要包括工程目录的创建、工程Makefile编�
 AliOS的应用工程一般放在“example”目录下，用户也可以根据需要在其他目录下创建应用工程的目录。
 ## 添加Makefile
 Makefile用于指定应用的名称、使用到的源文件、依赖的组件、全局符号等。下面是helloworld.mk文件的内容：
-
-`NAME := helloworld  ## 指定应用名称`
-
-`$(NAME)_SOURCES := helloworld.c  ## 指定使用的源文件`
-
-`$(NAME)_COMPONENTS += cli  ## 指定依赖的组件，本例使用cli组件`
-
-`GLOBAL_DEFINES      += YOS_NO_WIFI ## 定义全局符号`
-
+```
+NAME := helloworld  ## 指定应用名称
+$(NAME)_SOURCES := helloworld.c  ## 指定使用的源文件
+$(NAME)_COMPONENTS += cli  ## 指定依赖的组件，本例使用cli组件
+GLOBAL_DEFINES      += YOS_NO_WIFI ## 定义全局符号
+```
 ## 添加源码
 所有的源码文件放置在应用工程目录下，开发者可以根据自行组织源码文件/目录。AliOS的应用程序入口为：
-`int application_start(int argc, char *argv[])`
+`int application_start(int argc, char *argv[]);`
 
 所有的应用程序都必需包含`application_start`入口函数，应用程序的逻辑从该入口函数开始。
 
@@ -62,37 +59,28 @@ Makefile用于指定应用的名称、使用到的源文件、依赖的组件、
 
 ## 创建Makefile
 在hellworld工程目录下，创建helloworld.mk文件，并添加Makefile内容：
-
-`NAME := helloworld`
-
-`$(NAME)_SOURCES := helloworld.c`
-
+```
+NAME := helloworld
+$(NAME)_SOURCES := helloworld.c
+```
 ## 创建源文件
 在hellworld工程目录下，创建helloworld.c文件，并添加一下源代码：
+```
+#include <aos/aos.h>
+#include "helloworld.h"
 
-`#include <aos/aos.h>`
+static void app_delayed_action(void *arg)
+{
+    printf("%s:%d %s\r\n", __func__, __LINE__, yos_task_name());
+    yos_post_delayed_action(5000, app_delayed_action, NULL);
+}
 
-`#include "helloworld.h"`
-
-`static void app_delayed_action(void *arg)`
-
-`{`
-
-`    printf("%s:%d %s\r\n", __func__, __LINE__, yos_task_name());`
-
-`    yos_post_delayed_action(5000, app_delayed_action, NULL);`
-
-`}`
-
-`int application_start(int argc, char *argv[])`
-
-`{`
-
-`    yos_post_delayed_action(1000, app_delayed_action, NULL);`
-
-`    yos_loop_run();`
-
-`}`
+int application_start(int argc, char *argv[])
+{
+    yos_post_delayed_action(1000, app_delayed_action, NULL);
+    yos_loop_run();
+}
+```
 
 ## 编译、烧录和运行
 请按照前述章节对helloworld应用进行编译和烧录，烧录后启动模组，helloworld应用启动后串口打印如下：
@@ -107,11 +95,13 @@ AliOS应用开发中可以支持命令行，并且可以添加用户自定义命
 ### 组件依赖：
 `$(NAME)_COMPONENTS += cli`
 ### 接口举例
-`int cli_register_command(const struct cli_command *command); //注册一个命令`
+```
+int cli_register_command(const struct cli_command *command); //注册一个命令
 
-`int cli_register_commands(const struct cli_command *commands, int num_commands); //注册多个命令`
+int cli_register_commands(const struct cli_command *commands, int num_commands); //注册多个命令
 
-`int cli_unregister_command(const struct cli_command *command); //撤销命令`
+int cli_unregister_command(const struct cli_command *command); //撤销命令
+```
 
 下图展示了一个实际示例应用中的命令列表。
 
