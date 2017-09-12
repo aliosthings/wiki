@@ -87,6 +87,7 @@ Makefile用于指定应用的名称、使用到的源文件、依赖的组件、
 `    yos_post_delayed_action(1000, app_delayed_action, NULL);`
 
 `    yos_loop_run();`
+
 `}`
 
 ## 编译、烧录和运行
@@ -102,7 +103,9 @@ AliOS应用开发中可以支持命令行，并且可以添加用户自定义命
 `$(NAME)_COMPONENTS += cli`
 ### 接口举例
 `int cli_register_command(const struct cli_command *command); //注册一个命令`
+
 `int cli_register_commands(const struct cli_command *commands, int num_commands); //注册多个命令`
+
 `int cli_unregister_command(const struct cli_command *command); //撤销命令`
 
 ## log
