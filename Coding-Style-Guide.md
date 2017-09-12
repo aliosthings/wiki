@@ -74,10 +74,10 @@
 
 - [x] **示例**：
 
-    kernel：系统内核部分；
-    libs：依赖库；
-    mqtt：mqtt协议库；
-    external/mbedtls：位于第三方库目录的mbedtls库
+    > * kernel：系统内核部分；
+    > * libs：依赖库；
+    > * mqtt：mqtt协议库；
+    > * external/mbedtls：位于第三方库目录的mbedtls库
 
 ### 2.2 依赖关系
 - [x] **原则**：
