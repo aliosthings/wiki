@@ -382,6 +382,11 @@ int func2(void)
     若多行宏定义均需注释，则最长宏定义后留一个空格，其他注释与其对齐。
 
 - [x] **示例**：
+```c
+#define TASK_RUNNING 0
+#define TASK_STOPPED 1
+#define TASK_SLEEP   2
+```
 
 ------
 ## 7 代码格式
@@ -392,7 +397,19 @@ int func2(void)
     嵌套的编译条件判断顶格写，且需要在“#endif”后的注释中备注属于哪个判断条件。
 
 - [x] **示例**：
- 
+```c
+#ifdef XXX
+int func1(void)
+{
+    ...
+#ifdef XX
+    func();
+#endif /* XX */
+    ...
+}
+#endif /* XXX */
+```
+
 ### 7.2 空行
 - [x] **原则**：
 
@@ -408,7 +425,13 @@ int func2(void)
     全局变量的声明必须放在相关头文件中，且单个声明的类型和变量之间留一个空格，多个声明时按最长的留一个空格对齐。
 
 - [x] **示例**：
- 
+```c
+extern int   g_x_x;       /* ... */
+extern int   g_xx_xx;     /* ... */
+extern long  g_xxx_xxx;   /* ... */
+extern char *g_xxxx_xxxx; /* ... */
+```
+
 ### 7.4 变量定义
 - [x] **原则**：
 
@@ -417,7 +440,20 @@ int func2(void)
     变量定义的类型和变量之间（或者“*”）留一个空格，当有多个变量时按照最长原则对齐。
 
 - [x] **示例**：
- 
+ ```c
+int tmp = 0;
+
+int  tmp1 =0;
+long tmp2 = 0;
+
+int   tmp3 = 0;
+char *tmp4 = NULL;
+
+int   g_x_x;       /* ... */
+int   g_xx_xx;     /* ... */
+long  g_xxx_xxx;   /* ... */
+char *g_xxxx_xxxx; /* ... */
+```
     注：上图中描述了四种情况下的对齐方式
 
 ### 7.5 结构体声明
