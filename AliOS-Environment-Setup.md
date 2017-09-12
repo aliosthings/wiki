@@ -1,6 +1,6 @@
 # Window环境配置
 ## Cube安装
-Cube依赖python 2.7版本，在官网下载对应的2.7版本的[Python](https://www.python.org/downloads/) MSI安装文件。安装过程中，请选择add python.exe to Path，如下图所示：
+Cube依赖Python 2.7版本，在官网下载对应的2.7版本的[Python](https://www.python.org/downloads/) MSI安装文件。安装过程中，请选择add python.exe to Path，如下图所示：
 
 打开命令行，输入python命令能找到，说明安装成功。
 
@@ -14,6 +14,8 @@ Cube依赖python 2.7版本，在官网下载对应的2.7版本的[Python](https:
 
 ## 交叉工具链
 AliOS默认带有Linux交叉工具链，Windows下面的工具链可以在链接[GCC](https://launchpad.net/gcc-arm-embedded/+download)下载对应版本的压缩包，解压缩并且重命名为Win32，复制到...\aos\build\compiler\arm-none-eabi-5_4-2016q2-20160622\目录下面：
+
+![](https://img.alicdn.com/tfs/TB1cuO1dwMPMeJjy1XcXXXpppXa-865-317.png)
 
 在AliOS源码的目录下面，运行：
 
@@ -44,6 +46,7 @@ $ sudo pip install aos-cube
 # MacOS环境配置
 AliOS默认带有Linux交叉工具链，MacOS下面的工具链可以在链接[GCC](https://launchpad.net/gcc-arm-embedded/+download)下载对应版本的压缩包，解压缩并且重命名为OSX，复制到.../aos/build/compiler/arm-none-eabi-5_4-2016q2-20160622目录下面：
 
+![](https://img.alicdn.com/tfs/TB1msKVdwoQMeJjy1XaXXcSsFXa-865-229.png)
 
 在AliOS源码的目录下面，运行：
 
