@@ -22,16 +22,20 @@ AliOS默认带有Linux交叉工具链，Windows下面的工具链可以在[gcc](
 编译mk3060板子的helloworld示例程序。
 
 # Linux环境配置
-以Ubuntu 16.04 LTS (Xenial Xerus) 64-bit PC版本为例：
+以Ubuntu 16.04 LTS (Xenial Xerus) 64-bit PC版本为例，安装下列pkg：
 
-`
+```
 $ sudo apt-get install -y gcc-multilib
 $ sudo apt-get install -y libssl-dev libssl-dev:i386
 $ sudo apt-get install -y libncurses5-dev libncurses5-dev:i386
 $ sudo apt-get install -y libreadline-dev libreadline-dev:i386
 $ sudo apt-get install -y python-pip
 $ sudo pip install aos-cube`
-`
+```
 
+在AliOS源码的目录下面，运行：
 
+`aos make helloworld@mk3060`
+
+编译mk3060板子的helloworld示例程序。
 
