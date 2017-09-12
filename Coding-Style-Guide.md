@@ -218,6 +218,11 @@ extern "C" {
 - [x] **示例**：
 
     如AliOS版权声明如下：
+```c
+/*
+ * Copyright (C) 2015-2017 Alibaba Group Holding Limited
+ */
+```
 
 ### 4.3 头文件依赖
 - [x] **原则**：
