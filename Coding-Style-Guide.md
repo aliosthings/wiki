@@ -1,4 +1,4 @@
-# 嵌入式系统开发规范（0.7版）
+# AliOS系统开发规范（0.7版）
 ------
 > * 0 规范原则
 > * 1 目录结构
@@ -59,10 +59,12 @@
 - [x] **示例**：
 
     在比较复杂的项目时，建议目录结构如下：
-![01](https://img.alicdn.com/tfs/TB1G7lQdwMPMeJjy1XcXXXpppXa-432-281.png) 
+
+    ![01](https://img.alicdn.com/tfs/TB1G7lQdwMPMeJjy1XcXXXpppXa-432-281.png) 
 
     在项目相对简单时，建议目录结构如下：
-![02](https://img.alicdn.com/tfs/TB1r5dIdwoQMeJjy1XaXXcSsFXa-461-217.png)
+
+    ![02](https://img.alicdn.com/tfs/TB1r5dIdwoQMeJjy1XaXXcSsFXa-461-217.png)
 
 ------
 ## 2 系统组件
@@ -70,6 +72,7 @@
 - [x] **原则**：
 
     目录的命名能准确描述模块的基本功能，建议用小写字母且不含下划线、点等特殊符号；
+
     目录必须放于相包含的父目录之下，并需要明确与其他目录间的耦合性。
 
 - [x] **示例**：
@@ -116,18 +119,36 @@
 - [x] **示例**：
 
     如AliOS版权声明如下：
+```c
+/*
+ * Copyright (C) 2015-2017 Alibaba Group Holding Limited
+ */
+```
  
 ### 3.3 引用保护
 - [x] **原则**：
 
     项目内的所有头文件采用#define宏防止多重包含，命名格式为：
-      *_FILENAME_H
-    注：为了保证宏定义的惟一性，建议“*”命名为头文件目录名、路径名或有意义的其他符号（如“k”： kernel）。
+
+    XXX_FILENAME_H
+
+    注：为了保证宏定义的惟一性，建议“XXX”命名为头文件目录名、路径名或有意义的其他符号（如“k”： kernel）。
 
 - [x] **示例**：
 
     如下图，在版权声明后空一行，且在“#endif”后空一行且添加注释（注释内容两边各留一个空格且采用“/*  */”格式）。
- 
+```c
+/*
+ * Copyright (C) 2015-2017 Alibaba Group Holding Limited
+ */
+
+#ifndef K_ERR_H 
+#define K_ERR_H
+
+#endif /* K_ERR_H */
+
+``` 
+
 ### 3.4 引用方式
 - [x] **原则**：
 
@@ -158,7 +179,26 @@
 - [x] **示例**：
 
     如下图，在extern的声明代码上下各添加一行空行。
+```c
+/*
+ * Copyright (C) 2015-2017 Alibaba Group Holding Limited
+ */
 
+#ifndef K_ERR_H 
+#define K_ERR_H
+
+#ifdef __cplusplus
+extern "C" {
+#endif
+
+
+#ifdef __cplusplus
+}
+#endif
+
+#endif /* K_ERR_H */
+
+``` 
 ------
 ## 4 源文件
 ### 4.1 文件命名
