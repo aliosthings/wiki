@@ -111,8 +111,7 @@ int cli_unregister_command(const struct cli_command *command);
 `aos/log.h`
 ### 组件依赖：
 `$(NAME)_COMPONENTS += log`
-
-###接口示例：
+### 接口示例：
 ```
 LOGF_IMPL(mod, fmt, ##__VA_ARGS__)
 LOGE_IMPL(mod, fmt, ##__VA_ARGS__)
