@@ -37,6 +37,11 @@ Makefile用于指定应用的名称、使用到的源文件、依赖的组件、
 `GLOBAL_DEFINES      += YOS_NO_WIFI ## 定义全局符号`
 
 ## 添加源码
+所有的源码文件放置在应用工程目录下，开发者可以根据自行组织源码文件/目录。AliOS的应用程序入口为：
+`int application_start(int argc, char *argv[])`
+
+所有的应用程序都必需包含`application_start`入口函数，应用程序的逻辑从该入口函数开始。
+
 ## 编译工程
 ## 烧录程序
 ## 程序调试
