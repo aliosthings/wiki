@@ -348,8 +348,19 @@ typedef enum {
     对内接口在需要时添加注释，注释位于定义前。
 
 - [x] **示例**：
+```c
+/**
+ * This function will initialize a work
+ *
+ * @param[in]  work  the work to be initialized
+ * @param[in]  fn    the call back function to run
+ * @param[in]  arg   the paraments of the function
+ * @param[in]  dly   ms to delay before run
+ * @return  the operation status, 0 is OK, others is error
+ */
+int aos_work_init(aos_work_t *work, void (*fn)(void *), void *arg, int dly);
 
-    略
+```
 
 ### 6.3 变量注释
 - [x] **原则**：
@@ -486,7 +497,16 @@ char *g_xxxx_xxxx; /* ... */
 - [x] **示例**：
 
     命名顺序、空格、空行、参数换行请参考下图。
- 
+```c
+int xxx_xxx_func1(void);
+int xxx_xxx_func2(void);
+
+int   xxx_xxx_func3(...);
+int   xxx_xxx_func4(...);
+void  xxx_xxx_func5(...);
+void *xxx_xxx_func6(...);
+```
+
 ### 7.8 函数定义
 - [x] **原则**：
 
@@ -495,6 +515,22 @@ char *g_xxxx_xxxx; /* ... */
     函数之前留一空行。
 
 - [x] **示例**：
+```c
+int xxx_func1(void)
+{
+    return 0;
+}
+
+int xxx_func2(void)
+{
+    return 0
+}
+
+int xxx_func3(void)
+{
+    return 0;
+}
+```
  
 ### 7.9 函数调用
 - [x] **原则**：
@@ -503,14 +539,30 @@ char *g_xxxx_xxxx; /* ... */
     需要对函数调用的返回值进行判断，且判断语句与上一条语句之间不留空行。
 
 - [x] **示例**：
- 
+```c
+int xxx_func(void)
+{
+    int ret;
+
+    ret = xxx_func1(...);
+    if (ret != 0) {
+        ...
+        return ret;
+    }
+
+    return 0;
+}
+```
+
 ### 7.10 条件语句
 - [x] **原则**：
 
-    条件判断必须明确，如“if (var)”形式应该写为“if (var  ！=  0)”；
+    条件判断必须明确，如“if (var)”形式应该写为“if (var != 0)”；
     指针是否为空时必须与NULL进行对比（不建议用0），整型返回值可通过与1/0进行对比。
 
 - [x] **示例**：
+
+    
  
 ### 7.11 循环语句
 - [x] **原则**：
