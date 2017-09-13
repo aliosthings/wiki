@@ -67,18 +67,17 @@ $(NAME)_SOURCES := helloworld.c
 在hellworld工程目录下，创建helloworld.c文件，并添加一下源代码：
 ```
 #include <aos/aos.h>
-#include "helloworld.h"
 
 static void app_delayed_action(void *arg)
 {
-    printf("%s:%d %s\r\n", __func__, __LINE__, yos_task_name());
-    yos_post_delayed_action(5000, app_delayed_action, NULL);
+    printf("%s:%d %s\r\n", __func__, __LINE__, aos_task_name());
+    aos_post_delayed_action(5000, app_delayed_action, NULL);
 }
 
 int application_start(int argc, char *argv[])
 {
-    yos_post_delayed_action(1000, app_delayed_action, NULL);
-    yos_loop_run();
+    aos_post_delayed_action(1000, app_delayed_action, NULL);
+    aos_loop_run();
 }
 ```
 
@@ -113,12 +112,12 @@ int cli_unregister_command(const struct cli_command *command);
 `$(NAME)_COMPONENTS += log`
 ### 接口示例：
 ```
-LOGF_IMPL(mod, fmt, ##__VA_ARGS__)
-LOGE_IMPL(mod, fmt, ##__VA_ARGS__)
-LOGW_IMPL(mod, fmt, ##__VA_ARGS__)
-LOGI_IMPL(mod, fmt, ##__VA_ARGS__)
-LOGD_IMPL(mod, fmt, ##__VA_ARGS__)
-LOG_IMPL(fmt, ##__VA_ARGS__)
+LOGF(mod, fmt, ##__VA_ARGS__)
+LOGE(mod, fmt, ##__VA_ARGS__)
+LOGW(mod, fmt, ##__VA_ARGS__)
+LOGI(mod, fmt, ##__VA_ARGS__)
+LOGD(mod, fmt, ##__VA_ARGS__)
+LOG(fmt, ##__VA_ARGS__)
 ```
 
 ## yloop
