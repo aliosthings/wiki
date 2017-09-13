@@ -128,6 +128,7 @@ yloop是aos的一个异步框架，可以监听网络和本地事件，目前aos
 ### 组件依赖：
 `$(NAME)_COMPONENTS += yloop`
 ### 接口示例：
+```
 int aos_register_event_filter(uint16_t type, aos_event_cb cb, void *priv);
 int aos_unregister_event_filter(uint16_t type, aos_event_cb cb, void *priv);
 int aos_post_event(uint16_t type, uint16_t code, unsigned long  value);
@@ -139,9 +140,13 @@ int aos_loop_schedule_call(aos_loop_t *loop, aos_call_t action, void *arg);
 void *aos_loop_schedule_work(int ms, aos_call_t action, void *arg1,
                              aos_call_t fini_cb, void *arg2);
 void aos_cancel_work(void *work, aos_call_t action, void *arg1);
+```
+
 
 使用参考：
+
 1 如何监听发送事件
+```
 task1 :
 //注册监听一个EV_WIFI事件，wifi_service_event为callback
 aos_register_event_filter(EV_WIFI, wifi_service_event, NULL);
@@ -151,6 +156,9 @@ aos_loop_run()
 task2:
 //task2获取到了wifi got ip消息的之后，post该事件，将唤醒task1中的监听EV_WIFI的callback
 aos_post_event(EV_WIFI, CODE_WIFI_ON_GOT_IP,NULL)
+
+```
+
 
 2 如何动态添加事件
 当我们需要将某一个监听的fd放到yloop来监听时，需要在yloop的上下文中执行该操作,wifi_service_event就是yloop上下文执行的
