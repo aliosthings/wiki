@@ -102,7 +102,7 @@ int main(int argc, char **argv) {
 该接口主要完成任务堆栈的初始化，其中size以**字长**为单位。
 
 * int32_t cpu_bitmap_clz(uint32_t val)  
-该接口主要是通过类似Arm中的clz指令实现位图的快速查找，在**YUNOS_CONFIG_BITMAP_HW**宏打开（置1）时实现该接口，在未打开时默认使用Rhino中的软件算法查找。
+该接口主要是通过类似Arm中的clz指令实现位图的快速查找，在**RHINO_CONFIG_BITMAP_HW**宏打开（置1）时实现该接口，在未打开时默认使用Rhino中的软件算法查找。
 
 * RHINO_INLINE uint8_t cpu_cur_get(void)  
 该接口在port.h中默认的单核实现如下：
