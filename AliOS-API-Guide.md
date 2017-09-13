@@ -1,4 +1,3 @@
-# AliOS API Guide
 ------
 ## 1 RHINO API
 ### 1.1 aos_reboot()
