@@ -163,17 +163,28 @@ aos_post_event(EV_WIFI, CODE_WIFI_ON_GOT_IP,NULL)
 2 如何动态添加事件
 当我们需要将某一个监听的fd放到yloop来监听时，需要在yloop的上下文中执行该操作,wifi_service_event就是yloop上下文执行的
 
+```
 void wifi_service_event(input_event_t *event, void *priv_data) {
     XXXX
     inf fd = connect();
     aos_poll_read_fd(fd, cb_recv, NULL);
 ｝
+
+```
 3 发送延时事件
+```
 aos_post_delayed_action，需要在yloop上下文执行
 
+```
+
+
 4 如何将action放到yloop主线程中执行
+```
 调用者不在yloop主线程时，可使用该函数切换到yloop主线程上下文执行
 aos_schedule_call（action， NULL）
+
+```
+
 
 ## kv
 kv组件用于永久性存储键(Key)-值(Value)类型数据，如系统配置信息等。
