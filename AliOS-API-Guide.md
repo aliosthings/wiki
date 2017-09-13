@@ -19,6 +19,7 @@
 > * int aos_task_new(const char *name, void(*)(void *)fn, void *arg, int stack_size)
 > > - [x] Create a task
 > > - [x] ************Parameters************
+
     [in]  name       task name, any string
 
     [in]  fn         task function
