@@ -121,6 +121,50 @@ LOG(fmt, ##__VA_ARGS__)
 ```
 
 ## yloop
+yloop是aos的一个异步框架，可以监听网络和本地事件，目前aos都是通过yloop管理系统事件的分发，可以最大程度的利用cpu资源，并节省系统内存开销
+###头文件
+`aos/yloop.h`
+### 组件依赖：
+`$(NAME)_COMPONENTS += yloop`
+### 接口示例：
+int aos_register_event_filter(uint16_t type, aos_event_cb cb, void *priv);
+int aos_unregister_event_filter(uint16_t type, aos_event_cb cb, void *priv);
+int aos_post_event(uint16_t type, uint16_t code, unsigned long  value);
+int aos_poll_read_fd(int fd, aos_poll_call_t action, void *param);
+void aos_cancel_poll_read_fd(int fd, aos_poll_call_t action, void *param);
+int aos_post_delayed_action(int ms, aos_call_t action, void *arg);
+int aos_schedule_call(aos_call_t action, void *arg);
+int aos_loop_schedule_call(aos_loop_t *loop, aos_call_t action, void *arg);
+void *aos_loop_schedule_work(int ms, aos_call_t action, void *arg1,
+                             aos_call_t fini_cb, void *arg2);
+void aos_cancel_work(void *work, aos_call_t action, void *arg1);
+
+使用参考：
+1 如何监听发送事件
+task1 :
+//注册监听一个EV_WIFI事件，wifi_service_event为callback
+aos_register_event_filter(EV_WIFI, wifi_service_event, NULL);
+//建立监听loop，阻塞当前线程
+aos_loop_run()
+
+task2:
+//task2获取到了wifi got ip消息的之后，post该事件，将唤醒task1中的监听EV_WIFI的callback
+aos_post_event(EV_WIFI, CODE_WIFI_ON_GOT_IP,NULL)
+
+2 如何动态添加事件
+当我们需要将某一个监听的fd放到yloop来监听时，需要在yloop的上下文中执行该操作,wifi_service_event就是yloop上下文执行的
+
+void wifi_service_event(input_event_t *event, void *priv_data) {
+    XXXX
+    inf fd = connect();
+    aos_poll_read_fd(fd, cb_recv, NULL);
+｝
+3 发送延时事件
+aos_post_delayed_action，需要在yloop上下文执行
+
+4 如何将action放到yloop主线程中执行
+调用者不在yloop主线程时，可使用该函数切换到yloop主线程上下文执行
+aos_schedule_call（action， NULL）
 
 ## kv
 kv组件用于永久性存储键(Key)-值(Value)类型数据，如系统配置信息等。
