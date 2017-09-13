@@ -127,7 +127,7 @@ kv组件用于永久性存储键(Key)-值(Value)类型数据，如系统配置�
 ### 头文件：
 `aos/kv.h`
 ### 组件依赖：
-`$(NAME)_COMPONENTS += kv`
+`$(NAME)_COMPONENTS += modules.fs.kv`
 ### 接口示例：
 ```
 int aos_kv_set(const char *key, const void *value, int len, int sync);
@@ -197,7 +197,30 @@ int close (int filedes);
 ```
 
 ## vfs
-
+vfs组件是对真实文件系统操作/设备操作的一层抽象层，通过vfs组件，用户可以使用统一的接口沟通底层不同文件系统或设备。
+### 头文件：
+`aos/vfs.h`
+### 组件依赖
+不需要显式申明。
+### 接口示例：
+```
+int aos_open(const char *path, int flags);  
+int aos_close(int fd);  
+ssize_t aos_read(int fd, void *buf, size_t nbytes);  
+ssize_t aos_write(int fd, const void *buf, size_t nbytes);  
+int aos_ioctl(int fd, int cmd, unsigned long arg);  
+int aos_poll(struct pollfd *fds, int nfds, int timeout);  
+int aos_fcntl(int fd, int cmd, int val);  
+off_t aos_lseek(int fd, off_t offset, int whence);  
+int aos_sync(int fd);  
+int aos_stat(const char *path, struct stat *st);  
+int aos_unlink(const char *path);  
+int aos_rename(const char *oldpath, const char *newpath);  
+aos_dir_t *aos_opendir(const char *path);  
+int aos_closedir(aos_dir_t *dir);  
+aos_dirent_t *aos_readdir(aos_dir_t *dir);  
+int aos_mkdir(const char *path);
+```
 # 总结
 本文描述了基于AliOS的应用模型，介绍了软硬件开发环境的搭建、应用开发的基本步骤。以helloworld为例，展示了如何基于AliOS进行应用开发。本文最后，还介绍了AliOS提供的丰富组件和接口，以及如何利用这个组件进行应用开发。
 想了解AliOS更详细的信息，请访问。
