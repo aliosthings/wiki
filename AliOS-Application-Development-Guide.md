@@ -122,7 +122,8 @@ LOG(fmt, ##__VA_ARGS__)
 
 ## yloop
 yloop是aos的一个异步框架，可以监听网络和本地事件，目前aos都是通过yloop管理系统事件的分发，可以最大程度的利用cpu资源，并节省系统内存开销
-###头文件
+
+### 头文件：
 `aos/yloop.h`
 ### 组件依赖：
 `$(NAME)_COMPONENTS += yloop`
