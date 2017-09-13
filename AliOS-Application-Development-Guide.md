@@ -121,7 +121,7 @@ LOG(fmt, ##__VA_ARGS__)
 ```
 
 ## yloop
-yloop是aos的一个异步框架，可以监听网络和本地事件，目前aos都是通过yloop管理系统事件的分发，可以最大程度的利用cpu资源，并节省系统内存开销
+yloop是AliOS的一个异步框架，可以监听网络和本地事件，目前AliOS都是通过yloop管理系统事件的分发，可以最大程度的利用cpu资源，并节省系统内存开销
 
 ### 头文件：
 `aos/yloop.h`
@@ -143,7 +143,7 @@ void aos_cancel_work(void *work, aos_call_t action, void *arg1);
 ```
 
 
-使用参考：
+### 使用参考：
 
 1 如何监听发送事件
 ```
@@ -179,7 +179,6 @@ aos_post_delayed_action，需要在yloop上下文执行
 调用者不在yloop主线程时，可使用该函数切换到yloop主线程上下文执行
 aos_schedule_call（action， NULL）
 ```
-
 
 ## kv
 kv组件用于永久性存储键(Key)-值(Value)类型数据，如系统配置信息等。
@@ -282,4 +281,4 @@ int aos_mkdir(const char *path);
 ```
 # 总结
 本文描述了基于AliOS的应用模型，介绍了软硬件开发环境的搭建、应用开发的基本步骤。以helloworld为例，展示了如何基于AliOS进行应用开发。本文最后，还介绍了AliOS提供的丰富组件和接口，以及如何利用这个组件进行应用开发。
-想了解AliOS更详细的信息，请访问。
+想了解AliOS更详细的信息，请访问[AliOS Github主页](https://github.com/alibaba/AliOS)。
