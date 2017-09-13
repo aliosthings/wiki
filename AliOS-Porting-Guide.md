@@ -5,7 +5,7 @@
 
 ## 1.2 移植内容
 (1) 硬件体系架构相关移植(目录platform/arch/*)  
-(2) 时钟中断移植（在时钟中断中需要调用yunos_tick_proc）  
+(2) 时钟中断移植（在时钟中断中需要调用krhino_tick_proc）  
 (3 )内存/栈溢出保护等特性移植(可选)
 
 ## 1.3 工具链
@@ -49,18 +49,18 @@ aos-cube安装配置 (ubuntu)：
 
 ## 2.2 系统启动
 ### 2.2.1 系统初始化
-系统初始化主要是指bss、data段的初始化以及系统时钟频率等必须在系统启动之前进行的初始化操作，如中断向量表、MCU运行频率等，该部分在移植开始前均已实现。需要务必保证 bss段的清0的动作，在系统起来之前。对于cortex-m4f或者cortex-m7f的具备FPU的系列需要确认是否编译打开了硬浮点数的支持，如果打开了务必保证启动前硬件上对FPU做初始化，否则请采用软浮点方式（在Makefile中添加"`-mfloat-abi=soft`"声明）
+系统初始化主要是指bss、data段的初始化以及系统时钟频率等必须在系统启动之前进行的初始化操作，如中断向量表、MCU运行频率等，该部分在移植开始前均已实现。需要务必保证 bss段的清0的动作，在系统起来之前。对于cortex-m4f或者cortex-m7f的具备FPU的系列需要确认是否编译打开了硬浮点数的支持，如果打开了务必保证启动前硬件上对FPU做初始化。
 
 ### 2.2.2 时钟中断
 * 节拍率（HZ）  
-节拍率是Rhino运行的原动力，其通过系统定时器设置，通常为100，即每秒有100次系统定时中断（cortex-m中使用SysTick定时器），其宏定义为：**_YUNOS_CONFIG_TICKS_PER_SECOND_**。
+节拍率是Rhino运行的原动力，其通过系统定时器设置，通常为100，即每秒有100次系统定时中断（cortex-m中使用SysTick定时器），其宏定义为：**_RHINO_CONFIG_TICKS_PER_SECOND_**。
 * 中断处理  
-为了驱动Rhino的运行，需要在中断处理函数中调用yunos_tick_proc这个函数。示例代码如下:  
+为了驱动Rhino的运行，需要在中断处理函数中调用krhino_tick_proc这个函数。示例代码如下:  
 ```
 void tick_interrupt(void) {
-    yunos_intrpt_enter();
-    yunos_tick_proc();
-    yunos_intrpt_exit();
+    krhino_intrpt_enter();
+    krhino_tick_proc();
+    krhino_intrpt_exit();
 }
 ```
 ### 2.2.3 内核启动
@@ -69,13 +69,13 @@ void tick_interrupt(void) {
 int main(int argc, char **argv) {
     heap_init();
     driver_init();
-    yunos_init(); /* app task create */
-    yunos_start();
+    krhino_init(); /* app task create */
+    krhino_start();
 }
 ``` 
 注意：  
 **_(1) main函数中首先需要初始化堆这块，具体的注意事项请参考下面的soc_impl.c的移植。_**  
-**_(2) driver_init()里面不会产生中断，不然整个系统在yunos_start()起来之前会挂掉。_**
+**_(2) driver_init()里面不会产生中断，不然整个系统在krhino_start()起来之前会挂掉。_**
 
 ### 2.2.4 C库移植
 目前系统使用newlib仓库，newlib的移植由于具有通用性，已经统一到系统utility/libc下
@@ -104,10 +104,10 @@ int main(int argc, char **argv) {
 * int32_t cpu_bitmap_clz(uint32_t val)  
 该接口主要是通过类似Arm中的clz指令实现位图的快速查找，在**YUNOS_CONFIG_BITMAP_HW**宏打开（置1）时实现该接口，在未打开时默认使用Rhino中的软件算法查找。
 
-* YUNOS_INLINE uint8_t cpu_cur_get(void)  
+* RHINO_INLINE uint8_t cpu_cur_get(void)  
 该接口在port.h中默认的单核实现如下：
 ```
-YUNOS_INLINE uint8_t cpu_cur_get(void) {
+RHINO_INLINE uint8_t cpu_cur_get(void) {
     return 0;
 }
 ```
