@@ -19,10 +19,13 @@
 > * int aos_task_new(const char *name, void(*)(void *)fn, void *arg, int stack_size)
 > > - [x] Create a task
 > > - [x] ************Parameters************
-    [in]	name	task name, any string
-    [in]	fn	task function
-    [in]	arg	any pointer, will give to your task-function as argument
-    [in]	stacksize	stacksize in bytes
+    [in]  name       task name, any string
+
+    [in]  fn         task function
+
+    [in]  arg        any pointer, will give to your task-function as argument
+
+    [in]  stacksize  stacksize in bytes
 > > - [x] ************Returns:************
       the operation status, RHINO_SUCCESS is OK, others is error
 ------
