@@ -160,8 +160,8 @@ aos_post_event(EV_WIFI, CODE_WIFI_ON_GOT_IP,NULL)
 
 
 2 如何动态添加事件
-当我们需要将某一个监听的fd放到yloop来监听时，需要在yloop的上下文中执行该操作,wifi_service_event就是yloop上下文执行的
 ```
+当我们需要将某一个监听的fd放到yloop来监听时，需要在yloop的上下文中执行该操作,wifi_service_event就是yloop上下文执行的
 void wifi_service_event(input_event_t *event, void *priv_data) {
     XXXX
     inf fd = connect();
