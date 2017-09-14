@@ -53,9 +53,9 @@
 
     [in]  len        the length of the value
 
-    [in]  sync       save the KV pair to flash right now (always should be 1)
+    [in]  sync       save the KV pair to flash right now (should always be 1)
 > > - [x] ************Returns:************
-       0 on success, other is error
+       0 on success, negative error on failure
 
 ## 6.2 aos_kv_get()
 > * int aos_kv_get(const char *key, void *buffer, int *buffer_len)
@@ -68,7 +68,7 @@
 
     [out]  buffer_len    the real length of value
 > > - [x] ************Returns:************
-       0 on success, other is error
+       0 on success, negative error on failure
 
 ## 6.3 aos_kv_del()
 > * int aos_kv_del(const char *key)
@@ -77,7 +77,7 @@
 
     [in]   key    the key of the KV pair you want to delete
 > > - [x] ************Returns:************
-       0 on success, other is error
+       0 on success, negative error on failure
 ------
 # 7 LIST API
 
