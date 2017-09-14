@@ -26,6 +26,7 @@ AliOS-Studio依赖C/C++插件，在安装AliOS-Studio插件后，会提示安装
 # 2 项目
 ## 2.1 基于 AliOS 源码开发
 文件 - 打开文件夹，打开 AliOS 代码目录：
+
 ![](https://img.alicdn.com/tfs/TB17cxGcgMPMeJjy1XbXXcwxVXa-865-690.png)
 
 ![](https://img.alicdn.com/tfs/TB1JvFKcgoQMeJjy0FoXXcShVXa-865-689.png)
@@ -41,6 +42,7 @@ AliOS-Studio依赖C/C++插件，在安装AliOS-Studio插件后，会提示安装
 
 # 3 编译
 直接点击下 bar 栏的 build 按钮，或者 Ctrl + shift + P，在命令栏里面使用 alios-studio: build， 编译成功之后的输出：
+
 ![](https://img.alicdn.com/tfs/TB1Emyrb.tWMKJjy0FaXXcCDpXa-865-630.png)
 
 # 4 烧写
