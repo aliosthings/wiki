@@ -279,6 +279,19 @@ int aos_closedir(aos_dir_t *dir);
 aos_dirent_t *aos_readdir(aos_dir_t *dir);  
 int aos_mkdir(const char *path);
 ```
+## uMesh
+uMesh是AliOS中实现的一种多跳网络，借助uMesh可以很方便、灵活的进行组网和通信。
+### 头文件：
+`umesh.h`
+### 组件依赖：
+不需要显示申明。
+### 接口示例：
+```
+ur_error_t umesh_init(node_mode_t mode);
+ur_error_t umesh_start(void);
+ur_error_t umesh_stop(void);
+```
+
 # 总结
 本文描述了基于AliOS的应用模型，介绍了软硬件开发环境的搭建、应用开发的基本步骤。以helloworld为例，展示了如何基于AliOS进行应用开发。本文最后，还介绍了AliOS提供的丰富组件和接口，以及如何利用这个组件进行应用开发。
 想了解AliOS更详细的信息，请访问[AliOS Github主页](https://github.com/alibaba/AliOS)。
