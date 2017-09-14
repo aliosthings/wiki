@@ -27,10 +27,39 @@ AliOS 默认带有 Linux 交叉工具链，Windows 工具链可以在链接 [GCC
 
 ## 1.3 驱动安装
 ### 1.3.1 串口驱动
-串口驱动
+**FTDI系列**
+
+FTDI驱动，在[FTDI](http://www.ftdichip.com/Drivers/D2XX.htm)下载 Windows 驱动程序并安装。
+
+**STLink**
+
+STLink也有串口转换器功能，在[STM](http://www.st.com)下载 Windows 驱动程序并安装。
+
+**CP2102串口转换器**
+
+CP2102驱动，在[Silicon Labs](https://www.silabs.com/products/development-tools/software/usb-to-uart-bridge-vcp-drivers)下载 Windows 驱动程序并安装。
+
+对应驱动安装完成后，连接设备，可在计算机 - 设备管理 - 端口，查看对应转换端口状态：
+
+![](https://img.alicdn.com/tfs/TB1Fflnd3MPMeJjy1XcXXXpppXa-864-633.png)
 
 ### 1.3.2 JTAG 驱动
-JTAG驱动
+**JLink**
+
+JLink 驱动可在 **待添加下载地址**。
+
+安装完成 JLink 驱动后，使用 JLink 连接设备，，可在计算机 - 设备管理，查看JLink识别状态：
+
+![](https://img.alicdn.com/tfs/TB1okBvd3MPMeJjy1XcXXXpppXa-865-456.png)
+
+**STLink**
+
+STLink驱动，可在[STLink](http://www.st.com/content/st_com/en/products/development-tools/hardware-development-tools/development-tool-hardware-for-mcus/debug-hardware-for-mcus/debug-hardware-for-stm32-mcus/st-link-v2.html)下载并安装。
+
+安装完成 STLink 驱动后，使用 STLink 连接设备，可在计算机 - 设备管理，查看STLink识别状态：
+
+ **待添加效果图**
+
 
 # 2 Linux 环境配置
 首先确认 Python 2.7 版本存在，aos-cube 依赖 Python 2.7 版本。
