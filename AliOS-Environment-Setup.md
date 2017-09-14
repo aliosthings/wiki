@@ -1,32 +1,41 @@
-# 1 Window环境配置
-## 1.1 Cube安装
-Cube依赖Python 2.7版本，在官网下载对应的2.7版本的[Python](https://www.python.org/downloads/) MSI安装文件。安装过程中，请选择add python.exe to Path，如下图所示：
+# 1 Window 环境配置
+## 1.1 aos-cube 安装
+aos-cube 是 AliOS 在 Python 下面开发的项目管理工具包，依赖 Python 2.7 版本。在 Python 官网下载对应的 2.7 版本的[Python](https://www.python.org/downloads/) MSI 安装文件，安装时，选择 add python.exe to Path，如下图所示：
 
-打开命令行，输入python命令能找到，说明安装成功。
+![](https://img.alicdn.com/tfs/TB13PAjdMoQMeJjy0FoXXcShVXa-796-672.png)
 
-进入到Python的安装目录（比如Python安装在C盘，则在C:\Python27\Scripts目录下面），用easy_install安装pip：
+打开 cmd，输入 python，cmd 能找到 python 命令，说明安装配置成功。
+
+在 cmd 下面，进入 Python 安装目录的 Scripts（比如 Python 安装在 C 盘，则路径为 C:\Python27\Scripts），用 easy_install 安装 pip：
 
 `> easy_install pip`
 
-安装完成pip后，使用pip安装aos-cube：
+安装完成 pip 后，则可以安装 aos-cube：
 
 `> pip install aos-cube`
 
 ## 1.2 交叉工具链
-AliOS默认带有Linux交叉工具链，Windows下面的工具链可以在链接[GCC](https://launchpad.net/gcc-arm-embedded/+download)下载对应版本的压缩包，解压缩并且重命名为Win32，复制到...\aos\build\compiler\arm-none-eabi-5_4-2016q2-20160622\目录下面：
+AliOS 默认带有 Linux 交叉工具链，Windows 工具链可以在链接 [GCC](https://launchpad.net/gcc-arm-embedded/+download) 下载 Windows压缩包，解压缩并且重命名为 Win32，复制到 ...\aos\build\compiler\arm-none-eabi-5_4-2016q2-20160622\ 目录下面：
 
 ![](https://img.alicdn.com/tfs/TB1cuO1dwMPMeJjy1XcXXXpppXa-865-317.png)
 
-在AliOS源码的目录下面，运行：
+在 AliOS 源码的目录下面，运行：
 
 `aos make helloworld@mk3060`
 
-编译mk3060板子的helloworld示例程序。
+编译 mk3060 板子的 helloworld 示例程序。
 
-# 2 Linux环境配置
-首先确认Python 2.7版本存在，aos-cube依赖Python 2.7版本。
+## 1.3 驱动安装
+### 1.3.1 串口驱动
+串口
 
-以Ubuntu 16.04 LTS (Xenial Xerus) 64-bit PC版本为例，安装下列pkg：
+### 1.3.2 JTAG 驱动
+
+
+# 2 Linux 环境配置
+首先确认 Python 2.7 版本存在，aos-cube 依赖 Python 2.7 版本。
+
+以 Ubuntu 16.04 LTS (Xenial Xerus) 64-bit PC 版本为例，安装下列 pkg：
 
 ```
 $ sudo apt-get install -y gcc-multilib
@@ -37,14 +46,14 @@ $ sudo apt-get install -y python-pip
 $ sudo pip install aos-cube
 ```
 
-在AliOS源码的目录下面，运行：
+在 AliOS 源码的目录下面，运行：
 
 `aos make helloworld@mk3060`
 
-编译mk3060板子的helloworld示例程序。
+编译 mk3060 板子的 helloworld 示例程序。
 
-# 3 MacOS环境配置
-AliOS默认带有Linux交叉工具链，MacOS下面的工具链可以在链接[GCC](https://launchpad.net/gcc-arm-embedded/+download)下载对应版本的压缩包，解压缩并且重命名为OSX，复制到.../aos/build/compiler/arm-none-eabi-5_4-2016q2-20160622目录下面：
+# 3 MacOS 环境配置
+AliOS 默认带有 Linux 交叉工具链，MacOS 下面的工具链可以在链接[GCC](https://launchpad.net/gcc-arm-embedded/+download)下载对应版本的压缩包，解压缩并且重命名为OSX，复制到.../aos/build/compiler/arm-none-eabi-5_4-2016q2-20160622目录下面：
 
 ![](https://img.alicdn.com/tfs/TB1msKVdwoQMeJjy1XaXXcSsFXa-865-229.png)
 
