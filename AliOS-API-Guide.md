@@ -47,13 +47,13 @@
 > > - [x] Add another KV pair
 > > - [x] ************Parameters:************
 
-    [in]  key        the key of the KV pair
+    [in]  key    the key of the KV pair
 
-    [in]  value      the value of the KV pair
+    [in]  value  the value of the KV pair
 
-    [in]  len        the length of the value
+    [in]  len    the length of the value
 
-    [in]  sync       save the KV pair to flash right now (should always be 1)
+    [in]  sync   save the KV pair to flash right now (should always be 1)
 > > - [x] ************Returns:************
        0 on success, negative error on failure
 
@@ -62,11 +62,11 @@
 > > - [x] Get the KV value stored in buffer by its key
 > > - [x] ************Parameters:************
 
-    [in]   key           the key of the KV pair you want to get
+    [in]   key         the key of the KV pair you want to get
 
-    [out]  buffer        the memory to store KV value
+    [out]  buffer      the memory to store KV value
 
-    [out]  buffer_len    the real length of value
+    [out]  buffer_len  the real length of value
 > > - [x] ************Returns:************
        0 on success, negative error on failure
 
@@ -75,7 +75,7 @@
 > > - [x] Delete the KV pair by its key
 > > - [x] ************Parameters:************
 
-    [in]   key    the key of the KV pair you want to delete
+    [in]  key  the key of the KV pair you want to delete
 > > - [x] ************Returns:************
        0 on success, negative error on failure
 ------
@@ -97,9 +97,9 @@
 > > - [x] Open the file or device by its path
 > > - [x] ************Parameters:************
 
-    [in]  path       the path of the file or device you want to open
+    [in]  path   the path of the file or device you want to open
 
-    [in]  flags      the mode of open operation
+    [in]  flags  the mode of open operation
 > > - [x] ************Returns:************
        the new file descriptor, negative error on failure
 
@@ -108,7 +108,7 @@
 > > - [x] Close the file or device by its fd
 > > - [x] ************Parameters:************
 
-    [in]  fd       the handle of the file or device
+    [in]  fd  the handle of the file or device
 > > - [x] ************Returns:************
        0 on success, negative error on failure
 
@@ -117,11 +117,11 @@
 > > - [x] Read the contents of a file or device into a buffer
 > > - [x] ************Parameters:************
 
-    [in]   fd        the handle of the file or device
+    [in]   fd      the handle of the file or device
 
-    [in]   nbytes    the number of bytes to read
+    [in]   nbytes  the number of bytes to read
 
-    [out]  buf       the buffer to read into
+    [out]  buf     the buffer to read into
 > > - [x] ************Returns:************
        The number of bytes read, 0 at the end of file, negative error on failure
 
@@ -130,11 +130,11 @@
 > > - [x] Write the contents of a buffer to file or device
 > > - [x] ************Parameters:************
 
-    [in]   fd        the handle of the file or device
+    [in]  fd      the handle of the file or device
 
-    [in]   nbytes    the number of bytes to write
+    [in]  nbytes  the number of bytes to write
 
-    [in]   buf       the buffer to write from
+    [in]  buf     the buffer to write from
 > > - [x] ************Returns:************
        The number of bytes written, negative error on failure
 
@@ -143,11 +143,11 @@
 > > - [x] This is a wildcard API for sending controller specific commands
 > > - [x] ************Parameters:************
 
-    [in]   fd        the handle of the file or device
+    [in]  fd   the handle of the file or device
 
-    [in]   cmd       a controller specific command
+    [in]  cmd  a controller specific command
 
-    [in]   arg       argument to the command, interpreted according to the command
+    [in]  arg  argument to the command, interpreted according to the command
 > > - [x] ************Returns:************
        Any return from the command
 
@@ -157,11 +157,11 @@
           For every file handle provided, poll() examines it for any events registered for that particular file handles
 > > - [x] ************Parameters:************
 
-    [in]   fds        a point to the array of PollFh struct carrying a file handle and bitmask of events
+    [in]  fds      a point to the array of PollFh struct carrying a file handle and bitmask of events
 
-    [in]   nfds       number of file handles
+    [in]  nfds     number of file handles
 
-    [in]   timeout    timer value to timeout or -1 for loop forever
+    [in]  timeout  timer value to timeout or -1 for loop forever
 > > - [x] ************Returns:************
        Number of file handles selected (for which revents is non-zero). 0 if timed out with nothing selected. -1 for error.
 
@@ -170,11 +170,11 @@
 > > - [x] Performs one of the operations described below on the open file descriptor, The operation is determined by cmd
 > > - [x] ************Parameters:************
 
-    [in]   fd        the handle of the file or device
+    [in]  fd   the handle of the file or device
 
-    [in]   cmd       the operation of the file or device
+    [in]  cmd  the operation of the file or device
 
-    [in]   val       it depends on whether cmd need params
+    [in]  val  it depends on whether cmd need params
 > > - [x] ************Returns:************
        0 on success, negative error on failure
 
@@ -183,11 +183,11 @@
 > > - [x] Move the file position to a given offset from a given location
 > > - [x] ************Parameters:************
 
-    [in]   fd        file handle
+    [in]  fd      file handle
 
-    [in]   offset    the offset from whence to move to
+    [in]  offset  the offset from whence to move to
 
-    [in]   whence    the start of where to seek
+    [in]  whence  the start of where to seek
 > > - [x] ************Returns:************
        The new offset of the file
 
@@ -196,7 +196,7 @@
 > > - [x] Flush any buffers associated with the file
 > > - [x] ************Parameters:************
 
-    [in]   fd        file handle
+    [in]  fd  file handle
 > > - [x] ************Returns:************
        0 on success, negative error code on failure
 
@@ -205,9 +205,9 @@
 > > - [x] Store information about the file in a stat structure
 > > - [x] ************Parameters:************
 
-    [in]   path    the name of the file to find information about
+    [in]  path  the name of the file to find information about
 
-    [in]   st      the stat buffer to write to
+    [in]  st    the stat buffer to write to
 > > - [x] ************Returns:************
        0 on success, negative error code on failure
 
@@ -216,7 +216,7 @@
 > > - [x] Remove a file from the filesystem
 > > - [x] ************Parameters:************
 
-    [in]   path    the name of the file to remove
+    [in]  path  the name of the file to remove
 > > - [x] ************Returns:************
        0 on success, negative error code on failure
 
@@ -225,9 +225,9 @@
 > > - [x] Rename a file in filesystem
 > > - [x] ************Parameters:************
 
-    [in]   oldpath    the name of the file to rename
+    [in]  oldpath  the name of the file to rename
 
-    [in]   newpath    the name to rename it to
+    [in]  newpath  the name to rename it to
 > > - [x] ************Returns:************
        0 on success, negative error code on failure
 
@@ -236,7 +236,7 @@
 > > - [x] Open a directory on the filesystem
 > > - [x] ************Parameters:************
 
-    [in]   path    name of the directory to open
+    [in]  path  name of the directory to open
 > > - [x] ************Returns:************
        A point of directory stream on success, NULL on failure
 
@@ -245,7 +245,7 @@
 > > - [x] Close a directory
 > > - [x] ************Parameters:************
 
-    [in]   dir    directory handle
+    [in]  dir  directory handle
 > > - [x] ************Returns:************
        0 on success, negative error code on failure
 
@@ -254,7 +254,7 @@
 > > - [x] Read the next directory enter
 > > - [x] ************Parameters:************
 
-    [in]   dir    directory handle
+    [in]  dir  directory handle
 > > - [x] ************Returns:************
        a pointer to a dirent structure
 
@@ -263,7 +263,7 @@
 > > - [x] Create the directory, if they do not already exist
 > > - [x] ************Parameters:************
 
-    [in]   path    the name of the directory
+    [in]  path  the name of the directory
 > > - [x] ************Returns:************
        0 on success, negative error code on failure
 ------
