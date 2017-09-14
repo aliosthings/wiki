@@ -1,6 +1,6 @@
 # 1 Window 环境配置
 ## 1.1 aos-cube 安装
-aos-cube 是 AliOS 在 Python 下面开发的项目管理工具包，依赖 Python 2.7 版本。在 Python 官网下载对应的 2.7 版本的[Python](https://www.python.org/downloads/) MSI 安装文件，安装时，选择 add python.exe to Path，如下图所示：
+aos-cube 是 AliOS 在 Python 下面开发的项目管理工具包，依赖 Python 2.7 版本。在 Python 官网下载对应的 2.7 版本的[Python](https://www.python.org/downloads/) MSI 安装文件，安装时，选择 add python.exe to Path：
 
 ![](https://img.alicdn.com/tfs/TB13PAjdMoQMeJjy0FoXXcShVXa-796-672.png)
 
@@ -27,10 +27,10 @@ AliOS 默认带有 Linux 交叉工具链，Windows 工具链可以在链接 [GCC
 
 ## 1.3 驱动安装
 ### 1.3.1 串口驱动
-串口
+串口驱动
 
 ### 1.3.2 JTAG 驱动
-
+JTAG驱动
 
 # 2 Linux 环境配置
 首先确认 Python 2.7 版本存在，aos-cube 依赖 Python 2.7 版本。
