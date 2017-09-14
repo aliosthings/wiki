@@ -19,11 +19,11 @@
 > > - [x] Create a task
 > > - [x] ************Parameters:************
 
-    [in]  name  task name, any string
+    [in]  name       task name, any string
 
-    [in]  fn    task function
+    [in]  fn         task function
 
-    [in]  arg   any pointer, will give to your task-function as argument
+    [in]  arg        any pointer, will give to your task-function as argument
 
     [in]  stacksize  stacksize in bytes
 > > - [x] ************Returns:************
@@ -34,19 +34,19 @@
 > > - [x] Create a task
 > > - [x] ************Parameters:************
 
-    [in]  task	      handle
+    [in]  task        handle
 
-    [in]  name	      task name, any string
+    [in]  name        task name, any string
 
-    [in]  fn	      task function
+    [in]  fn          task function
 
-    [in]  arg	      any pointer, will give to your task-function as argument
+    [in]  arg         any pointer, will give to your task-function as argument
 
     [in]  stack_buf   if stack_buf==NULL, provided by kernel
 
     [in]  stack_size  stacksize in bytes
 
-    [in]  prio	      priority value, smaller the stronger
+    [in]  prio        priority value, smaller the stronger
 > > - [x] ************Returns:************
       the operation status, RHINO_SUCCESS is OK, others is error
 
@@ -59,134 +59,82 @@
 
 ## 1.7 aos_task_name()
 > * const char *aos_task_name(void)
-> > - [x]
-> > - [x] ************Parameters:************
-
-    [in] 
-
-    [in] 
-
-    [in]  
-
-    [in]  
+> > - [x] get task name
 > > - [x] ************Returns:************
-
+      task name
 
 ## 1.8 aos_task_key_create()
 > * int aos_task_key_create(aos_task_key_t *key)
-> > - [x]
+> > - [x] create a task key
 > > - [x] ************Parameters:************
 
-    [in] 
-
-    [in] 
-
-    [in]  
-
-    [in]  
+    [in]  key  pointer of key object
 > > - [x] ************Returns:************
+      the check status, 0 is OK, -1 indicates invalid
 
 ## 1.9 aos_task_key_delete()
 > * void aos_task_key_delete(aos_task_key_t key)
-> > - [x]
+> > - [x] delete a task key
 > > - [x] ************Parameters:************
 
-    [in] 
-
-    [in] 
-
-    [in]  
-
-    [in]  
-> > - [x] ************Returns:************
+    [in]  key  key object
 
 ## 1.10 aos_task_setspecific()
 > * int aos_task_setspecific(aos_task_key_t key, void *vp)
-> > - [x]
+> > - [x] associate a task-specific value with a key
 > > - [x] ************Parameters:************
 
-    [in] 
-
-    [in] 
-
-    [in]  
-
-    [in]  
+    [in]  key  key object
+    [in]  vp   pointer of a task-specific value
 > > - [x] ************Returns:************
+      the check status, 0 is OK, -1 indicates invalid
 
 ## 1.11 aos_task_getspecific()
 > * void *aos_task_getspecific(aos_task_key_t key)
-> > - [x]
+> > - [x] get the value currently bound to the specified key
 > > - [x] ************Parameters:************
 
-    [in] 
-
-    [in] 
-
-    [in]  
-
-    [in]  
+    [in]  key  pointer of key object
 > > - [x] ************Returns:************
+      the check status, 0 is OK, -1 indicates invalid
 
 ## 1.12 aos_mutex_new()
 > * int aos_mutex_new(aos_mutex_t *mutex)
-> > - [x]
+> > - [x] alloc a mutex
 > > - [x] ************Parameters:************
 
-    [in] 
-
-    [in] 
-
-    [in]  
-
-    [in]  
+    [in]  mutex  pointer of mutex object,mutex object must be alloced, hdl pointer in aos_mutex_t will refer a kernel obj internally
 > > - [x] ************Returns:************
+      0 is OK
 
 ## 1.13 aos_mutex_free()
 > * void aos_mutex_free(aos_mutex_t *mutex)
-> > - [x]
+> > - [x] free a mutex
 > > - [x] ************Parameters:************
 
-    [in] 
-
-    [in] 
-
-    [in]  
-
-    [in]  
-> > - [x] ************Returns:************
+    [in]  mutex  mutex object, mem refered by hdl pointer in aos_mutex_t will be freed internally 
 
 ## 1.14 aos_mutex_lock()
 > * int aos_mutex_lock(aos_mutex_t *mutex, unsigned int timeout)
-> > - [x]
+> > - [x] lock a mutex
 > > - [x] ************Parameters:************
 
-    [in] 
-
-    [in] 
-
-    [in]  
-
-    [in]  
+    [in]  mutex  mutex object, it contains kernel obj pointer which aos_mutex_new alloced  
 > > - [x] ************Returns:************
+      0 is OK
 
 ## 1.15 aos_mutex_unlock()
 > * int aos_mutex_unlock(aos_mutex_t *mutex)
-> > - [x]
+> > - [x] unlock a mutex
 > > - [x] ************Parameters:************
 
-    [in] 
-
-    [in] 
-
-    [in]  
-
-    [in]  
+    [in]  mutex  mutex object, it contains kernel obj pointer which oc_mutex_new alloced  
 > > - [x] ************Returns:************
+    0 is OK
 
 ## 1.16 aos_mutex_is_valid()
 > * int aos_mutex_is_valid(aos_mutex_t *mutex)
-> > - [x]
+> > - [x] This function will check if mutex is valid
 > > - [x] ************Parameters:************
 
     [in] 
