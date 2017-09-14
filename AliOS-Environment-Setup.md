@@ -29,15 +29,15 @@ AliOS 默认带有 Linux 交叉工具链，Windows 工具链可以在链接 [GCC
 ### 1.3.1 串口驱动
 **FTDI系列**
 
-FTDI驱动，在[FTDI](http://www.ftdichip.com/Drivers/D2XX.htm)下载 Windows 驱动程序并安装。
+FTDI驱动，在 [FTDI](http://www.ftdichip.com/Drivers/D2XX.htm) 下载 Windows 驱动程序并安装。
 
 **STLink**
 
-STLink也有串口转换器功能，在[STM](http://www.st.com)下载 Windows 驱动程序并安装。
+STLink也有串口转换器功能，在 [STM](http://www.st.com) 下载 Windows 驱动程序并安装。
 
 **CP2102串口转换器**
 
-CP2102驱动，在[Silicon Labs](https://www.silabs.com/products/development-tools/software/usb-to-uart-bridge-vcp-drivers)下载 Windows 驱动程序并安装。
+CP2102驱动，在 [Silicon Labs](https://www.silabs.com/products/development-tools/software/usb-to-uart-bridge-vcp-drivers) 下载 Windows 驱动程序并安装。
 
 对应驱动安装完成后，连接设备，可在计算机 - 设备管理 - 端口，查看对应转换端口状态：
 
@@ -48,13 +48,13 @@ CP2102驱动，在[Silicon Labs](https://www.silabs.com/products/development-too
 
 JLink 驱动可在 **待添加下载地址**。
 
-安装完成 JLink 驱动后，使用 JLink 连接设备，，可在计算机 - 设备管理，查看JLink识别状态：
+安装完成 JLink 驱动后，使用 JLink 连接设备，，可在计算机 - 设备管理，查看 JLink 识别状态：
 
 ![](https://img.alicdn.com/tfs/TB1okBvd3MPMeJjy1XcXXXpppXa-865-456.png)
 
 **STLink**
 
-STLink驱动，可在[STLink](http://www.st.com/content/st_com/en/products/development-tools/hardware-development-tools/development-tool-hardware-for-mcus/debug-hardware-for-mcus/debug-hardware-for-stm32-mcus/st-link-v2.html)下载并安装。
+STLink 驱动，可在 [STLink](http://www.st.com/content/st_com/en/products/development-tools/hardware-development-tools/development-tool-hardware-for-mcus/debug-hardware-for-mcus/debug-hardware-for-stm32-mcus/st-link-v2.html) 下载并安装。
 
 安装完成 STLink 驱动后，使用 STLink 连接设备，可在计算机 - 设备管理，查看STLink识别状态：
 
@@ -82,14 +82,24 @@ $ sudo pip install aos-cube
 编译 mk3060 板子的 helloworld 示例程序。
 
 # 3 MacOS 环境配置
-AliOS 默认带有 Linux 交叉工具链，MacOS 下面的工具链可以在链接[GCC](https://launchpad.net/gcc-arm-embedded/+download)下载对应版本的压缩包，解压缩并且重命名为OSX，复制到.../aos/build/compiler/arm-none-eabi-5_4-2016q2-20160622目录下面：
+## 3.1 aos-cube安装
+确认 MacOS Python 版本为2.7，使用 easy_install 安装 pip：
+
+`$ sudo easy_install pip`
+
+用 pip 安装 aos-cube：
+
+`$ pip install aos-cube`
+
+## 3.2 交叉工具链
+AliOS 默认带有 Linux 交叉工具链，MacOS 下面的工具链可以在链接 [GCC](https://launchpad.net/gcc-arm-embedded/+download) 下载对应版本的压缩包，解压缩并且重命名为OSX，复制到 .../aos/build/compiler/arm-none-eabi-5_4-2016q2-20160622 目录下面：
 
 ![](https://img.alicdn.com/tfs/TB1msKVdwoQMeJjy1XaXXcSsFXa-865-229.png)
 
-在AliOS源码的目录下面，运行：
+在 AliOS 源码的目录下面，运行：
 
 `aos make helloworld@mk3060`
 
-编译mk3060板子的helloworld示例程序。
+编译 mk3060 板子的 helloworld 示例程序。
 
 
