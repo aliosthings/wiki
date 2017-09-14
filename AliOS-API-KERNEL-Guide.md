@@ -35,11 +35,17 @@
 > > - [x] ************Parameters:************
 
     [in]  task	      handle
+
     [in]  name	      task name, any string
+
     [in]  fn	      task function
+
     [in]  arg	      any pointer, will give to your task-function as argument
-    [in]  stack_buf   stack-buf: if stack_buf==NULL, provided by kernel
+
+    [in]  stack_buf   if stack_buf==NULL, provided by kernel
+
     [in]  stack_size  stacksize in bytes
+
     [in]  prio	      priority value, smaller the stronger
 > > - [x] ************Returns:************
       the operation status, RHINO_SUCCESS is OK, others is error
