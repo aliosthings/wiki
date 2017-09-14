@@ -1,4 +1,4 @@
-AliOS-Studio 是 AliOS 提供的 IDE 开发环境，目前支持 Windows，后续会支持 Linux、 MacOS 操作系统。
+AliOS-Studio 是 AliOS 提供的 IDE 开发环境，目前支持 Windows，后续会增加对 Linux、 MacOS 等操作系统的支持。
 
 # 1 Studio 安装
 AliOS-Studio 是 VS Code 插件，所以首先安装 VS Code ，通过插件的方式安装 AliOS-Studio。
