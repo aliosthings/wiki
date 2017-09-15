@@ -137,100 +137,59 @@
 > > - [x] This function will check if mutex is valid
 > > - [x] ************Parameters:************
 
-    [in] 
-
-    [in] 
-
-    [in]  
-
-    [in]  
+    [in]  mutex  pointer to the mutex
 > > - [x] ************Returns:************
+      the check status, RHINO_TRUE is OK, RHINO_FALSE indicates invalid
 
 ## 1.17 aos_sem_new()
 > * int aos_sem_new(aos_sem_t *sem, int count)
-> > - [x]
+> > - [x] alloc a semaphore
 > > - [x] ************Parameters:************
 
-    [in] 
-
-    [in] 
-
-    [in]  
-
-    [in]  
+    [out]  sem   pointer of semaphore object,semaphore object must be alloced, hdl pointer in aos_sem_t will refer a kernel obj internally
+    [in]  count  initial semaphore counter 
 > > - [x] ************Returns:************
 
 ## 1.18 aos_sem_free()
 > * void aos_sem_free(aos_sem_t *sem)
-> > - [x]
+> > - [x] destroy a semaphore
 > > - [x] ************Parameters:************
 
-    [in] 
-
-    [in] 
-
-    [in]  
-
-    [in]  
-> > - [x] ************Returns:************
+    [in]  sem  pointer of semaphore object,mem refered by hdl pointer in aos_sem_t will be freed internally
 
 ## 1.19 aos_sem_wait()
 > * int aos_sem_wait(aos_sem_t *sem, unsigned int timeout)
-> > - [x]
+> > - [x] acquire a semaphore
 > > - [x] ************Parameters:************
 
-    [in] 
+    [in]  sem      semaphore object,,it contains kernel obj pointer which aos_sem_new alloced
 
-    [in] 
-
-    [in]  
-
-    [in]  
+    [in]  timeout  waiting until timeout in milliseconds 
 > > - [x] ************Returns:************
 
 
 ## 1.20 aos_sem_signal()
 > * void aos_sem_signal(aos_sem_t *sem)
-> > - [x]
+> > - [x] release a semaphore
 > > - [x] ************Parameters:************
 
-    [in] 
-
-    [in] 
-
-    [in]  
-
-    [in]  
-> > - [x] ************Returns:************
-
+    [in]  sem  semaphore object,,it contains kernel obj pointer which aos_sem_new alloced
 
 ## 1.21 aos_sem_is_valid()
 > * int aos_sem_is_valid(aos_sem_t *sem)
-> > - [x]
+> > - [x] This function will check if semaphore is valid
 > > - [x] ************Parameters:************
 
-    [in] 
-
-    [in] 
-
-    [in]  
-
-    [in]  
+    [in]  sem  pointer to the semaphore 
 > > - [x] ************Returns:************
+      the check status, RHINO_TRUE is OK, RHINO_FALSE indicates invalid
 
 ## 1.22 aos_sem_signal_all()
 > * void aos_sem_signal_all(aos_sem_t *sem)
-> > - [x]
+> > - [x] release all semaphore
 > > - [x] ************Parameters:************
 
-    [in] 
-
-    [in] 
-
-    [in]  
-
-    [in]  
-> > - [x] ************Returns:************
+    [in]  sem  semaphore object, it contains kernel obj pointer which aos_sem_new alloced  
 
 ## 1.23 aos_queue_new()
 > * int aos_queue_new(aos_queue_t *queue, void *buf, unsigned int size, int max_msg)
