@@ -49,11 +49,3 @@ log at warning level
 
 #### Parameters
 * `fmt` same as printf() usage
-
-#### `define `[`EV_ALL`](#yloop_8h_1ab185d5d92c1a1df99920c5ba833f5372) 
-
-special event filter
-
-#### `define `[`EV_FLAG_URGENT`](#yloop_8h_1a399f2a3958f2a832817221506c15e898) 
-
-#### `define `[`EV_SYS`](#yloop_8h_1a8fdc7aaa2a13ab9489d7b45b9ef50568) 
