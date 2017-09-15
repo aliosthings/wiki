@@ -1,9 +1,9 @@
-#### `public void `[`aos_set_log_level`](#log_8h_1acb7268fb6c63c18aa7d372642e9c9994)`(enum `[`aos_log_level_t`](#alink_8h_1af17ae4b2877b06aff2343711faadbddb)` log_level)` 
+#### `public void `[`aos_set_log_level`](#log_8h_1ae17ac5be96340be7f2ad09073f5f2438)`(`[`aos_log_level_t`](#log_8h_1ab5415466dbe3b11b98f39d2c428bac16)` log_level)` 
 
-Log level control
+set the log level
 
 #### Parameters
-* `log_level ` level to be set
+* `log_level` level to be set
 
 #### `define `[`LOGF`](#log_8h_1acb7268fb6c63c18aa7d372642e9c9994) 
 
