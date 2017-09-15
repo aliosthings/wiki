@@ -193,16 +193,13 @@
 
 ## 1.23 aos_queue_new()
 > * int aos_queue_new(aos_queue_t *queue, void *buf, unsigned int size, int max_msg)
-> > - [x]
+> > - [x] This function will create a queue
 > > - [x] ************Parameters:************
 
-    [in] 
-
-    [in] 
-
-    [in]  
-
-    [in]  
+    [in]	queue	pointer to the queue(the space is provided by user)
+    [in]	buf	buf of the queue(provided by user)
+[in]	size	the bytes of the buf
+[in]	max_msg	the max size of the msg 
 > > - [x] ************Returns:************
 
 ## 1.24 aos_queue_free()
