@@ -1,4 +1,4 @@
-get offset of a member variable
+get the offset of a member variable
 
 #### Parameters
 * `type` the type of the struct this is embedded in. 
