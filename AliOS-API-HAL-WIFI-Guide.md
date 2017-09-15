@@ -224,8 +224,8 @@ Set the event callback function array for the wifi.
 Please don't do time consuming work in these callbacks.
 
 #### Parameters
-* `m` The wifi instance, `NULL` for default.
-* `cb` The event callback function info.
+* `m` - The wifi instance, `NULL` for default.
+* `cb` - The event callback function info.
 
 #### Returns
 None
