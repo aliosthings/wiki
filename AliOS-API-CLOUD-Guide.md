@@ -10,57 +10,33 @@
 > > - [x] ************Returns:************
       the operation status, 0 is OK, others is error
 
-## 1.2 aos_get_hz()
-> * int aos_get_hz(void)
-> > - [x] get HZ
-
-## 1.3 aos_version_get()
-> * const char *aos_version_get(void)
-> > - [x] Get kernel version
-> > - [x] ************Returns:************
-      the operation status, RHINO_SUCCESS is OK, others is error
-
-## 1.4 aos_task_new()
-```c
-int aos_task_new(const char *name, void(*)(void *)fn, void *arg, int stack_size)
-```
-* Create a task
-
-- [x] ************Parameters:************
-
--    [in]  name       task name, any string
--    [in]  fn         task function
-    [in]  arg        any pointer, will give to your task-function as argument
-    [in]  stacksize  stacksize in bytes
-
-- [x] ************Returns:************
-      the operation status, RHINO_SUCCESS is OK, others is error
-
-## 1.5 aos_task_new_ext()
-> * int aos_task_new_ext(aos_task_t *task, const char *name, void (*fn)(void *), void *arg, int stack_size, int prio)
-> > - [x] Create a task
+## 1.2 aos_cloud_report()
+> * int aos_cloud_report(const char *method,
+                     const char *json_buffer,
+                     void (*done_cb)(void *),
+                     void *arg);
+> > - [x] Report event to cloud
 > > - [x] ************Parameters:************
 
-    [in]  task        handle
-    [in]  name        task name, any string
-    [in]  fn          task function
-    [in]  arg         any pointer, will give to your task-function as argument
-    [in]  stack_buf   if stack_buf==NULL, provided by kernel
-    [in]  stack_size  stacksize in bytes
-    [in]  prio        priority value, smaller the stronger
+    [in]  method        remote method name
+    [in]  json_buffer   method's payload
+    [in]  done_cb       report done callback
+    [in]  arg           private data passed to done_cb
 
 > > - [x] ************Returns:************
-      the operation status, RHINO_SUCCESS is OK, others is error
+      the operation status, 0 is OK, others is error
 
-## 1.6 aos_task_exit()
-> * void aos_task_exit(int code)
-> > - [x] exit a task
+## 1.3 aos_cloud_trigger()
+> * void aos_cloud_trigger(int cb_type, const char *json_buffer)
+> > - [x] Report event to cloud
 > > - [x] ************Parameters:************
 
-    [in]  code  the id which aos_task_new returned
+    [in]  cb_type       event type
+    [in]  json_buffer   payload
 
-## 1.7 aos_task_name()
-> * const char *aos_task_name(void)
-> > - [x] get task name
-> > - [x] ************Returns:************
-      task name
+## 1.4 aos_cloud_register_backend()
+> * aos_cloud_register_backend(int (*report)(const char *method, const char *json_buffer))
+> > - [x] Report event to cloud
+> > - [x] ************Parameters:************
+
+    [in]  report       called when user do aos_cloud_report
