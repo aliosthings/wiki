@@ -395,105 +395,68 @@
 
 ## 1.43 aos_realloc()
 > * void *aos_realloc(void *mem, unsigned int size)
-> > - [x]
+> > - [x] realloc memory
 > > - [x] ************Parameters:************
 
-    [in] 
+[in]	mem,current	memory address point
+[in]	size	new size of the mem to remalloc
 
-    [in] 
-
-    [in]  
-
-    [in]  
 > > - [x] ************Returns:************
+    the operation status, NULL is error, others is memory address
 
 ## 1.44 aos_malloc()
 > * void *aos_malloc(unsigned int size)
-> > - [x]
+> > - [x] alloc memory
 > > - [x] ************Parameters:************
 
-    [in] 
+[in]	size	size of the mem to malloc
 
-    [in] 
-
-    [in]  
-
-    [in]  
 > > - [x] ************Returns:************
+    the operation status, NULL is error, others is memory address
 
 ## 1.45 aos_zalloc()
 > * void *aos_zalloc(unsigned int size)
-> > - [x]
+> > - [x] alloc memory and clear to zero
 > > - [x] ************Parameters:************
 
-    [in] 
+[in]	size	size of the mem to malloc
 
-    [in] 
-
-    [in]  
-
-    [in]  
 > > - [x] ************Returns:************
+    the operation status, NULL is error, others is memory address
 
 ## 1.46 aos_alloc_trace()
 > * void aos_alloc_trace(void *addr, size_t allocator)
-> > - [x]
+> > - [x] trace alloced mems
 > > - [x] ************Parameters:************
 
-    [in] 
-
-    [in] 
-
-    [in]  
-
-    [in]  
-> > - [x] ************Returns:************
+[in]	addr	pointer of the mem alloced by malloc
+[in]	allocator	buildin_address
 
 ## 1.47 aos_free()
 > * void aos_free(void *mem)
-> > - [x]
+> > - [x] free memory
 > > - [x] ************Parameters:************
 
-    [in] 
-
-    [in] 
-
-    [in]  
-
-    [in]  
-> > - [x] ************Returns:************
+[in]	ptr	address point of the mem
 
 ## 1.48 aos_now()
 > * long long aos_now(void)
-> > - [x]
-> > - [x] ************Parameters:************
+> > - [x] get current time in nano seconds
 
-    [in] 
-
-    [in] 
-
-    [in]  
-
-    [in]  
 > > - [x] ************Returns:************
+    elapsed time in nano seconds from system starting
 
-## 1.49 aos_free_ms()
+## 1.49 aos_now_ms()
 > * long long aos_now_ms(void)
-> > - [x]
+> > - [x] get current time in mini seconds
 > > - [x] ************Parameters:************
 
-    [in] 
 
-    [in] 
-
-    [in]  
-
-    [in]  
 > > - [x] ************Returns:************
 
 ## 1.50 aos_msleep()
 > * void aos_msleep(int ms)
-> > - [x]
+> > - [x] 
 > > - [x] ************Parameters:************
 
     [in] 
