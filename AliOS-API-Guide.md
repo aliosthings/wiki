@@ -1,70 +1,25 @@
 请在各子wiki填写，谢谢！可参考kv vfs
 ------
-# 1 RHINO API
+# 1 KERNEL API
 
-------
 # 2 ALINK API
 
-------
 # 3 CLI API
 
-------
 # 4 CLOUD API
 
-------
 # 5 DEBUG API
 
-------
 # 6 KV API
-## 6.1 aos_kv_set()
-> * int aos_kv_set(const char *key, const void *value, int len, int sync)
-> > - [x] Add another KV pair
-> > - [x] ************Parameters:************
 
-    [in]  key    the key of the KV pair
-
-    [in]  value  the value of the KV pair
-
-    [in]  len    the length of the value
-
-    [in]  sync   save the KV pair to flash right now (should always be 1)
-> > - [x] ************Returns:************
-       0 on success, negative error on failure
-
-## 6.2 aos_kv_get()
-> * int aos_kv_get(const char *key, void *buffer, int *buffer_len)
-> > - [x] Get the KV value stored in buffer by its key
-> > - [x] ************Parameters:************
-
-    [in]   key         the key of the KV pair you want to get
-
-    [out]  buffer      the memory to store KV value
-
-    [out]  buffer_len  the real length of value
-> > - [x] ************Returns:************
-       0 on success, negative error on failure
-
-## 6.3 aos_kv_del()
-> * int aos_kv_del(const char *key)
-> > - [x] Delete the KV pair by its key
-> > - [x] ************Parameters:************
-
-    [in]  key  the key of the KV pair you want to delete
-> > - [x] ************Returns:************
-       0 on success, negative error on failure
-------
 # 7 LIST API
 
-------
 # 8 LOG API
 
-------
 # 9 MBEDTLS-SSL API
 
-------
 # 10 VERSION API
 
-------
 # 11 VFS API
 ## 11.1 aos_open()
 > * int aos_open(const char *path, int flags)
