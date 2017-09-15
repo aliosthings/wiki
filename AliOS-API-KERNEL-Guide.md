@@ -457,9 +457,9 @@
 ## 1.50 aos_msleep()
 > * void aos_msleep(int ms)
 > > - [x] 
-> > - [x] ************Parameters:************
+[in]	ms	sleep time in milliseconds> > - [x] ************Parameters:************
 
-    [in] 
+[in]	ms	sleep time in milliseconds    [in] 
 
     [in] 
 
