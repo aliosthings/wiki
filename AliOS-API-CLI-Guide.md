@@ -1,10 +1,8 @@
-# 1 CLI API
-
-## public int cli_register_command (const struct cli_command *command) 
+#### `public int `[`cli_register_command`](#cli_8h_1a23c3dbb78c76121d390d07b74619b68e)`(const struct `[`cli_command`](#structcli__command)` * command)` 
 
 This function registers a command with the command-line interface.
 
-## Parameters
+#### Parameters
 * `command` The structure to register one CLI command
 
 #### Returns
