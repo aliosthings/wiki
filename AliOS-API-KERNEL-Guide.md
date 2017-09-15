@@ -325,101 +325,73 @@
 
 ## 1.36 aos_workqueue_create()
 > * int aos_workqueue_create(aos_workqueue_t *workqueue, int pri, int stack_size)
-> > - [x]
+> > - [x] This function will creat a workqueue
 > > - [x] ************Parameters:************
 
-    [in] 
-
-    [in] 
-
-    [in]  
-
-    [in]  
+[in]	workqueue	the workqueue to be created
+[in]	pri	the priority of the worker
+[in]	stack_size	the size of the worker-stack
+ 
 > > - [x] ************Returns:************
+    the operation status, 0 is OK, others is error
 
 ## 1.37 aos_workqueue_del()
 > * void aos_workqueue_del(aos_workqueue_t *workqueue)
-> > - [x]
+> > - [x] This function will delete a workqueue
 > > - [x] ************Parameters:************
 
-    [in] 
-
-    [in] 
-
-    [in]  
-
-    [in]  
-> > - [x] ************Returns:************
+[in]	workqueue	the workqueue to be deleted  
 
 ## 1.38 aos_work_init()
 > * int aos_work_init(aos_work_t *work, void(*fn)(void *), void *arg, int dly)
-> > - [x]
+> > - [x] This function will initialize a work
 > > - [x] ************Parameters:************
 
-    [in] 
-
-    [in] 
-
-    [in]  
-
-    [in]  
+[in]	work	the work to be initialized
+[in]	fn	the call back function to run
+[in]	arg	the paraments of the function
+[in]	dly	ms to delay before run
+  
 > > - [x] ************Returns:************
+    the operation status, 0 is OK, others is error
 
 ## 1.39 aos_work_destroy()
 > * void aos_work_destroy(aos_work_t *work)
-> > - [x]
+> > - [x] This function will destroy a work
 > > - [x] ************Parameters:************
 
-    [in] 
-
-    [in] 
-
-    [in]  
-
-    [in]  
-> > - [x] ************Returns:************
+[in]	work	the work to be destroied
 
 ## 1.40 aos_work_run()
 > * int aos_work_run(aos_workqueue_t *workqueue, aos_work_t *work)
-> > - [x]
+> > - [x] This function will run a work on a workqueue
 > > - [x] ************Parameters:************
 
-    [in] 
-
-    [in] 
-
-    [in]  
-
-    [in]  
+[in]	workqueue	the workqueue to run work
+[in]	work	the work to run
+ 
 > > - [x] ************Returns:************
+    the operation status, 0 is OK, others is error
 
 ## 1.41 aos_work_sched()
 > * int aos_work_sched(aos_work_t *work)
-> > - [x]
+> > - [x] This function will run a work on the default workqueue
 > > - [x] ************Parameters:************
 
-    [in] 
-
-    [in] 
-
-    [in]  
-
-    [in]  
+[in]	work	the work to run
+  
 > > - [x] ************Returns:************
+    the operation status, 0 is OK, others is error
 
 ## 1.42 aos_work_cancel()
 > * int aos_work_cancel(aos_work_t *work)
-> > - [x]
+> > - [x] This function will cancel a work on the default workqueue
 > > - [x] ************Parameters:************
 
-    [in] 
-
-    [in] 
-
-    [in]  
-
-    [in]  
+[in]	work	the work to cancel
+ 
 > > - [x] ************Returns:************
+    the operation status, 0 is OK, others is error
 
 ## 1.43 aos_realloc()
 > * void *aos_realloc(void *mem, unsigned int size)
