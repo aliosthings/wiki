@@ -20,12 +20,10 @@
 > > - [x] ************Parameters:************
 
     [in]  name       task name, any string
-
     [in]  fn         task function
-
     [in]  arg        any pointer, will give to your task-function as argument
-
     [in]  stacksize  stacksize in bytes
+
 > > - [x] ************Returns:************
       the operation status, RHINO_SUCCESS is OK, others is error
 
@@ -35,18 +33,13 @@
 > > - [x] ************Parameters:************
 
     [in]  task        handle
-
     [in]  name        task name, any string
-
     [in]  fn          task function
-
     [in]  arg         any pointer, will give to your task-function as argument
-
     [in]  stack_buf   if stack_buf==NULL, provided by kernel
-
     [in]  stack_size  stacksize in bytes
-
     [in]  prio        priority value, smaller the stronger
+
 > > - [x] ************Returns:************
       the operation status, RHINO_SUCCESS is OK, others is error
 
@@ -69,6 +62,7 @@
 > > - [x] ************Parameters:************
 
     [in]  key  pointer of key object
+
 > > - [x] ************Returns:************
       the check status, 0 is OK, -1 indicates invalid
 
@@ -86,6 +80,7 @@
 
     [in]  key  key object
     [in]  vp   pointer of a task-specific value
+
 > > - [x] ************Returns:************
       the check status, 0 is OK, -1 indicates invalid
 
@@ -95,6 +90,7 @@
 > > - [x] ************Parameters:************
 
     [in]  key  pointer of key object
+
 > > - [x] ************Returns:************
       the check status, 0 is OK, -1 indicates invalid
 
@@ -104,6 +100,7 @@
 > > - [x] ************Parameters:************
 
     [in]  mutex  pointer of mutex object,mutex object must be alloced, hdl pointer in aos_mutex_t will refer a kernel obj internally
+
 > > - [x] ************Returns:************
       0 is OK
 
@@ -120,6 +117,7 @@
 > > - [x] ************Parameters:************
 
     [in]  mutex  mutex object, it contains kernel obj pointer which aos_mutex_new alloced  
+
 > > - [x] ************Returns:************
       0 is OK
 
@@ -138,6 +136,7 @@
 > > - [x] ************Parameters:************
 
     [in]  mutex  pointer to the mutex
+
 > > - [x] ************Returns:************
       the check status, RHINO_TRUE is OK, RHINO_FALSE indicates invalid
 
@@ -148,6 +147,7 @@
 
     [out]  sem   pointer of semaphore object,semaphore object must be alloced, hdl pointer in aos_sem_t will refer a kernel obj internally
     [in]  count  initial semaphore counter 
+
 > > - [x] ************Returns:************
 
 ## 1.18 aos_sem_free()
@@ -163,8 +163,8 @@
 > > - [x] ************Parameters:************
 
     [in]  sem      semaphore object,,it contains kernel obj pointer which aos_sem_new alloced
-
     [in]  timeout  waiting until timeout in milliseconds 
+
 > > - [x] ************Returns:************
 
 
@@ -181,6 +181,7 @@
 > > - [x] ************Parameters:************
 
     [in]  sem  pointer to the semaphore 
+
 > > - [x] ************Returns:************
       the check status, RHINO_TRUE is OK, RHINO_FALSE indicates invalid
 
@@ -198,179 +199,129 @@
 
     [in]	queue	pointer to the queue(the space is provided by user)
     [in]	buf	buf of the queue(provided by user)
-[in]	size	the bytes of the buf
-[in]	max_msg	the max size of the msg 
+    [in]	size	the bytes of the buf
+    [in]	max_msg	the max size of the msg 
+
 > > - [x] ************Returns:************
+    the operation status, 0 is OK, others is error
 
 ## 1.24 aos_queue_free()
 > * void aos_queue_free(aos_queue_t *queue)
-> > - [x]
+> > - [x] This function will delete a queue
 > > - [x] ************Parameters:************
 
-    [in] 
-
-    [in] 
-
-    [in]  
-
-    [in]  
-> > - [x] ************Returns:************
+    [in]	queue	pointer to the queue
 
 ## 1.25 aos_queue_send()
 > * int aos_queue_send(aos_queue_t *queue, void *msg, unsigned int size)
-> > - [x]
+> > - [x] This function will send a msg to the front of a queue
 > > - [x] ************Parameters:************
 
-    [in] 
+    [in]	queue	pointer to the queue
+[in]	msg	msg to send
+[in]	size	size of the msg
 
-    [in] 
-
-    [in]  
-
-    [in]  
 > > - [x] ************Returns:************
+    the operation status, 0 is OK, others is error
 
 ## 1.26 aos_queue_recv()
 > * int aos_queue_recv(aos_queue_t *queue, unsigned int ms, void *msg, unsigned int *size)
-> > - [x]
+> > - [x] This function will receive msg from a queue
 > > - [x] ************Parameters:************
 
-    [in] 
-
-    [in] 
-
-    [in]  
-
-    [in]  
+[in]	queue	pointer to the queue
+[in]	ms	ms to wait before receive
+[out]	msg	buf to save msg
+[out]	size	size of the msg
+  
 > > - [x] ************Returns:************
+    the operation status, 0 is OK, others is error
 
 ## 1.27 aos_queue_is_valid()
 > * int aos_queue_is_valid(aos_queue_t *queue)
-> > - [x]
+> > - [x] This function will check if queue is valid
 > > - [x] ************Parameters:************
 
-    [in] 
+[in]	queue	pointer to the queue  
 
-    [in] 
-
-    [in]  
-
-    [in]  
 > > - [x] ************Returns:************
+    the check status, RHINO_TRUE is OK, RHINO_FALSE indicates invalid
 
 ## 1.28 aos_queue_buf_ptr()
 > * void *aos_queue_buf_ptr(aos_queue_t *queue)
-> > - [x]
+> > - [x] This function will return buf ptr if queue is inited
 > > - [x] ************Parameters:************
 
-    [in] 
+[in]	queue	pointer to the queue
 
-    [in] 
-
-    [in]  
-
-    [in]  
 > > - [x] ************Returns:************
+    the check status, NULL is error
 
 ## 1.29 aos_sched_disable()
 > * int aos_sched_disable(void)
-> > - [x]
-> > - [x] ************Parameters:************
-
-    [in] 
-
-    [in] 
-
-    [in]  
-
-    [in]  
+> > - [x] This function will disable kernel sched
+ 
 > > - [x] ************Returns:************
+    the operation status, 0 is OK, others is error
 
 ## 1.30 aos_sched_enable()
 > * int aos_sched_enable(void)
-> > - [x]
-> > - [x] ************Parameters:************
+> > - [x] This function will enable kernel sched
 
-    [in] 
-
-    [in] 
-
-    [in]  
-
-    [in]  
 > > - [x] ************Returns:************
+    the operation status, 0 is OK, others is error
 
 ## 1.31 aos_timer_new()
 > * int aos_timer_new(aos_timer_t *timer, void(*fn)(void *, void *), void *arg, int ms, int repeat)
-> > - [x]
+> > - [x] This function will create a timer
 > > - [x] ************Parameters:************
 
-    [in] 
-
-    [in] 
-
-    [in]  
-
-    [in]  
+[in]	timer	pointer to the timer
+[in]	fn	callbak of the timer
+[in]	arg	the argument of the callback
+[in]	ms	ms of the normal timer triger
+[in]	repeat	repeat or not when the timer is created
+ 
 > > - [x] ************Returns:************
+    the operation status, 0 is OK, others is error
 
 ## 1.32 aos_timer_free()
 > * void aos_timer_free(aos_timer_t *timer)
-> > - [x]
+> > - [x] This function will delete a timer
 > > - [x] ************Parameters:************
 
-    [in] 
-
-    [in] 
-
-    [in]  
-
-    [in]  
-> > - [x] ************Returns:************
-
+[in]	timer	pointer to a timer
 
 ## 1.33 aos_timer_start()
 > * int aos_timer_start(aos_timer_t *timer)
-> > - [x]
+> > - [x] This function will start a timer
 > > - [x] ************Parameters:************
 
-    [in] 
+[in]	timer	pointer to the timer
 
-    [in] 
-
-    [in]  
-
-    [in]  
 > > - [x] ************Returns:************
-
+    the operation status, 0 is OK, others is error
 
 ## 1.34 aos_timer_stop()
 > * int aos_timer_stop(aos_timer_t *timer)
-> > - [x]
+> > - [x] This function will stop a timer
 > > - [x] ************Parameters:************
 
-    [in] 
+[in]	timer	pointer to the timer
 
-    [in] 
-
-    [in]  
-
-    [in]  
 > > - [x] ************Returns:************
+    the operation status, 0 is OK, others is error
 
 ## 1.35 aos_timer_change()
 > * int aos_timer_change(aos_timer_t *timer, int ms)
-> > - [x]
+> > - [x] This function will change attributes of a timer
 > > - [x] ************Parameters:************
 
-    [in] 
-
-    [in] 
-
-    [in]  
-
-    [in]  
+[in]	timer	pointer to the timer
+[in]	ms	ms of the timer triger
+ 
 > > - [x] ************Returns:************
+    the operation status, 0 is OK, others is error
 
 ## 1.36 aos_workqueue_create()
 > * int aos_workqueue_create(aos_workqueue_t *workqueue, int pri, int stack_size)
