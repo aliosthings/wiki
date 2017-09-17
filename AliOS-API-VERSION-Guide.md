@@ -3,9 +3,11 @@
 get aos product model
 
 #### Parameters
-* `model` success 
+* None
 
-* `0` failure
+#### Returns
+* `NULL`   - failure
+* `!=NULL` - Instance pointer.
 
 #### `public const char * `[`aos_get_os_version`](#version_8h_1a0f4fc6bfd8ba438fa87f64ef5b982849)`(void)` 
 
