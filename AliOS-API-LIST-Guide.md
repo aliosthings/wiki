@@ -28,7 +28,7 @@ get the struct
 
 #### `define `[`AOS_DLIST_INIT`](#list_8h_1ad84316f170c0ed94abff6bee5ca3986d) 
 
-init zhe list
+init the list
 
 #### Parameters
 * `list` list to be inited
@@ -117,7 +117,7 @@ iterate backwards over list of given type
 
 #### `define `[`dlist_entry_number`](#list_8h_1a3f5a888135b513cb5ee39f534842e062) 
 
-get zhe list length
+get the list length
 
 #### Parameters
 * `queue` he head for your list
@@ -180,7 +180,7 @@ get the struct for this entry
 
 #### `define `[`slist_entry_number`](#list_8h_1a6b07c04dad0d85b6e31f4a4cec20d808) 
 
-get zhe list length
+get the list length
 
 #### Parameters
 * `queue` he head for your list
