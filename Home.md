@@ -1,3 +1,33 @@
+## FUNC_NUM: FUNC_NAME
+
+```c
+FUNCTION
+```
+
+- [x] **Description**
+
+  FUNC_DESC
+
+- [x] **Parameters**
+
+  | IN/OUT |  NAME  |  DESC  |
+  |--------|--------|--------|
+  PARAM_DESC
+
+- [x] **Returns**
+
+  RETURN_DESC
+
+- [x] **Notes**
+
+  NOTES_DESC
+
+- [x] **Example**
+
+  ```c
+  EXAMPLE_CODE
+  ```
+
 ## Template1: aos_task_new()
 
 ```c
