@@ -27,9 +27,9 @@ int aos_task_new(const char *name, void(*)(void *)fn, void *arg, int stack_size)
   NULL
 
 - [x] **Example**
-```c
+  ```c
     int ret = aos_task_new(...);
-```
+  ```
 
 ## Template2: aos_task_new()
 ```c
