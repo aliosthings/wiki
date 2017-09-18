@@ -58,7 +58,7 @@ ota_finish_param_t定义如下：
         OTA_ENUM_RESULT_TYPE result_type ;
     } ota_finish_param_t;
 
-    获取此变量：ota_finish_param_t *param = (ota_finish_param_t *)something;其中两个子变量含义：
+  获取此变量：ota_finish_param_t *param = (ota_finish_param_t *)something;其中两个子变量含义：
 
     update_type：升级类型，枚举类型，必须为 OTA_KERNEL,OTA_APP,OTA_ALL之一，分别代表升级内核，升级APP及全部升级。
     result_type：结果类型，枚举类型，必须为 OTA_FINISH或OTA_BREAKPOINT。分别代表升级完成和升级中断。
