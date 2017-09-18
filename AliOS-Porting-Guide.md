@@ -82,7 +82,7 @@ int main(int argc, char **argv) {
 **_(2) driver_init()里面不会产生中断，不然整个系统在krhino_start()起来之前会挂掉。_**
 
 ### 2.2.4 C库移植
-目前系统使用newlib仓库，newlib的移植由于具有通用性，已经统一到系统utility/libc下。系统使用newlib C库。newlib对接的所有函数接口在newlib_stub.c里面，最小系统的启动需要对接_write_r来完成printf的打印。对于c库的初始化需要在汇编启动文件中调用_start来完成。
+目前系统使用newlib仓库，newlib的移植由于具有通用性，已经统一到系统utility/libc下。newlib对接的所有函数接口在newlib_stub.c里面，所有移植接口都已经移植完，只需要加入该文件即可。需要注意的是对于c库的初始化需要在汇编启动文件中调用_start来完成。
 
 ## 2.3 cpu接口移植
 
@@ -103,7 +103,7 @@ int main(int argc, char **argv) {
 该接口主要完成任务切换。需要首先保存当前任务的寄存器，然后取得最高优先级任务的栈指针并还原最高优先级任务的寄存器。
 
 * void cpu_first_task_start(void)  
-该接口主要完成启动系统第一个任务。
+该接口主要完成启动系统第一个任务，需要还原第一个任务的寄存器。
 
 * void *cpu_task_stack_init(cpu_stack_t *base,size_t size, void *arg,task_entry_t entry)  
 该接口主要完成任务堆栈的初始化，其中size以**字长**为单位。
@@ -125,7 +125,7 @@ RHINO_INLINE uint8_t cpu_cur_get(void) {
 最简单的方法是copy一个现有工程的（比如arch\arm\armv7m\gcc\m4下面的）k_config.h来快速达到移植的目的。  
 除此之外还需要实现k_soc.h里面定义的一些必要的接口，比如内存分配这块。  
 最简单的方法是copy一个现有工程的（platform\mcu\stm32l4xx\aos）soc_impl.c来快速达到移植的目的。  
-**soc_impl.c里面必须要实现的是内存分配这块的配置g_mm_region。
+**soc_impl.c里面必须要实现的是内存分配这块的配置g_mm_region，具体的代码请参考platform\mcu\stm32l4xx\soc_impl.c
 
 
 ### 2.3.3 调试模块移植
@@ -133,7 +133,7 @@ RHINO_INLINE uint8_t cpu_cur_get(void) {
 串口主要用于打印日志。打印主要是使用printf,因为每个芯片的串口驱动不一样，所以需要对接aos_uart_send这个函数来完成针对printf的移植。
 
 ## 2.4 移植模板
-Rhino内核的移植模版主要是参照现有的工程的移植。目前移植的有armv5 以及cortex-m系列等cpu架构。 
+Rhino内核的移植模版主要是参照现有的工程的移植。目前移植的有armv5以及cortex-m系列等cpu架构。 
 
 ## 2.5 驱动移植
 驱动是指完成上层业务逻辑所需要的驱动，如wifi、ble等外设驱动，该部分与内核没有直接关系，可参考HAL接口设计。所有hal接口存放在include/hal下面。
