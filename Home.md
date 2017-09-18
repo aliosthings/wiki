@@ -3,6 +3,7 @@
 int aos_task_new(const char *name, void(*)(void *)fn, void *arg, int stack_size)
 ```
 - [x] **Description**
+
   Create a new task
 
 - [x] **Parameters**
@@ -20,6 +21,10 @@ int aos_task_new(const char *name, void(*)(void *)fn, void *arg, int stack_size)
   |-------|------|
   | 0 | Success |
   | -1 | Error |
+
+- [x] **Notes**
+
+  NULL
 
 - [x] **Example**
 ```c
@@ -49,6 +54,10 @@ int aos_task_new(const char *name, void(*)(void *)fn, void *arg, int stack_size)
    0: Success
 
   -1: Error
+
+- [x] **Notes**
+
+  NULL
 
 - [x] **Example**
 ```c
