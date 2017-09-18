@@ -13,8 +13,8 @@
  ### 2.5.2 接口实现
   1. 实现int (*init)(hal_ota_module_t *m, void *something)，此接口主要进行flash硬件及相关变量的初始化。
   参数说明：
-*  m  接口模块指针，函数中暂无需使用。
-*  something  当前被用作断点续传的断点地址，使用： _off_set = *(uint32_t*)something。
+  *  m  接口模块指针，函数中暂无需使用。
+  *  something  当前被用作断点续传的断点地址，使用： _off_set = *(uint32_t*)something。
 
 
     初始化时，判断_off_set是否为0.
