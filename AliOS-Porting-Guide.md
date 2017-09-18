@@ -8,5 +8,5 @@
 概述-张畋
 ## [5 AliOS Porting LWIP Guide](https://github.com/alibaba/AliOS/wiki/AliOS-Porting-LWIP-Guide)
 概述-王路
-## [6 AliOS Porting MULTI-BINS Guide](https://github.com/alibaba/AliOS/wiki/AliOS-Porting-MULTI-BINS-Guide)
+## [6 AliOS Porting BINS Guide](https://github.com/alibaba/AliOS/wiki/AliOS-Porting-BINS-Guide)
 概述-建刚
