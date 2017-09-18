@@ -51,7 +51,7 @@ iterate over list of given type
 #### Parameters
 * `pos` the type * to use as a loop cursor 
 
-* `head` he head for your list
+* `head` the head for your list
 
 #### `define `[`dlist_for_each_safe`](#list_8h_1a3b0134cd9d9839dbf4188a814fe19bd2) 
 
