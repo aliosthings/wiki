@@ -3,12 +3,14 @@
 (1)  系统能启动一个任务采用krhino_task_sleep来做定时的打印输出，比如每秒钟打印日志。  
 (2)  跑通Rhino kernel的所有测试用例。
 
+注:移植目标主要针对的是kernel最小集的一个移植。
+
 ## 1.2 移植内容
-(1) 硬件体系架构相关移植(目录platform/arch/*)  
+(1) cpu体系架构相关移植(目录platform/arch/*)  
 (2) 时钟中断移植（在时钟中断中需要调用krhino_tick_proc）  
 
 ## 1.3 工具链
-系统默认使用gcc编译，目前针对arm架构，  
+系统默认使用gcc编译，目前主要针对arm架构，  
 系统自带工具链是gcc version 5.4.1 20160919 (release) [ARM/embedded-5-branch revision 240496],  
 工具链的地址是在 aos/build/compiler/arm-none-eabi-5_4-2016q2-20160622/
 
@@ -18,9 +20,9 @@
 该目录主要存放硬件体系架构所需要的移植接口实现文件，  
 如任务切换、启动、开关中断等（即arch/include/port.h中所定义的接口）。  
   
-示例(armv5)：  
-头文件：arch\arm\armv5\port*.h  
-源代码：arch\arm\armv5\port下面的c文件和汇编文件。  
+示例(armv7m)：  
+头文件：arch\arm\armv7m\gcc\m4\port*.h  
+源代码：arch\arm\armv7m\gcc\m4\下面的c文件和汇编文件。  
 注：arch下的目录结构按CPU架构区分，请参照已有目录。
 * mcu  
 该目录主要存放厂商提供的代码或二进制文件，如系统启动、驱动、编译/链接脚本等。mcu下的目录结构按“厂商/芯片系列”进行区分。
@@ -28,12 +30,11 @@
 # 2. 系统移植
 ## 2.1 环境配置
 ### 2.1.1 代码存放
-硬件体系结构相关的代码存放在arch目录，如armv5  
+硬件体系结构相关的代码存放在arch目录，如armv7m  
 启动、外设及驱动相关的代码存放在mcu目录，如stm32
 
 ### 2.1.2 编译配置
-* IDE  
-基于集成开发环境开发时需要在targets相关目录下建立编译相关的工程并把Rhino的代码添加到工程中。
+* IDE 
 * 非IDE  
 此处非IDE是指直接使用Makefile构建编译系统，在这种情况下需要修改Rhino根目录下的Makefile文件，将默认的模拟linux文件替换为芯片相关文件。  
 AOS采用aos-cube工具包来管理编译系统，编译命令示例：  
@@ -53,6 +54,9 @@ aos-cube安装配置 (ubuntu)：
 ### 2.2.2 时钟中断
 * 节拍率（HZ）  
 节拍率是Rhino运行的原动力，其通过系统定时器设置，通常为100，即每秒有100次系统定时中断（cortex-m中使用SysTick定时器），其宏定义为：**_RHINO_CONFIG_TICKS_PER_SECOND_**。
+
+注:设置具体硬件定时器的时候需要使用RHINO_CONFIG_TICKS_PER_SECOND来计算相应的定时中断时间。
+
 * 中断处理  
 为了驱动Rhino的运行，需要在中断处理函数中调用krhino_tick_proc这个函数。示例代码如下:  
 ```
