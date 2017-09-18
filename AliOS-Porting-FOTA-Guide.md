@@ -13,10 +13,12 @@
  ### 2.5.2 接口实现
   1. 实现int (*init)(hal_ota_module_t *m, void *something)，此接口主要进行flash硬件及相关变量的初始化。
   参数说明：
+
     m  接口模块指针，函数中暂无需使用。
     something  当前被用作断点续传的断点地址，使用： _off_set = *(uint32_t*)something。
 
   初始化时，判断_off_set是否为0.
+
     若为0，则需擦除fota下载flash分区,准备进行一次全新的下载。为了安全起见，建议对flash操作进行crc16校验，故同时初始化crc16.   
     若不为0，则认为上次下载中断，接下来将进行断点续传。无需擦除fota下载flash分区。如使用了crc16校验，则需从flash指定区域读取
     上次断点时备份的crc16校验。 
@@ -35,6 +37,7 @@
   3. 实现int (*ota_read)(hal_ota_module_t *m,  volatile uint32_t *off_set,uint8_t *out_buf , uint32_t out_buf_len);
   当前fota没有用到此接口，可以不实现。
   参数说明：
+
     m  接口模块指针，函数中暂无需使用。
     off_set  读偏移地址，无需使用。
     out_buf  读出缓存。
@@ -44,15 +47,19 @@
 
   4.实现int (*ota_set_boot)(hal_ota_module_t *m, void *something);本接口用于下载完成后对系统进行升级或者下载中断后保存现场。
   参数说明：
+
     m  接口模块指针，函数中暂无需使用。
     something  传入的参数，真实传入类型为：ota_finish_param_t *。
+
 ota_finish_param_t定义如下：
+
     typedef struct  {
         OTA_ENUM_UPDATE_TYPE update_type;
         OTA_ENUM_RESULT_TYPE result_type ;
     } ota_finish_param_t;
 
     获取此变量：ota_finish_param_t *param = (ota_finish_param_t *)something;其中两个子变量含义：
+
     update_type：升级类型，枚举类型，必须为 OTA_KERNEL,OTA_APP,OTA_ALL之一，分别代表升级内核，升级APP及全部升级。
     result_type：结果类型，枚举类型，必须为 OTA_FINISH或OTA_BREAKPOINT。分别代表升级完成和升级中断。
 
