@@ -5,7 +5,7 @@
 ## [3 AliOS Porting WiFi Guide]()
 概述-文军
 ## [4 AliOS Porting FOTA Guide]()
-概述-桂挺
+概述-张畋
 ## [5 AliOS Porting LWIP Guide]()
 概述-王路
 ## [6 AliOS Porting MULTI-BINS Guide]()
