@@ -4,9 +4,10 @@ AliOS提供的LwIP协议栈，开发者可以按照以下步骤完成移植工�
 网卡驱动程序的移植示例代码，参考实现。
 主要涉及到以下函数的相关修改：
 
-static void low_level_init(struct netif *netif);
+`static void low_level_init(struct netif *netif);
 static err_t low_level_output(struct netif *netif, struct pbuf *p);
 static struct pbuf *low_level_input(struct netif *netif);
+`
 
 修改完成后，源代码需要存放在对应的平台(platform)下面。
 
