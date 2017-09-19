@@ -38,3 +38,9 @@ int32_t hal_uart_init(uart_dev_t *uart)
 
 xxx_uart_init的意思是指不同芯片厂商的 uart初始化。
 
+int32_t hal_uart_send(uart_dev_t *uart, void *data, uint32_t size, uint32_t timeout)
+{
+  xxx_uart_send(uart, data, size, timeout);
+}
+
+xxx_uart_send的意思是指不同芯片厂商的uart发送函数。
