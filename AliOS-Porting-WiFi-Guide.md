@@ -1,3 +1,9 @@
+---
+> * 1 WiFi模块结构体
+> * 2 接口的实现
+> * 3 接口的使用
+---
+
 AliOS WiFi HAL的定义请查看头文件定义：[WiFi HAL接口定义](https://github.com/alibaba/AliOS/wiki/AliOS-API-HAL-WIFI-Guide)。在AliOS移植的移植过程中，如果需要支持WiFi功能，则需要对WiFi HAL接口进行移植实现。
 
 # 1 WiFi模块结构体
@@ -70,7 +76,7 @@ void hal_wifi_register_module(hal_wifi_module_t *m);
 ```
 完成注册的WiFi模块和接口才能被使用。
 
-# 3 接口调用
+# 3 接口的使用
 需要使用WiFi功能和接口时，可以通过调用下面的函数来获取相应的WiFi模块结构体。
 ```c
 hal_wifi_module_t *hal_wifi_get_default_module(void);
