@@ -8,17 +8,17 @@ static err_t low_level_output(struct netif *netif, struct pbuf *p);
 static struct pbuf *low_level_input(struct netif *netif);  
 修改完成后，源代码会存放在对应的平台(platform)下面。  
 
-**2. 平台相关修改 ** 
+**2. 平台相关修改**  
 平台相关的移植示例代码，[参考实现](https://github.com/alibaba/AliOS/blob/master/platform/mcu/beken/include/lwip-2.0.2/port/arch/cc.h)  
 主要定义包括类型定义,大小端设置,内存对齐等。  
 如果一致，可以直接拷贝存放在对应的平台(platform)下面。  
 
-**3. LwIP配置修改  **
+**3. LwIP配置修改**  
 LwIP配置修改的移植示例代码，[参考实现](https://github.com/alibaba/AliOS/blob/master/platform/mcu/beken/include/lwip-2.0.2/port/lwipopts.h)  
 如果一致，可以直接拷贝存放在对应的平台(platform)下面。  
 
-**4. 与OS的对接 ** 
+**4. 与OS的对接**  
 与OS的对接AliOS已经默认完成，开发者可以直接使用。[实现代码](https://github.com/alibaba/AliOS/blob/master/kernel/protocols/net/port/sys_arch.c)  
 
-**5. 平台相关Makefile修改 ** 
+**5. 平台相关Makefile修改**  
 完成上述修改后，需要修改对应平台(platform)下相关Makefile，[参考实现](https://github.com/alibaba/AliOS/blob/master/platform/mcu/beken/beken.mk)
