@@ -15,4 +15,4 @@ With built-in FOTA capability, developers do not need to worry about features up
 **Modular**  
 With the modular and multiple binaries design, developers can keep the application clean, and do not need to spend any time on OS.
 
-Let's get start to build the first Hello World Example for the ultimate experience with AliOS.
+Let's get start to build the first [Hello World Example](https://github.com/alibaba/AliOS/wiki/AliOS-APP-DEV-Guide) for the ultimate experience with AliOS.
