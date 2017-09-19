@@ -95,7 +95,7 @@ yloop是AliOS的一个异步框架，可以监听网络和本地事件，目前A
 ## 6.2 kv
 `待添加`。更多关于kv组件的介绍，请参照：[kv介绍](https://github.com/alibaba/AliOS/wiki/AliOS-API-KV-Guide)
 ## 6.3 alink
-alink组件提供开放丰富安全可靠的云服务，可以用于alink上云连接服务，如配网、数据上报alink等。借助alink组件，用户可以很方便的实现实现用户与设备、设备与设备、设备与用户之间的互联互动。关于alink组件详细的介绍以及接口的定义，请参考[alink介绍](https://github.com/alibaba/AliOS/wiki/AliOS-API-ALINK-Guide)
+alink组件提供开放丰富安全可靠的云服务，可以用于alink上云连接服务，如配网、数据上报alink等。借助alink组件，用户可以很方便的实现实现用户与设备、设备与设备、设备与用户之间的互联互动。关于alink组件详细的介绍以及接口的定义，请参考：[alink介绍](https://github.com/alibaba/AliOS/wiki/AliOS-API-ALINK-Guide)
 ## 6.4 kernel
 AliOS kernel提供各种常用的功能组件，包括内存管理、任务管理、timer、锁、信号量、计时等接口和服务。更多关于kernel组件的介绍，请参考：[kernel介绍](https://github.com/alibaba/AliOS/wiki/AliOS-API-KERNEL-Guide)
 ## 6.5 vfs
@@ -103,13 +103,13 @@ vfs组件是对真实文件系统操作/设备操作的一层抽象层，通过v
 ## 6.6 uMesh
 uMesh是AliOS核心组件之一，模组之间通过uMesh能够形成自组织网络。uMesh实现了mesh链路管理、mesh路由、6LoWPAN、AES-128数据加解密等。它能够支持mesh原始数据包、IPv4或IPv6多种数据传输方式。开发者可以使用熟悉的socket编程，利用uMesh提供的自组织网络实现智能设备的开发和互连，能够使用在智能照明，智能抄表，智能家居等场景。开发者也可以通过实现uMesh提供的mesh HAL层接口，将uMesh移植到不同的通信介质，如WiFi，802.15.4, BLE等。
 ## 6.7 cli
-AliOS应用开发中可以支持命令行，并且可以添加用户自定义命令。当需要注册或撤销自定义命令时，可以借助“cli”组件。更多关于cli组件的介绍，请参考[cli介绍](https://github.com/alibaba/AliOS/wiki/AliOS-API-CLI-Guide)
+AliOS应用开发中可以支持命令行，并且可以添加用户自定义命令。当需要注册或撤销自定义命令时，可以借助“cli”组件。更多关于cli组件的介绍，请参考：[cli介绍](https://github.com/alibaba/AliOS/wiki/AliOS-API-CLI-Guide)
 
 下图展示了一个实际示例应用中的命令列表。
 
 ![](https://img.alicdn.com/tfs/TB1ETiGdwMPMeJjy1XcXXXpppXa-447-367.png)
 ## 6.8 log
-使用log组件可以定义和使用不同级别的日志打印。更多关于log组件的介绍和接口定义，请参考[log介绍](https://github.com/alibaba/AliOS/wiki/AliOS-API-LOG-Guide)
+使用log组件可以定义和使用不同级别的日志打印。更多关于log组件的介绍和接口定义，请参考：[log介绍](https://github.com/alibaba/AliOS/wiki/AliOS-API-LOG-Guide)
 
 # 7 总结
 本文描述了基于AliOS的应用模型，介绍了软硬件开发环境的搭建、应用开发的基本步骤。以helloworld为例，展示了如何基于AliOS进行应用开发。本文最后，还介绍了AliOS提供的丰富组件和接口，以及如何利用这个组件进行应用开发。
