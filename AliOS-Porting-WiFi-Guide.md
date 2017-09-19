@@ -78,7 +78,7 @@ void hal_wifi_register_module(hal_wifi_module_t *m);
 完成注册的WiFi模块和接口才能被使用。
 
 # 4 接口的使用
-需要使用WiFi功能和接口时，可以通过调用下面的函数来获取相应的WiFi模块结构体。
+需要使用WiFi功能和接口时，可以通过调用下面的函数来获取默认的WiFi模块结构体（第一个被注册的模块）。一般系统中只注册一个WiFi模块，在使用WiFi HAL接口时，一般由个参数是`hal_wifi_module_t *m`：若该参数不为空，则使用参数指定的WiFi模块；若为`NULL`，则使用默认的WiFi模块（使用如下接口）。
 ```c
 hal_wifi_module_t *hal_wifi_get_default_module(void);
 ```
