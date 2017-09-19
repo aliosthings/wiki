@@ -49,7 +49,7 @@
   4.实现int (*ota_set_boot)(hal_ota_module_t *m, void *something);本接口用于下载完成后对系统进行升级或者下载中断后保存现场。
   参数说明：
 
-    m  接口模块指针，函数中暂无需使用。
+    m          接口模块指针，函数中暂无需使用。
     something  传入的参数，实际传入类型为：ota_finish_param_t *。
 
 ota_finish_param_t定义如下：
