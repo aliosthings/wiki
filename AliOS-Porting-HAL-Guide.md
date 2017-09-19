@@ -31,4 +31,10 @@
 
 下面举一个uart实际封装的例子来说明是如何移植的。
 
+int32_t hal_uart_init(uart_dev_t *uart)
+{
+  xxx_uart_init(uart)
+}
+
+xxx_uart_init的意思是指不同芯片厂商的 uart初始化。
 
