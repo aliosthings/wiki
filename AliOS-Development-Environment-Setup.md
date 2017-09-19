@@ -1,5 +1,24 @@
-# 1 Window 环境配置
-## 1.1 aos-cube 安装
+# 1 硬件环境准备
+本文以庆科MK3060模组为例。AliOS还可以运行在其他模组上，硬件环境的搭建请参照本节。
+
+## 1.1 MK3060模组
+MK3060是ARM核的Wi-Fi模组，可以运行AliOS。
+![](https://img.alicdn.com/tfs/TB1dkGJdwoQMeJjy0FoXXcShVXa-4160-2336.jpg)
+
+## 1.2 串口线
+MK3060的串口已经通过miniusb接口接出，只需要通过miniusb-usb线将串口与PC连接起来。
+![](https://img.alicdn.com/tfs/TB16paGdwoQMeJjy0FnXXb8gFXa-4160-2336.jpg)
+
+## 1.3 调试器
+支持Jlink调试器。
+![](https://img.alicdn.com/tfs/TB1AOuudwMPMeJjy1XdXXasrXXa-4160-2336.jpg)
+
+## 1.4 连接示例
+下图展示了连接好的硬件环境。
+![](https://img.alicdn.com/tfs/TB1niqudwMPMeJjy1XdXXasrXXa-4160-2336.jpg)
+
+# 2 Window 环境配置
+## 2.1 aos-cube 安装
 aos-cube 是 AliOS 在 Python 下面开发的项目管理工具包，依赖 Python 2.7 版本。在 Python 官网下载对应的 2.7 版本的[Python](https://www.python.org/downloads/) MSI 安装文件，安装时，选择 add python.exe to Path：
 
 ![](https://img.alicdn.com/tfs/TB13PAjdMoQMeJjy0FoXXcShVXa-796-672.png)
@@ -14,7 +33,7 @@ aos-cube 是 AliOS 在 Python 下面开发的项目管理工具包，依赖 Pyth
 
 `> pip install aos-cube`
 
-## 1.2 交叉工具链
+## 2.2 交叉工具链
 AliOS 默认带有 Linux 交叉工具链，Windows 工具链可以在链接 [GCC](https://launchpad.net/gcc-arm-embedded/+download) 下载 Windows压缩包，解压缩并且重命名为 Win32，复制到 ...\aos\build\compiler\arm-none-eabi-5_4-2016q2-20160622\ 目录下面：
 
 ![](https://img.alicdn.com/tfs/TB1cuO1dwMPMeJjy1XcXXXpppXa-865-317.png)
@@ -25,8 +44,8 @@ AliOS 默认带有 Linux 交叉工具链，Windows 工具链可以在链接 [GCC
 
 编译 mk3060 板子的 helloworld 示例程序。
 
-## 1.3 驱动安装
-### 1.3.1 串口驱动
+## 2.3 驱动安装
+### 2.3.1 串口驱动
 **FTDI系列**
 
 FTDI驱动，在 [FTDI](http://www.ftdichip.com/Drivers/D2XX.htm) 下载 Windows 驱动程序并安装。
@@ -43,7 +62,7 @@ CP2102驱动，在 [Silicon Labs](https://www.silabs.com/products/development-to
 
 ![](https://img.alicdn.com/tfs/TB1Fflnd3MPMeJjy1XcXXXpppXa-864-633.png)
 
-### 1.3.2 JTAG 驱动
+### 2.3.2 JTAG 驱动
 **JLink**
 
 JLink 驱动可在 **待添加下载地址**。
@@ -61,7 +80,7 @@ STLink 驱动，可在 [STLink](http://www.st.com/content/st_com/en/products/dev
  **待添加效果图**
 
 
-# 2 Linux 环境配置
+# 3 Linux 环境配置
 首先确认 Python 2.7 版本存在，aos-cube 依赖 Python 2.7 版本。
 
 以 Ubuntu 16.04 LTS (Xenial Xerus) 64-bit PC 版本为例，安装下列 pkg：
@@ -74,27 +93,6 @@ $ sudo apt-get install -y libreadline-dev libreadline-dev:i386
 $ sudo apt-get install -y python-pip
 $ sudo pip install aos-cube
 ```
-
-在 AliOS 源码的目录下面，运行：
-
-`aos make helloworld@mk3060`
-
-编译 mk3060 板子的 helloworld 示例程序。
-
-# 3 MacOS 环境配置
-## 3.1 aos-cube安装
-确认 MacOS Python 版本为2.7，使用 easy_install 安装 pip：
-
-`$ sudo easy_install pip`
-
-用 pip 安装 aos-cube：
-
-`$ pip install aos-cube`
-
-## 3.2 交叉工具链
-AliOS 默认带有 Linux 交叉工具链，MacOS 下面的工具链可以在链接 [GCC](https://launchpad.net/gcc-arm-embedded/+download) 下载对应版本的压缩包，解压缩并且重命名为OSX，复制到 .../aos/build/compiler/arm-none-eabi-5_4-2016q2-20160622 目录下面：
-
-![](https://img.alicdn.com/tfs/TB1msKVdwoQMeJjy1XaXXcSsFXa-865-229.png)
 
 在 AliOS 源码的目录下面，运行：
 
