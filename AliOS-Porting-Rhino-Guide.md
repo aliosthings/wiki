@@ -7,7 +7,7 @@
 
 # 概述
 ## 移植目标
-(1)  系统能启动一个任务采用krhino_task_sleep来做定时的打印输出，比如每秒钟打印日志。  
+(1)  系统能启动一个任务并调用krhino_task_sleep函数实现定时打印，例如每秒打印一次日志。  
 (2)  跑通Rhino kernel的所有测试用例。
 
 注:本文档移植的目标主要针对的是kernel最小集的一个移植。
@@ -27,10 +27,9 @@
 * arch  
 该目录主要存放硬件体系架构所需要的移植接口实现文件，  
 如任务切换、启动、开关中断等（即arch/include/port.h中所定义的接口）。  
-  
 示例(armv7m)：  
-头文件：arch\arm\armv7m\gcc\m4\port*.h  
-源代码：arch\arm\armv7m\gcc\m4\下面的c文件和汇编文件。  
+头文件：arch/arm/armv7m/gcc/m4/port*.h  
+源代码：arch/arm/armv7m/gcc/m4/下的.c文件和汇编文件。  
 注：arch下的目录结构按CPU架构区分，请参照已有目录。
 * mcu  
 该目录主要存放厂商提供的代码或二进制文件，如系统启动、驱动、编译/链接脚本等。mcu下的目录结构按“厂商/芯片系列”进行区分。
@@ -44,7 +43,7 @@
 ### 编译配置
 
 linux host环境 
-linux host环境下直接使用Makefile构建编译系统，在这种情况下需要修改Rhino根目录下的Makefile文件，将默认的模拟linux文件替换为芯片相关文件。  
+linux host环境下直接使用Makefile构建编译系统，根据需求修改Rhino根目录下的Makefile文件，将默认的linux模拟文件替换为芯片相关文件。  
 AOS采用aos-cube工具包来管理编译系统，编译命令示例：  
 `aos make example_name@platform_name`  
 aos-cube安装配置 (ubuntu)：  
@@ -57,11 +56,11 @@ aos-cube安装配置 (ubuntu)：
 
 ## 系统启动
 ### 系统初始化
-系统初始化主要是指bss、data段的初始化以及系统时钟频率等必须在系统启动之前进行的初始化操作，如中断向量表、MCU运行频率等，该部分在移植开始前均已实现。需要务必保证 bss段的清0的动作，在系统起来之前。对于cortex-m4f或者cortex-m7f的具备FPU的系列需要确认是否编译打开了硬浮点数的支持，如果打开了务必保证启动前硬件上对FPU做初始化。
+系统初始化主要是指bss、data段的初始化以及系统时钟频率等必须在系统启动之前进行的初始化操作，如配置中断向量表、MCU运行频率等，该部分在移植开始前均已实现。系统运行前，务必保证 bss段的清0动作得到执行。对于cortex-m4f或者cortex-m7f的具备FPU的系列需要确认是否编译打开了硬浮点数的支持，如果打开了务必保证启动前硬件上对FPU做初始化。
 
 ### 时钟中断
 * 节拍率（HZ）  
-节拍率是Rhino运行的原动力，其通过系统定时器设置，通常为100，即每秒有100次系统定时中断（cortex-m中使用SysTick定时器），其宏定义为：**_RHINO_CONFIG_TICKS_PER_SECOND_**。
+节拍率是Rhino运行的源动力，其通过系统定时器设置，通常为100，即每秒有100次系统定时中断（cortex-m中使用SysTick定时器），其宏定义为：**_RHINO_CONFIG_TICKS_PER_SECOND_**。
 
   注:设置具体硬件定时器的时候需要使用RHINO_CONFIG_TICKS_PER_SECOND来计算相应的定时中断时间。
 
@@ -86,7 +85,7 @@ int main(int argc, char **argv) {
 ``` 
 注意：  
 **_(1) main函数中首先需要初始化堆这块，具体的注意事项请参考下面的soc_impl.c的移植。_**  
-**_(2) driver_init()里面不会产生中断，不然整个系统在krhino_start()起来之前会挂掉。_**
+**_(2) driver_init()里面不能产生中断，否则整个系统在krhino_start()调用前会发生崩溃。_**
 
 ### C库移植
 目前系统使用newlib仓库，newlib的移植由于具有通用性，已经统一到系统utility/libc下。newlib对接的所有函数接口在newlib_stub.c里面，所有移植接口都已经移植完，只需要加入该文件即可。需要注意的是对于c库的初始化需要在汇编启动文件中调用_start来完成。
@@ -98,10 +97,10 @@ int main(int argc, char **argv) {
 ### cpu体系架构移植
 核心系统的移植主要是指实现arch文件夹下各个port.h中所定义的接口，相关接口描述如下：
 * size_t cpu_intrpt_save(void)  
-该接口主要完成关中断的移植，关中断的cpu状态需要返回。
+该接口主要完成关中断的操作，关中断的cpu状态需要返回。
 
 * void cpu_intrpt_restore(size_t cpsr)  
-该接口主要完成开中断的移植，需要设置现有的cpu状态cpsr。
+该接口主要完成开中断的操作，需要设置现有的cpu状态cpsr。
 
 * void cpu_intrpt_switch(void)  
 该接口主要完成中断切换时还原最高优先级的任务。需要取得最高优先级任务的栈指针并还原最高优先级任务的寄存器。
@@ -126,13 +125,13 @@ RHINO_INLINE uint8_t cpu_cur_get(void) {
 }
 ```
 注意：  
-**_上述所有的移植接口都应该在port.h里面存在，可以参考现有平台的port.h的实现。_** 比如arch\arm\armv7m\gcc\m4下面的port.h文件。
+**_上述所有的移植接口都应在port.h声明，可以参考现有平台的port.h的实现。_** 比如arch/arm/armv7m/gcc/m4下面的port.h文件。
 ### 内核特性移植
-内核特性移植主要是通过修改k_config.h来配置kernel的模块使能。  
-最简单的方法是copy一个现有工程的（比如arch\arm\armv7m\gcc\m4下面的）k_config.h来快速达到移植的目的。  
+内核特性移植主要是通过修改k_config.h来使能kernel的功能模块。  
+最简单的方法是拷贝一个现有工程的（例如arch/arm/armv7m/gcc/m4）k_config.h来快速达到移植的目的。  
 除此之外还需要实现k_soc.h里面定义的一些必要的接口，比如内存分配这块。  
-最简单的方法是copy一个现有工程的（platform\mcu\stm32l4xx\aos）soc_impl.c来快速达到移植的目的。  
-**soc_impl.c里面必须要实现的是内存分配这块的配置g_mm_region，具体的代码请参考platform\mcu\stm32l4xx\soc_impl.c
+最简单的方法是拷贝一个现有工程的（例如platform/mcu/stm32l4xx/aos）soc_impl.c来快速达到移植的目的。  
+soc_impl.c里面必须要实现的是内存分配这块的配置g_mm_region，具体的代码请参考platform/mcu/stm32l4xx/soc_impl.c
 
 
 ### 调试模块移植
