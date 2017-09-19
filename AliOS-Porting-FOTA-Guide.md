@@ -1,5 +1,11 @@
 ## 2.5 fota移植
 ### 2.5.1 移植概要
+  fota移植前先确认当前平台以下功能已经具备或完成移植：
+
+    1.bootloader支持固件升级.
+    2.支持flash操作。
+    3.支持tcp socket连接，支持alink，mqtt其中至少一种协议。
+
   fota跟具体芯片相关的接口建议放置在platform/mcu/xxxx/port/下面，文件名fota_port.c.其中，xxxx为当前正在移植的平台名。
   fota_port.c需要实现结构体hal_ota_module_t中的几个函数：
 ```c
