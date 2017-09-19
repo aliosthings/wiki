@@ -5,7 +5,7 @@
 ## [3 AliOS Porting WiFi Guide](https://github.com/alibaba/AliOS/wiki/AliOS-Porting-WiFi-Guide)
 概述-文军
 ## [4 AliOS Porting FOTA Guide](https://github.com/alibaba/AliOS/wiki/AliOS-Porting-FOTA-Guide)
-概述-张畋
+AliOS提供原生FOTA功能，已完成对Alink,MQTT等协议通道的支持,开发者移植新硬件平台时，只需对底层flash操作接口进行适配封装即可。
 ## [5 AliOS Porting LWIP Guide](https://github.com/alibaba/AliOS/wiki/AliOS-Porting-LWIP-Guide)
 AliOS提供LwIP协议栈支持，并且已经完成与AliOS对接。默认条件下，开发者仅需要完成网卡驱动对接，即可开始无缝使用AliOS提供的LwIP协议栈。
 ## [6 AliOS Porting BINS Guide](https://github.com/alibaba/AliOS/wiki/AliOS-Porting-BINS-Guide)
