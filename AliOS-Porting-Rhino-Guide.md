@@ -84,7 +84,7 @@ int main(int argc, char **argv) {
 }
 ``` 
 注意：  
-**_(1) main函数中首先需要初始化堆这块，具体的注意事项请参考下面的soc_impl.c的移植。_**  
+**_(1) main函数中首先需要初始化堆，具体的注意事项请参考后续soc_impl.c的移植。_**  
 **_(2) driver_init()里面不能产生中断，否则整个系统在krhino_start()调用前会发生崩溃。_**
 
 ### C库移植
