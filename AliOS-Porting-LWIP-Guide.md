@@ -8,7 +8,7 @@ AliOS提供的LwIP协议栈，开发者可以按照以下步骤完成移植工�
     `static err_t low_level_output(struct netif *netif, struct pbuf *p);  `  
     `static struct pbuf *low_level_input(struct netif *netif);  `  
 
-修改完成后，源代码会存放在对应的平台(platform)下面。  
+修改完成后，源代码需要存放在对应的平台(platform)下面。  
 
 **2. 平台相关修改**  
 平台相关的移植示例代码，[参考实现](https://github.com/alibaba/AliOS/blob/master/platform/mcu/beken/include/lwip-2.0.2/port/arch/cc.h)  
