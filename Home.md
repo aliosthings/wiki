@@ -6,18 +6,18 @@ AliOS released by Alibaba is an open-source implementation of operating system (
 Released under an Apache 2.0 licence, Developers can use AliOS in commercial and personal projects with confidence.
 
 **Highly Portable**
-With a very narrow platform abstraction layer and modular design, developers can port with a really short time.
+With a very narrow platform abstraction layer and modular design, Developers can port with a really short time.
 
 **Seamless Connected**
-With built-in mesh capability (known as uMesh), developers not only get one isolated device, but a connected world.
+With built-in mesh capability (known as uMesh), Developers not only get one isolated device, but a connected world.
 
 **Flexible**
-With the asynchronous design (known as yloop), developers can use a wide range of MCUs.
+With the asynchronous design (known as yloop), Developers can use a wide range of MCUs.
 
 **FOTA**
-With built-in FOTA capability, developers do not need to worry about features upgrade any more.
+With built-in FOTA capability, Developers do not need to worry about features upgrade any more.
 
 **Modular**
-With the modular and multiple binaries design, developers can keep the application clean, and do not need to spend any time on OS.
+With the modular and multiple binaries design, Developers can keep the application clean, and do not need to spend much time on system.
 
 Let's get start to build the first [Hello World Example](https://github.com/alibaba/AliOS/wiki/AliOS-APP-DEV-Guide) for the ultimate experience with AliOS.
