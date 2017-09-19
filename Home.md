@@ -18,6 +18,6 @@ With the asynchronous design (known as yloop), Developers can use a wide range o
 With built-in FOTA capability, Developers do not need to worry about features upgrade any more.
 
 **Modular**
-With the modular and multiple binaries design, Developers can keep the application clean, and do not need to spend much time on system.
+With the modular and multiple binaries design, Developers can use AliOS features easily, meanwhile keep the application clean.
 
 Let's get start to build the first [Hello World Example](https://github.com/alibaba/AliOS/wiki/AliOS-APP-DEV-Guide) for the ultimate experience with AliOS.
