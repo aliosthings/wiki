@@ -35,8 +35,6 @@ struct hal_wifi_module_s {
     void (*register_monitor_cb)(hal_wifi_module_t *m, monitor_data_cb_t fn);
     void (*register_wlan_mgnt_monitor_cb)(hal_wifi_module_t *m, monitor_data_cb_t fn);
     int (*wlan_send_80211_raw_frame)(hal_wifi_module_t *m, uint8_t *buf, int len);
-    void (*start_debug_mode)(hal_wifi_module_t *m);
-    void (*stop_debug_mode)(hal_wifi_module_t *m);
 };
 ```
 
@@ -67,8 +65,6 @@ hal_wifi_module_t sim_aos_wifi_beken = {
     .register_monitor_cb =  register_monitor_cb,
     .register_wlan_mgnt_monitor_cb = register_wlan_mgnt_monitor_cb,
     .wlan_send_80211_raw_frame = wlan_send_80211_raw_frame,
-    .start_debug_mode = start_debug_mode,
-    .stop_debug_mode = stop_debug_mode
 };
 ```
 AliOS中实现了如下的注册函数，可以对实现好的WiFi模块结构体进行注册。注册的动作一般是在硬件初始化的过程中进行。
