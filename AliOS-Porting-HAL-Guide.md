@@ -50,3 +50,5 @@ int32_t hal_uart_send(uart_dev_t *uart, void *data, uint32_t size, uint32_t time
 }
 
 xxx_uart_send的意思是指不同芯片厂商的uart发送函数。
+
+其余的hal层api以此类推。
