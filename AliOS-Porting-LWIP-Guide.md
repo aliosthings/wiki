@@ -1,4 +1,4 @@
-AliOS提供的LwIP协议栈移植工作，开发者需要完成如下工作。
+AliOS提供的LwIP协议栈移植工作，开发者可以按照以下步骤完成移植工作。
 
 1. 网卡驱动程序
 网卡驱动程序的移植示例代码，[参考实现](https://github.com/alibaba/AliOS/blob/master/kernel/protocols/net/netif/ethernetif.c)  
