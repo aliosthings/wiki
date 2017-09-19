@@ -1,6 +1,6 @@
 AliOS released by Alibaba is an open-source implementation of operating system (OS) for Internet of Things (IoT). Alibaba has released AliOS to make the IoT technology used in Alibaba more broadly available to developers, in order to accelerate the development of products for the better IoT world.
 
-### Features and benefits of AliOS
+## Features and benefits of AliOS
 
 **Open Source**
 Released under an Apache 2.0 licence, Developers can use AliOS in commercial and personal projects with confidence.
