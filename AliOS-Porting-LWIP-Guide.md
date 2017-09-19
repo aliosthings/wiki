@@ -1,7 +1,7 @@
 AliOS提供的LwIP协议栈移植工作，开发者需要完成如下工作。
 
 1. 网卡驱动程序
-网卡驱动程序的移植示例代码，参考实现:
+网卡驱动程序的移植示例代码，参考实现:<\br>
 [ethernetif.c](https://github.com/alibaba/AliOS/blob/master/kernel/protocols/net/netif/ethernetif.c)
 主要涉及到以下函数的相关修改：
 static void low_level_init(struct netif *netif);
