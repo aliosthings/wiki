@@ -98,9 +98,22 @@ alink组件提供开放丰富安全可靠的云服务，可以用于alink上云�
 ## 6.4 硬件抽象层（HAL）
 HAL是AliOS最核心的组件之一，最主要的目的是为了屏蔽底下不同的芯片平台的差异，从而使上面的应用软件不会因为不同的芯片而改变。目前ALiOS定义了全面的hal抽象层，芯片公司或者用户只要对接相应的hal接口既能满足控制芯片的控制器，从而达到控制硬件外设的目的。HAL包含的功能有adc，flash， gpio，i2c，pwm，rng，rtc，sd，spi，timer，uart，wdg。开发者可以利用HAL的API来快速达到控制硬件外设的能力。由于目前的HAL层是非常标准的API，开发者可以参考现有移植的HAL层的开发，来达到快速移植的能力。更多关于kernel组件的介绍，请参考：[kernel介绍](https://github.com/alibaba/AliOS/wiki/AliOS-API-KERNEL-Guide)
 ## 6.5 kv
-`待添加`。更多关于kv组件的介绍，请参照：[kv介绍](https://github.com/alibaba/AliOS/wiki/AliOS-API-KV-Guide)
+kv组件是基于键(key)-值(value)数据类型的小型轻量级持久化存储组件，主要为基于Nor-Flash的小型嵌入式设备提供通用的key-value持久化存储接口。kv组件支持写平衡（磨损平衡）与掉电保护；而且，kv组件的资源占用较低，RAM占用峰值固定，只和最大键值对长度相关。kv组件封装了简洁的增加/修改、删除及查询的接口方法，开发者可以通过这些接口方法存储一些产品参数、系统配置等信息
+
+kv组件移植开发注意事项：
+* 开发者需要实现相关Flash HAL层接口；
+* 开发者需通过CONFIG_AOS_KV_PTN宏定义指定kv组件所使用的flash分区号；
+* 开发者需通过CONFIG_AOS_KV_BUFFER_SIZE宏定义指定kv组件所使用的flash分区大小（需大于8192 bytes）；
+* 开发者需通过在Makefile中声明组件依赖关系：$(NAME)_COMPONENTS += modules.fs.kv；
+* 若开发者所使用的flash介质的最小擦除单位大于4096 bytes，还需调整kv组件内的逻辑块大小（默认为4096 bytes）；
+
+kv键值长度限制：
+* 最大键(key)长度小于255 bytes;
+* 最大值(value)长度可通过ITEM_MAX_VAL_LEN宏定义进行设置，预设值为512 bytes;
+
+更多关于kv组件的介绍，请参照：[kv介绍](https://github.com/alibaba/AliOS/wiki/AliOS-API-KV-Guide)
 ## 6.6 vfs
-`待添加`。更多关于vfs组件的介绍，请参考：[vfs介绍](https://github.com/alibaba/AliOS/wiki/AliOS-API-VFS-Guide)
+vfs是AliOS核心组件之一，用户可以使用vfs组件通过统一的接口操作不同的真实文件系统和设备。vfs组件是对真实文件系统操作与设备操作的一层抽象层，vfs组件封装了一套对文件对象与设备对象执行操作的统一接口，具有良好的跨平台性。开发者可以通过VFS组件封装的统一接口（aos_open、aos_read，etc.）来操作真实文件系统与设备。而且利用VFS组件的统一接口来进行应用开发，可以让应用具有更好的跨平台性，不再依赖设备HAL层接口定义和各个真实文件系统的接口定义。更多关于vfs组件的介绍，请参考：[vfs介绍](https://github.com/alibaba/AliOS/wiki/AliOS-API-VFS-Guide)
 ## 6.7 uMesh
 uMesh是AliOS核心组件之一，模组之间通过uMesh能够形成自组织网络。uMesh实现了mesh链路管理、mesh路由、6LoWPAN、AES-128数据加解密等。它能够支持mesh原始数据包、IPv4或IPv6多种数据传输方式。开发者可以使用熟悉的socket编程，利用uMesh提供的自组织网络实现智能设备的开发和互连，能够使用在智能照明，智能抄表，智能家居等场景。开发者也可以通过实现uMesh提供的mesh HAL层接口，将uMesh移植到不同的通信介质，如WiFi，802.15.4, BLE等。
 ## 6.8 cli
@@ -109,8 +122,6 @@ AliOS应用开发中可以支持命令行，并且可以添加用户自定义命
 下图展示了一个实际示例应用中的命令列表。
 
 ![](https://img.alicdn.com/tfs/TB1ETiGdwMPMeJjy1XcXXXpppXa-447-367.png)
-## 6.8 log
-使用log组件可以定义和使用不同级别的日志打印。更多关于log组件的介绍和接口定义，请参考：[log介绍](https://github.com/alibaba/AliOS/wiki/AliOS-API-LOG-Guide)
 
 # 7 总结
 本文描述了基于AliOS的应用模型，介绍了软硬件开发环境的搭建、应用开发的基本步骤。以helloworld为例，展示了如何基于AliOS进行应用开发。本文最后，还介绍了AliOS提供的丰富组件和接口，以及如何利用这个组件进行应用开发。
