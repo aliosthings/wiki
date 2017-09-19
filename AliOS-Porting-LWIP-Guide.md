@@ -11,11 +11,11 @@ static struct pbuf *low_level_input(struct netif *netif);
 **2. 平台相关修改**  
 平台相关的移植示例代码，[参考实现](https://github.com/alibaba/AliOS/blob/master/platform/mcu/beken/include/lwip-2.0.2/port/arch/cc.h)  
 主要定义包括类型定义,大小端设置,内存对齐等。  
-如果一致，可以直接拷贝存放在对应的平台(platform)下面。  
+如果参考实现与开发者实现一致，可以直接拷贝存放在对应的平台(platform)下面。  
 
 **3. LwIP配置修改**  
 LwIP配置修改的移植示例代码，[参考实现](https://github.com/alibaba/AliOS/blob/master/platform/mcu/beken/include/lwip-2.0.2/port/lwipopts.h)  
-如果一致，可以直接拷贝存放在对应的平台(platform)下面。  
+如果参考配置和开发者配置一致，可以直接拷贝存放在对应的平台(platform)下面。  
 
 **4. 与OS的对接**  
 与OS的对接AliOS已经默认完成，开发者可以直接使用。[实现代码](https://github.com/alibaba/AliOS/blob/master/kernel/protocols/net/port/sys_arch.c)  
