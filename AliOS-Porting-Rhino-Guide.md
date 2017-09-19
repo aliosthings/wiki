@@ -43,7 +43,7 @@
 
 ### 编译配置
 
-* linux host环境 
+linux host环境 
 linux host环境下直接使用Makefile构建编译系统，在这种情况下需要修改Rhino根目录下的Makefile文件，将默认的模拟linux文件替换为芯片相关文件。  
 AOS采用aos-cube工具包来管理编译系统，编译命令示例：  
 `aos make example_name@platform_name`  
