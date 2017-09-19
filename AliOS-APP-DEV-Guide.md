@@ -90,7 +90,7 @@ int application_start(int argc, char *argv[])
 # 6 AliOS开发组件介绍
 AliOS提供了丰富的组件来支持IoT应用的开发。
 ## 6.1 yloop
-yloop是AliOS的一个异步框架，可以监听网络和本地事件，目前AliOS都是通过yloop管理系统事件的分发，可以最大程度的利用cpu资源，并节省系统内存开销。更多关于yloop组件的介绍，请参考：[yloop介绍](https://github.com/alibaba/AliOS/wiki/AliOS-API-YLOOP-Guide)
+yloop是基于事件监听机制实现的异步框架组件，主要负责管理系统各类事件的分发处理。yloop支持监听本地事件和网络事件，支持延时调用，支持workqueue处理耗时事件。yloop提供了注册，发送事件的接口。开发者可以用这些接口编写基于事件监听机制的程序，以及和系统其他组件的消息通信。更多关于yloop组件的介绍，请参考：[yloop介绍](https://github.com/alibaba/AliOS/wiki/AliOS-API-YLOOP-Guide)
 ## 6.2 kv
 `待添加`。更多关于kv组件的介绍，请参照：[kv介绍](https://github.com/alibaba/AliOS/wiki/AliOS-API-KV-Guide)
 ## 6.3 alink
