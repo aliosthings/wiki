@@ -19,9 +19,10 @@
 
   初始化时，判断_off_set是否为0.
 
-    若为0，则需擦除fota下载flash分区,准备进行一次全新的下载。为了安全起见，建议对flash操作进行crc16校验，故同时初始化crc16.   
-    若不为0，则认为上次下载中断，接下来将进行断点续传。无需擦除fota下载flash分区。如使用了crc16校验，则需从flash指定区域读取
-    上次断点时备份的crc16校验。 
+    若为0，则需擦除fota下载flash分区,准备进行一次全新的下载。为了安全起见，
+    建议对flash操作进行crc16校验，故同时初始化crc16.   
+    若不为0，则认为上次下载中断，接下来将进行断点续传。无需擦除fota下载flash分区。
+    如使用了crc16校验，则需从flash指定区域读取上次断点时备份的crc16校验。 
 
   2. 实现 int (*ota_write)(hal_ota_module_t *m, volatile uint32_t *off_set, uint8_t *in_buf , uint32_t in_buf_len)，
   此接口用于fota下载时实现固件逐块保存。
