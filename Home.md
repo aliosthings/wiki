@@ -15,7 +15,7 @@ With built-in mesh capability (known as uMesh), Developers not only get one isol
 With the asynchronous design (known as yloop), Developers can use a wide range of MCUs.
 
 **FOTA**
-With built-in FOTA capability, Developers do not need to worry about features upgrade any more.
+With built-in firmware Over-The-Air (FOTA) capability, Developers do not need to worry about features upgrade any more.
 
 **Modular**
 With the modular and multiple binaries design, Developers can use AliOS features easily, meanwhile keep the application clean.
