@@ -2,14 +2,14 @@
 ### 2.5.1 移植概要
   fota跟具体芯片相关的接口建议放置在platform/mcu/xxxx/port/下面，文件名fota_port.c.其中，xxxx为当前正在移植的平台名。
   fota_port.c需要实现结构体hal_ota_module_t中的几个函数：
-
+```c
     int (*init)(hal_ota_module_t *m, void *something);
     int (*ota_write)(hal_ota_module_t *m, volatile uint32_t *off_set,
                      uint8_t *in_buf , uint32_t in_buf_len);
     int (*ota_read)(hal_ota_module_t *m,  volatile uint32_t *off_set,
                     uint8_t *out_buf , uint32_t out_buf_len);
     int (*ota_set_boot)(hal_ota_module_t *m, void *something);
-
+```
  ### 2.5.2 接口实现
   1. 实现int (*init)(hal_ota_module_t *m, void *something)，此接口主要进行flash硬件及相关变量的初始化。
   参数说明：
