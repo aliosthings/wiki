@@ -14,7 +14,7 @@
   1. 实现int (*init)(hal_ota_module_t *m, void *something)，此接口主要进行flash硬件及相关变量的初始化。
   参数说明：
 
-    m  接口模块指针，函数中暂无需使用。
+    m          接口模块指针，函数中暂无需使用。
     something  当前被用作断点续传的断点地址，使用： _off_set = *(uint32_t*)something。
 
   初始化时，判断_off_set是否为0.
@@ -28,9 +28,9 @@
   此接口用于fota下载时实现固件逐块保存。
   参数说明：
 
-    m  接口模块指针，函数中暂无需使用。
-    off_set  写偏移地址，当前上层直接置0，无需使用。
-    in_buf  本次需要写入的数据。
+    m           接口模块指针，函数中暂无需使用。
+    off_set     写偏移地址，当前上层直接置0，无需使用。
+    in_buf      本次需要写入的数据。
     in_buf_len  本次写入数据长度。
 
   由于off_set调用时永远置0，所以写偏移地址需要函数自身实现，建议使用init函数中初始化或得到的偏移地址，每次写入之后将此偏移量加上本次写入长度进行累加。此函数需要调用flash写操作函数对数据进行写入。
@@ -39,9 +39,9 @@
   当前fota没有用到此接口，可以不实现。
   参数说明：
 
-    m  接口模块指针，函数中暂无需使用。
-    off_set  读偏移地址，无需使用。
-    out_buf  读出缓存。
+    m           接口模块指针，函数中暂无需使用。
+    off_set     读偏移地址，无需使用。
+    out_buf     读出缓存。
     in_buf_len  本次读出的数据长度。
  
   此函数封装flash读操作函数即可。
@@ -61,9 +61,10 @@ ota_finish_param_t定义如下：
 
   获取此变量：ota_finish_param_t *param = (ota_finish_param_t *)something;其中两个子变量含义：
 
-    update_type：升级类型。枚举类型，必须为 OTA_KERNEL,OTA_APP,OTA_ALL之一，
-    分别代表升级内核，升级APP及全部升级。
-    result_type：升级结果。枚举类型，必须为 OTA_FINISH或OTA_BREAKPOINT。分别代表升级完成和升级中断。
+    update_type  升级类型。枚举类型，必须为 OTA_KERNEL,OTA_APP,OTA_ALL之一，
+                 分别代表升级内核，升级APP及全部升级。
+    result_type  升级结果。枚举类型，必须为 OTA_FINISH或OTA_BREAKPOINT。
+                 分别代表升级完成和升级中断。
 
   当result_type == OTA_BREAKPOINT时，应保存当前crc校验值到flash，以备断电后可以断点续传。
   当result_type == OTA_FINISH，说明下载完成，接下来应该根据update_type将下载到fota下载分区的固件复制到相应区域替换原固件。
