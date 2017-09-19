@@ -25,7 +25,7 @@ AliOS的开发支持IDE（AliOS Studio）和命令行工具，AliOS开发环境�
 AliOS的应用工程一般放在“example”目录下，用户也可以根据需要在其他目录下创建应用工程的目录。
 ## 4.1.2 添加Makefile
 Makefile用于指定应用的名称、使用到的源文件、依赖的组件、全局符号等。下面是sample.mk样例文件的内容：
-```
+```m
 NAME := helloworld  ## 指定应用名称
 $(NAME)_SOURCES := helloworld.c  ## 指定使用的源文件
 $(NAME)_COMPONENTS += cli  ## 指定依赖的组件，本例使用cli组件
@@ -60,14 +60,14 @@ AliOS提供了AliOS Studio集成开发环境，基于AliOS Studio进行应用开
 
 ## 5.2 创建Makefile
 在hellworld工程目录下，创建helloworld.mk文件，并添加Makefile内容：
-```
+```m
 NAME := helloworld
 $(NAME)_SOURCES := helloworld.c
 <多bin支持>
 ```
 ## 5.3 创建源文件
 在hellworld工程目录下，创建helloworld.c文件，并添加以下源代码：
-```
+```c
 #include <aos/aos.h>
 
 static void app_delayed_action(void *arg)
