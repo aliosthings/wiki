@@ -52,3 +52,13 @@ int32_t hal_uart_send(uart_dev_t *uart, void *data, uint32_t size, uint32_t time
 xxx_uart_send的意思是指不同芯片厂商的uart发送函数。
 
 其余的hal层api的封装以此类推。
+
+## kv组件移植开发注意事项：
+* 开发者需要实现相关Flash HAL层接口；
+* 开发者需通过在Makefile中声明组件依赖关系：$(NAME)_COMPONENTS += modules.fs.kv；
+* 开发者需通过CONFIG_AOS_KV_PTN宏定义指定kv组件所使用的flash分区号；
+* 若开发者所使用的flash介质的最小擦除单位大于4096 bytes，需调整kv组件内的逻辑块大小（默认为4096 bytes）；
+* 开发者需通过CONFIG_AOS_KV_BUFFER_SIZE宏定义指定kv组件所使用的flash分区大小（不能小于2个kv组件的逻辑块大小，默认值为8192 bytes）；
+* kv键值长度限制：
+    * 最大键(key)长度小于255 bytes;
+    * 最大值(value)长度可通过ITEM_MAX_VAL_LEN宏定义进行设置，预设值为512 bytes;
