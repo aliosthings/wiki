@@ -1,54 +1,107 @@
-#### `public const char * `[`aos_get_product_model`](#version_8h_1a85452033f4841e162f0606a8042fd832)`(void)` 
+## 1 char *aos_get_product_model
 
-get aos product model
+```c
+const char *aos_get_product_model(void)
+```
 
-#### Parameters
-* None
+- [x] **Description**
 
-#### Returns
-* `NULL`   - failure
-* `!=NULL` - product model string
+  Get aos product model.
 
-#### `public const char * `[`aos_get_os_version`](#version_8h_1a0f4fc6bfd8ba438fa87f64ef5b982849)`(void)` 
+- [x] **Parameters**
 
-get aos os version
+  None.
 
-#### Parameters
-* None
+- [x] **Returns**
 
-#### Returns
-* `NULL`   - failure
-* `!=NULL` - os version string
+  model success, 0 failure.
 
-#### `public const char * `[`aos_get_kernel_version`](#version_8h_1adf453e54ac45fd4aa867f005c63bf87b)`(void)` 
+## 2 char *aos_get_os_version
 
-get aos kernel version
+```c
+const char *aos_get_os_version(void)
+```
 
-#### Parameters
-* None
+- [x] **Description**
 
-#### Returns
-* `NULL`   - failure
-* `!=NULL` - kernel string
+  Get aos os version.
 
-#### `public const char * `[`aos_get_app_version`](#version_8h_1abee54fbc4b937123e8d68127cd8dc2bb)`(void)` 
+- [x] **Parameters**
 
-get aos app version
+  None.
 
-#### Parameters
-* None
+- [x] **Returns**
 
-#### Returns
-* `NULL`   - failure
-* `!=NULL` - app version string
+  os version success, 0 failure.
 
-#### `public const char * `[`aos_get_device_name`](#version_8h_1a9f51f6416cad7eca144555d09bf12473)`(void)` 
+## 3 char *aos_get_kernel_version
 
-get aos device name
+```c
+const char *aos_get_kernel_version(void)
+```
 
-#### Parameters
-* None
+- [x] **Description**
 
-#### Returns
-* `NULL`   - failure
-* `!=NULL` - device name string
+  Get aos kernel version.
+
+- [x] **Parameters**
+
+  None.
+
+- [x] **Returns**
+
+  kernel version success, 0 failure.
+
+## 4 char *aos_get_app_version
+
+```c
+const char *aos_get_app_version(void)
+```
+
+- [x] **Description**
+
+  Get aos app version.
+
+- [x] **Parameters**
+
+  None.
+
+- [x] **Returns**
+
+  app version success, 0 failure.
+
+## 5 char *aos_get_device_name
+
+```c
+const char *aos_get_device_name(void)
+```
+
+- [x] **Description**
+
+  Get aos device name.
+
+- [x] **Parameters**
+
+  None.
+
+- [x] **Returns**
+
+  device name success, 0 failure.
+
+## 6 dump_sys_info
+
+```c
+void dump_sys_info(void)
+```
+
+- [x] **Description**
+
+  dump sys info.
+
+- [x] **Parameters**
+
+  None.
+
+- [x] **Returns**
+
+  None.
