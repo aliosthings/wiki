@@ -19,9 +19,7 @@
   * [17 hal_wifi_start_wifi_monitor](#17-hal_wifi_start_wifi_monitor)
   * [18 hal_wifi_stop_wifi_monitor](#18-hal_wifi_stop_wifi_monitor)
   * [19 hal_wifi_register_monitor_cb](#19-hal_wifi_register_monitor_cb)
-  * [20 hal_wifi_start_debug_mode](#20-hal_wifi_start_debug_mode)
-  * [21 hal_wifi_stop_debug_mode](#21-hal_wifi_stop_debug_mode)
-  * [22 hal_wifi_install_event](#22-hal_wifi_install_event)
+  * [20 hal_wifi_install_event](#22-hal_wifi_install_event)
 
 ------
 
@@ -418,49 +416,7 @@ void hal_wifi_register_monitor_cb(hal_wifi_module_t *m, monitor_data_cb_t fn)
   None.
 
 
-## 20-hal_wifi_start_debug_mode
-
-```c
-void hal_wifi_start_debug_mode(hal_wifi_module_t *m)
-```
-
-- [x] **Description**
-
-  Start debug mode of the wifi instance.
-
-- [x] **Parameters**
-
-  | IN/OUT |  NAME  |  DESC  |
-  |--------|--------|--------|
-  | [in] | m | the wifi instance, NULL if default. |
-
-- [x] **Returns**
-
-  None.
-
-
-## 21-hal_wifi_stop_debug_mode
-
-```c
-void hal_wifi_stop_debug_mode(hal_wifi_module_t *m)
-```
-
-- [x] **Description**
-
-  Stop debug mode of the wifi instance.
-
-- [x] **Parameters**
-
-  | IN/OUT |  NAME  |  DESC  |
-  |--------|--------|--------|
-  | [in] | m | the wifi instance, NULL if default. |
-
-- [x] **Returns**
-
-  None.
-
-
-## 22-hal_wifi_install_event
+## 20-hal_wifi_install_event
 
 ```c
 void hal_wifi_install_event(hal_wifi_module_t *m, const hal_wifi_event_cb_t *cb)
