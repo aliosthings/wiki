@@ -36,22 +36,14 @@ GLOBAL_DEFINES += YOS_NO_WIFI ## 定义全局符号
 `int application_start(int argc, char *argv[]);`
 
 所有的应用程序都必须包含`application_start`入口函数，应用程序的逻辑从该入口函数开始。
-### 4.1.4 编译工程
-非IDE环境下的编译，请参照：`待添加`
-### 4.1.5 烧录程序
-非IDE环境下的烧录，请参照：`待添加`
-### 4.1.6 程序调试
-非IDE环境下的调试，请参照：`待添加`
+### 4.1.4 编译、烧录和调试
+应用的编译、烧录和调试可以参考：[Linux开发环境](https://github.com/alibaba/AliOS/wiki/AliOS-Development-Environment-Setup#3-linux-环境配置)。
 ## 4.2 在AliOS Studio IDE中进行应用开发
 AliOS提供了AliOS Studio集成开发环境，基于AliOS Studio进行应用开发非常方便、快捷。AliOS提供了可供导入的应用模版，用户可以基于导入的模版进行应用开发。在AliOS Sutdio IDE中，也可以很方便地进行编译、烧录、调试等
 ### 4.2.1 创建应用项目
 关于如何在AliOS Studio中创建应用，请参考[使用AliOS Studio创建应用](https://github.com/alibaba/AliOS/wiki/AliOS-Studio#22-创建-app-项目)。创建完项目后，用户可以在AliOS Studio中添加、编辑应用代码。
-### 4.2.2 编译
-[使用AliOS Studio编译](https://github.com/alibaba/AliOS/wiki/AliOS-Studio#3-编译)
-### 4.2.3 烧录
-[使用AliOS Studio烧写](https://github.com/alibaba/AliOS/wiki/AliOS-Studio#4-烧写)
-### 4.2.4 调试
-[使用AliOS Studio调试](https://github.com/alibaba/AliOS/wiki/AliOS-Studio#5-调试)
+### 4.2.2 编译、烧录和调试
+AliOS Studio IDE环境下的编译、烧录和调试步骤，可以参照：[IDE开发环境](https://github.com/alibaba/AliOS/wiki/AliOS-Development-Environment-Setup#2-window-环境配置)。
 
 # 5 第一个AliOS应用
 本节以helloworld工程为例来说明如何创建一个AliOS应用（基于非IDE环境）。
