@@ -1,5 +1,8 @@
-## 2.5 fota移植
-### 2.5.1 移植概要
+# 目录
+  * [1 移植概要](#1移植概要)
+  * [2 接口实现](#2接口实现)
+------
+### 1移植概要
   fota移植前先确认当前平台以下功能已经具备或完成移植：
 
     1.bootloader支持固件升级.
@@ -16,7 +19,7 @@
                     uint8_t *out_buf , uint32_t out_buf_len);
     int (*ota_set_boot)(hal_ota_module_t *m, void *something);
 ```
- ### 2.5.2 接口实现
+ ### 2接口实现
   1. 实现int (*init)(hal_ota_module_t *m, void *something)，此接口主要进行flash硬件及相关变量的初始化。
   参数说明：
 
