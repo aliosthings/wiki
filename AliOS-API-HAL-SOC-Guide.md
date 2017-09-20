@@ -1340,5 +1340,212 @@ void hal_timer_stop(hal_timer_t *tmr)
 
   None.
 ------
-
+UART
 ------
+## 1 enum {
+    DATA_WIDTH_5BIT,
+    DATA_WIDTH_6BIT,
+    DATA_WIDTH_7BIT,
+    DATA_WIDTH_8BIT,
+    DATA_WIDTH_9BIT
+} hal_uart_data_width_t;
+
+/**
+ * UART stop bits
+ */
+typedef enum {
+    STOP_BITS_1,
+    STOP_BITS_2,
+} hal_uart_stop_bits_t;
+
+/**
+ * UART flow control
+ */
+typedef enum {
+    FLOW_CONTROL_DISABLED,
+    FLOW_CONTROL_CTS,
+    FLOW_CONTROL_RTS,
+    FLOW_CONTROL_CTS_RTS
+} hal_uart_flow_control_t;
+
+/**
+ * UART parity
+ */
+typedef enum {
+    NO_PARITY,
+    ODD_PARITY,
+    EVEN_PARITY,
+} hal_uart_parity_t;
+
+/**
+ * UART configuration
+ */
+typedef struct {
+    uint32_t                baud_rate;
+    hal_uart_data_width_t   data_width;
+    hal_uart_parity_t       parity;
+    hal_uart_stop_bits_t    stop_bits;
+    hal_uart_flow_control_t flow_control;
+} uart_config_t;
+
+typedef struct {
+    uint8_t       port;    /* uart port */
+    uart_config_t config;  /* uart config */
+    void         *priv;    /* priv data */
+} uart_dev_t;
+
+/**
+ * Initialises a UART interface
+ *
+ *
+ * @param[in]  uart  the interface which should be initialised
+ *
+ * @return  0 : on success, EIO : if an error occurred with any step
+ */
+int32_t hal_uart_init
+
+```c
+typedef enum {
+    DATA_WIDTH_5BIT,
+    DATA_WIDTH_6BIT,
+    DATA_WIDTH_7BIT,
+    DATA_WIDTH_8BIT,
+    DATA_WIDTH_9BIT
+} hal_uart_data_width_t
+```
+
+- [x] **Description**
+
+  UART data width
+ /
+typedef enum {
+    DATA_WIDTH_5BIT,
+    DATA_WIDTH_6BIT,
+    DATA_WIDTH_7BIT,
+    DATA_WIDTH_8BIT,
+    DATA_WIDTH_9BIT
+} hal_uart_data_width_t;
+
+/**
+  UART stop bits
+ /
+typedef enum {
+    STOP_BITS_1,
+    STOP_BITS_2,
+} hal_uart_stop_bits_t;
+
+/**
+  UART flow control
+ /
+typedef enum {
+    FLOW_CONTROL_DISABLED,
+    FLOW_CONTROL_CTS,
+    FLOW_CONTROL_RTS,
+    FLOW_CONTROL_CTS_RTS
+} hal_uart_flow_control_t;
+
+/**
+  UART parity
+ /
+typedef enum {
+    NO_PARITY,
+    ODD_PARITY,
+    EVEN_PARITY,
+} hal_uart_parity_t;
+
+/**
+  UART configuration
+ /
+typedef struct {
+    uint32_t                baud_rate;
+    hal_uart_data_width_t   data_width;
+    hal_uart_parity_t       parity;
+    hal_uart_stop_bits_t    stop_bits;
+    hal_uart_flow_control_t flow_control;
+} uart_config_t;
+
+typedef struct {
+    uint8_t       port;    /* uart port /
+    uart_config_t config;  /* uart config /
+    void         priv;    /* priv data /
+} uart_dev_t;
+
+/**
+  Initialises a UART interface
+ 
+
+- [x] **Parameters**
+
+  | IN/OUT |  NAME  |  DESC  |
+  |--------|--------|--------|
+  | [in] | uart | the interface which should be initialised |
+
+- [x] **Returns**
+
+  0 : on success, EIO : if an error occurred with any step
+
+## 2 hal_uart_send
+
+```c
+int32_t hal_uart_send(uart_dev_t *uart, void *data, uint32_t size, uint32_t timeout)
+```
+
+- [x] **Description**
+
+  Transmit data on a UART interface
+
+- [x] **Parameters**
+
+  | IN/OUT |  NAME  |  DESC  |
+  |--------|--------|--------|
+  | [in] | uart | the UART interface   |
+  | [in] | data | pointer to the start of data   |
+  | [in] | size | number of bytes to transmit |
+
+- [x] **Returns**
+
+  0 : on success, EIO : if an error occurred with any step
+
+## 3 hal_uart_recv
+
+```c
+int32_t hal_uart_recv(uart_dev_t *uart, void *data, uint32_t expect_size, uint32_t *recv_size, uint32_t timeout)
+```
+
+- [x] **Description**
+
+  Receive data on a UART interface
+
+- [x] **Parameters**
+
+  | IN/OUT |  NAME  |  DESC  |
+  |--------|--------|--------|
+  | [in] |  uart |        the UART interface   |
+  | [out] | data |        pointer to the buffer which will store incoming data   |
+  | [in] |  expect_size | number of bytes to receive   |
+  | [out] | recv_size |   number of bytes received   |
+  | [in] |  timeout |     timeout in milisecond |
+
+- [x] **Returns**
+
+  0 : on success, EIO : if an error occurred with any step
+
+## 4 hal_uart_finalize
+
+```c
+int32_t hal_uart_finalize(uart_dev_t *uart)
+```
+
+- [x] **Description**
+
+  Deinitialises a UART interface
+
+- [x] **Parameters**
+
+  | IN/OUT |  NAME  |  DESC  |
+  |--------|--------|--------|
+  | [in] | uart | the interface which should be deinitialised |
+
+- [x] **Returns**
+
+  0 : on success, EIO : if an error occurred with any step
