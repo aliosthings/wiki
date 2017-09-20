@@ -1,13 +1,13 @@
 # 目录
-  * [1 WiFi模块结构体](#1WiFi模块结构体)
+  * [1 模块结构体](#1模块结构体)
   * [2 接口的实现](#2接口的实现)
-  * [3 注册WiFi模块](#3注册WiFi模块)
+  * [3 注册模块](#3注册模块)
   * [4 接口的使用](#4接口的使用)
 ---
 
 AliOS WiFi HAL的定义请查看头文件定义：[WiFi HAL接口定义](https://github.com/alibaba/AliOS/wiki/AliOS-API-HAL-WIFI-Guide)。在AliOS移植的移植过程中，如果需要支持WiFi功能，则需要对WiFi HAL接口进行移植实现。
 
-# 1WiFi模块结构体
+# 1模块结构体
 AliOS中，WiFi相关的操作和接口封装在下面的结构体中：
   ```c
   struct hal_wifi_module_s {
@@ -39,7 +39,7 @@ AliOS中，WiFi相关的操作和接口封装在下面的结构体中：
 # 2接口的实现
 具体的平台，用户需要分别实现上述结构体中对应的接口函数。
 
-# 3注册WiFi模块
+# 3注册模块
 在完成具体接口的实现后，定义一个`hal_wifi_module_t`的结构体，将各个接口的实现函数地址赋值给结构体中对应的域。如下：
   ```c
   hal_wifi_module_t sim_aos_wifi_beken = {
