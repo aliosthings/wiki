@@ -2,9 +2,9 @@
   * [1 概述](#1概述)
   * [2 硬件环境准备](#2硬件环境准备)
   * [3 开发环境搭建](#3开发环境搭建)
-  * [4 AliOS应用开发步骤](#4AliOS应用开发步骤)
+  * [4 应用开发步骤](#4应用开发步骤)
   * [5 第一个AliOS应用](#5第一个AliOS应用)
-  * [6 AliOS开发组件介绍](#6AliOS开发组件介绍)
+  * [6 开发组件介绍](#6开发组件介绍)
   * [7 总结](#7总结)
 
 ---
@@ -18,7 +18,7 @@ AliOS可以运行在各种硬件平台上。开发应用的硬件环境包括开
 # 3开发环境搭建
 AliOS的开发支持IDE（AliOS Studio）和命令行工具，AliOS开发环境的搭建请参照：[AliOS Environment Setup](https://github.com/alibaba/AliOS/wiki/AliOS-Environment-Setup)
 
-# 4AliOS应用开发步骤
+# 4应用开发步骤
 基于AliOS可以很方便地进行应用开发。基于AliOS创建应用，在IDE环境下可以通过导入应用模版的方式，在非IDE环境下可以手动创建各种工程目录和文件。
 ## 4.1 在非IDE环境中进行应用开发
 非IDE环境中的应用开发步骤主要包括工程目录的创建、工程Makefile编写、源码编写、工程编译、程序烧录、调试等步骤。
@@ -81,7 +81,7 @@ int application_start(int argc, char *argv[])
 
 ![](https://img.alicdn.com/tfs/TB11fSrdwMPMeJjy1XdXXasrXXa-231-161.png)
 
-# 6AliOS开发组件介绍
+# 6开发组件介绍
 AliOS提供了丰富的组件来支持IoT应用的开发。
 ## 6.1 yloop
 yloop是一个异步事件框架，主要负责管理系统各类事件的分发处理，及各类微任务（action）的调度。基于yloop，开发者可以避免多线程编程引入的复杂度和资源占用。yloop支持监听本地事件和网络事件，支持延时调用，支持workqueue处理耗时事件。AliOS系统起来后有一个main yloop，也支持任务创建属于自己的yloop。yloop提供了注册，发送事件的接口。开发者可以用这些接口编写基于事件监听机制的程序，以及和系统其他组件的消息通信。更多关于yloop组件的介绍，请参考：[yloop介绍](https://github.com/alibaba/AliOS/wiki/AliOS-API-YLOOP-Guide)
