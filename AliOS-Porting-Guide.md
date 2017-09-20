@@ -9,4 +9,4 @@ AliOS提供原生FOTA功能，已完成对Alink,MQTT等协议通道的支持,开
 ## [5 AliOS Porting LwIP Guide](https://github.com/alibaba/AliOS/wiki/AliOS-Porting-LWIP-Guide)
 AliOS提供LwIP协议栈支持，并且已经完成与AliOS对接。默认条件下，开发者仅需要完成网卡驱动对接，即可开始无缝使用AliOS提供的LwIP协议栈。
 ## [6 AliOS Porting BINS Guide](https://github.com/alibaba/AliOS/wiki/AliOS-Porting-BINS-Guide)
-AliOS提供多bin编译功能，支持kernel bin、app bin的单独编译、烧录、ota能力，开发者移植新硬件平台时，只需对平台链接脚本及编译脚本进行适配封装即可。
+AliOS提供多bin编译功能，支持kernel bin、app bin的单独编译、烧录能力，尤其节省了ota资源。开发者移植新硬件平台时，只需对平台链接脚本及编译脚本进行适配封装即可。
