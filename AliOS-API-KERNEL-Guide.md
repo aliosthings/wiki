@@ -2,11 +2,11 @@
 
   * [1 aos_reboot](#1-aos_reboot)
   * [2 aos_get_hz](#2-aos_get_hz)
-  * [3 char](#3-char)
+  * [3 aos_version_get](#3-aos_version_get)
   * [4 aos_task_new](#4-aos_task_new)
   * [5 aos_task_new_ext](#5-aos_task_new_ext)
   * [6 aos_task_exit](#6-aos_task_exit)
-  * [7 char](#7-char)
+  * [7 aos_task_name](#7-aos_task_name)
   * [8 aos_task_key_create](#8-aos_task_key_create)
   * [9 aos_task_key_delete](#9-aos_task_key_delete)
   * [10 aos_task_setspecific](#10-aos_task_setspecific)
@@ -47,8 +47,8 @@
   * [45 aos_zalloc](#45-aos_zalloc)
   * [46 aos_alloc_trace](#46-aos_alloc_trace)
   * [47 aos_free](#47-aos_free)
-  * [48 long](#48-long)
-  * [49 long](#49-long)
+  * [48 aos_now](#48-aos_now)
+  * [49 aos_now_ms](#49-aos_now_ms)
   * [50 aos_msleep](#50-aos_msleep)
 
 ------
@@ -90,7 +90,7 @@ int aos_get_hz(void)
 
   RHINO_CONFIG_TICKS_PER_SECOND.
 
-## 3-char aos_version_get
+## 3-aos_version_get
 
 ```c
 const char *aos_version_get(void)
@@ -179,7 +179,7 @@ void aos_task_exit(int code)
   None.
 
 
-## 7-char aos_task_name
+## 7-aos_task_name
 
 ```c
 const char *aos_task_name(void)
@@ -1033,7 +1033,7 @@ void aos_free(void *mem)
   None.
 
 
-## 48-long aos_now
+## 48-aos_now
 
 ```c
 long long aos_now(void)
@@ -1051,7 +1051,7 @@ long long aos_now(void)
 
   elapsed time in nano seconds from system starting.
 
-## 49-long aos_now_ms
+## 49-aos_now_ms
 
 ```c
 long long aos_now_ms(void)
