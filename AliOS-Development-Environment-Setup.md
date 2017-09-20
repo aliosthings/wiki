@@ -44,7 +44,9 @@ AliOS 默认带有 Linux 交叉工具链，Windows 工具链可以在链接 [GCC
 
 在 AliOS 源码的目录下面，运行：
 
-`aos make helloworld@mk3060`
+```
+$ aos make alinkapp@mk3060 BINS=kernel
+```
 
 编译 mk3060 板子的 helloworld 示例程序。
 
@@ -66,7 +68,7 @@ CP2102驱动，在 [Silicon Labs](https://www.silabs.com/products/development-to
 
 ![](https://img.alicdn.com/tfs/TB1Fflnd3MPMeJjy1XcXXXpppXa-864-633.png)
 
-驱动安装完成后，连接串口线，配置串口参数。在 MobaXterm Personal Edition 下，以MK3060为例，Sessio - Serial，选择端口，波特率为921600， Advanced Serial setting里面，Software 选择 Minicom （allow manual COM port setting）：
+驱动安装完成后，连接串口线，配置串口参数。在 MobaXterm Personal Edition 下，以MK3060为例，Session - Serial，选择端口，波特率为921600， Advanced Serial setting里面，Software 选择 Minicom （allow manual COM port setting）：
 
 ![](https://img.alicdn.com/tfs/TB1Fg4ibjihSKJjy0FiXXcuiFXa-865-522.png)
 
@@ -103,6 +105,7 @@ STLink 驱动，可在 [STLink](http://www.st.com/content/st_com/en/products/dev
 
 
 # 3 Linux 环境配置
+## 3.1 依赖及 aos-cube 安装
 首先确认 Python 2.7 版本存在，aos-cube 依赖 Python 2.7 版本。
 
 以 Ubuntu 16.04 LTS (Xenial Xerus) 64-bit PC 版本为例，安装下列 pkg：
@@ -118,8 +121,66 @@ $ sudo pip install aos-cube
 
 在 AliOS 源码的目录下面，运行：
 
-`aos make helloworld@mk3060`
+```
+$ aos make alinkapp@mk3060 BINS=kernel
+```
 
 编译 mk3060 板子的 helloworld 示例程序。
+
+## 3.2 串口配置
+安装串口连接程序 minicom：
+```
+$ sudo apt-get install -y minicom
+```
+
+配置串口参数（以MK3060为例），配置文件（/etc/minicom/minirc.dfl）内容 ：
+
+```
+pu port             /dev/ttyUSB0
+pu baudrate         921600
+pu bits             8
+pu parity           N
+pu stopbits         1
+pu rtscts           No
+```
+
+启动 minicom，查看串口日志。
+
+部分模组支持串口烧写，如 MK3060 跳线后可以使用串口烧写：
+
+![](https://img.alicdn.com/tfs/TB1a012fgoQMeJjy0FnXXb8gFXa-865-590.png)
+
+跳线后，使用 minicom 烧写固件步骤：
+1. 启动 minicom 连接设备
+2. 先按住boot按键，再按reset按键，进入mk3060 bootloader
+3. 输入write 0x13200，按enter（多bin模式下需烧入两块bin，0x13200烧入kernel，0x6E3C0烧入app）
+4. 输入ctrl+a s
+5. 选择ymodem
+6. 选择希望下载的.bin
+
+bin文件路径示例：out/alinkapp@mk3060/binary/alinkapp@mk3060.ota.bin
+
+## 3.3 J-Link烧写与调试
+### 3.3.1 J-Link烧写
+以MK3060为例。
+在编译的时候：
+
+`$yos make helloworld@mk3060 JTAG=jlink download`
+
+会通过J-Link烧写固件到板子上。
+
+### 3.3.2 J-Link调试
+一MK3060为例，进入bootloader模式（按住boot按键，再按reset按键）。
+在一个终端启动OpenOCD：
+
+ `$ (path to openocd)/Linux64/openocd  -f  (path to openocd)/openocd/interface/jlink.cfg -f  (path to openocd)/openocd/beken.cfg -f  (path to openocd)/openocd/beken_gdb_jtag.cfg -l out/openocd_log.txt`
+
+在另外一个终端，启动 gdb：
+
+`$./build/compiler/arm-none-eabi-5_4-2016q2-20160622/Linux64/bin/arm-none-eabi-gdb -x=.gdbinit -ex 'target remote localhost:3333' ./out/eclipse_debug/last_built.elf --tui`
+
+gdb 里面设置断点，打印堆栈信息（MK3060最大支持两个断点）。
+
+
 
 
