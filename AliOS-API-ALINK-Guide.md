@@ -1,4 +1,20 @@
-## 1 alink_set_loglevel
+# API INDEX
+
+  * [1 alink_set_loglevel](#1-alink_set_loglevel)
+  * [2 alink_enable_sandbox_mode](#2-alink_enable_sandbox_mode)
+  * [3 alink_enable_daily_mode](#3-alink_enable_daily_mode)
+  * [4 alink_start](#4-alink_start)
+  * [5 alink_wait_connect](#5-alink_wait_connect)
+  * [6 alink_end](#6-alink_end)
+  * [7 alink_factory_reset](#7-alink_factory_reset)
+  * [8 alink_report](#8-alink_report)
+  * [9 alink_register_callback](#9-alink_register_callback)
+  * [10 awss_start](#10-awss_start)
+  * [11 awss_stop](#11-awss_stop)
+
+------
+
+## 1-alink_set_loglevel
 
 ```c
 void alink_set_loglevel(enum ALINK_LOG_LEVEL loglevel)
@@ -19,7 +35,7 @@ void alink_set_loglevel(enum ALINK_LOG_LEVEL loglevel)
   None.
 
 
-## 2 alink_enable_sandbox_mode
+## 2-alink_enable_sandbox_mode
 
 ```c
 int alink_enable_sandbox_mode(void)
@@ -37,7 +53,7 @@ int alink_enable_sandbox_mode(void)
 
   0 on success, otherwise -1 will return
 
-## 3 alink_enable_daily_mode
+## 3-alink_enable_daily_mode
 
 ```c
 int alink_enable_daily_mode(const char *server_ip, int port)
@@ -58,7 +74,7 @@ int alink_enable_daily_mode(const char *server_ip, int port)
 
   0 on success, otherwise -1 will return
 
-## 4 alink_start
+## 4-alink_start
 
 ```c
 int alink_start(void)
@@ -76,7 +92,7 @@ int alink_start(void)
 
   0 on success, otherwise -1 will return
 
-## 5 alink_wait_connect
+## 5-alink_wait_connect
 
 ```c
 int alink_wait_connect(int timeout_ms)
@@ -96,7 +112,7 @@ int alink_wait_connect(int timeout_ms)
 
   0 when connect to server successfully, otherwise -1 will return
 
-## 6 alink_end
+## 6-alink_end
 
 ```c
 int alink_end(void)
@@ -113,10 +129,8 @@ int alink_end(void)
 - [x] **Returns**
 
   0 on success, otherwise -1 will return
- *
- * @note  this func will block at most 15 seconds to stop all alink related process(thread)
 
-## 7 alink_factory_reset
+## 7-alink_factory_reset
 
 ```c
 int alink_factory_reset(void)
@@ -134,7 +148,7 @@ int alink_factory_reset(void)
 
   0 on success, -1 when params invalid
 
-## 8 alink_report
+## 8-alink_report
 
 ```c
 int alink_report(const char *method, char *json_buffer)
@@ -155,10 +169,8 @@ int alink_report(const char *method, char *json_buffer)
 
   0 when successfully got response from cloud,
  *          otherwise this func will block until timeout and -1 will return
- *
- * @note when connection with server is unstable, this func will block until got response from server or timeout.
 
-## 9 alink_register_callback
+## 9-alink_register_callback
 
 ```c
 int alink_register_callback(unsigned char cb_type, void *cb_func)
@@ -179,7 +191,7 @@ int alink_register_callback(unsigned char cb_type, void *cb_func)
 
   0 on success, otherwise -1 will return
 
-## 10 awss_start
+## 10-awss_start
 
 ```c
 int awss_start(void)
@@ -196,14 +208,143 @@ int awss_start(void)
 - [x] **Returns**
 
   0 on success, otherwise non-zero value will return
- *                =  0: connect AP & DHCP success
- *                = -1: get ssid & passwd fail
- *                = -2: connect AP / DHCP fail
- *
- * @note  platform_awss_get_timeout_interval_ms() return monitor timeout interval,
- *        AP connection timeout is 30s.
+     =  0: connect AP & DHCP success
+     = -1: get ssid & passwd fail
+     = -2: connect AP / DHCP fail
 
-## 11 awss_stop
+## 11-awss_stop
+
+```c
+int awss_stop(void)
+```
+
+- [x] **Description**
+
+  Calling this func force awss_start exit.
+
+- [x] **Parameters**
+
+  None.
+
+- [x] **Returns**
+
+  0 on success, otherwise -1 will return
+
+- [x] **Description**
+
+  Start awss service, block method, block until awss succeed, or timeout(see Note).
+
+- [x] **Parameters**
+
+  None.
+
+- [x] **Returns**
+
+  0 on success, otherwise non-zero value will return
+     =  0: connect AP & DHCP success
+     = -1: get ssid & passwd fail
+     = -2: connect AP / DHCP fail
+
+## 11-awss_stop
+
+```c
+int awss_stop(void)
+```
+
+- [x] **Description**
+
+  Calling this func force awss_start exit.
+
+- [x] **Parameters**
+
+  None.
+
+- [x] **Returns**
+
+  0 on success, otherwise -1 will return
+
+ [x] **Description**
+
+  Start awss service, block method, block until awss succeed, or timeout(see Note).
+
+- [x] **Parameters**
+
+  None.
+
+- [x] **Returns**
+
+  0 on success, otherwise non-zero value will return
+     =  0: connect AP & DHCP success
+     = -1: get ssid & passwd fail
+     = -2: connect AP / DHCP fail
+
+## 11-awss_stop
+
+```c
+int awss_stop(void)
+```
+
+- [x] **Description**
+
+  Calling this func force awss_start exit.
+
+- [x] **Parameters**
+
+  None.
+
+- [x] **Returns**
+
+  0 on success, otherwise -1 will return
+
+[x] **Description**
+
+  Start awss service, block method, block until awss succeed, or timeout(see Note).
+
+- [x] **Parameters**
+
+  None.
+
+- [x] **Returns**
+
+  0 on success, otherwise non-zero value will return
+     =  0: connect AP & DHCP success
+     = -1: get ssid & passwd fail
+     = -2: connect AP / DHCP fail
+
+## 11-awss_stop
+
+```c
+int awss_stop(void)
+```
+
+- [x] **Description**
+
+  Calling this func force awss_start exit.
+
+- [x] **Parameters**
+
+  None.
+
+- [x] **Returns**
+
+  0 on success, otherwise -1 will return
+
+scription**
+
+  Start awss service, block method, block until awss succeed, or timeout(see Note).
+
+- [x] **Parameters**
+
+  None.
+
+- [x] **Returns**
+
+  0 on success, otherwise non-zero value will return
+     =  0: connect AP & DHCP success
+     = -1: get ssid & passwd fail
+     = -2: connect AP / DHCP fail
+
+## 11-awss_stop
 
 ```c
 int awss_stop(void)
