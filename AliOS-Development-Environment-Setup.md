@@ -2,22 +2,22 @@
 以庆科MK3060模组为例，介绍AliOS硬件环境的搭建，其他模组的硬件环境可参考本节。
 
 ## 1.1 MK3060模组
-MK3060是ARM核的Wi-Fi模组，可以运行AliOS。
+MK3060是基于ARM核的Wi-Fi模组：
 
 ![](https://img.alicdn.com/tfs/TB1dkGJdwoQMeJjy0FoXXcShVXa-4160-2336.jpg)
 
 ## 1.2 串口线
-MK3060的串口已经通过miniusb接口接出，只需要通过miniusb-usb线将串口与PC连接起来。
+MK3060的串口已经通过miniusb接口接出，通过miniusb-usb线将串口与PC连接起来:
 
 ![](https://img.alicdn.com/tfs/TB16paGdwoQMeJjy0FnXXb8gFXa-4160-2336.jpg)
 
 ## 1.3 调试器
-支持Jlink调试器。
+支持Jlink调试器:
 
 ![](https://img.alicdn.com/tfs/TB1AOuudwMPMeJjy1XdXXasrXXa-4160-2336.jpg)
 
 ## 1.4 连接示例
-下图展示了连接好的硬件环境。
+连接好的硬件环境:
 
 ![](https://img.alicdn.com/tfs/TB1niqudwMPMeJjy1XdXXasrXXa-4160-2336.jpg)
 
