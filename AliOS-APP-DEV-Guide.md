@@ -29,7 +29,8 @@ Makefile用于指定应用的名称、使用到的源文件、依赖的组件、
 NAME := helloworld  ## 指定应用名称
 $(NAME)_SOURCES := helloworld.c  ## 指定使用的源文件
 $(NAME)_COMPONENTS += cli  ## 指定依赖的组件，本例使用cli组件
-GLOBAL_DEFINES += YOS_NO_WIFI ## 定义全局符号
+$(NAME)_DEFINES += LOCAL_MACRO ## 定义局部符号
+GLOBAL_DEFINES += GLOBAL_MACRO ## 定义全局符号
 ```
 ### 4.1.3 添加源码
 所有的源码文件放置在应用工程目录下，开发者可以根据自行组织源码文件/目录。AliOS的应用程序入口为：
