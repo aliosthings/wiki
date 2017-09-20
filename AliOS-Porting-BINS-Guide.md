@@ -6,7 +6,7 @@
  * app bin编译：aos make helloworldmk3060 BINS=app
  * kernel bin编译：aos make helloworldmk3060 BINS=kernel
 
-2. 链接脚本ld文件修改
+2. 链接脚本ld文件修改  
 多bin编译意味着有app bin和kernl bin的编译，这意味着有对应的app.ld和kernel.ld。
 ld文件的实现格式和单bin一致，主要需要提供如下一点：
 * 在kernel.ld文件中需要设置app.bin的起始位置，以让kernel能够跳转到app中执行。
