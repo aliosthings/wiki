@@ -1,471 +1,1035 @@
-## KERNEL API
-## 1.1 aos_reboot()
-`void aos_reboot(void)`
- - [x] System reboot
+## 1 aos_reboot
 
-## 1.2 aos_get_hz()
-> * int aos_get_hz(void)
-> > - [x] get HZ
-
-## 1.3 aos_version_get()
-> * const char *aos_version_get(void)
-> > - [x] Get kernel version
-> > - [x] ************Returns:************
-      the operation status, RHINO_SUCCESS is OK, others is error
-
-## 1.4 aos_task_new()
 ```c
-int aos_task_new(const char *name, void(*)(void *)fn, void *arg, int stack_size)
+void aos_reboot(void)
 ```
-* Create a task
 
-- [x] ************Parameters:************
+- [x] **Description**
 
--    [in]  name       task name, any string
--    [in]  fn         task function
-    [in]  arg        any pointer, will give to your task-function as argument
-    [in]  stacksize  stacksize in bytes
+  System reboot.
 
-- [x] ************Returns:************
-      the operation status, RHINO_SUCCESS is OK, others is error
+- [x] **Parameters**
 
-## 1.5 aos_task_new_ext()
-> * int aos_task_new_ext(aos_task_t *task, const char *name, void (*fn)(void *), void *arg, int stack_size, int prio)
-> > - [x] Create a task
-> > - [x] ************Parameters:************
+  None.
 
-    [in]  task        handle
-    [in]  name        task name, any string
-    [in]  fn          task function
-    [in]  arg         any pointer, will give to your task-function as argument
-    [in]  stack_buf   if stack_buf==NULL, provided by kernel
-    [in]  stack_size  stacksize in bytes
-    [in]  prio        priority value, smaller the stronger
+- [x] **Returns**
 
-> > - [x] ************Returns:************
-      the operation status, RHINO_SUCCESS is OK, others is error
+  None.
 
-## 1.6 aos_task_exit()
-> * void aos_task_exit(int code)
-> > - [x] exit a task
-> > - [x] ************Parameters:************
 
-    [in]  code  the id which aos_task_new returned
+## 2 aos_get_hz
 
-## 1.7 aos_task_name()
-> * const char *aos_task_name(void)
-> > - [x] get task name
-> > - [x] ************Returns:************
-      task name
+```c
+int aos_get_hz(void)
+```
 
-## 1.8 aos_task_key_create()
-> * int aos_task_key_create(aos_task_key_t *key)
-> > - [x] create a task key
-> > - [x] ************Parameters:************
+- [x] **Description**
 
-    [in]  key  pointer of key object
+  Get HZ(ticks per second).
 
-> > - [x] ************Returns:************
-      the check status, 0 is OK, -1 indicates invalid
+- [x] **Parameters**
 
-## 1.9 aos_task_key_delete()
-> * void aos_task_key_delete(aos_task_key_t key)
-> > - [x] delete a task key
-> > - [x] ************Parameters:************
+  None.
 
-    [in]  key  key object
+- [x] **Returns**
 
-## 1.10 aos_task_setspecific()
-> * int aos_task_setspecific(aos_task_key_t key, void *vp)
-> > - [x] associate a task-specific value with a key
-> > - [x] ************Parameters:************
+  RHINO_CONFIG_TICKS_PER_SECOND.
 
-    [in]  key  key object
-    [in]  vp   pointer of a task-specific value
+## 3 char *aos_version_get
 
-> > - [x] ************Returns:************
-      the check status, 0 is OK, -1 indicates invalid
+```c
+const char *aos_version_get(void)
+```
 
-## 1.11 aos_task_getspecific()
-> * void *aos_task_getspecific(aos_task_key_t key)
-> > - [x] get the value currently bound to the specified key
-> > - [x] ************Parameters:************
+- [x] **Description**
 
-    [in]  key  pointer of key object
+  Get kernel version.
 
-> > - [x] ************Returns:************
-      the check status, 0 is OK, -1 indicates invalid
+- [x] **Parameters**
 
-## 1.12 aos_mutex_new()
-> * int aos_mutex_new(aos_mutex_t *mutex)
-> > - [x] alloc a mutex
-> > - [x] ************Parameters:************
+  None.
 
-    [in]  mutex  pointer of mutex object,mutex object must be alloced, hdl pointer in aos_mutex_t will refer a kernel obj internally
+- [x] **Returns**
 
-> > - [x] ************Returns:************
-      0 is OK
+  the operation status, RHINO_SUCCESS is OK, others is error.
 
-## 1.13 aos_mutex_free()
-> * void aos_mutex_free(aos_mutex_t *mutex)
-> > - [x] free a mutex
-> > - [x] ************Parameters:************
+## 4 aos_task_new
 
-    [in]  mutex  mutex object, mem refered by hdl pointer in aos_mutex_t will be freed internally 
+```c
+int aos_task_new(const char *name, void (*fn)(void *), void *arg, int stack_size)
+```
 
-## 1.14 aos_mutex_lock()
-> * int aos_mutex_lock(aos_mutex_t *mutex, unsigned int timeout)
-> > - [x] lock a mutex
-> > - [x] ************Parameters:************
+- [x] **Description**
 
-    [in]  mutex  mutex object, it contains kernel obj pointer which aos_mutex_new alloced  
+  Create a task.
 
-> > - [x] ************Returns:************
-      0 is OK
+- [x] **Parameters**
 
-## 1.15 aos_mutex_unlock()
-> * int aos_mutex_unlock(aos_mutex_t *mutex)
-> > - [x] unlock a mutex
-> > - [x] ************Parameters:************
+  | IN/OUT |  NAME  |  DESC  |
+  |--------|--------|--------|
+  | [in] | name |      task name, any string.   |
+  | [in] | fn |        task function.   |
+  | [in] | arg |       any pointer, will give to your task-function as argument.   |
+  | [in] | stacksize | stacksize in bytes. |
 
-    [in]  mutex  mutex object, it contains kernel obj pointer which oc_mutex_new alloced  
-> > - [x] ************Returns:************
-    0 is OK
+- [x] **Returns**
 
-## 1.16 aos_mutex_is_valid()
-> * int aos_mutex_is_valid(aos_mutex_t *mutex)
-> > - [x] This function will check if mutex is valid
-> > - [x] ************Parameters:************
+  task code.
 
-    [in]  mutex  pointer to the mutex
+## 5 aos_task_new_ext
 
-> > - [x] ************Returns:************
-      the check status, RHINO_TRUE is OK, RHINO_FALSE indicates invalid
+```c
+int aos_task_new_ext(aos_task_t *task, const char *name, void (*fn)(void *), void *arg,
+                     int stack_size, int prio)
+```
 
-## 1.17 aos_sem_new()
-> * int aos_sem_new(aos_sem_t *sem, int count)
-> > - [x] alloc a semaphore
-> > - [x] ************Parameters:************
+- [x] **Description**
 
-    [out]  sem   pointer of semaphore object,semaphore object must be alloced, hdl pointer in aos_sem_t will refer a kernel obj internally
-    [in]  count  initial semaphore counter 
+  Create a task.
 
-> > - [x] ************Returns:************
+- [x] **Parameters**
 
-## 1.18 aos_sem_free()
-> * void aos_sem_free(aos_sem_t *sem)
-> > - [x] destroy a semaphore
-> > - [x] ************Parameters:************
+  | IN/OUT |  NAME  |  DESC  |
+  |--------|--------|--------|
+  | [in] | task |       handle.   |
+  | [in] | name |       task name, any string.   |
+  | [in] | fn |         task function.   |
+  | [in] | arg |        any pointer, will give to your task-function as argument.   |
+  | [in] | stack_buf |  stack-buf: if stack_buf==NULL, provided by kernel.   |
+  | [in] | stack_size | stacksize in bytes.   |
+  | [in] | prio |       priority value, smaller the stronger. |
 
-    [in]  sem  pointer of semaphore object,mem refered by hdl pointer in aos_sem_t will be freed internally
+- [x] **Returns**
 
-## 1.19 aos_sem_wait()
-> * int aos_sem_wait(aos_sem_t *sem, unsigned int timeout)
-> > - [x] acquire a semaphore
-> > - [x] ************Parameters:************
+  task code.
 
-    [in]  sem      semaphore object,,it contains kernel obj pointer which aos_sem_new alloced
-    [in]  timeout  waiting until timeout in milliseconds 
+## 6 aos_task_exit
 
-> > - [x] ************Returns:************
+```c
+void aos_task_exit(int code)
+```
 
+- [x] **Description**
 
-## 1.20 aos_sem_signal()
-> * void aos_sem_signal(aos_sem_t *sem)
-> > - [x] release a semaphore
-> > - [x] ************Parameters:************
+  Exit a task.
 
-    [in]  sem  semaphore object,,it contains kernel obj pointer which aos_sem_new alloced
+- [x] **Parameters**
 
-## 1.21 aos_sem_is_valid()
-> * int aos_sem_is_valid(aos_sem_t *sem)
-> > - [x] This function will check if semaphore is valid
-> > - [x] ************Parameters:************
+  | IN/OUT |  NAME  |  DESC  |
+  |--------|--------|--------|
+  | [in] | code | the id which aos_task_new returned. |
 
-    [in]  sem  pointer to the semaphore 
+- [x] **Returns**
 
-> > - [x] ************Returns:************
-      the check status, RHINO_TRUE is OK, RHINO_FALSE indicates invalid
+  None.
 
-## 1.22 aos_sem_signal_all()
-> * void aos_sem_signal_all(aos_sem_t *sem)
-> > - [x] release all semaphore
-> > - [x] ************Parameters:************
 
-    [in]  sem  semaphore object, it contains kernel obj pointer which aos_sem_new alloced  
+## 7 char *aos_task_name
 
-## 1.23 aos_queue_new()
-> * int aos_queue_new(aos_queue_t *queue, void *buf, unsigned int size, int max_msg)
-> > - [x] This function will create a queue
-> > - [x] ************Parameters:************
+```c
+const char *aos_task_name(void)
+```
 
-    [in]	queue	pointer to the queue(the space is provided by user)
-    [in]	buf	buf of the queue(provided by user)
-    [in]	size	the bytes of the buf
-    [in]	max_msg	the max size of the msg 
+- [x] **Description**
 
-> > - [x] ************Returns:************
-    the operation status, 0 is OK, others is error
+  Get task name.
 
-## 1.24 aos_queue_free()
-> * void aos_queue_free(aos_queue_t *queue)
-> > - [x] This function will delete a queue
-> > - [x] ************Parameters:************
+- [x] **Parameters**
 
-    [in]	queue	pointer to the queue
+  None.
 
-## 1.25 aos_queue_send()
-> * int aos_queue_send(aos_queue_t *queue, void *msg, unsigned int size)
-> > - [x] This function will send a msg to the front of a queue
-> > - [x] ************Parameters:************
+- [x] **Returns**
 
-    [in]	queue	pointer to the queue
-[in]	msg	msg to send
-[in]	size	size of the msg
+  None.
 
-> > - [x] ************Returns:************
-    the operation status, 0 is OK, others is error
 
-## 1.26 aos_queue_recv()
-> * int aos_queue_recv(aos_queue_t *queue, unsigned int ms, void *msg, unsigned int *size)
-> > - [x] This function will receive msg from a queue
-> > - [x] ************Parameters:************
+## 8 aos_task_key_create
 
-[in]	queue	pointer to the queue
-[in]	ms	ms to wait before receive
-[out]	msg	buf to save msg
-[out]	size	size of the msg
-  
-> > - [x] ************Returns:************
-    the operation status, 0 is OK, others is error
+```c
+int aos_task_key_create(aos_task_key_t *key)
+```
 
-## 1.27 aos_queue_is_valid()
-> * int aos_queue_is_valid(aos_queue_t *queue)
-> > - [x] This function will check if queue is valid
-> > - [x] ************Parameters:************
+- [x] **Description**
 
-[in]	queue	pointer to the queue  
+  Create a task key.
 
-> > - [x] ************Returns:************
-    the check status, RHINO_TRUE is OK, RHINO_FALSE indicates invalid
+- [x] **Parameters**
 
-## 1.28 aos_queue_buf_ptr()
-> * void *aos_queue_buf_ptr(aos_queue_t *queue)
-> > - [x] This function will return buf ptr if queue is inited
-> > - [x] ************Parameters:************
+  | IN/OUT |  NAME  |  DESC  |
+  |--------|--------|--------|
+  | [in] | key | pointer of key object. |
 
-[in]	queue	pointer to the queue
+- [x] **Returns**
 
-> > - [x] ************Returns:************
-    the check status, NULL is error
+  the check status, 0 is OK, -1 indicates invalid.
 
-## 1.29 aos_sched_disable()
-> * int aos_sched_disable(void)
-> > - [x] This function will disable kernel sched
- 
-> > - [x] ************Returns:************
-    the operation status, 0 is OK, others is error
+## 9 aos_task_key_delete
 
-## 1.30 aos_sched_enable()
-> * int aos_sched_enable(void)
-> > - [x] This function will enable kernel sched
+```c
+void aos_task_key_delete(aos_task_key_t key)
+```
 
-> > - [x] ************Returns:************
-    the operation status, 0 is OK, others is error
+- [x] **Description**
 
-## 1.31 aos_timer_new()
-> * int aos_timer_new(aos_timer_t *timer, void(*fn)(void *, void *), void *arg, int ms, int repeat)
-> > - [x] This function will create a timer
-> > - [x] ************Parameters:************
+  Delete a task key.
 
-[in]	timer	pointer to the timer
-[in]	fn	callbak of the timer
-[in]	arg	the argument of the callback
-[in]	ms	ms of the normal timer triger
-[in]	repeat	repeat or not when the timer is created
- 
-> > - [x] ************Returns:************
-    the operation status, 0 is OK, others is error
-
-## 1.32 aos_timer_free()
-> * void aos_timer_free(aos_timer_t *timer)
-> > - [x] This function will delete a timer
-> > - [x] ************Parameters:************
-
-[in]	timer	pointer to a timer
-
-## 1.33 aos_timer_start()
-> * int aos_timer_start(aos_timer_t *timer)
-> > - [x] This function will start a timer
-> > - [x] ************Parameters:************
-
-[in]	timer	pointer to the timer
-
-> > - [x] ************Returns:************
-    the operation status, 0 is OK, others is error
-
-## 1.34 aos_timer_stop()
-> * int aos_timer_stop(aos_timer_t *timer)
-> > - [x] This function will stop a timer
-> > - [x] ************Parameters:************
-
-[in]	timer	pointer to the timer
-
-> > - [x] ************Returns:************
-    the operation status, 0 is OK, others is error
+- [x] **Parameters**
 
-## 1.35 aos_timer_change()
-> * int aos_timer_change(aos_timer_t *timer, int ms)
-> > - [x] This function will change attributes of a timer
-> > - [x] ************Parameters:************
-
-[in]	timer	pointer to the timer
-[in]	ms	ms of the timer triger
- 
-> > - [x] ************Returns:************
-    the operation status, 0 is OK, others is error
+  | IN/OUT |  NAME  |  DESC  |
+  |--------|--------|--------|
+  | [in] | key | key object. |
 
-## 1.36 aos_workqueue_create()
-> * int aos_workqueue_create(aos_workqueue_t *workqueue, int pri, int stack_size)
-> > - [x] This function will creat a workqueue
-> > - [x] ************Parameters:************
+- [x] **Returns**
 
-[in]	workqueue	the workqueue to be created
-[in]	pri	the priority of the worker
-[in]	stack_size	the size of the worker-stack
- 
-> > - [x] ************Returns:************
-    the operation status, 0 is OK, others is error
+  None.
 
-## 1.37 aos_workqueue_del()
-> * void aos_workqueue_del(aos_workqueue_t *workqueue)
-> > - [x] This function will delete a workqueue
-> > - [x] ************Parameters:************
 
-[in]	workqueue	the workqueue to be deleted  
+## 10 aos_task_setspecific
 
-## 1.38 aos_work_init()
-> * int aos_work_init(aos_work_t *work, void(*fn)(void *), void *arg, int dly)
-> > - [x] This function will initialize a work
-> > - [x] ************Parameters:************
+```c
+int aos_task_setspecific(aos_task_key_t key, void *vp)
+```
 
-[in]	work	the work to be initialized
-[in]	fn	the call back function to run
-[in]	arg	the paraments of the function
-[in]	dly	ms to delay before run
-  
-> > - [x] ************Returns:************
-    the operation status, 0 is OK, others is error
+- [x] **Description**
 
-## 1.39 aos_work_destroy()
-> * void aos_work_destroy(aos_work_t *work)
-> > - [x] This function will destroy a work
-> > - [x] ************Parameters:************
+  Associate a task-specific value with a key.
 
-[in]	work	the work to be destroied
+- [x] **Parameters**
 
-## 1.40 aos_work_run()
-> * int aos_work_run(aos_workqueue_t *workqueue, aos_work_t *work)
-> > - [x] This function will run a work on a workqueue
-> > - [x] ************Parameters:************
+  | IN/OUT |  NAME  |  DESC  |
+  |--------|--------|--------|
+  | [in] | key | key object.   |
+  | [in] | vp |  pointer of a task-specific value. |
 
-[in]	workqueue	the workqueue to run work
-[in]	work	the work to run
- 
-> > - [x] ************Returns:************
-    the operation status, 0 is OK, others is error
+- [x] **Returns**
 
-## 1.41 aos_work_sched()
-> * int aos_work_sched(aos_work_t *work)
-> > - [x] This function will run a work on the default workqueue
-> > - [x] ************Parameters:************
+  the check status, 0 is OK, -1 indicates invalid.
 
-[in]	work	the work to run
-  
-> > - [x] ************Returns:************
-    the operation status, 0 is OK, others is error
+## 11 *aos_task_getspecific
 
-## 1.42 aos_work_cancel()
-> * int aos_work_cancel(aos_work_t *work)
-> > - [x] This function will cancel a work on the default workqueue
-> > - [x] ************Parameters:************
+```c
+void *aos_task_getspecific(aos_task_key_t key)
+```
 
-[in]	work	the work to cancel
- 
-> > - [x] ************Returns:************
-    the operation status, 0 is OK, others is error
+- [x] **Description**
 
-## 1.43 aos_realloc()
-> * void *aos_realloc(void *mem, unsigned int size)
-> > - [x] realloc memory
-> > - [x] ************Parameters:************
+  Get the value currently bound to the specified key.
 
-[in]	mem,current	memory address point
-[in]	size	new size of the mem to remalloc
+- [x] **Parameters**
 
-> > - [x] ************Returns:************
-    the operation status, NULL is error, others is memory address
+  | IN/OUT |  NAME  |  DESC  |
+  |--------|--------|--------|
+  | [in] | key | key object. |
 
-## 1.44 aos_malloc()
-> * void *aos_malloc(unsigned int size)
-> > - [x] alloc memory
-> > - [x] ************Parameters:************
+- [x] **Returns**
 
-[in]	size	size of the mem to malloc
+  None.
 
-> > - [x] ************Returns:************
-    the operation status, NULL is error, others is memory address
 
-## 1.45 aos_zalloc()
-> * void *aos_zalloc(unsigned int size)
-> > - [x] alloc memory and clear to zero
-> > - [x] ************Parameters:************
+## 12 aos_mutex_new
 
-[in]	size	size of the mem to malloc
+```c
+int aos_mutex_new(aos_mutex_t *mutex)
+```
 
-> > - [x] ************Returns:************
-    the operation status, NULL is error, others is memory address
+- [x] **Description**
 
-## 1.46 aos_alloc_trace()
-> * void aos_alloc_trace(void *addr, size_t allocator)
-> > - [x] trace alloced mems
-> > - [x] ************Parameters:************
+  Alloc a mutex.
 
-[in]	addr	pointer of the mem alloced by malloc
-[in]	allocator	buildin_address
+- [x] **Parameters**
 
-## 1.47 aos_free()
-> * void aos_free(void *mem)
-> > - [x] free memory
-> > - [x] ************Parameters:************
+  | IN/OUT |  NAME  |  DESC  |
+  |--------|--------|--------|
+  | [in] | mutex | pointer of mutex object, mutex object must be alloced,          hdl pointer in aos_mutex_t will refer a kernel obj internally. |
 
-[in]	ptr	address point of the mem
+- [x] **Returns**
 
-## 1.48 aos_now()
-> * long long aos_now(void)
-> > - [x] get current time in nano seconds
+  None.
 
-> > - [x] ************Returns:************
-    elapsed time in nano seconds from system starting
 
-## 1.49 aos_now_ms()
-> * long long aos_now_ms(void)
-> > - [x] get current time in mini seconds
-> > - [x] ************Parameters:************
+## 13 aos_mutex_free
 
+```c
+void aos_mutex_free(aos_mutex_t *mutex)
+```
 
-> > - [x] ************Returns:************
+- [x] **Description**
 
-## 1.50 aos_msleep()
-> * void aos_msleep(int ms)
-> > - [x] 
-[in]	ms	sleep time in milliseconds> > - [x] ************Parameters:************
+  Free a mutex.
 
-[in]	ms	sleep time in milliseconds    [in] 
+- [x] **Parameters**
 
-    [in] 
+  | IN/OUT |  NAME  |  DESC  |
+  |--------|--------|--------|
+  | [in] | mutex | mutex object, mem refered by hdl pointer in aos_mutex_t will          be freed internally. |
 
-    [in]  
+- [x] **Returns**
 
-    [in]  
-> > - [x] ************Returns:************
+  None.
+
+
+## 14 aos_mutex_lock
+
+```c
+int aos_mutex_lock(aos_mutex_t *mutex, unsigned int timeout)
+```
+
+- [x] **Description**
+
+  Lock a mutex.
+
+- [x] **Parameters**
+
+  | IN/OUT |  NAME  |  DESC  |
+  |--------|--------|--------|
+  | [in] | mutex | mutex object, it contains kernel obj pointer which aos_mutex_new alloced. |
+
+- [x] **Returns**
+
+  None.
+
+
+## 15 aos_mutex_unlock
+
+```c
+int aos_mutex_unlock(aos_mutex_t *mutex)
+```
+
+- [x] **Description**
+
+  Unlock a mutex.
+
+- [x] **Parameters**
+
+  | IN/OUT |  NAME  |  DESC  |
+  |--------|--------|--------|
+  | [in] | mutex | mutex object, it contains kernel obj pointer which oc_mutex_new alloced. |
+
+- [x] **Returns**
+
+  None.
+
+
+## 16 aos_mutex_is_valid
+
+```c
+int aos_mutex_is_valid(aos_mutex_t *mutex)
+```
+
+- [x] **Description**
+
+  This function will check if mutex is valid.
+
+- [x] **Parameters**
+
+  | IN/OUT |  NAME  |  DESC  |
+  |--------|--------|--------|
+  | [in] | mutex | pointer to the mutex. |
+
+- [x] **Returns**
+
+  the check status, RHINO_TRUE is OK, RHINO_FALSE indicates invalid.
+
+## 17 aos_sem_new
+
+```c
+int aos_sem_new(aos_sem_t *sem, int count)
+```
+
+- [x] **Description**
+
+  Alloc a semaphore.
+
+- [x] **Parameters**
+
+  | IN/OUT |  NAME  |  DESC  |
+  |--------|--------|--------|
+  | [out] | sem |   pointer of semaphore object, semaphore object must be alloced,hdl pointer in aos_sem_t will refer a kernel obj internally.   |
+  | [in] |  count | initial semaphore counter. |
+
+- [x] **Returns**
+
+  None.
+
+
+## 18 aos_sem_free
+
+```c
+void aos_sem_free(aos_sem_t *sem)
+```
+
+- [x] **Description**
+
+  Destroy a semaphore.
+
+- [x] **Parameters**
+
+  | IN/OUT |  NAME  |  DESC  |
+  |--------|--------|--------|
+  | [in] | sem | pointer of semaphore object, mem refered by hdl pointer        in aos_sem_t will be freed internally. |
+
+- [x] **Returns**
+
+  None.
+
+
+## 19 aos_sem_wait
+
+```c
+int aos_sem_wait(aos_sem_t *sem, unsigned int timeout)
+```
+
+- [x] **Description**
+
+  Acquire a semaphore.
+
+- [x] **Parameters**
+
+  | IN/OUT |  NAME  |  DESC  |
+  |--------|--------|--------|
+  | [in] | sem |     semaphore object, it contains kernel obj pointer which aos_sem_new alloced.   |
+  | [in] | timeout | waiting until timeout in milliseconds. |
+
+- [x] **Returns**
+
+  None.
+
+
+## 20 aos_sem_signal
+
+```c
+void aos_sem_signal(aos_sem_t *sem)
+```
+
+- [x] **Description**
+
+  Release a semaphore.
+
+- [x] **Parameters**
+
+  | IN/OUT |  NAME  |  DESC  |
+  |--------|--------|--------|
+  | [in] | sem | semaphore object, it contains kernel obj pointer which aos_sem_new alloced. |
+
+- [x] **Returns**
+
+  None.
+
+
+## 21 aos_sem_is_valid
+
+```c
+int aos_sem_is_valid(aos_sem_t *sem)
+```
+
+- [x] **Description**
+
+  This function will check if semaphore is valid.
+
+- [x] **Parameters**
+
+  | IN/OUT |  NAME  |  DESC  |
+  |--------|--------|--------|
+  | [in] | sem | pointer to the semaphore. |
+
+- [x] **Returns**
+
+  the check status, RHINO_TRUE is OK, RHINO_FALSE indicates invalid.
+
+## 22 aos_sem_signal_all
+
+```c
+void aos_sem_signal_all(aos_sem_t *sem)
+```
+
+- [x] **Description**
+
+  Release all semaphore.
+
+- [x] **Parameters**
+
+  | IN/OUT |  NAME  |  DESC  |
+  |--------|--------|--------|
+  | [in] | sem | semaphore object, it contains kernel obj pointer which aos_sem_new alloced. |
+
+- [x] **Returns**
+
+  None.
+
+
+## 23 aos_queue_new
+
+```c
+int aos_queue_new(aos_queue_t *queue, void *buf, unsigned int size, int max_msg)
+```
+
+- [x] **Description**
+
+  This function will create a queue.
+
+- [x] **Parameters**
+
+  | IN/OUT |  NAME  |  DESC  |
+  |--------|--------|--------|
+  | [in] | queue |   pointer to the queue(the space is provided by user).   |
+  | [in] | buf |     buf of the queue(provided by user).   |
+  | [in] | size |    the bytes of the buf.   |
+  | [in] | max_msg | the max size of the msg. |
+
+- [x] **Returns**
+
+  the operation status, 0 is OK, others is error.
+
+## 24 aos_queue_free
+
+```c
+void aos_queue_free(aos_queue_t *queue)
+```
+
+- [x] **Description**
+
+  This function will delete a queue.
+
+- [x] **Parameters**
+
+  | IN/OUT |  NAME  |  DESC  |
+  |--------|--------|--------|
+  | [in] | queue | pointer to the queue. |
+
+- [x] **Returns**
+
+  the operation status, RHINO_SUCCESS is OK, others is error.
+
+## 25 aos_queue_send
+
+```c
+int aos_queue_send(aos_queue_t *queue, void *msg, unsigned int size)
+```
+
+- [x] **Description**
+
+  This function will send a msg to the front of a queue.
+
+- [x] **Parameters**
+
+  | IN/OUT |  NAME  |  DESC  |
+  |--------|--------|--------|
+  | [in] | queue | pointer to the queue.   |
+  | [in] | msg |   msg to send.   |
+  | [in] | size |  size of the msg. |
+
+- [x] **Returns**
+
+  the operation status, 0 is OK, others is error.
+
+## 26 aos_queue_recv
+
+```c
+int aos_queue_recv(aos_queue_t *queue, unsigned int ms, void *msg,unsigned int *size)
+```
+
+- [x] **Description**
+
+  This function will receive msg from a queue.
+
+- [x] **Parameters**
+
+  | IN/OUT |  NAME  |  DESC  |
+  |--------|--------|--------|
+  | [in] |  queue | pointer to the queue.   |
+  | [in] |  ms |    ms to wait before receive.   |
+  | [out] | msg |   buf to save msg.   |
+  | [out] | size |  size of the msg. |
+
+- [x] **Returns**
+
+  the operation status, 0 is OK, others is error.
+
+## 27 aos_queue_is_valid
+
+```c
+int aos_queue_is_valid(aos_queue_t *queue)
+```
+
+- [x] **Description**
+
+  This function will check if queue is valid.
+
+- [x] **Parameters**
+
+  | IN/OUT |  NAME  |  DESC  |
+  |--------|--------|--------|
+  | [in] | queue | pointer to the queue. |
+
+- [x] **Returns**
+
+  the check status, RHINO_TRUE is OK, RHINO_FALSE indicates invalid.
+
+## 28 *aos_queue_buf_ptr
+
+```c
+void *aos_queue_buf_ptr(aos_queue_t *queue)
+```
+
+- [x] **Description**
+
+  This function will return buf ptr if queue is inited.
+
+- [x] **Parameters**
+
+  | IN/OUT |  NAME  |  DESC  |
+  |--------|--------|--------|
+  | [in] | queue | pointer to the queue. |
+
+- [x] **Returns**
+
+  the check status, NULL is error.
+
+## 29 aos_sched_disable
+
+```c
+int aos_sched_disable(void)
+```
+
+- [x] **Description**
+
+  This function will disable kernel sched.
+
+- [x] **Parameters**
+
+  None.
+
+- [x] **Returns**
+
+  the operation status, 0 is OK, others is error.
+
+## 30 aos_sched_enable
+
+```c
+int aos_sched_enable(void)
+```
+
+- [x] **Description**
+
+  This function will enable kernel sched.
+
+- [x] **Parameters**
+
+  None.
+
+- [x] **Returns**
+
+  the operation status, 0 is OK, others is error.
+
+## 31 aos_timer_new
+
+```c
+int aos_timer_new(aos_timer_t *timer, void (*fn)(void *, void *),
+                  void *arg, int ms, int repeat)
+```
+
+- [x] **Description**
+
+  This function will create a timer.
+
+- [x] **Parameters**
+
+  | IN/OUT |  NAME  |  DESC  |
+  |--------|--------|--------|
+  | [in] | timer |  pointer to the timer.   |
+  | [in] | fn |     callbak of the timer.   |
+  | [in] | arg |    the argument of the callback.   |
+  | [in] | ms |     ms of the normal timer triger.   |
+  | [in] | repeat | repeat or not when the timer is created. |
+
+- [x] **Returns**
+
+  the operation status, 0 is OK, others is error.
+
+## 32 aos_timer_free
+
+```c
+void aos_timer_free(aos_timer_t *timer)
+```
+
+- [x] **Description**
+
+  This function will delete a timer.
+
+- [x] **Parameters**
+
+  | IN/OUT |  NAME  |  DESC  |
+  |--------|--------|--------|
+  | [in] | timer | pointer to a timer. |
+
+- [x] **Returns**
+
+  the operation status, 0 is OK, others is error.
+
+## 33 aos_timer_start
+
+```c
+int aos_timer_start(aos_timer_t *timer)
+```
+
+- [x] **Description**
+
+  This function will start a timer.
+
+- [x] **Parameters**
+
+  | IN/OUT |  NAME  |  DESC  |
+  |--------|--------|--------|
+  | [in] | timer | pointer to the timer. |
+
+- [x] **Returns**
+
+  the operation status, 0 is OK, others is error.
+
+## 34 aos_timer_stop
+
+```c
+int aos_timer_stop(aos_timer_t *timer)
+```
+
+- [x] **Description**
+
+  This function will stop a timer.
+
+- [x] **Parameters**
+
+  | IN/OUT |  NAME  |  DESC  |
+  |--------|--------|--------|
+  | [in] | timer | pointer to the timer. |
+
+- [x] **Returns**
+
+  the operation status, 0 is OK, others is error.
+
+## 35 aos_timer_change
+
+```c
+int aos_timer_change(aos_timer_t *timer, int ms)
+```
+
+- [x] **Description**
+
+  This function will change attributes of a timer.
+
+- [x] **Parameters**
+
+  | IN/OUT |  NAME  |  DESC  |
+  |--------|--------|--------|
+  | [in] | timer | pointer to the timer.   |
+  | [in] | ms |    ms of the timer triger. |
+
+- [x] **Returns**
+
+  the operation status, 0 is OK, others is error.
+
+## 36 aos_workqueue_create
+
+```c
+int aos_workqueue_create(aos_workqueue_t *workqueue, int pri, int stack_size)
+```
+
+- [x] **Description**
+
+  This function will creat a workqueue.
+
+- [x] **Parameters**
+
+  | IN/OUT |  NAME  |  DESC  |
+  |--------|--------|--------|
+  | [in] | workqueue |  the workqueue to be created.   |
+  | [in] | pri |        the priority of the worker.   |
+  | [in] | stack_size | the size of the worker-stack. |
+
+- [x] **Returns**
+
+  the operation status, 0 is OK, others is error.
+
+## 37 aos_workqueue_del
+
+```c
+void aos_workqueue_del(aos_workqueue_t *workqueue)
+```
+
+- [x] **Description**
+
+  This function will delete a workqueue.
+
+- [x] **Parameters**
+
+  | IN/OUT |  NAME  |  DESC  |
+  |--------|--------|--------|
+  | [in] | workqueue | the workqueue to be deleted. |
+
+- [x] **Returns**
+
+  the operation status, 0 is OK, others is error.
+
+## 38 aos_work_init
+
+```c
+int aos_work_init(aos_work_t *work, void (*fn)(void *), void *arg, int dly)
+```
+
+- [x] **Description**
+
+  This function will initialize a work.
+
+- [x] **Parameters**
+
+  | IN/OUT |  NAME  |  DESC  |
+  |--------|--------|--------|
+  | [in] | work | the work to be initialized.   |
+  | [in] | fn |   the call back function to run.   |
+  | [in] | arg |  the paraments of the function.   |
+  | [in] | dly |  ms to delay before run. |
+
+- [x] **Returns**
+
+  the operation status, 0 is OK, others is error.
+
+## 39 aos_work_destroy
+
+```c
+void aos_work_destroy(aos_work_t *work)
+```
+
+- [x] **Description**
+
+  This function will destroy a work.
+
+- [x] **Parameters**
+
+  | IN/OUT |  NAME  |  DESC  |
+  |--------|--------|--------|
+  | [in] | work | the work to be destroied. |
+
+- [x] **Returns**
+
+  None.
+
+
+## 40 aos_work_run
+
+```c
+int aos_work_run(aos_workqueue_t *workqueue, aos_work_t *work)
+```
+
+- [x] **Description**
+
+  This function will run a work on a workqueue.
+
+- [x] **Parameters**
+
+  | IN/OUT |  NAME  |  DESC  |
+  |--------|--------|--------|
+  | [in] | workqueue | the workqueue to run work.   |
+  | [in] | work |      the work to run. |
+
+- [x] **Returns**
+
+  the operation status, 0 is OK, others is error.
+
+## 41 aos_work_sched
+
+```c
+int aos_work_sched(aos_work_t *work)
+```
+
+- [x] **Description**
+
+  This function will run a work on the default workqueue.
+
+- [x] **Parameters**
+
+  | IN/OUT |  NAME  |  DESC  |
+  |--------|--------|--------|
+  | [in] | work | the work to run. |
+
+- [x] **Returns**
+
+  the operation status, 0 is OK, others is error.
+
+## 42 aos_work_cancel
+
+```c
+int aos_work_cancel(aos_work_t *work)
+```
+
+- [x] **Description**
+
+  This function will cancel a work on the default workqueue.
+
+- [x] **Parameters**
+
+  | IN/OUT |  NAME  |  DESC  |
+  |--------|--------|--------|
+  | [in] | work | the work to cancel. |
+
+- [x] **Returns**
+
+  the operation status, 0 is OK, others is error.
+
+## 43 *aos_realloc
+
+```c
+void *aos_realloc(void *mem, unsigned int size)
+```
+
+- [x] **Description**
+
+  Realloc memory.
+
+- [x] **Parameters**
+
+  | IN/OUT |  NAME  |  DESC  |
+  |--------|--------|--------|
+  | [in] | mem |  current memory address point.   |
+  | [in] | size | new size of the mem to remalloc. |
+
+- [x] **Returns**
+
+  the operation status, NULL is error, others is memory address.
+
+## 44 *aos_malloc
+
+```c
+void *aos_malloc(unsigned int size)
+```
+
+- [x] **Description**
+
+  Alloc memory.
+
+- [x] **Parameters**
+
+  | IN/OUT |  NAME  |  DESC  |
+  |--------|--------|--------|
+  | [in] | size | size of the mem to malloc. |
+
+- [x] **Returns**
+
+  the operation status, NULL is error, others is memory address.
+
+## 45 *aos_zalloc
+
+```c
+void *aos_zalloc(unsigned int size)
+```
+
+- [x] **Description**
+
+  Alloc memory and clear to zero.
+
+- [x] **Parameters**
+
+  | IN/OUT |  NAME  |  DESC  |
+  |--------|--------|--------|
+  | [in] | size | size of the mem to malloc. |
+
+- [x] **Returns**
+
+  the operation status, NULL is error, others is memory address.
+
+## 46 aos_alloc_trace
+
+```c
+void aos_alloc_trace(void *addr, size_t allocator)
+```
+
+- [x] **Description**
+
+  Trace alloced mems.
+
+- [x] **Parameters**
+
+  | IN/OUT |  NAME  |  DESC  |
+  |--------|--------|--------|
+  | [in] | addr |      pointer of the mem alloced by malloc.   |
+  | [in] | allocator | buildin_address. |
+
+- [x] **Returns**
+
+  None.
+
+
+## 47 aos_free
+
+```c
+void aos_free(void *mem)
+```
+
+- [x] **Description**
+
+  Free memory.
+
+- [x] **Parameters**
+
+  | IN/OUT |  NAME  |  DESC  |
+  |--------|--------|--------|
+  | [in] | ptr | address point of the mem. |
+
+- [x] **Returns**
+
+  None.
+
+
+## 48 long aos_now
+
+```c
+long long aos_now(void)
+```
+
+- [x] **Description**
+
+  Get current time in nano seconds.
+
+- [x] **Parameters**
+
+  None.
+
+- [x] **Returns**
+
+  elapsed time in nano seconds from system starting.
+
+## 49 long aos_now_ms
+
+```c
+long long aos_now_ms(void)
+```
+
+- [x] **Description**
+
+  Get current time in mini seconds.
+
+- [x] **Parameters**
+
+  None.
+
+- [x] **Returns**
+
+  elapsed time in mini seconds from system starting.
+
+## 50 aos_msleep
+
+```c
+void aos_msleep(int ms)
+```
+
+- [x] **Description**
+
+  Msleep.
+
+- [x] **Parameters**
+
+  | IN/OUT |  NAME  |  DESC  |
+  |--------|--------|--------|
+  | [in] | ms | sleep time in milliseconds. |
+
+- [x] **Returns**
+
+  None.
