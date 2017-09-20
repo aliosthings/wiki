@@ -196,9 +196,9 @@ int awss_start(void)
 - [x] **Returns**
 
   0 on success, otherwise non-zero value will return
- *            =  0: connect AP & DHCP success
- *            = -1: get ssid & passwd fail
- *            = -2: connect AP / DHCP fail
+ *                =  0: connect AP & DHCP success
+ *                = -1: get ssid & passwd fail
+ *                = -2: connect AP / DHCP fail
  *
  * @note  platform_awss_get_timeout_interval_ms() return monitor timeout interval,
  *        AP connection timeout is 30s.
