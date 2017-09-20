@@ -1,4 +1,16 @@
-## 1 aos_cli_register_command
+# API INDEX
+
+  * [1 aos_cli_register_command](#1-aos_cli_register_command)
+  * [2 aos_cli_unregister_command](#2-aos_cli_unregister_command)
+  * [3 aos_cli_register_commands](#3-aos_cli_register_commands)
+  * [4 aos_cli_unregister_commands](#4-aos_cli_unregister_commands)
+  * [5 aos_cli_printf](#5-aos_cli_printf)
+  * [6 aos_cli_init](#6-aos_cli_init)
+  * [7 aos_cli_stop](#7-aos_cli_stop)
+
+------
+
+## 1-aos_cli_register_command
 
 ```c
 int aos_cli_register_command(const struct cli_command *command)
@@ -18,7 +30,7 @@ int aos_cli_register_command(const struct cli_command *command)
 
   0 on success, error code otherwise.
 
-## 2 aos_cli_unregister_command
+## 2-aos_cli_unregister_command
 
 ```c
 int aos_cli_unregister_command(const struct cli_command *command)
@@ -38,7 +50,7 @@ int aos_cli_unregister_command(const struct cli_command *command)
 
   0 on success,  error code otherwise.
 
-## 3 aos_cli_register_commands
+## 3-aos_cli_register_commands
 
 ```c
 int aos_cli_register_commands(const struct cli_command *commands, int num_commands)
@@ -60,7 +72,7 @@ int aos_cli_register_commands(const struct cli_command *commands, int num_comman
 
   0 on success， error code otherwise.
 
-## 4 aos_cli_unregister_commands
+## 4-aos_cli_unregister_commands
 
 ```c
 int aos_cli_unregister_commands(const struct cli_command *commands, int num_commands)
@@ -81,7 +93,7 @@ int aos_cli_unregister_commands(const struct cli_command *commands, int num_comm
 
   0 on success, error code otherwise.
 
-## 5 aos_cli_printf
+## 5-aos_cli_printf
 
 ```c
 int aos_cli_printf(const char *buff, ...)
@@ -101,7 +113,7 @@ int aos_cli_printf(const char *buff, ...)
 
   0  on success, error code otherwise.
 
-## 6 aos_cli_init
+## 6-aos_cli_init
 
 ```c
 int aos_cli_init(void)
@@ -119,7 +131,7 @@ int aos_cli_init(void)
 
   0 on success, error code otherwise
 
-## 7 aos_cli_stop
+## 7-aos_cli_stop
 
 ```c
 int aos_cli_stop(void)
@@ -136,4 +148,3 @@ int aos_cli_stop(void)
 - [x] **Returns**
 
   0 on success, error code otherwise.
- *
