@@ -1,4 +1,12 @@
-## 1 aos_kv_set
+# API INDEX
+
+  * [1 aos_kv_set](#1-aos_kv_set)
+  * [2 aos_kv_get](#2-aos_kv_get)
+  * [3 aos_kv_del](#3-aos_kv_del)
+
+------
+
+## 1-aos_kv_set
 
 ```c
 int aos_kv_set(const char *key, const void *value, int len, int sync)
@@ -21,7 +29,7 @@ int aos_kv_set(const char *key, const void *value, int len, int sync)
 
   0 on success, negative error on failure.
 
-## 2 aos_kv_get
+## 2-aos_kv_get
 
 ```c
 int aos_kv_get(const char *key, void *buffer, int *buffer_len)
@@ -43,7 +51,7 @@ int aos_kv_get(const char *key, void *buffer, int *buffer_len)
 
   0 on success, negative error on failure.
 
-## 3 aos_kv_del
+## 3-aos_kv_del
 
 ```c
 int aos_kv_del(const char *key)
