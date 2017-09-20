@@ -1,184 +1,343 @@
-#### `public int `[`aos_register_event_filter`](#yloop_8h_1ae3324303aa3a911b01709b8e5d106aa5)`(uint16_t type,`[`aos_event_cb`](#yloop_8h_1ae6cbb49016d564e65ca5338cb69d6185)` cb,void * priv)` 
+## 1 aos_register_event_filter
 
-Register system event filter callback
+```c
+int aos_register_event_filter(uint16_t type, aos_event_cb cb, void *priv)
+```
 
-#### Parameters
-* `type` event type interested 
+- [x] **Description**
 
-* `cb` system event callback 
+  Register system event filter callback.
 
-* `priv` data to be bypassed to cb
+- [x] **Parameters**
 
-#### Returns
-the operation status, 0 is OK, others is error
+  | IN/OUT |  NAME  |  DESC  |
+  |--------|--------|--------|
+  | [in] | type | event type interested.   |
+  | [in] | cb |   system event callback.   |
+  | [in] | priv | private data past to cb. |
 
-#### `public int `[`aos_unregister_event_filter`](#yloop_8h_1af2001a3071743d68d2f1c6ec151ce6f5)`(uint16_t type,`[`aos_event_cb`](#yloop_8h_1ae6cbb49016d564e65ca5338cb69d6185)` cb,void * priv)` 
+- [x] **Returns**
 
-Unregister native event callback
+  the operation status, 0 is OK, others is error.
 
-#### Parameters
-* `type` event type interested 
+## 2 aos_unregister_event_filter
 
-* `cb` system event callback 
+```c
+int aos_unregister_event_filter(uint16_t type, aos_event_cb cb, void *priv)
+```
 
-* `priv` data to be bypassed to cb
+- [x] **Description**
 
-#### Returns
-the operation status, 0 is OK, others is error
+  Unregister native event callback.
 
-#### `public int `[`aos_post_event`](#yloop_8h_1ad5da1aeb283d518df00e420c0a9112b7)`(uint16_t type,uint16_t code,unsigned long value)` 
+- [x] **Parameters**
 
-Post local event
+  | IN/OUT |  NAME  |  DESC  |
+  |--------|--------|--------|
+  | [in] | type | event type interested.   |
+  | [in] | cb |   system event callback.   |
+  | [in] | priv | private data past to cb. |
 
-#### Parameters
-* `type` event type 
+- [x] **Returns**
 
-* `code` event code 
+  the operation status, 0 is OK, others is error.
 
-* `value` event value
+## 3 aos_post_event
 
-#### Returns
-the operation status, 0 is OK,others is error
+```c
+int aos_post_event(uint16_t type, uint16_t code, unsigned long  value)
+```
 
-#### `public int `[`aos_poll_read_fd`](#yloop_8h_1a3f457aa0c5536e9e87da66bc606e35cc)`(int fd,`[`aos_poll_call_t`](#yloop_8h_1a7f61fff1d584f548770634ff74b9542c)` action,void * param)` 
+- [x] **Description**
 
-Register a poll event in main loop
+  Post local event.
 
-#### Parameters
-* `fd` poll fd 
+- [x] **Parameters**
 
-* `action` action to be executed 
+  | IN/OUT |  NAME  |  DESC  |
+  |--------|--------|--------|
+  | [in] | type |  event type.   |
+  | [in] | code |  event code.   |
+  | [in] | value | event value. |
 
-* `param` private data past to action
+- [x] **Returns**
 
-#### Returns
-the operation status, 0 is OK,others is error
+  the operation status, 0 is OK,others is error.
 
-#### `public void `[`aos_cancel_poll_read_fd`](#yloop_8h_1a2dcdc7bf91430300946e0688ae3db02e)`(int fd,`[`aos_poll_call_t`](#yloop_8h_1a7f61fff1d584f548770634ff74b9542c)` action,void * param)` 
+## 4 aos_poll_read_fd
 
-Cancel a poll event to be executed in main loop
+```c
+int aos_poll_read_fd(int fd, aos_poll_call_t action, void *param)
+```
 
-#### Parameters
-* `fd` poll fd 
+- [x] **Description**
 
-* `action` action to be executed 
+  Register a poll event in main loop.
 
-* `param` private data past to action
+- [x] **Parameters**
 
-#### `public int `[`aos_post_delayed_action`](#yloop_8h_1a8a48d02d905c2d0c7d7768af7ac0a3d6)`(int ms,`[`aos_call_t`](#yloop_8h_1ad5156dbeffd3153f16cffed15f2a26fe)` action,void * arg)` 
+  | IN/OUT |  NAME  |  DESC  |
+  |--------|--------|--------|
+  | [in] | fd |     poll fd.   |
+  | [in] | action | action to be executed.   |
+  | [in] | param |  private data past to action. |
 
-Post a delayed action to be executed in main loop
+- [x] **Returns**
 
-#### Parameters
-* `ms` milliseconds to wait 
+  the operation status, 0 is OK,others is error.
 
-* `action` action to be executed 
+## 5 aos_cancel_poll_read_fd
 
-* `arg` private data past to action
+```c
+void aos_cancel_poll_read_fd(int fd, aos_poll_call_t action, void *param)
+```
 
-#### Returns
-the operation status, 0 is OK,others is error
+- [x] **Description**
 
-#### `public void `[`aos_cancel_delayed_action`](#yloop_8h_1a7fe6a4f879719ee04d1a24c7f8c73486)`(int ms,`[`aos_call_t`](#yloop_8h_1ad5156dbeffd3153f16cffed15f2a26fe)` action,void * arg)` 
+  Cancel a poll event to be executed in main loop.
 
-Cancel a delayed action to be executed in main loop
+- [x] **Parameters**
 
-#### Parameters
-* `ms` milliseconds to wait, -1 means don't care 
+  | IN/OUT |  NAME  |  DESC  |
+  |--------|--------|--------|
+  | [in] | fd |     poll fd.   |
+  | [in] | action | action to be executed.   |
+  | [in] | param |  private data past to action. |
 
-* `action` action to be executed 
+- [x] **Returns**
 
-* `arg` private data past to action
+  None.
 
-#### `public int `[`aos_schedule_call`](#yloop_8h_1a7016fd75f6deb04517416399dcbbd594)`(`[`aos_call_t`](#yloop_8h_1ad5156dbeffd3153f16cffed15f2a26fe)` action,void * arg)` 
 
-Schedule a callback in next event loop.
+## 6 aos_post_delayed_action
 
-#### Parameters
-* `action` action to be executed 
+```c
+int aos_post_delayed_action(int ms, aos_call_t action, void *arg)
+```
 
-* `arg` private data past to action 
+- [x] **Description**
 
-#### Parameters
-* `>=0` success 
+  Post a delayed action to be executed in main loop.
 
-* `<0` failure 
+- [x] **Parameters**
 
-Unlike aos_post_delayed_action, this function can be called from non-aos-main-loop context. Schedule a callback in next event loop
+  | IN/OUT |  NAME  |  DESC  |
+  |--------|--------|--------|
+  | [in] | ms |     milliseconds to wait.   |
+  | [in] | action | action to be executed.   |
+  | [in] | arg |    private data past to action. |
 
-#### Parameters
-* `action` action to be executed 
+- [x] **Returns**
 
-* `arg` private data past to action
+  the operation status, 0 is OK,others is error.
 
-#### Returns
-the operation status, <0 is error,others is OK
+## 7 aos_cancel_delayed_action
 
-#### `public `[`aos_loop_t`](#yloop_8h_1a654b2a49d4665eeb1d24b1b2195de6a5)` `[`aos_loop_init`](#yloop_8h_1a19622d95d4b65bff57b549e9b8c93155)`(void)` 
+```c
+void aos_cancel_delayed_action(int ms, aos_call_t action, void *arg)
+```
 
-Init a per-task event loop
+- [x] **Description**
 
-#### Returns
-the handler of aos_loop_t,NULL failure,others success
+  Cancel a delayed action to be executed in main loop.
 
-#### `public `[`aos_loop_t`](#yloop_8h_1a654b2a49d4665eeb1d24b1b2195de6a5)` `[`aos_current_loop`](#yloop_8h_1a0eafe54e0bba4d333828ae02533a28ba)`(void)` 
+- [x] **Parameters**
 
-Get current event loop
+  | IN/OUT |  NAME  |  DESC  |
+  |--------|--------|--------|
+  | [in] | ms |     milliseconds to wait, -1 means don't care.   |
+  | [in] | action | action to be executed.   |
+  | [in] | arg |    private data past to action. |
 
-#### Returns
-default event loop
+- [x] **Returns**
 
-#### `public void `[`aos_loop_run`](#yloop_8h_1a67c03238fac573432b77b2a957fad2b9)`(void)` 
+  None.
 
-Start event loop
 
-#### `public void `[`aos_loop_exit`](#yloop_8h_1aad0299c429ba51bfebff02e355773ad9)`(void)` 
+## 8 aos_schedule_call
 
-Exit event loop, [aos_loop_run()](#yloop_8h_1a67c03238fac573432b77b2a957fad2b9) will return
+```c
+int aos_schedule_call(aos_call_t action, void *arg)
+```
 
-#### `public void `[`aos_loop_destroy`](#yloop_8h_1abbca6051ca7795fb409a32677513635f)`(void)` 
+- [x] **Description**
 
-Free event loop resources
+  Schedule a callback in next event loop.
+  Unlike aos_post_delayed_action,
+  this function can be called from non-aos-main-loop context.
 
-#### `public int `[`aos_loop_schedule_call`](#yloop_8h_1afd6d962757a7b9facf290828ab9b5014)`(`[`aos_loop_t`](#yloop_8h_1a654b2a49d4665eeb1d24b1b2195de6a5)` * loop,`[`aos_call_t`](#yloop_8h_1ad5156dbeffd3153f16cffed15f2a26fe)` action,void * arg)` 
+  @param[in]  action  action to be executed.
+  @param[in]  arg     private data past to action.
 
-Schedule a callback specified event loop
+- [x] **Parameters**
 
-#### Parameters
-* `loop` event loop to be scheduled, NULL for default main loop 
+  | IN/OUT |  NAME  |  DESC  |
+  |--------|--------|--------|
+  | [in] | action | action to be executed.   |
+  | [in] | arg |    private data past to action. |
 
-* `action` action to be executed 
+- [x] **Returns**
 
-* `arg` private data past to action
+  the operation status, <0 is error,others is OK.
 
-#### Returns
-the operation status, <0 is error,others is OK
+## 9 aos_loop_init
 
-#### `public void * `[`aos_loop_schedule_work`](#yloop_8h_1adeabf846886d65a22e1780e1060d725b)`(int ms,`[`aos_call_t`](#yloop_8h_1ad5156dbeffd3153f16cffed15f2a26fe)` action,void * arg1,`[`aos_call_t`](#yloop_8h_1ad5156dbeffd3153f16cffed15f2a26fe)` fini_cb,void * arg2)` 
+```c
+aos_loop_t aos_loop_init(void)
+```
 
-Schedule a work to be executed in workqueue
+- [x] **Description**
 
-#### Parameters
-* `ms` milliseconds to delay before execution, 0 means immediately 
+  Init a per-task event loop.
 
-* `action` action to be executed 
+- [x] **Parameters**
 
-* `arg1` private data past to action 
+  None.
 
-* `fini_cb` finish callback to be executed after action is done in current event loop 
+- [x] **Returns**
 
-* `private` data past to fini_cb
+  the handler of aos_loop_t,NULL failure,others success.
 
-#### Returns
-work handle,NULL failure,others is OK
+## 10 aos_current_loop
 
-#### `public void `[`aos_cancel_work`](#yloop_8h_1a0eb3dd015bc0328943d482f6fab26fee)`(void * work,`[`aos_call_t`](#yloop_8h_1ad5156dbeffd3153f16cffed15f2a26fe)` action,void * arg1)` 
+```c
+aos_loop_t aos_current_loop(void)
+```
 
-Cancel a work
+- [x] **Description**
 
-#### Parameters
-* `work` work to be cancelled 
+  Get current event loop.
 
-* `action` action to be executed 
+- [x] **Parameters**
 
-* `arg1` private data past to action
+  None.
+
+- [x] **Returns**
+
+  default event loop.
+
+## 11 aos_loop_run
+
+```c
+void aos_loop_run(void)
+```
+
+- [x] **Description**
+
+  Start event loop.
+
+- [x] **Parameters**
+
+  None.
+
+- [x] **Returns**
+
+  None.
+
+
+## 12 aos_loop_exit
+
+```c
+void aos_loop_exit(void)
+```
+
+- [x] **Description**
+
+  Exit event loop, aos_loop_run() will return.
+
+- [x] **Parameters**
+
+  None.
+
+- [x] **Returns**
+
+  None.
+
+
+## 13 aos_loop_destroy
+
+```c
+void aos_loop_destroy(void)
+```
+
+- [x] **Description**
+
+  Free event loop resources.
+
+- [x] **Parameters**
+
+  None.
+
+- [x] **Returns**
+
+  None.
+
+
+## 14 aos_loop_schedule_call
+
+```c
+int aos_loop_schedule_call(aos_loop_t *loop, aos_call_t action, void *arg)
+```
+
+- [x] **Description**
+
+  Schedule a callback specified event loop.
+
+- [x] **Parameters**
+
+  | IN/OUT |  NAME  |  DESC  |
+  |--------|--------|--------|
+  | [in] | loop |   event loop to be scheduled, NULL for default main loop.   |
+  | [in] | action | action to be executed.   |
+  | [in] | arg |    private data past to action. |
+
+- [x] **Returns**
+
+  the operation status, <0 is error,others is OK.
+
+## 15 *aos_loop_schedule_work
+
+```c
+void *aos_loop_schedule_work(int ms, aos_call_t action, void *arg1,
+                             aos_call_t fini_cb, void *arg2)
+```
+
+- [x] **Description**
+
+  Schedule a work to be executed in workqueue.
+
+- [x] **Parameters**
+
+  | IN/OUT |  NAME  |  DESC  |
+  |--------|--------|--------|
+  | [in] | ms |      milliseconds to delay before execution, 0 means immediately.   |
+  | [in] | action |  action to be executed.   |
+  | [in] | arg1 |    private data past to action.   |
+  | [in] | fini_cb | finish callback to be executed after action is done in current event loop.   |
+  | [in] | arg2 |    data past to fini_cb. |
+
+- [x] **Returns**
+
+  work handle,NULL failure,others is OK.
+
+## 16 aos_cancel_work
+
+```c
+void aos_cancel_work(void *work, aos_call_t action, void *arg1)
+```
+
+- [x] **Description**
+
+  Cancel a work.
+
+- [x] **Parameters**
+
+  | IN/OUT |  NAME  |  DESC  |
+  |--------|--------|--------|
+  | [in] | work |   work to be cancelled.   |
+  | [in] | action | action to be executed.   |
+  | [in] | arg1 |   private data past to action. |
+
+- [x] **Returns**
+
+  None.
