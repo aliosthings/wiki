@@ -611,3 +611,388 @@ int32_t hal_i2c_finalize(i2c_dev_t *i2c)
 
   0 : on success, EIO : if an error occurred during deinitialisation
 ------
+PWM
+------
+## 1 hal_pwm_init
+
+```c
+int32_t hal_pwm_init(pwm_dev_t *pwm)
+```
+
+- [x] **Description**
+
+  Initialises a PWM pin
+ 
+
+- [x] **Parameters**
+
+  | IN/OUT |  NAME  |  DESC  |
+  |--------|--------|--------|
+  | [in] | pwm | the PWM device |
+
+- [x] **Returns**
+
+  0 : on success, EIO : if an error occurred with any step
+
+## 2 hal_pwm_start
+
+```c
+int32_t hal_pwm_start(pwm_dev_t *pwm)
+```
+
+- [x] **Description**
+
+  Starts Pulse-Width Modulation signal output on a PWM pin
+
+- [x] **Parameters**
+
+  | IN/OUT |  NAME  |  DESC  |
+  |--------|--------|--------|
+  | [in] | pwm | the PWM device |
+
+- [x] **Returns**
+
+  0 : on success, EIO : if an error occurred with any step
+
+## 3 hal_pwm_stop
+
+```c
+int32_t hal_pwm_stop(pwm_dev_t *pwm)
+```
+
+- [x] **Description**
+
+  Stops output on a PWM pin
+
+- [x] **Parameters**
+
+  | IN/OUT |  NAME  |  DESC  |
+  |--------|--------|--------|
+  | [in] | pwm | the PWM device |
+
+- [x] **Returns**
+
+  0 : on success, EIO : if an error occurred with any step
+------
+RNG
+------
+## 1 hal_random_num_read
+
+```c
+int32_t hal_random_num_read(random_dev_t random, void *buf, int32_t bytes)
+```
+
+- [x] **Description**
+
+  Fill in a memory buffer with random data
+
+- [x] **Parameters**
+
+  | IN/OUT |  NAME  |  DESC  |
+  |--------|--------|--------|
+  | [in] |  random |      the random device   |
+  | [out] | inBuffer |    Point to a valid memory buffer, this function will fill      in this memory with random numbers after executed   |
+  | [in] |  inByteCount | Length of the memory buffer (bytes) |
+
+- [x] **Returns**
+
+  0 : on success, EIO : if an error occurred with any step
+------
+RTC
+------
+## 1 struct {
+    uint8_t sec;
+    uint8_t min;
+    uint8_t hr;
+    uint8_t weekday;
+    uint8_t date;
+    uint8_t month;
+    uint8_t year;
+} rtc_time_t;
+
+typedef struct {
+    uint8_t port; /* rtc port */
+    void   *priv; /* priv data */
+} rtc_dev_t;
+
+
+/**
+ * This function will initialize the on board CPU real time clock
+ *
+ *
+ * @param[in]  rtc  rtc device
+ *
+ * @return  0 : on success, EIO : if an error occurred with any step
+ */
+void hal_rtc_init
+
+```c
+typedef struct {
+    uint8_t sec
+```
+
+- [x] **Description**
+
+  RTC time
+ /
+typedef struct {
+    uint8_t sec;
+    uint8_t min;
+    uint8_t hr;
+    uint8_t weekday;
+    uint8_t date;
+    uint8_t month;
+    uint8_t year;
+} rtc_time_t;
+
+typedef struct {
+    uint8_t port; /* rtc port /
+    void   priv; /* priv data /
+} rtc_dev_t;
+
+
+/**
+  This function will initialize the on board CPU real time clock
+ 
+
+- [x] **Parameters**
+
+  | IN/OUT |  NAME  |  DESC  |
+  |--------|--------|--------|
+  | [in] | rtc | rtc device |
+
+- [x] **Returns**
+
+  0 : on success, EIO : if an error occurred with any step
+
+## 2 hal_rtc_get_time
+
+```c
+int32_t hal_rtc_get_time(rtc_dev_t *rtc, rtc_time_t *time)
+```
+
+- [x] **Description**
+
+  This function will return the value of time read from the on board CPU real time clock.
+
+- [x] **Parameters**
+
+  | IN/OUT |  NAME  |  DESC  |
+  |--------|--------|--------|
+  | [in] |  rtc |  rtc device   |
+  | [out] | time | pointer to a time structure |
+
+- [x] **Returns**
+
+  0 : on success, EIO : if an error occurred with any step
+
+## 3 hal_rtc_set_time
+
+```c
+int32_t hal_rtc_set_time(rtc_dev_t *rtc, rtc_time_t *time)
+```
+
+- [x] **Description**
+
+  This function will set MCU RTC time to a new value.
+
+- [x] **Parameters**
+
+  | IN/OUT |  NAME  |  DESC  |
+  |--------|--------|--------|
+  | [in] |  rtc |  rtc device   |
+  | [out] | time | pointer to a time structure |
+
+- [x] **Returns**
+
+  0 : on success, EIO : if an error occurred with any step
+------
+SD
+------
+## 1 struct {
+    uint32_t bus_wide;  /* sd bus wide */
+    uint32_t freq;      /* sd freq */
+} sd_config_t;
+
+typedef struct {
+    uint8_t       port;    /* sd port */
+    sd_config_t   config;  /* sd config */
+    void         *priv;    /* priv data */
+} sd_dev_t;
+
+/**
+ * Initialises a sd interface
+ *
+ * @param[in]  sd  the interface which should be initialised
+ *
+ * @return  0 : on success, EIO : if an error occurred with any step
+ */
+int32_t hal_sd_init
+
+```c
+typedef struct {
+    uint32_t bus_wide
+```
+
+- [x] **Description**
+
+  UART configuration
+ /
+typedef struct {
+    uint32_t bus_wide;  /* sd bus wide /
+    uint32_t freq;      /* sd freq /
+} sd_config_t;
+
+typedef struct {
+    uint8_t       port;    /* sd port /
+    sd_config_t   config;  /* sd config /
+    void         priv;    /* priv data /
+} sd_dev_t;
+
+/**
+  Initialises a sd interface
+
+- [x] **Parameters**
+
+  | IN/OUT |  NAME  |  DESC  |
+  |--------|--------|--------|
+  | [in] | sd | the interface which should be initialised |
+
+- [x] **Returns**
+
+  0 : on success, EIO : if an error occurred with any step
+
+## 2 hal_sd_blks_read
+
+```c
+int32_t hal_sd_blks_read(sd_dev_t *sd, uint8_t *data, uint32_t blk_addr, uint32_t blks, uint32_t timeout)
+```
+
+- [x] **Description**
+
+  Read sd blocks
+
+- [x] **Parameters**
+
+  | IN/OUT |  NAME  |  DESC  |
+  |--------|--------|--------|
+  | [in] |  sd |       the interface which should be initialised   |
+  | [out] | data |     pointer to the buffer which will store incoming data   |
+  | [in] |  blk_addr | sd blk addr   |
+  | [in] |  blks |     sd blks   |
+  | [in] |  timeout |  timeout in milisecond |
+
+- [x] **Returns**
+
+  0 : on success, EIO : if an error occurred with any step
+
+## 3 hal_sd_blks_write
+
+```c
+int32_t hal_sd_blks_write(sd_dev_t *sd, uint8_t *data, uint32_t blk_addr, uint32_t blks, uint32_t timeout)
+```
+
+- [x] **Description**
+
+  Write sd blocks
+
+- [x] **Parameters**
+
+  | IN/OUT |  NAME  |  DESC  |
+  |--------|--------|--------|
+  | [in] | sd |       the interface which should be initialised   |
+  | [in] | data |     pointer to the buffer which will store incoming data   |
+  | [in] | blk_addr | sd blk addr   |
+  | [in] | blks |     sd blks   |
+  | [in] | timeout |  timeout in milisecond |
+
+- [x] **Returns**
+
+  0 : on success, EIO : if an error occurred with any step
+
+## 4 hal_sd_erase
+
+```c
+int32_t hal_sd_erase(sd_dev_t *sd, uint32_t blk_start_addr, uint32_t blk_end_addr)
+```
+
+- [x] **Description**
+
+  Erase sd blocks
+
+- [x] **Parameters**
+
+  | IN/OUT |  NAME  |  DESC  |
+  |--------|--------|--------|
+  | [in] | sd |  the interface which should be initialised   |
+  | [in] | blk_start_addr | sd blocks start addr   |
+  | [in] | blk_end_addr |   sd blocks end add |
+
+- [x] **Returns**
+
+  0 : on success, EIO : if an error occurred with any step
+
+## 5 hal_sd_stat_get
+
+```c
+int32_t hal_sd_stat_get(sd_dev_t *sd, hal_sd_stat *stat)
+```
+
+- [x] **Description**
+
+  Get sd state
+
+- [x] **Parameters**
+
+  | IN/OUT |  NAME  |  DESC  |
+  |--------|--------|--------|
+  | [in] |  sd |   the interface which should be initialised   |
+  | [out] | stat | pointer to the buffer which will store incoming dat |
+
+- [x] **Returns**
+
+  0 : on success, EIO : if an error occurred with any step
+
+## 6 hal_sd_info_get
+
+```c
+int32_t hal_sd_info_get(sd_dev_t *sd, hal_sd_info_t *info)
+```
+
+- [x] **Description**
+
+  Get sd info
+
+- [x] **Parameters**
+
+  | IN/OUT |  NAME  |  DESC  |
+  |--------|--------|--------|
+  | [in] |  sd |   the interface which should be initialised   |
+  | [out] | stat | pointer to the buffer which will store incoming dat |
+
+- [x] **Returns**
+
+  0 : on success, EIO : if an error occurred with any step
+
+## 7 hal_sd_finalize
+
+```c
+int32_t hal_sd_finalize(sd_dev_t *sd)
+```
+
+- [x] **Description**
+
+  Deinitialises a sd interface
+
+- [x] **Parameters**
+
+  | IN/OUT |  NAME  |  DESC  |
+  |--------|--------|--------|
+  | [in] | sd | the interface which should be initialised |
+
+- [x] **Returns**
+
+  0 : on success, EIO : if an error occurred with any step
+------
+
+------
