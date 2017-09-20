@@ -10,63 +10,55 @@ AliOS-Studio 是 VS Code 插件，所以首先安装 VS Code ，通过插件的�
 
 
 ## 1.2 AliOS-Studio安装
-内测版本是通过 VS Code 打开 alios-studio.vsix 文件来安装插件（后续会发布的插件市场，可直接在插件市场中搜索安装），打开VS Code - 扩展， 选择从 VSIX 安装，打开 alios-studio.vsix 文件：
+通过VS Code插件，安装AliOS-Studio：
 
-![](https://img.alicdn.com/tfs/TB1wk8zcgoQMeJjy1XaXXcSsFXa-864-640.png)
+![](https://img.alicdn.com/tfs/TB1S4fhfgMPMeJjy1XcXXXpppXa-865-387.png)
 
-插件安装成功之后，会提示 Reload VScode，重启 VScode 后，下 bar 栏会有 Build, upload, clean…等 button：
-
-![](https://img.alicdn.com/tfs/TB1fsREciERMeJjy0FcXXc7opXa-865-690.png)
-
-AliOS-Studio依赖C/C++插件，在安装AliOS-Studio插件后，会提示安装C/C++插件：
-
-![](https://img.alicdn.com/tfs/TB1sz8FcgMPMeJjy1XbXXcwxVXa-865-564.png)
-
+安装完成后，会提示重启 VS Code，重启后 AliOS-Studio 插件生效。
 
 # 2 项目
-## 2.1 基于 AliOS 源码开发
-文件 - 打开文件夹，打开 AliOS 代码目录：
+通过VS Code - 文件 - 打开文件夹，打开 AliOS 代码目录：
 
-![](https://img.alicdn.com/tfs/TB17cxGcgMPMeJjy1XbXXcwxVXa-865-690.png)
+![](https://img.alicdn.com/tfs/TB1xmpKbaagSKJjy0FhXXcrbFXa-865-429.png)
 
-![](https://img.alicdn.com/tfs/TB1JvFKcgoQMeJjy0FoXXcShVXa-865-689.png)
+![](https://img.alicdn.com/tfs/TB1Fl4LbamgSKJjSsplXXaICpXa-865-447.png)
 
-## 2.2 创建 APP 项目
-使用下 bar 栏 Create Project 或者 Ctrl + shift + P，在命令栏里面使用 alios-studio: Create Project，使用配置界面配置模板，首次使用，需要设置 SDK 路径（ AliOS 源码所在位置）：
+AliOS-Studio提供了常用APP模板，在 bar 栏 Create Project 或者 Ctrl + shift + P，在命令栏里面使用 alios-studio: Create Project，使用配置界面配置模板，首次使用，需要设置 SDK 路径（ AliOS 源码所在位置）：
 
-![](https://img.alicdn.com/tfs/TB1hNJGcgMPMeJjy1XbXXcwxVXa-865-453.png)
+![](https://img.alicdn.com/tfs/TB1yxHXavxNTKJjy0FjXXX6yVXa-865-458.png)
 
-依据模板建立APP项目：
+点击 Submit 按钮，根据模块配置创建APP:
 
-![](https://img.alicdn.com/tfs/TB16xBGcgoQMeJjy0FpXXcTxpXa-865-452.png)
+![](https://img.alicdn.com/tfs/TB1gsbnfgoQMeJjy1XaXXcSsFXa-865-493.png)
+
+在项目里面编辑代码。
 
 # 3 编译
-直接点击下 bar 栏的 build 按钮，或者 Ctrl + shift + P，在命令栏里面使用 alios-studio: build， 编译成功之后的输出：
+点击下 bar 栏的 build 按钮，或者 Ctrl + shift + P，在命令栏里面使用 alios-studio: build， 编译成功之后的输出：
 
-![](https://img.alicdn.com/tfs/TB1Emyrb.tWMKJjy0FaXXcCDpXa-865-630.png)
+![](https://img.alicdn.com/tfs/TB1eRRYbjihSKJjy0FfXXbGzFXa-865-449.png)
+
+在下 bar 栏可以选择APP及对应的板子，如果需要更多的编译配置选项，左侧的BUILD TARGET可以选择或者添加新的BUILD TARGET目标。
 
 # 4 烧写
-配置一下 COM 端口，配置端口前确认驱动安装成功，参考 [AliOS Environment Setup](https://github.com/alibaba/AliOS/wiki/AliOS-Environment-Setup)。点击Device list按键，可以出现当前检测到的 COM 端口清单。
+## 4.1 串口烧写（MK3060为例）
+配置串口烧写 COM 端口（成功安装串口驱动后，才能正确的识别端口。参考 [AliOS Environment Setup](https://github.com/alibaba/AliOS/wiki/AliOS-Environment-Setup)），点击下 bar 栏的 Connect Device 按钮，或者 Ctrl + shift + P，在命令栏里面使用 alios-studio: Connect Device，选择串口的 COM 端口：
 
-![](https://img.alicdn.com/tfs/TB1TdxAciIRMeJjy0FbXXbnqXXa-740-552.png)
+![](https://img.alicdn.com/tfs/TB1U8TEfgoQMeJjy1XaXXcSsFXa-865-442.png)
 
-选择 COM 端口:
+配置 COM 端口的波特率:
 
+![](https://img.alicdn.com/tfs/TB1YjjJfgMPMeJjy1XbXXcwxVXa-865-444.png)
 
-![](https://img.alicdn.com/tfs/TB1D_hycgMPMeJjy1XdXXasrXXa-659-664.png)
+可以看到日志输出，进入bootloader模式（按住boot按键，再按reset按键），点击下 bar 栏的 UpLoad 按钮，或者 Ctrl + shift + P，在命令栏里面使用 alios-studio: Upload，烧写image。
 
-配置COM 端口的波特率，回车。
+## 4.2 J-Link烧写（MK3060为例）
+J-Link连接模组（成功安装J-Link驱动后，才能正确建立J-Link连接。参考 [AliOS Environment Setup](https://github.com/alibaba/AliOS/wiki/AliOS-Environment-Setup)），在左侧的 BUILD TARGET 选择 alinkapp@mk3060 JTAG=jlink download：
 
+![](https://img.alicdn.com/tfs/TB1AebMfgoQMeJjy0FpXXcTxpXa-865-441.png)
 
-![](https://img.alicdn.com/tfs/TB1GFNHcgoQMeJjy1XaXXcSsFXa-652-590.png)
+会编译并且烧写image到模组。
 
-如图，输出 “open serial port com …” 表示已经成功连接到端口。
-
-![](https://img.alicdn.com/tfs/TB1EFXIcgMPMeJjy1XbXXcwxVXa-741-663.png)
-
-点击 upload，下载固件。
-
-![](https://img.alicdn.com/tfs/TB1q_dIcgoQMeJjy0FnXXb8gFXa-865-731.png)
 
 # 5 调试
 固件烧写完成后，可通过串口查看日志，必要时，需要使用 JLink 单步调试。进入 bootloader 模式，调试-启动调试，进入单步调试：
