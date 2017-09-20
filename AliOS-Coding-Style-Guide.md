@@ -1,21 +1,21 @@
 ------
 ## 目录
-  * [0 规范原则](#0.规范原则)
-  * [1 目录结构](#1.目录结构)
-  * [2 系统组件](#2.系统组件)
-  * [3 头文件](#3.头文件)
-  * [4 源文件](#4.源文件)
-  * [5 命名风格](#5.命名风格)
-  * [6 注释方式](#6.注释方式)
-  * [7 代码格式](#7.代码格式)
+  * [0 规范原则](#0规范原则)
+  * [1 目录结构](#1目录结构)
+  * [2 系统组件](#2系统组件)
+  * [3 头文件](#3头文件)
+  * [4 源文件](#4源文件)
+  * [5 命名风格](#5命名风格)
+  * [6 注释方式](#6注释方式)
+  * [7 代码格式](#7代码格式)
 ------
-## 0.规范原则
-- [x] 朴实，避免晦涩语法
-- [x] 严谨，逻辑反复思考
-- [x] 简约，命名简洁、代码精炼
-- [x] 性能，通过算法、编译器、硬件进行优化
+## 0规范原则
+ - [x] 朴实，避免晦涩语法
+ - [x] 严谨，逻辑反复思考
+ - [x] 简约，命名简洁、代码精炼
+ - [x] 性能，通过算法、编译器、硬件进行优化
 ------
-## 1.目录结构
+## 1目录结构
 - [x] **原则**：
 
     整个工程按照功能模块划分子目录，每个子目录再划分头文件和源文件目录，以便架构清晰、易懂。
@@ -31,7 +31,7 @@
     ![02](https://img.alicdn.com/tfs/TB1r5dIdwoQMeJjy1XaXXcSsFXa-461-217.png)
 
 ------
-## 2.系统组件
+## 2系统组件
 ### 2.1 目录设计
 - [x] **原则**：
 
@@ -55,7 +55,7 @@
 
     略
 ------
-## 3.头文件
+## 3头文件
 ### 3.1 文件命名
 - [x] **原则**：
 
@@ -73,11 +73,11 @@
 - [x] **示例**：
 
     如AliOS版权声明如下：
-```c
-/*
- * Copyright (C) 2015-2017 Alibaba Group Holding Limited
- */
-```
+  ```c
+  /*
+   * Copyright (C) 2015-2017 Alibaba Group Holding Limited
+   */
+  ```
  
 ### 3.3 引用保护
 - [x] **原则**：
@@ -91,17 +91,17 @@
 - [x] **示例**：
 
     如下图，在版权声明后空一行，且在“#endif”后空一行且添加注释（注释内容两边各留一个空格且采用“/*  */”格式）。
-```c
-/*
- * Copyright (C) 2015-2017 Alibaba Group Holding Limited
- */
+  ```c
+  /*
+   * Copyright (C) 2015-2017 Alibaba Group Holding Limited
+   */
 
-#ifndef K_ERR_H 
-#define K_ERR_H
+  #ifndef K_ERR_H 
+  #define K_ERR_H
 
-#endif /* K_ERR_H */
+  #endif /* K_ERR_H */
 
-``` 
+  ``` 
 
 ### 3.4 引用方式
 - [x] **原则**：
@@ -121,28 +121,28 @@
 - [x] **示例**：
 
     如下图，在extern的声明代码上下各添加一行空行。
-```c
-/*
- * Copyright (C) 2015-2017 Alibaba Group Holding Limited
- */
+  ```c
+  /*
+   * Copyright (C) 2015-2017 Alibaba Group Holding Limited
+   */
 
-#ifndef K_ERR_H 
-#define K_ERR_H
+  #ifndef K_ERR_H 
+  #define K_ERR_H
 
-#ifdef __cplusplus
-extern "C" {
-#endif
+  #ifdef __cplusplus
+  extern "C" {
+  #endif
 
 
-#ifdef __cplusplus
-}
-#endif
+  #ifdef __cplusplus
+  }
+  #endif
 
-#endif /* K_ERR_H */
+  #endif /* K_ERR_H */
 
-``` 
+  ``` 
 ------
-## 4.源文件
+## 4源文件
 ### 4.1 文件命名
 - [x] **原则**：
 
@@ -160,11 +160,11 @@ extern "C" {
 - [x] **示例**：
 
     如AliOS版权声明如下：
-```c
-/*
- * Copyright (C) 2015-2017 Alibaba Group Holding Limited
- */
-```
+  ```c
+  /*
+   * Copyright (C) 2015-2017 Alibaba Group Holding Limited
+   */
+  ```
 
 ### 4.3 头文件依赖
 - [x] **原则**：
@@ -187,7 +187,7 @@ extern "C" {
     略
 
 ------
-### 5.命名风格
+### 5命名风格
 ### 5.1 原则
 
 - [x] **统一**，相同含义的单词、命名方式项目内统一。
@@ -209,23 +209,23 @@ extern "C" {
     数据结构类型以“_t”结尾，枚举变量类型以“_e”结尾，回调函数类型以“_cb”结尾；或所有类型以“_t”作为后缀。字符均小写。
 
 - [x] **示例**：
-```c
-typedef int (*xxx0_cb)(...);
+  ```c
+  typedef int (*xxx0_cb)(...);
 
-typedef struct {
-    ...
-} xxx1_t;
+  typedef struct {
+      ...
+  } xxx1_t;
 
-typedef struct xxx2_s {
-    struct xxx2_s *x;
-    ...
-} xxx2_t;
+  typedef struct xxx2_s {
+      struct xxx2_s *x;
+      ...
+  } xxx2_t;
 
-typedef enum {
-    ...
-} xxx3_e;
+  typedef enum {
+      ...
+  } xxx3_e;
 
-```
+  ```
 
 ### 5.4 变量命名
 - [x] **原则**：
@@ -273,7 +273,7 @@ typedef enum {
     略
 
 ------
-## 6.注释方式
+## 6注释方式
 ### 6.1 注释风格
 - [x] **原则**：
 
@@ -290,19 +290,19 @@ typedef enum {
     对内接口在需要时添加注释，注释位于定义前。
 
 - [x] **示例**：
-```c
-/**
- * This function will initialize a work
- *
- * @param[in]  work  the work to be initialized
- * @param[in]  fn    the call back function to run
- * @param[in]  arg   the paraments of the function
- * @param[in]  dly   ms to delay before run
- * @return  the operation status, 0 is OK, others is error
- */
-int aos_work_init(aos_work_t *work, void (*fn)(void *), void *arg, int dly);
+  ```c
+  /**
+   * This function will initialize a work
+   *
+   * @param[in]  work  the work to be initialized
+   * @param[in]  fn    the call back function to run
+   * @param[in]  arg   the paraments of the function
+   * @param[in]  dly   ms to delay before run
+   * @return  the operation status, 0 is OK, others is error
+   */
+  int aos_work_init(aos_work_t *work, void (*fn)(void *), void *arg, int dly);
 
-```
+  ```
 
 ### 6.3 变量注释
 - [x] **原则**：
@@ -311,22 +311,22 @@ int aos_work_init(aos_work_t *work, void (*fn)(void *), void *arg, int dly);
     若多行变量定义均需注释，则最长变量定义留一个空格，其他注释与其对齐。
 
 - [x] **示例**：
-```c
-int func1(void)
-{
-    int ret; /* return value */
-    ...
-    return 0;
-}
+  ```c
+  int func1(void)
+  {
+      int ret; /* return value */
+      ...
+      return 0;
+  }
 
-int func2(void)
-{
-    int ret;   /* return value */
-    int value; /* value */
-    ...
-    return 0;
-}
-``` 
+  int func2(void)
+  {
+      int ret;   /* return value */
+      int value; /* value */
+      ...
+      return 0;
+  }
+  ``` 
 
 ### 6.4 编译宏注释
 - [x] **原则**：
@@ -335,14 +335,14 @@ int func2(void)
     若多行宏定义均需注释，则最长宏定义后留一个空格，其他注释与其对齐。
 
 - [x] **示例**：
-```c
-#define TASK_RUNNING 0
-#define TASK_STOPPED 1
-#define TASK_SLEEP   2
-```
+  ```c
+  #define TASK_RUNNING 0
+  #define TASK_STOPPED 1
+  #define TASK_SLEEP   2
+  ```
 
 ------
-## 7.代码格式
+## 7代码格式
 ### 7.1 缩进
 - [x] **原则**：
 
@@ -350,18 +350,18 @@ int func2(void)
     嵌套的编译条件判断顶格写，且需要在“#endif”后的注释中备注属于哪个判断条件。
 
 - [x] **示例**：
-```c
-#ifdef XXX
-int func1(void)
-{
-    ...
-#ifdef XX
-    func();
-#endif /* XX */
-    ...
-}
-#endif /* XXX */
-```
+  ```c
+  #ifdef XXX
+  int func1(void)
+  {
+      ...
+  #ifdef XX
+      func();
+  #endif /* XX */
+      ...
+  }
+  #endif /* XXX */
+  ```
 
 ### 7.2 空行
 - [x] **原则**：
@@ -378,12 +378,12 @@ int func1(void)
     全局变量的声明必须放在相关头文件中，且单个声明的类型和变量之间留一个空格，多个声明时按最长的留一个空格对齐。
 
 - [x] **示例**：
-```c
-extern int   g_x_x;       /* ... */
-extern int   g_xx_xx;     /* ... */
-extern long  g_xxx_xxx;   /* ... */
-extern char *g_xxxx_xxxx; /* ... */
-```
+  ```c
+  extern int   g_x_x;       /* ... */
+  extern int   g_xx_xx;     /* ... */
+  extern long  g_xxx_xxx;   /* ... */
+  extern char *g_xxxx_xxxx; /* ... */
+  ```
 
 ### 7.4 变量定义
 - [x] **原则**：
@@ -393,20 +393,20 @@ extern char *g_xxxx_xxxx; /* ... */
     变量定义的类型和变量之间（或者“*”）留一个空格，当有多个变量时按照最长原则对齐。
 
 - [x] **示例**：
- ```c
-int tmp = 0;
+  ```c
+  int tmp = 0;
 
-int  tmp1 =0;
-long tmp2 = 0;
+  int  tmp1 =0;
+  long tmp2 = 0;
 
-int   tmp3 = 0;
-char *tmp4 = NULL;
+  int   tmp3 = 0;
+  char *tmp4 = NULL;
 
-int   g_x_x;       /* ... */
-int   g_xx_xx;     /* ... */
-long  g_xxx_xxx;   /* ... */
-char *g_xxxx_xxxx; /* ... */
-```
+  int   g_x_x;       /* ... */
+  int   g_xx_xx;     /* ... */
+  long  g_xxx_xxx;   /* ... */
+  char *g_xxxx_xxxx; /* ... */
+  ```
     注：上图中描述了四种情况下的对齐方式
 
 ### 7.5 结构体声明
@@ -439,15 +439,15 @@ char *g_xxxx_xxxx; /* ... */
 - [x] **示例**：
 
     命名顺序、空格、空行、参数换行请参考下图。
-```c
-int xxx_xxx_func1(void);
-int xxx_xxx_func2(void);
+  ```c
+  int xxx_xxx_func1(void);
+  int xxx_xxx_func2(void);
 
-int   xxx_xxx_func3(...);
-int   xxx_xxx_func4(...);
-void  xxx_xxx_func5(...);
-void *xxx_xxx_func6(...);
-```
+  int   xxx_xxx_func3(...);
+  int   xxx_xxx_func4(...);
+  void  xxx_xxx_func5(...);
+  void *xxx_xxx_func6(...);
+  ```
 
 ### 7.8 函数定义
 - [x] **原则**：
@@ -458,21 +458,21 @@ void *xxx_xxx_func6(...);
 
 - [x] **示例**：
 ```c
-int xxx_func1(void)
-{
-    return 0;
-}
+  int xxx_func1(void)
+  {
+      return 0;
+  }
 
-int xxx_func2(void)
-{
-    return 0
-}
+  int xxx_func2(void)
+  {
+      return 0
+  }
 
-int xxx_func3(void)
-{
-    return 0;
-}
-```
+  int xxx_func3(void)
+  {
+      return 0;
+  }
+  ```
  
 ### 7.9 函数调用
 - [x] **原则**：
@@ -481,20 +481,20 @@ int xxx_func3(void)
     需要对函数调用的返回值进行判断，且判断语句与上一条语句之间不留空行。
 
 - [x] **示例**：
-```c
-int xxx_func(void)
-{
-    int ret;
+  ```c
+  int xxx_func(void)
+  {
+      int ret;
 
-    ret = xxx_func1(...);
-    if (ret != 0) {
-        ...
-        return ret;
-    }
+      ret = xxx_func1(...);
+      if (ret != 0) {
+          ...
+          return ret;
+      }
 
-    return 0;
-}
-```
+      return 0;
+  }
+  ```
 
 ### 7.10 条件语句
 - [x] **原则**：
@@ -503,16 +503,16 @@ int xxx_func(void)
     指针是否为空时必须与NULL进行对比（不建议用0），整型返回值可通过与1/0进行对比。
 
 - [x] **示例**：
-```c
-    if (var != 0) {
-        return -1;
-    }
+  ```c
+      if (var != 0) {
+          return -1;
+      }
 
-    if (ret != 0) {
-        ...
-        return -2;
-    }
-```
+      if (ret != 0) {
+          ...
+          return -2;
+      }
+  ```
  
 ### 7.11 循环语句
 - [x] **原则**：
@@ -520,16 +520,16 @@ int xxx_func(void)
     风格与条件判断语句类似。
 
 - [x] **示例**：
-```c
-    for (i = 0; i < 100; i++) {
-        ...
-    }
+  ```c
+      for (i = 0; i < 100; i++) {
+          ...
+      }
 
-    while (ret == 1) {
-        ...
-    }
+      while (ret == 1) {
+          ...
+      }
 
-    do {
-        ...
-    } while(ret != 1);
-```
+      do {
+          ...
+      } while(ret != 1);
+  ```
