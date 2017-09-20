@@ -1,4 +1,15 @@
-## 1 char *aos_get_product_model
+# API INDEX
+
+  * [1 aos_get_product_model](#1-aos_get_product_model)
+  * [2 aos_get_os_version](#2-aos_get_os_version)
+  * [3 aos_get_kernel_version](#3-aos_get_kernel_version)
+  * [4 aos_get_app_version](#4-aos_get_app_version)
+  * [5 aos_get_device_name](#5-aos_get_device_name)
+  * [6 dump_sys_info](#6-dump_sys_info)
+
+------
+
+## 1-aos_get_product_model
 
 ```c
 const char *aos_get_product_model(void)
@@ -16,7 +27,7 @@ const char *aos_get_product_model(void)
 
   model success, 0 failure.
 
-## 2 char *aos_get_os_version
+## 2-aos_get_os_version
 
 ```c
 const char *aos_get_os_version(void)
@@ -34,7 +45,7 @@ const char *aos_get_os_version(void)
 
   os version success, 0 failure.
 
-## 3 char *aos_get_kernel_version
+## 3-aos_get_kernel_version
 
 ```c
 const char *aos_get_kernel_version(void)
@@ -52,7 +63,7 @@ const char *aos_get_kernel_version(void)
 
   kernel version success, 0 failure.
 
-## 4 char *aos_get_app_version
+## 4-aos_get_app_version
 
 ```c
 const char *aos_get_app_version(void)
@@ -70,7 +81,7 @@ const char *aos_get_app_version(void)
 
   app version success, 0 failure.
 
-## 5 char *aos_get_device_name
+## 5-aos_get_device_name
 
 ```c
 const char *aos_get_device_name(void)
@@ -88,7 +99,7 @@ const char *aos_get_device_name(void)
 
   device name success, 0 failure.
 
-## 6 dump_sys_info
+## 6-dump_sys_info
 
 ```c
 void dump_sys_info(void)
@@ -105,3 +116,4 @@ void dump_sys_info(void)
 - [x] **Returns**
 
   None.
+
