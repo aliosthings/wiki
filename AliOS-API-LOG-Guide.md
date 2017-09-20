@@ -1,4 +1,10 @@
-## 1 aos_set_log_level
+# API INDEX
+
+  * [1 aos_set_log_level](#1-aos_set_log_level)
+
+------
+
+## 1-aos_set_log_level
 
 ```c
 void aos_set_log_level(aos_log_level_t log_level)
@@ -17,3 +23,4 @@ void aos_set_log_level(aos_log_level_t log_level)
 - [x] **Returns**
 
   None.
+
