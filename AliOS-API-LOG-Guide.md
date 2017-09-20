@@ -1,58 +1,19 @@
-#### `public void `[`aos_set_log_level`](#log_8h_1ae17ac5be96340be7f2ad09073f5f2438)`(`[`aos_log_level_t`](#log_8h_1ab5415466dbe3b11b98f39d2c428bac16)` log_level)` 
+## 1 aos_set_log_level
 
-set the log level
+```c
+void aos_set_log_level(aos_log_level_t log_level)
+```
 
-#### Parameters
-* `log_level` level to be set
+- [x] **Description**
 
-#### `define `[`LOGF`](#log_8h_1acb7268fb6c63c18aa7d372642e9c9994) 
+  Set the log level.
 
-log at fatal level
+- [x] **Parameters**
 
-#### Parameters
-* `mod` string description of module 
+  | IN/OUT |  NAME  |  DESC  |
+  |--------|--------|--------|
+  | [in] | log_level | level to be set,must be one of AOS_LL_NONE,AOS_LL_FATAL,AOS_LL_ERROR,AOS_LL_WARN,AOS_LL_INFO or AOS_LL_DEBUG. |
 
-* `fmt` same as printf() usage
+- [x] **Returns**
 
-#### `define `[`LOGE`](#log_8h_1a0d0173d9a0b62a413f2b6dc5cb45b68d) 
-
-log at error level
-
-#### Parameters
-* `mod` string description of module 
-
-* `fmt` same as printf() usage
-
-#### `define `[`LOGW`](#log_8h_1ad10099153d2aa027c77b7109f9c82b68) 
-
-log at warning level
-
-#### Parameters
-* `mod` string description of module 
-
-* `fmt` same as printf() usage
-
-#### `define `[`LOGI`](#log_8h_1a834da07fe3197a064a151e6972ecb9ae) 
-
-log at info level
-
-#### Parameters
-* `mod` string description of module 
-
-* `fmt` same as printf() usage
-
-#### `define `[`LOGD`](#log_8h_1ab2bb4d01d7fa560ad13a9cfc3b32fcbc) 
-
-log at warning level
-
-#### Parameters
-* `mod` string description of module 
-
-* `fmt` same as printf() usage
-
-#### `define `[`LOG`](#log_8h_1a388edf12256bf73c3a8ee9734c3bd841) 
-
-log at warning level
-
-#### Parameters
-* `fmt` same as printf() usage
+  None.
