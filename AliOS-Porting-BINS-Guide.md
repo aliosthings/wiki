@@ -1,7 +1,7 @@
 # 目录
   * [1 多bin的编译方式](#1多bin的编译方式)
   * [2 链接脚本ld文件修改](#2链接脚本ld文件修改)
-  * [3 OS的修改](#3OS的修改)
+  * [3 系统的修改](#3系统的修改)
   * [4 Makefile修改](#4Makefile修改)
 ------
 # 1多bin的编译方式  
@@ -17,7 +17,7 @@ ld文件的实现格式和单bin一致，主要需要提供如下一点：
 
   如果参考实现与开发者实现一致，可以直接拷贝存放在对应的平台(platform)下面。
 
-# 3OS的修改
+# 3系统的修改
 * 多bin编译方式，需要在增加syscall层，我们在kernel模块增加了syscall_tbl.c，在app模块增加了usyscall_uapi.c,
 作为kernel和app的api桥梁。如果开发者有kernel模块需要暴露给app的，需要按照现在做法在syscall_tbl.c和usyscall_uapi.c
 中增加相应的api。
