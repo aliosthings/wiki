@@ -1,67 +1,139 @@
-#### `public int `[`cli_register_command`](#cli_8h_1a23c3dbb78c76121d390d07b74619b68e)`(const struct `[`cli_command`](#structcli__command)` * command)` 
+## 1 aos_cli_register_command
 
-This function registers a command with the command-line interface.
+```c
+int aos_cli_register_command(const struct cli_command *command)
+```
 
-#### Parameters
-* `command` The structure to register one CLI command
+- [x] **Description**
 
-#### Returns
-: 0 on success, 1 on failure
+  This function registers a command with the command-line interface.
 
-#### `public int `[`cli_unregister_command`](#cli_8h_1a2a21b313d17b8810170b996151349750)`(const struct `[`cli_command`](#structcli__command)` * command)` 
+- [x] **Parameters**
 
-This function unregisters a command from the command-line interface.
+  | IN/OUT |  NAME  |  DESC  |
+  |--------|--------|--------|
+  | [in] | command | The structure to register one CLI command |
 
-#### Parameters
-* `command` The structure to unregister one CLI command
+- [x] **Returns**
 
-#### Returns
-: 0 on success, 1 on failure
+  0 on success, error code otherwise.
 
-#### `public int `[`cli_register_commands`](#cli_8h_1a94651f2613336ec2981c0ec9721673cc)`(const struct `[`cli_command`](#structcli__command)` * commands,int num_commands)` 
+## 2 aos_cli_unregister_command
 
-Register a batch of CLI commands Often, a module will want to register several commands.
+```c
+int aos_cli_unregister_command(const struct cli_command *command)
+```
 
-#### Parameters
-* `commands` Pointer to an array of commands. 
+- [x] **Description**
 
-* `num_commands` Number of commands in the array.
+  This function unregisters a command from the command-line interface.
 
-#### Returns
-: 0 on successï¼ 1 on failure
+- [x] **Parameters**
 
-#### `public int `[`cli_unregister_commands`](#cli_8h_1a0140b701cc2a99ccc96b7180844ea301)`(const struct `[`cli_command`](#structcli__command)` * commands,int num_commands)` 
+  | IN/OUT |  NAME  |  DESC  |
+  |--------|--------|--------|
+  | [in] | command | The structure to unregister one CLI command |
 
-Unregister a batch of CLI commands
+- [x] **Returns**
 
-#### Parameters
-* `commands` Pointer to an array of commands. 
+  0 on success,  error code otherwise.
 
-* `num_commands` Number of commands in the array.
+## 3 aos_cli_register_commands
 
-#### Returns
-: 0 on success,1 on failure
+```c
+int aos_cli_register_commands(const struct cli_command *commands, int num_commands)
+```
 
-#### `public int `[`cli_printf`](#cli_8h_1a208041556e7760947b1d89ecb5598575)`(const char * buff,...)` 
+- [x] **Description**
 
-Print CLI msg
+  Register a batch of CLI commands
+  Often, a module will want to register several commands.
 
-#### Parameters
-* `buff` Pointer to a char * buffer.
+- [x] **Parameters**
 
-#### Returns
-: 0 on success, error code otherwise.
+  | IN/OUT |  NAME  |  DESC  |
+  |--------|--------|--------|
+  | [in] | commands |     Pointer to an array of commands.   |
+  | [in] | num_commands | Number of commands in the array. |
 
-#### `public int `[`aos_cli_init`](#cli_8h_1a14ab9e06d8c6409b4b5593e70769e9dc)`(void)` 
+- [x] **Returns**
 
-CLI initial function
+  0 on success， error code otherwise.
 
-#### Returns
-: 0 on success, error code otherwise
+## 4 aos_cli_unregister_commands
 
-#### `public int `[`aos_cli_stop`](#cli_8h_1a480bf860a9810003f30d6909d83d6457)`(void)` 
+```c
+int aos_cli_unregister_commands(const struct cli_command *commands, int num_commands)
+```
 
-Stop the CLI thread and carry out the cleanup
+- [x] **Description**
 
-#### Returns
-: 0 on success, return error code otherwise.
+  Unregister a batch of CLI commands
+
+- [x] **Parameters**
+
+  | IN/OUT |  NAME  |  DESC  |
+  |--------|--------|--------|
+  | [in] | commands |     Pointer to an array of commands.   |
+  | [in] | num_commands | Number of commands in the array. |
+
+- [x] **Returns**
+
+  0 on success, error code otherwise.
+
+## 5 aos_cli_printf
+
+```c
+int aos_cli_printf(const char *buff, ...)
+```
+
+- [x] **Description**
+
+  Print CLI msg
+
+- [x] **Parameters**
+
+  | IN/OUT |  NAME  |  DESC  |
+  |--------|--------|--------|
+  | [in] | buff | Pointer to a char * buffer. |
+
+- [x] **Returns**
+
+  0  on success, error code otherwise.
+
+## 6 aos_cli_init
+
+```c
+int aos_cli_init(void)
+```
+
+- [x] **Description**
+
+  CLI initial function
+
+- [x] **Parameters**
+
+  None.
+
+- [x] **Returns**
+
+  0 on success, error code otherwise
+
+## 7 aos_cli_stop
+
+```c
+int aos_cli_stop(void)
+```
+
+- [x] **Description**
+
+  Stop the CLI thread and carry out the cleanup
+
+- [x] **Parameters**
+
+  None.
+
+- [x] **Returns**
+
+  0 on success, error code otherwise.
+ *
