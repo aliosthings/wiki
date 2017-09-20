@@ -23,5 +23,5 @@ ld文件的实现格式和单bin一致，主要需要提供如下一点：
 4. Makefile修改
 AliOS可以以组件化的方式弹性组合，所以在每个组件的makefile文件中，增加了$(NAME)_TYPE变量，可选kernel、app、share三种模式，
 如果选择kernel，则编译进入kernel bin，如果选择app，则编译进入app bin，如果为share，则会进入kernel和app bin，如果不填写，
-默认进入app bin
-  完成上述修改后，需要修改对应平台(platform)下相关Makefile，参考实现。
+默认进入app bin  
+完成上述修改后，需要修改对应平台(platform)下相关Makefile，参考实现。
