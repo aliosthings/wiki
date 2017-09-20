@@ -994,5 +994,351 @@ int32_t hal_sd_finalize(sd_dev_t *sd)
 
   0 : on success, EIO : if an error occurred with any step
 ------
+SENSOR
+------
+## 1 hal_sensor_register_module
+
+```c
+void hal_sensor_register_module(hal_sensor_module_t *module)
+```
+
+- [x] **Description**
+
+  Arch register a new module before HAL startup
+
+- [x] **Parameters**
+
+  None.
+
+- [x] **Returns**
+
+  None.
+
+
+## 2 hal_sensor_init
+
+```c
+int hal_sensor_init(void)
+```
+
+- [x] **Description**
+
+  HAL sensor init.
+
+- [x] **Parameters**
+
+  None.
+
+- [x] **Returns**
+
+  0 if init success, -1 if fail
+
+## 3  hal_sensor_get_sensor_list
+
+```c
+int  hal_sensor_get_sensor_list(hal_sensor_module_t *m, sensor_node_t const **list)
+```
+
+- [x] **Description**
+
+  enbale sensor with type
+
+- [x] **Parameters**
+
+  | IN/OUT |  NAME  |  DESC  |
+  |--------|--------|--------|
+  | [in] | m |   Refer the sensor module which will be used,default module will be used if value is NULL   |
+  | [in] | list The list of the sensor which will be return |
+
+- [x] **Returns**
+
+  negative value indicates an error
+
+## 4  hal_sensor_enable
+
+```c
+int  hal_sensor_enable(hal_sensor_module_t *m, sensor_type type)
+```
+
+- [x] **Description**
+
+  enable sensor with type
+
+- [x] **Parameters**
+
+  | IN/OUT |  NAME  |  DESC  |
+  |--------|--------|--------|
+  | [in] | m |    Refer the sensor module which will be used,default module will be used if value is NULL   |
+  | [in] | type | The type of the sensor which must be supplied |
+
+- [x] **Returns**
+
+  0 if enable ok, negative value indicates an error
+
+## 5 hal_sensor_disable
+
+```c
+int hal_sensor_disable(hal_sensor_module_t *m, sensor_type type)
+```
+
+- [x] **Description**
+
+  disable sensor with type
+
+- [x] **Parameters**
+
+  | IN/OUT |  NAME  |  DESC  |
+  |--------|--------|--------|
+  | [in] | m |    Refer the sensor module which will be used,default module will be used if value is NULL   |
+  | [in] | type | The type of the sensor which must be supplied |
+
+- [x] **Returns**
+
+  0 if disable ok, negative value indicates an error
+
+## 6 hal_sensor_read
+
+```c
+int hal_sensor_read(hal_sensor_module_t *m, sensor_type type, char *buf, int buf_size)
+```
+
+- [x] **Description**
+
+  read sensor data when enable sensor
+
+- [x] **Parameters**
+
+  | IN/OUT |  NAME  |  DESC  |
+  |--------|--------|--------|
+  | [in] | m |        Refer the sensor module which will be used,default module will be used if value is NULL   |
+  | [in] | type |     The type of the sensor which must be supplied   |
+  | [in] | buf |      receive buf for sensor data   |
+  | [in] | buf_size | the size buf of input |
+
+- [x] **Returns**
+
+  0 if read ok, negative value indicates an error
+
+## 7 *hal_sensor_get_default_module
+
+```c
+hal_sensor_module_t *hal_sensor_get_default_module(void)
+```
+
+- [x] **Description**
+
+  Get the default sensor module
+
+- [x] **Parameters**
+
+  None.
+
+- [x] **Returns**
+
+  return the first registered sensor module ,which is the head of module list
+
+## 8 *hal_sensor_get_next_module
+
+```c
+hal_sensor_module_t *hal_sensor_get_next_module(hal_sensor_module_t *m)
+```
+
+- [x] **Description**
+
+  Get the next sensor HAL
+   The system may have more than 1 sensor HAL instances.
+
+- [x] **Parameters**
+
+  None.
+
+- [x] **Returns**
+
+  Instance pointer or NULL
+------
+SPI
+------
+## 1 hal_spi_init
+
+```c
+int32_t hal_spi_init(spi_dev_t *spi)
+```
+
+- [x] **Description**
+
+  Initialises the SPI interface for a given SPI device
+
+- [x] **Parameters**
+
+  | IN/OUT |  NAME  |  DESC  |
+  |--------|--------|--------|
+  | [in] | spi | the spi device |
+
+- [x] **Returns**
+
+  0 : on success, EIO : if the SPI device could not be initialised
+
+## 2 hal_spi_send
+
+```c
+int32_t hal_spi_send(spi_dev_t *spi, uint8_t *data, uint16_t size, uint32_t timeout)
+```
+
+- [x] **Description**
+
+  Spi send
+
+- [x] **Parameters**
+
+  | IN/OUT |  NAME  |  DESC  |
+  |--------|--------|--------|
+  | [in] | spi |     the spi device   |
+  | [in] | data |    spi send data   |
+  | [in] | size |    spi send data size   |
+  | [in] | timeout | timeout in ms |
+
+- [x] **Returns**
+
+  0 : on success, EIO : if the SPI device could not be initialised
+
+## 3 hal_spi_recv
+
+```c
+int32_t hal_spi_recv(spi_dev_t *spi, uint8_t *data, uint16_t size, uint32_t timeout)
+```
+
+- [x] **Description**
+
+  spi_recv
+
+- [x] **Parameters**
+
+  | IN/OUT |  NAME  |  DESC  |
+  |--------|--------|--------|
+  | [in] |  spi |     the spi device   |
+  | [out] | data |    spi recv data   |
+  | [in] |  size |    spi recv data size   |
+  | [in] |  timeout | timeout in ms |
+
+- [x] **Returns**
+
+  0 : on success, EIO : if the SPI device could not be initialised
+
+## 4 hal_spi_send_recv
+
+```c
+int32_t hal_spi_send_recv(spi_dev_t *spi, uint8_t *tx_data, uint16_t tx_size,
+                          uint8_t *rx_data, uint16_t rx_size, uint32_t timeout)
+```
+
+- [x] **Description**
+
+  spi send data and recv
+
+- [x] **Parameters**
+
+  | IN/OUT |  NAME  |  DESC  |
+  |--------|--------|--------|
+  | [in] | spi |     the spi device   |
+  | [in] | tx_data | spi send data   |
+  | [in] | rx_data | spi recv data   |
+  | [in] | tx_size | spi data to be sent   |
+  | [in] | rx_size | spi data to be recv   |
+  | [in] | timeout | timeout in ms |
+
+- [x] **Returns**
+
+  0, on success;  EIO : if the SPI device could not be initialised
+
+## 5 hal_spi_finalize
+
+```c
+int32_t hal_spi_finalize(spi_dev_t *spi)
+```
+
+- [x] **Description**
+
+  De-initialises a SPI interface
+ 
+
+- [x] **Parameters**
+
+  | IN/OUT |  NAME  |  DESC  |
+  |--------|--------|--------|
+  | [in] | spi the SPI device to be de-initialised |
+
+- [x] **Returns**
+
+  0 : on success, EIO : if an error occurred
+------
+TIMER
+------
+## 1 hal_timer_init
+
+```c
+void hal_timer_init(hal_timer_t *tmr, unsigned int period,
+                           unsigned char auto_reload, unsigned char ch, hal_timer_cb_t cb, void *arg)
+```
+
+- [x] **Description**
+
+  init a hardware timer
+
+- [x] **Parameters**
+
+  | IN/OUT |  NAME  |  DESC  |
+  |--------|--------|--------|
+  | [in] | tmr |        timer struct   |
+  | [in] | period |     micro seconds for repeat timer trigger   |
+  | [in] | auto_reoad | set to 0, if you just need oneshot timer   |
+  | [in] | cb |         callback to be triggered after useconds   |
+  | [in] | ch |         timer channel   |
+  | [in] | arg |        passed to cb   @note  period   auto   auto   auto          *-------|--------|--------|--------| |
+
+- [x] **Returns**
+
+  None.
+
+
+## 2 hal_timer_start
+
+```c
+int32_t hal_timer_start(hal_timer_t *tmr)
+```
+
+- [x] **Description**
+
+  init a hardware timer
+
+- [x] **Parameters**
+
+  None.
+
+- [x] **Returns**
+
+  0 == success, EIO == failure
+
+## 3 hal_timer_stop
+
+```c
+void hal_timer_stop(hal_timer_t *tmr)
+```
+
+- [x] **Description**
+
+  stop a hardware timer
+
+- [x] **Parameters**
+
+  | IN/OUT |  NAME  |  DESC  |
+  |--------|--------|--------|
+  | [in] | tmr | timer struct   |
+  | [in] | cb |  callback to be triggered after useconds   |
+  | [in] | arg | passed to cb |
+
+- [x] **Returns**
+
+  None.
+------
 
 ------
