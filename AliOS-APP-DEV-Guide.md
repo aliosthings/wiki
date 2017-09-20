@@ -92,7 +92,7 @@ Alink组件提供开放丰富安全可靠的云服务，可以用于Alink上云�
 HAL是AliOS的核心组件之一，主要目的是为了屏蔽底下不同的芯片平台的差异，从而使上面的应用软件不会因为不同的芯片而改变。目前ALiOS定义了丰富的HAL抽象层，芯片公司或者用户只要对接相应的HAL接口即能满足控制芯片的控制器，从而达到控制硬件外设的目的。HAL包含的功能有adc，flash， gpio，i2c，pwm，rng，rtc，sd，spi，timer，uart，wdg。开发者可以利用HAL的API来快速达到控制硬件外设的能力。由于目前的HAL层是非常标准的API，开发者可以参考现有移植的HAL层的开发，来达到快速移植的能力。更多关于HAL的介绍，请参考：[HAL介绍](https://github.com/alibaba/AliOS/wiki/AliOS-Porting-HAL-Guide)
 ## 6.5 kv
 kv组件是基于键(key)-值(value)数据类型的小型轻量级持久化存储组件，主要为基于Nor-Flash的小型嵌入式设备提供通用的key-value持久化存储接口。kv组件支持写平衡（磨损平衡）与掉电保护；而且，kv组件的资源占用较低，RAM占用峰值固定，只和最大键值对长度相关。kv组件封装了简洁的增加/修改、删除及查询的接口方法，开发者可以通过这些接口方法存储一些产品参数、系统配置等信息。  
-KV组件的移植请参照：[kv移植](https://github.com/alibaba/AliOS/wiki/AliOS-Porting-HAL-Guide)
+KV组件的移植请参照：[kv移植](https://github.com/alibaba/AliOS/wiki/AliOS-Porting-HAL-Guide)  
 更多关于kv组件的介绍，请参照：[kv介绍](https://github.com/alibaba/AliOS/wiki/AliOS-API-KV-Guide)
 ## 6.6 vfs
 vfs是AliOS核心组件之一，用户可以使用vfs组件通过统一的接口操作不同的真实文件系统和设备。vfs组件是对真实文件系统操作与设备操作的一层抽象层，vfs组件封装了一套对文件对象与设备对象执行操作的统一接口，具有良好的跨平台性。开发者可以通过VFS组件封装的统一接口（aos_open、aos_read，etc.）来操作真实文件系统与设备。而且利用VFS组件的统一接口来进行应用开发，可以让应用具有更好的跨平台性，不再依赖设备HAL层接口定义和各个真实文件系统的接口定义。更多关于vfs组件的介绍，请参考：[vfs介绍](https://github.com/alibaba/AliOS/wiki/AliOS-API-VFS-Guide)
