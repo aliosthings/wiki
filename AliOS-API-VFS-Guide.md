@@ -1,4 +1,25 @@
-## 1 aos_open
+# API INDEX
+
+  * [1 aos_open](#1-aos_open)
+  * [2 aos_close](#2-aos_close)
+  * [3 aos_read](#3-aos_read)
+  * [4 aos_write](#4-aos_write)
+  * [5 aos_ioctl](#5-aos_ioctl)
+  * [6 aos_poll](#6-aos_poll)
+  * [7 aos_fcntl](#7-aos_fcntl)
+  * [8 aos_lseek](#8-aos_lseek)
+  * [9 aos_sync](#9-aos_sync)
+  * [10 aos_stat](#10-aos_stat)
+  * [11 aos_unlink](#11-aos_unlink)
+  * [12 aos_rename](#12-aos_rename)
+  * [13 aos_opendir](#13-aos_opendir)
+  * [14 aos_closedir](#14-aos_closedir)
+  * [15 aos_readdir](#15-aos_readdir)
+  * [16 aos_mkdir](#16-aos_mkdir)
+
+------
+
+## 1-aos_open
 
 ```c
 int aos_open(const char *path, int flags)
@@ -19,7 +40,7 @@ int aos_open(const char *path, int flags)
 
   the new file descriptor, negative error on failure.
 
-## 2 aos_close
+## 2-aos_close
 
 ```c
 int aos_close(int fd)
@@ -39,7 +60,7 @@ int aos_close(int fd)
 
   0 on success, negative error on failure.
 
-## 3 aos_read
+## 3-aos_read
 
 ```c
 ssize_t aos_read(int fd, void *buf, size_t nbytes)
@@ -61,7 +82,7 @@ ssize_t aos_read(int fd, void *buf, size_t nbytes)
 
   The number of bytes read, 0 at end of file, negative error on failure.
 
-## 4 aos_write
+## 4-aos_write
 
 ```c
 ssize_t aos_write(int fd, const void *buf, size_t nbytes)
@@ -83,7 +104,7 @@ ssize_t aos_write(int fd, const void *buf, size_t nbytes)
 
   The number of bytes written, negative error on failure.
 
-## 5 aos_ioctl
+## 5-aos_ioctl
 
 ```c
 int aos_ioctl(int fd, int cmd, unsigned long arg)
@@ -105,7 +126,7 @@ int aos_ioctl(int fd, int cmd, unsigned long arg)
 
   any return from the command.
 
-## 6 aos_poll
+## 6-aos_poll
 
 ```c
 int aos_poll(struct pollfd *fds, int nfds, int timeout)
@@ -128,7 +149,7 @@ int aos_poll(struct pollfd *fds, int nfds, int timeout)
 
   number of file descriptors selected (for which revents is non-zero). 0 if timed out with nothing selected. -1 for error.
 
-## 7 aos_fcntl
+## 7-aos_fcntl
 
 ```c
 int aos_fcntl(int fd, int cmd, int val)
@@ -150,7 +171,7 @@ int aos_fcntl(int fd, int cmd, int val)
 
   0 on success, negative error on failure.
 
-## 8 aos_lseek
+## 8-aos_lseek
 
 ```c
 off_t aos_lseek(int fd, off_t offset, int whence)
@@ -172,7 +193,7 @@ off_t aos_lseek(int fd, off_t offset, int whence)
 
   The new offset of the file.
 
-## 9 aos_sync
+## 9-aos_sync
 
 ```c
 int aos_sync(int fd)
@@ -192,7 +213,7 @@ int aos_sync(int fd)
 
   0 on success, negative error code on failure.
 
-## 10 aos_stat
+## 10-aos_stat
 
 ```c
 int aos_stat(const char *path, struct stat *st)
@@ -213,7 +234,7 @@ int aos_stat(const char *path, struct stat *st)
 
   0 on success, negative error code on failure.
 
-## 11 aos_unlink
+## 11-aos_unlink
 
 ```c
 int aos_unlink(const char *path)
@@ -233,7 +254,7 @@ int aos_unlink(const char *path)
 
   0 on success, negative error code on failure.
 
-## 12 aos_rename
+## 12-aos_rename
 
 ```c
 int aos_rename(const char *oldpath, const char *newpath)
@@ -254,7 +275,7 @@ int aos_rename(const char *oldpath, const char *newpath)
 
   0 on success, negative error code on failure.
 
-## 13 *aos_opendir
+## 13-aos_opendir
 
 ```c
 aos_dir_t *aos_opendir(const char *path)
@@ -274,7 +295,7 @@ aos_dir_t *aos_opendir(const char *path)
 
   a point of directory stream on success, NULL on failure.
 
-## 14 aos_closedir
+## 14-aos_closedir
 
 ```c
 int aos_closedir(aos_dir_t *dir)
@@ -294,7 +315,7 @@ int aos_closedir(aos_dir_t *dir)
 
   0 on success, negative error code on failure.
 
-## 15 *aos_readdir
+## 15-aos_readdir
 
 ```c
 aos_dirent_t *aos_readdir(aos_dir_t *dir)
@@ -314,7 +335,7 @@ aos_dirent_t *aos_readdir(aos_dir_t *dir)
 
   a pointer to a dirent structure.
 
-## 16 aos_mkdir
+## 16-aos_mkdir
 
 ```c
 int aos_mkdir(const char *path)
