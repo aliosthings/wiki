@@ -1,4 +1,13 @@
-## 1 aos_cloud_register_callback
+# API INDEX
+
+  * [1 aos_cloud_register_callback](#1-aos_cloud_register_callback)
+  * [2 aos_cloud_report](#2-aos_cloud_report)
+  * [3 aos_cloud_trigger](#3-aos_cloud_trigger)
+  * [4 aos_cloud_register_backend](#4-aos_cloud_register_backend)
+
+------
+
+## 1-aos_cloud_register_callback
 
 ```c
 int aos_cloud_register_callback(int cb_type, aos_cloud_cb_t cb)
@@ -19,7 +28,7 @@ int aos_cloud_register_callback(int cb_type, aos_cloud_cb_t cb)
 
   the operation status, 0 is OK, others is error.
 
-## 2 aos_cloud_report
+## 2-aos_cloud_report
 
 ```c
 int aos_cloud_report(const char *method,
@@ -45,7 +54,7 @@ int aos_cloud_report(const char *method,
 
   the operation status, 0 is OK, others is error.
 
-## 3 aos_cloud_trigger
+## 3-aos_cloud_trigger
 
 ```c
 void aos_cloud_trigger(int cb_type, const char *json_buffer)
@@ -67,7 +76,7 @@ void aos_cloud_trigger(int cb_type, const char *json_buffer)
   None.
 
 
-## 4 aos_cloud_register_backend
+## 4-aos_cloud_register_backend
 
 ```c
 void aos_cloud_register_backend(int (*report)(const char *method, const char *json_buffer))
