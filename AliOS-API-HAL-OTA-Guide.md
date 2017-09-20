@@ -1,4 +1,15 @@
-## 1 hal_ota_register_module
+# API INDEX
+
+  * [1 hal_ota_register_module](#1-hal_ota_register_module)
+  * [2 hal_ota_init](#2-hal_ota_init)
+  * [3 hal_ota_write](#3-hal_ota_write)
+  * [4 hal_ota_read](#4-hal_ota_read)
+  * [5 hal_ota_set_boot](#5-hal_ota_set_boot)
+  * [6 hal_ota_get_default_module](#6-hal_ota_get_default_module)
+
+------
+
+## 1-hal_ota_register_module
 
 ```c
 void hal_ota_register_module(hal_ota_module_t *module)
@@ -17,7 +28,7 @@ void hal_ota_register_module(hal_ota_module_t *module)
   None.
 
 
-## 2 hal_ota_init
+## 2-hal_ota_init
 
 ```c
 hal_stat_t hal_ota_init(void *something)
@@ -37,7 +48,7 @@ hal_stat_t hal_ota_init(void *something)
 
   0 : On success, 1 : If an error occurred with any step
 
-## 3 hal_ota_write
+## 3-hal_ota_write
 
 ```c
 hal_stat_t hal_ota_write(hal_ota_module_t *m, volatile uint32_t *off_set,
@@ -61,7 +72,7 @@ hal_stat_t hal_ota_write(hal_ota_module_t *m, volatile uint32_t *off_set,
 
   0 : On success, 1 : If an error occurred with any step
 
-## 4 hal_ota_read
+## 4-hal_ota_read
 
 ```c
 hal_stat_t hal_ota_read(hal_ota_module_t *m, volatile uint32_t *off_set,
@@ -85,7 +96,7 @@ hal_stat_t hal_ota_read(hal_ota_module_t *m, volatile uint32_t *off_set,
 
   0 : On success, 1 : If an error occurred with any step
 
-## 5 hal_ota_set_boot
+## 5-hal_ota_set_boot
 
 ```c
 hal_stat_t hal_ota_set_boot(hal_ota_module_t *m, void *something)
@@ -106,7 +117,7 @@ hal_stat_t hal_ota_set_boot(hal_ota_module_t *m, void *something)
 
   kNoErr : On success. kGeneralErr : If an error occurred with any step
 
-## 6 *hal_ota_get_default_module
+## 6-hal_ota_get_default_module
 
 ```c
 hal_ota_module_t *hal_ota_get_default_module(void)
