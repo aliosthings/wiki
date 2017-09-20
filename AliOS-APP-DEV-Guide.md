@@ -103,7 +103,7 @@ kv组件是基于键(key)-值(value)数据类型的小型轻量级持久化存�
 kv组件移植开发注意事项：
 * 开发者需要实现相关Flash HAL层接口；
 * 开发者需通过CONFIG_AOS_KV_PTN宏定义指定kv组件所使用的flash分区号；
-* 开发者需通过CONFIG_AOS_KV_BUFFER_SIZE宏定义指定kv组件所使用的flash分区大小（需大于8192 bytes）；
+* 开发者需通过CONFIG_AOS_KV_BUFFER_SIZE宏定义指定kv组件所使用的flash分区大小（不能小于2个kv组件的逻辑块，默认值为8192 bytes）；
 * 开发者需通过在Makefile中声明组件依赖关系：$(NAME)_COMPONENTS += modules.fs.kv；
 * 若开发者所使用的flash介质的最小擦除单位大于4096 bytes，还需调整kv组件内的逻辑块大小（默认为4096 bytes）；
 
