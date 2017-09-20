@@ -1,6 +1,6 @@
 ### AliOS提供的多bin编译方式，开发者可以按照以下步骤完成移植工作。
 
-1. 多bin的编译方式
+1. 多bin的编译方式  
 以mk3060平台为例：
  * 单bin编译： aos make helloworldmk3060
  * app bin编译：aos make helloworldmk3060 BINS=app
