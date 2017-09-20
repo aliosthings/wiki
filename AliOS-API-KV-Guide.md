@@ -6,20 +6,20 @@ int aos_kv_set(const char *key, const void *value, int len, int sync)
 
 - [x] **Description**
 
-  Add another KV pair.
+  Add a new KV pair.
 
 - [x] **Parameters**
 
   | IN/OUT |  NAME  |  DESC  |
   |--------|--------|--------|
-  | [in] | key |   the key of the KV pair. |
-  | [in] | value | the value of the KV pair. |
-  | [in] | len |   the length of the value. |
-  | [in] | sync |  save the KV pair to flash right now (should always be 1) |
+  | [in] | key |   the key of the KV pair.   |
+  | [in] | value | the value of the KV pair.   |
+  | [in] | len |   the length of the value.   |
+  | [in] | sync |  save the KV pair to flash right now (should always be 1). |
 
 - [x] **Returns**
 
-  0 on success, negative error on failure
+  0 on success, negative error on failure.
 
 ## 2 aos_kv_get
 
@@ -29,19 +29,19 @@ int aos_kv_get(const char *key, void *buffer, int *buffer_len)
 
 - [x] **Description**
 
-  Get the KV value stored in buffer by its key.
+  Get the KV pair's value stored in buffer by its key.
 
 - [x] **Parameters**
 
   | IN/OUT |  NAME  |  DESC  |
   |--------|--------|--------|
-  | [in] |  key |        the key of the KV you want to get. |
-  | [out] | buffer |     the memory to store KV value. |
-  | [out] | buffer_len | the real length of value. |
+  | [in] |  |   key         the key of the KV pair to get.   |
+  | [out] |  |  buffer      the memory to store the value.   |
+  | [in-out] | buffer_len | in: the length of the input buffer.        out: the real length of the value. |
 
 - [x] **Returns**
 
-  0 on success, negative error on failure
+  0 on success, negative error on failure.
 
 ## 3 aos_kv_del
 
@@ -57,8 +57,8 @@ int aos_kv_del(const char *key)
 
   | IN/OUT |  NAME  |  DESC  |
   |--------|--------|--------|
-  | [in] | key | the key of the KV pair you want to delete. |
+  | [in] | key | the key of the KV pair to delete. |
 
 - [x] **Returns**
 
-  0 on success, negative error on failure
+  0 on success, negative error on failure.
