@@ -1,4 +1,13 @@
-## 1 *trace_hal_init
+# API INDEX
+
+  * [1 trace_hal_init](#1-trace_hal_init)
+  * [2 trace_hal_send](#2-trace_hal_send)
+  * [3 trace_hal_recv](#3-trace_hal_recv)
+  * [4 trace_hal_deinit](#4-trace_hal_deinit)
+
+------
+
+## 1-trace_hal_init
 
 ```c
 void *trace_hal_init(void)
@@ -17,7 +26,7 @@ void *trace_hal_init(void)
   None.
 
 
-## 2 trace_hal_send
+## 2-trace_hal_send
 
 ```c
 ssize_t trace_hal_send(void *handle, void *buf, size_t len)
@@ -39,7 +48,7 @@ ssize_t trace_hal_send(void *handle, void *buf, size_t len)
 
   the size send success.
 
-## 3 trace_hal_recv
+## 3-trace_hal_recv
 
 ```c
 ssize_t trace_hal_recv(void *handle, void *buf)
@@ -60,7 +69,7 @@ ssize_t trace_hal_recv(void *handle, void *buf)
 
   the size receive success.
 
-## 4 trace_hal_deinit
+## 4-trace_hal_deinit
 
 ```c
 void trace_hal_deinit(void *handle)
