@@ -19,7 +19,7 @@
   * [17 hal_wifi_start_wifi_monitor](#17-hal_wifi_start_wifi_monitor)
   * [18 hal_wifi_stop_wifi_monitor](#18-hal_wifi_stop_wifi_monitor)
   * [19 hal_wifi_register_monitor_cb](#19-hal_wifi_register_monitor_cb)
-  * [20 hal_wifi_install_event](#22-hal_wifi_install_event)
+  * [20 hal_wifi_install_event](#20-hal_wifi_install_event)
 
 ------
 
