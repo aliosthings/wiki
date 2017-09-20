@@ -85,8 +85,8 @@ AliOS提供了丰富的组件来支持IoT应用的开发。
 yloop是一个异步事件框架，主要负责管理系统各类事件的分发处理，及各类微任务（action）的调度。基于yloop，开发者可以避免多线程编程引入的复杂度和资源占用。yloop支持监听本地事件和网络事件，支持延时调用，支持workqueue处理耗时事件。AOS系统起来后有一个main yloop，也支持任务创建属于自己的yloop。yloop提供了注册，发送事件的接口。开发者可以用这些接口编写基于事件监听机制的程序，以及和系统其他组件的消息通信。更多关于yloop组件的介绍，请参考：[yloop介绍](https://github.com/alibaba/AliOS/wiki/AliOS-API-YLOOP-Guide)
 ## 6.2 kernel
 kernel是AliOS最核心的组件之一，通过kernel对芯片提供了实时操作系统的能力。AliOS kernel实现了多任务机制，多个任务之间的调度，任务之间的同步、通讯、互斥、事件，内存分配，trace功能，多核等等的机制。开发者可以利用kernel提供的api来实现一个rtos所具备的能力。开发者可以利用现有已移植的cpu体系架构来达到快速的移植能力。更多关于kernel各组件的信息，请参考：[kernel介绍](https://github.com/alibaba/AliOS/wiki/AliOS-API-KERNEL-Guide)
-## 6.3 alink
-alink组件提供开放丰富安全可靠的云服务，可以用于alink上云连接服务，如配网、数据上报alink等。借助alink组件，用户可以很方便的实现实现用户与设备、设备与设备、设备与用户之间的互联互动。关于alink组件详细的介绍以及接口的定义，请参考：[alink介绍](https://github.com/alibaba/AliOS/wiki/AliOS-API-ALINK-Guide)
+## 6.3 Alink
+Alink组件提供开放丰富安全可靠的云服务，可以用于Alink上云连接服务，如配网、数据上报等。借助Alink组件，用户可以很方便的实现实现用户与设备、设备与设备、设备与用户之间的互联互动。关于Alink组件详细的介绍以及接口的定义，请参考：[Alink介绍](https://github.com/alibaba/AliOS/wiki/AliOS-API-ALINK-Guide)
 ## 6.4 硬件抽象层（HAL）
 HAL是AliOS最核心的组件之一，最主要的目的是为了屏蔽底下不同的芯片平台的差异，从而使上面的应用软件不会因为不同的芯片而改变。目前ALiOS定义了全面的hal抽象层，芯片公司或者用户只要对接相应的hal接口既能满足控制芯片的控制器，从而达到控制硬件外设的目的。HAL包含的功能有adc，flash， gpio，i2c，pwm，rng，rtc，sd，spi，timer，uart，wdg。开发者可以利用HAL的API来快速达到控制硬件外设的能力。由于目前的HAL层是非常标准的API，开发者可以参考现有移植的HAL层的开发，来达到快速移植的能力。更多关于kernel组件的介绍，请参考：[kernel介绍](https://github.com/alibaba/AliOS/wiki/AliOS-API-KERNEL-Guide)
 ## 6.5 kv
