@@ -3,7 +3,7 @@
 ## [2 AliOS Porting HAL Guide](https://github.com/alibaba/AliOS/wiki/AliOS-Porting-HAL-Guide)
 概述-凌君
 ## [3 AliOS Porting WiFi Guide](https://github.com/alibaba/AliOS/wiki/AliOS-Porting-WiFi-Guide)
-概述-文军
+AliOS定义了完整的WiFi硬件抽象接口，通过这些WiFi HAL接口可以很好的操作WiFi设备。开发者移植新硬件平台时，需要实现WiFi HAL层的接口。
 ## [4 AliOS Porting FOTA Guide](https://github.com/alibaba/AliOS/wiki/AliOS-Porting-FOTA-Guide)
 AliOS提供原生FOTA功能，已完成对Alink,MQTT等协议通道的支持,开发者移植新硬件平台时，只需对底层flash操作接口进行适配封装即可。
 ## [5 AliOS Porting LwIP Guide](https://github.com/alibaba/AliOS/wiki/AliOS-Porting-LWIP-Guide)
