@@ -89,7 +89,7 @@ kernel是AliOS的核心组件之一，其基础是代号为Rhino的实时操作�
 ## 6.3 Alink
 Alink组件提供开放丰富安全可靠的云服务，可以用于Alink上云连接服务，如配网、数据上报等。借助Alink组件，用户可以很方便的实现实现用户与设备、设备与设备、设备与用户之间的互联互动。关于Alink组件详细的介绍以及接口的定义，请参考：[Alink介绍](https://github.com/alibaba/AliOS/wiki/AliOS-API-ALINK-Guide)
 ## 6.4 硬件抽象层（HAL）
-HAL是AliOS最核心的组件之一，最主要的目的是为了屏蔽底下不同的芯片平台的差异，从而使上面的应用软件不会因为不同的芯片而改变。目前ALiOS定义了全面的hal抽象层，芯片公司或者用户只要对接相应的HAL接口既能满足控制芯片的控制器，从而达到控制硬件外设的目的。HAL包含的功能有adc，flash， gpio，i2c，pwm，rng，rtc，sd，spi，timer，uart，wdg。开发者可以利用HAL的API来快速达到控制硬件外设的能力。由于目前的HAL层是非常标准的API，开发者可以参考现有移植的HAL层的开发，来达到快速移植的能力。更多关于HAL的介绍，请参考：[HAL介绍](https://github.com/alibaba/AliOS/wiki/AliOS-API-KERNEL-Guide)
+HAL是AliOS最核心的组件之一，最主要的目的是为了屏蔽底下不同的芯片平台的差异，从而使上面的应用软件不会因为不同的芯片而改变。目前ALiOS定义了全面的hal抽象层，芯片公司或者用户只要对接相应的HAL接口既能满足控制芯片的控制器，从而达到控制硬件外设的目的。HAL包含的功能有adc，flash， gpio，i2c，pwm，rng，rtc，sd，spi，timer，uart，wdg。开发者可以利用HAL的API来快速达到控制硬件外设的能力。由于目前的HAL层是非常标准的API，开发者可以参考现有移植的HAL层的开发，来达到快速移植的能力。更多关于HAL的介绍，请参考：[HAL介绍](https://github.com/alibaba/AliOS/wiki/AliOS-Porting-HAL-Guide)
 ## 6.5 kv
 kv组件是基于键(key)-值(value)数据类型的小型轻量级持久化存储组件，主要为基于Nor-Flash的小型嵌入式设备提供通用的key-value持久化存储接口。kv组件支持写平衡（磨损平衡）与掉电保护；而且，kv组件的资源占用较低，RAM占用峰值固定，只和最大键值对长度相关。kv组件封装了简洁的增加/修改、删除及查询的接口方法，开发者可以通过这些接口方法存储一些产品参数、系统配置等信息
 
