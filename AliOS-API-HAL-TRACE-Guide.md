@@ -42,7 +42,7 @@ ssize_t trace_hal_send(void *handle, void *buf, size_t len)
   |--------|--------|--------|
   | [in] | handle | data transfer channel object   |
   | [in] | buf |    the buffer store data   |
-  | [in] | len |    the len of dat |
+  | [in] | len |    the len of data |
 
 - [x] **Returns**
 
@@ -63,7 +63,7 @@ ssize_t trace_hal_recv(void *handle, void *buf)
   | IN/OUT |  NAME  |  DESC  |
   |--------|--------|--------|
   | [in] | handle | data transfer channel object   |
-  | [in] | buf |    the buffer to store dat |
+  | [in] | buf |    the buffer to store data |
 
 - [x] **Returns**
 
@@ -88,3 +88,4 @@ void trace_hal_deinit(void *handle)
 - [x] **Returns**
 
   None.
+
