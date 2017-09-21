@@ -35,11 +35,11 @@ AliOS-Studio 是 VS Code 插件，所以首先安装 VS Code ，通过插件的�
 ## 1.1 VS Code安装
 在 [VS Code](https://code.visualstudio.com) 官网下载安装包并安装：
 
-![](https://img.alicdn.com/tfs/TB1ACciXPihSKJjy0FlXXadEXXa-865-558.png)
+![](https://img.alicdn.com/tfs/TB1zHJ0bzuhSKJjSspmXXcQDpXa-1207-819.png)
 
 
 ## 1.2 AliOS-Studio安装
-通过VS Code插件，安装AliOS-Studio：
+打开VSCode, 点击左侧的扩展按钮，如图所示选择Install from VSIX / 从VSIX安装，并选择alios-studio-0.1.0.vsix，稍后根据提示重载VSCode即可。
 
 ![](https://img.alicdn.com/tfs/TB1S4fhfgMPMeJjy1XcXXXpppXa-865-387.png)
 
