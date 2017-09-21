@@ -187,9 +187,6 @@ int aos_schedule_call(aos_call_t action, void *arg)
   Unlike aos_post_delayed_action,
   this function can be called from non-aos-main-loop context.
 
-  @param[in]  action  action to be executed.
-  @param[in]  arg     private data past to action.
-
 - [x] **Parameters**
 
   | IN/OUT |  NAME  |  DESC  |
