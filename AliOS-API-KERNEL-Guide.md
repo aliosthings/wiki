@@ -61,7 +61,7 @@ void aos_reboot(void)
 
 - [x] **Description**
 
-  System reboot.
+  Reboot AliOS.
 
 - [x] **Parameters**
 
@@ -106,7 +106,7 @@ const char *aos_version_get(void)
 
 - [x] **Returns**
 
-  the operation status, RHINO_SUCCESS is OK, others is error.
+  SYSINFO_KERNEL_VERSION.
 
 ## 4-aos_task_new
 
@@ -122,14 +122,14 @@ int aos_task_new(const char *name, void (*fn)(void *), void *arg, int stack_size
 
   | IN/OUT |  NAME  |  DESC  |
   |--------|--------|--------|
-  | [in] | name |      task name, any string.   |
-  | [in] | fn |        task function.   |
-  | [in] | arg |       any pointer, will give to your task-function as argument.   |
-  | [in] | stacksize | stacksize in bytes. |
+  | [in] | name |      task name.   |
+  | [in] | fn |        function to run.   |
+  | [in] | arg |       argument of the function.   |
+  | [in] | stacksize | stack-size in bytes. |
 
 - [x] **Returns**
 
-  task code.
+  0: success.
 
 ## 5-aos_task_new_ext
 
@@ -147,16 +147,16 @@ int aos_task_new_ext(aos_task_t *task, const char *name, void (*fn)(void *), voi
   | IN/OUT |  NAME  |  DESC  |
   |--------|--------|--------|
   | [in] | task |       handle.   |
-  | [in] | name |       task name, any string.   |
+  | [in] | name |       task name.   |
   | [in] | fn |         task function.   |
-  | [in] | arg |        any pointer, will give to your task-function as argument.   |
+  | [in] | arg |        argument of the function..   |
   | [in] | stack_buf |  stack-buf: if stack_buf==NULL, provided by kernel.   |
-  | [in] | stack_size | stacksize in bytes.   |
-  | [in] | prio |       priority value, smaller the stronger. |
+  | [in] | stack_size | stack-size in bytes.   |
+  | [in] | prio |       priority value, the max is RHINO_CONFIG_USER_PRI_MAX(default 60). |
 
 - [x] **Returns**
 
-  task code.
+  0: success.
 
 ## 6-aos_task_exit
 
@@ -172,7 +172,7 @@ void aos_task_exit(int code)
 
   | IN/OUT |  NAME  |  DESC  |
   |--------|--------|--------|
-  | [in] | code | the id which aos_task_new returned. |
+  | [in] | code | not used now. |
 
 - [x] **Returns**
 
@@ -195,8 +195,7 @@ const char *aos_task_name(void)
 
 - [x] **Returns**
 
-  None.
-
+  the name of the task
 
 ## 8-aos_task_key_create
 
@@ -216,7 +215,7 @@ int aos_task_key_create(aos_task_key_t *key)
 
 - [x] **Returns**
 
-  the check status, 0 is OK, -1 indicates invalid.
+  0: success, -EINVAL: error.
 
 ## 9-aos_task_key_delete
 
@@ -299,8 +298,7 @@ int aos_mutex_new(aos_mutex_t *mutex)
 
 - [x] **Returns**
 
-  None.
-
+  0: success.
 
 ## 13-aos_mutex_free
 
@@ -337,12 +335,12 @@ int aos_mutex_lock(aos_mutex_t *mutex, unsigned int timeout)
 
   | IN/OUT |  NAME  |  DESC  |
   |--------|--------|--------|
-  | [in] | mutex | mutex object, it contains kernel obj pointer which aos_mutex_new alloced. |
+  | [in] | mutex |   mutex object, it contains kernel obj pointer which aos_mutex_new alloced.   |
+  | [in] | timeout | waiting until timeout in milliseconds. |
 
 - [x] **Returns**
 
-  None.
-
+  0: success.
 
 ## 15-aos_mutex_unlock
 
@@ -362,8 +360,7 @@ int aos_mutex_unlock(aos_mutex_t *mutex)
 
 - [x] **Returns**
 
-  None.
-
+  0: success.
 
 ## 16-aos_mutex_is_valid
 
@@ -383,7 +380,7 @@ int aos_mutex_is_valid(aos_mutex_t *mutex)
 
 - [x] **Returns**
 
-  the check status, RHINO_TRUE is OK, RHINO_FALSE indicates invalid.
+  0: success.
 
 ## 17-aos_sem_new
 
@@ -404,8 +401,7 @@ int aos_sem_new(aos_sem_t *sem, int count)
 
 - [x] **Returns**
 
-  None.
-
+  0:success.
 
 ## 18-aos_sem_free
 
@@ -447,8 +443,7 @@ int aos_sem_wait(aos_sem_t *sem, unsigned int timeout)
 
 - [x] **Returns**
 
-  None.
-
+  0: success.
 
 ## 20-aos_sem_signal
 
@@ -489,7 +484,7 @@ int aos_sem_is_valid(aos_sem_t *sem)
 
 - [x] **Returns**
 
-  the check status, RHINO_TRUE is OK, RHINO_FALSE indicates invalid.
+  0: success.
 
 ## 22-aos_sem_signal_all
 
@@ -533,7 +528,7 @@ int aos_queue_new(aos_queue_t *queue, void *buf, unsigned int size, int max_msg)
 
 - [x] **Returns**
 
-  the operation status, 0 is OK, others is error.
+  0: success.
 
 ## 24-aos_queue_free
 
@@ -553,7 +548,8 @@ void aos_queue_free(aos_queue_t *queue)
 
 - [x] **Returns**
 
-  the operation status, RHINO_SUCCESS is OK, others is error.
+  None.
+
 
 ## 25-aos_queue_send
 
@@ -575,7 +571,7 @@ int aos_queue_send(aos_queue_t *queue, void *msg, unsigned int size)
 
 - [x] **Returns**
 
-  the operation status, 0 is OK, others is error.
+  0: success.
 
 ## 26-aos_queue_recv
 
@@ -598,7 +594,7 @@ int aos_queue_recv(aos_queue_t *queue, unsigned int ms, void *msg,unsigned int *
 
 - [x] **Returns**
 
-  the operation status, 0 is OK, others is error.
+  0: success.
 
 ## 27-aos_queue_is_valid
 
@@ -618,7 +614,7 @@ int aos_queue_is_valid(aos_queue_t *queue)
 
 - [x] **Returns**
 
-  the check status, RHINO_TRUE is OK, RHINO_FALSE indicates invalid.
+  0: success.
 
 ## 28-aos_queue_buf_ptr
 
@@ -638,7 +634,7 @@ void *aos_queue_buf_ptr(aos_queue_t *queue)
 
 - [x] **Returns**
 
-  the check status, NULL is error.
+  NULL: error.
 
 ## 29-aos_sched_disable
 
@@ -674,7 +670,7 @@ int aos_sched_enable(void)
 
 - [x] **Returns**
 
-  the operation status, 0 is OK, others is error.
+  0: success.
 
 ## 31-aos_timer_new
 
@@ -699,7 +695,7 @@ int aos_timer_new(aos_timer_t *timer, void (*fn)(void *, void *),
 
 - [x] **Returns**
 
-  the operation status, 0 is OK, others is error.
+  0: success.
 
 ## 32-aos_timer_free
 
@@ -719,7 +715,8 @@ void aos_timer_free(aos_timer_t *timer)
 
 - [x] **Returns**
 
-  the operation status, 0 is OK, others is error.
+  None.
+
 
 ## 33-aos_timer_start
 
@@ -739,7 +736,7 @@ int aos_timer_start(aos_timer_t *timer)
 
 - [x] **Returns**
 
-  the operation status, 0 is OK, others is error.
+  0: success.
 
 ## 34-aos_timer_stop
 
@@ -759,7 +756,7 @@ int aos_timer_stop(aos_timer_t *timer)
 
 - [x] **Returns**
 
-  the operation status, 0 is OK, others is error.
+  0: success.
 
 ## 35-aos_timer_change
 
@@ -780,7 +777,7 @@ int aos_timer_change(aos_timer_t *timer, int ms)
 
 - [x] **Returns**
 
-  the operation status, 0 is OK, others is error.
+  0: success.
 
 ## 36-aos_workqueue_create
 
@@ -802,7 +799,7 @@ int aos_workqueue_create(aos_workqueue_t *workqueue, int pri, int stack_size)
 
 - [x] **Returns**
 
-  the operation status, 0 is OK, others is error.
+  0: success.
 
 ## 37-aos_workqueue_del
 
@@ -822,7 +819,8 @@ void aos_workqueue_del(aos_workqueue_t *workqueue)
 
 - [x] **Returns**
 
-  the operation status, 0 is OK, others is error.
+  None.
+
 
 ## 38-aos_work_init
 
@@ -845,7 +843,7 @@ int aos_work_init(aos_work_t *work, void (*fn)(void *), void *arg, int dly)
 
 - [x] **Returns**
 
-  the operation status, 0 is OK, others is error.
+  0: success.
 
 ## 39-aos_work_destroy
 
@@ -887,7 +885,7 @@ int aos_work_run(aos_workqueue_t *workqueue, aos_work_t *work)
 
 - [x] **Returns**
 
-  the operation status, 0 is OK, others is error.
+  0: success.
 
 ## 41-aos_work_sched
 
@@ -907,7 +905,7 @@ int aos_work_sched(aos_work_t *work)
 
 - [x] **Returns**
 
-  the operation status, 0 is OK, others is error.
+  0: success.
 
 ## 42-aos_work_cancel
 
@@ -927,7 +925,7 @@ int aos_work_cancel(aos_work_t *work)
 
 - [x] **Returns**
 
-  the operation status, 0 is OK, others is error.
+  0: success.
 
 ## 43-aos_realloc
 
@@ -948,7 +946,7 @@ void *aos_realloc(void *mem, unsigned int size)
 
 - [x] **Returns**
 
-  the operation status, NULL is error, others is memory address.
+  NULL: error.
 
 ## 44-aos_malloc
 
@@ -968,7 +966,7 @@ void *aos_malloc(unsigned int size)
 
 - [x] **Returns**
 
-  the operation status, NULL is error, others is memory address.
+  NULL: error.
 
 ## 45-aos_zalloc
 
@@ -988,7 +986,7 @@ void *aos_zalloc(unsigned int size)
 
 - [x] **Returns**
 
-  the operation status, NULL is error, others is memory address.
+  NULL: error.
 
 ## 46-aos_alloc_trace
 
