@@ -122,7 +122,7 @@ $ sudo pip install aos-cube
 在 AliOS 源码的目录下面，运行：
 
 ```
-$ aos make alinkapp@mk3060 BINS=kernel
+$ aos make alinkapp@mk3060
 ```
 
 编译 mk3060 板子的 helloworld 示例程序。
