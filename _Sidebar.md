@@ -23,7 +23,7 @@
   * [3.11.1 HAL-OTA API](https://github.com/alibaba/AliOS/wiki/AliOS-API-HAL-OTA-Guide)
   * [3.11.2 HAL-TRACE API](https://github.com/alibaba/AliOS/wiki/AliOS-API-HAL-TRACE-Guide)
   * [3.11.3 HAL-WIFI API](https://github.com/alibaba/AliOS/wiki/AliOS-API-HAL-WIFI-Guide)
-  * [3.11.4 HAL-SOC API]
+  * 3.11.4 HAL-SOC API
    * [3.11.4.1 HAL-SOC-ADC](https://github.com/alibaba/AliOS/wiki/AliOS-API-HAL-SOC-ADC-Guide)
    * [3.11.4.2 HAL-SOC-FLASH](https://github.com/alibaba/AliOS/wiki/AliOS-API-HAL-SOC-FLASH-Guide)
    * [3.11.4.3 HAL-SOC-GPIO](https://github.com/alibaba/AliOS/wiki/AliOS-API-HAL-SOC-GPIO-Guide)
