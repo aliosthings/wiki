@@ -50,7 +50,7 @@
 
   其余的HAL层API的封装以此类推。
 
-## 2 FLASH抽象层移植
+## 2FLASH抽象层移植
 ### 2.1 FLASH抽象层移植
 FLASH抽象层移植代码示例，[参考实现](https://github.com/alibaba/AliOS/blob/master/platform/mcu/stm32l4xx/hal/flash_port.c)。  
 主要涉及到以下函数的相关修改：  
