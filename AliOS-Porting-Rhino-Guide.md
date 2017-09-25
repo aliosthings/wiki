@@ -134,7 +134,7 @@
   最简单的方法是拷贝一个现有工程的（例如arch/arm/armv7m/gcc/m4）k_config.h来快速达到移植的目的。  
   除此之外还需要实现k_soc.h里面定义的一些必要的接口，比如内存分配这块。  
   最简单的方法是拷贝一个现有工程的（例如platform/mcu/stm32l4xx/aos）soc_impl.c来快速达到移植的目的。  
-  soc_impl.c里面必须要实现的是内存分配这块的配置g_mm_region，[参考实现](https://github.com/alibaba/AliOS/blob/master/platform/mcu/stm32l4xx/soc_impl.c)。
+  soc_impl.c里面必须要实现的是内存分配这块的配置g_mm_region，[参考实现](https://github.com/alibaba/AliOS/blob/master/platform/mcu/stm32l4xx/aos/soc_impl.c)。
 
 ### 2.3.3调试模块移植
 * 串口驱动移植  
