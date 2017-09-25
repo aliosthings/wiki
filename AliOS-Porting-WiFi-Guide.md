@@ -6,7 +6,7 @@
   * [5 接口的使用](#5接口的使用)
 ---
 
-AliOS WiFi HAL的定义请查看头文件定义：[wifi_hal.h](AliOS/include/hal/wifi.h)。在AliOS移植的移植过程中，如果需要支持WiFi功能，则需要对WiFi HAL接口进行移植实现。
+AliOS WiFi HAL的定义请查看头文件定义：[wifi_hal.h](AliOS/include/hal/wifi.h)。在AliOS移植的过程中，如果需要支持WiFi功能，则需要对WiFi HAL接口进行移植实现。
 
 # 1WiFi模块结构体
 AliOS中，WiFi相关的操作和接口封装在下面的结构体中，相关定义在文件[wifi_hal.h](AliOS/include/hal/wifi.h)中。
