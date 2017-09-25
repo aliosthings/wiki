@@ -38,7 +38,7 @@
    * [5.11.4.8 HAL-SOC-SD](https://github.com/alibaba/AliOS/wiki/AliOS-API-HAL-SOC-SD-Guide)
    * [5.11.4.9 HAL-SOC-SPI](https://github.com/alibaba/AliOS/wiki/AliOS-API-HAL-SOC-SPI-Guide)
    * [5.11.4.10 HAL-SOC-TIMER](https://github.com/alibaba/AliOS/wiki/AliOS-API-HAL-SOC-TIMER-Guide)
-   * [3.11.4.11 HAL-SOC-UART](https://github.com/alibaba/AliOS/wiki/AliOS-API-HAL-SOC-UART-Guide)
-   * [3.11.4.12 HAL-SOC-WDG](https://github.com/alibaba/AliOS/wiki/AliOS-API-HAL-SOC-WDG-Guide)
+   * [5.11.4.11 HAL-SOC-UART](https://github.com/alibaba/AliOS/wiki/AliOS-API-HAL-SOC-UART-Guide)
+   * [5.11.4.12 HAL-SOC-WDG](https://github.com/alibaba/AliOS/wiki/AliOS-API-HAL-SOC-WDG-Guide)
 
 [6 Q&A](https://github.com/alibaba/AliOS/wiki/Q&A)
