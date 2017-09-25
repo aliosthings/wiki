@@ -25,24 +25,28 @@
 目前HAL抽象层的定义已经能兼容多家芯片公司的标准，比如STM32，Beken，全志，NXP等等芯片厂商，所以此块定义的API非常标准，用户参照已有平台的HAL封装既能实现。
 
 下面举一个uart实际封装的例子来说明是如何移植的。
-    ```C
+
+  ```C
     int32_t hal_uart_init(uart_dev_t *uart)
     {
 
         xxx_uart_init(uart)；
 
     }
-    ```
-xxx_uart_init的意思是指不同芯片厂商的 uart初始化。
-    ```C
+  ```
+
+    xxx_uart_init的意思是指不同芯片厂商的 uart初始化。
+
+ ```C
     int32_t hal_uart_send(uart_dev_t *uart, void *data, uint32_t size, uint32_t timeout)
     {
 
         xxx_uart_send(uart, data, size, timeout);
 
     }
-    ```
-  xxx_uart_send的意思是指不同芯片厂商的uart发送函数。
+  ```
+
+    xxx_uart_send的意思是指不同芯片厂商的uart发送函数。
 
   其余的HAL层API的封装以此类推。
 
