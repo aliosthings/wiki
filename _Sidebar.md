@@ -5,7 +5,7 @@
   * [2.2 AliOS Porting HAL Guide](https://github.com/alibaba/AliOS/wiki/AliOS-Porting-HAL-Guide)
   * [2.3 AliOS Porting WiFi Guide](https://github.com/alibaba/AliOS/wiki/AliOS-Porting-WiFi-Guide)
   * [2.4 AliOS Porting FOTA Guide](https://github.com/alibaba/AliOS/wiki/AliOS-Porting-FOTA-Guide)
-  * [2.5 AliOS Porting LwIP Guide](https://github.com/alibaba/AliOS/wiki/AliOS-Porting-LWIP-Guide)
+  * [2.5 AliOS Porting LwIP Guide](https://github.com/alibaba/AliOS/wiki/AliOS-Porting-LwIP-Guide)
   * [2.6 AliOS Porting BINS Guide](https://github.com/alibaba/AliOS/wiki/AliOS-Porting-BINS-Guide)
 
 [3 AliOS API Guide](https://github.com/alibaba/AliOS/wiki/AliOS-API-Guide)
