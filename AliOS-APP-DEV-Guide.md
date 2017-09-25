@@ -13,10 +13,10 @@
 本文将描述如何基于AliOS源码进行应用开发，涉及的内容包括：软硬件环境搭建、如何创建第一个应用程序、AliOS重要开发组件的使用等。
 
 # 2硬件环境准备
-AliOS可以运行在各种硬件平台上。开发应用的硬件环境包括开发板、串口、调试器、烧录器等，详细的硬件环境搭建请参考[AliOS Environment Setup](https://github.com/alibaba/AliOS/wiki/AliOS-Environment-Setup)
+AliOS可以运行在各种硬件平台上。开发应用的硬件环境包括开发板、串口、调试器、烧录器等，详细的硬件环境搭建请参考[AliOS Environment Setup](https://github.com/alibaba/AliOS/wiki/AliOS-Development-Environment-Setup)
 
 # 3开发环境搭建
-AliOS的开发支持IDE（AliOS Studio）和命令行工具，AliOS开发环境的搭建请参照：[AliOS Environment Setup](https://github.com/alibaba/AliOS/wiki/AliOS-Environment-Setup)
+AliOS的开发支持IDE（AliOS Studio）和命令行工具，AliOS开发环境的搭建请参照：[AliOS Environment Setup](https://github.com/alibaba/AliOS/wiki/AliOS-Development-Environment-Setup)
 
 # 4应用开发步骤
 基于AliOS可以很方便地进行应用开发。基于AliOS创建应用，在IDE环境下可以通过导入应用模版的方式，在非IDE环境下可以手动创建各种工程目录和文件。
