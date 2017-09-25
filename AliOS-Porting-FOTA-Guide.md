@@ -20,7 +20,7 @@
       int (*ota_set_boot)(hal_ota_module_t *m, void *something);
   ```
 # 2接口实现
-  实现`hal_ota_module_t`中的几个接口，[参考链接](https://github.com/alibaba/AliOS/blob/master/platform/mcu/stm32l4xx/hal/ota_port.c)
+  实现`hal_ota_module_t`中的几个接口，[参考实现](https://github.com/alibaba/AliOS/blob/master/platform/mcu/stm32l4xx/hal/ota_port.c)。
   1. 实现`int (*init)(hal_ota_module_t *m, void *something)`，此接口主要进行flash硬件及相关变量的初始化。
   参数说明：
 
