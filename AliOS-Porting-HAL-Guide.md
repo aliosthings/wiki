@@ -1,6 +1,6 @@
 # 目录
   * [1 硬件抽象层移植](#1硬件抽象层移植)
-  * [2 kv组件移植开发注意事项](#2kv组件移植开发注意事项)
+  * [2 FLASH抽象层移植](#2FLASH抽象层移植)
 ---
 
 ## 1硬件抽象层移植
@@ -50,7 +50,22 @@
 
   其余的HAL层API的封装以此类推。
 
-## 2kv组件移植开发注意事项
+## 2FLASH抽象层移植
+### 2.1 FLASH抽象层移植
+FLASH抽象层移植代码示例，[参考实现](https://github.com/alibaba/AliOS/blob/master/platform/mcu/stm32l4xx/hal/flash_port.c)。  
+主要涉及到以下函数的相关修改：  
+`hal_logic_partition_t *hal_flash_get_info(hal_partition_t in_partition)`  
+`int32_t hal_flash_erase(hal_partition_t in_partition, uint32_t off_set, uint32_t size)`  
+`int32_t hal_flash_write(hal_partition_t in_partition, uint32_t *off_set,
+                               const void *in_buf, uint32_t in_buf_len)`  
+`int32_t hal_flash_erase_write(hal_partition_t in_partition, uint32_t *off_set,
+                                        const void *in_buf, uint32_t in_buf_len)`  
+`int32_t hal_flash_read(hal_partition_t in_partition, uint32_t *off_set,
+                       void *out_buf, uint32_t in_buf_len)`  
+`int32_t hal_flash_enable_secure(hal_partition_t partition, uint32_t off_set, uint32_t size)`  
+`int32_t hal_flash_dis_secure(hal_partition_t partition, uint32_t off_set, uint32_t size)`
+
+### 2.2 KV组件移植（与FLASH抽象层相关）
 * 开发者需要实现相关Flash HAL层接口；
 * 开发者需通过在Makefile中声明组件依赖关系：$(NAME)_COMPONENTS += modules.fs.kv；
 * 开发者需通过CONFIG_AOS_KV_PTN宏定义指定kv组件所使用的flash分区号；
