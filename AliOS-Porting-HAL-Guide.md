@@ -8,29 +8,18 @@
 
 ### 目前ALiOS定义的hal层硬件主要有以下:
 
-1  adc
-
-2  flash
-
-3  gpio
-
-4  i2c
-
-5  pwm
-
-6  rng
-
-7  rtc
-
-8  sd
-
-9  spi
-
-10 timer
-
-11 uart
-
-12 wdg
+|1|  adc|
+|2 | flash|
+|3 | gpio|
+|4 | i2c|
+|5 | pwm|
+|6 | rng||
+|7 | rtc|
+|8 | sd|
+|9  |spi|
+|10 |timer|
+|11 |uart|
+|12| wdg|
 
 目前hal抽象层的定义已经能兼容多家芯片公司的标准，比如stm32, 小博通，全志，nxp等等芯片厂商，所以此块定义的api非常标准，用户参照已有平台的hal封装既能实现。
 
