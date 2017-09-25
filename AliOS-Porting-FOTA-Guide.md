@@ -75,5 +75,5 @@ ota_finish_param_t定义如下：
     result_type  升级结果。枚举类型，必须为 OTA_FINISH或OTA_BREAKPOINT。
                  分别代表升级完成和升级中断。
 
-  当result_type == OTA_BREAKPOINT时，应保存当前crc校验值到flash，以备断电后可以断点续传。
-  当result_type == OTA_FINISH，说明下载完成，接下来根据update_type设置boot参数，然后重启，将固件替换任务交由bootloader完成。
+  当`result_type == OTA_BREAKPOINT`时，应保存当前crc校验值到flash，以备断电后可以断点续传。
+  当`result_type == OTA_FINISH`，说明下载完成，接下来根据`update_type`设置boot参数，然后重启，将固件替换任务交由bootloader完成。
