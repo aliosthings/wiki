@@ -21,9 +21,8 @@
     - [7.2 J-LINK烧写](#72-j-link烧写-mk3060为例)
 - [8 aos-cube支持](#8-aos-cube支持)
 - [9 单步调试](#9-单步调试)
-- [10 Mesh调试](#10-mesh调试)
-- [11 Trace](#11-trace)
-- [12 技术支持](#12-技术支持)
+- [10 Trace](#10-trace)
+- [11 技术支持](#11-技术支持)
 
 ------
 
@@ -53,9 +52,9 @@ AliOS-Studio 是 VS Code 插件，所以首先安装 VS Code ，通过插件的�
 
 VS Code是微软推出的一款跨平台编辑器，对C语言的编辑，导航，调试有强大的支持。
  
-## 3.1 c语言支持
+## 3.1 C语言支持
 
-* VS Code通过安装C/C++插件提供强大的c语言支持。
+* VS Code通过安装C/C++插件提供强大的C语言支持。
 
 ![](https://img.alicdn.com/tfs/TB1avRUbqagSKJjy0FhXXcrbFXa-2880-1800.png)
  
@@ -142,9 +141,9 @@ C/C++插件提供了基本的语法检查功能，会在"问题面板"中显示�
     
 ## 4.2 导入项目
 
- AliOS Studio没有导入项目的概念，通过菜单里中文件 - 打开 功能打开aos源码或应用项目即可。
+ AliOS Studio没有导入项目的概念，通过菜单里中文件 - 打开 功能打开AOS源码或应用项目即可。
 
-## 4.3 导入aos
+## 4.3 导入AOS
 
 通过VS Code - 文件 - 打开文件夹，打开 AliOS 代码目录：
 
@@ -187,7 +186,7 @@ C/C++插件提供了基本的语法检查功能，会在"问题面板"中显示�
 ## 7.1 串口烧写 MK3060为例
 配置串口烧写 COM 端口（成功安装串口驱动后，才能正确的识别端口。参考 [AliOS Environment Setup](https://github.com/alibaba/AliOS/wiki/AliOS-Environment-Setup)）
 
-进入bootloader模式（按住boot按键，再按reset按键），点击下 bar 栏的 UpLoad 按钮，烧录时，ALIOS-STUDIO会每隔一秒显示烧录的进度。烧录完成后，会切换到串口日志输出，看到Programming Completed Successfully则表示烧录成功。可以点击开发板上的reset按钮尝试加载代码执行。
+进入bootloader模式（按住boot按键，再按reset按键），点击下 bar 栏的 UpLoad 按钮，烧录时，Alios-Studio会每隔一秒显示烧录的进度。烧录完成后，会切换到串口日志输出，看到Programming Completed Successfully则表示烧录成功。可以点击开发板上的reset按钮尝试加载代码执行。
 
 ## 7.2 J-Link烧写 MK3060为例
 J-Link连接模组（成功安装J-Link驱动后，才能正确建立J-Link连接。参考 [AliOS Environment Setup](https://github.com/alibaba/AliOS/wiki/AliOS-Environment-Setup)），在左侧的 BUILD TARGET 选择 alinkapp@mk3060 JTAG=jlink download：
@@ -215,13 +214,7 @@ AliOS Studio依赖VS Code的C/C++插件进行单步调试，调试前务必确�
 默认设置的断点是 application_start 函数，可修改 VS Code gdb 启动配置 launch.json 修改启动断点位置。
 目前暂不支持重启(单步调试工具栏从右往左数第二个按钮)。
 
-## 10 Mesh调试
-
-在命令面板中执行alios-studio: uMesh debugger命令，即可进入mesh调试界面。观察当前testbed上开发板的列表，mesh网络拓扑图，以及开发板之间连接的变动情况。
-
-![](https://img.alicdn.com/tfs/TB1rSK8aLNNTKJjSspkXXaeWFXa-1440-900.png)
-
-## 11 Trace
+## 10 Trace
 
 在设备功能中点击Trace进入Trace界面
 
@@ -239,7 +232,7 @@ AliOS Studio依赖VS Code的C/C++插件进行单步调试，调试前务必确�
 
 ![](https://img.alicdn.com/tfs/TB1amK8aLNNTKJjSspkXXaeWFXa-1438-797.png)
 
-## 12 技术支持
+## 11 技术支持
 
 在命令面板中执行alios-studio: Technical Support命令，会自动打开AliOS Studio用户支持钉钉账号的对话窗口，有任何问题，意见及建议可以直接通过这一渠道反馈。
 
