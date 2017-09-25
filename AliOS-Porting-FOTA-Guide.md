@@ -7,7 +7,7 @@
 
     1.bootloader支持固件升级。
     2.支持flash操作。
-    3.支持tcp socket连接，支持alink或mqtt连接到阿里相应OTA平台。
+    3.支持alink或mqtt连接到阿里相应OTA平台。
 
   FOTA跟具体芯片相关的接口建议放置在platform/mcu/xxxx/port/下面，文件名fota_port.c。其中，xxxx为当前正在移植的平台名。
   fota_port.c需要实现结构体`hal_ota_module_t`中的几个函数：
