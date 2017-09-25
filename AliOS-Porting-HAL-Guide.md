@@ -1,6 +1,6 @@
 # 目录
   * [1 硬件抽象层移植](#1硬件抽象层移植)
-  * [2 FLASH抽象层移植](#2FLASH抽象层移植)
+  * [2 flash抽象层对接](#2flash抽象层对接)
 ---
 
 ## 1硬件抽象层移植
@@ -50,9 +50,9 @@
 
   其余的HAL层API的封装以此类推。
 
-## 2FLASH抽象层移植
-### 2.1 FLASH抽象层移植
-FLASH抽象层移植代码示例，[参考实现](https://github.com/alibaba/AliOS/blob/master/platform/mcu/stm32l4xx/hal/flash_port.c)。  
+## 2flash抽象层对接
+### 2.1 flash 抽象层对接
+flash抽象层移植代码示例，[参考实现](https://github.com/alibaba/AliOS/blob/master/platform/mcu/stm32l4xx/hal/flash_port.c)。  
 主要涉及到以下函数的相关修改：  
 `hal_logic_partition_t *hal_flash_get_info(hal_partition_t in_partition)`  
 `int32_t hal_flash_erase(hal_partition_t in_partition, uint32_t off_set, uint32_t size)`  
@@ -65,12 +65,12 @@ FLASH抽象层移植代码示例，[参考实现](https://github.com/alibaba/Ali
 `int32_t hal_flash_enable_secure(hal_partition_t partition, uint32_t off_set, uint32_t size)`  
 `int32_t hal_flash_dis_secure(hal_partition_t partition, uint32_t off_set, uint32_t size)`
 
-### 2.2 KV组件移植（与FLASH抽象层相关）
-* 开发者需要实现相关Flash HAL层接口；
+### KV组件移植（与flash hal层相关）
+* 开发者需要实现相关flash hal层接口；
 * 开发者需通过在Makefile中声明组件依赖关系：$(NAME)_COMPONENTS += modules.fs.kv；
-* 开发者需通过CONFIG_AOS_KV_PTN宏定义指定kv组件所使用的flash分区号；
-* 若开发者所使用的flash介质的最小擦除单位大于4096 bytes，需调整kv组件内的逻辑块大小（默认为4096 bytes）；
-* 开发者需通过CONFIG_AOS_KV_BUFFER_SIZE宏定义指定kv组件所使用的flash分区大小（不能小于2个kv组件的逻辑块大小，默认值为8192 bytes）；
+* 开发者需通过CONFIG_AOS_KV_PTN宏定义指定KV组件所使用的flash分区号；
+* 若开发者所使用的flash介质的最小擦除单位大于4096 bytes，需调整KV组件内的逻辑块大小（默认为4096 bytes）；
+* 开发者需通过CONFIG_AOS_KV_BUFFER_SIZE宏定义指定KV组件所使用的flash分区大小（不能小于2个kv组件的逻辑块大小，默认值为8192 bytes）；
 * kv键值长度限制：
     * 最大键(key)长度小于255 bytes;
     * 最大值(value)长度可通过ITEM_MAX_VAL_LEN宏定义进行设置，预设值为512 bytes;
