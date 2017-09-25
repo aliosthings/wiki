@@ -5,7 +5,7 @@
 # 1移植概要
   fota移植前先确认当前平台以下功能已经具备或完成移植：
 
-    1.bootloader支持固件升级.
+    1.bootloader支持固件升级。
     2.支持flash操作。
     3.支持tcp socket连接，支持alink，mqtt其中至少一种协议。
 
