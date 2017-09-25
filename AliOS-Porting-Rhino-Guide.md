@@ -29,9 +29,9 @@
     该目录主要存放硬件体系架构所需要的移植接口实现文件，  
     如任务切换、启动、开关中断等（即arch/include/port.h中所定义的接口）。  
     示例(armv7m)：  
-        头文件：[代码示例](https://github.com/alibaba/AliOS/blob/master/platform/arch/arm/armv7m/gcc/m4/port.h)。 
-        源代码：[代码示例](https://github.com/alibaba/AliOS/blob/master/platform/arch/arm/armv7m/gcc/m4/)。 
-      注：arch下的目录结构按CPU架构区分，请参照已有目录。
+        头文件：arch/arm/armv7m/gcc/m4/port*.h, [代码示例](https://github.com/alibaba/AliOS/blob/master/platform/arch/arm/armv7m/gcc/m4/port.h)。  
+        源代码：arch/arm/armv7m/gcc/m4/下的.c文件和汇编文件, [代码示例](https://github.com/alibaba/AliOS/blob/master/platform/arch/arm/armv7m/gcc/m4/)。  
+        注：arch下的目录结构按CPU架构区分，请参照已有目录。
   * mcu  
     该目录主要存放厂商提供的代码或二进制文件，如系统启动、驱动、编译/链接脚本等。mcu下的目录结构按“厂商/芯片系列”进行区分。
 
