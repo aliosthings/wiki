@@ -128,7 +128,7 @@
   }
   ```
   注意：  
-  **_上述所有的移植接口都应在port.h声明，可以参考现有平台的port.h的实现。_** [代码示例](https://github.com/alibaba/AliOS/blob/master/platform/arch/arm/armv7m/gcc/m4/port.h)。
+  **_上述所有的移植接口都应在port.h声明，可以参考现有平台的port.h的实现:_** [代码示例](https://github.com/alibaba/AliOS/blob/master/platform/arch/arm/armv7m/gcc/m4/port.h)。
 ### 2.3.2 内核特性移植
   内核特性移植主要是通过修改k_config.h来使能kernel的功能模块。  
   最简单的方法是拷贝一个现有工程的（例如arch/arm/armv7m/gcc/m4）k_config.h来快速达到移植的目的。  
