@@ -9,7 +9,7 @@
     2.支持flash操作。
     3.支持tcp socket连接，支持alink，mqtt其中至少一种协议。
 
-  fota跟具体芯片相关的接口建议放置在platform/mcu/xxxx/port/下面，文件名fota_port.c.其中，xxxx为当前正在移植的平台名。
+  FOTA跟具体芯片相关的接口建议放置在platform/mcu/xxxx/port/下面，文件名fota_port.c.其中，xxxx为当前正在移植的平台名。
   fota_port.c需要实现结构体hal_ota_module_t中的几个函数：
   ```c
       int (*init)(hal_ota_module_t *m, void *something);
@@ -26,10 +26,10 @@
     m          接口模块指针，函数中暂无需使用。
     something  当前被用作断点续传的断点地址，使用： _off_set = *(uint32_t*)something。
 
-  初始化时，判断_off_set是否为0.
+  初始化时，判断_off_set是否为0。
 
     若为0，则需擦除fota下载flash分区,准备进行一次全新的下载。为了安全起见，
-    建议对flash操作进行crc16校验，故同时初始化crc16.   
+    建议对flash操作进行crc16校验，故同时初始化crc16。
     若不为0，则认为上次下载中断，接下来将进行断点续传。无需擦除fota下载flash分区。
     如使用了crc16校验，则需从flash指定区域读取上次断点时备份的crc16校验。 
 
