@@ -6,9 +6,9 @@
 ------
 # 1多bin的编译方式  
 以mk3060平台为例：
- * 单bin编译： aos make helloworldmk3060
- * app bin编译：aos make helloworldmk3060 BINS=app
- * kernel bin编译：aos make helloworldmk3060 BINS=kernel
+ * 单bin编译： aos make helloworld@mk3060
+ * app bin编译：aos make helloworld@mk3060 BINS=app
+ * kernel bin编译：aos make helloworld@mk3060 BINS=kernel
 
 # 2链接脚本ld文件修改  
 多bin编译意味着有app bin和kernl bin的编译，这意味着有对应的app.ld和kernel.ld。
@@ -22,10 +22,9 @@ ld文件的实现格式和单bin一致，主要需要提供如下一点：
 作为kernel和app的api桥梁。如果开发者有kernel模块需要暴露给app的，需要按照现在做法在syscall_tbl.c和usyscall_uapi.c
 中增加相应的api。
 * 对kernel和app都要使用的全局变量，如在kernel中使用全局变量a，需要在syscall层中暴露get_a和set_a的函数，这样开发者可以
-在app中同时使用此全局变量
+在app中同时使用此全局变量。
 
 # 4Makefile修改
 AliOS可以以组件化的方式弹性组合，所以在每个组件的makefile文件中，增加了$(NAME)_TYPE变量，可选kernel、app、share三种模式，
 如果选择kernel，则编译进入kernel bin，如果选择app，则编译进入app bin，如果为share，则会进入kernel和app bin，如果不填写，
-默认进入app bin  
-完成上述修改后，需要修改对应平台(platform)下相关Makefile，参考实现。
+默认进入app bin，完成上述修改后，需要修改对应平台(platform)下相关Makefile参考实现。
