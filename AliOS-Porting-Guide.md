@@ -1,7 +1,7 @@
 ## [1 AliOS Porting Rhino Guide](https://github.com/alibaba/AliOS/wiki/AliOS-Porting-Rhino-Guide)
 AliOS提供了内核Rhino，可通过该文档完成最小系统的移植。
 ## [2 AliOS Porting HAL Guide](https://github.com/alibaba/AliOS/wiki/AliOS-Porting-HAL-Guide)
-AliOS提供了驱动接口框架，可通过改文档完成外设驱动的移植。
+AliOS提供了驱动接口框架，可通过该文档完成外设驱动的移植。
 ## [3 AliOS Porting WiFi Guide](https://github.com/alibaba/AliOS/wiki/AliOS-Porting-WiFi-Guide)
 AliOS定义了完整的WiFi硬件抽象接口，通过这些WiFi HAL接口可以很好的操作WiFi设备。开发者移植新硬件平台时，需要实现WiFi HAL层的接口。
 ## [4 AliOS Porting FOTA Guide](https://github.com/alibaba/AliOS/wiki/AliOS-Porting-FOTA-Guide)
