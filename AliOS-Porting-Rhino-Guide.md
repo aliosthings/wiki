@@ -12,16 +12,14 @@
   * 系统能启动一个任务并调用krhino_task_sleep函数实现定时打印，例如每秒打印一次日志。  
   * 跑通Rhino kernel的所有测试用例。
 
-注:本文档移植的目标主要针对的是kernel最小集的一个移植。
+注：本文档移植的目标主要针对的是kernel最小集的一个移植。
 
 ## 1.2 移植内容
   * cpu体系架构相关移植(目录platform/arch/*)，如果使用的cpu已经支持，请忽略此步骤。
-  * 时钟中断移植（在时钟中断中需要调用krhino_tick_proc）  
+  * 时钟中断移植（在时钟中断中需要调用krhino_tick_proc）。
 
 ## 1.3 工具链
-  系统默认使用gcc编译，目前主要针对arm架构，  
-  系统自带工具链是gcc version 5.4.1 20160919 (release) [ARM/embedded-5-branch revision 240496],  
-  工具链的地址是在 aos/build/compiler/arm-none-eabi-5_4-2016q2-20160622/
+  系统默认使用gcc编译，目前主要针对arm架构。
 
 ## 1.4 相关目录
   移植相关的代码主要存放在**arch**和**mcu**两个目录中：
@@ -29,8 +27,8 @@
     该目录主要存放硬件体系架构所需要的移植接口实现文件，  
     如任务切换、启动、开关中断等（即arch/include/port.h中所定义的接口）。  
     示例(armv7m)：  
-        头文件：arch/arm/armv7m/gcc/m4/port*.h, [代码示例](https://github.com/alibaba/AliOS/blob/master/platform/arch/arm/armv7m/gcc/m4/port.h)。  
-        源代码：arch/arm/armv7m/gcc/m4/下的.c文件和汇编文件, [代码示例](https://github.com/alibaba/AliOS/blob/master/platform/arch/arm/armv7m/gcc/m4/)。  
+        头文件：arch/arm/armv7m/gcc/m4/port*.h，[代码示例](https://github.com/alibaba/AliOS/blob/master/platform/arch/arm/armv7m/gcc/m4/port.h)。  
+        源代码：arch/arm/armv7m/gcc/m4/下的.c文件和汇编文件，[代码示例](https://github.com/alibaba/AliOS/blob/master/platform/arch/arm/armv7m/gcc/m4/)。  
         注：arch下的目录结构按CPU架构区分，请参照已有目录。
   * mcu  
     该目录主要存放厂商提供的代码或二进制文件，如系统启动、驱动、编译/链接脚本等。mcu下的目录结构按“厂商/芯片系列”进行区分。
@@ -38,8 +36,8 @@
 # 2系统移植
 ## 2.1 环境配置
 ### 2.1.1 代码存放
-  硬件体系结构相关的代码存放在arch目录，如armv7m  
-  启动、外设及驱动相关的代码存放在mcu目录，如stm32
+  硬件体系结构相关的代码存放在arch目录，如armv7m。
+  启动、外设及驱动相关的代码存放在mcu目录，如stm32。
 
 ### 2.1.2 编译配置
 
@@ -106,10 +104,10 @@
   该接口主要完成开中断的操作，需要设置现有的cpu状态cpsr。
 
   * void cpu_intrpt_switch(void)  
-  该接口主要完成中断切换时还原最高优先级的任务。需要取得最高优先级任务的栈指针并还原最高优先级任务的寄存器。
+  该接口主要完成中断切换时还原最高优先级的任务，需要取得最高优先级任务的栈指针并还原最高优先级任务的寄存器。
 
   * void cpu_task_switch(void)  
-  该接口主要完成任务切换。需要首先保存当前任务的寄存器，然后取得最高优先级任务的栈指针并还原最高优先级任务的寄存器。
+  该接口主要完成任务切换，需要首先保存当前任务的寄存器，然后取得最高优先级任务的栈指针并还原最高优先级任务的寄存器。
 
   * void cpu_first_task_start(void)  
   该接口主要完成启动系统第一个任务，需要还原第一个任务的寄存器。
@@ -128,7 +126,7 @@
   }
   ```
   注意：  
-  **_上述所有的移植接口都应在port.h声明，可以参考现有平台的port.h的实现:_** [代码示例](https://github.com/alibaba/AliOS/blob/master/platform/arch/arm/armv7m/gcc/m4/port.h)。
+  **_上述所有的移植接口都应在port.h声明，可以参考现有平台的port.h的实现：_** [代码示例](https://github.com/alibaba/AliOS/blob/master/platform/arch/arm/armv7m/gcc/m4/port.h)。
 ### 2.3.2 内核特性移植
   内核特性移植主要是通过修改k_config.h来使能kernel的功能模块。  
   最简单的方法是拷贝一个现有工程的（例如arch/arm/armv7m/gcc/m4）k_config.h来快速达到移植的目的。  
