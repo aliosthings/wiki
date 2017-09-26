@@ -77,7 +77,7 @@ CP2102驱动，在 [Silicon Labs](https://www.silabs.com/products/development-to
 ### 2.3.2 JTAG 驱动
 **J-Link**
 
-J-Link 驱动可在[SEGGER J-Link](https://www.segger.com/downloads/jlink/)对应的 J-Link Software and Documentation Pack下面，选择 J-Link Software and Documentation pack for Windows 下载安装：
+J-Link 驱动可在 [SEGGER J-Link驱动下载地址](https://www.segger.com/downloads/jlink/) 下，选择 J-Link Software and Documentation Pack，选择 J-Link Software and Documentation pack for Windows 下载安装：
 
 ![](https://img.alicdn.com/tfs/TB1s4L9bLNNTKJjSspfXXbXIFXa-865-466.png)
 
