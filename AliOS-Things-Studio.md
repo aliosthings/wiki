@@ -184,12 +184,12 @@ C/C++插件提供了基本的语法检查功能，会在"问题面板"中显示�
 # 7 烧写功能
 
 ## 7.1 串口烧写 MK3060为例
-配置串口烧写 COM 端口（成功安装串口驱动后，才能正确的识别端口。参考 [AliOS Environment Setup](https://github.com/alibaba/AliOS/wiki/AliOS-Environment-Setup)）
+配置串口烧写 COM 端口（成功安装串口驱动后，才能正确的识别端口。参考 [AliOS Environment Setup](https://github.com/alibaba/AliOS-Things/wiki/AliOS-Things-Environment-Setup)）
 
 进入bootloader模式（按住boot按键，再按reset按键），点击下 bar 栏的 UpLoad 按钮，烧录时，Alios-Studio会每隔一秒显示烧录的进度。烧录完成后，会切换到串口日志输出，看到Programming Completed Successfully则表示烧录成功。可以点击开发板上的reset按钮尝试加载代码执行。
 
 ## 7.2 J-Link烧写 MK3060为例
-J-Link连接模组（成功安装J-Link驱动后，才能正确建立J-Link连接。参考 [AliOS Environment Setup](https://github.com/alibaba/AliOS/wiki/AliOS-Environment-Setup)），在左侧的 BUILD TARGET 选择 alinkapp@mk3060 JTAG=jlink download：
+J-Link连接模组（成功安装J-Link驱动后，才能正确建立J-Link连接。参考 [AliOS Environment Setup](https://github.com/alibaba/AliOS-Things/wiki/AliOS-Things-Environment-Setup)），在左侧的 BUILD TARGET 选择 alinkapp@mk3060 JTAG=jlink download：
 
 ![](https://img.alicdn.com/tfs/TB1AebMfgoQMeJjy0FpXXcTxpXa-865-441.png)
 
