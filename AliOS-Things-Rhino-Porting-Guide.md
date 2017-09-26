@@ -27,8 +27,8 @@
     该目录主要存放硬件体系架构所需要的移植接口实现文件，  
     如任务切换、启动、开关中断等（即arch/include/port.h中所定义的接口）。  
     示例(armv7m)：  
-        头文件：arch/arm/armv7m/gcc/m4/port*.h，[代码示例](https://github.com/alibaba/AliOS/blob/master/platform/arch/arm/armv7m/gcc/m4/port.h)。  
-        源代码：arch/arm/armv7m/gcc/m4/下的.c文件和汇编文件，[代码示例](https://github.com/alibaba/AliOS/blob/master/platform/arch/arm/armv7m/gcc/m4/)。  
+        头文件：arch/arm/armv7m/gcc/m4/port*.h，[代码示例](https://github.com/alibaba/AliOS-Things/blob/master/platform/arch/arm/armv7m/gcc/m4/port.h)。  
+        源代码：arch/arm/armv7m/gcc/m4/下的.c文件和汇编文件，[代码示例](https://github.com/alibaba/AliOS-Things/blob/master/platform/arch/arm/armv7m/gcc/m4/)。  
         注：arch下的目录结构按CPU架构区分，请参照已有目录。
   * mcu  
     该目录主要存放厂商提供的代码或二进制文件，如系统启动、驱动、编译/链接脚本等。mcu下的目录结构按“厂商/芯片系列”进行区分。
@@ -126,13 +126,13 @@
   }
   ```
   注意：  
-  **_上述所有的移植接口都应在port.h声明，可以参考现有平台的port.h的实现：_** [代码示例](https://github.com/alibaba/AliOS/blob/master/platform/arch/arm/armv7m/gcc/m4/port.h)。
+  **_上述所有的移植接口都应在port.h声明，可以参考现有平台的port.h的实现：_** [代码示例](https://github.com/alibaba/AliOS-Things/blob/master/platform/arch/arm/armv7m/gcc/m4/port.h)。
 ### 2.3.2 内核特性移植
   内核特性移植主要是通过修改k_config.h来使能kernel的功能模块。  
   最简单的方法是拷贝一个现有工程的（例如arch/arm/armv7m/gcc/m4）k_config.h来快速达到移植的目的。  
   除此之外还需要实现k_soc.h里面定义的一些必要的接口，比如内存分配这块。  
   最简单的方法是拷贝一个现有工程的（例如platform/mcu/stm32l4xx/aos）soc_impl.c来快速达到移植的目的。  
-  soc_impl.c里面必须要实现的是内存分配这块的配置g_mm_region，[参考实现](https://github.com/alibaba/AliOS/blob/master/platform/mcu/stm32l4xx/aos/soc_impl.c)。
+  soc_impl.c里面必须要实现的是内存分配这块的配置g_mm_region，[参考实现](https://github.com/alibaba/AliOS-Things/blob/master/platform/mcu/stm32l4xx/aos/soc_impl.c)。
 
 ### 2.3.3调试模块移植
 * 串口驱动移植  
