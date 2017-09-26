@@ -68,7 +68,8 @@ flash抽象层移植代码示例，[参考实现](https://github.com/alibaba/Ali
   int32_t hal_flash_read(hal_partition_t in_partition, uint32_t *off_set, void *out_buf,
                          uint32_t in_buf_len)
 
-  int32_t hal_flash_enable_secure(hal_partition_t partition, uint32_t off_set, uint32_t size)  
+  int32_t hal_flash_enable_secure(hal_partition_t partition, uint32_t off_set,
+                                  uint32_t size)  
 
   int32_t hal_flash_dis_secure(hal_partition_t partition, uint32_t off_set, uint32_t size)
 ```
