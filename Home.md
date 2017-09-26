@@ -3,7 +3,7 @@ AliOS released by Alibaba is an open-source implementation of operating system (
 ## Resources
 * [Coding Style](https://github.com/alibaba/AliOS/wiki/AliOS-Coding-Style-Guide)
 * [Porting Guide](https://github.com/alibaba/AliOS/wiki/AliOS-Porting-Guide)
-* [Examples](https://github.com/alibaba/AliOS/wiki/AliOS-APP-DEV-Guide)
+* [App examples](https://github.com/alibaba/AliOS/wiki/AliOS-APP-DEV-Guide)
 * [IDE Tool](https://github.com/alibaba/AliOS/wiki/AliOS-Studio)
 * [API Reference](https://github.com/alibaba/AliOS/wiki/AliOS-Porting-Guide)
 * [FAQ](https://github.com/alibaba/AliOS/wiki/Q&A)
