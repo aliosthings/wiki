@@ -41,5 +41,6 @@
    * [5.11.4.11 HAL-SOC-UART](https://github.com/alibaba/AliOS/wiki/AliOS-API-HAL-SOC-UART-Guide)
    * [5.11.4.12 HAL-SOC-WDG](https://github.com/alibaba/AliOS/wiki/AliOS-API-HAL-SOC-WDG-Guide)
 
-[6 AliOS Development Environment Setup](https://github.com/alibaba/AliOS/wiki/AliOS-Development-Environment-Setup)
+[6 AliOS Environment Setup](https://github.com/alibaba/AliOS/wiki/AliOS-Development-Environment-Setup)
+
 [7 Q&A](https://github.com/alibaba/AliOS/wiki/Q&A)
