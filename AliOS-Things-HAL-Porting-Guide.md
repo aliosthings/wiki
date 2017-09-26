@@ -52,7 +52,7 @@
 
 ## 2flash抽象层对接
 ### 2.1 flash 抽象层对接
-flash抽象层移植代码示例，[参考实现](https://github.com/alibaba/AliOS/blob/master/platform/mcu/stm32l4xx/hal/flash_port.c)。  
+flash抽象层移植代码示例，[参考实现](https://github.com/alibaba/AliOS-Things/blob/master/platform/mcu/stm32l4xx/hal/flash_port.c)。  
 主要涉及到以下函数的相关修改：
 ```C
   hal_logic_partition_t *hal_flash_get_info(hal_partition_t in_partition)
