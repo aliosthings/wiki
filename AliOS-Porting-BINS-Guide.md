@@ -11,7 +11,7 @@
  * kernel bin编译：aos make helloworld@mk3060 BINS=kernel
 
 # 2链接脚本ld文件修改  
-多bin编译意味着有app bin和kernl bin的编译，这意味着有对应的[app.ld](https://github.com/alibaba/AliOS/blob/master)和[kernel.ld](https://github.com/alibaba/AliOS/platform/mcu/beken/linkinfo)。
+多bin编译意味着有app bin和kernl bin的编译，这意味着有对应的[app.ld](https://github.com/alibaba/AliOS/blob/master/kernel/protocols/net/netif/ethernetif.c)和[kernel.ld](https://github.com/alibaba/AliOS/blob/master/platform/mcu/beken/linkinfo)。
   
 ld文件的实现格式和单bin一致，主要需要提供如下一点：
 * 在kernel.ld文件中需要设置app.bin的起始位置，以让kernel能够跳转到app中执行。
