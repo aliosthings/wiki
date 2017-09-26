@@ -1,12 +1,12 @@
 [1 AliOS Things Coding Style Guide](https://github.com/alibaba/AliOS-Things/wiki/AliOS-Coding-Style-Guide)
 
 [2 AliOS Things Porting Guide](https://github.com/alibaba/AliOS-Things/wiki/AliOS-Porting-Guide)
-  * [2.1 AliOS Things Porting Rhino Guide](https://github.com/alibaba/AliOS-Things/wiki/AliOS-Porting-Rhino-Guide)
-  * [2.2 AliOS Things Porting HAL Guide](https://github.com/alibaba/AliOS-Things/wiki/AliOS-Porting-HAL-Guide)
-  * [2.3 AliOS Things Porting WiFi Guide](https://github.com/alibaba/AliOS-Things/wiki/AliOS-Porting-WiFi-Guide)
-  * [2.4 AliOS Things Porting FOTA Guide](https://github.com/alibaba/AliOS-Things/wiki/AliOS-Porting-FOTA-Guide)
-  * [2.5 AliOS Things Porting LwIP Guide](https://github.com/alibaba/AliOS-Things/wiki/AliOS-Porting-LwIP-Guide)
-  * [2.6 AliOS Things Porting BINS Guide](https://github.com/alibaba/AliOS-Things/wiki/AliOS-Porting-BINS-Guide)
+  * [2.1 Rhino Porting Guide](https://github.com/alibaba/AliOS-Things/wiki/AliOS-Porting-Rhino-Guide)
+  * [2.2 HAL Porting Guide](https://github.com/alibaba/AliOS-Things/wiki/AliOS-Porting-HAL-Guide)
+  * [2.3 WiFi Porting Guide](https://github.com/alibaba/AliOS-Things/wiki/AliOS-Porting-WiFi-Guide)
+  * [2.4 FOTA Porting Guide](https://github.com/alibaba/AliOS-Things/wiki/AliOS-Porting-FOTA-Guide)
+  * [2.5 LwIP Porting Guide](https://github.com/alibaba/AliOS-Things/wiki/AliOS-Porting-LwIP-Guide)
+  * [2.6 BINS Porting Guide](https://github.com/alibaba/AliOS-Things/wiki/AliOS-Porting-BINS-Guide)
 
 [3 AliOS Things APP DEV Guide](https://github.com/alibaba/AliOS-Things/wiki/AliOS-APP-DEV-Guide)
 
