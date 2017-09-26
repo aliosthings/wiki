@@ -1,5 +1,5 @@
 # 1 硬件环境准备
-以庆科MK3060模组为例，介绍AliOS硬件环境的搭建，其他模组的硬件环境可参考本节。
+以庆科MK3060模组为例，介绍AliOS Things硬件环境的搭建，其他模组的硬件环境可参考本节。
 
 ## 1.1 MK3060模组
 MK3060是基于ARM核的Wi-Fi模组：
@@ -23,7 +23,7 @@ MK3060的串口已经通过miniusb接口接出，通过miniusb-usb线将串口�
 
 # 2 Window 环境配置
 ## 2.1 aos-cube 安装
-aos-cube 是 AliOS 在 Python 下面开发的项目管理工具包，依赖 Python 2.7 版本。在 Python 官网下载对应的 2.7 版本的[Python](https://www.python.org/downloads/) MSI 安装文件，安装时，选择 add python.exe to Path：
+aos-cube 是 AliOS Things 在 Python 下面开发的项目管理工具包，依赖 Python 2.7 版本。在 Python 官网下载对应的 2.7 版本的[Python](https://www.python.org/downloads/) MSI 安装文件，安装时，选择 add python.exe to Path：
 
 ![](https://img.alicdn.com/tfs/TB13PAjdMoQMeJjy0FoXXcShVXa-796-672.png)
 
@@ -38,11 +38,11 @@ aos-cube 是 AliOS 在 Python 下面开发的项目管理工具包，依赖 Pyth
 `> pip install aos-cube`
 
 ## 2.2 交叉工具链
-AliOS 默认带有 Linux 交叉工具链，Windows 工具链可以在链接 [GCC](https://launchpad.net/gcc-arm-embedded/+download) 下载 Windows压缩包，解压缩并且重命名为 Win32，复制到 ...\aos\build\compiler\arm-none-eabi-5_4-2016q2-20160622\ 目录下面：
+AliOS Things 默认带有 Linux 交叉工具链，Windows 工具链可以在链接 [GCC](https://launchpad.net/gcc-arm-embedded/+download) 下载 Windows压缩包，解压缩并且重命名为 Win32，复制到 ...\aos\build\compiler\arm-none-eabi-5_4-2016q2-20160622\ 目录下面：
 
 ![](https://img.alicdn.com/tfs/TB1cuO1dwMPMeJjy1XcXXXpppXa-865-317.png)
 
-在 AliOS 源码的目录下面，运行：
+在 AliOS Things 源码的目录下面，运行：
 
 ```
 $ aos make alinkapp@mk3060 BINS=kernel
@@ -116,7 +116,7 @@ $ sudo apt-get install -y python-pip
 $ sudo pip install aos-cube
 ```
 
-在 AliOS 源码的目录下面，运行：
+在 AliOS Things 源码的目录下面，运行：
 
 ```
 $ aos make alinkapp@mk3060
