@@ -77,7 +77,9 @@ CP2102驱动，在 [Silicon Labs](https://www.silabs.com/products/development-to
 ### 2.3.2 JTAG 驱动
 **J-Link**
 
-J-Link 驱动可在 **待添加下载地址**。
+J-Link 驱动可在[SEGGER J-Link](https://www.segger.com/downloads/jlink/)对应的 J-Link Software and Documentation Pack下面，选择 J-Link Software and Documentation pack for Windows 下载安装：
+
+![](https://img.alicdn.com/tfs/TB1s4L9bLNNTKJjSspfXXbXIFXa-865-466.png)
 
 安装完成 J-Link 驱动后，需要安装 J-Link 的 libusb 驱动 [zadig](http://zadig.akeo.ie/)，下载后解压缩，运行 zadig.exe 或 zadig_xp.exe（Window XP系统）：
 
@@ -98,11 +100,6 @@ J-Link 驱动可在 **待添加下载地址**。
 **STLink**
 
 STLink 驱动，可在 [STLink](http://www.st.com/content/st_com/en/products/development-tools/hardware-development-tools/development-tool-hardware-for-mcus/debug-hardware-for-mcus/debug-hardware-for-stm32-mcus/st-link-v2.html) 下载并安装。
-
-安装完成 STLink 驱动后，使用 STLink 连接设备，可在计算机 - 设备管理，查看STLink识别状态：
-
- **待添加效果图**
-
 
 # 3 Linux 环境配置
 ## 3.1 依赖及 aos-cube 安装
