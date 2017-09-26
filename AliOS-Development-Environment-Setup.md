@@ -79,7 +79,7 @@ CP2102驱动，在 [Silicon Labs](https://www.silabs.com/products/development-to
 
 J-Link 驱动可在 **待添加下载地址**。
 
-安装完成 J-Link 驱动后，需要安装 J-Link 的 libusb 驱动 **待添加下载地址**，下载后解压缩，运行 zadig.exe 或 zadig_xp.exe（Window XP系统）：
+安装完成 J-Link 驱动后，需要安装 J-Link 的 libusb 驱动 [zadig](http://zadig.akeo.ie/)，下载后解压缩，运行 zadig.exe 或 zadig_xp.exe（Window XP系统）：
 
 ![](https://img.alicdn.com/tfs/TB1xyN2fgMPMeJjy1XcXXXpppXa-865-432.png)
 
