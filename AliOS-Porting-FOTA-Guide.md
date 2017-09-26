@@ -13,10 +13,13 @@
   fota_port.c需要实现结构体`hal_ota_module_t`中的几个函数：
   ```c
       int (*init)(hal_ota_module_t *m, void *something);
+
       int (*ota_write)(hal_ota_module_t *m, volatile uint32_t *off_set,
                        uint8_t *in_buf , uint32_t in_buf_len);
+
       int (*ota_read)(hal_ota_module_t *m,  volatile uint32_t *off_set,
                       uint8_t *out_buf , uint32_t out_buf_len);
+
       int (*ota_set_boot)(hal_ota_module_t *m, void *something);
   ```
 # 2接口实现
@@ -24,8 +27,10 @@
   1. 实现`int (*init)(hal_ota_module_t *m, void *something)`，此接口主要进行flash硬件及相关变量的初始化。
   参数说明：
 
-    m          接口模块指针，函数中暂无需使用。
-    something  当前被用作断点续传的断点地址，使用： _off_set = *(uint32_t*)something。
+  | 名称 | 描述 |
+  | ------ | ------ |
+  | m         | 接口模块指针，函数中暂无需使用。|
+  |something | 当前被用作断点续传的断点地址，使用： _off_set = *(uint32_t*)something。|
 
   初始化时，判断_off_set是否为0。
 
@@ -38,10 +43,12 @@
   此接口用于fota下载时实现固件逐块保存。
   参数说明：
 
-    m           接口模块指针，函数中暂无需使用。
-    off_set     写偏移地址，当前上层直接置0，无需使用。
-    in_buf      本次需要写入的数据。
-    in_buf_len  本次写入数据长度。
+  | 名称 | 描述 |
+  | ------ | ------ |
+  |  m          | 接口模块指针，函数中暂无需使用。|
+  |  off_set    | 写偏移地址，当前上层直接置0，无需使用。|
+  |  in_buf     | 本次需要写入的数据。|
+  |  in_buf_len | 本次写入数据长度。|
 
   由于off_set调用时永远置0，所以写偏移地址需要函数自身实现，建议使用init函数中初始化或得到的偏移地址，每次写入之后将此偏移量加上本次写入长度进行累加。此函数需要调用flash写操作函数对数据进行写入。
 
@@ -49,18 +56,22 @@
   当前fota没有用到此接口，可以不实现。
   参数说明：
 
-    m           接口模块指针，函数中暂无需使用。
-    off_set     读偏移地址，无需使用。
-    out_buf     读出缓存。
-    in_buf_len  本次读出的数据长度。
+  | 名称 | 描述 |
+  | ------ | ------ |
+  |  m          | 接口模块指针，函数中暂无需使用。
+  |  off_set    | 读偏移地址，无需使用。
+  |  out_buf    | 读出缓存。
+  |  in_buf_len | 本次读出的数据长度。
  
   此函数封装flash读操作函数即可。
 
-  4.实现`int (*ota_set_boot)(hal_ota_module_t *m, void *something)`;本接口用于下载完成后对系统进行升级或者下载中断后保存现场。
+  4.实现`int (*ota_set_boot)(hal_ota_module_t *m, void *something)`本接口用于下载完成后对系统进行升级或者下载中断后保存现场。
   参数说明：
 
-    m          接口模块指针，函数中暂无需使用。
-    something  传入的参数，实际传入类型为：ota_finish_param_t *。
+  | 名称 | 描述 |
+  | ------ | ------ |
+  |  m     |     接口模块指针，函数中暂无需使用。|
+  |  something | 传入的参数，实际传入类型为：ota_finish_param_t *。|
 
 ota_finish_param_t定义如下：
 
@@ -69,7 +80,7 @@ ota_finish_param_t定义如下：
         OTA_ENUM_RESULT_TYPE result_type ;
     } ota_finish_param_t;
 
-  获取此变量：`ota_finish_param_t *param = (ota_finish_param_t *)something`;其中两个子变量含义：
+  获取此变量：`ota_finish_param_t *param = (ota_finish_param_t *)something`其中两个子变量含义：
 
     update_type  升级类型。枚举类型，必须为 OTA_KERNEL,OTA_APP,OTA_ALL之一，
                  分别代表升级内核，升级APP及全部升级。
