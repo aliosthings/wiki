@@ -79,7 +79,7 @@ VS Code是微软推出的一款跨平台编辑器，对C语言的编辑，导航
 C/C++插件提供了基本的语法检查功能，会在"问题面板"中显示代码中的语法错误。注意：语法检查功能需要在当前文件的所有include都找到后才会工作。未能找到的include文件会以绿色波浪线提示，需要在配置文件中添加include路径，确保所有include的文件都没有绿色波浪线后，语法检查功能才会正常运作。
 ![](https://img.alicdn.com/tfs/TB1AopZbqmgSKJjSspiXXXyJFXa-1114-590.png)
 
-### 3.2 命令面板与符号搜索
+## 3.2 命令面板与符号搜索
 
 * 按键ctrl + shift + p可以打开命令面板，搜索并执行VS Code及插件支持的命令。
 
@@ -97,23 +97,23 @@ C/C++插件提供了基本的语法检查功能，会在"问题面板"中显示�
 
 ![](https://img.alicdn.com/tfs/TB1nXV1bqagSKJjy0FcXXcZeVXa-1246-752.png)
 
-### 3.3 keymap映射
+## 3.3 keymap映射
 
 * 借助VS Code强大的插件生态，你可以将几乎任何你习惯的IDE/编辑器的快键键映射到VS Code上。包括Visual Studio, Eclipse, Vim, Intellij等。搜索并安装对应的插件即可。
 
  ![](https://img.alicdn.com/tfs/TB18P00bzuhSKJjSspjXXci8VXa-2880-1800.png)
 
-### 3.4 符号视图
+## 3.4 符号视图
 
 * 通过安装code outline插件，可以显示当前文件的符号列表(对应其他编辑器的outline / symbol view / structure view)
 
 ![](https://img.alicdn.com/tfs/TB1pnhRbqagSKJjy0FbXXa.mVXa-2880-1800.png)
  
-### 3.5 git支持
+## 3.5 git支持
 
 * 使用VS Code可以方便的进行git的大部分操作，如分支切换，提交commit，解决冲突等。详细的git使用说明可以参考[Version Control](https://code.visualstudio.com/docs/editor/versioncontrol)
  
-### 3.6 内置终端
+## 3.6 内置终端
 
 * VS Code可以在编辑器中直接打开bash/power shell/cmd，免去了在终端和编辑器间切换的麻烦。
 
@@ -195,7 +195,7 @@ J-Link连接模组（成功安装J-Link驱动后，才能正确建立J-Link连�
 
 会编译并且烧写image到模组。
 
-## 8 aos-cube支持
+# 8 aos-cube支持
 
 AliOS Studio也支持用户自定义aos-cube命令并执行。在项目文件树的下方找到BUILD TARGET并展开，可以看到当前存储的aos-cube命令列表，点击BUILD TARGET旁边的加号可以新增aos-cube命令，点击垃圾桶后，界面上方会列出当前的aos-cube命令列表，用户选择后，对应的aos-cube命令将被删除。双击BUILD TARGET下的aos-cube命令，AliOS Studio就会去执行对应的aos-cube命令。
 
@@ -214,8 +214,26 @@ AliOS Studio依赖VS Code的C/C++插件进行单步调试，调试前务必确�
 默认设置的断点是 application_start 函数，可修改 VS Code gdb 启动配置 launch.json 修改启动断点位置。
 目前暂不支持重启(单步调试工具栏从右往左数第二个按钮)。
 
-## 10 Trace
+# 10 Trace
+## 10.1 开启Trace
+Trace功能默认是关闭的，在使用Trace前，需要开启Trace功能：
+* 打开模组下面的 `k_config.h` `RHINO_CONFIG_TRACE` 为 1：
+```
+/* kernel trace conf */
+#ifndef RHINO_CONFIG_TRACE
+#define RHINO_CONFIG_TRACE                   1
+#endif
+```
+如果模组支持 `RHINO_CONFIG_HW_COUNT`，打个 `RHINO_CONFIG_HW_COUNT` 支持：
+```
+/* kernel timer&tick conf */
+#ifndef RHINO_CONFIG_HW_COUNT
+#define RHINO_CONFIG_HW_COUNT                1
+#endif
+```
+* Trace使用网络来传输数据，确保模组已经连接网络，并且电脑同板子连接在同一个局域网内。
 
+## 10.2 使用Trace
 在设备功能中点击Trace进入Trace界面
 
 ![](https://img.alicdn.com/tfs/TB1hYK4fwMPMeJjy1XdXXasrXXa-1438-797.png)
