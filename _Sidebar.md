@@ -1,4 +1,4 @@
-[1 AliOS Things Coding Style Guide](https://github.com/alibaba/AliOS-Things/wiki/AliOS-Coding-Style-Guide)
+[1 AliOS Things Coding Style Guide](https://github.com/alibaba/AliOS-Things/wiki/AliOS-Things-Coding-Style-Guide)
 
 [2 AliOS Things Porting Guide](https://github.com/alibaba/AliOS-Things/wiki/AliOS-Porting-Guide)
   * [2.1 Rhino Porting Guide](https://github.com/alibaba/AliOS-Things/wiki/AliOS-Porting-Rhino-Guide)
