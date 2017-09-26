@@ -6,10 +6,10 @@
   * [5 接口的使用](#5接口的使用)
 ---
 
-AliOS WiFi HAL的定义请查看头文件定义：[wifi_hal.h](https://github.com/alibaba/AliOS-Things/blob/master/include/hal/wifi.h)。在AliOS移植的过程中，如果需要支持WiFi功能，则需要对WiFi HAL接口进行移植实现。
+AliOS Things WiFi HAL的定义请查看头文件定义：[wifi_hal.h](https://github.com/alibaba/AliOS-Things/blob/master/include/hal/wifi.h)。在AliOS Things移植的过程中，如果需要支持WiFi功能，则需要对WiFi HAL接口进行移植实现。
 
 # 1WiFi模块结构体
-AliOS中，WiFi相关的操作和接口封装在下面的结构体中，相关定义在文件[wifi_hal.h](https://github.com/alibaba/AliOS-Things/blob/master/include/hal/wifi.h)中。
+AliOS Things中，WiFi相关的操作和接口封装在下面的结构体中，相关定义在文件[wifi_hal.h](https://github.com/alibaba/AliOS-Things/blob/master/include/hal/wifi.h)中。
   ```c
   struct hal_wifi_module_s {
       hal_module_base_t    base;
@@ -40,7 +40,7 @@ AliOS中，WiFi相关的操作和接口封装在下面的结构体中，相关�
 # 2WiFi事件回调函数
 在WiFi启动和运行的过程中，需要通过调用回调函数来通知上层应用，以执行相应的动作。这些WiFi事件的回调函数，应该在WiFi底层（WiFi HAL）中合适的位置进行调用。
 如WiFi底层拿到IP后，应执行ip_got回调，并将IP信息传递给上层；WiFi完成信道扫描后，应调用`scan_compeleted`或者`scan_adv_compeleted`回调，并将扫描结果传递给上层；在WiFi状态改变时，应调用`stat_chg`回调。
-下面是AliOS中定义的WiFi事件回调函数和接口，相关定义在文件[wifi_hal.h](https://github.com/alibaba/AliOS-Things/blob/master/include/hal/wifi.h)中。
+下面是AliOS Things中定义的WiFi事件回调函数和接口，相关定义在文件[wifi_hal.h](https://github.com/alibaba/AliOS-Things/blob/master/include/hal/wifi.h)中。
 ```c
 typedef struct {
     void (*connect_fail)(hal_wifi_module_t *m, int err, void *arg);
@@ -92,7 +92,7 @@ sim_aos_wifi_vendor.ev_cb->ip_got(&sim_aos_wifi_vendor, pnet, NULL);
       .wlan_send_80211_raw_frame = wlan_send_80211_raw_frame,
   };
   ```
-AliOS中实现了如下的注册函数，可以对实现好的WiFi模块结构体进行注册。注册的动作一般是在硬件初始化的过程中进行。
+AliOS Things中实现了如下的注册函数，可以对实现好的WiFi模块结构体进行注册。注册的动作一般是在硬件初始化的过程中进行。
   ```c
   void hal_wifi_register_module(hal_wifi_module_t *m);
   ```
