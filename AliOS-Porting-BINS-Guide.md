@@ -19,8 +19,8 @@ ld文件的实现格式和单bin一致，主要需要提供如下一点：
   如果参考实现与开发者实现一致，可以直接拷贝存放在对应的平台(platform)下面。
 
 # 3系统的修改
-* 多bin编译方式，需要在增加syscall层，我们在kernel模块增加了syscall_tbl.c，在app模块增加了usyscall_uapi.c,
-作为kernel和app的api桥梁。如果开发者有kernel模块需要暴露给app的，需要按照现在做法在syscall_tbl.c和usyscall_uapi.c
+* 多bin编译方式，需要在增加syscall层，我们在kernel模块增加了[syscall_tbl.c](https://github.com/alibaba/AliOS/blob/master/kernel/syscall/syscall_tbl.c)，在app模块增加了[syscall_uapi.c](https://github.com/alibaba/AliOS/blob/master/framework/usyscall/syscall_uapi.c),
+作为kernel和app的api桥梁。如果开发者有kernel模块需要暴露给app的，需要按照现在做法在syscall_tbl.c和syscall_uapi.c
 中增加相应的api。
 * 对kernel和app都要使用的全局变量，如在kernel中使用全局变量a，需要在syscall层中暴露get_a和set_a的函数，这样开发者可以
 在app中同时使用此全局变量。
