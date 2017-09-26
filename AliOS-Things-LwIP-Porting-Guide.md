@@ -7,7 +7,7 @@
 
 ------
 
-AliOS提供的LwIP协议栈，开发者可以按照以下步骤完成移植工作。
+AliOS Things提供的LwIP协议栈，开发者可以按照以下步骤完成移植工作。
 
 ## 1网卡驱动程序  
 网卡驱动程序的移植示例代码，[参考实现](https://github.com/alibaba/AliOS-Things/blob/master/kernel/protocols/net/netif/ethernetif.c)。  
@@ -29,7 +29,7 @@ LwIP配置修改的移植示例代码，[参考实现](https://github.com/alibab
 如果参考配置和开发者配置一致，可以直接拷贝存放在对应的平台(platform)下面。  
 
 ## 4与OS的对接  
-与OS的对接AliOS已经默认完成，开发者可以直接使用。[实现代码](https://github.com/alibaba/AliOS-Things/blob/master/kernel/protocols/net/port/sys_arch.c)。  
+与OS的对接AliOS Things已经默认完成，开发者可以直接使用。[实现代码](https://github.com/alibaba/AliOS-Things/blob/master/kernel/protocols/net/port/sys_arch.c)。  
 
 ## 5编译脚本修改
 完成上述修改后，需要修改对应平台(platform)下相关Makefile，[参考实现](https://github.com/alibaba/AliOS-Things/blob/master/platform/mcu/beken/beken.mk)。
