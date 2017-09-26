@@ -26,7 +26,7 @@
  * 5.11 HAL API
   * [5.11.1 HAL-OTA API](https://github.com/alibaba/AliOS-Things/wiki/AliOS-Things-API-HAL-OTA-Guide)
   * [5.11.2 HAL-TRACE API](https://github.com/alibaba/AliOS-Things/wiki/AliOS-Things-API-HAL-TRACE-Guide)
-  * [5.11.3 HAL-WIFI API](https://github.com/alibaba/AliOS-Things/wiki/AliOS-Things-API-HAL-WIFI-Guide)
+  * [5.11.3 HAL-WiFi API](https://github.com/alibaba/AliOS-Things/wiki/AliOS-Things-API-HAL-WiFi-Guide)
   * 5.11.4 HAL-SOC API
    * [5.11.4.1 HAL-SOC-ADC](https://github.com/alibaba/AliOS-Things/wiki/AliOS-Things-API-HAL-SOC-ADC-Guide)
    * [5.11.4.2 HAL-SOC-FLASH](https://github.com/alibaba/AliOS-Things/wiki/AliOS-Things-API-HAL-SOC-FLASH-Guide)
