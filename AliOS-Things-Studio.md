@@ -1,7 +1,7 @@
 # 目录
 - [1 下载地址](#1-下载安装)
     - [1.1 VS Code安装](#11-vs-code安装)
-    - [1.2 AliOS Studio安装](#12-alios-studio安装)
+    - [1.2 AliOS Things Studio安装](#12-alios-studio安装)
 - [2 界面介绍](#2-界面介绍)
 - [3 VS Code介绍](#3-vs-code介绍)
     - [3.1 C语言支持](#31-C语言支持)
@@ -26,10 +26,10 @@
 
 ------
 
-AliOS-Studio 是 AliOS 提供的 IDE 开发环境，目前支持 Windows，后续会增加对 Linux、 MacOS 等操作系统的支持。
+AliOS Things Studio 是AliOS Things提供的 IDE 开发环境，目前支持 Windows，后续会增加对 Linux、 MacOS 等操作系统的支持。
 
 # 1 下载安装
-AliOS-Studio 是 VS Code 插件，所以首先安装 VS Code ，通过插件的方式安装 AliOS-Studio。
+AliOS Things Studio 是 VS Code 插件，所以首先安装 VS Code ，通过插件的方式安装 AliOS Things Studio。
 
 ## 1.1 VS Code 安装
 在 [VS Code](https://code.visualstudio.com) 官网下载安装包并安装：
@@ -37,12 +37,12 @@ AliOS-Studio 是 VS Code 插件，所以首先安装 VS Code ，通过插件的�
 ![](https://img.alicdn.com/tfs/TB1ACciXPihSKJjy0FlXXadEXXa-865-558.png)
 
 
-## 1.2 AliOS-Studio 安装
+## 1.2 AliOS Things Studio安装
 打开 VSCode, 点击左侧的扩展按钮，如图所示选择 Install from VSIX / 从VSIX安装，并选择 alios-studio-0.1.0.vsix，稍后根据提示重载VSCode 即可。
 
 ![](https://img.alicdn.com/tfs/TB1zHJ0bzuhSKJjSspmXXcQDpXa-1207-819.png)
 
-安装完成后，会提示重启 VS Code，重启后 AliOS-Studio 插件生效。
+安装完成后，会提示重启 VS Code，重启后 AliOS Things Studio 插件生效。
 
 # 2 界面介绍
 
@@ -143,7 +143,7 @@ AliOS 默认带有的是 Linux 下面的工具链，Window 下面配置相关工
     
 ## 4.2 导入项目
 
- AliOS Studio 没有导入项目的概念，通过菜单里中文件 - 打开 功能打开 AOS 源码或应用项目即可。
+ AliOS Things Studio 没有导入项目的概念，通过菜单里中文件 - 打开 功能打开 AOS 源码或应用项目即可。
 
 ## 4.3 导入 AOS
 
@@ -191,7 +191,7 @@ AliOS 默认带有的是 Linux 下面的工具链，Window 下面配置相关工
 进入 bootloader 模式（按住boot按键，再按reset按键），点击下 bar 栏的 UpLoad 按钮，烧录时，Alios-Studio 会每隔一秒显示烧录的进度。烧录完成后，会切换到串口日志输出，看到 Programming Completed Successfully 则表示烧录成功。可以点击开发板上的 reset 按钮尝试加载代码执行。
 
 ## 7.2 J-Link 烧写 MK3060为例
-J-Link 连接模组（成功安装 J-Link 驱动后，才能正确建立 J-Link 连接。参考 [AliOS Environment Setup](https://github.com/alibaba/AliOS-Things/wiki/AliOS-Things-Environment-Setup)），在左侧的 BUILD TARGET 选择 alinkapp@mk3060 JTAG=jlink download：
+J-Link 连接模组（成功安装 J-Link 驱动后，才能正确建立 J-Link 连接。参考 [AliOS Things Environment Setup](https://github.com/alibaba/AliOS-Things/wiki/AliOS-Things-Environment-Setup)），在左侧的 BUILD TARGET 选择 alinkapp@mk3060 JTAG=jlink download：
 
 ![](https://img.alicdn.com/tfs/TB1AebMfgoQMeJjy0FpXXcTxpXa-865-441.png)
 
@@ -199,13 +199,13 @@ J-Link 连接模组（成功安装 J-Link 驱动后，才能正确建立 J-Link 
 
 # 8 aos-cube支持
 
-AliOS Studio 也支持用户自定义 aos-cube 命令并执行。在项目文件树的下方找到 BUILD TARGET 并展开，可以看到当前存储的 aos-cube 命令列表，点击 BUILD TARGET 旁边的加号可以新增 aos-cube 命令，点击垃圾桶后，界面上方会列出当前的 aos-cube 命令列表，用户选择后，对应的aos-cube 命令将被删除。双击 BUILD TARGET 下的 aos-cube 命令，AliOS Studio 就会去执行对应的 aos-cube 命令。
+AliOS Things Studio 也支持用户自定义 aos-cube 命令并执行。在项目文件树的下方找到 BUILD TARGET 并展开，可以看到当前存储的 aos-cube 命令列表，点击 BUILD TARGET 旁边的加号可以新增 aos-cube 命令，点击垃圾桶后，界面上方会列出当前的 aos-cube 命令列表，用户选择后，对应的aos-cube 命令将被删除。双击 BUILD TARGET 下的 aos-cube 命令，AliOS Studio 就会去执行对应的 aos-cube 命令。
 
 ![](https://img.alicdn.com/tfs/TB1apV1bqagSKJjy0FcXXcZeVXa-366-881.png)
 
 # 9 单步调试
 
-AliOS Studio 依赖 VS Code 的 C/C++ 插件进行单步调试，调试前务必确认安装好 C/C++ 插件，连接上开发板及 JLINK，Windows 需要安装好J-Link驱动，同时 J-Link 上绿色指示灯点亮，开发板切换到 bootloader 状态,且烧入了与本地代码一致的镜像。
+AliOS Things Studio 依赖 VS Code 的 C/C++ 插件进行单步调试，调试前务必确认安装好 C/C++ 插件，连接上开发板及 JLINK，Windows 需要安装好J-Link驱动，同时 J-Link 上绿色指示灯点亮，开发板切换到 bootloader 状态,且烧入了与本地代码一致的镜像。
 
 ![](https://img.alicdn.com/tfs/TB1VQxMcgoQMeJjy0FoXXcShVXa-865-458.png)
 
@@ -254,5 +254,5 @@ Trace功能默认是关闭的，在使用Trace前，需要开启Trace功能：
 
 ## 11 技术支持
 
-在命令面板中执行 alios-studio: Technical Support 命令，会自动打开 AliOS Studio 用户支持钉钉账号的对话窗口，有任何问题，意见及建议可以直接通过这一渠道反馈。
+在命令面板中执行 alios-studio: Technical Support 命令，会自动打开 AliOS Things Studio 用户支持钉钉账号的对话窗口，有任何问题，意见及建议可以直接通过这一渠道反馈。
 
