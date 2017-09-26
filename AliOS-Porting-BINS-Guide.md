@@ -12,7 +12,7 @@
 
 # 2链接脚本ld文件修改  
 多bin编译意味着有app bin和kernl bin的编译，这意味着有对应的app.ld和kernel.ld。[参考实现](https://github.com/alibaba/AliOS/blob/master/kernel/protocols/net/netif/ethernetif.c)
-ld文件的实现格式和单bin一致，主要需要提供如下一点：
+  ld文件的实现格式和单bin一致，主要需要提供如下一点：
 * 在kernel.ld文件中需要设置app.bin的起始位置，以让kernel能够跳转到app中执行。
 
   如果参考实现与开发者实现一致，可以直接拷贝存放在对应的平台(platform)下面。
