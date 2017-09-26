@@ -144,7 +144,7 @@
 Rhino内核的移植模版主要是参照现有的工程的移植。目前移植的有armv5以及cortex-m系列等cpu架构。 
 
 ## 2.5 驱动移植
-驱动是指完成上层业务逻辑所需要的驱动，如wifi、ble等外设驱动，该部分与内核没有直接关系，可参考HAL接口设计。所有hal接口存放在include/hal下面。
+驱动是指完成上层业务逻辑所需要的驱动，如WiFi、BLE等外设驱动，该部分与内核没有直接关系，可参考HAL接口设计。所有HAL接口存放在include/hal下面。
 
 # 3验收测试
 目前Rhino已经提供了完善的kernel级别的测试用例用于测试所提供API的功能。Kernel的测试代码在kernel/rhino/test下面，测试的入口函数是test_case_task_start。
