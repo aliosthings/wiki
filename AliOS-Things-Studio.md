@@ -31,14 +31,14 @@ AliOS-Studio 是 AliOS 提供的 IDE 开发环境，目前支持 Windows，后�
 # 1 下载安装
 AliOS-Studio 是 VS Code 插件，所以首先安装 VS Code ，通过插件的方式安装 AliOS-Studio。
 
-## 1.1 VS Code安装
+## 1.1 VS Code 安装
 在 [VS Code](https://code.visualstudio.com) 官网下载安装包并安装：
 
 ![](https://img.alicdn.com/tfs/TB1ACciXPihSKJjy0FlXXadEXXa-865-558.png)
 
 
-## 1.2 AliOS-Studio安装
-打开VSCode, 点击左侧的扩展按钮，如图所示选择Install from VSIX / 从VSIX安装，并选择alios-studio-0.1.0.vsix，稍后根据提示重载VSCode即可。
+## 1.2 AliOS-Studio 安装
+打开 VSCode, 点击左侧的扩展按钮，如图所示选择 Install from VSIX / 从VSIX安装，并选择 alios-studio-0.1.0.vsix，稍后根据提示重载VSCode 即可。
 
 ![](https://img.alicdn.com/tfs/TB1zHJ0bzuhSKJjSspmXXcQDpXa-1207-819.png)
 
@@ -50,11 +50,11 @@ AliOS-Studio 是 VS Code 插件，所以首先安装 VS Code ，通过插件的�
 
 # 3 VS Code介绍
 
-VS Code是微软推出的一款跨平台编辑器，对C语言的编辑，导航，调试有强大的支持。
+VS Code 是微软推出的一款跨平台编辑器，对 C 语言的编辑，导航，调试有强大的支持。
  
-## 3.1 C语言支持
+## 3.1 C 语言支持
 
-* VS Code通过安装C/C++插件提供强大的C语言支持。
+* VS Code 通过安装 C/C++ 插件提供强大的 C 语言支持。
 
 ![](https://img.alicdn.com/tfs/TB1avRUbqagSKJjy0FhXXcrbFXa-2880-1800.png)
  
@@ -62,7 +62,7 @@ VS Code是微软推出的一款跨平台编辑器，对C语言的编辑，导航
 
 ![](https://img.alicdn.com/tfs/TB1pktRbzihSKJjy0FfXXbGzFXa-926-990.png)
  
-*  将鼠标移到函数/宏/变量上可显示定义，也可以在右键菜单通过peek declaration直接查看定义附近代码，或者go to declaration跳转到定义。
+*  将鼠标移到函数/宏/变量上可显示定义，也可以在右键菜单通过 peek declaration 直接查看定义附近代码，或者 go to declaration 跳转到定义。
  
 ![](https://img.alicdn.com/tfs/TB1GS4RbqagSKJjy0FbXXa.mVXa-1926-994.png) 
  
@@ -76,12 +76,13 @@ VS Code是微软推出的一款跨平台编辑器，对C语言的编辑，导航
 
 * 代码检查
 
-C/C++插件提供了基本的语法检查功能，会在"问题面板"中显示代码中的语法错误。注意：语法检查功能需要在当前文件的所有include都找到后才会工作。未能找到的include文件会以绿色波浪线提示，需要在配置文件中添加include路径，确保所有include的文件都没有绿色波浪线后，语法检查功能才会正常运作。
+C/C++ 插件提供了基本的语法检查功能，会在"问题面板"中显示代码中的语法错误。注意：语法检查功能需要在当前文件的所有 include 都找到后才会工作。未能找到的 include 文件会以绿色波浪线提示，需要在配置文件中添加 include 路径，确保所有 include 的文件都没有绿色波浪线后，语法检查功能才会正常运作。
+
 ![](https://img.alicdn.com/tfs/TB1AopZbqmgSKJjSspiXXXyJFXa-1114-590.png)
 
 ## 3.2 命令面板与符号搜索
 
-* 按键ctrl + shift + p可以打开命令面板，搜索并执行VS Code及插件支持的命令。
+* 按键 ctrl + shift + p 可以打开命令面板，搜索并执行 VS Code 及插件支持的命令。
 
 ![](https://img.alicdn.com/tfs/TB1P90RbqagSKJjy0FbXXa.mVXa-1234-766.png)
 
@@ -89,63 +90,64 @@ C/C++插件提供了基本的语法检查功能，会在"问题面板"中显示�
 
 ![](https://img.alicdn.com/tfs/TB1cm8RbqagSKJjy0FbXXa.mVXa-1270-490.png)
 
-* 在命令面板中以@开头，可以显示并搜索当前文件中的符号
+* 在命令面板中以 @ 开头，可以显示并搜索当前文件中的符号
 
 ![](https://img.alicdn.com/tfs/TB1mBVSbqagSKJjy0FaXXb0dpXa-1252-742.png)
 
-* 在命令面板中以#开头，可以显示并搜索当前工作区中的符号
+* 在命令面板中以 # 开头，可以显示并搜索当前工作区中的符号
 
 ![](https://img.alicdn.com/tfs/TB1nXV1bqagSKJjy0FcXXcZeVXa-1246-752.png)
 
-## 3.3 keymap映射
+## 3.3 keymap 映射
 
-* 借助VS Code强大的插件生态，你可以将几乎任何你习惯的IDE/编辑器的快键键映射到VS Code上。包括Visual Studio, Eclipse, Vim, Intellij等。搜索并安装对应的插件即可。
+* 借助 VS Code 强大的插件生态，你可以将几乎任何你习惯的 IDE/编辑器 的快键键映射到 VS Code 上。包括 Visual Studio, Eclipse, Vim, Intellij 等。搜索并安装对应的插件即可。
 
  ![](https://img.alicdn.com/tfs/TB18P00bzuhSKJjSspjXXci8VXa-2880-1800.png)
 
 ## 3.4 符号视图
 
-* 通过安装code outline插件，可以显示当前文件的符号列表(对应其他编辑器的outline / symbol view / structure view)
+* 通过安装 code outline 插件，可以显示当前文件的符号列表(对应其他编辑器的 outline / symbol view / structure view)
 
 ![](https://img.alicdn.com/tfs/TB1pnhRbqagSKJjy0FbXXa.mVXa-2880-1800.png)
  
-## 3.5 git支持
+## 3.5 git 支持
 
-* 使用VS Code可以方便的进行git的大部分操作，如分支切换，提交commit，解决冲突等。详细的git使用说明可以参考[Version Control](https://code.visualstudio.com/docs/editor/versioncontrol)
+* 使用 VS Code 可以方便的进行 git 的大部分操作，如分支切换，提交 commit，解决冲突等。详细的 git 使用说明可以参考 [Version Control](https://code.visualstudio.com/docs/editor/versioncontrol)
  
 ## 3.6 内置终端
 
-* VS Code可以在编辑器中直接打开bash/power shell/cmd，免去了在终端和编辑器间切换的麻烦。
+* VS Code 可以在编辑器中直接打开 bash/power shell/cmd，免去了在终端和编辑器间切换的麻烦。
 
 ![](https://img.alicdn.com/tfs/TB1qqd1bqagSKJjy0FcXXcZeVXa-2150-550.png)
  
 # 4 新建/导入项目
+AliOS 默认带有的是 Linux 下面的工具链，Window 下面配置相关工具链参考 [AliOS Things Environment Setup](https://github.com/alibaba/AliOS-Things/wiki/AliOS-Things-Environment-Setup) 2.2 节
 
 ## 4.1 新建项目
     
-对于应用开发者，通常可以通过新建项目生成一个基本的示例应用，并在此基础上进行开发。首先点击下方状态栏的Create Project，或者执行alios-studio: Create Project命令打开新建项目界面
+对于应用开发者，通常可以通过新建项目生成一个基本的示例应用，并在此基础上进行开发。首先点击下方状态栏的 Create Project，或者执行 alios-studio: Create Project 命令打开新建项目界面
     
 ![](https://img.alicdn.com/tfs/TB1OWviaLBNTKJjy0FdXXcPpVXa-216-46.png)
     
-第一次创建项目会进入SDK管理界面，在此输入一个SDK的路径及对应的版本即可。如果以后需要增加或修改SDK，也可以通过alios-studio:Set SDK命令打开SDK管理界面进行SDK管理，进行SDK的编辑，增加及删除。
+第一次创建项目会进入 SDK 管理界面，在此输入一个SDK的路径及对应的版本即可。如果以后需要增加或修改 SDK，也可以通过 alios-studio:Set SDK 命令打开 SDK 管理界面进行 SDK 管理，进行 SDK 的编辑，增加及删除。
     
 ![](https://img.alicdn.com/tfs/TB1QzV0bzuhSKJjSspjXXci8VXa-1716-882.png)
     
-设置完SDK后可以进入新建项目界面，选择创建应用对应的模板，使用的SDK版本，以及开发板的类型，并选择一个保存项目的路径，点击submit即可创建项目。由于创建项目需要拷贝AOS的源码到工程中，需要耐心等待一小会儿。
+设置完 SDK 后可以进入新建项目界面，选择创建应用对应的模板，使用的 SDK 版本，以及开发板的类型，并选择一个保存项目的路径，点击 submit 即可创建项目。由于创建项目需要拷贝 AOS 的源码到工程中，需要耐心等待一小会儿。
     
 ![](https://img.alicdn.com/tfs/TB1yxHXavxNTKJjy0FjXXX6yVXa-865-458.png)
     
-新项目建立完成后目录结构如下，.vscode中存储项目相关的配置文件，应用目录存储应用的源码文件，aos目录存储系统相关的源码文件，out目录存储编译输出的文件。每个应用拥有独立的系统源码，可以独立修改而不会互相影响。
+新项目建立完成后目录结构如下，.vscode 中存储项目相关的配置文件，应用目录存储应用的源码文件，aos 目录存储系统相关的源码文件，out 目录存储编译输出的文件。每个应用拥有独立的系统源码，可以独立修改而不会互相影响。
     
 ![](https://img.alicdn.com/tfs/TB12EtZbqmgSKJjSspiXXXyJFXa-2880-1800.png)
     
 ## 4.2 导入项目
 
- AliOS Studio没有导入项目的概念，通过菜单里中文件 - 打开 功能打开AOS源码或应用项目即可。
+ AliOS Studio 没有导入项目的概念，通过菜单里中文件 - 打开 功能打开 AOS 源码或应用项目即可。
 
-## 4.3 导入AOS
+## 4.3 导入 AOS
 
-通过VS Code - 文件 - 打开文件夹，打开 AliOS 代码目录：
+通过 VS Code - 文件 - 打开文件夹，打开 AliOS 代码目录：
 
 ![](https://img.alicdn.com/tfs/TB1xmpKbaagSKJjy0FhXXcrbFXa-865-429.png)
 
@@ -153,57 +155,57 @@ C/C++插件提供了基本的语法检查功能，会在"问题面板"中显示�
 
 # 5 设备管理
 
-点击状态栏中的Connect Device可以连接设备。初次连接设备时，VS Code上方会弹出输入框提示用户选择串口号及输入波特率。mac用户需要注意Mac设备默认可能会有一个蓝牙设备的串口，应该选择包含usbserial的串口号。
+点击状态栏中的 Connect Device 可以连接设备。初次连接设备时，VS Code 上方会弹出输入框提示用户选择串口号及输入波特率。MAC 用户需要注意MAC 设备默认可能会有一个蓝牙设备的串口，应该选择包含 usbserial 的串口号。
 
 ![](https://img.alicdn.com/tfs/TB1U8TEfgoQMeJjy1XaXXcSsFXa-865-442.png)
 
 ![](https://img.alicdn.com/tfs/TB1YjjJfgMPMeJjy1XbXXcwxVXa-865-444.png)
 
-设备连接完成后，Connect Device按钮隐藏，界面下方会呼出输出界面显示串口日志，同时状态栏会出现一个以设备串口号命名的按钮。点击该按钮会在界面上方弹出设备相关的功能。包括断开设备，烧录镜像，打开shell窗口，修改波特率，打开Trace窗口，连接其他串口。
+设备连接完成后，Connect Device 按钮隐藏，界面下方会呼出输出界面显示串口日志，同时状态栏会出现一个以设备串口号命名的按钮。点击该按钮会在界面上方弹出设备相关的功能。包括断开设备，烧录镜像，打开 shell 窗口，修改波特率，打开 Trace 窗口，连接其他串口。
 
 ![](https://img.alicdn.com/tfs/TB1bTXRbqagSKJjy0FbXXa.mVXa-2880-1800.png)
 
-在shell窗口中，可以在输入框中输入命令执行，也可以点击左侧的按钮列出设备支持的命令，直接填入输入框中，并且可以在shell窗口中看到命令执行的返回结果。(部分命令的结果也可能从串口log中输出)
+在 shell 窗口中，可以在输入框中输入命令执行，也可以点击左侧的按钮列出设备支持的命令，直接填入输入框中，并且可以在 shell 窗口中看到命令执行的返回结果。(部分命令的结果也可能从串口 log 中输出)
 
 ![](https://img.alicdn.com/tfs/TB1nmG8aLNNTKJjSspkXXaeWFXa-1066-1488.png)
 
 # 6 编译功能
 
-通过状态栏中的Build和Clean可以进行编译及清除。点击状态栏中类似alinkapp@mk3060的按钮可以修改编译的应用及目标板(应用开发者只能修改目标板)，通过修改.vscode/settings.json可以修改多Bin相关的编译配置。当aliosStudio.build.multiBin为false时，进行单Bin编译，当aliosStudio.build.multiBin为true时，根据aliosStudio.build.multiBinTarget的值确定编译的目标为kernal,app还是framework等。
+通过状态栏中的 Build 和 Clean 可以进行编译及清除。点击状态栏中类似 alinkapp@mk3060 的按钮可以修改编译的应用及目标板(应用开发者只能修改目标板)，通过修改 .vscode/settings.json 可以修改多 Bin 相关的编译配置。当 aliosStudio.build.multiBin 为 false 时，进行单 Bin 编译，当 aliosStudio.build.multiBin 为 true 时，根据 aliosStudio.build.multiBinTarget 的值确定编译的目标为 kernal, app 还是framework 等。
     
 ![](https://img.alicdn.com/tfs/TB1CWHiaLBNTKJjy0FdXXcPpVXa-660-90.png)
     
-编译时，在ALIOS-STUDIO的输出中可以看到执行的编译命令及执行状态，在ALIOS-STUDIO-BUILD-DETAIL的输出中可以看到编译的详细log。编译完成后，会弹出Image Footprint显示每个模块的大小以及与上次编译的差别。
+编译时，在 ALIOS-STUDIO 的输出中可以看到执行的编译命令及执行状态，在 ALIOS-STUDIO-BUILD-DETAIL 的输出中可以看到编译的详细 log。编译完成后，会弹出 Image Footprint 显示每个模块的大小以及与上次编译的差别。
     
 ![](https://img.alicdn.com/tfs/TB1sX01bqagSKJjy0FcXXcZeVXa-2880-1800.png)
     
-编译失败时，ctrl/cmd+左键点击错误所在的文件路径可以跳转到发生错误的位置。
+编译失败时，ctrl/cmd+左键 点击错误所在的文件路径可以跳转到发生错误的位置。
 
 ![](https://img.alicdn.com/tfs/TB11RVSbqagSKJjy0FaXXb0dpXa-2880-1800.png)
 
 # 7 烧写功能
 
-## 7.1 串口烧写 MK3060为例
+## 7.1 串口烧写 MK3060 为例
 配置串口烧写 COM 端口（成功安装串口驱动后，才能正确的识别端口。参考 [AliOS Environment Setup](https://github.com/alibaba/AliOS-Things/wiki/AliOS-Things-Environment-Setup)）
 
-进入bootloader模式（按住boot按键，再按reset按键），点击下 bar 栏的 UpLoad 按钮，烧录时，Alios-Studio会每隔一秒显示烧录的进度。烧录完成后，会切换到串口日志输出，看到Programming Completed Successfully则表示烧录成功。可以点击开发板上的reset按钮尝试加载代码执行。
+进入 bootloader 模式（按住boot按键，再按reset按键），点击下 bar 栏的 UpLoad 按钮，烧录时，Alios-Studio 会每隔一秒显示烧录的进度。烧录完成后，会切换到串口日志输出，看到 Programming Completed Successfully 则表示烧录成功。可以点击开发板上的 reset 按钮尝试加载代码执行。
 
-## 7.2 J-Link烧写 MK3060为例
-J-Link连接模组（成功安装J-Link驱动后，才能正确建立J-Link连接。参考 [AliOS Environment Setup](https://github.com/alibaba/AliOS-Things/wiki/AliOS-Things-Environment-Setup)），在左侧的 BUILD TARGET 选择 alinkapp@mk3060 JTAG=jlink download：
+## 7.2 J-Link 烧写 MK3060为例
+J-Link 连接模组（成功安装 J-Link 驱动后，才能正确建立 J-Link 连接。参考 [AliOS Environment Setup](https://github.com/alibaba/AliOS-Things/wiki/AliOS-Things-Environment-Setup)），在左侧的 BUILD TARGET 选择 alinkapp@mk3060 JTAG=jlink download：
 
 ![](https://img.alicdn.com/tfs/TB1AebMfgoQMeJjy0FpXXcTxpXa-865-441.png)
 
-会编译并且烧写image到模组。
+会编译并且烧写 image 到模组。
 
 # 8 aos-cube支持
 
-AliOS Studio也支持用户自定义aos-cube命令并执行。在项目文件树的下方找到BUILD TARGET并展开，可以看到当前存储的aos-cube命令列表，点击BUILD TARGET旁边的加号可以新增aos-cube命令，点击垃圾桶后，界面上方会列出当前的aos-cube命令列表，用户选择后，对应的aos-cube命令将被删除。双击BUILD TARGET下的aos-cube命令，AliOS Studio就会去执行对应的aos-cube命令。
+AliOS Studio 也支持用户自定义 aos-cube 命令并执行。在项目文件树的下方找到 BUILD TARGET 并展开，可以看到当前存储的 aos-cube 命令列表，点击 BUILD TARGET 旁边的加号可以新增 aos-cube 命令，点击垃圾桶后，界面上方会列出当前的 aos-cube 命令列表，用户选择后，对应的aos-cube 命令将被删除。双击 BUILD TARGET 下的 aos-cube 命令，AliOS Studio 就会去执行对应的 aos-cube 命令。
 
 ![](https://img.alicdn.com/tfs/TB1apV1bqagSKJjy0FcXXcZeVXa-366-881.png)
 
 # 9 单步调试
 
-AliOS Studio依赖VS Code的C/C++插件进行单步调试，调试前务必确认安装好C/C++插件，连接上开发板及JLINK，windows需要安装好JLINK驱动，同时JLINK上绿色指示灯点亮，开发板切换到bootloader状态,且烧入了与本地代码一致的镜像。
+AliOS Studio 依赖 VS Code 的 C/C++ 插件进行单步调试，调试前务必确认安装好 C/C++ 插件，连接上开发板及 JLINK，Windows 需要安装好J-Link驱动，同时 J-Link 上绿色指示灯点亮，开发板切换到 bootloader 状态,且烧入了与本地代码一致的镜像。
 
 ![](https://img.alicdn.com/tfs/TB1VQxMcgoQMeJjy0FoXXcShVXa-865-458.png)
 
@@ -215,7 +217,7 @@ AliOS Studio依赖VS Code的C/C++插件进行单步调试，调试前务必确�
 目前暂不支持重启(单步调试工具栏从右往左数第二个按钮)。
 
 # 10 Trace
-## 10.1 开启Trace
+## 10.1 开启 Trace
 Trace功能默认是关闭的，在使用Trace前，需要开启Trace功能：
 * 打开模组下面的 `k_config.h` `RHINO_CONFIG_TRACE` 为 1：
 ```
@@ -233,12 +235,12 @@ Trace功能默认是关闭的，在使用Trace前，需要开启Trace功能：
 ```
 * Trace使用网络来传输数据，确保模组已经连接网络，并且电脑同板子连接在同一个局域网内。
 
-## 10.2 使用Trace
-在设备功能中点击Trace进入Trace界面
+## 10.2 使用 Trace
+在设备功能中点击 Trace 进入 Trace 界面
 
 ![](https://img.alicdn.com/tfs/TB1hYK4fwMPMeJjy1XdXXasrXXa-1438-797.png)
 
-在Trace的主界面可以列出当前设备中的几个task，如果需要重新刷新，可以通过点击左上角的刷新按钮来刷新task列表。在task列表中，通过点击其中的某一个task名称，可以弹出对话框来进一步查看该单个task随时间推移的变化过程：
+在Trace的主界面可以列出当前设备中的几个 task，如果需要重新刷新，可以通过点击左上角的刷新按钮来刷新 task 列表。在 task 列表中，通过点击其中的某一个task名称，可以弹出对话框来进一步查看该单个task随时间推移的变化过程：
 
 ![](https://img.alicdn.com/tfs/TB1IMrufwMPMeJjy1XcXXXpppXa-1438-797.png)
 
@@ -252,5 +254,5 @@ Trace功能默认是关闭的，在使用Trace前，需要开启Trace功能：
 
 ## 11 技术支持
 
-在命令面板中执行alios-studio: Technical Support命令，会自动打开AliOS Studio用户支持钉钉账号的对话窗口，有任何问题，意见及建议可以直接通过这一渠道反馈。
+在命令面板中执行 alios-studio: Technical Support 命令，会自动打开 AliOS Studio 用户支持钉钉账号的对话窗口，有任何问题，意见及建议可以直接通过这一渠道反馈。
 
