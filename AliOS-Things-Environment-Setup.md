@@ -38,14 +38,14 @@ aos-cube 是 AliOS Things 在 Python 下面开发的项目管理工具包，依�
 `> pip install aos-cube`
 
 ## 2.2 交叉工具链
-AliOS Things 默认带有 Linux 交叉工具链，Windows 工具链可以在链接 [GCC](https://launchpad.net/gcc-arm-embedded/+download) 下载 Windows压缩包，解压缩并且重命名为 Win32，复制到 ...\aos\build\compiler\arm-none-eabi-5_4-2016q2-20160622\ 目录下面：
+Windows 工具链可以在链接 [GCC](https://launchpad.net/gcc-arm-embedded/+download) 下载 Windows压缩包，解压缩并且重命名为 Win32，复制到 ...\aos\build\compiler\arm-none-eabi-5_4-2016q2-20160622\ 目录下面：
 
 ![](https://img.alicdn.com/tfs/TB1cuO1dwMPMeJjy1XcXXXpppXa-865-317.png)
 
 在 AliOS Things 源码的目录下面，运行：
 
 ```
-$ aos make alinkapp@mk3060 BINS=kernel
+$ aos make helloworld@mk3060
 ```
 
 编译 mk3060 板子的 helloworld 示例程序。
@@ -55,14 +55,6 @@ $ aos make alinkapp@mk3060 BINS=kernel
 **FTDI系列**
 
 FTDI驱动，在 [FTDI](http://www.ftdichip.com/Drivers/D2XX.htm) 下载 Windows 驱动程序并安装。
-
-**STLink**
-
-STLink也有串口转换器功能，在 [STM](http://www.st.com) 下载 Windows 驱动程序并安装。
-
-**CP2102串口转换器**
-
-CP2102驱动，在 [Silicon Labs](https://www.silabs.com/products/development-tools/software/usb-to-uart-bridge-vcp-drivers) 下载 Windows 驱动程序并安装。
 
 对应驱动安装完成后，连接设备，可在计算机 - 设备管理 - 端口，查看对应转换端口状态：
 
@@ -119,7 +111,7 @@ $ sudo pip install aos-cube
 在 AliOS Things 源码的目录下面，运行：
 
 ```
-$ aos make alinkapp@mk3060
+$ aos make helloworld@mk3060
 ```
 
 编译 mk3060 板子的 helloworld 示例程序。
