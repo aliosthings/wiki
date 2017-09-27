@@ -154,12 +154,12 @@ bin文件路径示例：out/alinkapp@mk3060/binary/alinkapp@mk3060.ota.bin
 以MK3060为例。
 在编译的时候：
 
-`$yos make helloworld@mk3060 JTAG=jlink download`
+`$aos make helloworld@mk3060 JTAG=jlink download`
 
 会通过J-Link烧写固件到板子上。
 
 ### 3.3.2 J-Link调试
-一MK3060为例，进入bootloader模式（按住boot按键，再按reset按键）。
+以MK3060为例，进入bootloader模式（按住boot按键，再按reset按键）。
 在一个终端启动OpenOCD：
 
  `$ (path to openocd)/Linux64/openocd  -f  (path to openocd)/openocd/interface/jlink.cfg -f  (path to openocd)/openocd/beken.cfg -f  (path to openocd)/openocd/beken_gdb_jtag.cfg -l out/openocd_log.txt`
