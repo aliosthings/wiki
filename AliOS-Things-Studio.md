@@ -38,9 +38,9 @@ AliOS Things Studio 是 VS Code 插件，所以首先安装 VS Code ，通过插
 
 
 ## 1.2 AliOS Things Studio安装
-打开 VSCode, 点击左侧的扩展按钮，如图所示选择 Install from VSIX / 从VSIX安装，并选择 alios-studio-0.1.0.vsix，稍后根据提示重载VSCode 即可。
+打开 VSCode, 点击左侧的扩展按钮，搜索alios-studio，点击安装即可
 
-![](https://img.alicdn.com/tfs/TB1zHJ0bzuhSKJjSspmXXcQDpXa-1207-819.png)
+![](https://img.alicdn.com/tfs/TB1_to5gMoQMeJjy0FpXXcTxpXa-2880-1800.png)
 
 安装完成后，会提示重启 VS Code，重启后 AliOS Things Studio 插件生效。
 
