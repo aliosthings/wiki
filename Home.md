@@ -1,6 +1,6 @@
-AliOS Things released by Alibaba is an open-source implementation of operating system (OS) for Internet of Things (IoT). Alibaba has released AliOS Things to make the IoT technology used in Alibaba more broadly available to developers, in order to accelerate the development of products for the better IoT world.
+AliOS Things是阿里巴巴旗下物联网操作系统。阿里巴巴发布物联网操作系统AliOS Things主要目的是让阿里巴巴的物联网技术普惠更多的开发者和用户，助力实现更加美好的物联网时代。
 
-## Resources
+## 相关资源
 * [Coding Style](https://github.com/alibaba/AliOS-Things/wiki/AliOS-Things-Coding-Style-Guide)
 * [Porting Guide](https://github.com/alibaba/AliOS-Things/wiki/AliOS-Things-Porting-Guide)
 * [App examples](https://github.com/alibaba/AliOS-Things/wiki/AliOS-Things-APP-DEV-Guide)
@@ -9,4 +9,4 @@ AliOS Things released by Alibaba is an open-source implementation of operating s
 * [FAQ](https://github.com/alibaba/AliOS-Things/wiki/Q&A)
 
 ## Get Started  
-Now, let's get start to build the first [Hello World Example](https://github.com/alibaba/AliOS-Things/wiki/AliOS-Things-APP-DEV-Guide) for the ultimate experience with AliOS Things.
+现在让我们开始构建第一个 [Hello World Example](https://github.com/alibaba/AliOS-Things/wiki/AliOS-Things-APP-DEV-Guide)应用，体验AliOS Things的极致开发体验。
