@@ -34,7 +34,7 @@ GLOBAL_DEFINES += GLOBAL_MACRO ## 定义全局符号
 所有的源码文件放置在应用工程目录下，开发者可以根据自行组织源码文件/目录。AliOS Things的应用程序入口为：
 `int application_start(int argc, char *argv[]);`
 ### 3.1.4 编译、烧录和调试
-应用的编译、烧录和调试可以参考：[Linux开发环境](https://github.com/alibaba/AliOS-Things/wiki/AliOS-Things-Environment-Setup#3-linux-环境配置)。
+
 ## 3.2 在AliOS Studio中进行应用开发
 AliOS Things提供了AliOS Things Studio集成开发环境，基于AliOS Things Studio进行应用开发非常方便、快捷。AliOS Things Studio提供了可供导入的应用模版，用户可以基于导入的模版进行应用开发。AliOS Things Sutdio也支持编译、烧录、调试等
 ### 3.2.1 创建应用项目
@@ -71,9 +71,17 @@ int application_start(int argc, char *argv[])
     return 0;
 }
 ```
+## 4.4 Linux模拟环境下运行
+AliOS Things支持linuxhost的模拟环境，可以快速进行功能的验证：
+```
+$ aos make helloworld@linuxhost
+$ ./out/helloworld@linuxhost/binary/helloworld@linuxhost.elf
+app_delayed_action：24 app
+```
+当然，你可以使用gdb，valgrind等工具调试上述应用。
 
-## 4.4 编译、烧录和运行
-请按照前述章节对helloworld应用进行编译和烧录。烧录完成后启动开发板，应用程序会被自动执行。helloworld应用启动后串口打印如下：
+## 4.5 上板编译、烧录和运行
+应用的编译、烧录和调试可以参考：[Linux开发环境](https://github.com/alibaba/AliOS-Things/wiki/AliOS-Things-Environment-Setup#3-linux-环境配置)。helloworld应用启动后串口打印如下：
 
 ![](https://img.alicdn.com/tfs/TB11fSrdwMPMeJjy1XdXXasrXXa-231-161.png)
 
