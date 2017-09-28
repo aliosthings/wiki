@@ -16,10 +16,10 @@
     - [3.3 J-Link烧写与调试](#33-J-Link烧写与调试)
    
 # 1 硬件环境准备
-以庆科MK3060模组为例，介绍AliOS Things硬件环境的搭建，其他模组的硬件环境可参考本节。
+以庆科 MK3060 模组为例，介绍 AliOS Things 硬件环境的搭建，其他模组的硬件环境可参考本节。
 
-## 1.1 MK3060模组
-MK3060是基于ARM核的Wi-Fi模组：
+## 1.1 MK3060 模组
+MK3060 是基于ARM核的Wi-Fi模组：
 
 ![](https://img.alicdn.com/tfs/TB1dkGJdwoQMeJjy0FoXXcShVXa-4160-2336.jpg)
 
