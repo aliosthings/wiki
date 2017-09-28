@@ -14,12 +14,12 @@ MK3060的串口已经通过miniusb接口接出，通过miniusb-usb线将串口�
 ## 1.3 调试器
 支持Jlink调试器:
 
-![](https://img.alicdn.com/tfs/TB1AOuudwMPMeJjy1XdXXasrXXa-4160-2336.jpg)
+![](https://img.alicdn.com/tfs/TB1KaDGg3MPMeJjy1XdXXasrXXa-2336-4160.jpg)
 
 ## 1.4 连接示例
 连接好的硬件环境:
 
-![](https://img.alicdn.com/tfs/TB1niqudwMPMeJjy1XdXXasrXXa-4160-2336.jpg)
+![](https://img.alicdn.com/tfs/TB1pWDGg3MPMeJjy1XdXXasrXXa-2336-4160.jpg)
 
 # 2 Window 环境配置
 ## 2.1 aos-cube 安装
@@ -169,7 +169,6 @@ bin文件路径示例：out/alinkapp@mk3060/binary/alinkapp@mk3060.ota.bin
 `$./build/compiler/arm-none-eabi-5_4-2016q2-20160622/Linux64/bin/arm-none-eabi-gdb -x=.gdbinit -ex 'target remote localhost:3333' ./out/eclipse_debug/last_built.elf --tui`
 
 gdb 里面设置断点，打印堆栈信息（MK3060最大支持两个断点）。
-
 
 
 
