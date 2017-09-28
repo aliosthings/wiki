@@ -120,7 +120,7 @@ $ sudo apt-get install -y libreadline-dev libreadline-dev:i386
 $ sudo apt-get install -y python-pip
 $ sudo pip install aos-cube
 ```
-## 2.2 交叉工具链
+## 3.2 交叉工具链
 Linux 工具链可以在链接 [GCC](https://launchpad.net/gcc-arm-embedded/+download) 下载 Linux 压缩包，解压缩，在 .bashrc 里面配置
  TOOLCHAIN_PATH 路径：
 
@@ -134,7 +134,7 @@ $ aos make helloworld@mk3060
 
 编译 mk3060 板子的 helloworld 示例程序。
 
-## 3.2 串口配置
+## 3.3 串口配置
 安装串口连接程序 minicom：
 ```
 $ sudo apt-get install -y minicom
@@ -152,20 +152,6 @@ pu rtscts           No
 ```
 
 启动 minicom，查看串口日志。
-
-部分模组支持串口烧写，如 MK3060 跳线后可以使用串口烧写：
-
-![](https://img.alicdn.com/tfs/TB1a012fgoQMeJjy0FnXXb8gFXa-865-590.png)
-
-跳线后，使用 minicom 烧写固件步骤：
-1. 启动 minicom 连接设备
-2. 先按住boot按键，再按reset按键，进入mk3060 bootloader
-3. 输入write 0x13200，按enter（多bin模式下需烧入两块bin，0x13200烧入kernel，0x6E3C0烧入app）
-4. 输入ctrl+a s
-5. 选择ymodem
-6. 选择希望下载的.bin
-
-bin文件路径示例：out/alinkapp@mk3060/binary/alinkapp@mk3060.ota.bin
 
 ## 3.3 J-Link烧写与调试
 ### 3.3.1 J-Link烧写
