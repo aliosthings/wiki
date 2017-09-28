@@ -173,9 +173,9 @@ pu rtscts           No
 
  `$ (path to openocd)/Linux64/openocd  -f  (path to openocd)/openocd/interface/jlink.cfg -f  (path to openocd)/openocd/beken.cfg -f  (path to openocd)/openocd/beken_gdb_jtag.cfg -l out/openocd_log.txt`
 
-在另外一个终端，启动 gdb：
+在另外一个终端的AliOS Things源码根目录下，启动 gdb：
 
-`$./build/compiler/arm-none-eabi-5_4-2016q2-20160622/Linux64/bin/arm-none-eabi-gdb -x=.gdbinit -ex 'target remote localhost:3333' ./out/eclipse_debug/last_built.elf --tui`
+`$ arm-none-eabi-gdb -x=.gdbinit -ex 'target remote localhost:3333' ./out/eclipse_debug/last_built.elf --tui`
 
 gdb 里面设置断点，打印堆栈信息（MK3060最大支持两个断点）。
 
