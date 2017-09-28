@@ -156,8 +156,8 @@ pu rtscts           No
 
 启动 minicom，查看串口日志。
 
-## 3.4 J-Link烧写与调试
-### 3.4.1 J-Link烧写
+# 4 J-Link烧写与调试
+## 4.1 J-Link烧写
 以MK3060为例。
 在编译的时候：
 
@@ -165,7 +165,7 @@ pu rtscts           No
 
 会通过J-Link烧写固件到板子上。
 
-### 3.4.2 J-Link调试
+## 4.2 J-Link调试
 以MK3060为例，进入bootloader模式（按住boot按键，再按reset按键）。
 在一个终端启动OpenOCD：
 
