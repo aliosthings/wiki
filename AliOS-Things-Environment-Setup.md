@@ -58,9 +58,9 @@ aos-cube 是 AliOS Things 在 Python 下面开发的项目管理工具包，依�
 `> pip install aos-cube`
 
 ## 2.2 交叉工具链
-Windows 工具链可以在链接 [GCC](https://launchpad.net/gcc-arm-embedded/+download) 下载 Windows 压缩包，解压缩并且重命名为 Win32，复制到 ...\aos\build\compiler\arm-none-eabi-5_4-2016q2-20160622\ 目录下面：
+Windows 工具链可以在链接 [GCC](https://launchpad.net/gcc-arm-embedded/+download) 下载 Windows的exe安装，勾选 Add path to environment variable 选项：
 
-![](https://img.alicdn.com/tfs/TB1cuO1dwMPMeJjy1XcXXXpppXa-865-317.png)
+![](https://img.alicdn.com/tfs/TB16JofcWagSKJjy0FaXXb0dpXa-865-620.png)
 
 在 AliOS Things 源码的目录下面，运行：
 
