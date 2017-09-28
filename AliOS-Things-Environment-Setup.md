@@ -13,7 +13,7 @@
 - [3 Linux 环境配置](#3-Linux环境配置)
     - [3.1 依赖及aos-cube安装](#31-依赖及aos-cube安装)
     - [3.2 交叉工具链](#32-交叉工具链)
-    - [3.3 串口配置](#33-串口配置)
+    - [3.3 minicom串口配置](#33-minicom串口配置)
 - [4 J-Link烧写与调试](#4-J-Link烧写与调试)
     - [4.1 J-Link烧写](#41-J-Link烧写)
     - [4.2 J-Link调试](#42-J-Link调试)
@@ -111,16 +111,16 @@ J-Link 驱动可在 [SEGGER J-Link驱动下载地址](https://www.segger.com/dow
 
 # 3 Linux 环境配置
 ## 3.1 依赖及 aos-cube 安装
-首先确认 Python 2.7 版本存在，aos-cube 依赖 Python 2.7 版本。
-
 以 Ubuntu 16.04 LTS (Xenial Xerus) 64-bit PC 版本为例，安装下列 pkg：
 
 ```
+$ sudo apt-get install -y python
 $ sudo apt-get install -y gcc-multilib
 $ sudo apt-get install -y libssl-dev libssl-dev:i386
 $ sudo apt-get install -y libncurses5-dev libncurses5-dev:i386
 $ sudo apt-get install -y libreadline-dev libreadline-dev:i386
 $ sudo apt-get install -y python-pip
+$ sudo apt-get install -y minicom
 $ sudo pip install aos-cube
 ```
 ## 3.2 交叉工具链
@@ -137,12 +137,7 @@ $ aos make helloworld@mk3060
 
 编译 mk3060 板子的 helloworld 示例程序。
 
-## 3.3 串口配置
-安装串口连接程序 minicom：
-```
-$ sudo apt-get install -y minicom
-```
-
+## 3.3 minicom串口配置
 配置串口参数（以MK3060为例），配置文件（/etc/minicom/minirc.dfl）内容 ：
 
 ```
