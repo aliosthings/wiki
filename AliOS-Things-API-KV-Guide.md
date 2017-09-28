@@ -43,8 +43,8 @@ int aos_kv_get(const char *key, void *buffer, int *buffer_len)
 
   | IN/OUT |  NAME  |  DESC  |
   |--------|--------|--------|
-  | [in] |  |   key         the key of the KV pair to get.   |
-  | [out] |  |  buffer      the memory to store the value.   |
+  | [in] |  |   key      |  the key of the KV pair to get.   |
+  | [out] |  |  buffer   |  the memory to store the value.   |
   | [in-out] | buffer_len | in: the length of the input buffer.        out: the real length of the value. |
 
 - [x] **Returns**
