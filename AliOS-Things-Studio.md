@@ -121,7 +121,7 @@ C/C++ 插件提供了基本的语法检查功能，会在"问题面板"中显示
 ![](https://img.alicdn.com/tfs/TB1qqd1bqagSKJjy0FcXXcZeVXa-2150-550.png)
  
 # 4 新建/导入项目
-AliOS 默认带有的是 Linux 下面的工具链，Window 下面配置相关工具链参考 [AliOS Things Environment Setup](https://github.com/alibaba/AliOS-Things/wiki/AliOS-Things-Environment-Setup) 2.2 节
+新建项目前建议先配置好工具链，配置相关工具链参考 [AliOS Things Environment Setup](https://github.com/alibaba/AliOS-Things/wiki/AliOS-Things-Environment-Setup) 2.2 节
 
 ## 4.1 新建项目
     
