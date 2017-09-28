@@ -158,15 +158,17 @@ pu rtscts           No
 
 # 4 J-Link烧写与调试
 ## 4.1 J-Link烧写
-以MK3060为例。
-在编译的时候：
+以 MK3060 为例，在编译的时候，带上jlink烧写参数：
 
 `$aos make helloworld@mk3060 JTAG=jlink download`
 
 会通过J-Link烧写固件到板子上。
 
 ## 4.2 J-Link调试
-以MK3060为例，进入bootloader模式（按住boot按键，再按reset按键）。
+以MK3060为例，首先按住boot按键，不要松开，再按一下reset键，松开reset键，进入bootloader模式：
+
+![](https://img.alicdn.com/tfs/TB1KjVFhgMPMeJjy1XcXXXpppXa-865-792.png)
+
 在一个终端启动OpenOCD：
 
  `$ (path to openocd)/Linux64/openocd  -f  (path to openocd)/openocd/interface/jlink.cfg -f  (path to openocd)/openocd/beken.cfg -f  (path to openocd)/openocd/beken_gdb_jtag.cfg -l out/openocd_log.txt`
