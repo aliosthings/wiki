@@ -9,7 +9,7 @@
     - [2.2 交叉工具链](#22-交叉工具链)
     - [2.3 驱动安装](#23-驱动安装)
       - [2.3.1 串口驱动](#231-串口驱动)
-      - [2.3.2 JTAG驱动](#231-jtag驱动)
+      - [2.3.2 JTAG驱动](#232-jtag驱动)
 - [3 Linux环境配置](#3-linux环境配置)
     - [3.1 依赖及aos-cube安装](#31-依赖及aos-cube安装)
     - [3.2 交叉工具链](#32-交叉工具链)
@@ -42,7 +42,7 @@ MK3060 的串口已经通过miniusb接口接出，通过 miniusb-usb 线将串�
 ![](https://img.alicdn.com/tfs/TB1ThvGg3MPMeJjy1XdXXasrXXa-4160-2336.jpg)
 
 # 2 windows环境配置
-## 2.1 aos-cube 安装
+## 2.1 aos-cube安装
 aos-cube 是 AliOS Things 在 Python 下面开发的项目管理工具包，依赖 Python 2.7 版本。在 Python 官网下载对应的 2.7 版本的 [Python](https://www.python.org/downloads/) MSI 安装文件，安装时，选择 add python.exe to Path：
 
 ![](https://img.alicdn.com/tfs/TB13PAjdMoQMeJjy0FoXXcShVXa-796-672.png)
