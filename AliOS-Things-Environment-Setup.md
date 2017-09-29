@@ -86,7 +86,7 @@ FTDI驱动，在 [FTDI](http://www.ftdichip.com/Drivers/D2XX.htm) 下载 Windows
 
 对应参数配置好一会，点击 OK 按钮，查看串口日志。
 
-### 2.3.2 jtag 驱动
+### 2.3.2 jtag驱动
 **J-Link**
 
 J-Link 驱动可在 [SEGGER J-Link驱动下载地址](https://www.segger.com/downloads/jlink/) 下，选择 J-Link Software and Documentation Pack，选择 J-Link Software and Documentation pack for Windows 下载安装：
@@ -110,7 +110,7 @@ J-Link 驱动可在 [SEGGER J-Link驱动下载地址](https://www.segger.com/dow
 **如果此时还是没法连接上 J-Link，在 J-Link 的 libusb 驱动选择时，选择 libusbK (v3.0.7.0) 尝试（由于不同厂家的使用的 J-Link 固件版本不同，libusb-win32（v1.2.6.0）可以无法正常工作）。**
 
 # 3 linux环境配置
-## 3.1 依赖及 aos-cube 安装
+## 3.1 依赖及aos-cube安装
 以 Ubuntu 16.04 LTS (Xenial Xerus) 64-bit PC 版本为例，安装下列 pkg：
 
 ```
@@ -151,15 +151,15 @@ pu rtscts           No
 
 启动 minicom，查看串口日志。
 
-# 4 J-Link烧写与调试
-## 4.1 J-Link烧写
+# 4 j-link烧写与调试
+## 4.1 j-link烧写
 以 MK3060 为例，在编译的时候，带上jlink烧写参数：
 
 `$aos make helloworld@mk3060 JTAG=jlink download`
 
 会通过J-Link烧写固件到板子上。
 
-## 4.2 J-Link调试
+## 4.2 j-link调试
 以MK3060为例，首先按住boot按键，不要松开，再按一下reset键，松开reset键，进入bootloader模式：
 
 ![](https://img.alicdn.com/tfs/TB1KjVFhgMPMeJjy1XcXXXpppXa-865-792.png)
