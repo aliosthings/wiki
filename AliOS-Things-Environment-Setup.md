@@ -21,7 +21,7 @@
 # 1 硬件环境准备
 以庆科 MK3060 模组为例，介绍 AliOS Things 硬件环境的搭建，其他模组的硬件环境可参考本节。
 
-## 1.1 mk3060 模组
+## 1.1 mk3060模组
 MK3060 是基于 ARM 核的 Wi-Fi 模组：
 
 ![](https://img.alicdn.com/tfs/TB1dkGJdwoQMeJjy0FoXXcShVXa-4160-2336.jpg)
