@@ -155,7 +155,11 @@ C/C++ 插件提供了基本的语法检查功能，会在"问题面板"中显示
 
 # 5 设备管理
 
-点击状态栏中的 Connect Device 可以连接设备。初次连接设备时，VS Code 上方会弹出输入框提示用户选择串口号及输入波特率。MAC 用户需要注意MAC 设备默认可能会有一个蓝牙设备的串口，应该选择包含 usbserial 的串口号。
+点击状态栏中的 Connect Device 可以连接设备，串口的 COM 口，可以在计算机 - 属性 - 设备管理 - 端口，找到 USB Serial Port端口：
+
+![](https://img.alicdn.com/tfs/TB1illpdqmgSKJjSsphXXcy1VXa-865-378.png)
+
+初次连接设备时，VS Code 上方会弹出输入框提示用户选择串口号及输入波特率。MAC 用户需要注意MAC 设备默认可能会有一个蓝牙设备的串口，应该选择包含 usbserial 的串口号。
 
 ![](https://img.alicdn.com/tfs/TB1U8TEfgoQMeJjy1XaXXcSsFXa-865-442.png)
 
