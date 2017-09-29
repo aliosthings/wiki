@@ -1,27 +1,27 @@
 # 目录
 - [1 硬件环境准备](#1-硬件环境准备)
-    - [1.1 MK3060模组](#11-MK3060模组)
+    - [1.1 MK3060模组](#11-mk3060模组)
     - [1.2 串口线](#12-串口线)
     - [1.3 调试器](#13-调试器)
     - [1.4 调试器](#14-连接示例)
-- [2 Windows环境配置](#2-Windows环境配置)
+- [2 Windows环境配置](#2-windows环境配置)
     - [2.1 aos-cube安装](#21-aos-cube安装)
     - [2.2 交叉工具链](#22-交叉工具链)
     - [2.3 驱动安装](#23-驱动安装)
       - [2.3.1 串口驱动](#231-串口驱动)
-      - [2.3.2 JTAG驱动](#231-JTAG驱动)
-- [3 Linux环境配置](#3-Linux环境配置)
+      - [2.3.2 JTAG驱动](#231-jtag驱动)
+- [3 Linux环境配置](#3-linux环境配置)
     - [3.1 依赖及aos-cube安装](#31-依赖及aos-cube安装)
     - [3.2 交叉工具链](#32-交叉工具链)
     - [3.3 minicom串口配置](#33-minicom串口配置)
-- [4 J-Link烧写与调试](#4-J-Link烧写与调试)
-    - [4.1 J-Link烧写](#41-J-Link烧写)
-    - [4.2 J-Link调试](#42-J-Link调试)
+- [4 J-Link烧写与调试](#4-j-link烧写与调试)
+    - [4.1 J-Link烧写](#41-j-link烧写)
+    - [4.2 J-Link调试](#42-j-link调试)
    
 # 1 硬件环境准备
 以庆科 MK3060 模组为例，介绍 AliOS Things 硬件环境的搭建，其他模组的硬件环境可参考本节。
 
-## 1.1 MK3060 模组
+## 1.1 mk3060 模组
 MK3060 是基于 ARM 核的 Wi-Fi 模组：
 
 ![](https://img.alicdn.com/tfs/TB1dkGJdwoQMeJjy0FoXXcShVXa-4160-2336.jpg)
@@ -41,7 +41,7 @@ MK3060 的串口已经通过miniusb接口接出，通过 miniusb-usb 线将串�
 
 ![](https://img.alicdn.com/tfs/TB1ThvGg3MPMeJjy1XdXXasrXXa-4160-2336.jpg)
 
-# 2 Windows环境配置
+# 2 windows环境配置
 ## 2.1 aos-cube 安装
 aos-cube 是 AliOS Things 在 Python 下面开发的项目管理工具包，依赖 Python 2.7 版本。在 Python 官网下载对应的 2.7 版本的 [Python](https://www.python.org/downloads/) MSI 安装文件，安装时，选择 add python.exe to Path：
 
@@ -86,7 +86,7 @@ FTDI驱动，在 [FTDI](http://www.ftdichip.com/Drivers/D2XX.htm) 下载 Windows
 
 对应参数配置好一会，点击 OK 按钮，查看串口日志。
 
-### 2.3.2 JTAG 驱动
+### 2.3.2 jtag 驱动
 **J-Link**
 
 J-Link 驱动可在 [SEGGER J-Link驱动下载地址](https://www.segger.com/downloads/jlink/) 下，选择 J-Link Software and Documentation Pack，选择 J-Link Software and Documentation pack for Windows 下载安装：
@@ -109,7 +109,7 @@ J-Link 驱动可在 [SEGGER J-Link驱动下载地址](https://www.segger.com/dow
 
 **如果此时还是没法连接上 J-Link，在 J-Link 的 libusb 驱动选择时，选择 libusbK (v3.0.7.0) 尝试（由于不同厂家的使用的 J-Link 固件版本不同，libusb-win32（v1.2.6.0）可以无法正常工作）。**
 
-# 3 Linux环境配置
+# 3 linux环境配置
 ## 3.1 依赖及 aos-cube 安装
 以 Ubuntu 16.04 LTS (Xenial Xerus) 64-bit PC 版本为例，安装下列 pkg：
 
