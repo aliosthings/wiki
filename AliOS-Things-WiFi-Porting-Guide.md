@@ -9,7 +9,7 @@
 AliOS Things WiFi HAL的定义请查看头文件定义：[wifi_hal.h](https://github.com/alibaba/AliOS-Things/blob/master/include/hal/wifi.h)。在AliOS Things移植的过程中，如果需要支持WiFi功能，则需要对WiFi HAL接口进行移植实现。
 
 # 1WiFi模块结构体
-AliOS Things中，WiFi相关的操作和接口封装在下面的结构体中，相关定义在文件[wifi_hal.h](https://github.com/alibaba/AliOS-Things/blob/master/include/hal/wifi.h)中。
+WiFi相关的操作和接口封装在下面的结构体中，相关定义在文件[wifi_hal.h](https://github.com/alibaba/AliOS-Things/blob/master/include/hal/wifi.h)中。
   ```c
   struct hal_wifi_module_s {
       hal_module_base_t    base;
@@ -38,8 +38,10 @@ AliOS Things中，WiFi相关的操作和接口封装在下面的结构体中，�
   ```
 
 # 2WiFi事件回调函数
-在WiFi启动和运行的过程中，需要通过调用回调函数来通知上层应用，以执行相应的动作。这些WiFi事件的回调函数，应该在WiFi底层（WiFi HAL）中合适的位置进行调用。
-如WiFi底层拿到IP后，应执行ip_got回调，并将IP信息传递给上层；WiFi完成信道扫描后，应调用`scan_compeleted`或者`scan_adv_compeleted`回调，并将扫描结果传递给上层；在WiFi状态改变时，应调用`stat_chg`回调。
+在WiFi启动和运行的过程中，需要通过调用回调函数来通知上层应用，以执行相应的动作。这些WiFi事件的回调函数，应该在WiFi网络驱动的**任务上下文**中被触发：
+* WiFi底层拿到IP后，应执行`ip_got`回调，并将IP信息传递给上层
+* WiFi完成信道扫描后，应调用`scan_compeleted`或者`scan_adv_compeleted`回调，将扫描结果传递给上层
+* 在WiFi状态改变时，应调用`stat_chg`回调。
 下面是AliOS Things中定义的WiFi事件回调函数和接口，相关定义在文件[wifi_hal.h](https://github.com/alibaba/AliOS-Things/blob/master/include/hal/wifi.h)中。
 ```c
 typedef struct {
@@ -55,16 +57,8 @@ typedef struct {
     void (*fatal_err)(hal_wifi_module_t *m, void *arg);
 } hal_wifi_event_cb_t;
 ```
-
-在平台移植过程中，WiFi事件回调函数（结构体）可以通过`hal_wifi_install_event`函数进行注册。WiFi底层代码中，得到状态后，应该调用相应的事件的回调函数。例如，在获取到IP地址后，应通过以下代码来通知上层：
-```c
-sim_aos_wifi_vendor.ev_cb->ip_got(&sim_aos_wifi_vendor, pnet, NULL);
-```
-其中，`pnet`中包含了获取IP后的状态信息。
-
 # 3WiFi接口的实现
 具体的平台，用户需要分别实现WiFi模块结构体中对应的接口函数。关于WiFi HAL接口的说明，请参照：[WiFi HAL](https://github.com/alibaba/AliOS-Things/wiki/AliOS-Things-API-HAL-WiFi-Guide)。
-如上一节所述，在WiFi HAL接口的实现中，需要在得到某些状态（如获得ip）后，执行相应的回调函数来通知上层。
 
 # 4注册模块
 在完成WiFi接口和事件回调的实现后，定义一个`hal_wifi_module_t`的结构体，将各个接口和回调的实现地址赋值给结构体中对应的域。如下：
@@ -92,14 +86,13 @@ sim_aos_wifi_vendor.ev_cb->ip_got(&sim_aos_wifi_vendor, pnet, NULL);
       .wlan_send_80211_raw_frame = wlan_send_80211_raw_frame,
   };
   ```
-AliOS Things中实现了如下的注册函数，可以对实现好的WiFi模块结构体进行注册。注册的动作一般是在硬件初始化的过程中进行。
+通过下述注册API对WiFi模块进行注册。注册的动作一般是在系统初始化过程中WiFi硬件初始化完成后进行。
   ```c
   void hal_wifi_register_module(hal_wifi_module_t *m);
   ```
-完成注册的WiFi模块和接口才能被使用。
 
 # 5接口的使用
-需要使用WiFi功能和接口时，可以通过调用下面的函数来获取默认的WiFi模块结构体（第一个被注册的模块）。一般系统中只注册一个WiFi模块，在使用WiFi HAL接口时，一般由个参数是`hal_wifi_module_t *m`：若该参数不为空，则使用参数指定的WiFi模块；若为`NULL`，则使用默认的WiFi模块（使用如下接口）。
+需要使用WiFi功能和接口时，可以通过调用下面的函数来获取默认的WiFi模块结构体（第一个被注册的模块）。一般系统中只注册一个WiFi模块，在使用WiFi HAL接口时，通过`hal_wifi_module_t *m`指定所使用的WiFi模块，若为`NULL`，则使用默认的WiFi模块（使用如下接口）。
   ```c
   hal_wifi_module_t *hal_wifi_get_default_module(void);
   ```
