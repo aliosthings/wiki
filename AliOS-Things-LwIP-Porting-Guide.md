@@ -13,9 +13,11 @@ AliOS Things提供的LwIP协议栈，开发者可以按照以下步骤完成移�
 网卡驱动程序的移植示例代码，[参考实现](https://github.com/alibaba/AliOS-Things/blob/master/kernel/protocols/net/netif/ethernetif.c)。  
 主要涉及到以下函数的相关修改：
 
-`    static void low_level_init(struct netif *netif);  `  
-    `static err_t low_level_output(struct netif *netif, struct pbuf *p);  `  
-    `static struct pbuf *low_level_input(struct netif *netif);  `  
+```c
+  static void low_level_init(struct netif *netif);
+  static err_t low_level_output(struct netif *netif, struct pbuf *p);
+  static struct pbuf *low_level_input(struct netif *netif);
+```
 
 修改完成后，源代码需要存放在对应的平台(platform)下面。  
 
