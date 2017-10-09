@@ -53,7 +53,8 @@ int32_t hal_uart_send(uart_dev_t *uart, void *data, uint32_t size, uint32_t time
 ## 3-hal_uart_recv
 
 ```c
-int32_t hal_uart_recv(uart_dev_t *uart, void *data, uint32_t expect_size, uint32_t *recv_size, uint32_t timeout)
+int32_t hal_uart_recv(uart_dev_t *uart, void *data, uint32_t expect_size,
+                      uint32_t *recv_size, uint32_t timeout)
 ```
 
 - [x] **Description**
