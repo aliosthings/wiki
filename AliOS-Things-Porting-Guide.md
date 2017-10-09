@@ -9,4 +9,4 @@ AliOS Things提供原生FOTA功能，已完成对Alink、MQTT等协议通道的�
 ## [5 AliOS Things LwIP Porting Guide](https://github.com/alibaba/AliOS/wiki/AliOS-Things-LwIP-Porting-Guide)
 AliOS Things提供LwIP协议栈支持，并且已经完成与AliOS Things对接。默认条件下，开发者仅需要完成网卡驱动对接，即可开始无缝使用AliOS Things提供的LwIP协议栈。
 ## [6 AliOS Things BINS Porting Guide](https://github.com/alibaba/AliOS/wiki/AliOS-Things-BINS-Porting-Guide)
-AliOS Things提供多bin编译功能，支持kernel bin、app bin的单独编译、烧录能力，尤其节省了ota资源。开发者移植新硬件平台时，只需对平台链接脚本及编译脚本进行适配封装即可。
+AliOS Things提供多BIN编译功能，支持Kernel BIN、App BIN的单独编译、烧录能力，尤其节省了硬件资源。开发者移植新硬件平台时，只需对平台链接脚本及编译脚本进行适配封装即可。
