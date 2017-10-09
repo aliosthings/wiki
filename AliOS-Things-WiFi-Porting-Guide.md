@@ -6,7 +6,7 @@
   * [5 接口的使用](#5接口的使用)
 ---
 
-AliOS Things WiFi HAL的定义请查看头文件定义：[wifi_hal.h](https://github.com/alibaba/AliOS-Things/blob/master/include/hal/wifi.h)。在AliOS Things移植的过程中，如果需要支持WiFi功能，则需要对WiFi HAL接口进行移植实现。
+AliOS Things WiFi HAL的定义请查看头文件：[wifi_hal.h](https://github.com/alibaba/AliOS-Things/blob/master/include/hal/wifi.h)。在AliOS Things移植的过程中，如果需要支持WiFi功能，则需要对WiFi HAL接口进行移植实现。
 
 # 1WiFi模块结构体
 WiFi相关的操作和接口封装在下面的结构体中，相关定义在文件[wifi_hal.h](https://github.com/alibaba/AliOS-Things/blob/master/include/hal/wifi.h)中。
@@ -33,7 +33,7 @@ WiFi相关的操作和接口封装在下面的结构体中，相关定义在文�
       void (*stop_monitor)(hal_wifi_module_t *m);
       void (*register_monitor_cb)(hal_wifi_module_t *m, monitor_data_cb_t fn);
       void (*register_wlan_mgnt_monitor_cb)(hal_wifi_module_t *m, monitor_data_cb_t fn);
-      int (*wlan_send_80211_raw_frame)(hal_wifi_module_t *m, uint8_t *buf, int len);
+      int  (*wlan_send_80211_raw_frame)(hal_wifi_module_t *m, uint8_t *buf, int len);
   };
   ```
 
@@ -42,6 +42,7 @@ WiFi相关的操作和接口封装在下面的结构体中，相关定义在文�
 * WiFi底层拿到IP后，应执行`ip_got`回调，并将IP信息传递给上层
 * WiFi完成信道扫描后，应调用`scan_compeleted`或者`scan_adv_compeleted`回调，将扫描结果传递给上层
 * 在WiFi状态改变时，应调用`stat_chg`回调。
+
 下面是AliOS Things中定义的WiFi事件回调函数和接口，相关定义在文件[wifi_hal.h](https://github.com/alibaba/AliOS-Things/blob/master/include/hal/wifi.h)中。
 ```c
 typedef struct {
