@@ -9,7 +9,7 @@
     2.支持flash操作。
     3.支持Alink，或者MQTT，或者CoAP连接到阿里相应OTA平台。
 
-  FOTA跟具体芯片相关的接口建议放置在platform/mcu/xxxx/port/下面，文件名fota_port.c。其中，xxxx为当前正在移植的平台名。
+  FOTA跟具体芯片相关的接口建议放置在platform/mcu/xxxx/port/fota_port.c。其中，xxxx为当前正在移植的平台名。
   fota_port.c需要实现结构体`hal_ota_module_t`中的几个函数：
   ```c
       int (*init)(hal_ota_module_t *m, void *something);
