@@ -33,7 +33,8 @@ int32_t hal_sd_init(sd_dev_t *sd)
 ## 2-hal_sd_blks_read
 
 ```c
-int32_t hal_sd_blks_read(sd_dev_t *sd, uint8_t *data, uint32_t blk_addr, uint32_t blks, uint32_t timeout)
+int32_t hal_sd_blks_read(sd_dev_t *sd, uint8_t *data, uint32_t blk_addr,
+                         uint32_t blks, uint32_t timeout)
 ```
 
 - [x] **Description**
@@ -57,7 +58,8 @@ int32_t hal_sd_blks_read(sd_dev_t *sd, uint8_t *data, uint32_t blk_addr, uint32_
 ## 3-hal_sd_blks_write
 
 ```c
-int32_t hal_sd_blks_write(sd_dev_t *sd, uint8_t *data, uint32_t blk_addr, uint32_t blks, uint32_t timeout)
+int32_t hal_sd_blks_write(sd_dev_t *sd, uint8_t *data, uint32_t blk_addr,
+                          uint32_t blks, uint32_t timeout)
 ```
 
 - [x] **Description**
