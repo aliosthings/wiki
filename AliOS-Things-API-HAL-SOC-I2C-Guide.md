@@ -35,7 +35,8 @@ int32_t hal_i2c_init(i2c_dev_t *i2c)
 ## 2-hal_i2c_master_send
 
 ```c
-int32_t hal_i2c_master_send(i2c_dev_t *i2c, uint16_t dev_addr, uint8_t *data, uint16_t size, uint32_t timeout)
+int32_t hal_i2c_master_send(i2c_dev_t *i2c, uint16_t dev_addr, uint8_t *data,
+                            uint16_t size, uint32_t timeout)
 ```
 
 - [x] **Description**
@@ -59,7 +60,8 @@ int32_t hal_i2c_master_send(i2c_dev_t *i2c, uint16_t dev_addr, uint8_t *data, ui
 ## 3-hal_i2c_master_recv
 
 ```c
-int32_t hal_i2c_master_recv(i2c_dev_t *i2c, uint16_t dev_addr, uint8_t *data, uint16_t size, uint32_t timeout)
+int32_t hal_i2c_master_recv(i2c_dev_t *i2c, uint16_t dev_addr, uint8_t *data,
+                            uint16_t size, uint32_t timeout)
 ```
 
 - [x] **Description**
