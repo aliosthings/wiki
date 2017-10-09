@@ -32,7 +32,11 @@ GLOBAL_DEFINES += GLOBAL_MACRO ## 定义全局符号
 ```
 ### 3.1.3 添加源码
 所有的源码文件放置在应用工程目录下，开发者可以根据自行组织源码文件/目录。AliOS Things的应用程序入口为：
-`int application_start(int argc, char *argv[]);`
+
+```c
+  int application_start(int argc, char *argv[]);
+```
+
 ### 3.1.4 编译、烧录和调试
 
 ## 3.2 在AliOS Studio中进行应用开发
