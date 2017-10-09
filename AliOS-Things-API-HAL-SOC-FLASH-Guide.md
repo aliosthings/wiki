@@ -56,7 +56,7 @@ int32_t hal_flash_erase(hal_partition_t in_partition, uint32_t off_set, uint32_t
 
 ```c
 int32_t hal_flash_write(hal_partition_t in_partition, uint32_t *off_set,
-                               const void *in_buf, uint32_t in_buf_len)
+                        const void *in_buf, uint32_t in_buf_len)
 ```
 
 - [x] **Description**
@@ -80,7 +80,7 @@ int32_t hal_flash_write(hal_partition_t in_partition, uint32_t *off_set,
 
 ```c
 int32_t hal_flash_erase_write(hal_partition_t in_partition, uint32_t *off_set,
-                                        const void *in_buf, uint32_t in_buf_len)
+                              const void *in_buf, uint32_t in_buf_len)
 ```
 
 - [x] **Description**
