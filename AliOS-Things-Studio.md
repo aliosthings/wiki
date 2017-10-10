@@ -36,7 +36,7 @@ AliOS Things Studio 是 VS Code 插件，所以首先安装 VS Code ，通过插
 
 ![](https://img.alicdn.com/tfs/TB1ACciXPihSKJjy0FlXXadEXXa-865-558.png)
 
-
+VS Code调试等部分功能依赖.net framework 4.5.2。如果您使用的是Windowns 7系统，请确保安装了[.NET Framework 4.5.2](https://www.microsoft.com/en-us/download/details.aspx?id=42643)
 ## 1.2 AliOS Things Studio安装
 打开 VSCode, 点击左侧的扩展按钮，搜索alios-studio，点击安装即可
 
