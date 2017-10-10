@@ -179,7 +179,7 @@ C/C++ 插件提供了基本的语法检查功能，会在"问题面板"中显示
     
 ![](https://img.alicdn.com/tfs/TB1CWHiaLBNTKJjy0FdXXcPpVXa-660-90.png)
     
-编译时，在 ALIOS-STUDIO 的输出中可以看到执行的编译命令及执行状态，在 ALIOS-STUDIO-BUILD-DETAIL 的输出中可以看到编译的详细 log。编译完成后，会弹出 Image Footprint 显示每个模块的大小以及与上次编译的差别。
+编译时，在 ALIOS-STUDIO 的输出中可以看到编译的详细 log。
     
 ![](https://img.alicdn.com/tfs/TB1sX01bqagSKJjy0FcXXcZeVXa-2880-1800.png)
     
