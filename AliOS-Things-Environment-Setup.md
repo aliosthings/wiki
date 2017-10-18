@@ -163,15 +163,23 @@ j-link 烧写与调试，依赖于 [OpenOCD](https://files.alicdn.com/tpsservice
 
 ![](https://img.alicdn.com/tfs/TB1KjVFhgMPMeJjy1XcXXXpppXa-865-792.png)
 
-Window下调试：
+**Window调试**：
 
-Linux 调试：
+在AliOS Things源码目录下面，一个终端启动OpenOCD：
 
-在一个终端启动OpenOCD：
+ `$.\build\OpenOCD\Win32\openocd -f .\\build\OpenOCD\interface\jlink.cfg -f .\\build\OpenOCD\beken\beken.cfg -f .\\build\OpenOCD\beken\beken_gdb_jtag.cfg -l out\openocd_log.txt`
 
- `$ build/OpenOCD/Linux64/openocd  -f  build/OpenOCD/interface/jlink.cfg -f  build/OpenOCD/beken.cfg -f  build/OpenOCD/beken_gdb_jtag.cfg -l out/openocd_log.txt`
+在另外一个终端，启动 gdb：
 
-在另外一个终端的AliOS Things源码根目录下，启动 gdb：
+`$ arm-none-eabi-gdb -x=.gdbinit -ex 'target remote localhost:3333' ./out/eclipse_debug/last_built.elf --tui`
+
+**Linux 调试**：
+
+在AliOS Things源码目录下面，一个终端启动OpenOCD：
+
+ `$ ./build/OpenOCD/Linux64/openocd  -f  build/OpenOCD/interface/jlink.cfg -f  build/OpenOCD/beken.cfg -f  build/OpenOCD/beken_gdb_jtag.cfg -l out/openocd_log.txt`
+
+在另外一个终端，启动 gdb：
 
 `$ arm-none-eabi-gdb -x=.gdbinit -ex 'target remote localhost:3333' ./out/eclipse_debug/last_built.elf --tui`
 
