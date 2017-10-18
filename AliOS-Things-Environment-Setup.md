@@ -43,7 +43,7 @@ MK3060 的串口已经通过miniusb接口接出，通过 miniusb-usb 线将串�
 
 # 2 windows环境配置
 ## 2.1 aos-cube安装
-aos-cube 是 AliOS Things 在 Python 下面开发的项目管理工具包，依赖 Python 2.7 版本。在 Python 官网下载对应的 2.7 版本的 [Python](https://www.python.org/downloads/) MSI 安装文件，安装时，选择 安装pip和add python.exe to Path两个选项：
+aos-cube 是 AliOS Things 在 Python 下面开发的项目管理工具包，依赖 Python 2.7 版本。在 Python 官网下载对应的 2.7 版本的 [Python](https://www.python.org/downloads/) MSI 安装文件，安装时，选择 **pip** 和 **add python.exe to Path** 两个选项：
 
 ![](https://img.alicdn.com/tfs/TB1SlHyjqmgSKJjSspiXXXyJFXa-798-688.png)
 
