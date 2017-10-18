@@ -45,15 +45,9 @@ MK3060 的串口已经通过miniusb接口接出，通过 miniusb-usb 线将串�
 ## 2.1 aos-cube安装
 aos-cube 是 AliOS Things 在 Python 下面开发的项目管理工具包，依赖 Python 2.7 版本。在 Python 官网下载对应的 2.7 版本的 [Python](https://www.python.org/downloads/) MSI 安装文件，安装时，选择 安装pip和add python.exe to Path两个选项：
 
-![](https://img.alicdn.com/tfs/TB13PAjdMoQMeJjy0FoXXcShVXa-796-672.png)
+![](https://img.alicdn.com/tfs/TB1s4L9bLNNTKJjSspfXXbXIFXa-865-466.png)
 
-打开 cmd，输入 python，cmd 能找到 python 命令，说明安装配置成功。
-
-在 cmd 下面，进入 Python 安装目录的 Scripts（例如 Python 安装在 C 盘，则路径为 C:\Python27\Scripts），用 easy_install 安装 pip：
-
-`> easy_install pip`
-
-安装完成 pip 后，则可以安装 aos-cube：
+安装配置完成 Python 后，使用 pip 安装 aos-cube：
 
 `> pip install aos-cube`
 
