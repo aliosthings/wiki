@@ -15,8 +15,9 @@
     - [3.2 交叉工具链](#32-交叉工具链)
     - [3.3 minicom串口配置](#33-minicom串口配置)
 - [4 J-Link烧写与调试](#4-j-link烧写与调试)
-    - [4.1 J-Link烧写](#41-j-link烧写)
-    - [4.2 J-Link调试](#42-j-link调试)
+    - [4.1 openocd](#41-openocd)
+    - [4.2 J-Link烧写](#41-j-link烧写)
+    - [4.3 J-Link调试](#42-j-link调试)
    
 # 1 硬件环境准备
 以庆科 MK3060 模组为例，介绍 AliOS Things 硬件环境的搭建，其他模组的硬件环境可参考本节。
@@ -146,8 +147,8 @@ pu rtscts           No
 启动 minicom，查看串口日志。
 
 # 4 j-link烧写与调试
-## 4.1 OpenOCD
-j-link 烧写与调试，依赖于 [OpenOCD](https://files.alicdn.com/tpsservice/6b3d60f77fcfeb00979bbd27c16b17e3.zip)。下载解压缩后，拷贝的AliOS Things源码的 build 目录下：
+## 4.1 openocd
+j-link 烧写与调试，依赖于 [OpenOCD](https://files.alicdn.com/tpsservice/6b3d60f77fcfeb00979bbd27c16b17e3.zip)，下载后解压，拷贝的AliOS Things源码的 build 目录下：
 
 ![](https://img.alicdn.com/tfs/TB1AVBOnMMPMeJjy1XcXXXpppXa-1003-466.png)
 
