@@ -146,21 +146,30 @@ pu rtscts           No
 启动 minicom，查看串口日志。
 
 # 4 j-link烧写与调试
-## 4.1 j-link烧写
+## 4.1 OpenOCD
+j-link 烧写与调试，依赖于 [OpenOCD](https://files.alicdn.com/tpsservice/6b3d60f77fcfeb00979bbd27c16b17e3.zip)。下载解压缩后，拷贝的AliOS Things源码的 build 目录下：
+
+![](https://img.alicdn.com/tfs/TB1AVBOnMMPMeJjy1XcXXXpppXa-1003-466.png)
+
+## 4.2 j-link烧写
 以 MK3060 为例，在编译的时候，带上jlink烧写参数：
 
 `$aos make helloworld@mk3060 JTAG=jlink download`
 
 会通过J-Link烧写固件到板子上。
 
-## 4.2 j-link调试
+## 4.3 j-link调试
 以MK3060为例，首先按住boot按键，不要松开，再按一下reset键，松开reset键，进入bootloader模式：
 
 ![](https://img.alicdn.com/tfs/TB1KjVFhgMPMeJjy1XcXXXpppXa-865-792.png)
 
+Window下调试：
+
+Linux 调试：
+
 在一个终端启动OpenOCD：
 
- `$ (path to openocd)/Linux64/openocd  -f  (path to openocd)/openocd/interface/jlink.cfg -f  (path to openocd)/openocd/beken.cfg -f  (path to openocd)/openocd/beken_gdb_jtag.cfg -l out/openocd_log.txt`
+ `$ build/OpenOCD/Linux64/openocd  -f  build/OpenOCD/interface/jlink.cfg -f  build/OpenOCD/beken.cfg -f  build/OpenOCD/beken_gdb_jtag.cfg -l out/openocd_log.txt`
 
 在另外一个终端的AliOS Things源码根目录下，启动 gdb：
 
