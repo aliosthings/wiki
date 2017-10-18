@@ -16,7 +16,7 @@ AliOS Things支持多种硬件平台。开发应用的硬件环境包括开发�
 AliOS Things支持命令行工具和IDE两种开发方式。AliOS Things开发环境的搭建请参照：[AliOS Things Development Environment Setup](https://github.com/alibaba/AliOS-Things/wiki/AliOS-Things-Environment-Setup)
 
 # 3应用开发步骤
-基于AliOS Things可以很方便地进行应用开发。命令行工具主要适用于使用Linux的开发者。IDE环境则适合在Windows或者MAC下使用。
+基于AliOS Things可以很方便地进行应用开发。命令行工具主要适用于使用Linux的开发者。IDE环境则适合在Windows下使用。
 ## 3.1 命令行工具进行应用开发
 命令行工具下的应用的开发步骤主要包括工程目录的创建、工程Makefile编写、源码编写、工程编译、程序烧录、调试等步骤。
 ### 3.1.1 创建工程目录
