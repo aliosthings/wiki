@@ -164,7 +164,8 @@ j-link 烧写与调试，依赖于 [OpenOCD](https://files.alicdn.com/tpsservice
 
 ![](https://img.alicdn.com/tfs/TB1KjVFhgMPMeJjy1XcXXXpppXa-865-792.png)
 
-**Window调试**：
+**Window调试**  
+
 在AliOS Things源码目录下面，分别运行 OpenOCD 命令和 gdb命令。
 
 在AliOS Things源码目录下面，在一个 CMD 窗口下面启动OpenOCD：
@@ -175,7 +176,7 @@ j-link 烧写与调试，依赖于 [OpenOCD](https://files.alicdn.com/tpsservice
 
 `$ arm-none-eabi-gdb -x=.gdbinit -ex 'target remote localhost:3333' ./out/eclipse_debug/last_built.elf --tui`
 
-**Linux 调试**：
+**Linux 调试**
 
 在AliOS Things源码目录下面，分别运行 OpenOCD 命令和 gdb命令。
 
