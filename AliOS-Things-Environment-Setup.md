@@ -165,6 +165,7 @@ j-link 烧写与调试，依赖于 [OpenOCD](https://files.alicdn.com/tpsservice
 ![](https://img.alicdn.com/tfs/TB1KjVFhgMPMeJjy1XcXXXpppXa-865-792.png)
 
 **Window调试**：
+在AliOS Things源码目录下面，分别运行 OpenOCD 命令和 gdb命令。
 
 在AliOS Things源码目录下面，在一个 CMD 窗口下面启动OpenOCD：
 
@@ -176,7 +177,9 @@ j-link 烧写与调试，依赖于 [OpenOCD](https://files.alicdn.com/tpsservice
 
 **Linux 调试**：
 
-在AliOS Things源码目录下面，在一个 Shell 窗口启动OpenOCD：
+在AliOS Things源码目录下面，分别运行 OpenOCD 命令和 gdb命令。
+
+在一个 Shell 窗口启动OpenOCD：
 
  `$ ./build/OpenOCD/Linux64/openocd  -f  build/OpenOCD/interface/jlink.cfg -f  build/OpenOCD/beken.cfg -f  build/OpenOCD/beken_gdb_jtag.cfg -l out/openocd_log.txt`
 
