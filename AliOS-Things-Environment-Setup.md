@@ -102,7 +102,7 @@ J-Link 驱动可在 [SEGGER J-Link驱动下载地址](https://www.segger.com/dow
 
 连接 J-Link 烧写或者调试。  
 
-**如果此时还是没法连接上 J-Link，在 J-Link 的 libusb 驱动选择时，选择 libusbK (v3.0.7.0) 尝试（由于不同厂家的使用的 J-Link 固件版本不同，libusb-win32（v1.2.6.0）可以无法正常工作）。**
+**如果此时无法法连接上 J-Link，或者烧写调试失败，在选择 J-Link 的 libusb 驱动选择时，尝试选择 libusbK (v3.0.7.0) （由于不同厂家的使用的 J-Link 固件版本不同，libusb-win32（v1.2.6.0）可能无法正常驱动J-Link）。**
 
 # 3 linux环境配置
 ## 3.1 依赖及aos-cube安装
