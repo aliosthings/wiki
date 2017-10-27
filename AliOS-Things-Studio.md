@@ -131,7 +131,7 @@ C/C++ 插件提供了基本的语法检查功能，会在"问题面板"中显示
     
 ![](https://img.alicdn.com/tfs/TB1OWviaLBNTKJjy0FdXXcPpVXa-216-46.png)
     
-第一次创建项目会进入 SDK 管理界面，在此输入一个SDK的路径及对应的版本即可。如果以后需要增加或修改 SDK，也可以通过 alios-studio:Set SDK 命令打开 SDK 管理界面进行 SDK 管理，进行 SDK 的编辑，增加及删除。
+第一次创建项目会进入 SDK 管理界面，在此输入一个SDK的路径及对应的版本即可。如果以后需要增加或修改 SDK，也可以通过 alios-studio:Set SDK 命令打开 SDK 管理界面进行 SDK 管理，进行 SDK 的编辑，增加及删除。SDK路径设置成AliOS-Things源码目录即可。
     
 ![](https://img.alicdn.com/tfs/TB1QzV0bzuhSKJjSspjXXci8VXa-1716-882.png)
     
