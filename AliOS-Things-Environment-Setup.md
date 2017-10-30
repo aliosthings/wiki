@@ -73,11 +73,11 @@ FTDI驱动，在 [FTDI](http://www.ftdichip.com/Drivers/D2XX.htm) 下载 Windows
 
 对应驱动安装完成后，连接设备，可在计算机 - 设备管理 - 端口，查看对应转换端口状态：
 
-![](https://img.alicdn.com/tfs/TB1Fflnd3MPMeJjy1XcXXXpppXa-864-633.png)
+![](https://img.alicdn.com/tfs/TB1UziVXRTH8KJjy0FiXXcRsXXa-865-518.png)
 
 驱动安装完成后，连接串口线，配置串口参数。在 MobaXterm Personal Edition 下，以MK3060为例，Session - Serial，选择端口，波特率为921600， Advanced Serial setting 里面，Software 选择 Minicom （allow manual COM port setting）：
 
-![](https://img.alicdn.com/tfs/TB1Fg4ibjihSKJjy0FiXXcuiFXa-865-522.png)
+![](https://img.alicdn.com/tfs/TB1tyqZXL2H8KJjy0FcXXaDlFXa-865-429.png)
 
 对应参数配置好一会，点击 OK 按钮，查看串口日志。
 
