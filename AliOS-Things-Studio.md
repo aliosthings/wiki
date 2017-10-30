@@ -163,9 +163,9 @@ C/C++ 插件提供了基本的语法检查功能，会在"问题面板"中显示
 
 初次连接设备时，VS Code 上方会弹出输入框提示用户选择串口号及输入波特率。MAC 用户需要注意MAC 设备默认可能会有一个蓝牙设备的串口，应该选择包含 usbserial 的串口号。
 
-![](https://img.alicdn.com/tfs/TB1U8TEfgoQMeJjy1XaXXcSsFXa-865-442.png)
+![](https://img.alicdn.com/tfs/TB18I51XMnD8KJjy1XdXXaZsVXa-865-447.png)
 
-![](https://img.alicdn.com/tfs/TB1YjjJfgMPMeJjy1XbXXcwxVXa-865-444.png)
+![](https://img.alicdn.com/tfs/TB1EXm2XNrI8KJjy0FpXXb5hVXa-865-452.png)
 
 设备连接完成后，Connect Device 按钮隐藏，界面下方会呼出输出界面显示串口日志，同时状态栏会出现一个以设备串口号命名的按钮。点击该按钮会在界面上方弹出设备相关的功能。包括断开设备，烧录镜像，打开 shell 窗口，修改波特率，打开 Trace 窗口，连接其他串口。
 
