@@ -169,7 +169,7 @@ C/C++ 插件提供了基本的语法检查功能，会在"问题面板"中显示
 
 设备连接完成后，Connect Device 按钮隐藏，界面下方会呼出输出界面显示串口日志，同时状态栏会出现一个以设备串口号命名的按钮。点击该按钮会在界面上方弹出设备相关的功能。包括断开设备，烧录镜像，打开 shell 窗口，修改波特率，打开 Trace 窗口，连接其他串口。
 
-![](https://img.alicdn.com/tfs/TB1bTXRbqagSKJjy0FbXXa.mVXa-2880-1800.png)
+![](https://img.alicdn.com/tfs/TB1xtTwXMvD8KJjy0FlXXagBFXa-865-487.png)
 
 在 shell 窗口中，可以在输入框中输入命令执行，也可以点击左侧的按钮列出设备支持的命令，直接填入输入框中，并且可以在 shell 窗口中看到命令执行的返回结果。(部分命令的结果也可能从串口 log 中输出)
 
