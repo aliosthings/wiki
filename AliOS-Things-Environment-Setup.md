@@ -148,7 +148,7 @@ pu rtscts           No
 
 # 4 j-link烧写与调试
 ## 4.1 openocd
-j-link 烧写与调试，依赖于 [OpenOCD](https://files.alicdn.com/tpsservice/6b3d60f77fcfeb00979bbd27c16b17e3.zip)，下载后解压，拷贝的AliOS Things源码的 build 目录下：
+j-link 烧写与调试，依赖于 [OpenOCD](https://files.alicdn.com/tpsservice/2fee50bd5c947f36b30c413d52f6bbc2.zip)，下载后解压，拷贝的AliOS Things源码的 build 目录下：
 
 ![](https://img.alicdn.com/tfs/TB1AVBOnMMPMeJjy1XcXXXpppXa-1003-466.png)
 
