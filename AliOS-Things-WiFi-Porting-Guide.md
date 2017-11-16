@@ -43,6 +43,8 @@ WiFi相关的操作和接口封装在下面的结构体中，相关定义在文�
 * WiFi完成信道扫描后，应调用`scan_compeleted`或者`scan_adv_compeleted`回调，将扫描结果传递给上层
 * 在WiFi状态改变时，应调用`stat_chg`回调。
 
+这些事件回调函数由上层定义并注册，在WiFi底层（如HAL）里面触发调用。
+
 下面是AliOS Things中定义的WiFi事件回调函数和接口，相关定义在文件[wifi_hal.h](https://github.com/alibaba/AliOS-Things/blob/master/include/hal/wifi.h)中。
 ```c
 typedef struct {
@@ -60,8 +62,53 @@ typedef struct {
 ```
 # 3WiFi接口的实现
 具体的平台，用户需要分别实现WiFi模块结构体中对应的接口函数。关于WiFi HAL接口的说明，请参照：[WiFi HAL](https://github.com/alibaba/AliOS-Things/wiki/AliOS-Things-API-HAL-WiFi-Guide)。
+接口说明如下：
+## `init`
+该接口需要对wifi进行初始化，使wifi达到可以准备进行连接工作的状态，如分配wifi资源、初始化硬件模块等操作。
+## `get_mac_addr`
+通过该接口可以获取到WiFi的物理硬件地址。
+## `set_mac_addr`
+通过该接口可以设置WiFi的物理硬件地址。
+## `start`
+通过该接口可以启动WiFi，根据启动参数不同来区分启动station模式还是AP模式，如station模式下进行连接AP的操作、AP模式下根据参数启动AP功能。在station模式下，该函数触发AP连接操作后即返回。后续底层处理过程中，拿到IP信息后，需要调用`ip_got`回调函数来通知上层获取IP事件。另外需要注意的是，在连接AP后，WiFi底层需要维护自动重连操作。
+## `start_adv`
+该接口类似`start `，但启动的参数更丰富。可选。
+## `get_ip_stat`
+通过该接口可以获取WiFi工作状态下的IP信息，如IP、网关、子网掩码、MAC地址等信息。
+## `get_link_stat`
+通过该接口可以获取WiFi工作状态下的链路层信息，如连接信号强度、信道、SSID等信息。
+## `start_scan`
+该接口启动station模式下的信道扫描。扫描结束后，调用`scan_compeleted`回调函数，将各个信道上扫描到的AP信息通知给上层。需要得到的扫描信息在`hal_wifi_scan_result_t`中定义。
+## `start_scan_adv`
+该接口与`hal_wifi_start_scan `类似，但扫描的信息更多，如bssid、channel信息等，需要扫描得到的信息在`hal_wifi_scan_result_adv_t`中定义。扫描结束后，通过调用`scan_adv_compeleted`回调函数通知上层。
+## `power_off`
+该接口对WiFi硬件进行断电操作。
+## `power_on`
+该接口对WiFi硬件进行上电操作。
+## `suspend`
+该接口断开WiFi所有连接，同时支持station模式和soft ap模式。
+## `suspend_station`
+该接口断开WiFi所有连接，支持station模式。
+## `suspend_soft_ap`
+该接口断开WiFi所有连接，支持soft ap模式。
+## `set_channel`
+通过该接口可以设置信道。
+## `wifi_monitor`
+该接口启动监听模式，并且在收到任何数据帧（包括beacon、probe request等）时，调用monitor_cb回调函数进行处理。注意，回调函数是上层通过`register_monitor_cb`进行注册的。底层不要对数据帧进行任何过滤，上层cb会根据需要处理。
+## `stop_wifi_monitor`
+该接口关闭侦听模式。
+## `register_monitor_cb`
+该接口注册侦听模式回调函数，回调函数在底层接收到任何数据帧时被调用。
+## `register_wlan_mgnt_monitor_cb`
+该接口注册管理帧回调函数（非监听模式下），该回调函数在底层接收到管理帧时被调用。
+## `start_debug_mode`
+该接口进入调试模式，可选（若模块支持）。
+## `stop_debug_mode`
+该接口退出调试模式，可选。
+## `wlan_send_80211_raw_frame`
+该接口可以用于发送802.11格式的数据帧。
 
-# 4注册模块
+# 4初始化WiFi和注册模块
 在完成WiFi接口和事件回调的实现后，定义一个`hal_wifi_module_t`的结构体，将各个接口和回调的实现地址赋值给结构体中对应的域。如下：
   ```c
   hal_wifi_module_t sim_aos_wifi_vendor = {
@@ -87,8 +134,9 @@ typedef struct {
       .wlan_send_80211_raw_frame = wlan_send_80211_raw_frame,
   };
   ```
-通过下述注册API对WiFi模块进行注册。注册的动作一般是在系统初始化过程中WiFi硬件初始化完成后进行。
+一般在板级初始化的过程中，调用`hal_wifi_init`接口对WiFi硬件模块进行初始化。然后通过`hal_wifi_register_module `接口对WiFi模块进行注册。
   ```c
+  int hal_wifi_init(void);
   void hal_wifi_register_module(hal_wifi_module_t *m);
   ```
 
