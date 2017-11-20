@@ -94,7 +94,7 @@ typedef struct {
 ## `set_channel`
 通过该接口可以设置信道。
 ## `wifi_monitor`
-该接口启动监听模式，并且在收到任何数据帧（包括beacon、probe request等）时，调用monitor_cb回调函数进行处理。注意，回调函数是上层通过`register_monitor_cb`进行注册的。底层不要对数据帧进行任何过滤，上层cb会根据需要处理。
+该接口启动监听模式，并且在收到任何数据帧（包括beacon、probe request等）时，调用monitor_cb回调函数进行处理。注意，回调函数是上层通过`register_monitor_cb`进行注册的。注意：监听模式下，上层cb函数期望处理的包不带FCS域，所以底层的数据包如果带FCS应当先剥离再往上层传递。
 ## `stop_wifi_monitor`
 该接口关闭侦听模式。
 ## `register_monitor_cb`
