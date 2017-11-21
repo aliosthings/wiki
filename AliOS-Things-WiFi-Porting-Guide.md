@@ -78,9 +78,9 @@ typedef struct {
 ## `get_link_stat`
 通过该接口可以获取WiFi工作状态下的链路层信息，如连接信号强度、信道、SSID等信息。
 ## `start_scan`
-该接口启动station模式下的信道扫描。扫描结束后，调用`scan_compeleted`回调函数，将各个信道上扫描到的AP信息通知给上层。需要得到的扫描信息在`hal_wifi_scan_result_t`中定义。
+该接口启动station模式下的信道扫描。扫描结束后，调用`scan_compeleted`回调函数，将各个信道上扫描到的AP信息通知给上层。需要得到的扫描信息在`hal_wifi_scan_result_t`中定义。注意：扫描结果存储所需要的内存在底层实现中分配，回调函数返回后再将该内存释放。
 ## `start_scan_adv`
-该接口与`hal_wifi_start_scan `类似，但扫描的信息更多，如bssid、channel信息等，需要扫描得到的信息在`hal_wifi_scan_result_adv_t`中定义。扫描结束后，通过调用`scan_adv_compeleted`回调函数通知上层。
+该接口与`hal_wifi_start_scan `类似，但扫描的信息更多，如bssid、channel信息等，需要扫描得到的信息在`hal_wifi_scan_result_adv_t`中定义。扫描结束后，通过调用`scan_adv_compeleted`回调函数通知上层。注意：扫描结果存储所需要的内存在底层实现中分配，回调函数返回后再将该内存释放。
 ## `power_off`
 该接口对WiFi硬件进行断电操作。
 ## `power_on`
