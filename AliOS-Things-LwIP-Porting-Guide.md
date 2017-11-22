@@ -34,4 +34,4 @@ LwIP配置修改的移植示例代码，[参考实现](https://github.com/alibab
 与OS的对接AliOS Things已经默认完成，开发者可以直接使用。[实现代码](https://github.com/alibaba/AliOS-Things/blob/master/kernel/protocols/net/port/sys_arch.c)。  
 
 ## 5编译脚本修改
-完成上述修改后，需要修改对应平台(platform)下相关Makefile，[参考实现](https://github.com/alibaba/AliOS-Things/blob/master/platform/mcu/beken/beken.mk)。
+完成上述修改后，需要修改对应平台(platform)下相关Makefile，[参考实现](https://github.com/alibaba/AliOS-Things/blob/master/platform/mcu/moc108/moc108.mk)。
