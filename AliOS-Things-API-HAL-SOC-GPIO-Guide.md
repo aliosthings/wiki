@@ -26,8 +26,7 @@ int32_t hal_gpio_init(gpio_dev_t *gpio)
 
   | IN/OUT |  NAME  |  DESC  |
   |--------|--------|--------|
-  | [in] | gpiothe gpio pin which should be initialised |  |
-  | [in] | configuration | A structure containing the required gpio configuration |
+  | [in] | gpio | the gpio device which should be initialised |
 
 - [x] **Returns**
 
