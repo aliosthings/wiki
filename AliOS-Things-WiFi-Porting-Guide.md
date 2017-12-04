@@ -4,6 +4,7 @@
   * [3 WiFi接口的实现](#3WiFi接口的实现)
   * [4 注册模块](#4注册模块)
   * [5 接口的使用](#5接口的使用)
+  * [6 WiFi移植的验证](#6WiFi移植的验证)
 ---
 
 在AliOS Things移植的过程中，如果需要支持WiFi功能(例如有配网需求，参考AliOS Things中的netmgr模块)，则需要对WiFi HAL接口进行移植实现。AliOS Things WiFi HAL的接口定义请查看头文件：[wifi_hal.h](https://github.com/alibaba/AliOS-Things/blob/master/include/hal/wifi.h)。
