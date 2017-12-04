@@ -6,10 +6,12 @@
   * [5 接口的使用](#5接口的使用)
 ---
 
-AliOS Things WiFi HAL的定义请查看头文件：[wifi_hal.h](https://github.com/alibaba/AliOS-Things/blob/master/include/hal/wifi.h)。在AliOS Things移植的过程中，如果需要支持WiFi功能，则需要对WiFi HAL接口进行移植实现。
+在AliOS Things移植的过程中，如果需要支持WiFi功能(例如有配网需求，参考AliOS Things中的netmgr模块)，则需要对WiFi HAL接口进行移植实现。AliOS Things WiFi HAL的接口定义请查看头文件：[wifi_hal.h](https://github.com/alibaba/AliOS-Things/blob/master/include/hal/wifi.h)。
+
+本文将讲述AliOS Things中的WiFi移植要点，以及如何验证WiFi移植工作。
 
 # 1WiFi模块结构体
-WiFi相关的操作和接口封装在下面的结构体中，相关定义在文件[wifi_hal.h](https://github.com/alibaba/AliOS-Things/blob/master/include/hal/wifi.h)中。
+首先，先了解一下AliOS Things中跟WiFi HAL相关的一个重要结构体 - `hal_wifi_module_t`。WiFi相关的操作和接口都封装在`hal_wifi_module_t`这个结构体中，相关定义在文件[wifi_hal.h](https://github.com/alibaba/AliOS-Things/blob/master/include/hal/wifi.h)中。
   ```c
   struct hal_wifi_module_s {
       hal_module_base_t    base;
@@ -36,14 +38,15 @@ WiFi相关的操作和接口封装在下面的结构体中，相关定义在文�
       int  (*wlan_send_80211_raw_frame)(hal_wifi_module_t *m, uint8_t *buf, int len);
   };
   ```
+在平台移植过程中，如何对接这些接口，将在后续章节中叙述。
 
 # 2WiFi事件回调函数
-在WiFi启动和运行的过程中，需要通过调用回调函数来通知上层应用，以执行相应的动作。这些WiFi事件的回调函数，应该在WiFi网络驱动的**任务上下文**中被触发：
-* WiFi底层拿到IP后，应执行`ip_got`回调，并将IP信息传递给上层
-* WiFi完成信道扫描后，应调用`scan_compeleted`或者`scan_adv_compeleted`回调，将扫描结果传递给上层
-* 在WiFi状态改变时，应调用`stat_chg`回调。
+WiFi移植过程中，WiFi事件及回调函数也是很重要的一个内容。AliOS Things中WiFi事件的回调函数在netmgr模块中定义，请参照`framework/netmgr/`。在配网过程中，netmgr负责定义和注册WiFi回调函数；而在WiFi启动和运行的过程中，通过调用回调函数来通知上层应用，以执行相应的动作。这些WiFi事件的回调函数，应该在WiFi网络驱动（通常是HAL层实现或更底层的代码）的**任务上下文**中被触发。例如：
+* 在WiFi底层拿到IP后，应执行`ip_got`回调，并将IP信息传递给上层；
+* 在WiFi完成信道扫描后，应调用`scan_compeleted`或者`scan_adv_compeleted`回调，将扫描结果传递给上层；
+* 在在WiFi状态改变时，应调用`stat_chg`回调。
 
-这些事件回调函数由上层定义并注册，在WiFi底层（如HAL）里面触发调用。
+需要再次强调的是，这些事件回调函数由netmgr配网模块定义并注册，在WiFi底层（如HAL）里面触发调用。
 
 下面是AliOS Things中定义的WiFi事件回调函数和接口，相关定义在文件[wifi_hal.h](https://github.com/alibaba/AliOS-Things/blob/master/include/hal/wifi.h)中。
 ```c
@@ -60,9 +63,11 @@ typedef struct {
     void (*fatal_err)(hal_wifi_module_t *m, void *arg);
 } hal_wifi_event_cb_t;
 ```
+回调函数的定义，请参照netmgr中的`g_wifi_hal_event `。
+
 # 3WiFi接口的实现
-具体的平台，用户需要分别实现WiFi模块结构体中对应的接口函数。关于WiFi HAL接口的说明，请参照：[WiFi HAL](https://github.com/alibaba/AliOS-Things/wiki/AliOS-Things-API-HAL-WiFi-Guide)。
-接口说明如下：
+在具体的平台移植过程中，用户需要分别实现WiFi模块结构体中对应的接口函数。AliOS Things对WiFi HAL层接口有一层封装，参见`kernel/hal/wifi.c`文件。具体的接口实现，一般在`platform/mcu/xxx/hal/wifi_port.c`中。参考实现：`platform/mcu/esp32/hal/wifi_port.c`。关于WiFi HAL接口的说明，可以参照：[WiFi HAL](https://github.com/alibaba/AliOS-Things/wiki/AliOS-Things-API-HAL-WiFi-Guide)。
+下面对每个接口作一些说明：
 ## `init`
 该接口需要对wifi进行初始化，使wifi达到可以准备进行连接工作的状态，如分配wifi资源、初始化硬件模块等操作。
 ## `get_mac_addr`
