@@ -75,7 +75,7 @@ typedef struct {
 ## `set_mac_addr`
 通过该接口可以设置WiFi的物理硬件地址。
 ## `start`
-通过该接口可以启动WiFi，根据启动参数不同来区分启动station模式还是AP模式，如station模式下进行连接AP的操作、AP模式下根据参数启动AP功能。在station模式下，该函数触发AP连接操作后即返回。后续底层处理过程中，拿到IP信息后，需要调用`ip_got`回调函数来通知上层获取IP事件。另外需要注意的是，在连接AP后，WiFi底层需要维护自动重连操作。
+通过该接口可以启动WiFi，根据启动参数不同来区分启动station模式还是AP模式，如station模式下进行连接AP的操作、AP模式下根据参数启动AP功能。在station模式下，该函数触发AP连接操作后即返回。后续底层处理过程中，拿到IP信息后，需要调用`ip_got`回调函数来通知上层获取IP事件。另外需要注意的是，**在连接AP后，WiFi底层需要维护自动重连操作**。
 ## `start_adv`
 该接口类似`start `，但启动的参数更丰富。可选。
 ## `get_ip_stat`
@@ -83,9 +83,9 @@ typedef struct {
 ## `get_link_stat`
 通过该接口可以获取WiFi工作状态下的链路层信息，如连接信号强度、信道、SSID等信息。
 ## `start_scan`
-该接口启动station模式下的信道扫描。扫描结束后，调用`scan_compeleted`回调函数，将各个信道上扫描到的AP信息通知给上层。需要得到的扫描信息在`hal_wifi_scan_result_t`中定义。注意：扫描结果存储所需要的内存在底层实现中分配，回调函数返回后再将该内存释放。
+该接口启动station模式下的信道扫描。扫描结束后，调用`scan_compeleted`回调函数，将各个信道上扫描到的AP信息通知给上层。需要得到的扫描信息在`hal_wifi_scan_result_t`中定义。注意：**扫描结果存储所需要的内存在底层实现中分配，回调函数返回后再将该内存释放**。
 ## `start_scan_adv`
-该接口与`hal_wifi_start_scan `类似，但扫描的信息更多，如bssid、channel信息等，需要扫描得到的信息在`hal_wifi_scan_result_adv_t`中定义。扫描结束后，通过调用`scan_adv_compeleted`回调函数通知上层。注意：扫描结果存储所需要的内存在底层实现中分配，回调函数返回后再将该内存释放。
+该接口与`hal_wifi_start_scan `类似，但扫描的信息更多，如bssid、channel信息等，需要扫描得到的信息在`hal_wifi_scan_result_adv_t`中定义。扫描结束后，通过调用`scan_adv_compeleted`回调函数通知上层。注意：**扫描结果存储所需要的内存在底层实现中分配，回调函数返回后再将该内存释放**。
 ## `power_off`
 该接口对WiFi硬件进行断电操作。
 ## `power_on`
@@ -99,7 +99,7 @@ typedef struct {
 ## `set_channel`
 通过该接口可以设置信道。
 ## `wifi_monitor`
-该接口启动监听模式，并且在收到任何数据帧（包括beacon、probe request等）时，调用monitor_cb回调函数进行处理。注意，回调函数是上层通过`register_monitor_cb`进行注册的。注意：监听模式下，上层cb函数期望处理的包不带FCS域，所以底层的数据包如果带FCS应当先剥离再往上层传递。
+该接口启动监听模式，并且在收到任何数据帧（包括beacon、probe request等）时，调用monitor_cb回调函数进行处理。注意，回调函数是上层通过`register_monitor_cb`进行注册的。注意：**监听模式下，上层cb函数期望处理的包不带FCS域，所以底层的数据包如果带FCS应当先剥离再往上层传递**。
 ## `stop_wifi_monitor`
 该接口关闭侦听模式。
 ## `register_monitor_cb`
