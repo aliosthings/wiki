@@ -8,4 +8,4 @@ AliOS Things是阿里巴巴旗下物联网操作系统。阿里巴巴发布物�
 * [API Reference](https://github.com/alibaba/AliOS-Things/wiki/AliOS-Things-Porting-Guide)
 
 ## Get Started  
-现在让我们开始构建第一个 [Hello World Example](https://github.com/alibaba/AliOS-Things/wiki/AliOS-Things-APP-DEV-Guide)应用，体验AliOS Things的极致开发体验。
+现在让我们开始构建第一个 [Hello World Example](https://github.com/alibaba/AliOS-Things/wiki/AliOS-Things-APP-DEV-Guide) 应用，体验AliOS Things的极致开发体验。
