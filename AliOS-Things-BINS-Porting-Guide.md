@@ -8,6 +8,7 @@
 以mk3060平台为例：
  * 单bin编译： aos make helloworld@mk3060
  * app bin编译：aos make helloworld@mk3060 BINS=app
+ * framework bin编译：aos make helloworld@mk3060 BINS=framework
  * kernel bin编译：aos make helloworld@mk3060 BINS=kernel
 
 # 2链接脚本ld文件修改  
