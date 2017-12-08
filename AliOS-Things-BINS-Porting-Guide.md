@@ -5,7 +5,7 @@
   * [4 Makefile修改](#4Makefile修改)
 ------
 # 1多bin的编译方式  
-以mk3060平台为例：
+以mk3060平台为例(目前只支持mk3060平台)：
  * 单bin编译： aos make helloworld@mk3060
  * app bin编译：aos make helloworld@mk3060 BINS=app
  * framework bin编译：aos make helloworld@mk3060 BINS=framework
