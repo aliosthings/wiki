@@ -28,12 +28,12 @@ ld文件的实现格式和单bin一致，主要需要提供如下一点：
 在app中同时使用此全局变量。
 
 # 4Makefile修改
-AliOS Things可以以组件化的方式弹性组合，所以在每个组件的makefile文件中，增加了$(NAME)_TYPE变量，有如下选项：
+AliOS Things可以以组件化的方式弹性组合，所以在每个组件的makefile文件中，增加了$(NAME)_TYPE变量，有如下选项：   
 $(NAME)_TYPE:
 app、framework、kernel、app&framework、framework&kernel、app&kernel、share（三bin共享）、默认
 
-app：          app、app&framework、app&kernel、share、默认
-framework：framework、app&framework、framework&kernel、share
+app：          app、app&framework、app&kernel、share、默认   
+framework：framework、app&framework、framework&kernel、share   
 kernel：       kernel、app&kernel、framework&kernel、share
 
 注意：framework、kernel组件理论上必须标明组件类型，app组件可标可不标
