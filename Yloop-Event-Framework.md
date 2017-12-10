@@ -14,8 +14,11 @@ Yloop实现了对IO，timer，callback，event的统一调度管理：
 
 当调用aos_loop_run后，当前任务将会等待上述的各类事件发生。
 
+### Yloop实现原理
+Yloop利用协议栈的select接口实现了对IO及timer的调度。AliOS Things自带的协议栈又暴露一个特殊的eventfd接口，Yloop利用此接口把VFS的设备文件，和eventfd关联起来，实现了对整个系统的事件的统一调度。
+
 ## Yloop的使用
-### 从hello world说起
+### 从hello world开始
 
 [hello world example](https://github.com/alibaba/AliOS-Things/blob/master/example/helloworld/helloworld.c)
 里面有这样一段代码：
