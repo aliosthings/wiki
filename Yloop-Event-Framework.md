@@ -46,3 +46,24 @@ application_start里面做了两件事情：
 
 这里注意到，程序并不需要aos_loop_init()去创建Yloop实例，因为系统会默认自动创建主Yloop实例。
 
+### 和Socket的结合
+以mqtt的[framework/connectivity/mqtt/mqtt_client.c](https://github.com/alibaba/AliOS-Things/blob/master/framework/connectivity/mqtt/mqtt_client.c)作为例子：
+```
+static int iotx_mc_connect(iotx_mc_client_t *pClient)
+{
+    <snip>
+    rc = MQTTConnect(pClient);
+    <snip>
+    aos_poll_read_fd(get_ssl_fd(), cb_recv, pClient);
+    <snip>
+}
+```
+在和服务端建立好socket连接后，调用aos_poll_read_fd()把mqtt的socket加入到Yloop的监听对象里。当服务端有数据过来时，cb_recv回调将被调用，进行数据的处理。这样，mqtt就不需要一个单独的任务来处理socket，从而节省内存使用。同时，由于所有处理都是在主任务进行，不需要复杂的互斥操作。
+
+### 注意事项
+Yloop的API([include/aos/yloop.h](https://github.com/alibaba/AliOS-Things/wiki/AliOS-Things-API-YLOOP-Guide))除了下述API，都必须在Yloop实例所绑定的任务的上下文执行：
+* aos_schedule_call
+* aos_loop_schedule_call
+* aos_loop_schedule_work
+* aos_cancel_work
+* aos_post_event
