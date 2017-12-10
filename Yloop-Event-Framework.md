@@ -59,6 +59,39 @@ static int iotx_mc_connect(iotx_mc_client_t *pClient)
 ```
 在和服务端建立好socket连接后，调用aos_poll_read_fd()把mqtt的socket加入到Yloop的监听对象里。当服务端有数据过来时，cb_recv回调将被调用，进行数据的处理。这样，mqtt就不需要一个单独的任务来处理socket，从而节省内存使用。同时，由于所有处理都是在主任务进行，不需要复杂的互斥操作。
 
+### 系统事件的处理
+AliOS Things定义了一系列系统事件，程序可以通过aos_register_event_filter()注册事件监听函数，进行相应的处理，比如WiFi事件。
+```
+static void netmgr_events_executor(input_event_t *eventinfo, void *priv_data)
+{
+    switch ((eventinfo->code) {
+        case CODE_WIFI_ON_CONNECTED:
+            <do somthing>
+        <snip>
+    }
+}
+
+aos_register_event_filter(EV_WIFI, event_cb, NULL);
+```
+
+`#define EV_USER     0x1000`
+EV_USER以后的事件ID可以用于用户自定义的事件。
+
+### Yloop回调
+Yloop回调用于跨任务的处理。以下面伪代码为例：
+```
+void do_uart_io_in_main_task(void *arg)
+{
+    <do something>
+}
+
+void io_recv_data_cb(char c)
+{
+    aos_schedule_call(do_uart_io_in_main_task, (void *)(long)c);
+}
+```
+假设uart_recv_data_cb是IO设备收到数据时的回调，收到数据后通过aos_schedule_call把实际处理do_uart_io_in_main_task放到主任务上下文去执行。这样，数据的逻辑处理do_uart_io_in_main_task就不需要考虑并发，而去做复杂的互斥操作。
+
 ### 注意事项
 Yloop的API([include/aos/yloop.h](https://github.com/alibaba/AliOS-Things/wiki/AliOS-Things-API-YLOOP-Guide))除了下述API，都必须在Yloop实例所绑定的任务的上下文执行：
 * aos_schedule_call
@@ -66,3 +99,6 @@ Yloop的API([include/aos/yloop.h](https://github.com/alibaba/AliOS-Things/wiki/A
 * aos_loop_schedule_work
 * aos_cancel_work
 * aos_post_event
+
+## 小结
+Yloop作为AliOS Things的事件框架，和VFS，协议栈深度结合，在取得较好的footprint的同时，能较好地适应于对footprint要求较高只有一个主任务的系统，也可以适用于对处理的并发性要求较高的系统。
