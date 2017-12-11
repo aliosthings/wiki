@@ -1,6 +1,6 @@
 ## Yloop概要
 
-Yloop是AliOS Things的异步事件框架。Yloop借鉴了，libiuv及嵌入式业界常见的event loop，综合考虑使用复杂性，性能，及footprint，实现了一个适合于MCU的事件调度机制。
+Yloop是AliOS Things的异步事件框架。Yloop借鉴了，libuv及嵌入式业界常见的event loop，综合考虑使用复杂性，性能，及footprint，实现了一个适合于MCU的事件调度机制。
 
 ### Yloop上下文
 每个Yloop实例（aos_loop_t）与特定的任务上下文绑定，AliOS Things的程序入口application_start所在的上下文与系统的主Yloop实例绑定，该上下文也称为主任务。主任务以外的任务也可以创建自己的Yloop实例。
