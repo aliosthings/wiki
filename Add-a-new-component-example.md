@@ -49,7 +49,7 @@ void info_a_fun()
 extern "C" {
 #endif
 
-void info_a_fun();
+extern void info_a_fun();
 
 #ifdef __cplusplus
 }
@@ -72,6 +72,7 @@ GLOBAL_INCLUDES += .
  */
 
 #include <stdio.h>
+#include "info_a.h"
 
 static void app_delayed_action(void *arg)
 {
