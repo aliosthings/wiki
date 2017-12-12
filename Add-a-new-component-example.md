@@ -64,7 +64,7 @@ void newcomp_fun();
 static void app_delayed_action(void *arg)
 {
     printf("%s:%d %s\r\n", __func__, __LINE__, aos_task_name());
-	newcomp_fun();	
+    newcomp_fun();	
 }
 
 int application_start(int argc, char *argv[])
