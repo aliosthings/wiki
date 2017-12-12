@@ -72,6 +72,7 @@ GLOBAL_INCLUDES += .
  */
 
 #include <stdio.h>
+#include <aos/aos.h>
 #include "info_a.h"
 
 static void app_delayed_action(void *arg)
@@ -85,7 +86,7 @@ int application_start(int argc, char *argv[])
     do
     {
         app_delayed_action(NULL);
-        aos_msleep(100);
+        aos_msleep(10);
     }while(1);
 }
 ```
@@ -97,15 +98,16 @@ $(NAME)_COMPONENTS += info_a
 ### 1.1.7	运行结果
 打印如下：
 ```
-$ ./nano@linuxhost.elf
-cpu num is 1
+$ ./nano@linuxhost.elf 
 trace should have cli to control!!!
-app_delayed_action:9 app
-this is in info_a_fun
-app_delayed_action:9 app
-this is in info_a_fun
+app_delayed_action:11 app
+this is in info_a
+cpu num is 1
+app_delayed_action:11 app
+this is in info_a
+app_delayed_action:11 app
+this is in info_a
 ```
-
 ## 1.2	目标二
 增加一个新模块 info_b， 被另一个模块 info_a 所依赖。
 
