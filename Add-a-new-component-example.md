@@ -23,7 +23,10 @@ COMPONENT_DIRECTORIES := . \
 ### 1.1.2	增加新模块源文件
 如在 info_a 目录中创建 info_a.c :
 ```C
-//info_a.c
+/*
+ * Copyright (C) 2015-2017 Alibaba Group Holding Limited
+ */
+
 #include <stdio.h>
 
 void info_a_fun()
@@ -35,18 +38,28 @@ void info_a_fun()
 ### 1.1.3	增加新模块的对外头文件
 如在 info_a 目录中创建 info_a.h :
 ```C	
-// info_a.h
+/*
+ * Copyright (C) 2015-2017 Alibaba Group Holding Limited
+ */
+
 #ifndef INFO_A_H
 #define INFO_A_H
 
+#ifdef __cplusplus
+extern "C" {
+#endif
+
 void info_a_fun();
 
+#ifdef __cplusplus
+}
 #endif
+
+#endif  /* INFO_A_H */
 ```
 ### 1.1.4	增加新模块的.mk文件
-.mk文件是模块存在的标志。每一个模块都会有一个对应的mk文件，makefile通过搜索mk后缀的文件来查找模块。其中声明了一些针对该模块的定制化的东西。最基本的两个就是该模块所包含的源文件，头文件路径和该模块依赖的其他模块。如：
+.mk文件是模块存在的标志。每一个模块都会有一个对应的mk文件，makefile通过搜索mk后缀的文件来查找模块。其中声明了一些针对该模块的定制化的东西。最基本的两个就是该模块所包含的源文件，头文件路径和该模块依赖的其他模块。如在info_a目录下创建 info_a.mk：
 ```
-# info_a.mk
 NAME := info_a
 $(NAME)_SOURCES := info_a.c
 GLOBAL_INCLUDES += .
@@ -54,7 +67,10 @@ GLOBAL_INCLUDES += .
 ### 1.1.5	修改 nano 源文件调用新接口
 如：
 ```C
-//nano.c
+/*
+ * Copyright (C) 2015-2017 Alibaba Group Holding Limited
+ */
+
 #include <stdio.h>
 
 static void app_delayed_action(void *arg)
