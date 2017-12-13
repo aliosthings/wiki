@@ -92,13 +92,13 @@ ota_finish_param_t定义如下：
 
 # 3功能验证
 ## Alink fota验证
-alink fota是指通过阿里智能云平台Alink作为交互通道，进行固件新版本查询，下载链接获取及进度上报；以http/https做下载通道进行固件下载。
+alink fota是指连接阿里智能云平台以Alink作为交互通道，进行固件新版本查询，下载链接获取及进度上报；以http/https做下载通道进行固件下载。
 测试方法，以mk3060为例：
 
 1.编译mk3060的Alinkapp：
 `aos make  alinkapp@mk3060`
 
-2.将编译成功的app镜像烧入mk3060开发板中.
+2.将编译成功的app镜像烧入mk3060开发板中。
  
 3.准备用于ota的bin文件,保证新文件版本号大于之前烧入版本号,（可以修改framework/common/common.mk，将app版本号临时改大）：
 
@@ -122,6 +122,7 @@ alink fota是指通过阿里智能云平台Alink作为交互通道，进行固�
 
 ## 2．MQTT/CoAP FOTA验证
 MQTT fota 是指连接阿里IoT平台，以MQTT作为交互通道进行固件新版本查询，下载链接获取及进度上报；以http/https作为下载通道进行固件下载；
+
 CoAP fota 是指连接阿里IoT平台，以CoAP作为交互通道进行固件新版本查询，下载链接获取及进度上报；以http/https或者 CoAP作为下载通道进行固件下载；
 测试方法:
 
@@ -175,8 +176,8 @@ mqtt 由于有订阅能力会在推送触发后立马进入fota升级流程，co
 升级过程中，终端会进行一次重启动作，重启完成后，如果固件版本为服务器端设置的更新版本，则升级成功，刷新IOT平台固件验证页面，会有升级成功提示：
 ![](https://img.alicdn.com/tfs/TB1EF4ailHH8KJjy0FbXXcqlpXa-865-377.png)
 
-附加：
-纯CoAP FOTA测试：
+
+### 纯CoAP FOTA测试：
 如果需要测试纯CoAP FOTA(信息交互与固件下载都走CoAP通道)，则在编译版时加上FOTA_DL_COAP=1：
 `aos make coapapp@mk3060 FOTA_DL_COAP=1`
 其他步骤不变。
