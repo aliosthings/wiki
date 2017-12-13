@@ -89,3 +89,81 @@ ota_finish_param_t定义如下：
 
   当`result_type == OTA_BREAKPOINT`时，应保存当前crc校验值到flash，以备断电后可以断点续传。
   当`result_type == OTA_FINISH`，说明下载完成，接下来根据`update_type`设置boot参数，然后重启，将固件替换任务交由bootloader完成。
+
+# 3功能验证
+    ## Alink fota验证
+     alink fota是指通过阿里智能云平台Alink通道进行固件新版本查询，下载链接获取及进度上报，然后通过http进行固件下载。
+测试方法，以mk3060为例：
+测试方法，以mk3060为例：
+1.编译mk3060的Alinkapp：
+aos make  alinkapp@mk3060
+
+2.将编译成功的app镜像烧入mk3060开发板中.
+ 
+3.准备用于ota的bin文件,保证新文件版本号大于之前烧入版本号,（可以修改framework/common/common.mk，将app版本号零时改大）：
+make clean
+aos make  alinkapp@mk3060
+从编译信息中记录新版本号。
+![](https://img.alicdn.com/tfs/TB1mwFbicrI8KJjy0FhXXbfnpXa-865-118.png)
+4.打开智能云平台：http://smart.aliyun-inc.com/admin/upgrade/manager.htm 。左侧菜单栏找到升级管理-规则管理，然后在页面右上角点击添加升级。
+![](https://img.alicdn.com/tfs/TB1yrJlicjI8KJjSsppXXXbyVXa-865-339.png)
+按照以下方式填写升级信息，其中uuid需要在板子启动接入alink后在cli输入uuid获得。
+![](https://img.alicdn.com/tfs/TB1W9dQinnI8KJjy0FfXXcdoVXa-865-723.png)
+
+5.使用小智APP配网。
+板子连接串口上电。输入netmgr clear清除原有配网信息，重启板子，再次输入 netmgr start.打开ONEAPK 手机版app,点击右上角添加设备-分类查找-模组认证-配网V3_热点配网_小智-查找设备，保证手机连接的路由器设备可以扫描到，通过扫描设备完成配网。
+6.  在ONEAPK的“我的”页面栏找到“固件升级”-“刚配对设备名称”-“立即升级”，开始升级，app上会有进度显示，同时串口端也会有相应升级信息，观察，直至升级成功或失败，如果升级失败，可通过串口打印信息分析原因并可反映给相关开发人员。
+
+## 2．MQTT/CoAP FOTA验证
+Mqtt fota 是指通过阿里 IoT 平台 mqtt通道进行固件新版本查询，下载链接获取及进度上报，然后通过http/https进行固件下载；CoAP fota 是指通过阿里 IoT 平台 CoAP通道进行固件新版本查询，下载链接获取及进度上报，然后通过http/https或CoAP进行固件下载； 测试方法: 
+
+先在 iot 平台注册设备  http://iot.console.aliyun.com/?spm=5176.6660585.774526198.1.BoBWs7#/product/newlist/ region/cn-shanghai 
+1.创建产品：
+![](https://img.alicdn.com/tfs/TB1WS8kilTH8KJjy0FiXXcRsXXa-865-284.png)
+2.添加设备：
+![](https://img.alicdn.com/tfs/TB1LBFQinnI8KJjy0FfXXcdoVXa-865-243.png)
+3.在设备管理里面查看新添加设备的信息：
+![](https://img.alicdn.com/tfs/TB1yyxLigDD8KJjy0FdXXcjvXXa-865-269.png)
+4.修改产品相关认证代码：
+MQTT：
+将获取到的 deviceName, productKey及 deviceSecret填写到mqtt例程 aos/example/mqttapp/mqttapp.c相应位置:  
+![](https://img.alicdn.com/tfs/TB18zXPih6I8KJjy0FgXXXXzVXa-865-104.png)
+COAP：
+将获取到的 deviceName, productKey及 deviceSecret填写到mqtt例程 aos/example/mqttapp/mqttapp.c相应位置，其中IOTX_DEVICE_ID可直接用在deviceName后加上.1即可：
+![](https://img.alicdn.com/tfs/TB1aBJQinnI8KJjy0FfXXcdoVXa-865-128.png)
+5.准备更新固件文件
+修改framework/common/common.mk:
+![](https://img.alicdn.com/tfs/TB1Yqpaif2H8KJjy0FcXXaDlFXa-865-378.png)
+先将app版本号改为app-2开头，目的：让服务器端版本高于终端运行版本。
+编译 相关的例程,以 mk3060 为例:
+MQTT: aos make mqttapp@mk3060生成mqttapp bin 文件,路径：out/mqttapp@mk3060/binary/mqttapp@mk3060.ota.bin
+
+CoAP: aos make coapapp@mk3060生成coapapp bin 文件,路径：out/coapapp@mk3060/binary/coapapp@mk3060.ota.bin
+![](https://img.alicdn.com/tfs/TB17mdQinnI8KJjy0FfXXcdoVXa-865-114.png)
+同时得到app版本号，见上图。
+
+在阿里云IOT平台上传刚生成的bin文件：
+![](https://img.alicdn.com/tfs/TB1jPAMh8fH8KJjy1XbXXbLdXXa-865-386.png)
+
+6.准备运行用固件文件：
+修改framework/common/common.mk，将版本号改回最初版本号。
+make clean后在次编译相应版本：
+MQTT: aos make mqttapp@mk3060生成mqttapp bin 文件,路径：out/mqttapp@mk3060/binary/mqttapp@mk3060.ota.bin
+
+CoAP: aos make coapapp@mk3060生成coapapp bin 文件,路径：out/coapapp@mk3060/binary/coapapp@mk3060.ota.bin
+
+将生成的版本刷入相应开发版，上电运行。
+
+7．验证固件：
+在iot平台固件升级管理点击刚上传的固件的验证固件按钮，选择当前设备进行固件推送：
+![](https://img.alicdn.com/tfs/TB17xQVh4TI8KJjSspiXXbM4FXa-865-321.png)
+mqtt 由于有订阅能力会在推送触发后立马进入fota升级流程，coap由于没有订阅功能，推送更新后，不会立即进入更新状态，需要定时查询到服务器有更新时才会进入更新流程，建议推送后重启一下测试终端，重启后会立即查询更新。
+
+升级过程中，终端会进行一次重启动作，重启完成后，如果固件版本为服务器端设置的更新版本，则升级成功，刷新IOT平台固件验证页面，会有升级成功提示：
+![](https://img.alicdn.com/tfs/TB1EF4ailHH8KJjy0FbXXcqlpXa-865-377.png)
+附加：
+纯CoAP FOTA测试：
+如果需要测试纯CoAP FOTA(信息交互与固件下载都走CoAP通道)，则在编译版时加上FOTA_DL_COAP=1：
+aos make coapapp@mk3060 FOTA_DL_COAP=1
+其他步骤不变。
+
