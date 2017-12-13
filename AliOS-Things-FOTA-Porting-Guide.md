@@ -179,6 +179,7 @@ mqtt 由于有订阅能力会在推送触发后立马进入fota升级流程，co
 
 ### 纯CoAP FOTA测试：
 如果需要测试纯CoAP FOTA(信息交互与固件下载都走CoAP通道)，则在编译版时加上FOTA_DL_COAP=1：
+`aos make clean`
 `aos make coapapp@mk3060 FOTA_DL_COAP=1`
 其他步骤不变。
 
