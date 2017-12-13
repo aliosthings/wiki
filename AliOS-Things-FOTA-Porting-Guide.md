@@ -92,7 +92,7 @@ ota_finish_param_t定义如下：
 
 # 3功能验证
 ## Alink fota验证
-alink fota是指连接阿里智能云平台以Alink作为交互通道，进行固件新版本查询，下载链接获取及进度上报；以http/https做下载通道进行固件下载。
+Alink fota是指连接阿里智能云平台以Alink作为交互通道，进行固件新版本查询，下载链接获取及进度上报；以http/https做下载通道进行固件下载。
 测试方法，以mk3060为例：
 
 1.编译mk3060的Alinkapp：
@@ -120,10 +120,10 @@ alink fota是指连接阿里智能云平台以Alink作为交互通道，进行�
 
 6.在ONEAPK的“我的”页面栏找到“固件升级”-“刚配对设备名称”-“立即升级”，开始升级，app上会有进度显示，同时串口端也会有相应升级信息，观察，直至升级成功或失败，如果升级失败，可通过串口打印信息分析原因并可反映给相关开发人员。
 
-## 2．MQTT/CoAP FOTA验证
+## 2MQTT/CoAP FOTA验证
 MQTT fota 是指连接阿里IoT平台，以MQTT作为交互通道进行固件新版本查询，下载链接获取及进度上报；以http/https作为下载通道进行固件下载；
 
-CoAP fota 是指连接阿里IoT平台，以CoAP作为交互通道进行固件新版本查询，下载链接获取及进度上报；以http/https或者 CoAP作为下载通道进行固件下载；
+CoAP fota 是指连接阿里IoT平台，以CoAP作为交互通道进行固件新版本查询，下载链接获取及进度上报；以http/https或者CoAP作为下载通道进行固件下载；
 测试方法:
 
 1.创建产品 http://iot.console.aliyun.com/?spm=5176.6660585.774526198.1.BoBWs7#/product/newlist/ region/cn-shanghai ：
