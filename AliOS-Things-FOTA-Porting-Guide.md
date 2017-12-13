@@ -155,7 +155,7 @@ CoAP: `aos make coapapp@mk3060`生成coapapp bin 文件,路径：out/coapapp@mk3
 ![](https://img.alicdn.com/tfs/TB17mdQinnI8KJjy0FfXXcdoVXa-865-114.png)
 同时得到app版本号，见上图。
 
-在阿里云IOT平台上传刚生成的bin文件：
+6.在阿里云IOT平台上传刚生成的bin文件：
 ![](https://img.alicdn.com/tfs/TB1jPAMh8fH8KJjy1XbXXbLdXXa-865-386.png)
 
 7.准备运行用固件文件：
