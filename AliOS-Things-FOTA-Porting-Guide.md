@@ -111,7 +111,7 @@ Alink fota是指连接阿里智能云平台以Alink作为交互通道，进行�
 4.打开智能云平台：http://smart.aliyun-inc.com/admin/upgrade/manager.htm 。左侧菜单栏找到升级管理-规则管理，然后在页面右上角点击添加升级。
 ![](https://img.alicdn.com/tfs/TB1yrJlicjI8KJjSsppXXXbyVXa-865-339.png)
 
-按照以下方式填写升级信息，其中uuid需要在板子启动接入alink后在cli输入uuid获得。
+按照以下方式填写升级信息，设备型号填写ALINKTEST_LIVING_LIGHT_ALINK_TEST，uuid需要在板子启动接入alink后在cli输入uuid获得。
 ![](https://img.alicdn.com/tfs/TB1W9dQinnI8KJjy0FfXXcdoVXa-865-723.png)
 
 5.使用小智APP配网。
