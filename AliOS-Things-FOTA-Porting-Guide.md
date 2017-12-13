@@ -167,7 +167,7 @@ CoAP:`aos make coapapp@mk3060`生成coapapp bin 文件,路径：out/coapapp@mk30
 
 将生成的版本刷入相应开发版，上电运行。
 
-7．验证固件：
+8．验证固件：
 在iot平台固件升级管理点击刚上传的固件的验证固件按钮，选择当前设备进行固件推送：
 ![](https://img.alicdn.com/tfs/TB17xQVh4TI8KJjSspiXXbM4FXa-865-321.png)
 
