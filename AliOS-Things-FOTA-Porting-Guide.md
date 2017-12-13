@@ -92,7 +92,7 @@ ota_finish_param_t定义如下：
 
 # 3功能验证
 ## Alink fota验证
-Alink fota是指连接阿里智能云平台以Alink作为交互通道，进行固件新版本查询，下载链接获取及进度上报；以http/https做下载通道进行固件下载。
+Alink fota是指连接阿里智能云平台以Alink作为交互通道，进行固件新版本查询，下载链接获取及进度上报；以http/https做为下载通道进行固件下载。
 测试方法，以mk3060为例：
 
 1.编译mk3060的Alinkapp：
