@@ -142,10 +142,10 @@ typedef struct {
       .wlan_send_80211_raw_frame = wlan_send_80211_raw_frame,
   };
   ```
-一般在板级初始化的过程中，调用`hal_wifi_init`接口对WiFi硬件模块进行初始化。然后通过`hal_wifi_register_module `接口对WiFi模块进行注册。
+一般在板级初始化的过程中，先通过`hal_wifi_register_module`接口对WiFi模块进行注册，然后调用`hal_wifi_init`接口对WiFi硬件模块进行初始化。至此，WiFi HAL模块就完成了初始化，可以使用。
   ```c
-  int hal_wifi_init(void);
   void hal_wifi_register_module(hal_wifi_module_t *m);
+  int hal_wifi_init(void);
   ```
 
 参考实现：`platform/mcu/esp32/bsp/entry.c`。
