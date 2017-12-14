@@ -1,4 +1,4 @@
-[1 AliOS Things Architecture](https://github.com/alibaba/AliOS-Things/wiki/AliOS-Things-Architecture-Overview)
+[1 AliOS Things Overview](https://github.com/alibaba/AliOS-Things/wiki/AliOS-Things-Technical-Overview)
   * [1.1 Yloop Event Framework](https://github.com/alibaba/AliOS-Things/wiki/Yloop-Event-Framework)
 
 [2 AliOS Things Porting Guide](https://github.com/alibaba/AliOS-Things/wiki/AliOS-Things-Porting-Guide)
