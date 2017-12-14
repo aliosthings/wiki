@@ -1,5 +1,3 @@
-# AliOS Things Technical Overview
-
 AliOS Things is Alibaba's IoT version of AliOS Family, it's announced in [The Computing Conference](https://yunqi.aliyun.com) 2017 Hangzhou by Alibaba Cloud, and open sourced in 2017/10/20 at github:https://github.com/alibaba/AliOS-Things.
 
 ## Architecture Overview
