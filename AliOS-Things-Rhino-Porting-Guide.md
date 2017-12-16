@@ -151,8 +151,8 @@ Rhino内核的移植模版主要是参照现有的工程的移植。目前移植
 
 移植目标：基本任务运行，tick时钟实现krhino_task_sleep，基本串口打印
 
-##4.1 基本代码准备
-###4.1.1 STM32CubeL4系列Drivers驱动程序
+## 4.1 基本代码准备
+### 4.1.1 STM32CubeL4系列Drivers驱动程序
 下载安装STM32CubeMX，选择生成STM32L496AGI6驱动程序，或者官网直接下载STM32CubeL4软件包。
 
 驱动包下载更新地址：
@@ -183,17 +183,17 @@ Driver驱动生成样例目录：platform\mcu\stm32l4xx
 
 Keil工程路径：projects\Keil\STM32L496G-Discovery\helloworld\
 
-###4.1.2 Cotex-m4相关代码
+### 4.1.2 Cotex-m4相关代码
 
 实现代码路径：platform\arch\arm\armv7m\armcc\m4
 
 主要包括2.3.1章节相关接口实现
 
-###4.1.3 rhino内核源码
+### 4.1.3 rhino内核源码
 
 源码路径：kernel\rhino\core
 
-###4.1.4 启动、初始化相关代码
+### 4.1.4 启动、初始化相关代码
 
 参考代码路径：platform\mcu\stm32l4xx\src\STM32L496G-Discovery
 
@@ -207,11 +207,11 @@ Keil工程路径：projects\Keil\STM32L496G-Discovery\helloworld\
 
   * soc_init.c （串口驱动、驱动总入口stm32_soc_init）
 
-###4.1.5 main函数以及打印任务入口样例
+### 4.1.5 main函数以及打印任务入口样例
 
 参考代码路径：example\rhinorun
 
-##4.2 基本内核代码修改
+## 4.2 基本内核代码修改
 
 目标建立一个基本的延时打印任务，需要的代码修改包括：
 
@@ -224,7 +224,7 @@ Keil工程路径：projects\Keil\STM32L496G-Discovery\helloworld\
   * example\rhinorun实现main入口函数：分别调用krhino_init、stm32_soc_init、krhino_start，并创建和启动demo任务。
 
 
-##4.3 keil工程配置
+## 4.3 keil工程配置
 
 基于生成的Keil工程路径，配置需要编译的源文件，需要包含的头文件，需要使用的编译选项，以及需要的链接文件等。
 
@@ -240,7 +240,7 @@ Keil工程路径：projects\Keil\STM32L496G-Discovery\helloworld\
 
 工程建立后编译工程到编译OK。
 
-##4.4 单板调试
+## 4.4 单板调试
 
 通过keil工程的flash->download完成代码烧写，通过debug->start进行单板启动调试。
 
