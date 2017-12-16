@@ -148,7 +148,7 @@ Rhino内核的移植模版主要是参照现有的工程的移植。目前移植
 # 3验收测试
 系统能启动一个任务并调用krhino_task_sleep函数实现定时打印，例如每秒打印一次日志。
 
-# 4 基于keil最小内核移植示例
+# 4基于keil最小内核移植示例
 目标开发板：STM32L496G-Discovery，Cotex-m4架构
 
 移植目标：基本任务运行，tick时钟实现krhino_task_sleep，基本串口打印
