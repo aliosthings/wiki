@@ -145,3 +145,112 @@ Rhino内核的移植模版主要是参照现有的工程的移植。目前移植
 
 # 3验收测试
 系统能启动一个任务并调用krhino_task_sleep函数实现定时打印，例如每秒打印一次日志。
+
+# 4 基于keil最小内核移植示例
+目标开发板：STM32L496G-Discovery，Cotex-m4架构
+
+移植目标：基本任务运行，tick时钟实现krhino_task_sleep，基本串口打印
+
+##4.1 基本代码准备
+###4.1.1 STM32CubeL4系列Drivers驱动程序
+下载安装STM32CubeMX，选择生成STM32L496AGI6驱动程序，或者官网直接下载STM32CubeL4软件包。
+
+驱动包下载更新地址：
+
+http://www.st.com/content/st_com/en.html
+
+选择搜索STM32CubeMX或者STM32CubeL4关键字。
+
+STM32CubeMX使用此处不详述，提供以下基本生成信息：
+
+  * 查看官网32L496GDISCOVERY主页《Discovery kit with STM32L496AG MCU》 ，查看MCU型号：STM32L496AGI6；
+
+  * 查看Virtual COM port使用USART2 
+
+![](https://i.imgur.com/Qn0Ijx9.png)
+
+  * STM32CubeMX选择STM32L496AGIx系列
+
+![](https://i.imgur.com/0QpmvB3.png)
+
+  * 使能USART2，并配置相关时钟
+
+![](https://i.imgur.com/HRkLZKc.png)
+
+![](https://i.imgur.com/Lq5ftd5.png)
+
+Driver驱动生成样例目录：platform\mcu\stm32l4xx
+
+Keil工程路径：projects\Keil\STM32L496G-Discovery\helloworld\
+
+###4.1.2 Cotex-m4相关代码
+
+实现代码路径：platform\arch\arm\armv7m\armcc\m4
+
+主要包括2.3.1章节相关接口实现
+
+###4.1.3 rhino内核源码
+
+源码路径：kernel\rhino\core
+
+###4.1.4 启动、初始化相关代码
+
+参考代码路径：platform\mcu\stm32l4xx\src\STM32L496G-Discovery
+
+主要包括：
+
+  * startup_stm32l496xx_keil.s （初始堆、栈、异常向量表）
+
+  * stm32l4xx_it.c （异常处理实现）
+
+  * system_stm32l4xx.c （系统初始化SystemInit）
+
+  * soc_init.c （串口驱动、驱动总入口stm32_soc_init）
+
+###4.1.5 main函数以及打印任务入口样例
+
+参考代码路径：example\rhinorun
+
+##4.2 基本内核代码修改
+
+目标建立一个基本的延时打印任务，需要的代码修改包括：
+
+  * 基本的任务处理和调度在4.1.2和4.1.3代码中已经提供；
+
+  * tick时钟：SysTick_Handler中断处理调用krhino处理函数krhino_tick_proc；HAL_InitTick设置每秒Tick数时，使用宏RHINO_CONFIG_TICKS_PER_SECOND；
+
+  * soc_init.c基本驱动初始化：实现fputc基本打印接口；stm32_soc_init实现主驱动入口函数。
+
+  * example\rhinorun实现main入口函数：分别调用krhino_init、stm32_soc_init、krhino_start，并创建和启动demo任务。
+
+
+##4.3 keil工程配置
+
+基于生成的Keil工程路径，配置需要编译的源文件，需要包含的头文件，需要使用的编译选项，以及需要的链接文件等。
+
+主要配置项包括：
+
+  * “Manage Project Items” 建立相关groups，包含需要编译的.c和.s文件；
+![](https://i.imgur.com/ffpFg4W.png)
+
+  * 选择工程“Options for Target”，“C/C++”选项卡设置编译选项、建立编译依赖头文件；“Linker”选择默认链接脚本（或者自建立scatter）；“Debug”选择ST-Linker Debugger。
+![](https://i.imgur.com/0KAoEZz.png)
+
+其他选项请按需调整。
+
+工程建立后编译工程到编译OK。
+
+##4.4 单板调试
+
+通过keil工程的flash->download完成代码烧写，通过debug->start进行单板启动调试。
+
+demo_task中每tick打印一次，运行OK后如下图所示：
+
+![](https://i.imgur.com/91tdLoL.png)
+
+
+
+
+
+
+
