@@ -12,7 +12,7 @@
  * kernel bin编译：aos make helloworld@mk3060 BINS=kernel
 
 # 2、 链接脚本ld文件修改  
-多bin编译意味着有app、framework、kernl bin的编译，这意味着有对应的[app.ld](https://github.com/alibaba/AliOS-Things/blob/master/platform/mcu/moc108/linkinfo/mx108_app.ld.S)、[framework.ld](https://github.com/alibaba/AliOS-Things/blob/master/platform/mcu/moc108/linkinfo/mx108_framework.ld.S)和[kernel.ld](https://github.com/alibaba/AliOS-Things/blob/master/platform/mcu/moc108/linkinfo/mx108_kernel.ld.S)。(mk3060为例)
+多bin编译意味着有app、framework、kernel bin的编译，这意味着有对应的[app.ld](https://github.com/alibaba/AliOS-Things/blob/master/platform/mcu/moc108/linkinfo/mx108_app.ld.S)、[framework.ld](https://github.com/alibaba/AliOS-Things/blob/master/platform/mcu/moc108/linkinfo/mx108_framework.ld.S)和[kernel.ld](https://github.com/alibaba/AliOS-Things/blob/master/platform/mcu/moc108/linkinfo/mx108_kernel.ld.S)。(mk3060为例)
   
 ld文件的实现格式和单bin一致，主要需要提供如下一点：
 * 在kernel.ld文件中需要设置framework.bin的起始位置，以让kernel能够跳转到framework中执行。
