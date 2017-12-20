@@ -46,7 +46,7 @@
     linux host环境下直接使用Makefile构建编译系统，根据需求修改Rhino根目录下的Makefile文件，将默认的linux模拟文件替换为芯片相关文件。  
 
     AOS采用aos-cube工具包来管理编译系统，编译命令示例：  
-      `aos make example_name@platform_name`  
+      `aos make example_name@board_name`  
     aos-cube安装配置 (ubuntu)：  
       `$ sudo apt-get install -y gcc-multilib`  
       `$ sudo apt-get install -y libssl-dev libssl-dev:i386`  
