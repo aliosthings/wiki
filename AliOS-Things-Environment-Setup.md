@@ -5,7 +5,7 @@
     - [1.3 调试器](#13-调试器)
     - [1.4 调试器](#14-连接示例)
 - [2 Windows环境配置](#2-Windows环境配置)
-- [3 Linux环境配置](#2-Linux环境配置)
+- [3 Linux环境配置](#3-Linux环境配置)
 - [4 J-Link烧写与调试](#4-j-link烧写与调试)
     - [4.1 OpenOCD](#41-openocd)
     - [4.2 J-Link烧写](#42-j-link烧写)
@@ -36,6 +36,7 @@ MK3060 的串口已经通过miniusb接口接出，通过 miniusb-usb 线将串�
 
 # 2 Windows环境配置
 [link](https://github.com/alibaba/AliOS-Things/wiki/AliOS-Things-Windows-Environment-Setup)
+
 # 3 Linux环境配置
 [link](https://github.com/alibaba/AliOS-Things/wiki/AliOS-Things-Linux-Environment-Setup)
 
