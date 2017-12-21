@@ -26,7 +26,7 @@
 
 ------
 
-AliOS Things Studio 是AliOS Things提供的 IDE 开发环境，目前支持 Windows，后续会增加对 Linux、 MacOS 等操作系统的支持。
+AliOS Things Studio 是AliOS Things提供的 IDE 开发环境，支持 Windows、Linux、MacOS，基于Windows平台介绍。
 
 # 1 下载安装
 AliOS Things Studio 是 VS Code 插件，所以首先安装 VS Code ，通过插件的方式安装 AliOS Things Studio。
