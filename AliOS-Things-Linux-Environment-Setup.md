@@ -1,0 +1,43 @@
+# 3 linux环境配置
+## 3.1 依赖及aos-cube安装
+以 Ubuntu 16.04 LTS (Xenial Xerus) 64-bit PC 版本为例，安装下列 pkg：
+
+```
+$ sudo apt-get install -y python
+$ sudo apt-get install -y gcc-multilib
+$ sudo apt-get install -y libssl-dev libssl-dev:i386
+$ sudo apt-get install -y libncurses5-dev libncurses5-dev:i386
+$ sudo apt-get install -y libreadline-dev libreadline-dev:i386
+$ sudo apt-get install -y python-pip
+$ sudo apt-get install -y minicom
+$ sudo pip install aos-cube
+```
+## 3.2 交叉工具链
+Linux 工具链可以在链接 [GCC](https://launchpad.net/gcc-arm-embedded/+download) 下载 Linux 压缩包，解压缩，在 .bashrc 里面配置
+ TOOLCHAIN_PATH 路径（**注意：路径最后一个下划线 / 添加到路径**）：
+
+![](https://img.alicdn.com/tfs/TB1GnAGg3oQMeJjy0FpXXcTxpXa-865-413.png)
+
+在 AliOS Things 源码的目录下面，运行：
+
+```
+$ aos make helloworld@mk3060
+```
+
+编译 mk3060 板子的 helloworld 示例程序。
+
+## 3.3 minicom串口配置
+配置串口参数（以MK3060为例），配置文件（/etc/minicom/minirc.dfl）内容 ：
+
+```
+pu port             /dev/ttyUSB0
+pu baudrate         921600
+pu bits             8
+pu parity           N
+pu stopbits         1
+pu rtscts           No
+```
+
+启动 minicom，查看串口日志。
+
+**注意：Linux 操作串口及 j-link 会有特殊权限要求，尤其在使用 AliOS-Things Studio时候，对串口及 j-link 的权限需要先做配置：1、`$ sudo usermod -a -G dialout $(whoami)`,添加当前用户到 dialout 组，提供直接使用串口能力。2、`$lsubs` 找到 j-link 厂商ID。如：`Bus 002 Device 008: ID 1366:0105 SEGGER`,厂商ID为1366，新建`/etc/udev/rules.d/99-stlink-v2.rules`文件，在文件里面添加规则:`SUBSYSTEM=="usb", ATTR{idVendor}=="1366", MODE="666", GROUP="plugdev"`。配置操作串口及 j-link权限后，重启系统生效。**
