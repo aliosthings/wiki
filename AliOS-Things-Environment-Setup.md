@@ -192,5 +192,5 @@ gdb 里面设置断点，打印堆栈信息（MK3060最大支持两个断点）�
 
 
 
-**AliOS-Things MasOS环境下开发跟Linux类似，只需要把Linux相关工具链替换MacOS。**
+**AliOS-Things MasOS环境下开发跟Linux类似，只需要把Linux相关工具替换MacOS版本。**
 
