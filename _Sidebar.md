@@ -15,6 +15,9 @@
 [4 AliOS Things Studio](https://github.com/alibaba/AliOS-Things/wiki/AliOS-Things-Studio)
 
 [5 AliOS Things Environment Setup](https://github.com/alibaba/AliOS-Things/wiki/AliOS-Things-Environment-Setup)
+ * [Windows](https://github.com/alibaba/AliOS-Things/wiki/AliOS-Things-Windows-Environment-Setup)
+ * [Linux](https://github.com/alibaba/AliOS-Things/wiki/AliOS-Things-Linux-Environment-Setup)
+ * [MAC](https://github.com/alibaba/AliOS-Things/wiki/AliOS-Things-MAC-Environment-Setup)
 
 [6 AliOS Things API Guide](https://github.com/alibaba/AliOS-Things/wiki/AliOS-Things-API-Guide)
  * [6.1 KERNEL API](https://github.com/alibaba/AliOS-Things/wiki/AliOS-Things-API-KERNEL-Guide)
