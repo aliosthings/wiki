@@ -45,4 +45,4 @@ Linux 操作串口及 j-link 会有root权限要求，尤其在使用 AliOS-Thin
 - `$ sudo usermod -a -G dialout $(whoami)`,添加当前用户到 dialout 组，提供直接使用串口能力。
 - `$lsubs` 找到 j-link 厂商ID。如：`Bus 002 Device 008: ID 1366:0105 SEGGER`,厂商ID为1366，新建`/etc/udev/rules.d/99-stlink-v2.rules`文件，在文件里面添加规则:`SUBSYSTEM=="usb", ATTR{idVendor}=="1366", MODE="666", GROUP="plugdev"`。
 
-配置操作串口及 j-link权限后，重启系统生效。**
+配置操作串口及 j-link权限后，重启系统生效。
