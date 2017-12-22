@@ -9,3 +9,4 @@
    
 # 2 硬件环境设置
 - [MXCHIP MK3060 WiFi Module](https://github.com/alibaba/AliOS-Things/wiki/MK3060-Hardware-Setup)
+- [ESP32 DevKitC Hardware Information](http://esp-idf.readthedocs.io/en/latest/get-started/get-started-devkitc.html)
