@@ -14,7 +14,8 @@ AliOS Things 在“example”目录下已经预置了名为“[yts](https://gith
 <h3 id="2.1">2.1 测试用例集应用步骤：</h3>  
 
 * 通过`$ aos make yts@board_name`生成测试应用程序。  
-若需指定测试组件，可通过“**test**”参数设置即:`$ aos make yts@board_name test=component_name`。   
+若需指定测试组件，可通过“**test**”参数设置即:  
+`$ aos make yts@board_name test=component_name`。   
  
 * 将编译生成的binary文件烧录到目标板中。  
 
