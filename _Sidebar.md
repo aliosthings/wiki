@@ -8,7 +8,8 @@
   * [2.4 FOTA Porting Guide](https://github.com/alibaba/AliOS-Things/wiki/AliOS-Things-FOTA-Porting-Guide)
   * [2.5 LwIP Porting Guide](https://github.com/alibaba/AliOS-Things/wiki/AliOS-Things-LwIP-Porting-Guide)
   * [2.6 BINS Porting Guide](https://github.com/alibaba/AliOS-Things/wiki/AliOS-Things-BINS-Porting-Guide)
-  * [2.7 SAL Porting Guide](https://github.com/alibaba/AliOS-Things/tree/master/device/sal/README.md)
+  * [2.7 SAL Porting Guide](https://github.com/alibaba/AliOS-Things/tree/master/device/sal/README.md)  
+  * [2.8 Porting Test Guide](https://github.com/alibaba/AliOS-Things/wiki/AliOS-Things-Porting-Test-Guide)
 
 [3 AliOS Things APP DEV Guide](https://github.com/alibaba/AliOS-Things/wiki/AliOS-Things-APP-DEV-Guide)
 
