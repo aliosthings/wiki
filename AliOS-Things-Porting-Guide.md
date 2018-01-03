@@ -1,12 +1,41 @@
-## [1 AliOS Things Rhino Porting Guide](https://github.com/alibaba/AliOS/wiki/AliOS-Things-Rhino-Porting-Guide)
-AliOS Things提供了内核Rhino，可通过该文档完成最小系统的移植。
-## [2 AliOS Things HAL Porting Guide](https://github.com/alibaba/AliOS/wiki/AliOS-Things-HAL-Porting-Guide)
-AliOS Things提供了驱动接口框架，可通过该文档完成外设驱动的移植。
-## [3 AliOS Things WiFi Porting Guide](https://github.com/alibaba/AliOS/wiki/AliOS-Things-WiFi-Porting-Guide)
-AliOS Things定义了完整的WiFi硬件抽象接口，通过这些WiFi HAL接口可以很好的操作WiFi设备。开发者移植新硬件平台时，需要实现WiFi HAL层的接口。
-## [4 AliOS Things FOTA Porting Guide](https://github.com/alibaba/AliOS/wiki/AliOS-Things-FOTA-Porting-Guide)
-AliOS Things提供原生FOTA功能，已完成对Alink、MQTT等协议通道的支持，开发者移植新硬件平台时，只需对底层flash操作接口进行适配封装即可。
-## [5 AliOS Things LwIP Porting Guide](https://github.com/alibaba/AliOS/wiki/AliOS-Things-LwIP-Porting-Guide)
-AliOS Things提供LwIP协议栈支持，并且已经完成与AliOS Things对接。默认条件下，开发者仅需要完成网卡驱动对接，即可开始无缝使用AliOS Things提供的LwIP协议栈。
-## [6 AliOS Things BINS Porting Guide](https://github.com/alibaba/AliOS/wiki/AliOS-Things-BINS-Porting-Guide)
-AliOS Things提供多BIN编译功能，支持Kernel BIN、App BIN的单独编译、烧录能力，尤其节省了硬件资源。开发者移植新硬件平台时，只需对平台链接脚本及编译脚本进行适配封装即可。
+如下图，AliOS Things是一个分层+组件架构，可以较简单的移植到各类MCU及Connectivity SoC平台上。
+![block_digram](https://img.alicdn.com/tfs/TB1fKQMihrI8KJjy0FpXXb5hVXa-2330-1292.png)
+
+
+## 典型的移植流程
+### CPU支持
+这部分工作一般由AliOS Things内核团队完成，主要是各类CPU架构如ARM Cortex-M系列，C-Sky 80x系列的支持。<br>
+同时也欢迎社区爱好者及各类合作伙伴根据[Rhino Porting Guide](https://github.com/alibaba/AliOS-Things/wiki/AliOS-Things-Rhino-Porting-Guide)支持新的CPU，并贡献到github。
+
+### BSP/HAL
+这部分工作主要是芯片的驱动开发，以及和AliOS Things HAL的对接。
+请参考[HAL Porting Guide](https://github.com/alibaba/AliOS-Things/wiki/AliOS-Things-HAL-Porting-Guide)了解进一步细节。
+
+### CLI
+CLI是AliOS Things的交互命令行组件，辅助开发者调试开发，强烈建议作为移植的第一个里程碑。<br>
+CLI依赖于UART HAL，当移植完成后，开发者可以通过命令行和AliOS Things交互，查看系统状态。
+
+### 网络
+根据芯片平台的连接能力，对于可以接入IP网络的设备
+1. 内置连接能力的芯片，比如WiFi，对接[WiFi HAL](https://github.com/alibaba/AliOS-Things/wiki/AliOS-Things-WiFi-Porting-Guide)
+及[LwIP协议栈](https://github.com/alibaba/AliOS-Things/wiki/AliOS-Things-LwIP-Porting-Guide)
+2. 外挂通信模块（TCPIP协议栈运行在通信模块上），可以通过[SAL](https://github.com/alibaba/AliOS-Things/tree/master/device/sal/README.md) 提供一个标准的Socket环境
+
+对于非IP类设备，请参考：
+- LoRaWAN
+- BLE
+
+关于AliOS Things的网络架构，请参考[云栖技术博客](https://yq.aliyun.com/articles/327862)。
+
+### 更高级能力
+包括FOTA，多BIN支持等，请参考附录
+
+## 附录
+  * [2.1 Rhino Porting Guide](https://github.com/alibaba/AliOS-Things/wiki/AliOS-Things-Rhino-Porting-Guide)
+  * [2.2 HAL Porting Guide](https://github.com/alibaba/AliOS-Things/wiki/AliOS-Things-HAL-Porting-Guide)
+  * [2.3 Flash Porting Guide](https://github.com/alibaba/AliOS-Things/wiki/Flash-and-KV-Storage-Porting-Guide)
+  * [2.4 WiFi Porting Guide](https://github.com/alibaba/AliOS-Things/wiki/AliOS-Things-WiFi-Porting-Guide)
+  * [2.5 LwIP Porting Guide](https://github.com/alibaba/AliOS-Things/wiki/AliOS-Things-LwIP-Porting-Guide)
+  * [2.6 SAL Porting Guide](https://github.com/alibaba/AliOS-Things/tree/master/device/sal/README.md)  
+  * [2.7 FOTA Porting Guide](https://github.com/alibaba/AliOS-Things/wiki/AliOS-Things-FOTA-Porting-Guide)
+  * [2.8 BINS Porting Guide](https://github.com/alibaba/AliOS-Things/wiki/AliOS-Things-BINS-Porting-Guide)
