@@ -1,15 +1,16 @@
 [1 AliOS Things Overview](https://github.com/alibaba/AliOS-Things/wiki/AliOS-Things-Technical-Overview)
   * [1.1 Yloop Event Framework](https://github.com/alibaba/AliOS-Things/wiki/Yloop-Event-Framework)
+  * [1.2 AliOS Things Test Guide](https://github.com/alibaba/AliOS-Things/wiki/AliOS-Things-Porting-Test-Guide)
 
 [2 AliOS Things Porting Guide](https://github.com/alibaba/AliOS-Things/wiki/AliOS-Things-Porting-Guide)
   * [2.1 Rhino Porting Guide](https://github.com/alibaba/AliOS-Things/wiki/AliOS-Things-Rhino-Porting-Guide)
   * [2.2 HAL Porting Guide](https://github.com/alibaba/AliOS-Things/wiki/AliOS-Things-HAL-Porting-Guide)
-  * [2.3 WiFi Porting Guide](https://github.com/alibaba/AliOS-Things/wiki/AliOS-Things-WiFi-Porting-Guide)
-  * [2.4 FOTA Porting Guide](https://github.com/alibaba/AliOS-Things/wiki/AliOS-Things-FOTA-Porting-Guide)
+  * [2.3 Flash and KV Storage Porting Guide](https://github.com/alibaba/AliOS-Things/wiki/Flash-and-KV-Storage-Porting-Guide)
+  * [2.4 WiFi Porting Guide](https://github.com/alibaba/AliOS-Things/wiki/AliOS-Things-WiFi-Porting-Guide)
   * [2.5 LwIP Porting Guide](https://github.com/alibaba/AliOS-Things/wiki/AliOS-Things-LwIP-Porting-Guide)
-  * [2.6 BINS Porting Guide](https://github.com/alibaba/AliOS-Things/wiki/AliOS-Things-BINS-Porting-Guide)
-  * [2.7 SAL Porting Guide](https://github.com/alibaba/AliOS-Things/tree/master/device/sal/README.md)  
-  * [2.8 Porting Test Guide](https://github.com/alibaba/AliOS-Things/wiki/AliOS-Things-Porting-Test-Guide)
+  * [2.6 SAL Porting Guide](https://github.com/alibaba/AliOS-Things/tree/master/device/sal/README.md)  
+  * [2.7 FOTA Porting Guide](https://github.com/alibaba/AliOS-Things/wiki/AliOS-Things-FOTA-Porting-Guide)
+  * [2.8 BINS Porting Guide](https://github.com/alibaba/AliOS-Things/wiki/AliOS-Things-BINS-Porting-Guide)
 
 [3 AliOS Things APP DEV Guide](https://github.com/alibaba/AliOS-Things/wiki/AliOS-Things-APP-DEV-Guide)
 
