@@ -4,7 +4,7 @@
 
 ## 典型的移植流程
 ### CPU支持
-这部分工作一般由AliOS Things内核团队完成，主要是各类CPU架构如ARM Cortex-M系列，C-Sky 80x系列的支持。<br>
+这部分工作一般由AliOS Things内核团队完成，主要是各类CPU架构如ARM Cortex-M系列，C-Sky 80x系列的支持。
 同时也欢迎社区爱好者及各类合作伙伴根据[Rhino Porting Guide](https://github.com/alibaba/AliOS-Things/wiki/AliOS-Things-Rhino-Porting-Guide)支持新的CPU，并贡献到github。
 
 ### BSP/HAL
