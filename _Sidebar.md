@@ -1,7 +1,7 @@
 [1 AliOS Things Overview](https://github.com/alibaba/AliOS-Things/wiki/AliOS-Things-Technical-Overview)
   * [1.1 Yloop Event Framework](https://github.com/alibaba/AliOS-Things/wiki/Yloop-Event-Framework)
   * [1.2 AliOS Things Test Guide](https://github.com/alibaba/AliOS-Things/wiki/AliOS-Things-Porting-Test-Guide)
-  * [1.3 AliOS Things Build System](https://github.com/alibaba/AliOS-Things/wiki/AliOS-Things-build-system)
+  * [1.3 Build System](https://github.com/alibaba/AliOS-Things/wiki/AliOS-Things-build-system)
 
 [2 AliOS Things Porting Guide](https://github.com/alibaba/AliOS-Things/wiki/AliOS-Things-Porting-Guide)
   * [2.1 Rhino Porting Guide](https://github.com/alibaba/AliOS-Things/wiki/AliOS-Things-Rhino-Porting-Guide)
