@@ -1,4 +1,4 @@
-在完成WiFi和协议栈的移植后，可以进行Alink智能配网测试与认证。
+在完成WiFi和协议栈的移植后，可以进行配网测试与认证。
 
 AliOS Things中的alinkapp（位于`example/alinkapp/`中）可以用来进行Alink测试和认证。注意：alinkapp是一个集配网、alink连云于一体的APP，需要WiFi HAL以及socket接口的支持，运行此APP前，请确保WiFi HAL和socket移植（通常是LwIP协议栈或者其他支持socket的组件）都已经完成。
 请按照以下步骤运行alinkapp，并验证Alink智能配网和认证：
