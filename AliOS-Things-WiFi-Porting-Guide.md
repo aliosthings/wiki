@@ -163,4 +163,4 @@ typedef struct {
 * 在cli输入`netmgr connect <AP> <password>`命令。其中`AP`为测试环境下可用的WiFi热点的SSID，`password`是对应AP的密码。
 * 预期结果：设备能成功拿到IP地址。
 
-此外，通过AliOS Things中的Alink测试APP，可以更充分的验证WiFi功能。关于Alink测试和认证，请参考[Alink Smart Config Test and Certification](https://github.com/alibaba/AliOS-Things/wiki/Wi-Fi-Provisioning-and-Alink-Certification)
+此外，通过AliOS Things中的Alink测试APP，可以更充分的验证WiFi功能。关于Alink测试和认证，请参考[Alink Smart Config Test and Certification](https://github.com/alibaba/AliOS-Things/wiki/WiFi-Provisioning-and-Alink-Certification)
