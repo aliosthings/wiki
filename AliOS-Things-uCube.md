@@ -1,9 +1,16 @@
+# 目录
+- [1 环境配置](#1-环境配置)
+    - [1.1 Python](#11-Python)
+    - [1.2 uCube](#12-uCube)
+    - [1.3 工具链](#13-工具链)
+- [2 工程](#2-工程)
+- [3 组件](#3-组件)
 **AliOS-Things uCube** 是 AliOS-Things 项目开发管理工具（简写命令为 aos），包含：
 1. 编译代码、Image下载、板子调试。
 2. 创建模板工程，基于模板做再次开发。
 3. 支持组件化，获取组件信息，组件的自由组合，满足业务场景的不同需求。
 
-# 1 环境 
+# 1 环境配置 
 ## 1.1 Python
 uCube 基于 Python（Version：2.7）语言开发，需要有 Python（Version：2.7）开发环境（Python 2.7.14 下验证测试通过）。
 ## 1.2 uCube
@@ -13,7 +20,7 @@ uCube 基于 Python（Version：2.7）语言开发，需要有 Python（Version�
 
 安装完成后， `aos --version` (aos-cube 简写命令）输出版本号。
 
-## 1.3 配置工具链
+## 1.3 工具链
 使用 uCube 的编译、工程创建等功能，用到工具链。工具链的配置，参考 [AliOS Things Environment Setup](https://github.com/alibaba/AliOS-Things/wiki/AliOS-Things-Environment-Setup) 系统环境配置 -> 交叉工具链配置。
 # 2 工程
 ## 2.1 获取工程
