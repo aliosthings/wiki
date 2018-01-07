@@ -142,7 +142,7 @@ fota 及其依赖的组件添加成功。
 [AliOS-Things] Adding component "test_component" from "https://github.com/oujunli/test_component.git" at latest revision in the current branch
 [AliOS-Things] Add component test_component (remote) in test_component
 ```
-通过 URL 添加远程组件（远程组件不添加依赖，依赖的组件继续通过 `aos add` 添加）。
+通过 URL 添加远程组件（远程组件暂时不会处理依赖，依赖的组件继续通过 `aos add` 添加）。
 
 ## 3.3 删除组件
 ```
@@ -171,4 +171,11 @@ fota 及其依赖的组件添加成功。
 | fota                           | AliOS-Things/framework/fota                                            | unused  |
 ...
 ```
-删除 fota 及其依赖的组件（远程组件不删除依赖）。
+删除 fota 及其依赖的组件（远程组件暂时不删除依赖）。
+
+# 4 新建组件
+`aos new` 命令除了新建工程外，还可以新建组件：
+```
+# aos new helloworld
+```
+在当前目录根据组件模板创建 helloworld 组件。添加组件功能代码，发布到 GitHub， 通过 Git 可以共享组件功能。
