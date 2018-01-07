@@ -1,7 +1,7 @@
 # 目录
 - [1 环境配置](#1-环境配置)
-    - [1.1 Python](#11-Python)
-    - [1.2 uCube](#12-uCube)
+    - [1.1 python](#11-python)
+    - [1.2 ucube](#12-ucube)
     - [1.3 工具链](#13-工具链)
 - [2 工程](#2-工程)
 - [3 组件](#3-组件)
@@ -13,9 +13,9 @@
 3. 支持组件化，获取组件信息，组件的自由组合，满足业务场景的不同需求。
 
 # 1 环境配置 
-## 1.1 Python
+## 1.1 python
 uCube 基于 Python（Version：2.7）语言开发，需要有 Python（Version：2.7）开发环境（Python 2.7.14 下验证测试通过）。
-## 1.2 uCube
+## 1.2 ucube
 使用 pip 安装 uCube 工具（在 MacOS 和 Linux上需要 sudo）：  
 
 `$ sudo pip install -U aos-cube`  
