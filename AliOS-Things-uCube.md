@@ -3,12 +3,6 @@
 2. 创建模板工程，基于模板做再次开发。
 3. 支持组件化，获取组件信息，组件的自由组合，满足业务场景的不同需求。
 
-uCube 架构
-
-![](https://img.alicdn.com/tfs/TB1u0uQkZrI8KJjy0FhXXbfnpXa-1509-632.png) 
-
-
-
 # 1 环境 
 ## 1.1 Python
 uCube 基于 Python（Version：2.7）语言开发，需要有 Python（Version：2.7）开发环境（Python 2.7.14 下验证测试通过）。
