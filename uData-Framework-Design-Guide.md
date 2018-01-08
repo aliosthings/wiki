@@ -130,7 +130,7 @@ typedef enum{
 | sensor hal | 提供sensor open,close, ioctl,read软件接口<br>2.提供sensor驱动注册功能<br>3.提供sensor I2C配置接口 | 已支持 |  v1.2  |1.sensor静态校准软件接口，包含静态参数校准和轴向校准<br>2.硬件接口配置接口，含I2C，SPI，中断配置 |
 | sensor drv | 提供了加速度、湿度计、气压计的驱动程序 | 已支持 |  v1.2  |1.增加温度计，陀螺仪，Tof sensor的驱动程序。<br>2.支持传感器状态检测功能BIST<br>3.支持传感器的中断工作模式<br>4.支持更多厂家的传感器设备 |
 ### uData框架小结
-本文主要是从uData的软件设计实现方面来介绍。关于[uData移植](https://github.com/alibaba/AliOS-Things/wiki/AliOS-Things-uData-Framework-Porting-Guide)，[sensor驱动开发](https://github.com/alibaba/AliOS-Things/wiki/AliOS-Things-uData-Sensor-Driver-Porting-Guide)等请参考其他相关的文档。
+本文主要是从uData的软件设计实现方面来介绍的。关于[uData移植](https://github.com/alibaba/AliOS-Things/wiki/AliOS-Things-uData-Framework-Porting-Guide)，[sensor驱动开发](https://github.com/alibaba/AliOS-Things/wiki/AliOS-Things-uData-Sensor-Driver-Porting-Guide)等请参考其他相关的文档。
 
 
 
