@@ -111,7 +111,8 @@ AliOS Things应用开发中可以支持命令行，并且可以添加用户自�
 下图展示了一个实际示例应用中的命令列表。
 
 ![](https://img.alicdn.com/tfs/TB1ETiGdwMPMeJjy1XcXXXpppXa-447-367.png)
-
+## 5.9 uData
+uData是AliOS Things差异化核心组件之一。uData框架设计之初的思想是基于传统sensorhub概念基础之上的，结合IoT的业务场景和AliOS Things物联网操作系统的特点设计而成的一个面对IoT的感知设备处理框架。uData的主要目的是为了解决IoT端侧设备传感器开发的周期长、应用算法缺少和无云端一体化等痛点问题。uData设计之初是遵循分层解耦的模块化设计原则，其目的是为了让uData根据客户的不同业务和需求组件化做移植适配，主要分kernel和framework两层，kernel层主要是负责传感器驱动，硬件端口配置和相关的静态校准，包括轴向校准等；framework层主要是负责应用服务管理、动态校准管理和对外模块接口等。[uData框架移植介绍](https://github.com/alibaba/AliOS-Things/wiki/AliOS-Things-uData-Framework-Porting-Guide), [uData传感器驱动开发介绍](https://github.com/alibaba/AliOS-Things/wiki/AliOS-Things-uData-Sensor-Driver-Porting-Guide)。
 # 6总结
 本文描述了基于AliOS Things的应用模型，介绍了软硬件开发环境的搭建、应用开发的基本步骤。以helloworld为例，展示了如何基于AliOS Things进行应用开发。本文最后，还介绍了AliOS Things提供的丰富组件和接口，以及如何利用这个组件进行应用开发。
 想了解AliOS Things更详细的信息，请访问[AliOS Things Github主页](https://github.com/alibaba/AliOS-Things)。
