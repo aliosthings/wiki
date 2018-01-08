@@ -37,7 +37,7 @@ uData框架设计之初的思想是基于传统sensorhub概念基础之上的，
 ```
 $(NAME)_COMPONENTS := uData /* 请在app的mk文件里加入此模块信息 */
 ```
-#### uData框架编译方式
+#### uData编译方式
 aos make ###app@###,前者是输入所开发的app名字，后者是当前的平台信息。比如:
 aos make uDataapp@b_l475e,表示在b_l475e平台下编译uDataapp。
 编译成功之后，可以在输出的信息中sensor，uData和所开发的组件名字，如下图所示。
