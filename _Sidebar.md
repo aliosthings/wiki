@@ -13,7 +13,8 @@
   * [2.6 SAL Porting Guide](https://github.com/alibaba/AliOS-Things/tree/master/device/sal/README.md)  
   * [2.7 FOTA Porting Guide](https://github.com/alibaba/AliOS-Things/wiki/AliOS-Things-FOTA-Porting-Guide)
   * [2.8 BINS Porting Guide](https://github.com/alibaba/AliOS-Things/wiki/AliOS-Things-BINS-Porting-Guide)
-  * [2.9 uData Sensor Porting Guide](https://github.com/alibaba/AliOS-Things/wiki/AliOS-Things-uData-Sensor-Driver-Porting-Guide)
+  * [2.9 uData Framework Porting Guide](https://github.com/alibaba/AliOS-Things/wiki/AliOS-Things-uData-Framework-Porting-Guide)
+  * [2.10 uData Sensor Porting Guide](https://github.com/alibaba/AliOS-Things/wiki/AliOS-Things-uData-Sensor-Driver-Porting-Guide)
 
 [3 AliOS Things APP DEV Guide](https://github.com/alibaba/AliOS-Things/wiki/AliOS-Things-APP-DEV-Guide)
 
