@@ -4,6 +4,7 @@ AliOS Things具有丰富的连接组件和能力，主要包括:
 * 套接字适配层(SAL)
 * TCP/IP网络协议栈(LwIP)
 * 连接协议(WiFi,BLE, LoRaWAN, GPRS和NB-IoT)
+
 自组织网络(uMesh)，套接字适配层(SAL)和TCP/IP网络协议栈(LwIP)主要是功能和使用场景的介绍。连接协议部分除了功能性介绍，还会根据场景给出AliOSThings网络组件的建议使用方法。
 
 ## 自组织网络
@@ -16,6 +17,7 @@ AliOS Things核心组件之一uMesh提供了AliOS Things原生自组织网络能
 * 支持树状拓扑和网状拓扑
 * 支持低功耗特性
 * 使用ID2对设备进行认证，AES-128对数据进行加密
+
 uMesh自组织网络协议位于MAC层之上，及IP层之下。整个协议包括三个部分，协议核心部分，连接协议抽象层，及IP协议适配层。uMesh适用于需要大规模部署的场景，如室内定位，智能照明，及商业场景。目前，主要支持WiFi，正在开发对低功耗和BLE mesh的支持。
 
 ## 套接字适配层
@@ -38,6 +40,7 @@ AliOS Things IP网络协议栈是基于LwIP 2.0.0，深度定制和优化的TCP/
 * DHCP client
 * TFTP Server
 * TFTP Client
+
 除了上述提供的功能特性，还对TCP/IP协议栈在多并发连接，大数据量条件下进行了深度优化。
 
 ## 连接协议
