@@ -54,6 +54,7 @@ WiFi芯片是目前支持最广泛的连接芯片之一。主要可以分为四�
 * 集成WiFi芯片，支持TCP/IP协议栈
 * 外接WiFi芯片，不支持TCP/IP协议栈
 * 外接WiFi芯片，支持TCP/IP协议栈
+
 根据这四种不同的形式，AliOS Things提供了不同的功能组件组合。LwIP和SAL是根据WiFi芯片类型的必选项。WiFi配网和WiFi uMesh的支持是根据实际的需要。
 
 ### LoRaWAN
