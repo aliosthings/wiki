@@ -92,7 +92,7 @@ typedef enum{
 ![](https://i.imgur.com/damo1Wb.png)
 
 
-###uData模块间通信模式
+### uData模块间通信模式
 当前的uData模块间通信是基于AliOS Things的yloop异步处理机制的。当前uData所支持的异步事件按如下所示，也可以在include\aos\yloop.h中查阅相关信息：
 ```
 /** uData event */
