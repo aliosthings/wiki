@@ -139,8 +139,8 @@ fota 及其依赖的组件添加成功。
 
 支持添加 AliOS-Things 原有组件的同时，uCube 还支持通过 URL 添加组件（新建组件参考 [Add a new component example](https://github.com/alibaba/AliOS-Things/wiki/Add-a-new-component-example))：
 ```
-# aos add https://github.com/oujunli/test_component.git
-[AliOS-Things] Adding component "test_component" from "https://github.com/oujunli/test_component.git" at latest revision in the current branch
+# aos add https://github.com/AliOS-Things/test_component.git
+[AliOS-Things] Adding component "test_component" from "https://github.com/AliOS-Things/test_component.git" at latest revision in the current branch
 [AliOS-Things] Add component test_component (remote) in test_component
 ```
 通过 URL 添加远程组件（远程组件暂时不会处理依赖，依赖的组件继续通过 `aos add` 添加）。
