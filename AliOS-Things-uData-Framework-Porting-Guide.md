@@ -1,4 +1,3 @@
-# AliOS uData框架移植说明文档
 
 #### uData框架简介
 uData框架设计之初的思想是基于传统sensorhub概念基础之上的，结合IoT的业务场景和AliOS Things物联网操作系统的特点设计而成的一个面对IoT的感知设备处理框架。uData主要分kernel和framework两层，kernel层主要是负责传感器驱动和相关的静态校准，包括轴向校准等；framework层主要是负责应用服务管理、动态校准管理和对外模块接口等。有关uData的具体设计将不再此文档中展开，下图可作为一个概要参考。本文档主要是介绍如何在现有的AliOS Things物联网操作系统上移植uData软件框架。
