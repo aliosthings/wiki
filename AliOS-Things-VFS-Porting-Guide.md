@@ -85,6 +85,14 @@ fd_uart = aos_open(uart_path,0);
 ```
 第二个参数目前未使用，可直接设置为0，如果返回值大于AOS_CONFIG_VFS_FD_OFFSET则打开成功.
 
+## 1.4 设备读操作
+如果要从串口读取10个字节的数据，可采用如下方式：
+```C
+int ret;
+char read_buf[10];
 
+ret = aos_read(fd_uart, read_buf, 10);
+```
+返回值等于10则数据读取成功.
 
 # 2文件系统
