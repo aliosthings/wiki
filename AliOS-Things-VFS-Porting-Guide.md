@@ -125,6 +125,19 @@ ret = aos_ioctl(fd_gpio, IOCTL_GPIO_OUTPUT_LOW, 0);
 ```C
 ret = aos_close(fd_uart);
 ```
+返回值为0则关闭成功，设备关闭后要再次使用需重新打开.
+## 1.8 其他
+rtc设备数据格式已经定义好，见include/hal/soc/rtc.h，建议按照如下方式进行读取和设置：
+```C
+rtc_time_t rtc_time_get;
+rtc_time_t rtc_time_set;
+
+/* get rtc */
+ret = aos_read(fd_rtc, &rtc_time_get, sizeof(rtc_time_get));
+
+/* set rtc */
+ret = aos_write(fd_rtc, &rtc_time_set, sizeof(rtc_time_set));
+```
 
 
 # 2文件系统
