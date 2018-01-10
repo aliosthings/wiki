@@ -310,14 +310,10 @@ int32_t uart1_init(uart_dev_t *uart)
     uart1_handle.Init.OverSampling           = UART1_OVER_SAMPLING;
     uart1_handle.Init.OneBitSampling         = UART1_ONE_BIT_SAMPLING;
     uart1_handle.AdvancedInit.AdvFeatureInit = UART1_ADV_FEATURE_INIT;
-    uart1_handle.buffer_queue = &g_buf_queue_uart1;
 
     /* init uart */
     uart1_MspInit();
-    HAL_UART_Init(&uart1_handle);
-
-    ret = krhino_buf_queue_create(&g_buf_queue_uart1, "buf_queue_uart",
-          g_buf_uart1, MAX_BUF_UART_BYTES, 1);
+    ret = HAL_UART_Init(&uart1_handle);
 		
     return ret;
 }
@@ -377,14 +373,10 @@ int32_t uart2_init(uart_dev_t *uart)
     uart2_handle.Init.OverSampling           = UART2_OVER_SAMPLING;
     uart2_handle.Init.OneBitSampling         = UART2_ONE_BIT_SAMPLING;
     uart2_handle.AdvancedInit.AdvFeatureInit = UART2_ADV_FEATURE_INIT;
-    uart2_handle.buffer_queue = &g_buf_queue_uart2;
 
     /* init uart */
     uart2_MspInit();
-    HAL_UART_Init(&uart2_handle);
-
-    ret = krhino_buf_queue_create(&g_buf_queue_uart2, "buf_queue_uart",
-          g_buf_uart2, MAX_BUF_UART_BYTES, 1);
+    ret = HAL_UART_Init(&uart2_handle);
 		
     return ret;
 }
