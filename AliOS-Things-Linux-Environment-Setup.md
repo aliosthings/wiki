@@ -1,4 +1,7 @@
 # linux环境配置
+
+可以尝试爱好者提供的一键安装脚本：[Setup Script for Linux/Mac](http://p28phe5s5.bkt.clouddn.com/setup_linux_osx.sh)。
+
 ## 依赖及aos-cube安装
 以 Ubuntu 16.04 LTS (Xenial Xerus) 64-bit PC 版本为例，安装下列 pkg：
 
