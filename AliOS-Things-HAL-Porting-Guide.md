@@ -76,7 +76,7 @@ flash抽象层移植代码示例，[参考实现](https://github.com/alibaba/Ali
 
 下面以STM32为例介绍hal层具体porting步骤：
 
-
+由于STM32的驱动函数和hal层定义的接口并非完全一致，我们需要在STM32驱动上封装一层，以对接hal层。
 
 ### 2.2 KV组件移植（与flash hal层相关）
  * 开发者需要实现相关flash hal层接口；
