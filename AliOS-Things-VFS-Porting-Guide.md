@@ -78,4 +78,11 @@ ret1 = aos_register_driver（uart1_path, &uart_ops, &uart1_dev_test);
 ret2 = aos_register_driver（uart2_path, &uart_ops, &uart2_dev_test);
 ```
 设备ops保持一致均为uart_ops，其他两个参数根据具体进行配置。注意设备配置信息中的port参数与HAL对阶层保持一致，便于驱动进行解析。
+## 设备打开
+```C
+int fd_uart;
+fd_uart = aos_open(uart_path,0);
+```
+
+
 # 2文件系统
