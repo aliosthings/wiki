@@ -24,56 +24,6 @@
 
 目前HAL抽象层的定义已经能兼容多家芯片公司的标准，比如STM32，Beken，全志，NXP等芯片厂商，用户可参照已有平台的HAL封装实现。
 
-下面举一个uart实际封装的例子来说明是如何移植的：
-
-  ```C
-    int32_t hal_uart_init(uart_dev_t *uart)
-    {
-
-        xxx_uart_init(uart)；
-
-    }
-  ```
-
-    xxx_uart_init的意思是指不同芯片厂商的 uart初始化。
-
- ```C
-    int32_t hal_uart_send(uart_dev_t *uart, void *data, uint32_t size, uint32_t timeout)
-    {
-
-        xxx_uart_send(uart, data, size, timeout);
-
-    }
-  ```
-
-    xxx_uart_send的意思是指不同芯片厂商的uart发送函数。
-
-  其余的HAL层API的封装以此类推。
-
-## 2flash抽象层对接
-### 2.1 flash 抽象层对接
-flash抽象层移植代码示例，[参考实现](https://github.com/alibaba/AliOS-Things/blob/master/platform/mcu/stm32l4xx/hal/flash_port.c)。  
-主要涉及到以下函数的相关修改：
-```C
-  hal_logic_partition_t *hal_flash_get_info(hal_partition_t in_partition)
-
-  int32_t hal_flash_erase(hal_partition_t in_partition, uint32_t off_set, uint32_t size)
-
-  int32_t hal_flash_write(hal_partition_t in_partition, uint32_t *off_set,
-                          const void *in_buf, uint32_t in_buf_len)
-
-  int32_t hal_flash_erase_write(hal_partition_t in_partition, uint32_t *off_set,
-                                const void *in_buf, uint32_t in_buf_len)
-
-  int32_t hal_flash_read(hal_partition_t in_partition, uint32_t *off_set, void *out_buf,
-                         uint32_t in_buf_len)
-
-  int32_t hal_flash_enable_secure(hal_partition_t partition, uint32_t off_set,
-                                  uint32_t size)  
-
-  int32_t hal_flash_dis_secure(hal_partition_t partition, uint32_t off_set, uint32_t size)
-```
-
 下面以STM32L4系列为例介绍hal层具体porting步骤：
 
 由于STM32L4的驱动函数和hal层定义的接口并非完全一致，我们需要在STM32L4驱动上封装一层，以对接hal层。
@@ -603,6 +553,31 @@ void uart2_DeMspInit(void)
 #endif /* __HAL_UART_STM32L4_H */
 
 ```
+
+## 2flash抽象层对接
+### 2.1 flash 抽象层对接
+flash抽象层移植代码示例，[参考实现](https://github.com/alibaba/AliOS-Things/blob/master/platform/mcu/stm32l4xx/hal/flash_port.c)。  
+主要涉及到以下函数的相关修改：
+```C
+  hal_logic_partition_t *hal_flash_get_info(hal_partition_t in_partition)
+
+  int32_t hal_flash_erase(hal_partition_t in_partition, uint32_t off_set, uint32_t size)
+
+  int32_t hal_flash_write(hal_partition_t in_partition, uint32_t *off_set,
+                          const void *in_buf, uint32_t in_buf_len)
+
+  int32_t hal_flash_erase_write(hal_partition_t in_partition, uint32_t *off_set,
+                                const void *in_buf, uint32_t in_buf_len)
+
+  int32_t hal_flash_read(hal_partition_t in_partition, uint32_t *off_set, void *out_buf,
+                         uint32_t in_buf_len)
+
+  int32_t hal_flash_enable_secure(hal_partition_t partition, uint32_t off_set,
+                                  uint32_t size)  
+
+  int32_t hal_flash_dis_secure(hal_partition_t partition, uint32_t off_set, uint32_t size)
+```
+完成以上代码即完成uart的hal层对接，可以通过hal层函数操作底层硬件，其他设备对接方式与此相同。
 
 
 ### 2.2 KV组件移植（与flash hal层相关）
