@@ -253,9 +253,9 @@ int32_t uart_mode_transform(hal_uart_mode_t mode_hal, uint32_t *mode_stm32l4)
     return ret;
 }
 ```
-然后逐一实现hal层的函数：
-初始化
+然后逐一实现hal层的函数
 ```C
+/* uart初始化 */
 int32_t hal_uart_init(uart_dev_t *uart)
 {
     int32_t ret = -1;
