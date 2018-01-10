@@ -464,6 +464,49 @@ int32_t hal_uart_finalize(uart_dev_t *uart)
 
     return ret;
 }
+
+int32_t uart1_DeInit(void)
+{
+    int32_t ret = -1;
+
+    /* uart deinitialization */
+    ret = HAL_UART_DeInit(&uart1_handle);
+    uart1_DeMspInit();
+
+    return ret;
+}
+
+void uart1_DeMspInit(void)
+{
+    /* Disable USART clock */
+    UART1_CLK_DISABLE();
+
+    /* USART TX/RX pins deinitializations */
+    UART1_TX_GPIO_CLK_DISABLE();
+    UART1_RX_GPIO_CLK_DISABLE();
+}
+
+int32_t uart2_DeInit(void)
+{
+    int32_t ret = -1;
+
+    /* uart deinitialization */
+    ret = HAL_UART_DeInit(&uart2_handle);
+    uart2_DeMspInit();
+
+    return ret;
+}
+
+void uart2_DeMspInit(void)
+{
+    /* Disable USART clock */
+    UART2_CLK_DISABLE();
+
+    /* USART TX/RX pins deinitializations */
+    UART2_TX_GPIO_CLK_DISABLE();
+    UART2_RX_GPIO_CLK_DISABLE();
+}
+
 ```
 ### 2.2 KV组件移植（与flash hal层相关）
  * 开发者需要实现相关flash hal层接口；
