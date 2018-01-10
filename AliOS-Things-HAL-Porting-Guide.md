@@ -80,12 +80,178 @@ flash抽象层移植代码示例，[参考实现](https://github.com/alibaba/Ali
 
 以uart为例，对接uart1和uart2，我们需要新建两个文件hal_uart_stm32l4.c和hal_uart_stm32l4.h，将封装层代码放到这两个文件中。
 
-在hal_uart_stm32l4.c中，首先定义相应的uart句柄
+在hal_uart_stm32l4.c中，首先定义相应的STM32L4的uart句柄：
 ```C
 /* handle for uart */
 UART_HandleTypeDef uart1_handle;
 UART_HandleTypeDef uart2_handle;
 ```
+由于hal层对于组件属性的宏定义和驱动层并非完全一致，如hal层要配置uart的数据位为8位应该配置uart_config_t的hal_uart_data_width_t成员为DATA_WIDTH_8BIT（值为3），但是对应到STM32L4的初始化，要配置uart的数据位为8，则应该配置UART_InitTypeDef的WordLength为UART_WORDLENGTH_8B（值为0），因而必须对这些进行装换，定义如下函数进行转换：
+```C
+/* function used to transform hal para to stm32l4 para */
+static int32_t uart_dataWidth_transform(hal_uart_data_width_t data_width_hal, uint32_t *data_width_stm32l4);
+static int32_t uart_parity_transform(hal_uart_parity_t parity_hal, uint32_t *parity_stm32l4);
+static int32_t uart_stop_bits_transform(hal_uart_stop_bits_t stop_bits_hal, uint32_t *stop_bits_stm32l4);
+static int32_t uart_flow_control_transform(hal_uart_flow_control_t flow_control_hal, uint32_t *flow_control_stm32l4);
+static int32_t uart_mode_transform(hal_uart_mode_t mode_hal, uint32_t *mode_stm32l4);
+
+int32_t uart_dataWidth_transform(hal_uart_data_width_t data_width_hal,
+        uint32_t *data_width_stm32l4)
+{
+    uint32_t data_width = 0;
+    int32_t	ret = 0;
+
+    if(data_width_hal == DATA_WIDTH_7BIT)
+    {
+        data_width = UART_WORDLENGTH_7B;
+    }
+    else if(data_width_hal == DATA_WIDTH_8BIT)
+    {
+        data_width = UART_WORDLENGTH_8B;
+    }
+    else if(data_width_hal == DATA_WIDTH_9BIT)
+    {
+        data_width = UART_WORDLENGTH_9B;
+    }
+    else
+    {
+        ret = -1;
+    }
+
+    if(ret == 0)
+    {
+        *data_width_stm32l4 = data_width;
+    }
+
+    return ret;
+}
+
+int32_t uart_parity_transform(hal_uart_parity_t parity_hal,
+        uint32_t *parity_stm32l4)
+{
+    uint32_t parity = 0;
+    int32_t	ret = 0;
+
+    if(parity_hal == NO_PARITY)
+    {
+        parity = UART_PARITY_NONE;
+    }
+    else if(parity_hal == ODD_PARITY)
+    {
+        parity = UART_PARITY_EVEN;
+    }
+    else if(parity_hal == EVEN_PARITY)
+    {
+        parity = UART_PARITY_ODD;
+    }
+    else
+    {
+        ret = -1;
+    }
+
+    if(ret == 0)
+    {
+        *parity_stm32l4 = parity;
+    }
+
+    return ret;
+}
+
+int32_t uart_stop_bits_transform(hal_uart_stop_bits_t stop_bits_hal,
+        uint32_t *stop_bits_stm32l4)
+{
+    uint32_t stop_bits = 0;
+    int32_t	ret = 0;
+
+    if(stop_bits_hal == STOP_BITS_1)
+    {
+        stop_bits = UART_STOPBITS_1;
+    }
+    else if(stop_bits_hal == STOP_BITS_2)
+    {
+        stop_bits = UART_STOPBITS_2;
+    }
+    else
+    {
+        ret = -1;
+    }
+
+    if(ret == 0)
+    {
+        *stop_bits_stm32l4 = stop_bits;
+    }
+
+    return ret;
+}
+
+int32_t uart_flow_control_transform(hal_uart_flow_control_t flow_control_hal,
+        uint32_t *flow_control_stm32l4)
+{
+    uint32_t flow_control = 0;
+    int32_t	ret = 0;
+
+    if(flow_control_hal == FLOW_CONTROL_DISABLED)
+    {
+        flow_control = UART_HWCONTROL_NONE;
+    }
+    else if(flow_control_hal == FLOW_CONTROL_CTS)
+    {
+        flow_control = UART_HWCONTROL_CTS;
+    }
+    else if(flow_control_hal == FLOW_CONTROL_RTS)
+    {
+        flow_control = UART_HWCONTROL_RTS;
+    }
+    else if(flow_control_hal == FLOW_CONTROL_RTS)
+    {
+    	flow_control = UART_HWCONTROL_RTS_CTS;
+    }
+    else
+    {
+    	ret = -1;
+    }
+
+    if(ret == 0)
+    {
+    	*flow_control_stm32l4 = flow_control;
+    }
+
+    return ret;
+}
+
+int32_t uart_mode_transform(hal_uart_mode_t mode_hal, uint32_t *mode_stm32l4)
+{
+    uint32_t mode = 0;
+    int32_t	ret = 0;
+
+    if(mode_hal == MODE_TX)
+    {
+        mode = UART_MODE_TX;
+    }
+    else if(mode_hal == MODE_RX)
+    {
+        mode = UART_MODE_RX;
+    }
+    else if(mode_hal == MODE_TX_RX)
+    {
+        mode = UART_MODE_TX_RX;
+    } 
+    else
+    {
+        ret = -1;
+    }
+
+    if(ret == 0)
+    {
+        *mode_stm32l4 = mode;
+    }
+
+    return ret;
+}
+
+```
+
+
 
 ### 2.2 KV组件移植（与flash hal层相关）
  * 开发者需要实现相关flash hal层接口；
