@@ -260,25 +260,25 @@ int32_t hal_uart_init(uart_dev_t *uart)
     int32_t ret = -1;
 
     if (uart == NULL) {
-		    return -1;
-		}
+        return -1;
+     }
 
     switch (uart->port) {
         case PORT_UART1:
       	    uart->priv = &uart1_handle;				
             ret = uart1_init(uart);
-				    break;
+            break;
         case PORT_UART2:
       	    uart->priv = &uart2_handle;				
             ret = uart2_init(uart);
-				    break;
-				/* if ohter uart exist add init code here */
+            break;
+        /* if ohter uart exist add init code here */
 
-			  default:
-					break;
-		}
+        default:
+            break;
+        }
 
-		return ret;
+    return ret;
 }
 
 int32_t uart1_init(uart_dev_t *uart)
