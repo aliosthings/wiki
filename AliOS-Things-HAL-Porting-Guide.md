@@ -439,7 +439,32 @@ int32_t hal_uart_recv(uart_dev_t *uart, void *data, uint32_t size, uint32_t time
     return ret;
 }
 ```
+设备关闭
+```C
+int32_t hal_uart_finalize(uart_dev_t *uart)
+{
+    int32_t ret = -1;
 
+    if (uart == NULL) {
+        return -1;
+    }
+
+    switch (uart->port) {
+        case PORT_UART1:
+      	    ret = uart1_DeInit();
+            break;
+        case PORT_UART2:
+      	    ret = uart2_DeInit();
+            break;
+        /* if other uart exist add Deinit code here */
+
+        default:
+            break;
+    }
+
+    return ret;
+}
+```
 ### 2.2 KV组件移植（与flash hal层相关）
  * 开发者需要实现相关flash hal层接口；
  * 开发者需通过在Makefile中声明组件依赖关系：$(NAME)_COMPONENTS += modules.fs.kv；
