@@ -56,26 +56,26 @@ const char* uart2_path = "/dev/uart2"
 
 i2c_dev_t uart1_dev_test =
 {
-    .port = 1,
+    .port = PORT_UART1,
     .config.baud_rate = 115200,
-    .config.data_width = 8,
+    .config.data_width = DATA_WIDTH_8BIT,
     .config.parity = ODD_PARITY,
-    .config.hal_uart_stop_bits_t = 1,
+    .config.hal_uart_stop_bits_t = STOP_BITS_1,
     .config.hal_uart_flow_control_t = FLOW_CONTROL_CTS
 };
 
 i2c_dev_t uart2_dev_test =
 {
-    .port = 2,
+    .port = PORT_UART2,
     .config.baud_rate = 460800,
-    .config.data_width = 8,
+    .config.data_width = DATA_WIDTH_8BIT,
     .config.parity = EVEN_PARITY,
-    .config.hal_uart_stop_bits_t = 1,
+    .config.hal_uart_stop_bits_t = STOP_BITS_1,
     .config.hal_uart_flow_control_t = FLOW_CONTROL_CTS
 };
 
 ret1 = aos_register_driver（uart1_path, &uart_ops, &uart1_dev_test);
 ret2 = aos_register_driver（uart2_path, &uart_ops, &uart2_dev_test);
 ```
-
+设备ops保持一致均为uart_ops，其他两个参数根据具体进行配置。注意设备配置信息中的port参数与HAL对阶层保持一致，便于驱动进行解析。
 # 2文件系统
