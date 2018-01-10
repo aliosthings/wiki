@@ -15,6 +15,7 @@
   * [2.8 BINS Porting Guide](https://github.com/alibaba/AliOS-Things/wiki/AliOS-Things-BINS-Porting-Guide)
   * [2.9 uData Framework Porting Guide](https://github.com/alibaba/AliOS-Things/wiki/AliOS-Things-uData-Framework-Porting-Guide)
   * [2.10 uData Sensor Porting Guide](https://github.com/alibaba/AliOS-Things/wiki/AliOS-Things-uData-Sensor-Driver-Porting-Guide)
+  * [2.11 VFS Porting Guide)](https://github.com/alibaba/AliOS-Things/wiki/AliOS-Things-VFS-Porting-Guide)
 
 [3 AliOS Things APP DEV Guide](https://github.com/alibaba/AliOS-Things/wiki/AliOS-Things-APP-DEV-Guide)
 
