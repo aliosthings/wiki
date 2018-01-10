@@ -81,10 +81,11 @@ flash抽象层移植代码示例，[参考实现](https://github.com/alibaba/Ali
 以uart为例，对接uart1和uart2，我们需要新建两个文件hal_uart_stm32l4.c和hal_uart_stm32l4.h，将封装层代码放到这两个文件中。
 
 在hal_uart_stm32l4.c中，首先定义相应的uart句柄
-`/* handle for uart */
+```C
+/* handle for uart */
 UART_HandleTypeDef uart1_handle;
-UART_HandleTypeDef uart2_handle;`
-
+UART_HandleTypeDef uart2_handle;
+```
 
 ### 2.2 KV组件移植（与flash hal层相关）
  * 开发者需要实现相关flash hal层接口；
