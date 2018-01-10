@@ -553,6 +553,7 @@ void uart2_DeMspInit(void)
 #endif /* __HAL_UART_STM32L4_H */
 
 ```
+完成以上代码即完成uart的hal层对接，可以通过hal层函数操作底层硬件，其他设备对接方式与此相同。
 
 ## 2flash抽象层对接
 ### 2.1 flash 抽象层对接
@@ -577,8 +578,6 @@ flash抽象层移植代码示例，[参考实现](https://github.com/alibaba/Ali
 
   int32_t hal_flash_dis_secure(hal_partition_t partition, uint32_t off_set, uint32_t size)
 ```
-完成以上代码即完成uart的hal层对接，可以通过hal层函数操作底层硬件，其他设备对接方式与此相同。
-
 
 ### 2.2 KV组件移植（与flash hal层相关）
  * 开发者需要实现相关flash hal层接口；
