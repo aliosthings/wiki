@@ -1,9 +1,9 @@
 VFS用于为各类文件（包括设备和文件系统的文件）提供了一个统一的用户操作接口。
 
 # 目录
-  * [1 DEVICE_IO](#1 DEVICE_IO)
+  * [1 DEVICE IO](#2DEVICE IO)
   * [2 文件系统](#2文件系统)
 ------
-# 1 DEVICE_IO
+# 1 DEVICE IO
 
 # 2文件系统
