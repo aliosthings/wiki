@@ -289,11 +289,16 @@ int32_t uart1_init(uart_dev_t *uart)
     uart1_handle.Instance                    = UART1;
     uart1_handle.Init.BaudRate               = uart->config.baud_rate;
 
-    ret = uart_dataWidth_transform(uart->config.data_width, &uart1_handle.Init.WordLength);
-    ret |= uart_parity_transform(uart->config.parity, &uart1_handle.Init.Parity);
-    ret |= uart_stop_bits_transform(uart->config.stop_bits, &uart1_handle.Init.StopBits);
-    ret |= uart_flow_control_transform(uart->config.flow_control, &uart1_handle.Init.HwFlowCtl);
-    ret |= uart_mode_transform(uart->config.mode, &uart1_handle.Init.Mode);
+    ret = uart_dataWidth_transform(uart->config.data_width, 
+          &uart1_handle.Init.WordLength);
+    ret |= uart_parity_transform(uart->config.parity, 
+           &uart1_handle.Init.Parity);
+    ret |= uart_stop_bits_transform(uart->config.stop_bits, 
+           &uart1_handle.Init.StopBits);
+    ret |= uart_flow_control_transform(uart->config.flow_control, 
+           &uart1_handle.Init.HwFlowCtl);
+    ret |= uart_mode_transform(uart->config.mode, 
+           &uart1_handle.Init.Mode);
 
     if (ret != 0) {
         return -1;
@@ -351,11 +356,16 @@ int32_t uart2_init(uart_dev_t *uart)
     uart2_handle.Instance                    = UART2;
     uart2_handle.Init.BaudRate               = uart->config.baud_rate;
 
-    ret = uart_dataWidth_transform(uart->config.data_width, &uart2_handle.Init.WordLength);
-    ret |= uart_parity_transform(uart->config.parity, &uart2_handle.Init.Parity);
-    ret |= uart_stop_bits_transform(uart->config.stop_bits, &uart2_handle.Init.StopBits);
-    ret |= uart_flow_control_transform(uart->config.flow_control, &uart2_handle.Init.HwFlowCtl);
-    ret |= uart_mode_transform(uart->config.mode, &uart2_handle.Init.Mode);
+    ret = uart_dataWidth_transform(uart->config.data_width, 
+          &uart2_handle.Init.WordLength);
+    ret |= uart_parity_transform(uart->config.parity, 
+           &uart2_handle.Init.Parity);
+    ret |= uart_stop_bits_transform(uart->config.stop_bits, 
+           &uart2_handle.Init.StopBits);
+    ret |= uart_flow_control_transform(uart->config.flow_control, 
+           &uart2_handle.Init.HwFlowCtl);
+    ret |= uart_mode_transform(uart->config.mode, 
+           &uart2_handle.Init.Mode);
 
     if (ret != 0) {
         return -1;
