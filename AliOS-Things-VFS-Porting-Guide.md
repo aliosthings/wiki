@@ -36,4 +36,10 @@ extern "C" {
 ```
 2）这里包含了所有支持的设备的头文件，如果包含所要使用的设备则继续，否则反馈给我们。如果所要使用的设备支持，则打开include/hal/soc/路径，找到对应的hal头文件（如uart设备则打开uart.h），并实现该头文件中所声明的所有函数。对接方法见AliOS Things HAL Porting Guide.
 
+## 1.2 注册驱动设备
+1）在kernel/vfs/include/vfs_register.h中找到注册函数
+```C
+int aos_register_driver(const char *path, file_ops_t *fops, void *arg)
+```
+
 # 2文件系统
