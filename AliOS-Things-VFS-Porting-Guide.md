@@ -121,6 +121,10 @@ ret = aos_ioctl(fd_gpio, IOCTL_GPIO_OUTPUT_LOW, 0);
 #define IOCTL_GPIO_OUTPUT_LOW    2  /* output low */
 #define IOCTL_GPIO_OUTPUT_TOGGLE 3  /* toggle output */
 ```
+## 1.7 设备关闭操作
+```C
+ret = aos_close(fd_uart);
+```
 
 
 # 2文件系统
