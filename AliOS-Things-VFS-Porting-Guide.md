@@ -41,5 +41,7 @@ extern "C" {
 ```C
 int aos_register_driver(const char *path, file_ops_t *fops, void *arg)
 ```
+第一个参数path为设备路径，如uart设备可以定义为const char* uart_path = "/dev/uart"，设备路径必须以"/"开始，总长度不能超过4096.
 
+第二个参数fops为设备驱动结构体，在kernel/vfs/include/device/路径下对应的头文件中已经定义好，直接使用即可。 如adc对应的fops在kernel/vfs/include/device/vfs_uart.h中，引用该目录下的vfs_device.h即可。
 # 2文件系统
