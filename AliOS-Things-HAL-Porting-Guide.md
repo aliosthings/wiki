@@ -555,9 +555,9 @@ void uart2_DeMspInit(void)
 ```
 完成以上代码即完成uart的hal层对接，可以通过hal层函数操作底层硬件，其他设备对接方式与此相同。
 
-在系统初始化时，定义相应的句柄并初始化即可
+在系统初始化时，定义相应的句柄并初始化即可调用相应的函数进行数据收发
 ```C
-
+uart_dev_t uart_dev_com1;
 static void uart_init(void)
 {
     uart_dev_com1.port = PORT_UART1;
