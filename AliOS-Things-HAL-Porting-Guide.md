@@ -89,10 +89,14 @@ UART_HandleTypeDef uart2_handle;
 由于hal层对于组件属性的宏定义和驱动层并非完全一致，如hal层要配置uart的数据位为8位应该配置uart_config_t的hal_uart_data_width_t成员为DATA_WIDTH_8BIT（值为3），但是对应到STM32L4的初始化，要配置uart的数据位为8，则应该配置UART_InitTypeDef的WordLength为UART_WORDLENGTH_8B（值为0），因而必须对这些进行装换，定义如下函数进行转换：
 ```C
 /* function used to transform hal para to stm32l4 para */
-static int32_t uart_dataWidth_transform(hal_uart_data_width_t data_width_hal, uint32_t *data_width_stm32l4);
-static int32_t uart_parity_transform(hal_uart_parity_t parity_hal, uint32_t *parity_stm32l4);
-static int32_t uart_stop_bits_transform(hal_uart_stop_bits_t stop_bits_hal, uint32_t *stop_bits_stm32l4);
-static int32_t uart_flow_control_transform(hal_uart_flow_control_t flow_control_hal, uint32_t *flow_control_stm32l4);
+static int32_t uart_dataWidth_transform(hal_uart_data_width_t data_width_hal, 
+               uint32_t *data_width_stm32l4);
+static int32_t uart_parity_transform(hal_uart_parity_t parity_hal, 
+               uint32_t *parity_stm32l4);
+static int32_t uart_stop_bits_transform(hal_uart_stop_bits_t stop_bits_hal, 
+               uint32_t *stop_bits_stm32l4);
+static int32_t uart_flow_control_transform(hal_uart_flow_control_t flow_control_hal, 
+               uint32_t *flow_control_stm32l4);
 static int32_t uart_mode_transform(hal_uart_mode_t mode_hal, uint32_t *mode_stm32l4);
 
 int32_t uart_dataWidth_transform(hal_uart_data_width_t data_width_hal,
