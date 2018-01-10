@@ -78,11 +78,13 @@ ret1 = aos_register_driver（uart1_path, &uart_ops, &uart1_dev_test);
 ret2 = aos_register_driver（uart2_path, &uart_ops, &uart2_dev_test);
 ```
 设备ops保持一致均为uart_ops，其他两个参数根据具体进行配置。注意设备配置信息中的port参数与HAL对阶层保持一致，便于驱动进行解析。
-## 设备打开
+## 1.3 设备打开
 ```C
 int fd_uart;
 fd_uart = aos_open(uart_path,0);
 ```
+第二个参数目前未使用，可直接设置为0，如果返回值大于AOS_CONFIG_VFS_FD_OFFSET则打开成功.
+
 
 
 # 2文件系统
