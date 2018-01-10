@@ -95,4 +95,32 @@ ret = aos_read(fd_uart, read_buf, 10);
 ```
 返回值等于10则数据读取成功.
 
+## 1.5 设备写操作
+如果要从串口发送10个字节的数据，可采用如下方式：
+```C
+int ret;
+char write_buf[10];
+
+ret = aos_write(fd_uart, write_buf, 10);
+```
+返回值等于10则数据发送成功.
+
+## 1.6 设备IO操作
+设备IO操作通过aos_ioctl函数实现，例如GPIO中，如果要输出高低电平，可采用如下方式：
+```C
+/* output high */
+ret = aos_ioctl(fd_gpio, IOCTL_GPIO_OUTPUT_HIGHT, 0);
+
+/* output low */
+ret = aos_ioctl(fd_gpio, IOCTL_GPIO_OUTPUT_LOW, 0);
+```
+第二个参数代表所要进行的IO操作，各个设备支持的IO操作见kernel/vfs/include/device/目录下对应的设备头文件。如vfs_gpio.h中：
+```C
+/* cmd for ioctl */
+#define IOCTL_GPIO_OUTPUT_HIGHT  1  /* output hight */
+#define IOCTL_GPIO_OUTPUT_LOW    2  /* output low */
+#define IOCTL_GPIO_OUTPUT_TOGGLE 3  /* toggle output */
+```
+
+
 # 2文件系统
