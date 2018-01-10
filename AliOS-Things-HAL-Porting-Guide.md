@@ -425,8 +425,23 @@ int32_t hal_uart_send(uart_dev_t *uart, const void *data, uint32_t size, uint32_
     int32_t ret = -1;
 
     if((uart != NULL) && (data != NULL)) {
-	      ret = HAL_UART_Transmit_IT((UART_HandleTypeDef *)uart->priv,
-        			(uint8_t *)data, size);
+        ret = HAL_UART_Transmit_IT((UART_HandleTypeDef *)uart->priv,
+              (uint8_t *)data, size);
+    }
+
+    return ret;
+}
+```
+
+数据接收
+```C
+int32_t hal_uart_recv(uart_dev_t *uart, void *data, uint32_t size, uint32_t timeout)
+{
+    int32_t ret = -1;
+
+    if((uart != NULL) && (data != NULL)) {
+        ret = HAL_UART_Receive_IT((UART_HandleTypeDef *)uart->priv,
+              (uint8_t *)data, size);
     }
 
     return ret;
