@@ -555,6 +555,24 @@ void uart2_DeMspInit(void)
 ```
 完成以上代码即完成uart的hal层对接，可以通过hal层函数操作底层硬件，其他设备对接方式与此相同。
 
+在系统初始化时，定义相应的句柄并初始化即可
+```C
+
+static void uart_init(void)
+{
+    uart_dev_com1.port = PORT_UART1;
+    uart_dev_com1.config.baud_rate = 115200;
+    uart_dev_com1.config.data_width = DATA_WIDTH_8BIT;
+    uart_dev_com1.config.parity = NO_PARITY;
+    uart_dev_com1.config.stop_bits = STOP_BITS_1;
+    uart_dev_com1.config.flow_control = FLOW_CONTROL_DISABLED;	
+    uart_dev_com1.config.mode = MODE_TX_RX;
+
+    hal_uart_init(&uart_dev_com1);
+}
+
+```
+
 ## 2flash抽象层对接
 ### 2.1 flash 抽象层对接
 flash抽象层移植代码示例，[参考实现](https://github.com/alibaba/AliOS-Things/blob/master/platform/mcu/stm32l4xx/hal/flash_port.c)。  
