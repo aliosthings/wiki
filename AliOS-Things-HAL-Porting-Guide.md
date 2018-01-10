@@ -418,7 +418,20 @@ void uart2_MspInit(void)
     HAL_NVIC_EnableIRQ(UART2_IRQn);
 }
 ```
+数据发送
+```C
+int32_t hal_uart_send(uart_dev_t *uart, const void *data, uint32_t size, uint32_t timeout)
+{
+    int32_t ret = -1;
 
+    if((uart != NULL) && (data != NULL)) {
+	      ret = HAL_UART_Transmit_IT((UART_HandleTypeDef *)uart->priv,
+        			(uint8_t *)data, size);
+    }
+
+    return ret;
+}
+```
 
 ### 2.2 KV组件移植（与flash hal层相关）
  * 开发者需要实现相关flash hal层接口；
