@@ -48,5 +48,34 @@ int aos_register_driver(const char *path, file_ops_t *fops, void *arg)
 ```C
 ret = aos_register_driver（uart_path, &uart_ops, &uart_dev_test)
 ```
+如果返回值为0则注册成功。
+如果系统中有多个同类型设备，则需要对每一个设备进行注册，如存在两个uart，分别为uart1和uart2。
+```C
+const char* uart1_path = "/dev/uart1";
+const char* uart2_path = "/dev/uart2"
+
+i2c_dev_t uart1_dev_test =
+{
+    .port = 1,
+    .config.baud_rate = 115200,
+    .config.data_width = 8,
+    .config.parity = ODD_PARITY,
+    .config.hal_uart_stop_bits_t = 1,
+    .config.hal_uart_flow_control_t = FLOW_CONTROL_CTS
+};
+
+i2c_dev_t uart2_dev_test =
+{
+    .port = 2,
+    .config.baud_rate = 460800,
+    .config.data_width = 8,
+    .config.parity = EVEN_PARITY,
+    .config.hal_uart_stop_bits_t = 1,
+    .config.hal_uart_flow_control_t = FLOW_CONTROL_CTS
+};
+
+ret1 = aos_register_driver（uart1_path, &uart_ops, &uart1_dev_test);
+ret2 = aos_register_driver（uart2_path, &uart_ops, &uart2_dev_test);
+```
 
 # 2文件系统
