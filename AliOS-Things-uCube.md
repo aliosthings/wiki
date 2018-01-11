@@ -110,20 +110,8 @@ Current directory isn't AliOS-Things program, just list all components.
 ## 3.2 添加组件
 在 AliOS-Things 工程目录下面（aos new TARGET），添加一个没有使用过的组件：  
 ```
-# aos add fota
-[AliOS-Things] Add component fota (local) in os/framework/fota
-[AliOS-Things] Add component fota_platform (local) in os/framework/fota/platform
-[AliOS-Things] Add component fota_alink_transport (local) in os/framework/fota/platform/alink
-[AliOS-Things] Add component fota_mqtt_transport (local) in os/framework/fota/platform/mqtt
-[AliOS-Things] Add component fota_coap_transport (local) in os/framework/fota/platform/coap
-[AliOS-Things] Add component cjson (local) in os/utility/cjson
-[AliOS-Things] Add component common_transport (local) in os/framework/fota/platform/common
-[AliOS-Things] Add component fota_download (local) in os/framework/fota/download
-[AliOS-Things] Add component download_coap (local) in os/framework/fota/download/coap
-[AliOS-Things] Add component download_http (local) in os/framework/fota/download/http
-[AliOS-Things] Add component fota_socket (local) in os/framework/fota/download/http/socket
-[AliOS-Things] Add component socket_stm32wifi (local) in os/framework/fota/download/http/socket/stm32wifi
-[AliOS-Things] Add component socket_stand (local) in os/framework/fota/download/http/socket/stand
+# aos add mesh
+[AliOS-Things] Add component mesh (local) in aos/kernel/protocols/mesh
 ```  
 ```
 # aos ls -c
@@ -131,10 +119,10 @@ Current directory isn't AliOS-Things program, just list all components.
 |===================================================================================================================|
 | NAME                           | LOCATION                                                               | STATUS  |
 ...
-| fota                           | AliOS-Things/framework/fota                                            | unused  |
+| mesh                           | AliOS-Things/kernel/protocols/mesh                                     | used    |
 ...
 ```
-fota 及其依赖的组件添加成功。
+mesh 组件添加成功。
 组件添加后，基于组件功能开发。
 
 支持添加 AliOS-Things 原有组件的同时，uCube 还支持通过 URL 添加组件（新建组件参考 [Add a new component example](https://github.com/alibaba/AliOS-Things/wiki/Add-a-new-component-example))：
@@ -143,24 +131,12 @@ fota 及其依赖的组件添加成功。
 [AliOS-Things] Adding component "test_component" from "https://github.com/AliOS-Things/test_component.git" at latest revision in the current branch
 [AliOS-Things] Add component test_component (remote) in test_component
 ```
-通过 URL 添加远程组件（远程组件暂时不会处理依赖，依赖的组件继续通过 `aos add` 添加）。
+通过 URL 添加远程组件。
 
 ## 3.3 删除组件
 ```
-# aos rm fota
-[AliOS-Things] Remove component fota (local) in os/framework/fota
-[AliOS-Things] Remove component fota_platform (local) in os/framework/fota/platform
-[AliOS-Things] Remove component fota_alink_transport (local) in os/framework/fota/platform/alink
-[AliOS-Things] Remove component fota_mqtt_transport (local) in os/framework/fota/platform/mqtt
-[AliOS-Things] Remove component fota_coap_transport (local) in os/framework/fota/platform/coap
-[AliOS-Things] Remove component cjson (local) in os/utility/cjson
-[AliOS-Things] Remove component common_transport (local) in os/framework/fota/platform/common
-[AliOS-Things] Remove component fota_download (local) in os/framework/fota/download
-[AliOS-Things] Remove component download_coap (local) in os/framework/fota/download/coap
-[AliOS-Things] Remove component download_http (local) in os/framework/fota/download/http
-[AliOS-Things] Remove component fota_socket (local) in os/framework/fota/download/http/socket
-[AliOS-Things] Remove component socket_stm32wifi (local) in os/framework/fota/download/http/socket/stm32wifi
-[AliOS-Things] Remove component socket_stand (local) in os/framework/fota/download/http/socket/stand
+# aos rm mesh
+[AliOS-Things] Remove component mesh (local) in aos/kernel/protocols/mesh
 ```  
 
 ```
@@ -169,10 +145,10 @@ fota 及其依赖的组件添加成功。
 |===================================================================================================================|
 | NAME                           | LOCATION                                                               | STATUS  |
 ...
-| fota                           | AliOS-Things/framework/fota                                            | unused  |
+| mesh                           | AliOS-Things/kernel/protocols/mesh                                     | unused  |
 ...
 ```
-删除 fota 及其依赖的组件（远程组件暂时不删除依赖）。
+删除 mesh。
 
 # 4 新建组件
 `aos new` 命令除了新建工程外，还可以新建组件：
