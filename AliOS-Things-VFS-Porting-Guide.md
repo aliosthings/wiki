@@ -44,6 +44,7 @@ int aos_register_driver(const char *path, file_ops_t *fops, void *arg)
 第一个参数path为设备路径，如uart设备可以定义为const char* uart_path = "/dev/uart"，设备路径必须以"/"开始，总长度不能超过4096.
 
 第二个参数fops为设备驱动结构体，在kernel/vfs/include/device/路径下对应的头文件中已经定义好，直接使用即可。 如uart对应的fops在kernel/vfs/include/device/vfs_uart.h中为uart_ops，引用该目录下的vfs_device.h即可引用该结构体。
+
 第三个参数arg为指向设备配置信息的指针，adc的设备配置信息结构体定义在hal层include/hal/soc/uart.h中，为uart_dev_t。定义uart配置信息结构体，如定义uart_dev_t    uart_dev_test，并根据具体设备进行初始化，并调用aos_register_driver函数注册。
 ```C
 ret = aos_register_driver（uart_path, &uart_ops, &uart_dev_test)
