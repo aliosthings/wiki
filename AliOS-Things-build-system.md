@@ -66,10 +66,52 @@ config.mk 其实就是把所有组件 mk 中的信息汇总到一起。而后面
 
 ## 编译
 
+编译命令
+
+![](https://img.alicdn.com/tfs/TB15QZglZjI8KJjSsppXXXbyVXa-1279-94.png)
+
+![](https://img.alicdn.com/tfs/TB1ucbDl3vD8KJjSsplXXaIEFXa-1481-75.png)
+
+![](https://img.alicdn.com/tfs/TB1fSAglZjI8KJjSsppXXXbyVXa-1494-100.png)
+
+每个组件的编译选项产生
+
+![](https://img.alicdn.com/tfs/TB1yegUl26H8KJjSspmXXb2WXXa-1528-254.png)
+
 ## 链接
+
+链接命令
+
+![](https://img.alicdn.com/tfs/TB1MzQLl2DH8KJjy1XcXXcpdXXa-1274-86.png)
+
+链接选项的产生
+
+![](https://img.alicdn.com/tfs/TB1yz3ol8DH8KJjSspnXXbNAVXa-1521-141.png)
+
+![](https://img.alicdn.com/tfs/TB14TPml8fH8KJjy1XbXXbLdXXa-1274-69.png)
 
 ## 二进制及其他处理
 
+统一进行的二进制处理如strip等
+
+![](https://img.alicdn.com/tfs/TB1SXwOl2DH8KJjy1XcXXcpdXXa-986-325.png)
+
+组件单独定义的处理
+
+![](https://img.alicdn.com/tfs/TB1V13Wl4rI8KJjy0FpXXb5hVXa-1095-65.png)
+
+![](https://img.alicdn.com/tfs/TB1NO.Cl9_I8KJjy0FoXXaFnVXa-1048-23.png)
+
 # 关键宏调用关系梳理
 
-# 
+FIND_COMPONENT   --找到所有需要的组件 参数：所有基本组件，递归调用
+
+    ​PREPROCESS_TEST_COMPONENT  --将所有测试所需的组件也加入到组件中，无参数
+
+PROCESS_COMPONENT  --解析每个组件的 mk，参数：所有组件
+
+    ​PROCESS_ONE_COMPONENT  --解析一个组件，参数：某一个组件
+
+
+WRITE_FILE_CREATE  --在config.mk中写入所有相关信息，包括写入所有编译，链接选项到opts文件中
+
