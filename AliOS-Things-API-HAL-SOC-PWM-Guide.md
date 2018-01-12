@@ -3,7 +3,7 @@
   * [1 hal_pwm_init](#1-hal_pwm_init)
   * [2 hal_pwm_start](#2-hal_pwm_start)
   * [3 hal_pwm_stop](#3-hal_pwm_stop)
-  * [4 hal_pwm_stop](#4-hal_pwm_finalize)
+  * [4 hal_pwm_finalize](#4-hal_pwm_finalize)
 
 ------
 
