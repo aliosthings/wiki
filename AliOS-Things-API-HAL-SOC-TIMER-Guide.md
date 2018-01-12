@@ -10,7 +10,7 @@
 ## 1-hal_timer_init
 
 ```c
-void hal_timer_init(timer_dev_t *tim)
+int32_t hal_timer_init(timer_dev_t *tim)
 ```
 
 - [x] **Description**
@@ -57,6 +57,26 @@ void hal_timer_stop(timer_dev_t *tim)
 - [x] **Description**
 
   stop a hardware timer
+
+- [x] **Parameters**
+
+  | IN/OUT |  NAME  |  DESC  |
+  |--------|--------|--------|
+  | [in] | tim |        timer struct   |
+
+- [x] **Returns**
+
+  None.
+
+## 4-hal_timer_finalize
+
+```c
+int32_t hal_timer_finalize(timer_dev_t *tim)
+```
+
+- [x] **Description**
+
+  finalize a hardware timer
 
 - [x] **Parameters**
 
