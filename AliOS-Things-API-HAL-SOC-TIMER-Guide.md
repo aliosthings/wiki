@@ -3,15 +3,14 @@
   * [1 hal_timer_init](#1-hal_timer_init)
   * [2 hal_timer_start](#2-hal_timer_start)
   * [3 hal_timer_stop](#3-hal_timer_stop)
+  * [4 hal_timer_finalize](#4-hal_timer_finalize)
 
 ------
 
 ## 1-hal_timer_init
 
 ```c
-void hal_timer_init(hal_timer_t *tmr, unsigned int period,
-                    unsigned char auto_reload, unsigned char ch,
-                    hal_timer_cb_t cb, void *arg)
+void hal_timer_init(timer_dev_t *tim)
 ```
 
 - [x] **Description**
@@ -22,12 +21,7 @@ void hal_timer_init(hal_timer_t *tmr, unsigned int period,
 
   | IN/OUT |  NAME  |  DESC  |
   |--------|--------|--------|
-  | [in] | tmr |        timer struct   |
-  | [in] | period |     micro seconds for repeat timer trigger   |
-  | [in] | auto_reoad | set to 0, if you just need oneshot timer   |
-  | [in] | cb |         callback to be triggered after useconds   |
-  | [in] | ch |         timer channel   |
-  | [in] | arg |        passed to cb |
+  | [in] | tim |        timer struct   |
 
 - [x] **Returns**
 
@@ -73,4 +67,3 @@ void hal_timer_stop(hal_timer_t *tmr)
 - [x] **Returns**
 
   None.
-
