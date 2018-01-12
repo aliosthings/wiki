@@ -69,7 +69,7 @@ int32_t hal_rtc_set_time(rtc_dev_t *rtc, rtc_time_t *time)
 
   0 : on success, EIO : if an error occurred with any step
 
-## 4-hal_rtc_init
+## 4-hal_rtc_finalize
 
 ```c
 void hal_rtc_finalize(rtc_dev_t *rtc)
