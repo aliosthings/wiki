@@ -40,7 +40,9 @@ int32_t hal_timer_start(timer_dev_t *tim)
 
 - [x] **Parameters**
 
-  None.
+  | IN/OUT |  NAME  |  DESC  |
+  |--------|--------|--------|
+  | [in] | tim |        timer struct   |
 
 - [x] **Returns**
 
@@ -49,7 +51,7 @@ int32_t hal_timer_start(timer_dev_t *tim)
 ## 3-hal_timer_stop
 
 ```c
-void hal_timer_stop(hal_timer_t *tmr)
+void hal_timer_stop(timer_dev_t *tim)
 ```
 
 - [x] **Description**
@@ -60,9 +62,7 @@ void hal_timer_stop(hal_timer_t *tmr)
 
   | IN/OUT |  NAME  |  DESC  |
   |--------|--------|--------|
-  | [in] | tmr | timer struct   |
-  | [in] | cb |  callback to be triggered after useconds   |
-  | [in] | arg | passed to cb |
+  | [in] | tim |        timer struct   |
 
 - [x] **Returns**
 
