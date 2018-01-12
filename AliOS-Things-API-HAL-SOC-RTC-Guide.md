@@ -3,7 +3,7 @@
   * [1 hal_rtc_init](#1-hal_rtc_init)
   * [2 hal_rtc_get_time](#2-hal_rtc_get_time)
   * [3 hal_rtc_set_time](#3-hal_rtc_set_time)
-
+  * [4 hal_rtc_finalize](#4-hal_rtc_finalize)
 ------
 
 ## 1-hal_rtc_init
@@ -64,6 +64,26 @@ int32_t hal_rtc_set_time(rtc_dev_t *rtc, rtc_time_t *time)
   |--------|--------|--------|
   | [in] |  rtc |  rtc device   |
   | [out] | time | pointer to a time structure |
+
+- [x] **Returns**
+
+  0 : on success, EIO : if an error occurred with any step
+
+## 4-hal_rtc_init
+
+```c
+void hal_rtc_finalize(rtc_dev_t *rtc)
+```
+
+- [x] **Description**
+
+  This function will finalize the on board CPU real time clock
+ 
+- [x] **Parameters**
+
+  | IN/OUT |  NAME  |  DESC  |
+  |--------|--------|--------|
+  | [in] | rtc | rtc device |
 
 - [x] **Returns**
 
