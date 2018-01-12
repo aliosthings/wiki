@@ -31,12 +31,12 @@ void hal_timer_init(timer_dev_t *tim)
 ## 2-hal_timer_start
 
 ```c
-int32_t hal_timer_start(hal_timer_t *tmr)
+int32_t hal_timer_start(timer_dev_t *tim)
 ```
 
 - [x] **Description**
 
-  init a hardware timer
+  start a hardware timer
 
 - [x] **Parameters**
 
