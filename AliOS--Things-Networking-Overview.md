@@ -26,7 +26,7 @@ uMesh自组织网络协议位于MAC层之上，及IP层之下。整个协议包�
 
 AliOS Things为了能够适配不同的连接协议，和不同连接芯片的能力，提供了SAL开发组件，来加速MCU+通信连接芯片的应用场景开发和部署。在此类应用场景中，主控MCU芯片通过UART或SPI总线与WiFi、NB-IoT等通信芯片相连，AliOS Things操作系统和用户APP运行在主控MCU中，需要网络数据访问时，通过外接的通信芯片进行网络负载的接收和发射。主控MCU和外接通信芯片之间的通信，可以是AT Command通道，也可以是厂商私有协议通道。
 
-![SAL_diagram](https://yqfile.alicdn.com/2ae6ed7b455551f28fd4b8d6d7cd64c9b17f7b0f.png)
+![sal_datagram](https://raw.githubusercontent.com/wiki/alibaba/AliOS-Things/SAL_DATAGRAM.png)
 
 ## IP网络协议栈
 
@@ -63,7 +63,8 @@ WiFi芯片是目前支持最广泛的连接芯片之一。主要可以分为四�
 * 外接WiFi芯片，支持TCP/IP协议栈
 
 根据这四种不同的形式，AliOS Things提供了不同的功能组件组合。LwIP和SAL是根据WiFi芯片类型的必选项。WiFi配网和WiFi uMesh的支持是根据实际的需要。
-![WiFi_usage](https://yqfile.alicdn.com/a271888dcfacce7a08e38ef6ed6204162b44f0c6.png)
+
+![net_components](https://raw.githubusercontent.com/wiki/alibaba/AliOS-Things/network_components.png)
 
 ### LoRaWAN
 
