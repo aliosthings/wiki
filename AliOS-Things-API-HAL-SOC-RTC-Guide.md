@@ -51,7 +51,7 @@ int32_t hal_rtc_get_time(rtc_dev_t *rtc, rtc_time_t *time)
 ## 3-hal_rtc_set_time
 
 ```c
-int32_t hal_rtc_set_time(rtc_dev_t *rtc, rtc_time_t *time)
+int32_t hal_rtc_set_time(rtc_dev_t *rtc, const rtc_time_t *time)
 ```
 
 - [x] **Description**
