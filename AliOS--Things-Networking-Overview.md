@@ -19,7 +19,8 @@ AliOS Things核心组件之一uMesh提供了AliOS Things原生自组织网络能
 * 使用ID2对设备进行认证，AES-128对数据进行加密
 
 uMesh自组织网络协议位于MAC层之上，及IP层之下。整个协议包括三个部分，协议核心部分，连接协议抽象层，及IP协议适配层。uMesh适用于需要大规模部署的场景，如室内定位，智能照明，及商业场景。目前，主要支持WiFi，正在开发对低功耗和BLE mesh的支持。
-![mesh_stack](https://raw.githubusercontent.com/wiki/lluwang/alibaba/AliOS-Things/mesh_stack.png)
+
+![mesh_stack](https://raw.githubusercontent.com/wiki/lluwang/alibaba/AliOS-Things.wiki/mesh_stack.png)
 
 ## 套接字适配层
 
