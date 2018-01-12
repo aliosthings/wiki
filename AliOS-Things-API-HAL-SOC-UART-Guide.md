@@ -31,7 +31,7 @@ int32_t hal_uart_init(uart_dev_t *uart)
 ## 2-hal_uart_send
 
 ```c
-int32_t hal_uart_send(uart_dev_t *uart, void *data, uint32_t size, uint32_t timeout)
+int32_t hal_uart_send(uart_dev_t *uart, const void *data, uint32_t size, uint32_t timeout)
 ```
 
 - [x] **Description**
