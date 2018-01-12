@@ -16,7 +16,7 @@ AliOS Things released by Alibaba is an open-source implementation of operating s
 * [Porting Guide](https://github.com/alibaba/AliOS-Things/wiki/AliOS-Things-Porting-Guide)
 * [App Examples](https://github.com/alibaba/AliOS-Things/wiki/AliOS-Things-APP-DEV-Guide)
 * [IDE Tool](https://github.com/alibaba/AliOS-Things/wiki/AliOS-Things-Studio)
-* [API Reference](https://github.com/alibaba/AliOS-Things/wiki/AliOS-Things-Porting-Guide)
+* [API Reference](https://github.com/alibaba/AliOS-Things/wiki/AliOS-Things-API-Guide)
 * [Coding Style](https://github.com/alibaba/AliOS-Things/wiki/AliOS-Things-Coding-Style-Guide)
 * [AliOS Things build system](https://github.com/alibaba/AliOS-Things/wiki/AliOS-Things-build-system)
 
