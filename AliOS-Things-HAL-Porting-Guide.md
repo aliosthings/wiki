@@ -227,7 +227,7 @@ int32_t hal_uart_init(uart_dev_t *uart)
       	    uart->priv = &uart2_handle;				
             ret = uart2_init(uart);
             break;
-        /* if ohter uart exist add init code here */
+        /* if other uart exist add init code here */
 
         default:
             break;
