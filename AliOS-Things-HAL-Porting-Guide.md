@@ -574,6 +574,8 @@ static void uart_init(void)
 }
 
 ```
+更多HAL层对接示例见platform/mcu/stm32l4xx/src/STM32L496G-Discovery/hal目录
+
 
 ## 2flash抽象层对接
 ### 2.1 flash 抽象层对接
