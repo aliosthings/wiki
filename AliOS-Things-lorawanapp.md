@@ -3,6 +3,9 @@ AliOS Things 是 AliOS 家族旗下的、面向 IoT 领域的、轻量级物联�
 
 
 ## 在介绍之前大家做一些相关准备：
+- [Visual Studio Code（以下简称VSC)和AliOS Things开发环境](https://github.com/alibaba/AliOS-Things/wiki/AliOS-Things-Environment-Setup)
+    - Or IAR ARM v8.20.1(当前使用版本）
+    - Or Keil v5.25.2.0
 
 - lora网络（注意相关硬件要接好天线）
 
@@ -33,6 +36,7 @@ AliOS Things 是 AliOS 家族旗下的、面向 IoT 领域的、轻量级物联�
 ## 开始
 
 ### 节点 End point
+#### 基于VSC
 
 1. 首先要搭建环境，我们的IDE基于VSC，所以在windows，mac或是linux均可以，详情请访问上述github的链接，这里使用windows环境。
 
@@ -312,8 +316,32 @@ static LoRaParam_t LoRaParamInit = {
     JOINREQ_NBTRIALS
 }
 ```
+#### 基于IAR
 
+1. IAR工程位置：aos/projects/IAR/lorawanapp
+2. 工程结构：
 
+   ![lorawan_iar](https://img.alicdn.com/tfs/TB1Xy3omRfH8KJjy1XbXXbLdXXa-402-704.png)
+
+   结构分析：
+   - board/eml3047： 板级的资源配置
+   - device/eml3047_lwran:：板级对应lora的接口
+   - device/sx127x：lora radio部分
+   - example：示例代码，aos初始化等
+   - kernel/protocols：lorawan协议栈
+   - kernel/rhino：aos内核部分
+   - kernel/vcall：aos api定义了系统应该提供的编程接口
+   - platform/arch：硬件内核架构，这里是armv6 cortex m0
+   - platform/mcu：对应mcu的底层驱动，这里主要来自于ST
+
+####  基于Keil
+
+1. IAR工程位置：aos/projects/IAR/lorawanapp
+2. 工程结构：
+
+   ![lorawan_keil](https://img.alicdn.com/tfs/TB1X53omRfH8KJjy1XbXXbLdXXa-363-740.png)
+
+   结构分析：同IAR
 
 ### 网关 Gateway
 
