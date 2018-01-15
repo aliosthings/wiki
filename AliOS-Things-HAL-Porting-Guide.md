@@ -26,7 +26,7 @@
 
 下面以STM32L4系列为例介绍hal层具体porting步骤：
 
-HAL层接口函数位于/include/hal/soc目录下
+HAL层接口函数位于/include/hal/soc目录下，uart的HAL层接口函数定义在对应的uart.h中
 
 由于STM32L4的驱动函数和hal层定义的接口并非完全一致，我们需要在STM32L4驱动上封装一层，以对接hal层。
 
