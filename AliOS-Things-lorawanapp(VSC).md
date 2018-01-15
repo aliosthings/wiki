@@ -360,22 +360,3 @@ static LoRaParam_t LoRaParamInit = {
 
 3. 如果大家想尝试ABP, Class C（这里只支持Class A和C）等不同的配置，可以自行修改上述提到的代码和server端的节点设置。
 
-### 顺便提一下Lorawan吧
-
-这里捡最重要的说一说，大家可以由此深入
-
-1. 网络结构：节点，网关，服务器，应用
-
-   这里面提一下节点入网是不分网关的，即不携带网关身份信息，发出入网请求后周边的网关都可以接受，网关在向server端发送请求后网关根据实际信号品质做过滤找到最好的那个回复请求。
-
-2. ADR的效果需要根据实际测试
-
-3. 说一下Relax frame-counter，这个是针对ABP的功能，ABP的frame count因为power cycle常常被清零，导致服务器端因为frame squense的原因收不到数据，所以可能需要释放已有的帧序号，重新来接收新的frame count。
-
-4. 此外像Message flow，data flow，mac命令，状态机，射频部分等等都需要看看
-
-   ​
-
-## 结语
-
-这边给大家介绍了一个AliOS Things的lorawan示例，因为是系统级的示例，相对比较复杂，步骤比较多，难免有错漏的地方，大家看到了请指正，此外因为该示例是lorawan网络的初始实现，细节部分不完善，如API的接口，函数封装不够细致等等，但主要目的是让大家了解AliOS Things的使用和lorawan网络的应用，让大家有一个感性的认识，希望大家可以以此为起点，去感受AliOS Things的易用和强大，以及快速实现lorawan的部署和测试。
