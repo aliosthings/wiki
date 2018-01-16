@@ -1,7 +1,7 @@
 AliOS Things 是 AliOS 家族旗下的、面向 IoT 领域的、轻量级物联网嵌入式操作系统。文本旨在给大家示范一下其中的lorawanapp的示例，完成一个lorawan网络的构建和数据传输，并通过该示例让大家对AliOS Things有一个粗浅的了解。
 
 ## 系统框架图：
-![AOS Lorawanapp](https://img.alicdn.com/tfs/TB1QY3.mZLJ8KJjy0FnXXcFDpXa-1127-399.png)
+![AOS Lorawanapp](https://img.alicdn.com/tfs/TB1L6Nmnb_I8KJjy1XaXXbsxpXa-1126-401.png)
 
 ## 如下分别介绍了基于VSC, IAR, Keil三个Toolchain的工程示例：
 - [基于VSC](https://github.com/alibaba/AliOS-Things/wiki/AliOS-Things-lorawanapp-@VSC)
