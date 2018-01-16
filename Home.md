@@ -1,13 +1,5 @@
 AliOS Things released by Alibaba is an open-source implementation of operating system (OS) for Internet of Things (IoT). 
 
-## Hardware Information
-### SoC
-* [STM32](https://github.com/alibaba/AliOS-Things/wiki/STM32)
-* [NXP]()
-* [Espressif]()
-### Modules
-* [MXCHIP]()
-
 ## Get Started  
 * [Hello World](https://github.com/alibaba/AliOS-Things/wiki/AliOS-Things-APP-DEV-Guide)
 * [LoRaWAN Application](https://github.com/alibaba/AliOS-Things/wiki/AliOS-Things-lorawanapp)
@@ -21,6 +13,14 @@ AliOS Things released by Alibaba is an open-source implementation of operating s
 * [AliOS Things Tutorial: 1 Hello World 应用](http://v.youku.com/v_show/id_XMzI2MTYyNDAwOA)
 * [AliOS Things Feature: 1 组件化思想的多bin特性](http://v.youku.com/v_show/id_XMzI2MTYzODEyOA)
 * [More at Youku](http://i.youku.com/i/UNTQ2MjY2MjA4NA==/videos?spm=a2hzp.8253876.0.0)
+
+## Hardware
+### SoC
+* [STM32](https://github.com/alibaba/AliOS-Things/wiki/STM32)
+* [NXP]()
+* [Espressif]()
+### Modules
+* [MXCHIP]()
 
 # Community
 * [Technical Blog | 云栖社区](https://yq.aliyun.com/teams/184)
