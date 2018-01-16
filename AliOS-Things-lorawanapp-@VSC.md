@@ -21,7 +21,7 @@
 
 - J-Flash
 
-- lora和lorawan基础知识
+- lora和LoRaWAN基础知识
 
 - 当然还有最关键的[AliOS-Things](https://github.com/alibaba/AliOS-Things)了， 直接戳有电梯:smile:
 
@@ -69,11 +69,11 @@
 
    ![串口](https://img.alicdn.com/tfs/TB1ldupi3vD8KJjy0FlXXagBFXa-206-154.png)
 
-7. 连接后串口终端显示如下, 看到rssi，snr的数据表明已经节点已经连接到Lorawan网络开始接收到Gateway的数据。
+7. 连接后串口终端显示如下, 看到rssi，snr的数据表明已经节点已经连接到LoRaWAN网络开始接收到Gateway的数据。
 
    ![sl2](https://img.alicdn.com/tfs/TB1kuuKi3DD8KJjy0FdXXcjvXXa-848-759.png)
 
-8. 以上烧录的是默认代码，lorawan的参数如下：
+8. 以上烧录的是默认代码，LoRaWAN的参数如下：
 
    |    参数    | 值 |
    | ---------- | --- |
@@ -132,7 +132,7 @@ static LoRaParam_t LoRaParamInit = {
 
 ### 网关 Gateway
 
-1. 网关通电保持工作（这里无需设置，只需通电工作即可，详细可以了解lorawan的协议）
+1. 网关通电保持工作（这里无需设置，只需通电工作即可，详细可以了解LoRaWAN的协议）
 
 ### 服务器 Server
 
