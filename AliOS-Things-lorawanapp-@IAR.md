@@ -20,7 +20,7 @@
 
 - 串口终端：这里使用X-Shell
 
-- lora和lorawan基础知识
+- lora和LoRaWAN基础知识
 
 - 当然还有最关键的[AliOS-Things](https://github.com/alibaba/AliOS-Things)了， 直接戳有电梯:smile:
 
@@ -39,7 +39,7 @@
    - device/eml3047_lwran:：板级对应lora的接口
    - device/sx127x：lora radio部分
    - example：示例代码，aos初始化等
-   - kernel/protocols：lorawan协议栈
+   - kernel/protocols：LoRaWAN协议栈
    - kernel/rhino：aos内核部分
    - kernel/vcall：aos api定义了系统应该提供的编程接口
    - platform/arch：硬件内核架构，这里是armv6 cortex m0
@@ -49,11 +49,11 @@
 
    ![串口](https://img.alicdn.com/tfs/TB1ldupi3vD8KJjy0FlXXagBFXa-206-154.png)
 
-5. 连接后串口终端显示如下, 看到rssi，snr的数据表明已经节点已经连接到Lorawan网络开始接收到Gateway的数据。
+5. 连接后串口终端显示如下, 看到rssi，snr的数据表明已经节点已经连接到LoRaWAN网络开始接收到Gateway的数据。
 
    ![sl2](https://img.alicdn.com/tfs/TB1kuuKi3DD8KJjy0FdXXcjvXXa-848-759.png)
 
-6. 以上烧录的是默认代码，lorawan的参数如下：
+6. 以上烧录的是默认代码，LoRaWAN的参数如下：
 
    |    参数    | 值 |
    | ---------- | --- |
@@ -112,7 +112,7 @@ static LoRaParam_t LoRaParamInit = {
 
 ### 网关 Gateway
 
-1. 网关通电保持工作（这里无需设置，只需通电工作即可，详细可以了解lorawan的协议）
+1. 网关通电保持工作（这里无需设置，只需通电工作即可，详细可以了解LoRaWAN的协议）
 
 ### 服务器 Server
 
