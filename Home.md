@@ -8,21 +8,9 @@ AliOS Things released by Alibaba is an open-source implementation of operating s
 * [AliOS Things Feature: 1 组件化思想的多bin特性](http://v.youku.com/v_show/id_XMzI2MTYzODEyOA)
 * [More at Youku](http://i.youku.com/i/UNTQ2MjY2MjA4NA==/videos?spm=a2hzp.8253876.0.0)
 
-## Links
-* [AliOS Things Technical Overview](https://github.com/alibaba/AliOS-Things/wiki/AliOS-Things-Technical-Overview)
-* [AliOS Things Networking Overview](https://github.com/alibaba/AliOS-Things/wiki/AliOS--Things-Networking-Overview)
-* [AliOS Things Environment Setup](https://github.com/alibaba/AliOS-Things/wiki/AliOS-Things-Environment-Setup)
-* [AliOS Things uCube](https://github.com/alibaba/AliOS-Things/wiki/AliOS-Things-uCube)
-* [Porting Guide](https://github.com/alibaba/AliOS-Things/wiki/AliOS-Things-Porting-Guide)
-* [App Examples](https://github.com/alibaba/AliOS-Things/wiki/AliOS-Things-APP-DEV-Guide)
-* [IDE Tool](https://github.com/alibaba/AliOS-Things/wiki/AliOS-Things-Studio)
-* [API Reference](https://github.com/alibaba/AliOS-Things/wiki/AliOS-Things-API-Guide)
-* [Coding Style](https://github.com/alibaba/AliOS-Things/wiki/AliOS-Things-Coding-Style-Guide)
-* [AliOS Things build system](https://github.com/alibaba/AliOS-Things/wiki/AliOS-Things-build-system)
-
 ## Examples from AliOS Things Team
 * [Lorawan Application](https://github.com/alibaba/AliOS-Things/wiki/AliOS-Things-lorawanapp)
-* [Stm32 networking](https://github.com/alibaba/AliOS-Things/wiki/stm32-networking)
+* [STM32 Networking](https://github.com/alibaba/AliOS-Things/wiki/stm32-networking)
 * [Add a new component example](https://github.com/alibaba/AliOS-Things/wiki/Add-a-new-component-example)
 
 ## Examples from hobbyist
@@ -33,3 +21,13 @@ AliOS Things released by Alibaba is an open-source implementation of operating s
 * [Technical Forum | 开发者论坛](https://bbs.aliyun.com/thread/410.html)
 * [技术交流群(微信)](http://o7spigzvd.bkt.clouddn.com/qr_wechat_100+.jpeg) - 人数过多，请联系管理员手动拉入
 * [技术交流群(钉钉)](http://o7spigzvd.bkt.clouddn.com/qr_dingtalk_github.png)
+
+## Links
+* [AliOS Things Technical Overview](https://github.com/alibaba/AliOS-Things/wiki/AliOS-Things-Technical-Overview)
+* [AliOS Things Networking Overview](https://github.com/alibaba/AliOS-Things/wiki/AliOS--Things-Networking-Overview)
+* [AliOS Things Environment Setup](https://github.com/alibaba/AliOS-Things/wiki/AliOS-Things-Environment-Setup)
+* [AliOS Things build system](https://github.com/alibaba/AliOS-Things/wiki/AliOS-Things-build-system)
+* [AliOS Things uCube](https://github.com/alibaba/AliOS-Things/wiki/AliOS-Things-uCube)
+* [AliOS Things Porting Guide](https://github.com/alibaba/AliOS-Things/wiki/AliOS-Things-Porting-Guide)
+* [API Reference](https://github.com/alibaba/AliOS-Things/wiki/AliOS-Things-API-Guide)
+
