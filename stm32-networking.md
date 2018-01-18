@@ -4,7 +4,19 @@
 
 ## 1、硬件环境搭建
 
-1、STM32 B-L475E-IOT01A开发板，硬件详细信息请移步：[STM32官网硬件详细介绍](http://www.st.com/content/st_com/en/products/evaluation-tools/product-evaluation-tools/mcu-eval-tools/stm32-mcu-eval-tools/stm32-mcu-discovery-kits/b-l475e-iot01a.html)
+1、STM32 B-L475E-IOT01A开发板。
+
+·       开发板使用的是ST低功耗MCU系列中的STM32L475这款芯片，拥有1M字节的Flash和128K字节的SRAM。
+
+·       支持WiFi，蓝牙，SubG, NFC等多种无线连接方式。 因为它还支持Arduino接口，所以使用者也可以很方便的通过Arduino接口来扩展其他的无线连接模块，比如GSM模块。 
+
+·       板上还集成了64Mbits的Quad-SPI Flash。
+
+·       板上还搭载了多种传感器，比如温湿度传感器，高性能3轴磁力计，加速度传感器，陀螺仪，接近传感器和压力传感器等。方便开发者用来进行多种应用的演示。
+
+·       板子上还有两个数字全角度麦克风。若需要，还可以实现语音控制的功能。
+
+硬件详细信息请移步：[STM32官网硬件详细介绍](http://www.st.com/content/st_com/en/products/evaluation-tools/product-evaluation-tools/mcu-eval-tools/stm32-mcu-eval-tools/stm32-mcu-discovery-kits/b-l475e-iot01a.html)
 ![](https://img.alicdn.com/tfs/TB1J6KLmZLJ8KJjy0FnXXcFDpXa-3968-2976.jpg)
 
 2、庆科MK3060通信模组一块
