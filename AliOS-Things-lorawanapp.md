@@ -3,6 +3,14 @@ AliOS Things 是 AliOS 家族旗下的、面向 IoT 领域的、轻量级物联�
 ## 系统框架图：
 ![AOS Lorawanapp](https://img.alicdn.com/tfs/TB1ltoUm26H8KJjy0FjXXaXepXa-1126-405.png)
 
+## 系统特性:
+- 基于AliOS Things的Lorawan全功能支持，用户可通过设置Class A达到最低的应用功耗特性
+- 增加AliOS Things内核特性支持
+- 可选多bin特性支持：实际硬件资源十分有限，通过多bin特性可以单独对应用端代码做升级，提供升级效率并大大降低升级功耗
+- 可选KV特性支持：增加用户Flash的使用安全和使用寿命，提高应用数据的保存安全性
+- 可选CLI特性支持：增加命令接口，方面代码调试提高开发效率
+- 以上可选特性需根据实际硬件资源做适配
+
 ## 如下分别介绍了基于VSC, IAR, Keil三个Toolchain的工程示例：
 - [基于VSC](https://github.com/alibaba/AliOS-Things/wiki/AliOS-Things-lorawanapp-@VSC)
 - [基于IAR](https://github.com/alibaba/AliOS-Things/wiki/AliOS-Things-lorawanapp-@IAR)
