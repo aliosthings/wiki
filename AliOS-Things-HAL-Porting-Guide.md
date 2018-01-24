@@ -517,11 +517,6 @@ void uart2_DeMspInit(void)
 /***************************** uart1 configure *******************************/
 #define UART2                          USART2
 
-#define UART2_BANDRATE           115200	 
-#define UART2_WORD_LENGTH        UART_WORDLENGTH_8B		 
-#define UART2_STOP_BITS          UART_STOPBITS_1		 
-#define UART2_PARITY             UART_PARITY_NONE		 
-#define UART2_MODE               UART_MODE_TX_RX 
 #define UART2_HW_FLOW_CTL        UART_HWCONTROL_NONE		 
 #define UART2_OVER_SAMPLING      UART_OVERSAMPLING_16		 
 #define UART2_ONE_BIT_SAMPLING   UART_ONE_BIT_SAMPLE_DISABLE		 
