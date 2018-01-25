@@ -218,7 +218,7 @@ AliOS Things support rich cloud connection protocols:
 
 ---
 
-AT Parser provides framework for handling AT commands with connected communication modules. AT Parser handles serial stream parsing, OOB callback could be registered to handle module special AT commands. Working with SAL, application can use BSD sockets even on a AT modules.  
+AT Parser provides framework for handling AT commands with connected communication modules. AT Parser handles serial stream parsing, OOB callback could be registered to handle module special AT commands. Working with SAL, applications can use BSD sockets even on AT modules.  
 
 ## Tools
 
@@ -232,11 +232,11 @@ Implemented as a VS Code Plugin, providing edit/build/debug functionalities. Ref
 
 ---
 
-Cooperating with AliOS Studio, providing developers a remote, multiple devices debug environment. With the backbone Testbed framework, organizations can easily setup a CI based on real hardware.
+Cooperating with AliOS Studio, it provides developers with a remote, and multiple devices debug environment. With the backbone Testbed framework, organizations can easily setup a CI based on real hardware.
 
 ## Summary
 
 AliOS Things is designed for low power, resource constrained MCU, connectivity SoC, greatly suitable for IoT devices.
 
-For more detailed information, please refer to : https://github.com/alibaba/AliOS-Things/wiki
+For more detailed information, please go to : https://github.com/alibaba/AliOS-Things/wiki
 
