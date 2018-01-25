@@ -1,8 +1,8 @@
-AliOS Things is Alibaba's IoT version of AliOS Family, it's announced in [The Computing Conference](https://yunqi.aliyun.com) 2017 Hangzhou by Alibaba Cloud, and open sourced in 2017/10/20 at github:https://github.com/alibaba/AliOS-Things.
+AliOS Things is Alibaba's IoT version of AliOS Family, it was announced in [The Computing Conference 2017](https://yunqi.aliyun.com) in Hangzhou by Alibaba Cloud, and open sourced in 20<sup>th</sup>, October, 2017 at github:https://github.com/alibaba/AliOS-Things.
 
 ## Architecture Overview
 
-From architectural point of view, AliOS Things adapts Layered Architecture, and Component Architecture. From bottom to top, AliOS Things includes:
+From an architectural point of view, AliOS Things adapts Layered Architecture and Component Architecture. From bottom to top, AliOS Things includes:
 
 - BSP: Board Support Package mainly developed and maintained by SoC Vendor
 - HAL: Hardware Abstraction Layer, like WiFi, UART
@@ -13,7 +13,7 @@ From architectural point of view, AliOS Things adapts Layered Architecture, and 
 - Middleware: Alibaba's value-added and commonly seen IoT components included
 - Examples: hands-on sample codes, and well tested applications such as Alinkapp
 
-And all of the modules are organized as Component, each component has its own .mk file to describe its dependecy with other Components, which make it easy for applications to choose the components needed.
+All modules have been organized as Components, and each component has its own .mk file to describe its dependency with other Components, which enables applications to choose components needed easily.
 
 ### Block Diagram
 
@@ -46,45 +46,45 @@ And all of the modules are organized as Component, each component has its own .m
 
 ---
 
-Rhino is in-house designed and developed RTOS kernel by AliOS Things team. Rhino provides ultra-small footprint, low power, priority-based/preemptive scheduling, Round-Robin scheduling, multitasking.
+Rhino is in-house designed and developed by AliOS Things team. It is characterized by ultra-small footprint, low power consumption, real time, multitasking.
 
 Rhino provides rich kernel primitives including buffer queue, ring buffer, timer, semaphore, mutex, fifo, event etc.
 
 #### Small footprint
 
-Rhino supportsboth static and dynamic allocation for most of the kernel objects. A memoryallocator designed for small memory block management, can support both fixedblock and variable block, multiple memory region.
+Rhino provides both static and dynamic allocation for most of the kernel objects. A memory allocator designed for small memory block management, can support both fixed block and variable block. It can also multiple memory region.
 
-Most of the kernelfeatures including workqueue, memory allocator and so on could be configurable inor out by per-build file named k_config.h. 
+Most of the kernel features such as work queue, and memory allocator could be configurable inor out by per-build file named k_config.h. 
 
-With the ability to scale component in and out, rhino could make the very small size of final image, which could be programmed into device which has very same flash size.
+With the ability to scale component in and out, Rhino could make the final image as small as possible, which could be programmed into device with very same flash size.
 
-#### Low power
+#### Low power consumption
 
-For the IOT device, it’s very important to consider the power consumption for hardware because the buffer of power is limited, the system consume the power faster the live time of system is shorter. Rhino kernel provides tickles idle mode of CPU to help system to save the power and extend the live time of system.
+For the IOT device, it’s important to consider the power consumption for hardware because the buffer of power is limited. The faster the system consumes the power, the shorter the live time of it will be. Rhino kernel provides tickles idle mode of CPU to help system save the power and extend its live time.
 
-Normally, When CPU has nothing to do, CPU will execute a native instruction of the processor (WFI for ARM, HLT for IA32-bit processors) to enter a low power state, the CPU register context is maintained,and system tick clock interrupts wakes up the CPU at every tick moment.
+Normally, When CPU has nothing to do, it will execute a native instruction of the processor (WFI for ARM, HLT for IA32-bit processors) to enter a low power state, when the CPU register context is maintained, and system tick clock interrupts wakes up the CPU at every tick moment.
 
-To save more power than the normal way, rhino kernel provides tickles idle mode of CPU. When OS detect there is nothing to do in feature with a fixed duration (multiple ticks or more long), we call this fixed duration as tickles idle time, and the system tick clock is programmed to fire interrupt with tickles idle time and put CPU into C1 state(CPU execute a native instruction, WFI for ARM, HLT for IA 32-bit processors), from that point there is no system tick clock interrupt happen anymore and the system tick count stop to increase and CPU is in low power mode(C1) until tickless idle time passed and the system tick timer interrupt is fired again to wakeup CPU from C1 to C0 state, and passed ticks is compensated to system tick count.
+To save more power than normal, Rhino kernel provides tickles idle mode of CPU. When OS detect there is nothing to do in feature within a fixed duration (multiple ticks or more long), it was called tickles idle time. At that time, the system tick clock is programmed to fire interrupt in tickless idle time and put CPU into C1 state(CPU execute a native instruction, WFI for ARM, HLT for IA 32-bit processors), from that point there is no system tick clock interrupt happen anymore. The system tick count stops increasing and CPU is in low power mode(C1) until tickless idle time passed, when the system tick timer interrupt is fired again to wakeup CPU from C1 to C0 state, and passed ticks is compensated to system tick count.
 
 #### Real time
 
 Rhino provides two scheduling policy, priority-based/preemptive scheduling and round-robin scheduling. For both scheduling policy, the highest priority task is always preferred for scheduling.
 
-A priority-based preemptive scheduler preempts the CPU when a task has a higher priority than the current task running. Thus, the kernel ensures that the CPU is always allocated to the highest priority task that is ready to run. This means that if a task with a higher priority than that of the current task becomes ready to run, the kernel immediately saves the current task's context, and switches to the context of the higher priority task.
+A priority-based preemptive scheduler preempts the CPU when a task has a higher priority than the current task running. This means that if a task with a higher priority than that of the current task becomes ready to run, the kernel immediately saves the current task's context, and switches to the context of the higher priority task.Thus, the kernel ensures that the CPU is always allocated to the highest priority task that is ready to run. 
 
-A round-robin scheduler is going to share the CPU amongst these tasks by using time-slicing. Each task in a group of tasks with the same priority executes for a defined interval, or time slice, before relinquishing the CPU to the next task in the group. No one of them, therefore, can usurp the processor until it is blocked. When the time slice expires, the task moves to last place in the ready queue list for that priority.
+A round-robin scheduler shares the CPU amongst these tasks by using time-slicing. Each task in a group of tasks with the same priority is arranged to execute for a defined interval, or time slice, before relinquishing the CPU to the next task in the group. None of them, therefore, can usurp the processor until it is blocked. When the time slice expires, the task moves to last place in the ready queue list for that priority.
 
 #### Debug features
 
-Rhino can support stack overflow, memory leak, memory corruption detection which help developer figure out root cause of difficult issues. Cooperating with AliOS Studio IDE, Rhino's trace function help visualize overall system activities.
+Rhino can support stack overflow, memory leak, memory corruption detection which helps developer figure out root cause of difficult issues. Cooperating with AliOS Studio IDE, Rhino's trace function help visualize overall system activities.
 
 ### Yloop event framework
 
 ---
 
-Yloop is an asynchronous event framework, highly considering [libuv](https://github.com/libuv/libuv) and event loop used in Embedded world. Yloop provide a mechanism to handle IO(mainly socket), timer, system events, user events in a single task which greatly reduce memory usage while avoid the complexity of multi-threading programming.
+Yloop is an asynchronous event framework, highly considering [libuv](https://github.com/libuv/libuv) and event loop used in Embedded world. Yloop provide a mechanism to handle IO(mainly socket), timer, system events, user events in a single task, which greatly reduces memory usage while avoiding the complexity of multi-threading programming.
 
-Yloop instance is bound to task context, multiple Yloop instances can be created, each bound to a single task, so that more performance can be achieved in powerful hardware.
+Yloop instance is bound to task context. Multiple Yloop instances can be created, and each is bound to a single task, so that more performance can be achieved in powerful hardware.
 
 ### KV
 
@@ -99,11 +99,11 @@ Designed for flash especially NOR Flash:
 
 ## Protocol Stack Description
 
-To help device connected to cloud more easily, AliOS Things provide protocol stacks in flexible ways.
+To help device connect to cloud more easily, AliOS Things provide protocol stacks in flexible ways.
 
 For IP oriented devices:
 
-- a well tested LwIP stack is provided for directly connected SoCs, including WiFi Soc, MCU+SDIO/SPI WiFi Module etc.
+- a well-tested LwIP stack is provided for directly connected SoCs, including WiFi Soc, MCU+SDIO/SPI WiFi Module, etc.
 - SAL(Socket Adapter Layer) for MCU attached with serial communication module such as WiFi/NB/GPRS.
 - uMesh for building more complex, mesh networking topology
 
@@ -118,15 +118,15 @@ LoRaWAN and BLE Stack will be integrated in the near future.
 
 ---
 
-AliOS Things maintains a TCP/IP stack based on LwIP v2.0.0, support IPv4 Only, IPv6 Only, IPv4&IPv6 Coexist. Both IPv4 and IPv6 are well tested in daily CI. IPv6 are heavily used and tested in uMesh.
+AliOS Things maintains a TCP/IP stack based on LwIP v2.0.0, and support IPv4 Only, IPv6 Only, IPv4&IPv6 Coexist. IPv4 and IPv6 are well tested in daily CI. And IPv6 is widely used and tested in uMesh.
 
 ### SAL(Socket Adapter Layer)
 
 ---
 
-SAL is to provide standard Socket capabilities to serial WiFi/GPRS/NB-IoT modules. Specially, considering that AT Command is the most popular form in this scenario, a AT Parser is provided to help handling AT.
+SAL is to provide standard Socket capabilities with serial WiFi/GPRS/NB-IoT modules. Specially, considering that AT Command is the most popular form in this scenario, a AT Parser is provided to help handling AT.
 
-With SAL, developer can use common Socket APIs to access network, which will reduce many integration efforts of existing software components.
+With SAL, developer can use common Socket APIs to access network, which will reduce integration efforts of existing software components.
 
 ### uMesh
 
@@ -134,9 +134,9 @@ With SAL, developer can use common Socket APIs to access network, which will red
 
 uMesh is a mesh implementation with following features:
 
-- RF standards independent, currently 802.11/802.15.4/BLE are supported, more can be supported
-- Routing mesh, support Tree Topology, Mesh Topology, Layered Tree&Mesh Topology
-- Self healing, no single point of failures
+- RF standards independent, currently 802.11/802.15.4/BLE are supported, and more can be supported
+- Routing mesh, support Tree Topology, Mesh Topology and Layered Tree&Mesh Topology
+- Self-healing, no single point of failures
 - Low Power Mode
 - EAP(Extensible Authentication Protocol) with ID<sup>2</sup>
 - Seamless IPv4/IPv6 integration providing Socket programming environment 
@@ -165,7 +165,7 @@ Trusted identity for Internet of things device.
 
 ---
 
-Providing runtime Root Of Trust through using security capabilities of hardware.
+Providing runtime Root of Trust through using security capabilities of hardware.
 
 ### Ali-Crypto
 
@@ -185,7 +185,7 @@ Providing total TEE soulution, C-Sky CK802T architecture are supported, ARMV8-M 
 
 ---
 
-FOTA (Firmware Over Tth Air) make device firmware update easily, AliOS Things provide customized FOTA solutions according to hardware configuration. Working with Alibaba Cloud services, AliOS Things provides a end-to-end solution.
+FOTA (Firmware Over Tth Air) enables device firmware to update easily, AliOS Things provide customized FOTA solutions according to hardware configuration. Working with Alibaba Cloud services, AliOS Things provide a end-to-end solutions.
 
 Features:
 
@@ -198,17 +198,17 @@ Features:
 
 ---
 
-uData is a especial software framework for IoT smart service based on kinds of sensors,and has a general name as Sensor Hub traditionally. 
+uData is a specific software framework for IoT smart services based on a series of sensors, and has a general name of Sensor Hub traditionally. 
 
-There are two parts in the uData Framework, one is in the framework layer including uData service manager, service algo, abstact model(abs), the other is in the kernel layer providing the sensor driver SDK. 
+There are two parts in the uData Framework. One is in the framework layer including uData service manager, service algo, abstact model(abs), and the other is in the kernel layer providing the sensor driver SDK. 
 
-The target scope of uData service will focus on the IoT business like drone toy, smart street lamp, sweeper robot and so on. The sensor drivers not only provide the sensor SDK, but also provide the knids of sensor drivers like ALS, Barometer,temperature, accelerometer, gyro, magnetometer etc.
+The target scope of uData service will focus on the IoT business like drone toy, smart street lamp, sweeper robot and so on. The sensor drivers will not only provide the sensor SDK, but also provide sensor drivers like ALS, Barometer,temperature, accelerometer, gyro, magnetometer etc.
 
 ### IoT Protocols
 
 ---
 
-AliOS Things supports rich cloud connection protocols:
+AliOS Things support rich cloud connection protocols:
 
 - Alink: Alibaba Cloud Link platform, suitable for Smart Life. WiFi Provisioning component YWSS is also included.
 - MQTT: standard MQTT protocol, well tested combining with Alibaba Cloud IoT Suite.
