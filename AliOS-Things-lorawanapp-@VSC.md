@@ -54,6 +54,7 @@
    - 打开Option->Project settings
 
      ![jf1](https://img.alicdn.com/tfs/TB1pT08i8HH8KJjy0FbXXcqlpXa-781-224.png)
+     ![J-Flash_setting_uc](https://img.alicdn.com/tfs/TB1SKXWo9_I8KJjy0FoXXaFnVXa-778-735.png)
 
    - 打开File->open data file选择在4中描述的文件夹下的binary中选择*.bin
 
