@@ -1,6 +1,6 @@
 # 手把手教你stm32上如何使用mqtt上云
 
-本文基于[Alios Things](https://github.com/alibaba/AliOS-Things) 1.2.0版本，手把手教你如何在stm32L475上使用mqtt上云。
+本文基于[AliOS Things](https://github.com/alibaba/AliOS-Things) 1.2.0版本，手把手教你如何在stm32L475上使用mqtt上云。
 
 ## 1、硬件环境搭建
 
@@ -74,9 +74,9 @@ mqttapp程序所在源码为`AliOS-Things/example/mqttapp/`[mqtt-example.c](http
 #endif
 ```
 
-## 3、Alios Things Mqttapp编译
+## 3、AliOS Things Mqttapp编译
 
-基于目前Alios Things mqttapp编译命令行如下：
+基于目前AliOS Things mqttapp编译命令行如下：
 
 aos make mqttapp@b_l475e
 
@@ -94,7 +94,7 @@ aos make mqttapp@b_l475e
 
 ![](https://img.alicdn.com/tfs/TB1QprXm46I8KJjy0FgXXXXzVXa-937-241.jpg)
 
-## 5、Alios Things配网及数据连接阿里云
+## 5、AliOS Things配网及数据连接阿里云
 
 经过以上4步以后相应的mqttapp binary已经正常烧入到stm32L475开发板中，启动串口打印如下图所示：
 
