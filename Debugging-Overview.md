@@ -124,7 +124,7 @@ trace: trace [start ip (port) | task task_name| event event_id| stop]
 
 ### 检查各个任务的栈使用情况
 
-关注MinFreesize这一列，显示人物剩余的最小栈
+关注MinFreesize这一列，显示任务剩余的最小栈
 
 ```
 # tasklist
