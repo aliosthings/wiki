@@ -1,11 +1,7 @@
 AliOS Things支持多种调试手段，针对不同的模块，不同的使用场景，开发者可以根据需要自己选择：
-
 - linuxhost模拟环境：适合于硬件无关的模块或者代码，可以使用gdb，valgrind等流行的工具
 - CLI环境：适合板上轻度调试，使用系统的各种内存调试工具
 - JTAG环境：适合板上调试，利用硬件调试能力，本文不描述
-
-
-
 
 ## linuxhost模拟环境
 
@@ -202,3 +198,9 @@ adress:0x80acf28 owner:0x805ae3a len:3096  type:leak
 
 改命令会显示可能出现内存泄漏的地方，owner代码调用了malloc分配的疑似泄露的函数地址，可以通过addr2line或者objdump，映射到相应的函数。
 
+### Misc
+各个模块根据需要会在提供自己的调试命令，比如KV
+```
+# kv list
+# kv del key
+```
