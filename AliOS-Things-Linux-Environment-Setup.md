@@ -13,7 +13,7 @@ $ sudo apt-get install -y libncurses5-dev libncurses5-dev:i386
 $ sudo apt-get install -y libreadline-dev libreadline-dev:i386
 $ sudo apt-get install -y python-pip
 $ sudo apt-get install -y minicom
-$ sudo pip install aos-cube
+$ pip install --user -U aos-cube
 ```
 ## 交叉工具链
 Linux 工具链可以在链接 [GCC](https://launchpad.net/gcc-arm-embedded/+download) 下载 Linux 压缩包，解压缩，在 .bashrc 里面配置
