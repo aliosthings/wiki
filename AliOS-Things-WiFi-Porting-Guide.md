@@ -77,7 +77,7 @@ typedef struct {
 ## `set_mac_addr`
 通过该接口可以设置WiFi的物理硬件地址。
 ## `start`
-通过该接口可以启动WiFi，根据启动参数不同来区分启动station模式还是AP模式，如station模式下进行连接AP的操作、AP模式下根据参数启动AP功能。在station模式下，该函数触发AP连接操作后即返回。后续底层处理过程中，拿到IP信息后，需要调用`ip_got`回调函数来通知上层获取IP事件。注意：(1) **station模式下启动WiFi连接时，传入的SSID长度不超过32位。**；(2) **在连接AP后，WiFi底层需要维护自动重连操作。**
+通过该接口可以启动WiFi，根据启动参数不同来区分启动station模式还是AP模式，如station模式下进行连接AP的操作、AP模式下根据参数启动AP功能。在station模式下，该函数触发AP连接操作后即返回。后续底层处理过程中，拿到IP信息后，需要调用`ip_got`回调函数来通知上层获取IP事件。注意：(1) **station模式下启动WiFi连接时，传入的SSID长度不超过32位**；(2) **在连接AP后，WiFi底层需要维护自动重连操作**。
 ## `start_adv`
 该接口类似`start `，但启动的参数更丰富。可选。
 ## `get_ip_stat`
