@@ -77,7 +77,7 @@ typedef struct {
 ## `set_mac_addr`
 通过该接口可以设置WiFi的物理硬件地址。
 ## `start`
-通过该接口可以启动WiFi，根据启动参数不同来区分启动station模式还是AP模式，如station模式下进行连接AP的操作、AP模式下根据参数启动AP功能。在station模式下，该函数触发AP连接操作后即返回。后续底层处理过程中，拿到IP信息后，需要调用`ip_got`回调函数来通知上层获取IP事件。另外需要注意的是，**在连接AP后，WiFi底层需要维护自动重连操作**。
+通过该接口可以启动WiFi，根据启动参数不同来区分启动station模式还是AP模式，如station模式下进行连接AP的操作、AP模式下根据参数启动AP功能。在station模式下，该函数触发AP连接操作后即返回。后续底层处理过程中，拿到IP信息后，需要调用`ip_got`回调函数来通知上层获取IP事件。注意：(1) **station模式下启动WiFi连接时，传入的SSID长度不超过32位。**；(2) **在连接AP后，WiFi底层需要维护自动重连操作。**
 ## `start_adv`
 该接口类似`start `，但启动的参数更丰富。可选。
 ## `get_ip_stat`
@@ -160,7 +160,7 @@ typedef struct {
 # 6WiFi移植的验证
 在完成WiFi的移植后，可以通过配网APP来验证移植工作的有效性。配网APP位于`example/netmgrapp/`目录下，验证步骤如下：
 * 编译和运行netmgrapp。
-* 在cli输入`netmgr connect <AP> <password>`命令。其中`AP`为测试环境下可用的WiFi热点的SSID，`password`是对应AP的密码。
+* 在cli输入`netmgr connect <AP> <password>`命令。其中`AP`为测试环境下可用的WiFi热点的SSID（**SSID的长度最多不超过32位**），`password`是对应AP的密码。
 * 预期结果：设备能成功拿到IP地址。
 
 此外，通过AliOS Things中的Alink测试APP，可以更充分的验证WiFi功能。关于Alink测试和认证，请参考[Alink Smart Config Test and Certification](https://github.com/alibaba/AliOS-Things/wiki/WiFi-Provisioning-and-Alink-Certification)
