@@ -63,16 +63,19 @@ uCube 基于 Python（Version：2.7）语言开发，需要有 Python（Version�
 mesh 组件添加成功。
 组件添加后，基于组件功能开发。
 
-支持添加 AliOS-Things 原有组件的同时，uCube 还支持通过 URL 添加组件（新建组件参考 [Add a new component example](https://github.com/alibaba/AliOS-Things/wiki/Add-a-new-component-example))：
+uCube 支持通过 URL 添加组件（新建组件参考 [Add a new component example](https://github.com/alibaba/AliOS-Things/wiki/Add-a-new-component-example))：
 ```
 # aos add https://github.com/AliOS-Things/test_component.git
 [AliOS-Things] Adding component "test_component" from "https://github.com/AliOS-Things/test_component.git" at latest revision in the current branch
 [AliOS-Things] Add component test_component (remote) in test_component
 ```
-通过 URL 添加远程组件。
+URL 添加远程组件。
 
 ## 3.3 删除组件
 ```
 # aos rm mesh
 [AliOS-Things] Remove component mesh (local) in aos/kernel/protocols/mesh
 ```
+
+## 4 IDE支持
+uCube组件化功IDE支持正在开发中，敬请期待。
