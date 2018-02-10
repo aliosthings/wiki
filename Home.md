@@ -1,4 +1,5 @@
 AliOS Things released by Alibaba is an open-source implementation of operating system (OS) for Internet of Things (IoT). 
+Please refer to [AliOS Things Technical Overview](https://github.com/alibaba/AliOS-Things/wiki/AliOS-Things-Technical-Overview) for an architecture overview.
 
 ## Get Started  
 * [Hello World](https://github.com/alibaba/AliOS-Things/wiki/AliOS-Things-APP-DEV-Guide)
