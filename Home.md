@@ -6,6 +6,7 @@ Please refer to [AliOS Things Technical Overview](https://github.com/alibaba/Ali
 * [LoRaWAN Application](https://github.com/alibaba/AliOS-Things/wiki/AliOS-Things-lorawanapp)
 * [STM32 Networking](https://github.com/alibaba/AliOS-Things/wiki/stm32-networking)
 * [New component howto](https://github.com/alibaba/AliOS-Things/wiki/Add-a-new-component-example)
+* [New board howto](https://github.com/alibaba/AliOS-Things/wiki/New-board-howto)
 
 ## Examples from hobbyist
 * [MQTT at AliOS Things](http://iot-fans.xyz/2017/11/02/alios/mqtt/start/)
