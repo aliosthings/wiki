@@ -1,7 +1,9 @@
 # 硬件准备
 
 Raspberry PI3一块
+
 乐鑫ESP32 Devkitc两块
+
 微雪NRF51822开发板两块
 
 # 软件环境搭建
