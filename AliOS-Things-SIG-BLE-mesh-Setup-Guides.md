@@ -1,3 +1,11 @@
+# 硬件准备
+
+Raspberry PI3一块
+乐鑫ESP32 Devkitc两块
+微雪NRF51822开发板两块
+
+# 软件环境搭建
+
 目前，我们使用运行在Raspberry PI 3上的Bluez作为provisioner。要在Raspberry PI3上运行Bluez meshctl作为provisioner，需要对Raspberry PI的编译选项进行调整，使能一些安全相关特性，才能够正常运行meshctl。在linux上交叉编译Raspberry PI kernel。
 
 ## Raspberry PI kernel
