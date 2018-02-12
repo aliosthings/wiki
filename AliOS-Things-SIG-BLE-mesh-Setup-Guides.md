@@ -157,7 +157,7 @@ tar xvf bluez-5.48.tar.gz`
 
 修改mesh gatt在处理数据分段时的逻辑，diff如下
 
-`luwang@ubuntu:~/bluez$ git diff mesh/gatt.c
+>`luwang@ubuntu:~/bluez$ git diff mesh/gatt.c
 diff --git a/mesh/gatt.c b/mesh/gatt.c
 index 9116a9d..8d564a9 100644
 --- a/mesh/gatt.c
@@ -174,6 +174,7 @@ index 9116a9d..8d564a9 100644
  
                 if (prov)
                         prov_data_ready(node, res, len);`
+>
 
 编译安装
 
