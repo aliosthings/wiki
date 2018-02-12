@@ -1,20 +1,12 @@
 目前，我们使用运行在Raspberry PI 3上的Bluez作为provisioner。要在Raspberry PI3上运行Bluez meshctl作为provisioner，需要对Raspberry PI的编译选项进行调整，使能一些安全相关特性，才能够正常运行meshctl。在linux上交叉编译Raspberry PI kernel。
 
+## Raspberry PI kernel
+
+目前，我们使用运行在Raspberry PI 3上的Bluez作为provisioner。要在Raspberry PI3上运行Bluez meshctl作为provisioner，需要对Raspberry PI的编译选项进行调整，使能一些安全相关特性，才能够正常运行meshctl。在linux上交叉编译Raspberry PI kernel。
+
 下载Raspberry PI系统源代码
 
 `git clone https://github.com/raspberrypi/linux.git`
-
-使用的kernel部分git log
-
- `commit 7d08abb35d33fceba593c2381ae0944975b21506
-
-  Author: Yevhen Kyriukha <kirgene@gmail.com>
-
-  Date:   Sun Jan 14 13:36:24 2018 +0200
-
-    Added support for mbed AudioCODEC (TLV320AIC23B)
-    
-    Signed-off-by: Yevhen Kyriukha <kirgene@gmail.com>`
 
 设置交叉编译工具链路径。
 
@@ -142,7 +134,7 @@ sudo cp -rf /tmp/lib/modules /lib/modules`
 `sudo apt-get update
 sudo apt-get install -y libusb-dev libdbus-1-dev libglib2.0-dev libudev-dev libical-dev libreadline-dev autotools-dev automake libtool`
 
-json-c
+## json-c
 
 下载json-c源代码
 
@@ -156,7 +148,7 @@ sh autogen.sh
 make
 sudo make install`
 
-Bluez
+## Bluez
 
 从以下链接下载bluez-5.48.tar.gz，并解压到本地目录
 
@@ -191,7 +183,7 @@ index 9116a9d..8d564a9 100644
 make
 sudo make install`
 
-Bluetooth controller
+## Bluetooth controller
 
 Bluetooth controller使用的是zephyr的bluetooth/hci_uart应用，使用的分支branch是v1.10-branch。
 
@@ -212,7 +204,7 @@ index 4a507be..9aea95f 100644
  CONFIG_MAIN_STACK_SIZE=512
  CONFIG_SYSTEM_WORKQUEUE_STACK_SIZE=51`
 
-Server端和Client端应用程序
+## Server端和Client端应用程序
 
 下载AliOS-Things源代码
 
@@ -230,11 +222,11 @@ aos make bluetooth.blemesh_cli@esp32devkitc hci_h4=1`
 
 将生成的镜像利用esptool烧录到ESP32.
 
-温度监测网络的搭建
+## 温度监测网络的搭建
 
 温度监测网络包括三种角色，provisioner，server和client。Server是温度信息的发布者，client是温度信息的订阅者。
 
-Provisioning和配置Server节点
+### Provisioning和配置Server节点
 
 在Raspberry PI上，运行并进入meshctl命令行
 
