@@ -45,3 +45,5 @@
  * [7.11 HAL API](https://github.com/alibaba/AliOS-Things/wiki/AliOS-Things-API-HAL-Guide)
 
 [8 AliOS Things Coding Style](https://github.com/alibaba/AliOS-Things/wiki/AliOS-Things-Coding-Style-Guide)
+
+[9 AliOS Things SIG BLE mesh setup guide](https://github.com/alibaba/AliOS-Things/wiki/AliOS-Things-SIG-BLE-mesh-Setup-Guides)
