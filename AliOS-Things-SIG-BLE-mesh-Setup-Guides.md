@@ -258,11 +258,11 @@ aos make bluetooth.blemesh_cli@esp32devkitc hci_h4=1`
 
 将生成的镜像利用esptool烧录到ESP32.
 
-## 温度监测网络的搭建
+# 温度监测网络的搭建
 
 温度监测网络包括三种角色，provisioner，server和client。Server是温度信息的发布者，client是温度信息的订阅者。
 
-### Provisioning和配置Server节点
+## Provisioning和配置Server节点
 
 在Raspberry PI上，运行并进入meshctl命令行
 
@@ -584,7 +584,7 @@ GATT-TX:	 c6 a8 9f 17 d0 eb 5b 46 31
 [config: Target = 0100]# `
 ```
 
-Provisioning和配置Client节点
+## Provisioning和配置Client节点
 
 在Raspberry PI上，运行并进入meshctl命令行
 
