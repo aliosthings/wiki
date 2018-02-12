@@ -7,8 +7,10 @@
 使用的kernel部分git log
 
  `commit 7d08abb35d33fceba593c2381ae0944975b21506
-Author: Yevhen Kyriukha <kirgene@gmail.com>
-Date:   Sun Jan 14 13:36:24 2018 +0200`
+
+  Author: Yevhen Kyriukha <kirgene@gmail.com>
+
+  Date:   Sun Jan 14 13:36:24 2018 +0200
 
     Added support for mbed AudioCODEC (TLV320AIC23B)
     
