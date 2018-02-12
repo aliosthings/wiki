@@ -17,6 +17,7 @@
     Signed-off-by: Yevhen Kyriukha <kirgene@gmail.com>`
 
 设置交叉编译工具链路径。
+
 luwang@ubuntu:~/raspberry-pi/linux$ export CCPREFIX=/home/luwang/raspberry-pi/tools/arm-bcm2708/gcc-linaro-arm-linux-gnueabihf-raspbian/bin/arm-linux-gnueabihf- 
 luwang@ubuntu:~/raspberry-pi/linux$ ${CCPREFIX}gcc -v
 Using built-in specs.
