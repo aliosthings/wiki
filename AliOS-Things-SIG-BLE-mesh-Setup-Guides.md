@@ -232,9 +232,9 @@ aos make bluetooth.blemesh_cli@esp32devkitc hci_h4=1`
 
 `pi@raspberrypi:~/bluez-5.48/mesh $ ./meshctl .
 Local config directory not provided.
- # netkeys = 1
- # appkeys = 2
- # provisioners = 1
+  netkeys = 1
+  appkeys = 2
+  provisioners = 1
 On/Off client model: new binding 0001
 [NEW] Controller B8:27:EB:B2:E7:4A raspberrypi [default]
 [NEW] Device EC:60:BA:B5:36:D0 AOS Device
@@ -532,10 +532,10 @@ Provisioning和配置Client节点
 
 `pi@raspberrypi:~/bluez-5.48/mesh $ ./meshctl .
 Local config directory not provided.
-# netkeys = 1
-# appkeys = 2
-# provisioners = 1
-# provisioned nodes = 1
+  netkeys = 1
+  appkeys = 2
+  provisioners = 1
+  provisioned nodes = 1
 On/Off client model: new binding 0001
 [NEW] Controller B8:27:EB:B2:E7:4A raspberrypi [default]
 [NEW] Device D6:FB:47:4F:7E:A9 AOS Device
