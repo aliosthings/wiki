@@ -166,11 +166,11 @@ index 9116a9d..8d564a9 100644
                         break;
  
                 res = buf;
--               mesh_gatt_sar(&res, len);
-+               len = mesh_gatt_sar(&res, len);
-+                if (len == 0) {
-+                    break;
-+                }
+   -               mesh_gatt_sar(&res, len);
+   +               len = mesh_gatt_sar(&res, len);
+   +                if (len == 0) {
+   +                    break;
+   +                }
  
                 if (prov)
                         prov_data_ready(node, res, len);`
@@ -192,14 +192,14 @@ Bluetooth controller使用的是zephyr的bluetooth/hci_uart应用，使用的分
 `luwang@ubuntu:~/zephyr/samples/bluetooth/hci_uart$ git diff nrf5.conf
 diff --git a/samples/bluetooth/hci_uart/nrf5.conf b/samples/bluetooth/hci_uart/nrf5.conf
 index 4a507be..9aea95f 100644
---- a/samples/bluetooth/hci_uart/nrf5.conf
-+++ b/samples/bluetooth/hci_uart/nrf5.conf
+ --- a/samples/bluetooth/hci_uart/nrf5.conf
+ +++ b/samples/bluetooth/hci_uart/nrf5.conf
 @@ -4,7 +4,7 @@ CONFIG_UART_CONSOLE=n
  CONFIG_GPIO=y
  CONFIG_SERIAL=y
  CONFIG_UART_INTERRUPT_DRIVEN=y
--CONFIG_UART_NRF5_BAUD_RATE=1000000
-+CONFIG_UART_NRF5_BAUD_RATE=115200
+ -CONFIG_UART_NRF5_BAUD_RATE=1000000
+ +CONFIG_UART_NRF5_BAUD_RATE=115200
  CONFIG_UART_NRF5_FLOW_CONTROL=y
  CONFIG_MAIN_STACK_SIZE=512
  CONFIG_SYSTEM_WORKQUEUE_STACK_SIZE=51`
@@ -232,9 +232,9 @@ aos make bluetooth.blemesh_cli@esp32devkitc hci_h4=1`
 
 `pi@raspberrypi:~/bluez-5.48/mesh $ ./meshctl .
 Local config directory not provided.
-# netkeys = 1
-# appkeys = 2
-# provisioners = 1
+ # netkeys = 1
+ # appkeys = 2
+ # provisioners = 1
 On/Off client model: new binding 0001
 [NEW] Controller B8:27:EB:B2:E7:4A raspberrypi [default]
 [NEW] Device EC:60:BA:B5:36:D0 AOS Device
