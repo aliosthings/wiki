@@ -40,3 +40,7 @@ Please refer to [AliOS Things Technical Overview](https://github.com/alibaba/Ali
 * [AliOS Things Porting Guide](https://github.com/alibaba/AliOS-Things/wiki/AliOS-Things-Porting-Guide)
 * [API Reference](https://github.com/alibaba/AliOS-Things/wiki/AliOS-Things-API-Guide)
 
+## Technical Articles
+* [uDevice Center - an elastic multi-device IoT development platform](uDevice-Center)
+* [Overview of security authentication framework in AliOS Things uMesh](uMesh-Security)
+
