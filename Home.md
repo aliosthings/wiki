@@ -43,4 +43,5 @@ Please refer to [AliOS Things Technical Overview](https://github.com/alibaba/Ali
 ## Technical Articles
 * [uDevice Center - an elastic multi-device IoT development platform](uDevice-Center)
 * [Overview of security authentication framework in AliOS Things uMesh](uMesh-Security)
+* [CI System](CI-System)
 
