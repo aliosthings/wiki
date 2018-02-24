@@ -8,7 +8,7 @@ Please refer to [AliOS Things Technical Overview](https://github.com/alibaba/Ali
 * [New component howto](https://github.com/alibaba/AliOS-Things/wiki/Add-a-new-component-example)
 * [New board howto](https://github.com/alibaba/AliOS-Things/wiki/New-board-howto)
 * [SIG BLE Mesh](https://github.com/alibaba/AliOS-Things/wiki/AliOS-Things-SIG-BLE-mesh-Setup-Guides)
-* [Link-Voice Application](https://github.com/alibaba/AliOS-Things/wiki/AliOS-Things-Link-Voice%E7%A4%BA%E4%BE%8B)
+* [Link-Voice Application](https://github.com/alibaba/AliOS-Things/wiki/LinkVoice-Application)
 ## Examples from hobbyist
 * [MQTT at AliOS Things](http://iot-fans.xyz/2017/11/02/alios/mqtt/start/)
 
