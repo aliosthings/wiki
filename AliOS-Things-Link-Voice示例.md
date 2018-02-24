@@ -31,29 +31,44 @@ https://github.com/alibaba/AliOS-Things/wiki/AliOS-Things-Linux-Environment-Setu
 
 然后从github阿里官方开源库下载最新版本的AliOS Things源码（https://github.com/alibaba/AliOS-Things）：
 以linux下开发为例：
+
     `git clone git@github.com:alibaba/AliOS-Things.git`
+
 切换到主分支：
+
     `git checkout master`
+
 建议再在主分支上新建一个自己的开发分支：
+
     `git checkout –b dev-xxx(youname):`
+
 到目前为止环境也安装好了，代码也准备完毕，只待编译及烧录测试。
 编译link-voice测试例程：
+
     `aos make linkvoiceapp@xr871evb xr871=1`
+
 代码烧入：
+
     `cd platform/mcu/xr871/tools/`
+
 修改串口配置：
+
     `vim settings.ini`  
+
 将串口改成你板子的串口号，可ls /dev/tty*查看，保存退出。
 ![uart setting](https://img.alicdn.com/tfs/TB1HRuoaL9TBuNjy0FcXXbeiFXa-865-728.png)
 代码烧写，先将全志开发板启动选择拨码开关拨至NO位置，如同所示：
 ![flash setting](https://img.alicdn.com/tfs/TB1p2KkaMmTBuNjy1XbXXaMrVXa-865-454.png)
 然后执行
+
     `./phoenixMC_linux`  开始进行代码烧写，烧写完成后再将拨码开关拨回靠串口位置，重启。
 
 打开minicom或其他串口工具监视设备输入信息，波特率115200。
 功能演示：
 初次上电后先进行配网：
+
     `netmgr connect ssid psswd`
+
 其中ssid和psswd分别替换为你无线网络名及密码。
 根据终端提示，待网络连接后，出现以下提示时：
 ![press key](https://img.alicdn.com/tfs/TB1otataQyWBuNjy0FpXXassXXa-865-231.png)
