@@ -13,14 +13,17 @@ AliOS Things 集成的Link Voice SDK即可实现智能语音交互。
 Link-Voice SDK除了依赖Alink为设备完成平台接入设备管理外，还需要表格所列模块完成相应工作。其中websockets用来进行语音数据的交互；opus完成语音录制的PCM格式到opus格式的转换（服务端只接收opus格式）；cjson用来做json解析；mbedtls为alink和websockets的底层连接进行加密，为其数据传输提供安全保障。
 ![依赖组件](https://img.alicdn.com/tfs/TB1WsGwaKOSBuNjy0FdXXbDnVXa-648-290.png)
 
-而目前AliOS Things已完成以上表格所有模块的移植适配工作并将其集成进来，所以我们直接使用AliOS Things便可完成愉快的智能语音开发。这里建议主mcu的Flash>=512KB;RAM>=256KB;CPU如果不支持opus硬件编码，建议CPU频率>=180Mhz。
+而目前AliOS Things已完成以上表格所有模块的移植适配工作并将其集成进来，所以我们直接使用AliOS Things便可完成愉快的智能语音开发。主mcu性能建议：
+* Flash>=512KB
+* RAM>=200KB
+* CPU>=180Mhz
 
 # 开发平台准备
 按理满足上一章节性能要求，并带音频录制及播放功能的开发板即可。前提是需要完成AliOS Tings的移植适配工作。本文以全志xr871evb（已完成OS适配）为例进行介绍。
 本平台资源：
-cpu:200Mhz cortext-M4f
-RAM：448KB（部分硬件相关code需要加载到ram中运行，实际可用约280KB）
-FLASH：2MB SPI FLASH
+* cpu:200Mhz cortext-M4f
+* RAM：448KB（部分硬件相关code需要加载到ram中运行，实际可用约280KB）
+* FLASH：2MB SPI FLASH
 
 # 环境搭建及代码编译
 先搭建AliOS开发环境（以linux为例）：
