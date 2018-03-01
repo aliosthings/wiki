@@ -29,14 +29,3 @@ CLI依赖于UART HAL，当移植完成后，开发者可以通过命令行和Ali
 
 ### 更高级能力
 包括FOTA，多BIN支持等，请参考附录
-
-## 附录
-  * [2.1 Rhino Porting Guide](https://github.com/alibaba/AliOS-Things/wiki/AliOS-Things-Rhino-Porting-Guide)
-  * [2.2 HAL Porting Guide](https://github.com/alibaba/AliOS-Things/wiki/AliOS-Things-HAL-Porting-Guide)
-  * [2.3 Flash Porting Guide](https://github.com/alibaba/AliOS-Things/wiki/Flash-and-KV-Storage-Porting-Guide)
-  * [2.4 WiFi Porting Guide](https://github.com/alibaba/AliOS-Things/wiki/AliOS-Things-WiFi-Porting-Guide)
-  * [2.5 LwIP Porting Guide](https://github.com/alibaba/AliOS-Things/wiki/AliOS-Things-LwIP-Porting-Guide)
-  * [2.6 SAL Porting Guide](https://github.com/alibaba/AliOS-Things/tree/master/device/sal/README.md)  
-  * [2.7 FOTA Porting Guide](https://github.com/alibaba/AliOS-Things/wiki/AliOS-Things-FOTA-Porting-Guide)
-  * [2.8 BINS Porting Guide](https://github.com/alibaba/AliOS-Things/wiki/AliOS-Things-BINS-Porting-Guide)
-  * [2.9 VFS Porting Guide](https://github.com/alibaba/AliOS-Things/wiki/AliOS-Things-VFS-Porting-Guide)
