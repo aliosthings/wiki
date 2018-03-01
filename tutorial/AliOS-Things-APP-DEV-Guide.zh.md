@@ -46,13 +46,13 @@ int application_start(int argc, char *argv[])
 
 #### 编译运行
 
-请参考[快速开始](quickstart.zh#run)。  
+请参考[快速开始](Quick-Start.zh#run)。  
 当然，你可以使用gdb，valgrind等工具调试上述应用。
 
 ### 在AliOS Studio中进行应用开发
 AliOS Things提供了AliOS Things Studio集成开发环境，基于AliOS Things Studio进行应用开发非常方便、快捷。AliOS Things Studio提供了可供导入的应用模版，用户可以基于导入的模版进行应用开发。AliOS Things Sutdio也支持编译、烧录、调试等
 #### 创建应用项目
-关于如何在AliOS Things Studio中创建应用，请参考[使用AliOS Things Studio创建应用](AliOS-Things-Studio#22-创建-app-项目)。创建完项目后，用户可以在AliOS Things Studio中添加、编辑应用代码。
+关于如何在AliOS Things Studio中创建应用，请参考[使用AliOS Things Studio创建应用](AliOS-Things-Studio#41-%E6%96%B0%E5%BB%BA%E9%A1%B9%E7%9B%AE)。创建完项目后，用户可以在AliOS Things Studio中添加、编辑应用代码。
 #### 编译、烧录和调试
 AliOS Things Studio下的编译、烧录和调试步骤，可以参照：[IDE开发环境](AliOS-Things-Studio)。
 
