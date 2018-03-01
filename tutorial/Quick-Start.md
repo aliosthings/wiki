@@ -1,6 +1,6 @@
 EN | [中文](Quick-Start.zh)
 
-# Quick start
+# Quick Start
 
 This guide offers a glance at AliOS Things, by running directly on a linux machine.  
 If you are on Windows or Mac, maybe you'd like to turn directly to our [IDE](https://github.com/alibaba/AliOS-Things/wiki/AliOS-Things-Studio).
