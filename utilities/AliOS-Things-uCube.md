@@ -1,41 +1,60 @@
-# 目录
-- [1 环境配置](#1-环境配置)
-    - [1.1 python](#11-python)
-    - [1.2 ucube](#12-ucube)
-    - [1.3 工具链](#13-工具链)
-- [2 新建](#2-新建)
-- [3 组件](#3-组件)
-    - [3.1 组件信息](#31-组件信息)
-    - [3.2 添加组件](#32-添加组件)
-    - [3.3 删除组件](#33-删除组件)
-- [4 IDE支持](#4-IDE支持)
-------
-**AliOS-Things uCube** 是 AliOS-Things 项目开发管理工具（简写命令为 aos）：
-1. 编译代码、Image下载、板子调试。
-2. 创建模板工程，基于模板做再次开发。
-3. 支持组件化，获取组件信息，组件的自由组合，满足业务场景的不同需求。
+EN | [中文](AliOS-Things-uCube.zh)
 
-# 1 环境配置 
+# Content
+
+- [1 Environment setup](#1-环境配置)
+  - [1.1 python](#11-python)
+  - [1.2 ucube](#12-ucube)
+  - [1.3 toolchain](#13-工具链)
+- [2 Create](#2-新建)
+- [3 Component](#3-组件)
+  - [3.1 component information](#31-组件信息)
+  - [3.2 add component](#32-添加组件)
+  - [3.3 delete component](#33-删除组件)
+- [4 IDE support](#4-IDE支持)
+
+------
+
+**AliOS-Things uCube** is AliOS-Things project management system (abbreviation command is aos). It can
+
+1. compile code, download image and debug board.
+2. create engineering template, and redevelop based on it.
+3. obtain component information, and support free combination of components, according to different needs of the business scenarios.
+
+# 1 Environment setup
+
 ## 1.1 python
-uCube 基于 Python（Version：2.7）语言开发，需要有 Python（Version：2.7）开发环境（Python 2.7.14 下验证测试通过）。
+
+UCube development based on Python (Version:2.7) needs Python (Version:2.7) development environment (pass Python 2.7.14 verification test).
+
 ## 1.2 ucube
-使用 pip 安装 uCube 工具（在 MacOS 和 Linux上需要 sudo）：  
+
+Install uCube through pip (sudo is needed in MacOS and Linux):  
 
 `$ sudo pip install -U aos-cube`  
 
-安装完成后， `aos --version` (aos-cube 简写命令）输出版本号。
+When installation is completed,  `aos --version` (abbreviation of AliOS-Things uCube) outputs version number.
 
-## 1.3 工具链
-使用 uCube 的编译、工程创建等功能，用到工具链。工具链的配置，参考 [AliOS Things Environment Setup](https://github.com/alibaba/AliOS-Things/wiki/AliOS-Things-Environment-Setup) 系统环境配置 -> 交叉工具链配置。
-# 2 新建
-## 2.1 工程
-`aos new helloworld`, 会新建 helloworld 目录，并在 helloworld 创建工程，进入 helloword 目录，`aos make helloworld@mk3060` 编译
-## 2.1 组件
-`aos new -c helloworld`，会新建 helloworld 组件目录。
+## 1.3 toolchain
 
-# 3 组件
-## 3.1 组件信息
-`aos ls -c` 可以查看 AliOS-Things 所有的组件：
+Toolchain is needed when using uCube to compile code and create projects. The configuration of toolchain can refer to [AliOS Things Environment Setup](https://github.com/alibaba/AliOS-Things/wiki/AliOS-Things-Environment-Setup) (system environment setup -> toolchain configuration).
+
+# 2 Create
+
+## 2.1 project
+
+`aos new helloworld `  can create new helloworld directory, and create a new project. You can compile in `aos make helloworld@mk3060` 
+
+## 2.1 component
+
+`aos new -c helloworld` can create helloworld components.
+
+# 3 Component
+
+## 3.1 component information
+
+`aos ls -c` can see all the components of AliOS-Things:
+
 ```
                                                       AliOS-Things COMPONENTS
 |===================================================================================================================|
@@ -54,28 +73,35 @@ uCube 基于 Python（Version：2.7）语言开发，需要有 Python（Version�
 |===================================================================================================================|
 ```
 
-## 3.2 添加组件
-在 AliOS-Things 工程目录下面（aos new PATH），添加组件：  
+## 3.2 Add components
+
+Add new components in AliOS-Things project (aos new PATH):  
+
 ```
 # aos add mesh
 [AliOS-Things] Add component mesh (local) in aos/kernel/protocols/mesh
-```  
-mesh 组件添加成功。
-组件添加后，基于组件功能开发。
+```
 
-uCube 支持通过 URL 添加组件（新建组件参考 [Add a new component example](https://github.com/alibaba/AliOS-Things/wiki/Add-a-new-component-example))：
+Component mesh has been successfully added.
+When component is added, you can develop its function.
+
+uCube supports new component adding through URL (can refer to [Add a new component example](https://github.com/alibaba/AliOS-Things/wiki/Add-a-new-component-example)):
+
 ```
 # aos add https://github.com/AliOS-Things/test_component.git
 [AliOS-Things] Adding component "test_component" from "https://github.com/AliOS-Things/test_component.git" at latest revision in the current branch
 [AliOS-Things] Add component test_component (remote) in test_component
 ```
-URL 添加远程组件。
 
-## 3.3 删除组件
+URL can add remote components.
+
+## 3.3 delete components
+
 ```
 # aos rm mesh
 [AliOS-Things] Remove component mesh (local) in aos/kernel/protocols/mesh
 ```
 
-## 4 IDE支持
-uCube组件化功IDE支持正在开发中，敬请期待。
+## 4 IDE support
+
+IDE support is coming soon.

@@ -1,117 +1,125 @@
-# 构建要素
+EN | [中文](AliOS-Things-build-system.zh)
 
-一般而言，一个工程的构建包含如下几个要素：
+## AliOS Things build system
 
-![](https://img.alicdn.com/tfs/TB1cdUAjx6I8KJjy0FgXXXXzVXa-377-257.png)
+## build components
 
-## 组件化思想
+Generally speaking, the construction of a project contains following elements:
 
-组件化思想是指是功能模块可以随意地剪裁，拼接。实际上此思想的实现就主要依附于构建体系，一个组件存在的**标志**就是它有一个对应的 .mk 文件。
+## ![img](https://camo.githubusercontent.com/37981e18fc025abcb28438b5e0c74362d9ccbf6e/68747470733a2f2f696d672e616c6963646e2e636f6d2f7466732f544231636455416a783649384b4a6a79304667585858587a5658612d3337372d3235372e706e67)
 
-由于采用组件化管理思想，为了让每个组件相互隔离，独立配置，每一个组件的目录下放置一个.mk来存放每个组件各异的操作配置。并且组件间通过**依赖**来指定关联。而构建系统所有组件统一的操作机制放在build目录下的.mk中。这样可以达到组件间变化隔离，修改灵活的效果
+### Component-based thought
 
-# 总体流程
+The so-called component-based thought means that all functional modules can be tailored and spliced at will. The realization of this idea is mainly dependent on the construction of system, where each component has its corresponding .mk file.
 
-总体上构建的过程分为如下三个步骤：
+Because of the idea of component-based management, in order to isolate each component and configure each of them independently, a .mk file is placed in each component's directory to store its specific operation configuration, and association among components is defined through dependency relationship. The unified operating mechanism shared among all components of the system is placed in the .mk file under the build directory. In this way, isolation of components and flexibility of modification can be achieved at the same time. 
 
-![](https://img.alicdn.com/tfs/TB1He6PjC_I8KJjy0FoXXaFnVXa-1295-445.png)
+Overall process
 
-简言之，第二步中如 config.mk，xx.c_opts，link.opts 就包含了上面所说的要素中除工具链链外所有所需的信息。所以构建的核心其实就是这些文件的生成和使用。
+There are three steps in the overall construction process:
 
-更详细的图示如下：
+![img](https://camo.githubusercontent.com/d6f91a86c9399e467210b5111d7842e72bc974d3/68747470733a2f2f696d672e616c6963646e2e636f6d2f7466732f544231486536506a435f49384b4a6a7930466f585861466e5658612d313239352d3434352e706e67)
 
-![](https://img.alicdn.com/tfs/TB1W1Eejv6H8KJjy0FjXXaXepXa-1816-820.png)
+In short, all the information required in the elements mentioned above except tool chain is included in, for example  config.mk, xx.c_opts and link.opts in the second steps, and the core of the construction is the generation and usage of these files.
 
-# mk文件内容说明
+More details are shown as followed:
 
-一个模块的mk文件中基本上描述了这个组件要如何构建，所以非常关键，下面部分举例来说明其主要内容：
+![img](https://camo.githubusercontent.com/417e772b09ab7bc8c99e3f801d5a5e49eaf9fb94/68747470733a2f2f696d672e616c6963646e2e636f6d2f7466732f544231573145656a763648384b4a6a7930466a58586158657058612d313831362d3832302e706e67)
 
-![](https://img.alicdn.com/tfs/TB1E5PxjwvD8KJjSsplXXaIEFXa-1073-552.png)
+## Content of mk file
 
-其中全局是指编译所有组件时都要用到的设置，局部是指仅在编译本组件时用到。一个mk文件就是描述了一个组件的配置信息。其实配置的设定都可以在 _CFLAGS 和 _LDFLAGS中指定，包括链接使用的链接脚本。
+A module's mk file basically describes how the component is build, so it's very important. In the following text, examples will be given to illustrate its main content:
 
-# 具体实现说明
+![img](https://camo.githubusercontent.com/561344a67df9fb3e43c8c719530061599fe93f51/68747470733a2f2f696d672e616c6963646e2e636f6d2f7466732f544231453550786a777644384b4a6a5373706c58586149454658612d313037332d3535322e706e67)
 
-下面按照上面所说的要素来展开说明构建体系的具体实现，相关关键代码等：
+In this list, the global is the settings used in compilation of all components, while the local is used only in compilation of a specific component. A mk file describes the configuration information of a component. All the configuration settings can be specified in _CFLAGS and _LDFLAGS, including link scripts used in links.
 
-## 工具链选择
+### Detailed implementation process
 
-![](https://img.alicdn.com/tfs/TB1X8gvjvDH8KJjy1XcXXcpdXXa-937-348.png)
+In the following part, detailed implementation process and corresponding key code will be illustrated according to the elements mentioned above:
 
-宿主平台在aos.py中设置。辅助命令工具在 aos_host_cmd.mk 中设置，目前主要支持 windows 和 linux64 上两种编译宿主机平台。
+### Choose tool chain
 
-![](https://img.alicdn.com/tfs/TB1mGgdjxrI8KJjy0FpXXb5hVXa-386-132.png)
+### ![img](https://camo.githubusercontent.com/33b272521f12d7f3e93cebf0f6913ab4ed398efd/68747470733a2f2f696d672e616c6963646e2e636f6d2f7466732f544231583867766a764448384b4a6a7931586358586370645858612d3933372d3334382e706e67)
 
-编译工具链的设置，在 aos_target_xx.mk 和 aos_library_xx.mk中会设置。
+The host platform is set in aos.py, while the auxiliary command tools are set in aos_host_cmd.mk, which currently mainly support two host platforms, windows and linux64.
 
-## 找到源文件
+![img](https://camo.githubusercontent.com/3a860293ecf1046030c20ae013ac5cbae2d7b6ac/68747470733a2f2f696d672e616c6963646e2e636f6d2f7466732f5442316d4767646a787249384b4a6a7930467058586235685658612d3338362d3133322e706e67)
 
-![](https://img.alicdn.com/tfs/TB19o12hiqAXuNjy1XdXXaYcVXa-1044-181.png)
+The setting of compilation tool chain is set in aos_target_xx.mk and aos_library_xx.mk.
 
-编译命令通常是 app名@board名，app和board即为查找所有依赖的两个入口组件。
+### Find source file
 
-依赖查找过程**递归**实现：
+![img](https://camo.githubusercontent.com/0d286130ba8754144b43145c6eee51223422fff9/68747470733a2f2f696d672e616c6963646e2e636f6d2f7466732f544231396f31326869714158754e6a7931586458586159635658612d313034342d3138312e706e67)
 
-![](https://img.alicdn.com/tfs/TB1l2BIjLDH8KJjy1XcXXcpdXXa-1098-246.png)
+The compilation order is always the name of app @ the name of board. App and board are two entry components that the search process is relied on. 
 
-事实上上面的查找除了找到源文件之外还会解析出mk中定义编译选项等信息，实际上是在递归解析组件的mk文件。为后面的编译链接步骤做好准备。
+The dependency search is mainly implemented through recursion: 
 
-### config.mk生成
+![img](https://camo.githubusercontent.com/797cbd1a28687569fe34e4415f5d459fd9820fa6/68747470733a2f2f696d672e616c6963646e2e636f6d2f7466732f5442316c3242496a4c4448384b4a6a7931586358586370645858612d313039382d3234362e706e67)
 
-将上面递归解析出的mk中的信息存储在config.mk中：
+In fact, in addition to the source file, the search process will also find out information about the defined compilation options in mk file. The process is actually parsing the mk file of the component through recursion. It makes preparation for the later compilation and link steps.
 
-![](https://img.alicdn.com/tfs/TB1tWO7hiqAXuNjy1XdXXaYcVXa-903-59.png)
+### Generate config.mk
 
-config.mk 其实就是把所有组件 mk 中的信息汇总到一起。而后面产生的opts文件则是针对每个组件把config.mk中信息重新组合到一起产生的一个独立的文件。
+Store the information getting from the above recursion parsing about mk file in config.mk: 
 
-## 编译
+![img](https://camo.githubusercontent.com/6b50b2583d4b3180b56a2546c60d4ccefd13a84a/68747470733a2f2f696d672e616c6963646e2e636f6d2f7466732f54423174574f376869714158754e6a7931586458586159635658612d3930332d35392e706e67)
 
-编译命令
+Config.mk is actually the collection of information in mk file of all the components, while opts file is an independent file that reorganizes information in mk file based on each component.
 
-![](https://img.alicdn.com/tfs/TB15QZglZjI8KJjSsppXXXbyVXa-1279-94.png)
+### Compile
 
-![](https://img.alicdn.com/tfs/TB1ucbDl3vD8KJjSsplXXaIEFXa-1481-75.png)
+compilation order
 
-![](https://img.alicdn.com/tfs/TB1fSAglZjI8KJjSsppXXXbyVXa-1494-100.png)
+![img](https://camo.githubusercontent.com/1cdaaab019de3161d0364c6975321ca00e10d362/68747470733a2f2f696d672e616c6963646e2e636f6d2f7466732f54423135515a676c5a6a49384b4a6a5373707058585862795658612d313237392d39342e706e67)
 
-每个组件的编译选项产生
+![img](https://camo.githubusercontent.com/745df825f2b9ab186e399f0f96994f41c45a2c0d/68747470733a2f2f696d672e616c6963646e2e636f6d2f7466732f544231756362446c337644384b4a6a5373706c58586149454658612d313438312d37352e706e67)
 
-![](https://img.alicdn.com/tfs/TB1yegUl26H8KJjSspmXXb2WXXa-1528-254.png)
+![img](https://camo.githubusercontent.com/34619ca79153cb3862d6370c231098c660dbd7d8/68747470733a2f2f696d672e616c6963646e2e636f6d2f7466732f544231665341676c5a6a49384b4a6a5373707058585862795658612d313439342d3130302e706e67)
 
-## 链接
+compilation option of each component is generated.
 
-链接命令
+![img](https://camo.githubusercontent.com/d915ff584b2005c990b3ea2b5bf5b2521876593e/68747470733a2f2f696d672e616c6963646e2e636f6d2f7466732f544231796567556c323648384b4a6a5373706d58586232575858612d313532382d3235342e706e67)
 
-![](https://img.alicdn.com/tfs/TB1MzQLl2DH8KJjy1XcXXcpdXXa-1274-86.png)
+### Link
 
-链接选项的产生
+Link order
 
-![](https://img.alicdn.com/tfs/TB1yz3ol8DH8KJjSspnXXbNAVXa-1521-141.png)
+![img](https://camo.githubusercontent.com/4b6b1139f7220ff6b651f7d1cad9ea1582abebaa/68747470733a2f2f696d672e616c6963646e2e636f6d2f7466732f5442314d7a514c6c324448384b4a6a7931586358586370645858612d313237342d38362e706e67)
 
-![](https://img.alicdn.com/tfs/TB14TPml8fH8KJjy1XbXXbLdXXa-1274-69.png)
+link option is generated.
 
-## 二进制及其他处理
+![img](https://camo.githubusercontent.com/2c4a755c298fab29c7cb490aae97e1699993ed51/68747470733a2f2f696d672e616c6963646e2e636f6d2f7466732f544231797a336f6c384448384b4a6a5373706e5858624e415658612d313532312d3134312e706e67)
 
-统一进行的二进制处理如strip等
+![img](https://camo.githubusercontent.com/90302135a6779f0f6d44ff1bec7c7b1e0ba33806/68747470733a2f2f696d672e616c6963646e2e636f6d2f7466732f5442313454506d6c386648384b4a6a793158625858624c645858612d313237342d36392e706e67)
 
-![](https://img.alicdn.com/tfs/TB1SXwOl2DH8KJjy1XcXXcpdXXa-986-325.png)
+### Binary and other processing
 
-组件单独定义的处理
+Unified binary processing, such as strip.
 
-![](https://img.alicdn.com/tfs/TB1V13Wl4rI8KJjy0FpXXb5hVXa-1095-65.png)
+![img](https://camo.githubusercontent.com/a082ac59c2ae3cc91b694359f0160865c3455fe8/68747470733a2f2f696d672e616c6963646e2e636f6d2f7466732f5442315358774f6c324448384b4a6a7931586358586370645858612d3938362d3332352e706e67)
 
-![](https://img.alicdn.com/tfs/TB1NO.Cl9_I8KJjy0FoXXaFnVXa-1048-23.png)
+Execute self-defined operations for each component.
 
-# 关键宏调用关系梳理
+![img](https://camo.githubusercontent.com/4d978bfba06d8224c8ed1d363c5e439d126257d1/68747470733a2f2f696d672e616c6963646e2e636f6d2f7466732f544231563133576c347249384b4a6a7930467058586235685658612d313039352d36352e706e67)
 
-FIND_COMPONENT   --找到所有需要的组件 参数：所有基本组件，递归调用
+![img](https://camo.githubusercontent.com/6fe1348a424c5393544e670dd0a06cb2e4ded3c0/68747470733a2f2f696d672e616c6963646e2e636f6d2f7466732f5442314e4f2e436c395f49384b4a6a7930466f585861466e5658612d313034382d32332e706e67)
 
-    ​PREPROCESS_TEST_COMPONENT  --将所有测试所需的组件也加入到组件中，无参数
+## summary of key macro call relationship
 
-PROCESS_COMPONENT  --解析每个组件的 mk，参数：所有组件
+FIND_COMPONENT --Find all the required component parameters: all basic components, recursive calls.
 
-    ​PROCESS_ONE_COMPONENT  --解析一个组件，参数：某一个组件
+```
+PREPROCESS_TEST_COMPONENT  -- Add the components needed for tests with no parameter.
 
+```
 
-WRITE_FILE_CREATE  --在config.mk中写入所有相关信息，包括写入所有编译，链接选项到opts文件中
+PROCESS_COMPONENT -- Parse the mk file of each component, parameters: all components.
 
+```
+PROCESS_ONE_COMPONENT  -- Parse a component, parameter: a specific component.
+
+```
+
+WRITE_FILE_CREATE -- Write all the relevant information in config.mk and write compilation and link options in opts file.

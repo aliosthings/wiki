@@ -1,31 +1,51 @@
-如下图，AliOS Things是一个分层+组件架构，可以较简单的移植到各类MCU及Connectivity SoC平台上。
+EN | [中文](AliOS-Things-Porting-Guide.zh)
+
+As shown below, AliOS Things is a layered and component-based architecture that can be easily ported to many kinds of MCU and SoC.
 ![block_digram](https://img.alicdn.com/tfs/TB1fKQMihrI8KJjy0FpXXb5hVXa-2330-1292.png)
 
 
-## 典型的移植流程
-### CPU支持
-这部分工作一般由AliOS Things内核团队完成，主要是各类CPU架构如ARM Cortex-M系列，C-Sky 80x系列的支持。
-同时也欢迎社区爱好者及各类合作伙伴根据[Rhino Porting Guide](https://github.com/alibaba/AliOS-Things/wiki/AliOS-Things-Rhino-Porting-Guide)支持新的CPU，并贡献到github。
+## Typical porting process
+### CPU support
+It contains supports for various CPU frameworks such as ARM Cortex-M and C-Sky 80x. AliOS Things kernel team is mainly responsible for these part of work, but all of you are welcomed to develop new support based on [Rhino Porting Guide](https://github.com/alibaba/AliOS-Things/wiki/AliOS-Things-Rhino-Porting-Guide), and share in github.
 
 ### BSP/HAL
-这部分工作主要是芯片的驱动开发，以及和AliOS Things HAL的对接。
-请参考[HAL Porting Guide](https://github.com/alibaba/AliOS-Things/wiki/AliOS-Things-HAL-Porting-Guide)了解进一步细节。
+This part mainly contains development of chips and docking with the AliOS Things HAL.
+
+Please refer to [HAL Porting Guide](https://github.com/alibaba/AliOS-Things/wiki/AliOS-Things-HAL-Porting-Guide) for more details.
 
 ### CLI
-CLI是AliOS Things的交互命令行组件，辅助开发者调试开发，强烈建议作为移植的第一个里程碑。<br>
-CLI依赖于UART HAL，当移植完成后，开发者可以通过命令行和AliOS Things交互，查看系统状态。
+CLI is AliOS Things command line component. It can assist developers to develop and debug, and we strongly suggest you to use it as the first step of porting.
+CLI depends on UART HAL, and when porting is completed, developers can interact with AliOS Things by command line to view the state of system.
 
-### 网络
-根据芯片平台的连接能力，对于可以接入IP网络的设备
-1. 内置连接能力的芯片，比如WiFi，对接[WiFi HAL](https://github.com/alibaba/AliOS-Things/wiki/AliOS-Things-WiFi-Porting-Guide)
-及[LwIP协议栈](https://github.com/alibaba/AliOS-Things/wiki/AliOS-Things-LwIP-Porting-Guide)
-2. 外挂通信模块（TCPIP协议栈运行在通信模块上），可以通过[SAL](https://github.com/alibaba/AliOS-Things/tree/master/device/sal/README.md) 提供一个标准的Socket环境
+### Network
+According to connective capability of chips, devices that can connect to IP network can be divided as:
 
-对于非IP类设备，请参考：
+1. chips with built-in connective capability, such as WiFi, which can be connected to [WiFi HAL](https://github.com/alibaba/AliOS-Things/wiki/AliOS-Things-WiFi-Porting-Guide) and [LwIP协议栈](https://github.com/alibaba/AliOS-Things/wiki/AliOS-Things-LwIP-Porting-Guide).
+
+
+2. externally-connected communication modules, for which a standard Socket environment can be provided through SAL
+
+
+
+For non-IP devices, please refer to:
+
 - LoRaWAN
+
 - BLE
 
-关于AliOS Things的网络架构，请参考[云栖技术博客](https://yq.aliyun.com/articles/327862)。
 
-### 更高级能力
-包括FOTA，多BIN支持等，请参考附录
+More about network architecture of AliOS Things can refer to [technical blogs in yq](https://yq.aliyun.com/articles/327862).
+
+### More capabilities
+Porting guide for others can refer to appendix.
+
+## Appendix
+  * [2.1 Rhino Porting Guide](https://github.com/alibaba/AliOS-Things/wiki/AliOS-Things-Rhino-Porting-Guide)
+  * [2.2 HAL Porting Guide](https://github.com/alibaba/AliOS-Things/wiki/AliOS-Things-HAL-Porting-Guide)
+  * [2.3 Flash Porting Guide](https://github.com/alibaba/AliOS-Things/wiki/Flash-and-KV-Storage-Porting-Guide)
+  * [2.4 WiFi Porting Guide](https://github.com/alibaba/AliOS-Things/wiki/AliOS-Things-WiFi-Porting-Guide)
+  * [2.5 LwIP Porting Guide](https://github.com/alibaba/AliOS-Things/wiki/AliOS-Things-LwIP-Porting-Guide)
+  * [2.6 SAL Porting Guide](https://github.com/alibaba/AliOS-Things/tree/master/device/sal/README.md)  
+  * [2.7 FOTA Porting Guide](https://github.com/alibaba/AliOS-Things/wiki/AliOS-Things-FOTA-Porting-Guide)
+  * [2.8 BINS Porting Guide](https://github.com/alibaba/AliOS-Things/wiki/AliOS-Things-BINS-Porting-Guide)
+  * [2.9 VFS Porting Guide](https://github.com/alibaba/AliOS-Things/wiki/AliOS-Things-VFS-Porting-Guide)
