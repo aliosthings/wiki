@@ -9,7 +9,7 @@ This tutorial describes how to develope application from source based on AliOS T
 - Hardware Environment
 AliOS Things supports all kinds of hardware platforms, like develpment boards, serial port tools, debuggers, flashers, etc.
 - Software Environment
-AliOS Things supports both [CLI tools(Command Line Tools)](https://github.com/alibaba/AliOS-Things/wiki/AliOS-Things-uCube) and [IDE](https://github.com/alibaba/AliOS-Things/wiki/AliOS-Things-Studio) for development, please turn to [AliOS Things Development Environment Setup](https://github.com/alibaba/AliOS-Things/wiki/AliOS-Things-Environment-Setup).
+AliOS Things supports both [CLI tools(Command Line Tools)](AliOS-Things-uCube) and [IDE](AliOS-Things-Studio) for development, please turn to [AliOS Things Development Environment Setup](AliOS-Things-Environment-Setup).
 
 ## The Hello World Application
 It is easy for development based on AliOS Things, CLI tools is cool for Linux/Mac users, while IDE is great for Windows users.
@@ -69,11 +69,11 @@ AliOS Things Studio makes it possible by introducing the application templates, 
 It supports building, firmware flashing, debugging and so on.
 
 #### Project Creating
-Refer to [Create an application using AliOS Things Studio](https://github.com/alibaba/AliOS-Things/wiki/AliOS-Things-Studio#22-创建-app-项目).
+Refer to [Create an application using AliOS Things Studio](AliOS-Things-Studio#22-创建-app-项目).
 Once created, you can start your application code development within AliOS Things Studio.
 
 #### Building, Flashing and Debugging
-Refer to [AliOS Things Studio](https://github.com/alibaba/AliOS-Things/wiki/AliOS-Things-Studio).
+Refer to [AliOS Things Studio](AliOS-Things-Studio).
 
 ## Summary
 This page describes how to develop the first Hello World application.

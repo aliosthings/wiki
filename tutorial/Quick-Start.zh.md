@@ -3,7 +3,7 @@
 # 快速开始
 
 本文通过直接在一台 linux 机器上运行 AliOS Things 来带您快速体验它。  
-如果您在 Windows 或 Mac 上工作，也可以使用我们提供的[IDE](https://github.com/alibaba/AliOS-Things/wiki/AliOS-Things-Studio)。
+如果您在 Windows 或 Mac 上工作，也可以使用我们提供的[IDE](AliOS-Things-Studio)。
 
 ## 安装 aos-cube
 首先, 用 python 包管理器 `pip` 来安装 `aos-cube` 在全局环境，以便于后续使用 AliOS Things Studio 进行开发。

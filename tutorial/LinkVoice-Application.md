@@ -27,7 +27,7 @@ Link-Voice SDK除了依赖Alink为设备完成平台接入设备管理外，还�
 
 # 环境搭建及代码编译
 先搭建AliOS开发环境（以linux为例）：
-https://github.com/alibaba/AliOS-Things/wiki/AliOS-Things-Linux-Environment-Setup
+AliOS-Things-Linux-Environment-Setup
 
 然后从github阿里官方开源库下载最新版本的AliOS Things源码（https://github.com/alibaba/AliOS-Things）：
 以linux下开发为例：

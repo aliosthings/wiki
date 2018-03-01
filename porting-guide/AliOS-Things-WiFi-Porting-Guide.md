@@ -67,7 +67,7 @@ typedef struct {
 回调函数的定义，请参照netmgr中的`g_wifi_hal_event `。
 
 # 3WiFi接口的实现
-在具体的平台移植过程中，用户需要分别实现WiFi模块结构体中对应的接口函数。AliOS Things对WiFi HAL层接口有一层封装，参见`kernel/hal/wifi.c`文件。具体的接口实现，一般在`platform/mcu/xxx/hal/wifi_port.c`中。参考实现：`platform/mcu/esp32/hal/wifi_port.c`。关于WiFi HAL接口的说明，可以参照：[WiFi HAL](https://github.com/alibaba/AliOS-Things/wiki/AliOS-Things-API-HAL-WiFi-Guide)。
+在具体的平台移植过程中，用户需要分别实现WiFi模块结构体中对应的接口函数。AliOS Things对WiFi HAL层接口有一层封装，参见`kernel/hal/wifi.c`文件。具体的接口实现，一般在`platform/mcu/xxx/hal/wifi_port.c`中。参考实现：`platform/mcu/esp32/hal/wifi_port.c`。关于WiFi HAL接口的说明，可以参照：[WiFi HAL](AliOS-Things-API-HAL-WiFi-Guide)。
 下面对每个接口作一些说明：
 ## `init`
 该接口需要对wifi进行初始化，使wifi达到可以准备进行连接工作的状态，如分配wifi资源、初始化硬件模块等操作。
@@ -163,4 +163,4 @@ typedef struct {
 * 在cli输入`netmgr connect <AP> <password>`命令。其中`AP`为测试环境下可用的WiFi热点的SSID（**SSID的长度最多不超过32位**），`password`是对应AP的密码。
 * 预期结果：设备能成功拿到IP地址。
 
-此外，通过AliOS Things中的Alink测试APP，可以更充分的验证WiFi功能。关于Alink测试和认证，请参考[Alink Smart Config Test and Certification](https://github.com/alibaba/AliOS-Things/wiki/WiFi-Provisioning-and-Alink-Certification)
+此外，通过AliOS Things中的Alink测试APP，可以更充分的验证WiFi功能。关于Alink测试和认证，请参考[Alink Smart Config Test and Certification](WiFi-Provisioning-and-Alink-Certification)

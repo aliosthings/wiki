@@ -7,15 +7,15 @@ EN | [中文](AliOS-Things-Environment-Setup.zh)
 
 # 1 System environment setup
 
-- [Windows](https://github.com/alibaba/AliOS-Things/wiki/AliOS-Things-Windows-Environment-Setup)
-- [Linux](https://github.com/alibaba/AliOS-Things/wiki/AliOS-Things-Linux-Environment-Setup)
-- [MAC](https://github.com/alibaba/AliOS-Things/wiki/AliOS-Things-MAC-Environment-Setup)
+- [Windows](AliOS-Things-Windows-Environment-Setup)
+- [Linux](AliOS-Things-Linux-Environment-Setup)
+- [MAC](AliOS-Things-MAC-Environment-Setup)
 
 # 2 Hardware environment setup
 
 ## MXCHIP MK3060 WiFi Module
 
-- [Hardware Setup](https://github.com/alibaba/AliOS-Things/wiki/MK3060-Hardware-Setup)
+- [Hardware Setup](MK3060-Hardware-Setup)
 
 ## ESP32 DevKitC
 

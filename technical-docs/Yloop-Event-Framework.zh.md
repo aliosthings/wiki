@@ -98,7 +98,7 @@ void io_recv_data_cb(char c)
 假设uart_recv_data_cb是IO设备收到数据时的回调，收到数据后通过aos_schedule_call把实际处理do_uart_io_in_main_task放到主任务上下文去执行。这样，数据的逻辑处理do_uart_io_in_main_task就不需要考虑并发，而去做复杂的互斥操作。
 
 ### 注意事项
-Yloop的API([include/aos/yloop.h](https://github.com/alibaba/AliOS-Things/wiki/AliOS-Things-API-YLOOP-Guide))除了下述API，都必须在Yloop实例所绑定的任务的上下文执行：
+Yloop的API([include/aos/yloop.h](AliOS-Things-API-YLOOP-Guide))除了下述API，都必须在Yloop实例所绑定的任务的上下文执行：
 * aos_schedule_call
 * aos_loop_schedule_call
 * aos_loop_schedule_work

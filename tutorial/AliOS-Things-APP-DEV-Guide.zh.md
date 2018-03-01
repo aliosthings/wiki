@@ -7,7 +7,7 @@
 
 ## 软硬件环境准备
 AliOS Things支持多种硬件平台。开发应用的硬件环境包括开发板、串口、调试器、烧录器等。
-AliOS Things支持命令行工具和IDE两种开发方式。AliOS Things开发环境的搭建请参照：[AliOS Things Development Environment Setup](https://github.com/alibaba/AliOS-Things/wiki/AliOS-Things-Environment-Setup)
+AliOS Things支持命令行工具和IDE两种开发方式。AliOS Things开发环境的搭建请参照：[AliOS Things Development Environment Setup](AliOS-Things-Environment-Setup)
 
 ## 应用开发步骤
 基于AliOS Things可以很方便地进行应用开发。命令行工具主要适用于使用Linux的开发者。IDE环境则适合在Windows下使用。
@@ -52,9 +52,9 @@ int application_start(int argc, char *argv[])
 ### 在AliOS Studio中进行应用开发
 AliOS Things提供了AliOS Things Studio集成开发环境，基于AliOS Things Studio进行应用开发非常方便、快捷。AliOS Things Studio提供了可供导入的应用模版，用户可以基于导入的模版进行应用开发。AliOS Things Sutdio也支持编译、烧录、调试等
 #### 创建应用项目
-关于如何在AliOS Things Studio中创建应用，请参考[使用AliOS Things Studio创建应用](https://github.com/alibaba/AliOS-Things/wiki/AliOS-Things-Studio#22-创建-app-项目)。创建完项目后，用户可以在AliOS Things Studio中添加、编辑应用代码。
+关于如何在AliOS Things Studio中创建应用，请参考[使用AliOS Things Studio创建应用](AliOS-Things-Studio#22-创建-app-项目)。创建完项目后，用户可以在AliOS Things Studio中添加、编辑应用代码。
 #### 编译、烧录和调试
-AliOS Things Studio下的编译、烧录和调试步骤，可以参照：[IDE开发环境](https://github.com/alibaba/AliOS-Things/wiki/AliOS-Things-Studio)。
+AliOS Things Studio下的编译、烧录和调试步骤，可以参照：[IDE开发环境](AliOS-Things-Studio)。
 
 ## 总结
 本文描述了基于AliOS Things的应用模型，介绍了软硬件开发环境的搭建、应用开发的基本步骤。以helloworld为例，展示了如何基于AliOS Things进行应用开发。本文最后，还介绍了AliOS Things提供的丰富组件和接口，以及如何利用这个组件进行应用开发。

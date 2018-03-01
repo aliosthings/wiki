@@ -75,7 +75,7 @@ LoRaWAN can support both Class A and Class C mode in AliOS Things. Developers ca
 
 LoRa users often externally connect Semtech LoRa chip with MCU. AliOS Things can support sx1276, and chip developers can directly use LoRaWAN Protocol Stack provided by AliOS Things to carry out development. If other Semtech LoRa chips are used, the connection with the interface can be realized according to LoRa radio layer interface integrated in AliOS Things.
 
-The LoRaWAN Protocol Stack of AliOS Things provides not only LoRaWAN protocol on the end side, but also the whole test environment. When developers complete the development of AliOS Things LoRaWAN Protocol Stack, they can carry out pre-test and verification by using the test environment provided by AliOS Things. You can click here to know more about the construction and usage of our test environment.https://github.com/alibaba/AliOS-Things/wiki/AliOS-Things-lorawanapp%E7%A4%BA%E4%BE%8B
+The LoRaWAN Protocol Stack of AliOS Things provides not only LoRaWAN protocol on the end side, but also the whole test environment. When developers complete the development of AliOS Things LoRaWAN Protocol Stack, they can carry out pre-test and verification by using the test environment provided by AliOS Things. You can click here to know more about the construction and usage of our test environment.AliOS-Things-lorawanapp%E7%A4%BA%E4%BE%8B
 
 Nowadays, LoRaWAN developers can use the interface in LoRa protocol layer for further development, and we are still enriching interface in application layer based on application scenarios, so that application developers can achieve minimalist development with no need to understand too many details of LoRaWAN protocol.
 

@@ -230,7 +230,7 @@ AT Parser provides framework for handling AT commands with connected communicati
 
 ---
 
-Implemented as a VS Code Plugin, providing edit/build/debug functionalities. Refer to https://github.com/alibaba/AliOS-Things/wiki/AliOS-Things-Studio for more details.
+Implemented as a VS Code Plugin, providing edit/build/debug functionalities. Refer to AliOS-Things-Studio for more details.
 
 ### uDevice Center
 

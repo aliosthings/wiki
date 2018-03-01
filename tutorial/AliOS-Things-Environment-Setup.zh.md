@@ -5,13 +5,13 @@
 - [2 硬件环境准备](#2-硬件环境准备)
 
 # 1 系统环境配置
-- [Windows](https://github.com/alibaba/AliOS-Things/wiki/AliOS-Things-Windows-Environment-Setup)
-- [Linux](https://github.com/alibaba/AliOS-Things/wiki/AliOS-Things-Linux-Environment-Setup)
-- [MAC](https://github.com/alibaba/AliOS-Things/wiki/AliOS-Things-MAC-Environment-Setup)
+- [Windows](AliOS-Things-Windows-Environment-Setup)
+- [Linux](AliOS-Things-Linux-Environment-Setup)
+- [MAC](AliOS-Things-MAC-Environment-Setup)
    
 # 2 硬件环境设置
 ## MXCHIP MK3060 WiFi Module
-- [Hardware Setup](https://github.com/alibaba/AliOS-Things/wiki/MK3060-Hardware-Setup)
+- [Hardware Setup](MK3060-Hardware-Setup)
 
 ## ESP32 DevKitC 
 - [Hardware Information](http://esp-idf.readthedocs.io/en/latest/get-started/get-started-devkitc.html)

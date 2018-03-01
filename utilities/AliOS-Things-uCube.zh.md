@@ -28,7 +28,7 @@ uCube 基于 Python（Version：2.7）语言开发，需要有 Python（Version�
 安装完成后， `aos --version` (aos-cube 简写命令）输出版本号。
 
 ## 1.3 工具链
-使用 uCube 的编译、工程创建等功能，用到工具链。工具链的配置，参考 [AliOS Things Environment Setup](https://github.com/alibaba/AliOS-Things/wiki/AliOS-Things-Environment-Setup) 系统环境配置 -> 交叉工具链配置。
+使用 uCube 的编译、工程创建等功能，用到工具链。工具链的配置，参考 [AliOS Things Environment Setup](AliOS-Things-Environment-Setup) 系统环境配置 -> 交叉工具链配置。
 # 2 新建
 ## 2.1 工程
 `aos new helloworld`, 会新建 helloworld 目录，并在 helloworld 创建工程，进入 helloword 目录，`aos make helloworld@mk3060` 编译
@@ -65,7 +65,7 @@ uCube 基于 Python（Version：2.7）语言开发，需要有 Python（Version�
 mesh 组件添加成功。
 组件添加后，基于组件功能开发。
 
-uCube 支持通过 URL 添加组件（新建组件参考 [Add a new component example](https://github.com/alibaba/AliOS-Things/wiki/Add-a-new-component-example))：
+uCube 支持通过 URL 添加组件（新建组件参考 [Add a new component example](Add-a-new-component-example))：
 ```
 # aos add https://github.com/AliOS-Things/test_component.git
 [AliOS-Things] Adding component "test_component" from "https://github.com/AliOS-Things/test_component.git" at latest revision in the current branch

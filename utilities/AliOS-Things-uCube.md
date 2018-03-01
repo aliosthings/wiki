@@ -37,7 +37,7 @@ When installation is completed,  `aos --version` (abbreviation of AliOS-Things u
 
 ## 1.3 toolchain
 
-Toolchain is needed when using uCube to compile code and create projects. The configuration of toolchain can refer to [AliOS Things Environment Setup](https://github.com/alibaba/AliOS-Things/wiki/AliOS-Things-Environment-Setup) (system environment setup -> toolchain configuration).
+Toolchain is needed when using uCube to compile code and create projects. The configuration of toolchain can refer to [AliOS Things Environment Setup](AliOS-Things-Environment-Setup) (system environment setup -> toolchain configuration).
 
 # 2 Create
 
@@ -85,7 +85,7 @@ Add new components in AliOS-Things project (aos new PATH):
 Component mesh has been successfully added.
 When component is added, you can develop its function.
 
-uCube supports new component adding through URL (can refer to [Add a new component example](https://github.com/alibaba/AliOS-Things/wiki/Add-a-new-component-example)):
+uCube supports new component adding through URL (can refer to [Add a new component example](Add-a-new-component-example)):
 
 ```
 # aos add https://github.com/AliOS-Things/test_component.git

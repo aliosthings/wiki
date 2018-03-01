@@ -120,7 +120,7 @@ Suppose uart_recv_data_cb is the callback code when IO devices receive data. Onc
 
 ### Notes
 
-All the APIs of Yloop([include/aos/yloop.h](https://github.com/alibaba/AliOS-Things/wiki/AliOS-Things-API-YLOOP-Guide)) except the following ones need to be executed in its bounded context:
+All the APIs of Yloop([include/aos/yloop.h](AliOS-Things-API-YLOOP-Guide)) except the following ones need to be executed in its bounded context:
 
 - aos_schedule_call
 - aos_loop_schedule_call

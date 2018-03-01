@@ -15,6 +15,6 @@ AliOS Things在STM32支持广泛丰富的特性：
 - STM32L475 Discovery
 
 ## 示例
-* [LoRaWAN Application](https://github.com/alibaba/AliOS-Things/wiki/AliOS-Things-lorawanapp)
-* [WiFi Networking](https://github.com/alibaba/AliOS-Things/wiki/stm32-networking)
+* [LoRaWAN Application](AliOS-Things-lorawanapp)
+* [WiFi Networking](stm32-networking)
 

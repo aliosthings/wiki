@@ -72,7 +72,7 @@ There are three steps before using uDevice Center:
 
    ![image.png](https://img.alicdn.com/tfs/TB1KoTCovDH8KJjy1XcXXcpdXXa-3974-2227.png)
 
-3. install AliOS Things code and compiler tool chain [Linux](https://github.com/alibaba/AliOS-Things/wiki/AliOS-Things-Linux-Environment-Setup) [OSX](https://github.com/alibaba/AliOS-Things/wiki/AliOS-Things-MAC-Environment-Setup) [Windows](https://github.com/alibaba/AliOS-Things/wiki/AliOS-Things-Windows-Environment-Setup) (Optional）
+3. install AliOS Things code and compiler tool chain [Linux](AliOS-Things-Linux-Environment-Setup) [OSX](AliOS-Things-MAC-Environment-Setup) [Windows](AliOS-Things-Windows-Environment-Setup) (Optional）
 
 ### the use of uDevice Center
 

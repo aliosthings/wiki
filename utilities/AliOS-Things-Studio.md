@@ -123,7 +123,7 @@ C/C++ 插件提供了基本的语法检查功能，会在"问题面板"中显示
 # 4 新建/导入项目
 
 **在新建/导入项目前，需要配置工具链和拷贝OpenOCD文件到AliOS Things源代码下面，对应
- [AliOS Things Environment Setup](https://github.com/alibaba/AliOS-Things/wiki/AliOS-Things-Environment-Setup) 2.2 节和 4.1 节**
+ [AliOS Things Environment Setup](AliOS-Things-Environment-Setup) 2.2 节和 4.1 节**
 
 ## 4.1 新建项目
     
@@ -192,12 +192,12 @@ C/C++ 插件提供了基本的语法检查功能，会在"问题面板"中显示
 # 7 烧写功能
 
 ## 7.1 串口烧写 MK3060 为例
-配置串口烧写 COM 端口（成功安装串口驱动后，才能正确的识别端口。参考 [AliOS Environment Setup](https://github.com/alibaba/AliOS-Things/wiki/AliOS-Things-Environment-Setup)）
+配置串口烧写 COM 端口（成功安装串口驱动后，才能正确的识别端口。参考 [AliOS Environment Setup](AliOS-Things-Environment-Setup)）
 
 进入 bootloader 模式（按住boot按键，再按reset按键），点击下 bar 栏的 UpLoad 按钮，烧录时，Alios-Studio 会每隔一秒显示烧录的进度。烧录完成后，会切换到串口日志输出，看到 Programming Completed Successfully 则表示烧录成功。可以点击开发板上的 reset 按钮尝试加载代码执行。
 
 ## 7.2 J-Link 烧写 MK3060为例
-J-Link 连接模组（成功安装 J-Link 驱动后，才能正确建立 J-Link 连接。参考 [AliOS Things Environment Setup](https://github.com/alibaba/AliOS-Things/wiki/AliOS-Things-Environment-Setup)），在左侧的 BUILD TARGET 选择 alinkapp@mk3060 JTAG=jlink download：
+J-Link 连接模组（成功安装 J-Link 驱动后，才能正确建立 J-Link 连接。参考 [AliOS Things Environment Setup](AliOS-Things-Environment-Setup)），在左侧的 BUILD TARGET 选择 alinkapp@mk3060 JTAG=jlink download：
 
 ![](https://img.alicdn.com/tfs/TB1AebMfgoQMeJjy0FpXXcTxpXa-865-441.png)
 

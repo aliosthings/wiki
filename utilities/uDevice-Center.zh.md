@@ -58,7 +58,7 @@ uDevice Center为用户提供的多设备联合开发功能包括：
 1. 下载[Visual Studio Code](https://code.visualstudio.com/download)并安装
 2. 安装alios-studio插件：启动Visual Studio Code，并参考下图步骤安装
    ![image.png](https://img.alicdn.com/tfs/TB1KoTCovDH8KJjy1XcXXcpdXXa-3974-2227.png)
-3. 下载安装AliOS Things代码及编译工具链[Linux](https://github.com/alibaba/AliOS-Things/wiki/AliOS-Things-Linux-Environment-Setup)  [OSX](https://github.com/alibaba/AliOS-Things/wiki/AliOS-Things-MAC-Environment-Setup)  [Windows](https://github.com/alibaba/AliOS-Things/wiki/AliOS-Things-Windows-Environment-Setup) (Optional）
+3. 下载安装AliOS Things代码及编译工具链[Linux](AliOS-Things-Linux-Environment-Setup)  [OSX](AliOS-Things-MAC-Environment-Setup)  [Windows](AliOS-Things-Windows-Environment-Setup) (Optional）
 
 
 

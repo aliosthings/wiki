@@ -3,7 +3,7 @@ EN | [中文](Quick-Start.zh)
 # Quick Start
 
 This guide offers a glance at AliOS Things, by running directly on a linux machine.  
-If you are on Windows or Mac, maybe you'd like to turn directly to our [IDE](https://github.com/alibaba/AliOS-Things/wiki/AliOS-Things-Studio).
+If you are on Windows or Mac, maybe you'd like to turn directly to our [IDE](AliOS-Things-Studio).
 
 ## Install aos-cube
 First of all, it is recommended to install `aos-cube` globally, which helps developing with AliOS Things Studio in the future.

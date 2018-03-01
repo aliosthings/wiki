@@ -1,5 +1,5 @@
 ## 相关准备：
-- [Visual Studio Code（以下简称VSC)和AliOS Things开发环境](https://github.com/alibaba/AliOS-Things/wiki/AliOS-Things-Environment-Setup)
+- [Visual Studio Code（以下简称VSC)和AliOS Things开发环境](AliOS-Things-Environment-Setup)
 
 - lora网络（注意相关硬件要接好天线）
 

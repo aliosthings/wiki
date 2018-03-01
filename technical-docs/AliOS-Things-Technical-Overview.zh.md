@@ -210,7 +210,7 @@ AT解析器提供了处理AT命令连接通信模块的框架。AT解析器可�
 
 ### AliOS Studio 集成开发环境（IDE）
 
-作为VS代码插件执行，可提供编辑/编译/调试功能。详情请看 <https://github.com/alibaba/AliOS-Things/wiki/AliOS-Things-Studio>
+作为VS代码插件执行，可提供编辑/编译/调试功能。详情请看 <AliOS-Things-Studio>
 
 ### uDevice Center
 
