@@ -60,7 +60,7 @@ int application_start(int argc, char *argv[])
 
 #### Build and Run
 
-Refer to [Quickstart](quickstart#run).
+Refer to [Quickstart](Quick-Start#run).
 Of course, you can use tools like gdb, valgrind, to debug the code above.
 
 ### AliOS Things Studio
@@ -69,7 +69,7 @@ AliOS Things Studio makes it possible by introducing the application templates, 
 It supports building, firmware flashing, debugging and so on.
 
 #### Project Creating
-Refer to [Create an application using AliOS Things Studio](AliOS-Things-Studio#22-创建-app-项目).
+Refer to [Create an application using AliOS Things Studio](AliOS-Things-Studio#41-%E6%96%B0%E5%BB%BA%E9%A1%B9%E7%9B%AE).
 Once created, you can start your application code development within AliOS Things Studio.
 
 #### Building, Flashing and Debugging
