@@ -1,6 +1,6 @@
 [Home](Home) > [Tutorial](AliOS-Things-Tutorial)
 
-- [Quickstart](quickstart)
+- [Quick Start](Quick-Start)
 - [Hello World](AliOS-Things-APP-DEV-Guide)
 - [Add a New Board Example](Add-a-new-board-example)
 - [Add a New Component Example](Add-a-new-component-example)
