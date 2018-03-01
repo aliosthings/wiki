@@ -78,3 +78,4 @@ Please refer to [AliOS Things Technical Overview](AliOS-Things-Technical-Overvie
 
 ## Practical Guide from Contributors
 * [MQTT at AliOS Things](http://iot-fans.xyz/2017/11/02/alios/mqtt/start/)
+* [ESP32 Hello World](http://www.shaoguoji.cn/2018/01/01/esp32-alios-helloworld/)
