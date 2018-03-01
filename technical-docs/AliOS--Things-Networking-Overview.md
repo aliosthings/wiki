@@ -93,7 +93,7 @@ Developers can use the interface provided by application development framework t
 
 We are still working on the enrichment of this framework, developing Bluetooth 5.0, and expanding what Bluetooth chips can support. In addition, support for BLE mesh is also going to be added in uMesh, which will completely support SIG BLE mesh in the future.
 
-### GPRS和NB-IoT
+### GPRS and NB-IoT
 
 NB-IoT and GPRS are now externally connected to the master chip as communication chips. The talk to communication chips via AT command set has been supported. Efforts are also made in integrating NB-IoT and GPRS to operate directly in a same SoC.
 
