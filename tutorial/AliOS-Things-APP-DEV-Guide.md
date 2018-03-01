@@ -1,5 +1,7 @@
 EN | [中文](AliOS-Things-APP-DEV-Guide.zh)
 
+# Hello World
+
 ## Introduction
 This tutorial describes how to develope application from source based on AliOS Things, including environment setup, app creating, etc.
 
@@ -58,7 +60,7 @@ int application_start(int argc, char *argv[])
 
 #### Build and Run
 
-Refer to [Quickstart](quickstart.md#run).
+Refer to [Quickstart](quickstart#run).
 Of course, you can use tools like gdb, valgrind, to debug the code above.
 
 ### AliOS Things Studio

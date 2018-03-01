@@ -1,3 +1,5 @@
+[EN](AliOS-Things-APP-DEV-Guide) | 中文
+
 # 第一个应用
 
 ## 概述
@@ -44,7 +46,7 @@ int application_start(int argc, char *argv[])
 
 #### 编译运行
 
-请参考[快速开始](zh-cn/quickstart.md#run)。  
+请参考[快速开始](quickstart.zh#run)。  
 当然，你可以使用gdb，valgrind等工具调试上述应用。
 
 ### 在AliOS Studio中进行应用开发
