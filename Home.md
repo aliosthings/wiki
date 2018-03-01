@@ -69,11 +69,11 @@ Please refer to [AliOS Things Technical Overview](https://github.com/alibaba/Ali
 - [uMesh Security](uMesh-Security)
 - [Coding Style](AliOS-Things-Coding-Style-Guide)
 
-## Practical Guide from Contributors
-* [MQTT at AliOS Things](http://iot-fans.xyz/2017/11/02/alios/mqtt/start/)
-
 ## Community
 * [Technical Blog | 云栖社区](https://yq.aliyun.com/teams/184)
 * [Technical Forum | 开发者论坛](https://bbs.aliyun.com/thread/410.html)
 * [Wechat | 技术交流群(微信)](http://o7spigzvd.bkt.clouddn.com/qr_wechat_100+.jpeg) - 人数过多，请联系管理员手动拉入
 * [Dingtalk | 技术交流群(钉钉)](http://o7spigzvd.bkt.clouddn.com/qr_dingtalk_github.png)
+
+## Practical Guide from Contributors
+* [MQTT at AliOS Things](http://iot-fans.xyz/2017/11/02/alios/mqtt/start/)
