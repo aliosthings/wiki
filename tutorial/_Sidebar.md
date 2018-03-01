@@ -15,7 +15,7 @@
   - [Setup: Keil](AliOS-Things-lorawanapp-@Keil)
   - [Setup: Visual Studio Code](AliOS-Things-lorawanapp-@VSC)
 - [LinkVoice Tutorial](LinkVoice-Application)
-- [Hardware Setup](#)
+- Hardware Setup
   - [MK3060](MK3060-Hardware-Setup)
 - [WiFi Provisioning and Alink Certification](WiFi-Provisioning-and-Alink-Certification)
 - [Step by Step: MQTT to Cloud with STM32](stm32-networking)
