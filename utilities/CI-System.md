@@ -1,4 +1,4 @@
-EN | [中文](CI-System.zh.md)
+EN | [中文](CI-System.zh)
 
 ### Background
 
