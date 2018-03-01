@@ -6,7 +6,7 @@
 - **[Porting Guide](AliOS-Things-Porting-Guide)**
 - **[API Reference](AliOS-Things-API-Guide)**
 - **[Resources & Tools](AliOS-Things-Resources-and-Tools)**
-- **[Technical Docs](AliOS-Things-Technical-Docs)**
+- **[Technical Docs](AliOS-Things-Technical-Overview)**
 
 [1 AliOS Things Overview](https://github.com/alibaba/AliOS-Things/wiki/AliOS-Things-Technical-Overview)
   * [1.1 Yloop Event Framework](https://github.com/alibaba/AliOS-Things/wiki/Yloop-Event-Framework)
