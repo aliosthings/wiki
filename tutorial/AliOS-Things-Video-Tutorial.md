@@ -1,5 +1,7 @@
-# Tutorial Videos
-###### [AliOS Things Tutorial: 1 Hello World 应用](http://v.youku.com/v_show/id_XMzI2MTYyNDAwOA)
-
-# Feature Videos
-###### [AliOS Things Feature: 1 组件化思想的多bin特性](http://v.youku.com/v_show/id_XMzI2MTYzODEyOA)
+[Videos Collection](http://i.youku.com/i/UNTQ2MjY2MjA4NA==)
+- [Hello World 应用](http://v.youku.com/v_show/id_XMzI2MTYyNDAwOA==.html)
+- [调试演示](http://v.youku.com/v_show/id_XMzI2MTYzNTc1Ng==.html)
+- [MCU移植演示](http://v.youku.com/v_show/id_XMzI2MTYzNjkxNg==.html)
+- [uMesh 智能灯带演示](http://v.youku.com/v_show/id_XMzI2MTY2ODk2NA==.html)
+- [uData组件介绍及演示](http://v.youku.com/v_show/id_XMzI2MTY2MjA5Ng==.html)
+- [组件化思想的多bin特性](http://v.youku.com/v_show/id_XMzI2MTYzODEyOA==.html)
