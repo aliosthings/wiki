@@ -1,4 +1,4 @@
-[Home](Home.md) > [Tutorial](AliOS-Things-Tutorial.md)
+[Home](Home) > [Tutorial](AliOS-Things-Tutorial)
 
 - [Quickstart](quickstart)
 - [Hello World](AliOS-Things-APP-DEV-Guide)
