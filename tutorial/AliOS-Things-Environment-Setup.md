@@ -2,8 +2,8 @@ EN | [中文](AliOS-Things-Environment-Setup.zh)
 
 # Content
 
-- [1 System environment setup](#1-系统环境配置)
-- [2 Hardware environment setup](#2-硬件环境准备)
+- [1 System environment setup](#1-system-environment-setup)
+- [2 Hardware environment setup](#2-hardware-environment-setup)
 
 # 1 System environment setup
 
