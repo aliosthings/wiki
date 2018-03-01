@@ -1,6 +1,6 @@
 [Home](Home) > [Porting Guide](AliOS-Things-Porting-Guide)
 
-- Components Porting
+- Components
   - [Rhino](AliOS-Things-Rhino-Porting-Guide)
   - [HAL](AliOS-Things-HAL-Porting-Guide)
   - [Flash](Flash-and-KV-Storage-Porting-Guide)
