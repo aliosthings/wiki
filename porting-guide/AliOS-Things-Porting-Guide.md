@@ -20,7 +20,7 @@ CLI depends on UART HAL, and when porting is completed, developers can interact 
 ### Network
 According to connective capability of chips, devices that can connect to IP network can be divided as:
 
-1. chips with built-in connective capability, such as WiFi, which can be connected to [WiFi HAL](https://github.com/alibaba/AliOS-Things/wiki/AliOS-Things-WiFi-Porting-Guide) and [LwIP协议栈](https://github.com/alibaba/AliOS-Things/wiki/AliOS-Things-LwIP-Porting-Guide).
+1. chips with built-in connective capability, such as WiFi, which can be connected to [WiFi HAL](https://github.com/alibaba/AliOS-Things/wiki/AliOS-Things-WiFi-Porting-Guide) and [LwIP Stack](https://github.com/alibaba/AliOS-Things/wiki/AliOS-Things-LwIP-Porting-Guide).
 
 
 2. externally-connected communication modules, for which a standard Socket environment can be provided through SAL
