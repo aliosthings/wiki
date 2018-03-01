@@ -1,3 +1,5 @@
+EN | [中文](uDevice-Center.zh)
+
 # uDevice Center - an elastic multi-device IoT development platform
 
 ### Abstract

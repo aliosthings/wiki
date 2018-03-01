@@ -1,3 +1,5 @@
+EN | [中文](CI-System.zh.md)
+
 ### Background
 
 [AliOS Things](https://github.com/alibaba/AliOS-Things) is a light-weight embedded operating system for Internet of Things (IoT). It contains plenty of components (real-time operation system kernel, connection protocols, file system, libc interface, FOTA, Mesh, speech recognition, etc.), and can support various kinds of chips (ARM series, Xtensa, C-Sky, etc.). It can be applied to scenarios such as smart homes and smart cities, making connecting of things easier.

@@ -1,16 +1,15 @@
-EN | [中文](Debugging-Overview.zh)
+[EN](Debugging-Overview) | 中文
 
-AliOS Things supports a variety of debugging methods based on different modules and different usage scenarios. Developers can choose from the following ones according to their own needs:
+AliOS Things支持多种调试手段，针对不同的模块，不同的使用场景，开发者可以根据需要自己选择：
+- linuxhost模拟环境：适合于硬件无关的模块或者代码，可以使用gdb，valgrind等流行的工具
+- CLI环境：适合板上轻度调试，使用系统的各种内存调试工具
+- JTAG环境：适合板上调试，利用硬件调试能力，本文不描述
 
-- linuxhost virtual environment: It's suitable for modules and code that have nothing to do with hardwares; Popular tools such as GDB and Valgrind can be used.
-- CLI environment: It's suitable for light debugging on the board; Various memory debugging tools offered by the system can be used.
-- JTAG environment: It's suitable for debugging on the board; Hardware debugging capabilities are used (this part will not be unfolded in this article) .
+## linuxhost模拟环境
 
-## linuxhost virtual environment
+AliOS Things支持在Linux（Ubuntu 16.04）上作为一个process来运行，可以使用Linux的各类流行的工具。
 
-AliOS Things is supported to work as a process in Linux（Ubuntu 16.04）, and various tools in Linux can be used.
-
-### setting of Ubuntu environment
+### Ubuntu环境设置
 ```
 $ sudo apt-get install -y gcc-multilib
 $ sudo apt-get install -y libssl-dev libssl-dev:i386
@@ -19,7 +18,7 @@ $ sudo apt-get install -y libreadline-dev libreadline-dev:i386
 $ sudo apt-get install -y python-pip
 $ sudo pip install aos-cube
 ```
-### Compile and run
+### 编译运行
 
 ```
 $ git clone https://github.com/alibaba/AliOS-Things.git
@@ -49,13 +48,13 @@ $ gdb ./out/target/product/linuxhost/main /tmp/core_<exec>_<pid>
 
 ### valgrind
 
-Run valgrind when compiling apps.
+编译app时使能valgrind
 
 ```
 $ aos make helloworld@linuxhost valgrind=1
 ```
 
-debug
+调试
 
 ```
 $ valgrind ./out/helloworld@linuxhost/binary/helloworld@linuxhost.elf
@@ -65,16 +64,16 @@ gdb+valgrind
 
 ```
 $ valgrind --vgdb-error=1 ./out/helloworld@linuxhost/binary/helloworld@linuxhost.elf
-# wait for a similar log
+#等待类似的log出现
 ==26510== (action on error) vgdb me ...
-# another terminal
+#另一个终端
 $ gdb ./out/helloworld@linuxhost/binary/helloworld@linuxhost.elf
 (gdb) target remote | vgdb
 ```
 
 ### LwIP
 
-Even in Linux, LwIP can be used for network-related debugging.
+即使在Linux下面也可以使用LwIP进行网络相关开发调试
 
 ```
 # switch to 'root'
@@ -82,12 +81,12 @@ $ sudo su
 $ vi /etc/sysctl.conf
 net.ipv4.ip_forward=1
 $ sysctl -p /etc/sysctl.conf
-# replace <netif> with a I/F name that have access to external network, such as eth0
+# <netif>替换为可以访问外网的I/F的名字，比如eth0
 $ iptables -t nat -A POSTROUTING -s 192.168.0.0/24 -o <netif> -j MASQUERADE
 # exit 'root'
 $ exit
 
-# sudo permission is required, but no additional sudo is needed, since current user ID can be obtained in tapup.sh 
+# 会需要sudo权限，不要额外加sudo，因为tapup.sh里面会获取当前用户id
 $ ./csp/vendor/linuxhost/tools/tapup.sh tap0
 $ export PRECONFIGURED_TAPIF=tap0
 $ aos make alinkapp@linuxhost LWIP=1
@@ -96,9 +95,9 @@ $ ./out/alinkapp@linuxhost/binary/alinkapp@linuxhost.elf
 
 
 
-## CLI environment
+## CLI环境
 
-AliOS Things provides CLI, and shell functions can be used when component is changed.
+AliOS Things提供了cli组件，只要使能改组件，就可以使用类shell的功能。
 
 ```
 # help
@@ -125,9 +124,9 @@ trace: trace [start ip (port) | task task_name| event event_id| stop]
 
 
 
-### Check the usage of each task stack
+### 检查各个任务的栈使用情况
 
-The MinFreesize column shows the least remaining size of that task stack.
+关注MinFreesize这一列，显示任务剩余的最小栈
 
 ```
 # tasklist
@@ -145,9 +144,11 @@ cli                RDY      33   8192      5225        0        Y
 ------------------------------------------------------------------------
 ```
 
-### Memory state
+### 内存状态
 
-Choose RHINO_CONFIG_MM_DEBUG and RHINO_CONFIG_MM_LEAKCHECK in board/*/k_config.h, and some subcommands will be added to dumpsys commands.
+使能board/*/k_config.h里面的RHINO_CONFIG_MM_DEBUG，及RHINO_CONFIG_MM_LEAKCHECK
+
+那么dumpsys命令将多出几条子命令
 
 ```
 # dumpsys
@@ -197,11 +198,10 @@ SL bitmap 0x4000
 adress:0x80acf28 owner:0x805ae3a len:3096  type:leak
 ```
 
-This command will show where memory leak is possible to happen. Code owner can call the function address of possible leak, which can further be mapped to the corresponding function by addr2line or objdump.
+改命令会显示可能出现内存泄漏的地方，owner代码调用了malloc分配的疑似泄露的函数地址，可以通过addr2line或者objdump，映射到相应的函数。
 
 ### Misc
-Each module can provide its own debug commands according to its needs, such as KV.
-
+各个模块根据需要会在提供自己的调试命令，比如KV
 ```
 # kv list
 # kv del key
