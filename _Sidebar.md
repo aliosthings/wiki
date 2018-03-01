@@ -1,12 +1,12 @@
 ![](http://o7spigzvd.bkt.clouddn.com/aos-logo-hd-vertical.png)
 ==============================================================
 
-- **[Tutorial](AliOS-Things-Tutorial.md)**
-- **[Hardware](AliOS-Things-Hardware.md)**
-- **[Porting Guide](AliOS-Things-Porting-Guide.md)**
-- **[API Reference](AliOS-Things-API-Guide.md)**
-- **[Resources & Tools](AliOS-Things-Resources-and-Tools.md)**
-- **[Technical Docs](AliOS-Things-Technical-Docs.md)**
+- **[Tutorial](AliOS-Things-Tutorial)**
+- **[Hardware](AliOS-Things-Hardware)**
+- **[Porting Guide](AliOS-Things-Porting-Guide)**
+- **[API Reference](AliOS-Things-API-Guide)**
+- **[Resources & Tools](AliOS-Things-Resources-and-Tools)**
+- **[Technical Docs](AliOS-Things-Technical-Docs)**
 
 [1 AliOS Things Overview](https://github.com/alibaba/AliOS-Things/wiki/AliOS-Things-Technical-Overview)
   * [1.1 Yloop Event Framework](https://github.com/alibaba/AliOS-Things/wiki/Yloop-Event-Framework)
