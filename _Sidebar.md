@@ -7,5 +7,5 @@
 - **[Utilities](AliOS-Things-Utilities)**
 - **[API Reference](AliOS-Things-API-Guide)**
 - **[Technical Docs](AliOS-Things-Technical-Overview)**
-- **[Contributor's Guide](#practical-guide-from-contributors)**
 - **[Community](#community)**
+- **[Contributor's Guide](#practical-guide-from-contributors)**
