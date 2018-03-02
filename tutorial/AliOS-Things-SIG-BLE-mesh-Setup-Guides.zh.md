@@ -1,28 +1,26 @@
-EN | [中文](AliOS-Things-SIG-BLE-mesh-Setup-Guides.zh)
+[EN](AliOS-Things-SIG-BLE-mesh-Setup-Guides) | 中文
 
-# AliOS Things SIG BLE mesh Setup Guides
+# 硬件准备
 
-# Hardware preparation
+Raspberry PI3一块
 
-One block of Raspberry PI3 
+乐鑫ESP32 Devkitc两块
 
-Two blocks of ESP32 Devkitc
+微雪NRF51822开发板两块
 
-Two NRF51822 development boards
+# 软件环境搭建
 
-# Software environment setup
-
-Currently, Bluez operated in Raspberry PI 3 has been used as provisioner. If you want to operate meshctl, compilation option of Raspberry PI is needed to be modified. Some characteristics concerning safety should be selected to ensure the operation of meshctl. 
+目前，我们使用运行在Raspberry PI 3上的Bluez作为provisioner。要在Raspberry PI3上运行Bluez meshctl作为provisioner，需要对Raspberry PI的编译选项进行调整，使能一些安全相关特性，才能够正常运行meshctl。在linux上交叉编译Raspberry PI kernel。
 
 ## Raspberry PI kernel
 
-Compile Raspberry PI kernel in linux:
+目前，我们使用运行在Raspberry PI 3上的Bluez作为provisioner。要在Raspberry PI3上运行Bluez meshctl作为provisioner，需要对Raspberry PI的编译选项进行调整，使能一些安全相关特性，才能够正常运行meshctl。在linux上交叉编译Raspberry PI kernel。
 
-Download Raspberry PI source code:
+下载Raspberry PI系统源代码
 
 `git clone https://github.com/raspberrypi/linux.git`
 
-Set the path of cross compiler tool chain.
+设置交叉编译工具链路径。
 
 ```
 `luwang@ubuntu:~/raspberry-pi/linux$ export CCPREFIX=/home/luwang/raspberry-pi/tools/arm-bcm2708/gcc-linaro-arm-linux-gnueabihf-raspbian/bin/arm-linux-gnueabihf- 
@@ -35,42 +33,40 @@ Configured with: /cbuild/slaves/oorts/crosstool-ng/builds/arm-linux-gnueabihf-ra
 Thread model: posix
 gcc version 4.8.3 20140106 (prerelease) (crosstool-NG linaro-1.13.1-4.8-2014.01 - Linaro GCC 2013.11) 
 luwang@ubuntu:~/raspberry-pi/linux$`
-
 ```
 
-Here we get the .config file compiled by kernel from Raspberry PI. The mirror image installed on Raspberry PI is 2017-11-29-raspbian-stretch.img.
+获取kernel编译文件.config。这里从现有的Raspberry PI上获取内核编译的.config。Raspberry PI上安装的镜像是2017-11-29-raspbian-stretch.img。
 
-Input the following command on Raspberry PI to generate kernel configuration file
+在Raspberry PI上输入以下命令，生成内核配置文件
 
 `sudo modprobe configs`
 
-Copy the configuration file generated in linux and unzip it.
+在linux机器上拷贝生成的Raspberry PI kernel配置文件，并解压。
 
-`scp pi@raspberrypi:/proc/config.gz PATH_TO_RASPBERRY_PI/linux gunzip -c config.gz > .config`
+`scp pi@raspberrypi:/proc/config.gz PATH_TO_RASPBERRY_PI/linux
+gunzip -c config.gz > .config`
 
-Modify the following configuration options in configuration file.
+修改配置文件以下配置选项
 
 ```
 `CONFIG_CRYPTO_CMAC=y
 CONFIG_CRYPTO_USER_API=y
 CONFIG_CRYPTO_USER_API_HASH=y
 CONFIG_CRYPTO_USER_API_SKCIPHER=y`
-
 ```
 
-Generate the kernel
+编译生成内核
 
 ```
 `cd PATH_TO_RASPBERRY_PI/linux
 ARCH=arm CROSS_COMPILE=${CCPREFIX} make`
-
 ```
 
-Generate kernel modules
+生成内核modules
 
 `ARCH=arm CROSS_COMPILE=${CCPREFIX} INSTALL_MOD_PATH=../modules make modules_install`
 
-Get the following log information
+得到以下log信息
 
 ```
 `  INSTALL sound/soc/codecs/snd-soc-tas5713.ko
@@ -119,61 +115,58 @@ Get the following log information
   INSTALL .modules/lib/firmware/yam/9600.bin
   DEPMOD  4.9.77-v7+
 luwang@ubuntu:~/raspberry-pi/linux$ `
-
 ```
 
-The upper half of log is omitted because of the length of the space. Remember that the version is 4.9.77-v7+.
+上半部log由于篇幅原因省略。这里记住版本信息是4.9.77-v7+。
 
-In Linux machine, copy the generated kernel from Linux to Raspberry PI.
+在linux机器上，从linux拷贝生成的kernel到Raspberry PI
 
 `cd PATH_TO_RASPBERRY_PI/linux/arch/arm/boot/zImage pi@RASPBARRY:/tmp/kernel_new.img`
 
-In Linux machine, copy the generated modules from Linux to Raspberry PI.
+在linux机器上，从linux拷贝生成的modules到Raspberry PI
 
 ```
 `cd PATH_TO_RASPBERRY_PI/modules
 tar czf modules.tgz *
 scp modules.tgz pi@RASPBERRY:/tmp`
-
 ```
 
-Move the copied kernel and modules to boot and lib.
+将拷贝到Raspberry PI上的kernel和modules移动到boot和lib下面
 
 ```
 `sudo cp /tmp/kernel_new.img /boot
 sudo tar zxf /tmp/modules.tgz
 sudo cp -rf /tmp/lib/firmware /lib/firmware
 sudo cp -rf /tmp/lib/modules /lib/modules`
-
 ```
 
-Start the configuration file config.tx in Raspberry PI. Add the following content at the last of the file, and order it to start in the newly generated kernel_new.img.
+在Raspberry PI启动配置文件config.tx，文件最后面加入下面内容，指定从刚生成的kernel_new.img中启动。
 
 `kernel=kernel_new.img`
 
-Restart Raspberry PI
+重启Raspberry PI
 
 `sudo shutdown -r now`
 
-Make sure the kernel information has been updated to the newly generated one.
+确认内核信息已经更新为新生成的kernel
 
-`uname -r 4.9.77-v7+`
+`uname -r
+4.9.77-v7+`
 
-Install the needed dependency.
+安装后续所需依赖
 
 ```
 `sudo apt-get update
 sudo apt-get install -y libusb-dev libdbus-1-dev libglib2.0-dev libudev-dev libical-dev libreadline-dev autotools-dev automake libtool`
-
 ```
 
 ## json-c
 
-Download json-c source code.
+下载json-c源代码
 
 `git clone https://github.com/json-c/json-c.git`
 
-Compile and install.
+编译并安装
 
 ```
 `cd PATH_TO_JSON_C
@@ -181,20 +174,18 @@ sh autogen.sh
 ./configure
 make
 sudo make install`
-
 ```
 
 ## Bluez
 
-Download bluez-5.48.tar.gz from the following link, and unzip it.
+从以下链接下载bluez-5.48.tar.gz，并解压到本地目录
 
 ```
 `https://git.kernel.org/pub/scm/bluetooth/bluez.git
 tar xvf bluez-5.48.tar.gz`
-
 ```
 
-Modify the logic with which mesh GATT processes data segments. diff as follows:
+修改mesh gatt在处理数据分段时的逻辑，diff如下
 
 ```
 `luwang@ubuntu:~/bluez$ git diff mesh/gatt.c
@@ -214,10 +205,9 @@ index 9116a9d..8d564a9 100644
  
                 if (prov)
                         prov_data_ready(node, res, len);`
-
 ```
 
-Compile and install.
+编译安装
 
 ```
 `cd PATH_TO_BLUEZ
@@ -225,14 +215,13 @@ Compile and install.
 ./configure --enable-mesh --enable-debug
 make
 sudo make install`
-
 ```
 
 ## Bluetooth controller
 
-What Bluetooth controller uses is zephyr's bluetooth/hci_uart application, V1.10-branch。
+Bluetooth controller使用的是zephyr的bluetooth/hci_uart应用，使用的分支branch是v1.10-branch。
 
-Modify the baud rate to 115200.
+修改串口波特率为115200.
 
 ```
 `luwang@ubuntu:~/zephyr/samples/bluetooth/hci_uart$ git diff nrf5.conf
@@ -249,36 +238,35 @@ index 4a507be..9aea95f 100644
  CONFIG_UART_NRF5_FLOW_CONTROL=y
  CONFIG_MAIN_STACK_SIZE=512
  CONFIG_SYSTEM_WORKQUEUE_STACK_SIZE=51`
-
 ```
 
-## Applications in server side and client side
+## Server端和Client端应用程序
 
-Download AliOS-Things source code.
+下载AliOS-Things源代码
 
 `git clone git@github.com:alibaba/AliOS-Things.git`
 
-Compile to generate the applications in server side.
+编译生成Server端应用
 
 ```
 `cd PATH_TO_AOS
 aos make bluetooth.blemesh_srv@esp32devkitc hci_h4=1`
-
 ```
 
-Compile to generate the applications in client side.
+编译生成Client端应用
 
-`cd PATH_TO_AOS aos make bluetooth.blemesh_cli@esp32devkitc hci_h4=1`
+`cd PATH_TO_AOS
+aos make bluetooth.blemesh_cli@esp32devkitc hci_h4=1`
 
-Burn the generated mirror image to ESP32 through esptool.
+将生成的镜像利用esptool烧录到ESP32.
 
-# Setup of temperature monitoring network
+# 温度监测网络的搭建
 
-The temperature monitoring network consists of three roles, provisioner, server and client. Server is the publisher of temperature information, and client is the subscriber to temperature information.
+温度监测网络包括三种角色，provisioner，server和client。Server是温度信息的发布者，client是温度信息的订阅者。
 
-## Provisioning and Configuring Server node
+## Provisioning和配置Server节点
 
-In Raspberry PI, run the meshctl command line.
+在Raspberry PI上，运行并进入meshctl命令行
 
 ```
 `pi@raspberrypi:~/bluez-5.48/mesh $ ./meshctl .
@@ -293,10 +281,9 @@ Service added /org/bluez/hci0/dev_EC_60_BA_B5_36_D0/service000a
 Char added /org/bluez/hci0/dev_EC_60_BA_B5_36_D0/service000a/char000d:
 Char added /org/bluez/hci0/dev_EC_60_BA_B5_36_D0/service000a/char000b:
 Service added /org/bluez/hci0/dev_EC_60_BA_B5_36_D0/service0006`
-
 ```
 
-Give power to server node, and select the search mode for unprovisioned devices to find out new unprovisioned ones.
+server节点上电，并开启发现unprovisioned 设备模式，发现新unprovisioned设备
 
 ```
 `[meshctl]# discover-unprovisioned on
@@ -307,10 +294,9 @@ Adapter property changed
 		Mesh Provisioning Service (00001827-0000-1000-8000-00805f9b34fb)
 			Device UUID: dddd0000000000000000000000000000
 			OOB: 0000`
-
 ```
 
-Authenticate the device.
+认证该设备
 
 ```
 `[meshctl]# provision dddd
@@ -354,10 +340,9 @@ Got provisioning data (65 bytes)
 	 6f 
 Request decimal key (0 - 9999)
 [AOS 1m[mesh] Enter Numeric key: `
-
 ```
 
-See the output of server command line OOB.
+查看server命令行OOB输出
 
 ```
 `Initializing...
@@ -367,10 +352,9 @@ Mesh initialized
 attention_on()
 OOB Number: 9023
 attention_off()`
-
 ```
 
-Type 9023 on Raspberry PI, process the following provision, and then print a long string of log.
+在Raspberry PI上键入9023，进行后续provision，后续会打印一长串log
 
 ```
 `[AOS 1m[mesh] Enter Numeric key: 9023
@@ -475,23 +459,21 @@ GATT-RX:	 7f 12 c7 5f 02 bc 0b 23 9f 13
 }
 GATT-TX:	 00 f4 2b d6 e6 46 66 5b 65 31 1d 78 08 28 5d 16 
 GATT-TX:	 aa e2 97 b6 18 84 1f 29 7f `
-
 ```
 
-The above log can be divided as two stages. The first is to use provisioning connection to carry out provision, and the second is to establish mesh proxy connection, which will be used to transmit network configuration information.
+上述log分为两个阶段，第一个阶段是利用provisioning connection进行provision，第二个阶段是建立mesh proxy connection，后续需要在这个connection上传输网络配置信息。
 
-When the log is completely printed, the server side will print the information that provision has completed.
+当上述log完整打印后，server端会打印provision成功完成的信息
 
 ```
 `Provisioning completed!
 Net ID: 0
 Unicast addr: 0x0100`
-
 ```
 
-Next is to transmit network configuration information based on the mesh proxy connection you just set up.
+接下来，是在刚才建立的mesh proxy connection上传递网络配置信息
 
-First, enter the menu.
+首先是进入菜单
 
 ```
 `[AOS Devic-Node-0100]# menu config
@@ -525,10 +507,9 @@ version                                           Display version
 quit                                              Quit program
 exit                                              Quit program
 help                                              Display help about this program`
-
 ```
 
-Select configuring node, where you can see that the node ucast addr is 0x0100.
+选择配置节点，这里可以看到节点ucast addr是0x0100
 
 ```
 [AOS Devic-Node-0100]# target 0100
@@ -536,10 +517,9 @@ Select configuring node, where you can see that the node ucast addr is 0x0100.
 Configuring node 0100
 
 [config: Target = 0100]# target 0100[config: Target = 0100]#
-
 ```
 
-Configure app key.
+配置app key
 
 ```
 `[config: Target = 0100]# target 0100[config: Target = 0100]# appkey-add 1
@@ -564,10 +544,9 @@ GATT-RX:	 4f c8 58 84 82 77 8c 62 d1 cb 59 f9
 Node 0100 Model App Status Success
 	Element 0100 AppIdx 001
 ModelId 1100`
-
 ```
 
-Add the subscription address information 0xc000 of sensor server model 0x1100.
+增加sensor server model (0x1100)订阅发布地址0xc000的信息
 
 ```
 `[config: Target = 0100]# sub-add 0100 c000 1100
@@ -580,10 +559,9 @@ Subscription changed for node 0100 status: Success
 Element Addr:	0100
 Subscr Addr:	c000
 Model ID:	1100`
-
 ```
 
-Set the app key release information of sensor server model (0x1100). The release address is 0xc000.
+设置sensor server model (0x1100)使用app key index = 1的app key发布信息，发布地址是0xc000，
 
 ```
 `[config: Target = 0100]# pub-set 0100 c000 1 0 0 1100
@@ -606,12 +584,11 @@ Retransmit Interval Steps: 0
 GATT-TX:	 00 f4 d2 0f fb e4 49 24 a0 6c 7d 34 a8 bd dc ca 
 GATT-TX:	 c6 a8 9f 17 d0 eb 5b 46 31 
 [config: Target = 0100]# `
-
 ```
 
-## Provisioning and configuring Client node
+## Provisioning和配置Client节点
 
-Run meshctl command line in Raspberry PI.
+在Raspberry PI上，运行并进入meshctl命令行
 
 ```
 `pi@raspberrypi:~/bluez-5.48/mesh $ ./meshctl .
@@ -627,10 +604,9 @@ Service added /org/bluez/hci0/dev_EC_60_BA_B5_36_D0/service000a
 Char added /org/bluez/hci0/dev_EC_60_BA_B5_36_D0/service000a/char000d:
 Char added /org/bluez/hci0/dev_EC_60_BA_B5_36_D0/service000a/char000b:
 Service added /org/bluez/hci0/dev_EC_60_BA_B5_36_D0/service0006`
-
 ```
 
-Give power to client node, and select the search mode for unprovisioned devices to find out new unprovisioned ones.
+client节点上电，并开启发现unprovisioned 设备模式，发现新unprovisioned设备
 
 ```
 `[meshctl]# discover-unprovisioned on
@@ -641,10 +617,9 @@ Adapter property changed
 		Mesh Provisioning Service (00001827-0000-1000-8000-00805f9b34fb)
 			Device UUID: dddd0000000000000000000000000000
 			OOB: 0000`
-
 ```
 
-Authenticate the device.
+认证该设备
 
 ```
 `[meshctl]# provision dddd
@@ -692,20 +667,18 @@ Got provisioning data (65 bytes)
 	 62 
 Request decimal key (0 - 9999)
 [AOS 1m[mesh] Enter Numeric key:`
-
 ```
 
-See the output of server command line OOB.
+查看server命令行OOB输出
 
 ```
 `Initializing...
 Bluetooth initialized
 Mesh initialized
 OOB Number: 4159`
-
 ```
 
-Type 4159 on Raspberry PI, process the following provision, and then print a long string of log.
+在Raspberry PI上键入4159，进行后续provision，后续会打印一长串log
 
 ```
 `[AOS 1m[mesh] Enter Numeric key: 4159
@@ -809,23 +782,21 @@ GATT-RX:	 ee 7a 7c 6b 13 63 37 ce
 }
 GATT-TX:	 00 f4 71 66 e6 89 61 44 19 6b c1 75 a4 a9 b8 f2 
 GATT-TX:	 ed 9b b9 ee 99 b5 96 bc 05 `
-
 ```
 
-The above log can be divided as two stages. The first is to use provisioning connection to carry out provision, and the second is to establish mesh proxy connection, which will be used to transmit network configuration information.
+上述log分为两个阶段，第一个阶段是利用provisioning connection进行provision，第二个阶段是建立mesh proxy connection，后续需要在这个connection上传输网络配置信息。
 
-When the log is completely printed, the server side will print the information that provision has completed.
+当上述log完整打印后，server端会打印provision成功完成的信息
 
 ```
 `Provisioning completed!
 Net ID: 0
 Unicast addr: 0x0101`
-
 ```
 
-Next is to transmit network configuration information based on the mesh proxy connection you just set up.
+接下来，是在刚才建立的mesh proxy connection上传递网络配置信息
 
-First, enter the menu.
+首先是进入菜单
 
 ```
 `[AOS Device-Node-0101]# menu config
@@ -859,21 +830,17 @@ version                                           Display version
 quit                                              Quit program
 exit                                              Quit program
 help                                              Display help about this program`
-
-
 ```
 
-Select configuring node, where you can see that the node ucast addr is 0x0101.
+选择配置节点，这里可以看到节点ucast addr是0x0101
 
 ```
 `[AOS Device-Node-0101]# target 0101
 Configuring node 0101
 [config: Target = 0101]# target 0101[config: Target = 0101]#`
-
-
 ```
 
-Configure app key.
+配置app key
 
 ```
 `[config: Target = 0101]# target 0101[config: Target = 0101]# appkey-add 1
@@ -887,11 +854,9 @@ GATT-RX:	 00 f4 81 91 ee 63 66 b4 5a 42 6f 70 f6 d2 12 93
 GATT-RX:	 2d 9f 21 2d fa a3 89 2f 4b 
 Node 0101 AppKey Status Success
 	NetKey 000, AppKey 001`
-
-
 ```
 
-Bind the sensor client model (0x1102) of the client node to the app key (index =1).
+将client节点的element 0的sensor client model (0x1102)绑定到app key index =1的app key上
 
 ```
 `[config: Target = 0101]# bind 0 1 1102
@@ -902,11 +867,9 @@ GATT-RX:	 d0 ef 47 35 35 c3 03 8a c9 43 01 7d
 Node 0101 Model App Status Success
 	Element 0101 AppIdx 001
 ModelId 1102`
-
-
 ```
 
-Add the subscription address information 0xc000 of sensor server model 0x1102.
+增加sensor client model (0x1102)订阅发布地址0xc000的信息
 
 ```
 `[config: Target = 0101]# sub-add 0101 c000 1102
@@ -919,11 +882,9 @@ Subscription changed for node 0101 status: Success
 Element Addr:	0101
 Subscr Addr:	c000
 Model ID:	1102`
-
-
 ```
 
-Set the app key release information of sensor server model (0x1100). The release address is 0xc000. 
+设置sensor client model (0x1102)使用app key index = 1的app key发布信息，发布地址是0xc000，
 
 ```
 `[config: Target = 0101]# pub-set 0101 c000 1 0 0 1102
@@ -945,22 +906,18 @@ Retransmit count: 0
 Retransmit Interval Steps: 0
 GATT-TX:	 00 f4 f0 60 6a 70 db 3b e2 60 a6 c8 50 d9 03 36 
 GATT-TX:	 d5 a1 47 c9 2f 25 49 5e 47`
-
-
 ```
 
-When all the above configuration is completed, you can see the sent request for temperature and reply log at client node.
+上述配置全部完成后，可以在client节点看到周期性发送温度请求信息和收到回复的log
 
 ```
 `Sensor status Get request sent with OpCode 0x00008231
 Got the sensor status 
 Sensor ID: 0x2a1f
 Temperature value: 27`
-
-
 ```
 
-You can see the received request and reply log at server side.
+在server节点可以看到周期性接收到温度请求和发送回复的log
 
 ```
 `Sensor Status Get request received

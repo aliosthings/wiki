@@ -1,20 +1,26 @@
-AliOS Things和意法半导体芯片深度合作，支持STM32的多款开发板，并进一步丰富中。
-AliOS Things在STM32支持广泛丰富的特性：
-- 连接能力：LoRaWAN，WiFi（SAL提供标准Socket）
-- 阿里云云端服务：IoT套件，Alink
-- 低功耗特性：Tickless
+EN | [中文](STM32.zh)
 
-## 支持的芯片
+AliOS Things cooperates with ST Microelectronics, supporting multiple development boards of STM32.
+
+AliOS Things supports a wide range of features in STM32:
+
+- connection capability: LoRaWAN, WiFi (SAL provides standard Socket)
+- Alibaba cloud service: IoT suite, Alink
+- low power characteristics: Tickless
+
+## Supported chips
+
 - stm32l0xx
 - stm32l4xx
 - stm32f4xx
 
-## 支持的开发板
+## Supported development boards
+
 - STM32l073rz Nucleo
 - STM32L496 Discovery
 - STM32L475 Discovery
 
-## 示例
-* [LoRaWAN Application](AliOS-Things-lorawanapp)
-* [WiFi Networking](stm32-networking)
+## Example
 
+- [LoRaWAN Application](https://github.com/alibaba/AliOS-Things/wiki/AliOS-Things-lorawanapp)
+- [WiFi Networking](https://github.com/alibaba/AliOS-Things/wiki/stm32-networking)

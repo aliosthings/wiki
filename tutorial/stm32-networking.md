@@ -1,57 +1,56 @@
-# 手把手教你stm32上如何使用mqtt上云
+EN | [中文](stm32-networking.zh)
 
-本文基于[AliOS Things](https://github.com/alibaba/AliOS-Things) 1.2.0版本，手把手教你如何在stm32L475上使用mqtt上云。
+# Step by Step: MQTT to Cloud with STM32
 
-## 1、硬件环境搭建
+This article will show you how to use mqtt on STM32L475 to connect to the cloud, based on the AliOS Things 1.2.0.
 
-1、STM32 B-L475E-IOT01A开发板。
+## 1、Hardware environment setup
 
-·       开发板使用的是ST低功耗MCU系列中的STM32L475这款芯片，拥有1M字节的Flash和128K字节的SRAM。
+1、Development board STM32 B-L475E-IOT01A 
 
-·       支持WiFi，蓝牙，SubG, NFC等多种无线连接方式。 因为它还支持Arduino接口，所以使用者也可以很方便的通过Arduino接口来扩展其他的无线连接模块，比如GSM模块。 
+- The development board we use is STM32L475, with 1M bytes of Flash and 128K bytes of SRAM.
+- Support WiFi, Bluetooth, SubG, NFC and many other wireless connections. Besides, it supports Arduino interface, so users can also use other wireless connection modules, such as the GSM.
 
-·       板上还集成了64Mbits的Quad-SPI Flash。
+- 64 Mbits's Quad-SPI Flash is also integrated on the board.
+- There are many kinds of sensors on board, such as temperature and humidity sensors, 3 axis magnetometer, acceleration sensors, gyroscopes, proximity sensors and pressure sensors. It is convenient for developers to apply a variety of applications.
 
-·       板上还搭载了多种传感器，比如温湿度传感器，高性能3轴磁力计，加速度传感器，陀螺仪，接近传感器和压力传感器等。方便开发者用来进行多种应用的演示。
+- There are two digital full-angle microphones on the board. If needed, it can achieve voice control.
 
-·       板子上还有两个数字全角度麦克风。若需要，还可以实现语音控制的功能。
 
-硬件详细信息请移步：[STM32官网硬件详细介绍](http://www.st.com/content/st_com/en/products/evaluation-tools/product-evaluation-tools/mcu-eval-tools/stm32-mcu-eval-tools/stm32-mcu-discovery-kits/b-l475e-iot01a.html)
+Detailed information about hardwares can refer to [Introduction of STM32](http://www.st.com/content/st_com/en/products/evaluation-tools/product-evaluation-tools/mcu-eval-tools/stm32-mcu-eval-tools/stm32-mcu-discovery-kits/b-l475e-iot01a.html)
+
 ![](https://img.alicdn.com/tfs/TB1J6KLmZLJ8KJjy0FnXXcFDpXa-3968-2976.jpg)
 
-2、庆科MK3060通信模组一块
+2、MK3060 communication module
 
 ![](https://img.alicdn.com/tfs/TB1HYMxmRfH8KJjy1XbXXbLdXXa-2976-3968.jpg)
 
-3、双公头杜邦线三根
+3、Three double-head Dupont Lines
 
-4、连接方法：
+4、Ways of connection:
 
-将STM32L475 D0--->MK3060 UART TX， STM32L475 D1--->MK3060 UART RX， STM32L475 GND--->MK3060 GND。具体连接方式如下图所示；两个开发板中相同颜色的点通过杜邦线连接起来即可(红色对红色，白色对白色，黄色对黄色)。
+ Connect STM32L475 D0 with MK3060 UART TX, STM32L475 D1 with MK3060 UART RX, and STM32L475 GND with MK3060 GND. Detailed way of connection is shown as followed picture: connect the point with same color in two boards with Dupont Line.
 
 ![](https://img.alicdn.com/tfs/TB1k.Sfm3DD8KJjy0FdXXcjvXXa-3968-2976.jpg)
 
 
 
-## 2、接入阿里云物联网套件
+## 2、Connect to Alibaba Cloud IoT suite
 
-使用mqttapp快速接入阿里云。请参考[阿里云物联网设备接入准备](https://help.aliyun.com/document_detail/42714.html?spm=5176.doc30530.2.5.eofHfK)和[设备接入](https://help.aliyun.com/document_detail/30530.html?spm=5176.doc42714.2.7.LjopzI)
+How to connect to Alibaba Cloud through mqtt app can refer to [Connect preparations for IoT devices ](https://help.aliyun.com/document_detail/42714.html?spm=5176.doc30530.2.5.eofHfK) and [Connect the devices](https://help.aliyun.com/document_detail/30530.html?spm=5176.doc42714.2.7.LjopzI)
 
-### 2.1、在云端主要包括以下几步：
+### 2.1、Five steps on the cloud:
 
-1、注册一个阿里云账号
+1. Register a Alibaba cloud account
+2. Start a IoT Suite
+3. Create a product, get`ProductKey`
+4. Create a device, get `DeviceName` and `DeviceSecret`
+5. 
+   Define Topic`$(PRODECT_KEY)/$(DEVICE_NAME)/data`,  and set the permission as: Devices are capable of publishing and subscribing
 
-2、开通物联网套件
+### 2.2、Parameter modification in device side
 
-3、创建产品，拿到`ProductKey`
-
-4、创建设备，拿到`DeviceName`和`DeviceSecret`
-
-5、定义Topic`$(PRODECT_KEY)/$(DEVICE_NAME)/data`，并设置权限为：设备具有发布和订阅
-
-### 2.2、设备端参数修改
-
-mqttapp程序所在源码为`AliOS-Things/example/mqttapp/`[mqtt-example.c](https://github.com/alibaba/AliOS-Things/blob/master/example/mqttapp/mqtt-example.c)。此时在云端获取的三个参数`ProductKey`，`DeviceName`和`DeviceSecret`分别对应代码中的`PRODUCT_KEY`，`DEVICE_NAME`和`DEVICE_SECRET`三个宏。
+Source code of mqtt app is `AliOS-Things/example/mqttapp/`[mqtt-example.c](https://github.com/alibaba/AliOS-Things/blob/master/example/mqttapp/mqtt-example.c). The three parameters obtained from the cloud ( `ProductKey`，`DeviceName`和`DeviceSecret`) are corresponding to the three macros `PRODUCT_KEY`，`DEVICE_NAME`和`DEVICE_SECRET` in the code.
 
 ```
 #if defined(MQTT_ID2_AUTH) && defined(TEST_ID2_DAILY)
@@ -74,39 +73,39 @@ mqttapp程序所在源码为`AliOS-Things/example/mqttapp/`[mqtt-example.c](http
 #endif
 ```
 
-## 3、AliOS Things Mqttapp编译
+## 3、AliOS Things Mqtt app compilation
 
-基于目前AliOS Things mqttapp编译命令行如下：
+The current AliOS Things mqtt app compilation command line is:
 
 aos make mqttapp@b_l475e
 
-在该命令执行完成后可在`out/mqttapp@b_l475e/binary/` 目录找到生成的bin文件和hex文件。
+After the command is executed, the generated bin file and the hex file can be found in `out/mqttapp@b_l475e/binary/`  directory.
 
-## 4、固件烧入
+## 4、Firmware burning
 
-### 4.1、庆科MK3060固件烧入
+### 4.1、Burning of MK3060 
 
-请到庆科官方提供的MK3060 [AT固件](http://developer.mxchip.com/developer/md/bWljby1oYW5kYm9vay9Eb3dubG9hZC8zLTIuTWlDT19BVF92Mi4wX0NNRC5tZA)下载网址，请选择型号为MOC108/EMW3060对应的固件。烧写方法请参考 [MK3060固件烧入指导](http://developer.mxchip.com/handbooks/63)中“1.更新应用程序固件”部分
+Please go to MK3060 [AT firmware](http://developer.mxchip.com/developer/md/bWljby1oYW5kYm9vay9Eb3dubG9hZC8zLTIuTWlDT19BVF92Mi4wX0NNRC5tZA) download website officially provided by Mxchip, and select the firmware corresponding to MOC108/EMW3060 model. Way of burning can refer to "1. Update application firmware" in [MK3060 firmware burning guidance](http://developer.mxchip.com/handbooks/63).
 
-### 4.2、STM固件烧入
+### 4.2、Burning of STM firmware
 
-使用STM32固件烧入工具[ST-LINK](http://www.st.com/content/st_com/en/products/development-tools/software-development-tools/stm32-software-development-tools/stm32-programmers/stsw-link004.html)进行固件烧入。烧入步骤按下图所示
+Use [ST-LINK](http://www.st.com/content/st_com/en/products/development-tools/software-development-tools/stm32-software-development-tools/stm32-programmers/stsw-link004.html) to burn the firmware. Steps of burning is shown as followed picture:
 
 ![](https://img.alicdn.com/tfs/TB1QprXm46I8KJjy0FgXXXXzVXa-937-241.jpg)
 
-## 5、AliOS Things配网及数据连接阿里云
+## 5、Configuration of network and data connection
 
-经过以上4步以后相应的mqttapp binary已经正常烧入到stm32L475开发板中，启动串口打印如下图所示：
+After the above 4 steps, the corresponding mqttapp binary has been burned into stm32L475 development board, and the port print is started as followed:
 
-通过命令行使得wifi模组能正确连接到对应的AP。
+Wifi module can be connected to corresponding AP through command line.
 
 `netmgr connect *ssid* *password* *open|wep|wpa|wpa2*`
 
-正常联网后，mqttapp会真正开始运行。下图为mqtt运行日志截图：
+When devices can connect to the network, mqttapp will start running. The following picture is mqtt run log:
 
 ![](https://img.alicdn.com/tfs/TB1_9CBm8DH8KJjSspnXXbNAVXa-1708-284.jpg)
 
-进一步在云端查询到设备相关的日志信息如下所示
+Log information that can be further obtained on the cloud is shown as below:
 
 ![](https://img.alicdn.com/tfs/TB1kk_ImZLJ8KJjy0FnXXcFDpXa-1875-833.jpg)
 

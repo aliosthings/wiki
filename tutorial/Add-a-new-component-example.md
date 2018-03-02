@@ -1,11 +1,21 @@
-# 1 新增模块
-具体通过如下两个示例说明
-## 1.1	目标一
-增加一个新模块供现有的app调用，运行查看结果。
-nano是aos自带的一个最简单的app例子，它实现了最简单的延时循环打印功能，我们用它来作为例子中所用的app。
-新增模块名设为 info_a，功能是打印一条特定的信息。
-### 1.1.1	选择新模块放置位置
-组件可以放置在以下任一目录中：
+EN | [中文](Add-a-new-component-example.zh)
+
+# 1 Add a new component
+
+It will be illustrated through two examples. 
+
+## 1.1	Task 1
+
+Add a new component that existing apps can call
+
+Nano is one of the apps that AOS brings, which can implement time delayed loop printing, and we take it as an example.
+
+The new component's name is set as info_a, and the function is to print a specific message.
+
+### 1.1.1	Select the location of the new component
+
+The component can be put in any of the directory: 
+
 ```
 COMPONENT_DIRECTORIES := . \
                          example   \
@@ -19,10 +29,14 @@ COMPONENT_DIRECTORIES := . \
                          device    \
                          security
 ```
-例如在framework下创建一个 info_a 目录。
-### 1.1.2	增加新模块源文件
-如在 info_a 目录中创建 info_a.c :
-```C
+
+For example, create a info_a content under framework.
+
+### 1.1.2	Add source file for the new component
+
+You can create info_a.c  in info_a: 
+
+```c
 /*
  * Copyright (C) 2015-2017 Alibaba Group Holding Limited
  */
@@ -35,9 +49,12 @@ void info_a_fun()
 }
 
 ```
-### 1.1.3	增加新模块的对外头文件
-如在 info_a 目录中创建 info_a.h :
-```C	
+
+### 1.1.3	Add external header file for the new component
+
+You can create info_a.h in info_a:
+
+```c	
 /*
  * Copyright (C) 2015-2017 Alibaba Group Holding Limited
  */
@@ -57,16 +74,22 @@ extern void info_a_fun();
 
 #endif  /* INFO_A_H */
 ```
-### 1.1.4	增加新模块的.mk文件
-.mk文件是模块存在的标志。每一个模块都会有一个对应的mk文件，makefile通过搜索mk后缀的文件来查找模块。其中声明了一些针对该模块的定制化的东西。最基本的两个就是该模块所包含的源文件，头文件路径和该模块依赖的其他模块。如在info_a目录下创建 info_a.mk：
+
+### 1.1.4	Add .mk file for the new component
+
+.mk file is the symbol of existence of a module. Each component has a corresponding mk file, and makefile can find it by searching its mk file. The mk file contains information that is customized to the component, and the most important things are its source file, header file root and other components it depends on. You can create info_a.mk in info_a:
+
 ```
 NAME := info_a
 $(NAME)_SOURCES := info_a.c
 GLOBAL_INCLUDES += .
 ```
-### 1.1.5	修改 nano 源文件调用新接口
-如：
-```C
+
+### 1.1.5	Modify the source file of nano to call a new interface
+
+For example:
+
+```c
 /*
  * Copyright (C) 2015-2017 Alibaba Group Holding Limited
  */
@@ -90,13 +113,19 @@ int application_start(int argc, char *argv[])
     }while(1);
 }
 ```
-### 1.1.6	修改 nano的 .mk 文件依赖新模块
-在nano.mk中新增一行：
+
+### 1.1.6	Modify the .mk file of nano to add a new dependency component
+
+Add a new line in nano.mk:
+
 ```
 $(NAME)_COMPONENTS += info_a
 ```
-### 1.1.7	运行结果
-打印如下：
+
+### 1.1.7	Results of operation
+
+Printed as followed:
+
 ```
 $ ./nano@linuxhost.elf 
 trace should have cli to control!!!
@@ -108,11 +137,15 @@ this is in info_a
 app_delayed_action:11 app
 this is in info_a
 ```
-## 1.2	目标二
-增加一个新模块 info_b， 被另一个模块 info_a 所依赖。
 
-前4步和目标一中的一样，修改 info_a.c调用info_b的接口，再在 info_a.mk 加上下面这句即可：
+## 1.2	Task two
+
+Add a new component info_b, which is dependent on another component info_a.
+
+The first 4 steps are the same as in task one. You can just require info_a.c  to call the interface of info_b, and add the following sentence to info_a.mk:
+
 ```
 $(NAME)_COMPONENTS += info_b
 ```
-运行可见 info_a 和 info_b 中的接口均被调用。
+
+As it is operated, the interface of info_a and info_b are both called.
