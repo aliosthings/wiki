@@ -73,8 +73,8 @@ Please refer to [AliOS Things Technical Overview](AliOS-Things-Technical-Overvie
 * [Technical Forum](https://github.com/alibaba/AliOS-Things/issues)
 * [Technical Blog](https://yq.aliyun.com/teams/184)
 * [Gitter (English Only)](https://gitter.im/aliosthings)
-* [Wechat](http://o7spigzvd.bkt.clouddn.com/qr_wechat_100+.jpeg)
-* [Dingtalk](http://o7spigzvd.bkt.clouddn.com/qr_dingtalk_github.png)
+* [WeChat](http://o7spigzvd.bkt.clouddn.com/qr_wechat_100+.jpeg)
+* [DingTalk](http://o7spigzvd.bkt.clouddn.com/qr_dingtalk_github.png)
 
 ## Practical Guide from Contributors
 * [MQTT at AliOS Things](http://iot-fans.xyz/2017/11/02/alios/mqtt/start/)
