@@ -22,5 +22,5 @@ AliOS Things supports a wide range of features in STM32:
 
 ## Example
 
-- [LoRaWAN Application](https://github.com/alibaba/AliOS-Things/wiki/AliOS-Things-lorawanapp)
-- [WiFi Networking](https://github.com/alibaba/AliOS-Things/wiki/stm32-networking)
+- [LoRaWAN Application](AliOS-Things-lorawanapp)
+- [WiFi Networking](stm32-networking)

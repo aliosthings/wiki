@@ -41,9 +41,9 @@ Optional multi bin feature support: the actual hardware resources are very limit
 
 ## The following are three projects based on VSC, IAR, and Keil, respectively
 
-- [based on VSC](https://github.com/alibaba/AliOS-Things/wiki/AliOS-Things-lorawanapp-@VSC)
-- [based on IAR](https://github.com/alibaba/AliOS-Things/wiki/AliOS-Things-lorawanapp-@IAR)
-- [based on Keil](https://github.com/alibaba/AliOS-Things/wiki/AliOS-Things-lorawanapp-@Keil)
+- [based on VSC](AliOS-Things-lorawanapp-@VSC)
+- [based on IAR](AliOS-Things-lorawanapp-@IAR)
+- [based on Keil](AliOS-Things-lorawanapp-@Keil)
 
 ## Code size comparison under different Toolchain
 
