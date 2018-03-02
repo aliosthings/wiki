@@ -1,7 +1,7 @@
 ![](http://o7spigzvd.bkt.clouddn.com/aos-logo-hd-vertical.png)
 ==============================================================
 
-- **[Tutorial](AliOS-Things-Tutorial)**
+- **[Tutorial](Quick-Start)**
 - **[Hardware](AliOS-Things-Hardware)**
 - **[Porting Guide](AliOS-Things-Porting-Guide)**
 - **[Utilities](AliOS-Things-Utilities)**
