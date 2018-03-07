@@ -1,4 +1,4 @@
-EN | [中文](contributing.zh.md)
+EN | [中文](contributing.zh)
 
 ## Contributing
 
