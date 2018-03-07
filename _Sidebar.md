@@ -8,4 +8,5 @@
 - **[API Reference](AliOS-Things-API-Guide)**
 - **[Technical Docs](AliOS-Things-Technical-Overview)**
 - **[Community](#community)**
+- **[Contributing](#contributing)**
 - **[Contributor's Guide](#practical-guide-from-contributors)**
