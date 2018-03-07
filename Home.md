@@ -69,6 +69,8 @@ Please refer to [AliOS Things Technical Overview](AliOS-Things-Technical-Overvie
 - [uMesh Security](uMesh-Security)
 - [Coding Style](AliOS-Things-Coding-Style-Guide)
 
+## [Contributing](contributing)
+
 ## Community
 * [Technical Forum](https://github.com/alibaba/AliOS-Things/issues)
 * [Technical Blog](https://yq.aliyun.com/teams/184)
