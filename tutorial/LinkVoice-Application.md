@@ -40,7 +40,7 @@ AliOS-Things-Linux-Environment-Setup
 
 建议再在主分支上新建一个自己的开发分支：
 
-    `git checkout –b dev-xxx(youname):`
+    `git checkout –b dev-xxx(yourname):`
 
 到目前为止环境也安装好了，代码也准备完毕，只待编译及烧录测试。
 编译link-voice测试例程：
