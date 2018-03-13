@@ -4,7 +4,7 @@
 
 ## 依赖及aos-cube安装
 以 Ubuntu 16.04 LTS (Xenial Xerus) 64-bit PC 版本为例，安装下列 pkg：
-
+> 注意：请安装 python 2.7
 ```
 $ sudo apt-get install -y python
 $ sudo apt-get install -y gcc-multilib
