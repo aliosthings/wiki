@@ -82,7 +82,6 @@ int drv_baro_st_lps22hb_init(void){
     sensor.write = NULL;                         /* 暂不需要 */
     sensor.ioctl = drv_humi_bosch_bme280_ioctl;  /* 配置设备接口函数 */
     sensor.irq_handle = NULL;                    /* 暂不需要，如中断模式必须注册 */
-    sensor.bus = &bme280_ctx;                    /* 总线配置信息，如从设备I2C地址 */
 
     /* 把设备驱动信息注册到sensor hal，并创建一个创建分配一个设备节点给此设备 */
     ret = sensor_create_obj(&sensor);
