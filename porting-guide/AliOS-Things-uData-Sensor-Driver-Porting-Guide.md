@@ -47,7 +47,6 @@ struct _sensor_obj_t {
 	dev_power_mode_e         power;                    /* 设备电源状态 */
 	gpio_dev_t               gpio;                     /* 中断工作模式下的中断配置信息 */
 	dev_sensor_full_info_t   info;                     /* 设备信息 */
-	i2c_dev_t*               bus;                      /* I2C总线的信息，比如I2C地址 */
 	int (*open)(void);                                 /* 接口函数：打开设备，暂时只需power on即可 */
 	int (*close)(void);                                /* 接口函数：关闭设备，暂时只需power off即可 */
 	int (*read)(void *, size_t);                       /* 接口函数：读设备数据操作 */
