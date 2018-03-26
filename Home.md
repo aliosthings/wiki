@@ -4,7 +4,7 @@ Please refer to [AliOS Things Technical Overview](AliOS-Things-Technical-Overvie
 ## [Tutorial](Quick-Start)
 - [Quick Start](Quick-Start)
 - [Hello World](AliOS-Things-APP-DEV-Guide)
-- [Starter Kit Tutorial](starterkit-tutorial)
+- [Starter Kit Tutorial](Starter-Kit-Tutorial)
 - [Add a New Board Example](Add-a-new-board-example)
 - [Add a New Component Example](Add-a-new-component-example)
 - [Environment Setup](AliOS-Things-Environment-Setup)
