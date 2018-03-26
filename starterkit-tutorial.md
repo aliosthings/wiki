@@ -17,9 +17,9 @@ https://code.visualstudio.com/
 参考 [AliOS-Things-Linux-Environment-Setup](https://github.com/alibaba/AliOS-Things/wiki/AliOS-Things-Linux-Environment-Setup)
 
 安装：
-\- [GNU ARM Embedded Toolchain](https://launchpad.net/gcc-arm-embedded/+download)
-\- [Python 2](https://www.python.org/downloads/)
-\- [Git](https://git-scm.com/downloads)
+- [GNU ARM Embedded Toolchain](https://launchpad.net/gcc-arm-embedded/+download)
+- [Python 2](https://www.python.org/downloads/)
+- [Git](https://git-scm.com/downloads)
 
 安装 python pip 包管理器，然后安装/升级 `aos-cube` 到全局环境:
 `pip install -U aos-cube`
@@ -29,13 +29,13 @@ https://code.visualstudio.com/
 minicom 或者 [picocom](https://github.com/npat-efault/picocom)
 
 #### Windows
-参考 [AliOS-Things-Windows-Environment-Setup](https://github.com/alibaba/AliOS-Things/wiki/AliOS-Things-Windows-Environment-Setup)
-可以直接使用我们准备好的软件包：http://p28phe5s5.bkt.clouddn.com/setup_windows.zip
-也可以手动安装以下软件/工具:
-\- [GNU ARM Embedded Toolchain](https://launchpad.net/gcc-arm-embedded/+download)
-\- [Python 2](https://www.python.org/downloads/)
-\- [Git](https://git-scm.com/downloads)
-\- [ST-LINK USB Driver](http://www.st.com/en/development-tools/stsw-link009.html)
+参考 [AliOS-Things-Windows-Environment-Setup](https://github.com/alibaba/AliOS-Things/wiki/AliOS-Things-Windows-Environment-Setup)  
+可以直接使用我们准备好的软件包：http://p28phe5s5.bkt.clouddn.com/setup_windows.zip  
+也可以手动安装以下软件/工具:  
+- [GNU ARM Embedded Toolchain](https://launchpad.net/gcc-arm-embedded/+download)
+- [Python 2](https://www.python.org/downloads/)
+- [Git](https://git-scm.com/downloads)
+- [ST-LINK USB Driver](http://www.st.com/en/development-tools/stsw-link009.html)
 
 Python 2 和 Git 安装完成以后，在 Git Bash 中安装/升级 `aos-cube`:
 `pip install -U aos-cube`
@@ -44,7 +44,7 @@ Python 2 和 Git 安装完成以后，在 Git Bash 中安装/升级 `aos-cube`:
 ### 下载 AliOS Things 代码
 
 从GitHub克隆：
-`git clone https://github.com/alibaba/AliOS-Things`
+`git clone https://github.com/alibaba/AliOS-Things`  
 或者从镜像站点：
 `git clone https://code.aliyun.com/vivid8710/AliOS-Things`
 
@@ -59,12 +59,12 @@ Python 2 和 Git 安装完成以后，在 Git Bash 中安装/升级 `aos-cube`:
 2. 点击下方状态栏 ![](https://img.alicdn.com/tfs/TB1HC9KgkyWBuNjy0FpXXassXXa-72-22.png) 开始编译
 编译过程如果发现缺少 toolchain 则会自动下载解压到正确位置。
 
-> 但如果配置后仍有找不到toolchain的情况，请注意：
-> 可将 `arm-none-eabi-` 添加在全局PATH
-> 如果并未应用到全局PATH，则可以将toolchain拷贝到如下路径，也可在以下路径创建符号链接，确保如下路径有此 toolchain 即可
-> AliOS-Things/build/compiler/arm-none-eabi-5_4-2016q3-20160926/OSX/
-> AliOS-Things/build/compiler/arm-none-eabi-5_4-2016q3-20160926/Win32/
-> AliOS-Things/build/compiler/arm-none-eabi-5_4-2016q3-20160926/Linux64/
+> 但如果配置后仍有找不到toolchain的情况，请注意：  
+> 可将 `arm-none-eabi-` 添加在全局PATH  
+> 如果并未应用到全局PATH，则可以将toolchain拷贝到如下路径，也可在以下路径创建符号链接，确保如下路径有此 toolchain 即可  
+> AliOS-Things/build/compiler/arm-none-eabi-5_4-2016q3-20160926/OSX/  
+> AliOS-Things/build/compiler/arm-none-eabi-5_4-2016q3-20160926/Win32/  
+> AliOS-Things/build/compiler/arm-none-eabi-5_4-2016q3-20160926/Linux64/  
 ```
 ../OSX
 ../Win32
