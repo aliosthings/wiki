@@ -95,9 +95,7 @@ Python 2 和 Git 安装完成以后，在 Git Bash 中安装/升级 `aos-cube`:
 ### GUI 应用实例
 双击左侧 `BUILD TARGET` 视图中的 `starterkitgui@starterkit` 开始编译 Starter Kit 的 GUI demo，将 Starter Kit 开发板与电脑通过 USB 连接好以后，点击 `Upload` 烧录固件。
 ![](https://img.alicdn.com/tfs/TB1RWo9gbSYBuNjSspiXXXNzpXa-3270-2182.png)
-
-此 demo 读取加速度计实时数据，并绘制图表显示在 LCD 上，如下动图所示：
-![](https://img.alicdn.com/tfs/TB17EnugqmWBuNjy1XaXXXCbXXa-484-387.gif)
+此 demo 读取加速度计实时数据，并绘制图表显示在 LCD 上
 
 ### 调试
 #### 调试配置
