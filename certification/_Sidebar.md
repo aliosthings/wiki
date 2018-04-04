@@ -1,4 +1,4 @@
-### [1. 简介](.)
+### [1. 简介](Certification-Home)
 
 ### [2. AliOS Things 认证流程](Process)
   * [2.1 移植适配](Process#step1)
