@@ -70,6 +70,8 @@ Please refer to [AliOS Things Technical Overview](AliOS-Things-Technical-Overvie
 - [uMesh Security](uMesh-Security)
 - [Coding Style](AliOS-Things-Coding-Style-Guide)
 
+## [Certification](Certification-Home)
+
 ## [Contributing](contributing)
 
 ## Community
