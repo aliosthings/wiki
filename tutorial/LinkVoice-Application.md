@@ -1,156 +1,210 @@
-  随着AI技术的进步，智能语音开始将人机交互从手+眼睛的传统模式中解放出来。带给人们更便捷、更风趣、更有人情味的体验，让被操作对象变得不再只是一个死板的工具，而更像是一个有生命的助理。“帮我打开空调”，“明天上班需要带伞吗”，“快递到哪了”…在万物互联的时代，你的所有需求只需要一句话便能实现。
-AliOS Things 集成的Link Voice SDK即可实现智能语音交互。
+EN | [中文](LinkVoice-Application.zh)
 
-# 关于阿里智能语音服务
-阿里智能语音服务为设备提供语音交互能力、丰富的音乐内容、智能家居控制等，并可进行专有设备技能定制（如：语音操控跑步机、按摩椅等设备）。包括：
+# LinkVoice Application
 
-* 通用服务：搜歌、搜栏目、搜电台、问天气、百科、四则运算等；
-* 阿里服务：控制智能家居、充值手机费、天猫超市购物、查询电费等 （需接入账号体系，可参考SDS接入）；
-* 私有服务：操控设备、售后电话查询等 （需要技能定制，签约时请提供产品需求）。
+With the progress of AI technology, intelligent voice is no longer a rigid tool, but more like a life assistant, bringing people more convenient and interesting experience. "Help me open the air conditioner.", "Do I need an umbrella for work tomorrow?", "Where is my express?"... In IoT era, all your needs can be realized by your sentence. The LinkVoice SDK integrated in AliOS Things can achieve intelligent voice interaction.
 
-# 功能集成
-设备接入阿里语音服务，需要集成Alink SDK和Link-Voice SDK，其中Alink SDK为设备提供接入阿里IoT平台的连接、账号体系、配网、OTA等能力，而Link-Voice SDK为设备提供阿里智能语音服务。设备首先要集成了Alink SDK成为SDS平台的一个设备，才能通过集成Link-Voice SDK使用阿里智能语音服务。
-Link-Voice SDK除了依赖Alink为设备完成平台接入设备管理外，还需要表格所列模块完成相应工作。其中websockets用来进行语音数据的交互；opus完成语音录制的PCM格式到opus格式的转换（服务端只接收opus格式）；cjson用来做json解析；mbedtls为alink和websockets的底层连接进行加密，为其数据传输提供安全保障。
-![依赖组件](https://img.alicdn.com/tfs/TB1WsGwaKOSBuNjy0FdXXbDnVXa-648-290.png)
+# Alibaba intelligent voice service
 
-而目前AliOS Things已完成以上表格所有模块的移植适配工作并将其集成进来，所以我们直接使用AliOS Things便可完成愉快的智能语音开发。主mcu性能建议：
-* Flash>=512KB
-* RAM>=200KB
-* CPU>=180Mhz
+Alibaba intelligent voice service contains rich music, can enable voice interaction and smart home control, and can customize device skills (for example, it can manipulate running machines, massage chairs and other devices by voice). Services provided by us Include :
 
-# 开发平台准备
-按理满足上一章节性能要求，并带音频录制及播放功能的开发板即可。前提是需要完成AliOS Tings的移植适配工作。本文以全志xr871evb（已完成OS适配）为例进行介绍。
-本平台资源：
-* cpu:200Mhz cortext-M4f
-* RAM：448KB（部分硬件相关code需要加载到ram中运行，实际可用约280KB）
-* FLASH：2MB SPI FLASH
+- general services: search for songs, columns, radio stations, weather; refer to encyclopedia, four arithmetic operation table, and etc.
+- services provided by Alibaba: smart home control, recharge mobile phone, Tmall shopping,  and etc. (You need to connect to account system, which can refer to SDS access);
+- private service: equipment control, customer service inquiry, and etc. (If customized skills are needed, please provide product requirements when signing the contract).
 
-# 环境搭建及代码编译
-先搭建AliOS开发环境（以linux为例）：
-AliOS-Things-Linux-Environment-Setup
+# Functions integration 
 
-然后从github阿里官方开源库下载最新版本的AliOS Things源码（https://github.com/alibaba/AliOS-Things）：
-以linux下开发为例：
+To use Alibaba linkvoice service, you need to integrate Alink SDK and Link-Voice SDK. Alink SDK provides devices with access to Alibaba IoT platform, account system, network distribution, OTA and etc. Link-Voice SDK provides devices with Alibaba intelligent voice service. Devices should first integrate Alink SDK to be a device in SDS platform and then integrate Link-Voice SDK to use Alibaba intelligent voice service. In addition to relying on Alink to manage devices in the platform, Link-Voice SDK needs modules as listed in the table to complete its work. 
 
-    `git clone git@github.com:alibaba/AliOS-Things.git`
+WebSockets is used to complete voice data interaction; opus is used to transform voice recording from PCM format to opus format (the server can only receive opus format); Cjson is used for JSON analysis; Mbedtls is used to encrypt the connection in underlying layer of alink and WebSockets, securing its data transmission.
 
-切换到主分支：
+![依赖组件](https://camo.githubusercontent.com/337e6a420ff7d661c8902fc763d2e566577ccb05/68747470733a2f2f696d672e616c6963646e2e636f6d2f7466732f54423157734777614b4f5342754e6a79304664585862446e5658612d3634382d3239302e706e67)
 
-    `git checkout master`
+AliOS Things has integrated all these modules in the list, so you can directly use AliOS Things to develop intelligent voice. Suggestion for mcu capability :
 
-建议再在主分支上新建一个自己的开发分支：
+- Flash>=512KB
+- RAM>=200KB
+- CPU>=180Mhz
 
-    `git checkout –b dev-xxx(yourname):`
+# Preparation for development platform
 
-到目前为止环境也安装好了，代码也准备完毕，只待编译及烧录测试。
-编译link-voice测试例程：
+You need development boards that meet the performance requirements mentioned in the previous section, together with audio recording and playing functions. Also, you need to complete AliOS Tings migration adaptation. This article takes xr871evb as an example  (OS matching has been completed). The resources of the platform:
 
-    `aos make linkvoiceapp@xr871evb xr871=1`
+- cpu:200Mhz cortext-M4f
+- RAM：448KB（some code related to hardwares need to be operated in ram; about 280KB can actually be used）
+- FLASH：2MB SPI FLASH
 
-代码烧入：
+# Environment setup and code compilation 
 
-    `cd platform/mcu/xr871/tools/`
+You should first set up AliOS development environment ( take linux as an example）: AliOS-Things-Linux-Environment-Setup
 
-修改串口配置：
+Then download the latest version of source code of AliOS Things in github （[https://github.com/alibaba/AliOS-Things）：](https://github.com/alibaba/AliOS-Things%EF%BC%89%EF%BC%9A) also take linux as an example :
 
-    `vim settings.ini`  
+```
+`git clone git@github.com:alibaba/AliOS-Things.git`
 
-将串口改成你板子的串口号，可ls /dev/tty*查看，保存退出。
-![uart setting](https://img.alicdn.com/tfs/TB1HRuoaL9TBuNjy0FcXXbeiFXa-865-728.png)
-代码烧写，先将全志开发板启动选择拨码开关拨至NO位置，如同所示：
-![flash setting](https://img.alicdn.com/tfs/TB1p2KkaMmTBuNjy1XbXXaMrVXa-865-454.png)
-然后执行
+```
 
-    `./phoenixMC_linux`  开始进行代码烧写，烧写完成后再将拨码开关拨回靠串口位置，重启。
+switch to master branch：
 
-打开minicom或其他串口工具监视设备输入信息，波特率115200。
-功能演示：
-初次上电后先进行配网：
+```
+`git checkout master`
 
-    `netmgr connect ssid psswd`
+```
 
-其中ssid和psswd分别替换为你无线网络名及密码。
-根据终端提示，待网络连接后，出现以下提示时：
-![press key](https://img.alicdn.com/tfs/TB1otataQyWBuNjy0FpXXassXXa-865-231.png)
-按按键2（AK2）触发语音识别功能。
-![talking](https://img.alicdn.com/tfs/TB1o0ataQyWBuNjy0FpXXassXXa-865-199.png)
-此时对着开发板说话，语音数据被编码、上传到云端、识别成功后返回相应信息，识别失败亦有相应提示。
-示例：
-1:明天上班需要带伞吗？
-2.给我讲个鬼故事。
-3.推荐一部悬疑电影。
-4.把空调打开。
+We suggest you to add your development branch based on the master one : 
 
-# API介绍
-## 1）初始化
+```
+`git checkout –b dev-xxx(yourname):`
+
+```
+
+Till now on, environment has been set up, code has been prepared and you can start compilation and programming test. Example procedure of link-voice test :
+
+```
+`aos make linkvoiceapp@xr871evb xr871=1`
+
+```
+
+Program your code：
+
+```
+`cd platform/mcu/xr871/tools/`
+
+```
+
+Modify serial port configuration ：
+
+```
+`vim settings.ini`  
+
+```
+
+Replace the serial poet number with your board's, you can check it in ls /dev/tty*. Reserve and exit. ![uart setting](https://camo.githubusercontent.com/586142cb67fd425fb6f9c44f31e8c4fb32567188/68747470733a2f2f696d672e616c6963646e2e636f6d2f7466732f5442314852756f614c395442754e6a7930466358586265694658612d3836352d3732382e706e67)Burn your code in. You should first turn the switch to ON position as is shown in the picture :![flash setting](https://camo.githubusercontent.com/f061b3c1d38fe54ca40a88aefe0a3dc2386aa5a0/68747470733a2f2f696d672e616c6963646e2e636f6d2f7466732f54423170324b6b614d6d5442754e6a793158625858614d725658612d3836352d3435342e706e67)Then execute :
+
+```
+`./phoenixMC_linux`  to start code burning. After burning,  set the switch back to the serial port position and restart.
+```
+
+Open minicom or other serial port supervision device to input information, with baud rate as 115200. Operation example: start network distribution after first power on :
+
+```
+`netmgr connect ssid psswd`
+
+```
+
+Replace ssid and psswd with the name and password of your wireless network. When connecting to network, the following notice will appear in your terminal :![press key](https://camo.githubusercontent.com/2d3d09cb35fe14521a87b20f1dc4058aa8b8eb3d/68747470733a2f2f696d672e616c6963646e2e636f6d2f7466732f5442316f7461746151795742754e6a7930467058586173735858612d3836352d3233312e706e67)Press button 2 (AK2) to enable speech recognition function. ![talking](https://camo.githubusercontent.com/f0511cb3bf687f604b2c4099e767fc80896ca913/68747470733a2f2f696d672e616c6963646e2e636f6d2f7466732f5442316f3061746151795742754e6a7930467058586173735858612d3836352d3139392e706e67)At this time, speak to the development board, and your voice data will be encoded, uploaded to the cloud, and then corresponding feedback will return no matter the identification has succeeded or failed. Example: 1: Do you need an umbrella for work tomorrow? 2. Tell me a ghost story. 3. Recommend me a suspense movie. 4. Open the air conditioner.
+
+# Introduction to API
+
+## 1）Initiate
+
 `int pal_init(const struct pal_config *config);`
-* 说明： SDK初始化，只需调用一次。
-* 入参：`config`结构体向SDK传递必须的参数
-* 返回：0成功；-1失败
-## 2）销毁
+
+- Description： SDK initiation. You only need to call it once.
+- Parameters：`config` transfer necessary parameters to SDK.
+- Returns：0 on success, negative error on failure.
+
+## 2）Destroy
+
 `void pal_destroy();`
-* 说明：SDK销毁，释放资源。
-* 入参：无
-* 返回：无
-## 3）获取SDK版本
+
+- Description : destroy SDK and release the resources.
+- Parameters：no
+- Returns：no
+
+## 3）Get SDK version number
+
 `int pal_version();`
-* 说明：返回SDK的版本号
-* 入参：无
-* 返回：SDK版本号
-## 4）设置日志级别
+
+- Description : return SDK version number
+- Parameters : no
+- Returns : SDK version number
+
+## 4）Set log level 
+
 `void pal_set_log_level(int level);`
-* 说明：设置SDK的日志级别。调试阶段可设置为PAL_LOG_LEVEL_DEBUG方便调试问题，调试稳定之后上线前把日志级别设置为PAL_LOG_LEVEL_ERROR。
-* 入参：`level`为SDK的日志级别
-* 返回：无
-## 5）设置环境
+
+- Description：set SDK log level. In testing stage, you can set it as PAL_LOG_LEVEL_DEBUG to make testing easier. After testing, set it as PAL_LOG_LEVEL_ERROR.
+- Parameters：`level` is the log level of SDK.
+- Returns：no
+
+## 5）Environment setup
+
 `void pal_set_env(int env);`
-* 说明：设置SDK的环境，默认是PAL_ENV_RELEASE，在厂商外部环境下可以连接阿里线上环境。厂商无需使用这个接口。
-* 入参：`env`为SDK的环境
-* 返回： 无
-## 6）厂商播放器向SDK上报消息
+
+- Description：set up SDK environment, and it is PAL_ENV_RELEASE by fault. You can connect to Alibaba online environment in vendors' environment. There is no need for vendors to use this interface. 
+- Parameters：`env` is the environment of SDK
+- Returns : no
+
+## 6）Vendor player notify SDK of message
+
 `int pal_notify_msg(const char *msg);`
-* 说明：厂商的播放器的状态或者按键事件需要按照`Link_Voice_SDK_播控协议_v1.0.0.xlsx`定义的json格式上报给SDK与上层应用同步状态。
-* 入参：`msg`为厂商播放器需要向SDK传递的事件消息
-* 返回：0成功；-1失败
-## 7）厂商播放器通过SDK透传ALink消息
+
+- Description：vendor players notify SDK of its status or key events in json format as defined in  `Link_Voice_SDK_播控协议_v1.0.0.xlsx`.
+- Parameters：`msg` is the message that vendors want to report to SDK
+- Returns：0 on success, negative error on failure.
+
+## 7）Vendor player post ALink message through SDK
+
 `int pal_post_alink_msg(const char *msg);`
-* 说明：SDK初始化过程会把ALink进行初始化，与阿里平台保持物联长连接，厂商设备需要上报给ALink的消息可通过该接口上报，SDK对该消息进行透传上报给ALink服务端。
-* 入参：`msg`为厂商需要通过SDK透传给ALink进行上报的消息，格式按照ALink定义的消息格式
-* 返回：0成功；-1失败
-## 8）开始一次语音识别
+
+- Description : ALINK will be initiated during SDK initiation, and keeps the connection to Alibaba platform. Vendors can post message to ALink through this interface, where SDK will post it to ALink server side.
+- Parameters：`msg` is the message that vendors want to post to ALink through SDK. The format is the message format defined by ALink.
+- Returns：0 on success, negative error on failure.
+
+## 8）Start speech recognition
+
 `int pal_asr_start();`
-* 说明：设备通过按键或者远场唤醒触发语音识别时调用。
-* 入参：无
-* 返回：0成功；-1失败；
-## 9）发送语音数据
+
+- Description : It will be called when speech recognition function is triggered through button or far field awakening. 
+- Parameters：no
+- Returns：0 on success, negative error on failure.
+
+## 9）Send out voice data 
+
 `int pal_asr_send_buffer(const char *buffer, int buffer_len);`
-* 说明：该接口要在调用pal_asr_start成功了之后调用，发送语音数据。如果是PCM格式的数据，则要求每次640字节。如果返回PAL_VAD_STATUS_STOP则为云端检测到语音结束了，厂商这时候可以调用pal_asr_stop或pal_asr_stop_async来获本次识别结果。
-* 入参：`buffer`语音数据，`buffer_len`语音数据长度，字节
-* 返回：返回云端检测到的VAD状态
-## 10）结束本次语音识别（同步接口）
+
+- Description：This interface should be called when calling of pal_asr_start has been completed. When calling, voice data will be sent. If the data is in PCM format, it should be 640 bytes. If return is PAL_VAD_STATUS_STOP, which means the voice is detected by the cloud to end, vendors can call pal_asr_stop or pal_asr_stop_async to obtain the recognition result.
+- Parameters：`buffer` is voice data. `buffer_len` is the length and byte of this voice data.
+- Returns：the VAD status detected by the cloud
+
+## 10）End voice recognition (synchro interface)
+
 `struct pal_rec_result* pal_asr_stop();`
-* 说明：pal_rec_result结构体返回本次语音识别的结果，同步的接口。结构体里的字段status表示本次语音识别的状态；should_restore_player_status表示厂商播放器处理完本次语音识别事件之后是否恢复之前的状态，0是不恢复，1是恢复；asr_result表示ASR识别的文本；task_status表示语音识别任务状态，PAL_REC_TASK_STATUS_END表示单次语音识别会话结束，PAL_REC_TASK_STATUS_WAITING表示多轮对话，应当播完TTS之后自动进入拾音状态，开始一次新的语音识别。
-* 入参：无
-* 返回：语音识别结果的结构体
-## 11）结束本次语音识别（异步接口）
+
+- Description : As for synchro interface, pal_rec_result will return the result of voice recognition. "Status" shows the statues of voice recognition; "should_restore_player_status" shows whether the vendor player recover to its former status when completing voice recognition, where 0 means not recover and 1 means recover; "asr_result" shows the text recognized by ASR; "task_status" shows the status of the task; "PAL_REC_TASK_STATUS_END" shows the end of this task; "PAL_REC_TASK_STATUS_WAITING" shows it's a multi - wheel dialogue.
+- Parameters：no
+- Returns：the result of voice recognition
+
+## 11）End voice recognition（Asynchronous interface）
+
 `void pal_asr_stop_async(pal_asr_callback callback, void *user);`
-* 说明：异步返回的接口，功能与pal_asr_stop一样。
-* 入参：`callback`注册的回调函数，用于返回语音识别结果；`user`用户自定义指针，在`callback`中会回传给用户
-* 返回：无
-## 12）取消本次语音识别
+
+- Description：Interface for asynchronous return, whose function is similar to pal_asr_stop.
+- Parameters：`callback` is a registered callback function, which is used to return recognition result;  `user` is user-defined pointer, which will be returned to users in `callback`.
+- Returns：no
+
+## 12）Cancel voice recognition 
+
 `void pal_asr_cancel();`
-* 说明：取消本次的语音识别。
-* 入参：无
-* 返回：无
-## 13）销毁语音识别结果
+
+- Description：Cancel voice recognition 
+- Parameters：no
+- Returns：no
+
+## 13）Destroy the result of voice recognition 
+
 `void pal_rec_result_destroy(struct pal_rec_result *result);`
-* 说明：pal_asr_stop和pal_asr_stop_async返回的语音识别结果，需要通过该接口来释放资源。
-* 入参：`result`需要销毁的结果
-* 返回：无
-## 14）文本转语音（同步接口）
+
+- Description：pal_asr_stop and pal_asr_stop_async can return the result of voice recognition. You can use this interface to release resources.
+- Parameters：`result` is the result that need to be destroyed. 
+- Returns：no
+
+## 14）Transform text to voice (synchronous interface) 
+
 `struct pal_rec_result* pal_get_tts(const char *text);`
-* 说明：提供文本转语音的功能。返回的结果pal_rec_result需要通过pal_rec_result_destroy销毁。
-* 入参：`text`需要转换的文本
-* 返回：返回的结构体，文本转语音的结果在tts字段中，是一个可播放的url。
 
-
+- Description：Transform text to voice. The return result, pal_rec_result, needs to be destroyed by pal_rec_result_destroy.
+- Parameters：`text` is the text that needs to be transformed 
+- Returns：The returned structure. The voice transformed from text is a playable url in tts field. 
