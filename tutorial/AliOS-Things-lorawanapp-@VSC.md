@@ -1,90 +1,79 @@
-## 相关准备：
-- [Visual Studio Code（以下简称VSC)和AliOS Things开发环境](AliOS-Things-Environment-Setup)
+EN | [中文](AliOS-Things-lorawanapp-@VSC.zh)
 
-- lora网络（注意相关硬件要接好天线）
+## Some preparation：
 
+- [Visual Studio Code (VSC) and AliOS Things IDE](https://github.com/alibaba/AliOS-Things/wiki/AliOS-Things-Environment-Setup)
+- lora network（the related hardware should be connected）
   - End point
     - MXCHIP MK3047							*1
   - Gateway
-    - M1301 Gateway module(GTI 光通国际）   	*1
+    - M1301 Gateway module (GTI)   	*1
       - Raspberry Pi                                                        *1
   - Lora Server
-    - [LoRa App Server](https://docs.loraserver.io/lora-app-server/overview/): 这里是一个开源的server包，可以自行下载搭建
-
-- 5VDC/2ADC电源（网关供电）   *1
-
+    - [LoRa App Server](https://docs.loraserver.io/lora-app-server/overview/): It's an open-source sever package, and you can download it by yourself.
+- 5VDC/2ADC power（power supply by gateway )     *1
 - J-Link                                             *1
-
-- micro-USB线                                *1
-
-- 串口终端：这里使用X-Shell
-
+- micro-USB line                                *1
 - J-Flash
-
-- lora和LoRaWAN基础知识
-
-- 当然还有最关键的[AliOS-Things](https://github.com/alibaba/AliOS-Things)了， 直接戳有电梯:smile:
-
+- serial port terminal : here we use X-Shell
+- basic knowledge of lora and LoRaWAN
+- [AliOS-Things](https://github.com/alibaba/AliOS-Things)
   ​
 
-## 开始
+## Start up
 
-### 节点 End point
+### End point
 
-1. 首先要搭建环境，我们的IDE基于VSC，所以在windows，mac或是linux均可以，详情请访问上述github的链接，这里使用windows环境。
+1. Set up the environment : Our IDE is based on VSC, and it's suitable for windows, mac and linux. We now use windows as an example and you can know more details in related links in github.
 
-2. 打开IDE如下，载入AliOS Things：
+2. Open IDE and AliOS Things as follows :
 
    ![alios ide](https://img.alicdn.com/tfs/TB1vwKDi2DH8KJjy1XcXXcpdXXa-1926-1052.png)
 
-3. 选择demo和board，这里选择lorawanapp和eml3047，如下图所示在下方工作栏高亮部分点击，然后在上方高亮部分选择。
+3. Select demo and board. Here, select lorawanapp and eml3047. As shown in the following picture, you can click in the bottom highlight part and select in the above part.
 
    ![lorawanapp](https://img.alicdn.com/tfs/TB1i1Ghi3nH8KJjSspcXXb3QFXa-1527-818.png)
 
-4. 选择完毕之后，可以点击下方工作栏的`Build`按钮进行编译。
+4. After selecting, you can click on the `Build` button in the bottom work bar. 
 
-   编译结束后会在AliOS Things的out文件夹看到相应的输出文件。
+   You will see the related output file in "out" folder in AliOS Things after compiling.
 
    ![lora_directory](https://img.alicdn.com/tfs/TB1BeKJi_vI8KJjSspjXXcgjXXa-816-572.png)
 
-5. 接下来连接MK3047到电脑并且使用J-Link连接MK3047开始烧录程序 ，这里使用J-Flash进行烧录：
+5. Them, connect MK3047 to the computer and start programming through J-Flash :
 
-   - 创建对应烧录project
+   - Create programming project
+   - Select "Option->Project settings"
 
-   - 打开Option->Project settings
+   ![jf1](https://img.alicdn.com/tfs/TB1pT08i8HH8KJjy0FbXXcqlpXa-781-224.png)
+   ![J-Flash_setting_uc](https://img.alicdn.com/tfs/TB1SKXWo9_I8KJjy0FoXXaFnVXa-778-735.png)
 
-     ![jf1](https://img.alicdn.com/tfs/TB1pT08i8HH8KJjy0FbXXcqlpXa-781-224.png)
-     ![J-Flash_setting_uc](https://img.alicdn.com/tfs/TB1SKXWo9_I8KJjy0FoXXaFnVXa-778-735.png)
-
-   - 打开File->open data file选择在4中描述的文件夹下的binary中选择*.bin
-
-   - 设置flash烧录的初始地址0x08000000
-
-   - 点击Target->Connect连接目标，再选择Production Programming进行烧录
-
+   - Select "File->open data file", and select the *.bin in the binary of folder mentioned in point 4.
+   - Set the initial location of flash programming as 0x08000000
+   - Select "Target->Connect" to connect to the target and select "Production Programming" to start programming
      ![jf3](https://img.alicdn.com/tfs/TB1R1dVi0zJ8KJjSspkXXbF7VXa-681-242.png)
 
    ​
 
-6. 打开X-Shell，找到对应串口，连接串口，串口参数如下：
+6. Open X-Shell and find out related serial port. Connect to the corresponding port. Parameter is shown as below : 
 
    ![串口](https://img.alicdn.com/tfs/TB1ldupi3vD8KJjy0FlXXagBFXa-206-154.png)
 
-7. 连接后串口终端显示如下, 看到rssi，snr的数据表明已经节点已经连接到LoRaWAN网络开始接收到Gateway的数据。
+7. Serial port terminal will be displayed as followed after connecting. If you see the data of rssi and snr, it means that the end point has been connected to Lorawan network and started to receive gateway data.
 
    ![sl2](https://img.alicdn.com/tfs/TB1kuuKi3DD8KJjy0FdXXcjvXXa-848-759.png)
 
-8. 以上烧录的是默认代码，LoRaWAN的参数如下：
+8. The above is the programming of default code. The lorawan parameters are as follows:
 
-   |    参数    | 值 |
-   | ---------- | --- |
-   | 入网方式    |  OTAA |
-   | DevEui     |  31-35-37-31-50-37-7B-18（目前设定是根据板子创建相当于板子的MAC） |
-   | AppEui     |01-01-01-01-01-01-01-01|
-   | AppKey     |2B 7E 15 16 28 AE D2 A6 AB F7 15 88 09 CF 4F 3C|
-   | Class      | A|
+   | Parameter         | Value                                    |
+   | ----------------- | ---------------------------------------- |
+   | Connecting method | OTAA                                     |
+   | DevEui            | 31-35-37-31-50-37-7B-18（like the MAC of that board） |
+   | AppEui            | 01-01-01-01-01-01-01-01                  |
+   | AppKey            | 2B 7E 15 16 28 AE D2 A6 AB F7 15 88 09 CF 4F 3C |
+   | Class             | A                                        |
 
-   以上前四个参数可以在aos/example/lorawanapp/commissioning.h中修改：
+   The above four parameters can be modified in aos/example/lorawanapp/commissioning.h :
 
 ```
 /**
@@ -114,7 +103,7 @@
 
 ```
 
-​	节点类型可以在aos/example/lorawanapp/lorawanapp.c中修改：
+Node type can be modified in aos/example/lorawanapp/lorawanapp.c :
 
 ```
 /**
@@ -131,53 +120,55 @@ static LoRaParam_t LoRaParamInit = {
 }
 ```
 
-### 网关 Gateway
+### Gateway
 
-1. 网关通电保持工作（这里无需设置，只需通电工作即可，详细可以了解LoRaWAN的协议）
+1. Give power to gateway. ( No extra setting is needed. You only need to give it power and enable it to work. Details can refer to lorawan protocols）
 
-### 服务器 Server
+### Server
 
-1. 配置server端
+- configure in server side
 
-   - 创建应用，相关参数可按图勾选
+  - Create a new project and select related parameters as followed 
 
-     ![s0](https://img.alicdn.com/tfs/TB1NSlOi3vD8KJjSsplXXaIEFXa-1480-271.png)
+  ![s0](https://img.alicdn.com/tfs/TB1NSlOi3vD8KJjSsplXXaIEFXa-1480-271.png)
 
-     ![s2](https://img.alicdn.com/tfs/TB1yehVi0zJ8KJjSspkXXbF7VXa-1221-807.png)
+  ![s2](https://img.alicdn.com/tfs/TB1yehVi0zJ8KJjSspkXXbF7VXa-1221-807.png)
 
-   - 在应用下创建节点，按照串口终端的打印信息填写
+  - Create nodes in the application. You can fill in it according to the print information of serial terminal.
 
-     ![s3](https://img.alicdn.com/tfs/TB1mfRZi0fJ8KJjy0FeXXXKEXXa-1494-312.png)
+    ![s3](https://img.alicdn.com/tfs/TB1mfRZi0fJ8KJjy0FeXXXKEXXa-1494-312.png)
 
-     ![s4](https://img.alicdn.com/tfs/TB1RTV8i8HH8KJjy0FbXXcqlpXa-1313-828.png)
+    ![s4](https://img.alicdn.com/tfs/TB1RTV8i8HH8KJjy0FbXXcqlpXa-1313-828.png)
 
-   - 入网过程开始后，终端节点会被激活，会生成相应的Key
+  - In the process of network connection, the terminal node will be activated and corresponding key will be generated. 
 
-     ![s5](https://img.alicdn.com/tfs/TB1hK4Si_TI8KJjSsphXXcFppXa-1477-666.png)
+    - ![s5](https://img.alicdn.com/tfs/TB1hK4Si_TI8KJjSsphXXcFppXa-1477-666.png)
 
-   - 入网后会开始数据交互，服务器端在Raw frame logs下面会看到
+  - When network connection is completed, data interaction will begin, and you will see it in raw frame logs.
 
-     ![s6](https://img.alicdn.com/tfs/TB1BvRZi0fJ8KJjy0FeXXXKEXXa-1474-665.png)
+    ![s6](https://img.alicdn.com/tfs/TB1BvRZi0fJ8KJjy0FeXXXKEXXa-1474-665.png)
 
-2. Server端发送数据
+- Server side send out data 
 
-   - 打开server的api页面，找到Internal下的Post接口，在body框内填入用户名和密码，默认为admin，admin，点击Try it out!按钮生成Token
+  - open the api page of the server. Find out "post" in "Internal" and fill in the user name and password in "body" frame, which is "admin" and "admin" by default. Click "Try it out!" to generate Token.
 
-     ![api1](https://img.alicdn.com/tfs/TB1Ki9hi8TH8KJjy0FiXXcRsXXa-1221-727.png)
+  ![api1](https://img.alicdn.com/tfs/TB1Ki9hi8TH8KJjy0FiXXcRsXXa-1221-727.png)
 
-   - 在下方Response Body中找到jwt字段，这个就是我们要用的Token
+  - Find out jwt field in the below response body, which is the token we need.
 
-     ![api01](https://img.alicdn.com/tfs/TB128F7i22H8KJjy0FcXXaDlFXa-1198-206.png)
+    ![api01](https://img.alicdn.com/tfs/TB128F7i22H8KJjy0FcXXaDlFXa-1198-206.png)
 
-   - Copy Token到页面右上方的空格里，如下：
+  - Copy the token to the blank space on the top right of the page as followed: 
 
-     ![api02](https://img.alicdn.com/tfs/TB1n8dNi4TI8KJjSspiXXbM4FXa-1252-112.png)
+    ![api02](https://img.alicdn.com/tfs/TB1n8dNi4TI8KJjSspiXXbM4FXa-1252-112.png)
 
-   - 找到DownlinkQueue接口，在body内的devEUI字段填入节点对应的devEUI，注意格式。在data字段里填入测试要用的数据，注意这里需要使用[base64](https://www.base64encode.org/)对原始数据encode再填入。在fPort内填入100，然后点击Try it out!按钮发送数据
+  - Find out "DownlinkQueue", and fill in the corresponding devEUI. Fill in the data for test and you should encode it through [base64](https://www.base64encode.org/) before filling in. Set fPort as 100 and click "Try it out!" to send out data.
 
-     ![api2](https://img.alicdn.com/tfs/TB1_1GJi_vI8KJjSspjXXcgjXXa-1221-779.png)
+    ![api2](https://img.alicdn.com/tfs/TB1_1GJi_vI8KJjSspjXXcgjXXa-1221-779.png)
 
-   - 节点正常会收到数据并在串口打印出来，至此基于OTAA，Class A的节点入网，收发数据，主动传输的系统示例就结束了。
+  - Normally, the node will receive data and print it in serial port. Till now on, the example task is completed.
 
-3. 如果大家想尝试ABP, Class C（这里只支持Class A和C）等不同的配置，可以自行修改上述提到的代码和server端的节点设置。
+    If you want to try ABP, Class C（only Class A and C are supported）or other configurations, you can modify the setting of code and node mentioned above.
+
+  ​
 

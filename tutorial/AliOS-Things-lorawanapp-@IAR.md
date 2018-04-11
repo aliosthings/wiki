@@ -1,69 +1,77 @@
-## 在介绍之前大家做一些相关准备：
-- IAR ARM v8.20.1(当前使用版本）
+EN | [中文](AliOS-Things-lorawanapp-@IAR.zh)
+
+## Some related preparation before introduction:
+
+- IAR ARM v8.20.1( the version that is currently used）
 
 
-- lora网络（注意相关硬件要接好天线）
+- lora network（the related hardware should be connected）
 
   - End point
     - MXCHIP MK3047							*1
   - Gateway
-    - M1301 Gateway module(GTI 光通国际）   	*1
+    - M1301 Gateway module (GTI)   	*1
       - Raspberry Pi                                                        *1
   - Lora Server
-    - [LoRa App Server](https://docs.loraserver.io/lora-app-server/overview/): 这里是一个开源的server包，可以自行下载搭建
+    - [LoRa App Server](https://docs.loraserver.io/lora-app-server/overview/): It's an open-source sever package, and you can download it by yourself.
 
-- 5VDC/2ADC电源（网关供电）   *1
+- 5VDC/2ADC power（power supply by gateway )     *1
 
 - J-Link                                             *1
 
-- micro-USB线                                *1
+- micro-USB line                                *1
 
-- 串口终端：这里使用X-Shell
+- serial port terminal : here we use X-Shell
 
-- lora和LoRaWAN基础知识
+- basic knowledge of lora and LoRaWAN
 
-- 当然还有最关键的[AliOS-Things](https://github.com/alibaba/AliOS-Things)了， 直接戳有电梯:smile:
+- [AliOS-Things](https://github.com/alibaba/AliOS-Things)
 
   ​
 
-## 开始
+## Start up
 
-### 节点 End point
-1. IAR工程位置：aos/projects/IAR/lorawanapp
-2. 工程结构：
+### End point
+
+1. location of IAR project：aos/projects/IAR/lorawanapp
+
+2. project structure：
 
    ![lorawan_iar](https://img.alicdn.com/tfs/TB1Xy3omRfH8KJjy1XbXXbLdXXa-402-704.png)
 
-   结构分析：
-   - board/eml3047： 板级的资源配置
-   - device/eml3047_lwran:：板级对应lora的接口
-   - device/sx127x：lora radio部分
-   - example：示例代码，aos初始化等
-   - kernel/protocols：LoRaWAN协议栈
-   - kernel/rhino：aos内核部分
-   - kernel/vcall：aos api定义了系统应该提供的编程接口
-   - platform/arch：硬件内核架构，这里是armv6 cortex m0
-   - platform/mcu：对应mcu的底层驱动，这里主要来自于ST
-3. 编译并烧录到目标板
-4. 打开X-Shell，找到对应串口，连接串口，串口参数如下：
+   analysis of structure：
+
+   - board/eml3047： board-level resource configuration 
+   - device/eml3047_lwran: lora interface corresponding to the board 
+   - device/sx127x：lora radio part
+   - example：example code and aos initiation
+   - kernel/protocols：LoRaWAN protocol stack
+   - kernel/rhino：aos kernel
+   - kernel/vcall：aos api defines the compilation interface the system should provide
+   - platform/arch：hardware kernel structure, which is now armv6 cortex m0
+   - platform/mcu：corresponding to MAC driver in the bottom layer 
+
+3. Compile and program it into target board
+
+4. Open X-Shell. Find out the corresponding serial port and connect to it. Port parameters are shown as below : 
 
    ![串口](https://img.alicdn.com/tfs/TB1ldupi3vD8KJjy0FlXXagBFXa-206-154.png)
 
-5. 连接后串口终端显示如下, 看到rssi，snr的数据表明已经节点已经连接到LoRaWAN网络开始接收到Gateway的数据。
+5. Serial port terminal will be displayed as followed after connecting. If you see the data of rssi and snr, it means that the end point has been connected to Lorawan network and started to receive gateway data.
 
    ![sl2](https://img.alicdn.com/tfs/TB1kuuKi3DD8KJjy0FdXXcjvXXa-848-759.png)
 
-6. 以上烧录的是默认代码，LoRaWAN的参数如下：
+6. The above is the programming of default code. The lorawan parameters are as follows:
 
-   |    参数    | 值 |
-   | ---------- | --- |
-   | 入网方式    |  OTAA |
-   | DevEui     |  31-35-37-31-50-37-7B-18（目前设定是根据板子创建相当于板子的MAC） |
-   | AppEui     |01-01-01-01-01-01-01-01|
-   | AppKey     |2B 7E 15 16 28 AE D2 A6 AB F7 15 88 09 CF 4F 3C|
-   | Class      | A|
+   | Parameter         | Value                                    |
+   | ----------------- | ---------------------------------------- |
+   | Connecting method | OTAA                                     |
+   | DevEui            | 31-35-37-31-50-37-7B-18（like the MAC of that board） |
+   | AppEui            | 01-01-01-01-01-01-01-01                  |
+   | AppKey            | 2B 7E 15 16 28 AE D2 A6 AB F7 15 88 09 CF 4F 3C |
+   | Class             | A                                        |
 
-   以上前四个参数可以在aos/board/eml3047/inc/commissioning.h中修改：
+   The above four parameters can be modified in aos/board/eml3047/inc/commissioning.h :
 
 ```
 /**
@@ -93,7 +101,7 @@
 
 ```
 
-​	节点类型可以在aos/example/lorawanapp/lorawanapp.c中修改：
+Node type can be modified in aos/example/lorawanapp/lorawanapp.c :
 
 ```
 /**
@@ -110,54 +118,53 @@ static LoRaParam_t LoRaParamInit = {
 }
 ```
 
-### 网关 Gateway
+### Gateway
 
-1. 网关通电保持工作（这里无需设置，只需通电工作即可，详细可以了解LoRaWAN的协议）
+1. Give power to gateway. ( No extra setting is needed. You only need to give it power and enable it to work. Details can refer to lorawan protocols）
 
-### 服务器 Server
+### Server
 
-1. 配置server端
+1. configure in server side
 
-   - 创建应用，相关参数可按图勾选
+   - Create a new project and select related parameters as followed 
 
      ![s0](https://img.alicdn.com/tfs/TB1NSlOi3vD8KJjSsplXXaIEFXa-1480-271.png)
 
      ![s2](https://img.alicdn.com/tfs/TB1yehVi0zJ8KJjSspkXXbF7VXa-1221-807.png)
 
-   - 在应用下创建节点，按照串口终端的打印信息填写
+   - Create nodes in the application. You can fill in it according to the print information of serial terminal.
 
      ![s3](https://img.alicdn.com/tfs/TB1mfRZi0fJ8KJjy0FeXXXKEXXa-1494-312.png)
 
      ![s4](https://img.alicdn.com/tfs/TB1RTV8i8HH8KJjy0FbXXcqlpXa-1313-828.png)
 
-   - 入网过程开始后，终端节点会被激活，会生成相应的Key
+   - In the process of network connection, the terminal node will be activated and corresponding key will be generated. 
 
      ![s5](https://img.alicdn.com/tfs/TB1hK4Si_TI8KJjSsphXXcFppXa-1477-666.png)
 
-   - 入网后会开始数据交互，服务器端在Raw frame logs下面会看到
+   - When network connection is completed, data interaction will begin, and you will see it in raw frame logs.
 
      ![s6](https://img.alicdn.com/tfs/TB1BvRZi0fJ8KJjy0FeXXXKEXXa-1474-665.png)
 
-2. Server端发送数据
+2. Server side send out data 
 
-   - 打开server的api页面，找到Internal下的Post接口，在body框内填入用户名和密码，默认为admin，admin，点击Try it out!按钮生成Token
+   - Open the api page of the server. Find out "post" in "Internal" and fill in the user name and password in "body" frame, which is "admin" and "admin" by default. Click "Try it out!" to generate Token.
 
      ![api1](https://img.alicdn.com/tfs/TB1Ki9hi8TH8KJjy0FiXXcRsXXa-1221-727.png)
 
-   - 在下方Response Body中找到jwt字段，这个就是我们要用的Token
+   - Find out jwt field in the below response body, which is the token we need.
 
      ![api01](https://img.alicdn.com/tfs/TB128F7i22H8KJjy0FcXXaDlFXa-1198-206.png)
 
-   - Copy Token到页面右上方的空格里，如下：
+   - Copy the token to the blank space on the top right of the page as followed: 
 
      ![api02](https://img.alicdn.com/tfs/TB1n8dNi4TI8KJjSspiXXbM4FXa-1252-112.png)
 
-   - 找到DownlinkQueue接口，在body内的devEUI字段填入节点对应的devEUI，注意格式。在data字段里填入测试要用的数据，注意这里需要使用[base64](https://www.base64encode.org/)对原始数据encode再填入。在fPort内填入100，然后点击Try it out!按钮发送数据
+   - Find out "DownlinkQueue", and fill in the corresponding devEUI. Fill in the data for test and you should encode it through [base64](https://www.base64encode.org/) before filling in. Set fPort as 100 and click "Try it out!" to send out data.
 
      ![api2](https://img.alicdn.com/tfs/TB1_1GJi_vI8KJjSspjXXcgjXXa-1221-779.png)
 
-   - 节点正常会收到数据并在串口打印出来，至此基于OTAA，Class A的节点入网，收发数据，主动传输的系统示例就结束了。
+   - Normally, the node will receive data and print it in serial port. Till now on, the example task is completed.
 
-3. 如果大家想尝试ABP, Class C（这里只支持Class A和C）等不同的配置，可以自行修改上述提到的代码和server端的节点设置。
-
+3. If you want to try ABP, Class C（only Class A and C are supported）or other configurations, you can modify the setting of code and node mentioned above.configure in server side
 
