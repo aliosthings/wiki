@@ -46,7 +46,7 @@ Python 2 和 Git 安装完成以后，在 Git Bash 中安装/升级 `aos-cube`:
 从GitHub克隆：
 `git clone https://github.com/alibaba/AliOS-Things.git`  
 或者从镜像站点：
-`git clone https://code.aliyun.com/vivid8710/AliOS-Things.git`
+`git clone https://gitee.com/alios-things/AliOS-Things.git`
 
 
 ### 开始上手
