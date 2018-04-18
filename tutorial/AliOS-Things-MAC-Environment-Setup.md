@@ -3,7 +3,7 @@
    
 也可以尝试爱好者提供的**一键安装脚本**：[Setup Script for Mac](http://p28phe5s5.bkt.clouddn.com/setup_osx.zip)。下载解压后在Terminal里运行以下命令即可完成环境安装配置。
 ```bash
-cd ~/Downloads/setup_osx && sudo bash setup_osx.sh
+cd ~/Downloads/setup_osx && bash setup_osx.sh
 ```
 *Note: 若下载解压目录不是~/Downloads/setup_osx，请注意修改上面命令*
   
