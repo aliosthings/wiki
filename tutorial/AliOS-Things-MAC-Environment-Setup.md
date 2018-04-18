@@ -1,6 +1,12 @@
 
-感谢 @dupig
-也可以尝试爱好者提供的一键安装脚本：[Setup Script for Linux/Mac](http://p28phe5s5.bkt.clouddn.com/setup_linux_osx.sh)。
+感谢 @dupig  
+   
+也可以尝试爱好者提供的**一键安装脚本**：[Setup Script for Mac](http://p28phe5s5.bkt.clouddn.com/setup_osx.zip)。下载解压后在Terminal里运行即可完成环境安装。
+```bash
+cd ~/Downloads/setup_osx && sudo bash setup_osx.sh
+```
+*Note: 若下载解压目录不是~/Downloads/setup_osx，请注意修改上面命令*
+  
 
 作为一个搞交互设计的小白，对AliOS-Things的应用前景感到很兴奋，很想利用它做一些场景性的探索。于是花了一点时间和怡然讨论整理出了AliOS-Things在MAC上的配置，供大家参考。MAC跟Windows的步骤其实差不多，主要是一些安装包的配置上会有些区别。
 1. 首先下载visual studio code，然后安装
