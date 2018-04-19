@@ -6,6 +6,9 @@ EN | [中文](contributing.zh)
 2. Clone **your** AliOS-Things to local.
 3. Make changes locally and push to remote -> **your** AliOS-Things
 4. Create a `pull request` and waiting for the maintainers to review & merge.
+5. Sign [CLA - https://cla-assistant.io/alibaba/AliOS-Things](https://cla-assistant.io/alibaba/AliOS-Things)
+6. Make sure that CI is passed
+7. Review&Merge by AliOS Things Team
 
 Reference：
 https://help.github.com/articles/creating-a-pull-request-from-a-fork/
