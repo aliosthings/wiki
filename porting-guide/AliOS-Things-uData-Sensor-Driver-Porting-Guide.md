@@ -55,6 +55,7 @@ struct _sensor_obj_t {
 	void(*irq_handle)(void);                           /* 接口函数：中断服务程序，在中断模式下才需要 */
 }
 ```
+
 #####IO总线配置
 定义一个的i2c\-dev\_t的全局变量，并配置其中的设备I2C地址，参考如下：
 <pre><code>i2c_dev_t  ####_ctx = {
