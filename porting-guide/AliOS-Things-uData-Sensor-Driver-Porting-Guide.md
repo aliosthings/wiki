@@ -56,7 +56,7 @@ struct _sensor_obj_t {
 }
 ```
 
-#####IO总线配置
+##### IO总线配置
 定义一个的i2c\-dev\_t的全局变量，并配置其中的设备I2C地址，参考如下：
 <pre><code>i2c_dev_t  ####_ctx = {
     .config.dev_addr = 0x5D, /* 从设备I2C地址 */
