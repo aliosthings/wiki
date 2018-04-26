@@ -72,7 +72,9 @@ void(*irq_handle)(void);</code></pre>
 #### 设备初始化init函数实现
 主要是实现对sensor\_ojb\_t的初始化设置并把设备驱动注册到sensor hal层统一调度管理；另外需要在初始化函数中实现对设备的默认参数配置，身份确定（validata id）并让设备进入低功耗模式。具体请参考如下实例：
 ```
-int drv_baro_st_lps22hb_init(void){
+int drv_humi_bosch_bme280_init(void){
+    int ret = 0;
+    sensor_obj_t sensor;
     /* fill the sensor obj parameters here */
     sensor.tag = TAG_DEV_HUMI;                   /* 传感器类型 */
     sensor.path = dev_humi_path;                 /* 打开设备路径 */
@@ -102,6 +104,7 @@ int drv_baro_st_lps22hb_init(void){
        return -1;
     }
     return 0;
+}
 ```
 #### 编译配置
 ##### 1.在sensor.mk文件中添加所要编译的驱动代码并定义其相关的宏定义。比如，需要为BOSCH BME280湿度计添加编译配置：
