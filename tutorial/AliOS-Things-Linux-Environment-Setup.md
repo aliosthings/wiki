@@ -16,10 +16,6 @@ $ sudo apt-get install -y minicom
 $ pip install --user -U aos-cube
 ```
 ## 交叉工具链
-Linux 工具链可以在链接 [GCC](https://launchpad.net/gcc-arm-embedded/+download) 下载 Linux 压缩包，解压缩，在 .bashrc 里面配置
- TOOLCHAIN_PATH 路径（**注意：路径最后一个下划线 / 添加到路径**）：
-
-![](https://img.alicdn.com/tfs/TB1GnAGg3oQMeJjy0FpXXcTxpXa-865-413.png)
 
 在 AliOS Things 源码的目录下面，运行：
 
@@ -28,6 +24,7 @@ $ aos make helloworld@mk3060
 ```
 
 编译 mk3060 板子的 helloworld 示例程序。
+根据所选的平台，会自动下载相应的工具链。
 
 ## minicom串口配置
 配置串口参数（以MK3060为例），配置文件（/etc/minicom/minirc.dfl）内容 ：
