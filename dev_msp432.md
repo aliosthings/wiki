@@ -1,5 +1,4 @@
-# How to use iot-sdk
-
+# 基于 AliOS Things 
 目录
 
 * [1. 简介](#1-简介)
@@ -100,7 +99,7 @@
 
 ![CCS下载](https://github.com/neooxu/IOT-MSP432/blob/master/image/alios_debug.png) 
 
-至此，基于Alios-Things SDK的 IOT 示例源代码已编译下载 TI 开发板 中。
+至此，基于AliOS Things 的 IOT 示例源代码已编译下载到 TI 开发板中。
 
 
 
