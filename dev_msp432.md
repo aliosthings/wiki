@@ -103,7 +103,7 @@
 
 ## 3. 使用TI SDK开发
 
-不属于 AliOS Things 技术范畴，略。
+不属于 AliOS Things 技术范畴，略。  
 详见 https://github.com/neooxu/IOT-MSP432#3-使用ti-sdk开发
 
 ## 4. IoT示例使用
