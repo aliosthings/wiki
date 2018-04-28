@@ -24,7 +24,7 @@
 
 
 
-## 2. 使用AliOS Things SDK开发
+## 2. 基于 AliOS Things 开发
 
 本 SDK 提供支持 AliOS 内核的功能。
 
