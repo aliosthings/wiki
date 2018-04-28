@@ -24,8 +24,6 @@
 
 ## 2. 基于 AliOS Things 开发
 
-本 SDK 提供支持 AliOS 内核的功能。
-
 ### 2.1 安装IDE
 点击 [CCS 下载](http://processors.wiki.ti.com/index.php/XMS432_Support#Software_Compatibility)，进入开发工具下载列表页面。
 
