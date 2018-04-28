@@ -48,10 +48,13 @@
 
 
 ### 2.2 获取SDK
-请点击进入 [AliOS Things SDK 仓库](https://github.com/alibaba/AliOS-Things/tree/dev_msp432)，默认分支：dev_msp432 ，您可以：
+请点击进入 [AliOS Things 仓库](https://github.com/alibaba/AliOS-Things/tree/dev_msp432)，默认分支：dev_msp432 ，您可以：
 
 * 如已安装 Git 软件，使用 git 命令克隆到 PC 本地：`git clone https://github.com/alibaba/AliOS-Things.git`
 * 如未安装 Git 软件，可确认当前在 `dev_msp432` 分之后，直接下载压缩包文件 PC 本地，点击仓库文件列表右上方， “Download ZIP",下载到本地后解压缩即可。
+
+> 如遇网络问题，请使用 AliOS Things 国内镜像
+> https://gitee.com/alios-things/AliOS-Things.git
 
 
 
