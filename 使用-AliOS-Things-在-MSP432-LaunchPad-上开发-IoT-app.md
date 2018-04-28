@@ -1,4 +1,4 @@
-# 在 MSP432 LaunchPad 上使用 AliOS Things 开发 IoT app
+# 使用 AliOS Things 在 MSP432 LaunchPad 上开发 IoT app
 目录
 
 * [1. 简介](#1-简介)
