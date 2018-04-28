@@ -1,6 +1,5 @@
 # How to use iot-sdk
-  
--------------------------------------
+
 目录
 
 * [1. 简介](#1-简介)
@@ -11,13 +10,7 @@
    * [2.4 SDK编译](#24-sdk编译)
    * [2.5 固件下载](#25-固件下载) 
 * [3. 使用 TI SDK 开发](#3-使用ti-sdk开发)
-    * [3.1 下载 IDE](#31-下载ide)
-    * [3.2 安装 IDE](#32-安装ide)
-    * [3.3 获取 SDK](#33-获取sdk)
-    * [3.4 导入工程](#34-导入工程)
-    * [3.5 配置工程](#35-配置工程)
-    * [3.6 编译工程](#36-编译工程)
-    * [3.7 下载与调试](#37-下载与调试)
+   * 略
 * [4. IoT示例使用](#4-iot示例使用)
      * [4.1 准备工作](#41-准备工作)
      * [4.2 启动配网](#42-启动配网)
@@ -109,118 +102,9 @@
 
 
 ## 3. 使用TI SDK开发
-本 SDK 仅 TI 官方提供的demo源码，不支持 OS 内核相关内容。 若使用 AliOS Things SDK，请移步 [2. 使用 AliOS Things SDK 开发](#2-使用alios-things-sdk开发)
 
-### 3.1 下载IDE
-点击 [CCS 下载](http://processors.wiki.ti.com/index.php/XMS432_Support#Software_Compatibility)，进入开发工具下载列表页面。
-
-在 “IDE Compatibility” 列表中，选择 “MSP432401R REVC” 选项中，适用您 PC 系统类型的 CCS 版本。如： Windows 系统 PC 开发环境，请下载： CCS Windows 对应的 CCS 6.1.1 .zip 文件。
-
-
-![下载ccs](https://github.com/neooxu/IOT-MSP432/blob/master/image/download_ccs.png)
-
-
-**注意：**下载需先登录。如无账号，请先注册，登录后，才能下载。
-
-
-
-### 3.2 安装IDE
-下载完成后，解压缩，双击 “ccs_setup_6.1.1.00022.exe” 启动安装。 其中：
-
-1. 进入 “Processor Support” 页面, 请务必勾选 “MSP Ultra Low Power MCUS”，然后其它均默认，点击 “next” 即可。
-2. 进入 “CCS Installation” 页面，启动安装，安装过程需耗费几分钟时间，请耐心等待。（请务必保证您的电脑保持联网状态。） 
-3. 安装进程结束后，建议选择生成桌面快捷方式，以便开发时快速进入。
-
-
-### 3.3 获取SDK
-点击 [iot-sdk 下载](https://github.com/neooxu/IOT-MSP432/releases)，进入工程源代码的 github 仓库。 您需要：
-
-下载 zip 或 tar.gz 压缩包文件到 PC 本地，“Download ZIP",下载后解压缩即可。
-
-
-
-
-### 3.4 导入工程
-双击桌面快捷方式 “Code Composer Studio 6.1.1”，进入 CCS 开发环境。
-
-在 “Getting Started” 页面，依次点击 "Import Project"，再点击 “browse” 选择导入的工程文件夹：iot-sdk，路径如：F:\Git\IOT-MSP432\examples\MSP432P4xx\mxchip\iot_sdk，最后点击 “Finish” 即可。如下图所示。
-
-![导入工程](https://github.com/neooxu/IOT-MSP432/blob/master/image/import_project.png) 
-
-当出现下图提示时，请点击 "OK"，即可正常导入。
-
-![继续导入](https://github.com/neooxu/IOT-MSP432/blob/master/image/import_OK.png) 
-
-
-### 3.5 配置工程
-为了在 CCS IDE 环境中正常编译 iot-sdk 文件，需对工程进行以下 3 步配置。
-
-#### 3.5.1 删除Include选项
-
-* 左边栏 “Project Exploer” 选中工程 “iot_sdk”,右键选择 “Properties”,打开页面。  找到 “Build" —> "MSP432 Complier" —> "Include Options” ， 删除该页面的第一个path：“${CCS_BASE_ROOT}/arm/include”。
-
-![删除一项](https://github.com/neooxu/IOT-MSP432/blob/master/image/ccsconfig_delete.png) 
-
-
-#### 3.5.2 修改Language选项
-
-* 在工程 “Properties” 页面，找到  “Build” —> “MSP432 Complier” —> “Advanced Options” —>  “Language Options", 页面中 “
-C Dialect"一栏， 请选择 “Complile program in C99 mode.(--c99)”,如下图所示。
-
-![选择c99](https://github.com/neooxu/IOT-MSP432/blob/master/image/ccsconfig_choosec99.png) 
-
-#### 3.5.3 更新到评估版本
-
-* 菜单栏中选择 “help" —> "Code Composer Studio Licensing Information", 进入  “License information view”页面，
-
-![进入license修改页面](https://github.com/neooxu/IOT-MSP432/blob/master/image/ccsconfig_license_into.png) 
-
-* 选择 “Upgrade" —> "Launch License Setup”，进入 “License Setup Wizard” 页面。
-
-![license修改](https://github.com/neooxu/IOT-MSP432/blob/master/image/license_information.png) 
-
-* 请选择 “EVALUATE” 选项，如下图。
-
-![license修改](https://github.com/neooxu/IOT-MSP432/blob/master/image/ccsconfig_license_update.png) 
-
-注意：每台 PC 仅限一次 License 更新机会，若二次安装 IDE，该 PC 便无法正常更新。
-
-至此，工程已配置完成，可进行编译下载。
-
-
-### 3.6 编译工程
-点击工具栏中编译图标，开始工程编译过程，全程大约耗时几十秒，请耐心等待。
-
-![开始编译](https://github.com/neooxu/IOT-MSP432/blob/master/image/compiler.png) 
-
-在Console界面中查看编译结果，如图：表示编译成功，可以下载。
-
-![编译完成](https://github.com/neooxu/IOT-MSP432/blob/master/image/compiler_ok.png) 
-
-
-
-### 3.7 下载与调试
-
-编译完成后，请使用 microUSB 连接线为开发板供电，并确认红色电源灯常亮，保证供电正常。 
-
-此时可点击工具栏下载图标，开始下载。
-
-![开始下载](https://github.com/neooxu/IOT-MSP432/blob/master/image/download.png) 
-
-下载过程大约耗时 几秒钟，如下图：
-
-![下载过程](https://github.com/neooxu/IOT-MSP432/blob/master/image/download_process.png) 
-
-下载完成后， CCS 会自动跳转至 “在线调试” 状态，如下图所示：
-
-![调试过程](https://github.com/neooxu/IOT-MSP432/blob/master/image/debug_status.png) 
-
-此时，开发者可以进行 单步调试 等操作。
-
-若要退出调试状态，请点击工具栏 红色正方形 图标，如下图。
-
-![退出调试](https://github.com/neooxu/IOT-MSP432/blob/master/image/quit_debug.png) 
-
+不属于 AliOS Things 技术范畴，略。
+详见 https://github.com/neooxu/IOT-MSP432#3-使用ti-sdk开发
 
 ## 4. IoT示例使用
 
