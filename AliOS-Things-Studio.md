@@ -24,7 +24,6 @@ pip install --user aos-cube
 ```
 
 #### Windows
-参考 [AliOS-Things-Windows-Environment-Setup](https://github.com/alibaba/AliOS-Things/wiki/AliOS-Things-Windows-Environment-Setup)  
 可以直接使用我们准备好的一键安装包：http://p28phe5s5.bkt.clouddn.com/setup_windows.zip  
 也可以手动安装以下软件/工具:  
 - [Python 2](https://www.python.org/downloads/)
@@ -34,6 +33,8 @@ Python 2 和 Git 安装完成以后，在 Git Bash 中安装 `aos-cube`:
 ```
 pip install --user aos-cube
 ```
+
+细节可参考 [AliOS-Things-Windows-Environment-Setup](https://github.com/alibaba/AliOS-Things/wiki/AliOS-Things-Windows-Environment-Setup)  
 
 ### 下载 AliOS Things 代码
 
@@ -52,9 +53,11 @@ pip install --user aos-cube
 
 1. 在 Visual Studio Code 中打开下载好的 AliOS Things 代码目录
 ![](https://img.alicdn.com/tfs/TB1cPDapwmTBuNjy1XbXXaMrVXa-2032-1170.png)
-2. 所有功能都集中在下方工具栏中 ![](https://img.alicdn.com/tfs/TB1WPzapwmTBuNjy1XbXXaMrVXa-286-22.png)  
-左侧的 `helloworld@starterkit` 是编译目标，格式遵循 `应用名字@目标板名字` 的规则，点击它可以依次选择应用和目标板。
-小图标从左至右功能分别是 `编译` `烧录` `串口工具` `创建工程` `清除`
+2. 所有功能都集中在下方工具栏中  
+小图标从左至右功能分别是 `编译` `烧录` `串口工具` `创建工程` `清除`  
+![](https://img.alicdn.com/tfs/TB1WPzapwmTBuNjy1XbXXaMrVXa-286-22.png)  
+左侧的 `helloworld@starterkit` 是编译目标，格式遵循 `应用名字@目标板名字` 的规则，点击它可以依次选择应用和目标板。  
+![](https://img.alicdn.com/tfs/TB1Rt2gpwmTBuNjy1XbXXaMrVXa-2032-1170.png)
 3. 编译目标确定以后，点击 ![](https://img.alicdn.com/tfs/TB1qR_UpuSSBuNjy0FlXXbBpVXa-24-22.png) 开始编译。  
 编译过程如果发现缺少 toolchain 则会自动下载解压到正确位置。
 
