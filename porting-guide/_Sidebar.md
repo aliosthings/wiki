@@ -12,4 +12,5 @@
   - [uData Framework](AliOS-Things-uData-Framework-Porting-Guide)
   - [uData Sensor Driver](AliOS-Things-uData-Sensor-Driver-Porting-Guide)
   - [VFS](AliOS-Things-VFS-Porting-Guide)
+  - [Linkkit](AliOS-Things-Linkkit-Porting-Guide.zh)
 - [Test](AliOS-Things-Porting-Test-Guide)
