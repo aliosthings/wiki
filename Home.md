@@ -7,6 +7,7 @@ Please refer to [AliOS Things Technical Overview](AliOS-Things-Technical-Overvie
 - [Starter Kit Tutorial](Starter-Kit-Tutorial)
 - [Add a New Board Example](Add-a-new-board-example)
 - [Add a New Component Example](Add-a-new-component-example)
+- [Auto generate keil/iar project](Auto-generate-keil-iar-project)
 - [Environment Setup](AliOS-Things-Environment-Setup)
   - [Linux](AliOS-Things-Linux-Environment-Setup)
   - [Mac](AliOS-Things-MAC-Environment-Setup)
