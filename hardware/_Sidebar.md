@@ -1,15 +1,8 @@
 [Home](Home) > [Hardware](AliOS-Things-Hardware)
 
-- ARM
-  - [STM32](STM32)
-  - [NXP](NXP)
-  - [Nordic](Nordic)
-  - [GigaDevice](GigaDevice)
-  - [Eastsoft](EastSoft)
-  - [MXCHIP](MXCHIP)
-- Xtensa
-  - [ESP32](ESP32)
-  - [ESP8266](ESP8266)
-- [C-SKY](C-SKY)
-- [Renesas](Renesas)
-- [Linux Simulation](Quick-Start)
+- [ARM](AliOS-Things-Hardware#arm)
+- [Xtensa](AliOS-Things-Hardware#xtensa)
+- [AndesCore](AliOS-Things-Hardware#andescore)
+- [C-SKY](AliOS-Things-Hardware#c-sky)
+- [Renesas](AliOS-Things-Hardware#renesas)
+- [Linux simulation](AliOS-Things-Hardware#linux)
