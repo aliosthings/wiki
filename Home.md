@@ -81,3 +81,4 @@ Please refer to [AliOS Things Technical Overview](AliOS-Things-Technical-Overvie
 * [ESP32 Hello World](http://www.shaoguoji.cn/2018/01/01/esp32-alios-helloworld/)
 * [使用 AliOS Things 在 MSP432 LaunchPad 上开发 IoT app](使用-AliOS-Things-在-MSP432-LaunchPad-上开发-IoT-app)
 * [使用 Docker 编译环境开发 AliOS Things](https://github.com/lanjackg2003/alios-things-docker)
+* [ESP8266在Alios-Things上的入门开发指南](https://blog.csdn.net/lan120576664/article/details/80198219)
