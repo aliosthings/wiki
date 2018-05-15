@@ -7,6 +7,7 @@ aos-cube 是 AliOS Things 在 Python 下面开发的项目管理工具包，依�
 
 ![](https://img.alicdn.com/tfs/TB1SlHyjqmgSKJjSspiXXXyJFXa-798-688.png)
 
+注意：Python 请安装到不含空格的路径  
 安装配置完成 Python 后，使用 pip 安装 aos-cube：
 
 `> pip install aos-cube`
