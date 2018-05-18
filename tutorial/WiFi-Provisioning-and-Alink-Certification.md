@@ -4,7 +4,7 @@ AliOS Things中的alinkapp（位于`example/alinkapp/`中）可以用来进行Al
 请按照以下步骤运行alinkapp，并验证Alink智能配网和认证：
 ## 配网预置条件
 在进行配网测试前，首先需要在手机上安装“阿里智能”配网APP，并进行一定的配置。
-- 下载DemoAPP，地址：https://open.aliplus.com/download/。
+- 下载DemoAPP，地址：https://open.aliplus.com/download/
   点击进入“接入阿里智能-厂测包”，下载并安装“开放平台厂测包”。
 - 打开APP，在APP环境切换中选择开启配网模组测试列表，用来打开模组认证配网入口，然后杀掉app重新登录。
 ![配网条件预置截图](https://img.alicdn.com/tfs/TB1zAlEgS_I8KJjy0FoXXaFnVXa-634-1004.png)
