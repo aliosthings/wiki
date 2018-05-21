@@ -1,4 +1,4 @@
-[EN](AliOS-Things-Rhino-Porting-Guide.en) | 中文
+[EN](Flash-and-KV-Storage-Porting-Guide.en) | 中文
 
 
 
@@ -238,10 +238,10 @@ Keil工程路径：projects\Keil\STM32L496G-Discovery\helloworld\
 主要配置项包括：
 
   * “Manage Project Items” 建立相关groups，包含需要编译的.c和.s文件；
-  ![](https://i.imgur.com/ffpFg4W.png)
+      ![](https://i.imgur.com/ffpFg4W.png)
 
   * 选择工程“Options for Target”，“C/C++”选项卡设置编译选项、建立编译依赖头文件；“Linker”选择默认链接脚本（或者自建立scatter）；“Debug”选择ST-Linker Debugger。
-  ![](https://i.imgur.com/0KAoEZz.png)
+      ![](https://i.imgur.com/0KAoEZz.png)
 
 其他选项请按需调整。
 
