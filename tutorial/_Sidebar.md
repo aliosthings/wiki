@@ -3,6 +3,8 @@
 - [Quick Start](Quick-Start)
 - [Hello World](AliOS-Things-APP-DEV-Guide)
 - [Starter Kit Tutorial](Starter-Kit-Tutorial)
+- [Developer Kit Tutorial](Developer-Kit-Tutorial)
+- [AliOS Studio Tutorial](AliOS-Things-Studio)
 - [Add a New Board Example](Add-a-new-board-example)
 - [Add a New Component Example](Add-a-new-component-example)
 - [Environment Setup](AliOS-Things-Environment-Setup)
