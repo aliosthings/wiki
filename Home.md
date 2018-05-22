@@ -82,4 +82,4 @@ Please refer to [AliOS Things Technical Overview](AliOS-Things-Technical-Overvie
 * [使用 AliOS Things 在 MSP432 LaunchPad 上开发 IoT app](使用-AliOS-Things-在-MSP432-LaunchPad-上开发-IoT-app)
 * [使用 Docker 编译环境开发 AliOS Things](https://github.com/lanjackg2003/alios-things-docker)
 * [ESP8266在Alios-Things上的入门开发指南](https://blog.csdn.net/lan120576664/article/details/80198219)
-* [CB2201 MQTTAPP](https://github.com/aliosthings/wiki/blob/master/external/CB2201_MQTT_User_Guide.md)
+* [CB2201 MQTTAPP](CB2201_MQTT_User_Guide)
