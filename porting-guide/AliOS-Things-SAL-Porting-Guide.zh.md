@@ -1,4 +1,4 @@
-[EN](AliOS-Things-SAL-Porting-Guide.en)| 中文
+[EN](AliOS-Things-SAL-Porting-Guide)| 中文
 
 # AliOS Things SAL Porting Guide
 

@@ -1,4 +1,4 @@
-[EN](AliOS-Things-Porting-Guide.en) | 中文
+[EN](AliOS-Things-Porting-Guide) | 中文
 
 如下图，AliOS Things是一个分层+组件架构，可以较简单的移植到各类MCU及Connectivity SoC平台上。
 ![block_digram](https://img.alicdn.com/tfs/TB1fKQMihrI8KJjy0FpXXb5hVXa-2330-1292.png)

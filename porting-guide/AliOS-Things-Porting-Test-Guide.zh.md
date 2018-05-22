@@ -1,4 +1,4 @@
-EN| [中文](AliOS-Things-Porting-Test-Guide.zh)
+[EN](AliOS-Things-Porting-Test-Guide) | 中文
 
 # 目录  
 

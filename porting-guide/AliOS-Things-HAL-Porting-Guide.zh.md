@@ -1,4 +1,4 @@
-[EN](AliOS-Things-HAL-Porting-Guide.en) | 中文
+[EN](AliOS-Things-HAL-Porting-Guide) | 中文
 
 # 目录
 

@@ -1,4 +1,4 @@
-[EN](WiFi-Provisioning-and-Alink-Certification.en) | 中文
+[EN](WiFi-Provisioning-and-Alink-Certification) | 中文
 
 在完成WiFi和协议栈的移植后，可以进行配网测试与认证。
 

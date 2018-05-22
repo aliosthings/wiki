@@ -1,4 +1,4 @@
-[EN](AliOS-Things-VFS-Porting-Guide.en)| 中文
+[EN](AliOS-Things-VFS-Porting-Guide)| 中文
 
 VFS用于为各类文件（包括设备和文件系统的文件）提供了一个统一的用户操作接口。
 

@@ -1,4 +1,4 @@
-[EN](AliOS-Things-uData-Framework-Porting-Guide.en)| 中文
+[EN](AliOS-Things-uData-Framework-Porting-Guide)| 中文
 
 #### uData框架简介
 

@@ -1,4 +1,4 @@
-[EN](Flash-and-KV-Storage-Porting-Guide.en) | 中文
+[EN](Flash-and-KV-Storage-Porting-Guide) | 中文
 
 Flash是多个系统组件（KV存储，OTA等）的基础，本文描述Flash对接，以及Flash基础上支持KV存储的关键步骤。
 

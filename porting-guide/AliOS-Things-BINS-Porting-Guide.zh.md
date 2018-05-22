@@ -1,4 +1,4 @@
-[EN](AliOS-Things-BINS-Porting-Guide.en)| 中文
+[EN](AliOS-Things-BINS-Porting-Guide)| 中文
 
 # 目录
 
