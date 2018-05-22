@@ -1,4 +1,4 @@
-[EN](github-Starter Kit Tutorial.en) | 中文
+[EN](Starter-Kit-Tutorial) | 中文
 
 ## 步骤
 

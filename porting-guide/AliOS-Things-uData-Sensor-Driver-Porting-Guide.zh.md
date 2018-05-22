@@ -1,4 +1,4 @@
-[EN](AliOS-Things-uData-Sensor-Driver-Porting-Guide.en)| 中文
+[EN](AliOS-Things-uData-Sensor-Driver-Porting-Guide)| 中文
 
 - uData框架介绍
 - uData传感器驱动开发概要

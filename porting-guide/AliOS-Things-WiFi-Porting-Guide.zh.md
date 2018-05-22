@@ -1,4 +1,4 @@
- [EN](AliOS-Things-WiFi-Porting-Guide.en) | 中文
+ [EN](AliOS-Things-WiFi-Porting-Guide) | 中文
 
 # 目录
 

@@ -40,7 +40,7 @@ Please refer to [AliOS Things Technical Overview](AliOS-Things-Technical-Overvie
   - [Flash](Flash-and-KV-Storage-Porting-Guide)
   - [WiFi](AliOS-Things-WiFi-Porting-Guide)
   - [LwIP](AliOS-Things-LwIP-Porting-Guide)
-  - [SAL](https://github.com/alibaba/AliOS-Things/tree/master/device/sal/README.md)
+  - [SAL](AliOS-Things-SAL-Porting-Guide)
   - [FOTA](AliOS-Things-FOTA-Porting-Guide)
   - [BINS](AliOS-Things-BINS-Porting-Guide)
   - [uData Framework](AliOS-Things-uData-Framework-Porting-Guide)
