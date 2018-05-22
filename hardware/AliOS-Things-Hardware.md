@@ -67,11 +67,15 @@
   - MVSILICON P20
 
 ## C-SKY
-  - CK610
   - CK801
   - [CK802](http://www.c-sky.com/solution/10670.htm)
-    - hobbit1_evb
-  - CK803S
+    - [CH2201](http://www.c-sky.com/solution/SOCping-tai.htm)
+      - CB2201
+  - CK803
+  - CK807
+  - CK810
+  - CK860
+  - CK610
 
 ## Renesas
   - [RL78 Family](https://www.renesas.com/zh-cn/products/microcontrollers-microprocessors/rl78.html)
