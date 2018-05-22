@@ -1,4 +1,4 @@
-[EN](github-Add a new board example.en) | 中文
+[EN](Add-a-new-board-example.en) | 中文
 
 下面以stm32433为例，来说明如何根据现有的stm32433 helloworld keil工程来stm32433这一类型单板添加到现有make构建体系中：
 

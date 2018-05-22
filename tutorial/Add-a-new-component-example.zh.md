@@ -1,4 +1,4 @@
-[EN](Add-a-new-component-example) | 中文
+[EN](Add-a-new-component-example.en) | 中文
 
 # 1 新增模块
 具体通过如下两个示例说明

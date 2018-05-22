@@ -1,4 +1,4 @@
-EN| [中文](github-Add a new board example.zh) 
+EN| [中文](Add-a-new-board-example.zh) 
 
 # Add a new board example
 
