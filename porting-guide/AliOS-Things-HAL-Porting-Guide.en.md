@@ -1,44 +1,49 @@
-# 目录
-  * [1 硬件抽象层移植](#1硬件抽象层移植)
-  * [2 flash抽象层对接](#2flash抽象层对接)
+EN| [中文](AliOS-Things-HAL-Porting-Guide.zh) 
+
+# Content
+
+  * [1 Porting of HAL](#1硬件抽象层移植)
+  * [2 Porting of flash HAL](#2flash抽象层对接)
 ---
 
-## 1硬件抽象层移植
-硬件抽象层HAL抽象层普遍存在于各个操作系统之中，最主要的目的是为了屏蔽不同芯片平台的差异，从而使上面的应用软件不会随芯片而改变。目前AliOS Things定义了全面的HAL抽象层，只要对接相应的HAL接口就能控制芯片的控制器，从而达到控制硬件外设的目的。
+## 1 porting of HAL
+Hardware Abstraction Layer (HAL) widely exists in various operating systems, whose main purpose is to shield the difference between different chip platforms, so that applications can be the same in different chips. AliOS Things defines a comprehensive HAL, and you can control the chip once you connect to its corresponding HAL interface, so as to control the hardware peripherals.
 
-### AliOS Things定义的HAL层硬件如下:
+### Hardwares defined in AliOS Things HAL are:
 
-| 1 |  adc |
-| ------ | ------ |
-| 2 | flash |
-| 3 | gpio |
-| 4 | i2c |
-| 5 | pwm |
-| 6 | rng |
-| 7 | rtc |
-| 8 | sd |
-| 9 | spi |
-| 10 | timer |
-| 11 | uart |
-| 12 | wdg |
+| 1    | adc   |
+| ---- | ----- |
+| 2    | flash |
+| 3    | gpio  |
+| 4    | i2c   |
+| 5    | pwm   |
+| 6    | rng   |
+| 7    | rtc   |
+| 8    | sd    |
+| 9    | spi   |
+| 10   | timer |
+| 11   | uart  |
+| 12   | wdg   |
 
-目前HAL抽象层的定义已经能兼容多家芯片公司的标准，比如STM32，Beken，全志，NXP等芯片厂商，用户可参照已有平台的HAL封装实现。
+The current definition of HAL has already been compatible with the standards of many chip companies, such as STM32, Beken, NXP. Users can refer to the HAL encapsulation of existing platforms.
 
-下面以STM32L4系列为例介绍hal层具体porting步骤：
+The following part will give you the detailed portiong steps in HAL, taking STM32L4 series as an example.
 
-HAL层接口函数位于/include/hal/soc目录下，uart的HAL层接口函数定义在对应的uart.h中
+Interface function in HAL is located in /include/hal/soc, and UART's is defined in its corresponding uart.h.
 
-由于STM32L4的驱动函数和hal层定义的接口并非完全一致，我们需要在STM32L4驱动上封装一层，以对接hal层。
+Since the driver function of STM32L4 and the interface defined in HAL is not exactly the same, we need to encapsulate a layer on STM32L4 drive to dock with HAL.
 
-以uart为例，对接uart1和uart2，我们需要新建两个文件hal_uart_stm32l4.c和hal_uart_stm32l4.h，将封装层代码放到这两个文件中。
+Take uart as an example, in order to dock uart1 and uart2, we need to create two files (hal_uart_stm32l4.c and hal_uart_stm32l4.h), and put the code in encapsulation layer into these two files.
 
-在hal_uart_stm32l4.c中，首先定义相应的STM32L4的uart句柄：
+In hal_uart_stm32l4.c, we first need to define the uart handle of the corresponding STM32L4:
+
 ```C
 /* handle for uart */
 UART_HandleTypeDef uart1_handle;
 UART_HandleTypeDef uart2_handle;
 ```
-由于hal层对于组件属性的宏定义和驱动层并非完全一致，如hal层要配置uart的数据位为8位，应该配置uart_config_t的hal_uart_data_width_t成员为DATA_WIDTH_8BIT（值为3），但是对应到STM32L4的初始化，要配置uart的数据位为8，则应该配置UART_InitTypeDef的WordLength为UART_WORDLENGTH_8B（值为0），因而必须对这些进行装换，定义如下函数进行转换：
+Since the macro definition of component properties in HAL and the driver layer is not the same, [For example, if the configuration data for uart in HAL is 8 bit, we should set the hal_uart_data_width_t as  DATA_WIDTH_8BIT (= 3). However, for STM32L4 initialization, we should set the WordLength of _InitTypeDef as UART_WORDLENGTH_8B (= 0).], some conversion is needed. We have defined the following conversion functions:
+
 ```C
 /* function used to transform hal para to stm32l4 para */
 static int32_t uart_dataWidth_transform(hal_uart_data_width_t data_width_hal, 
@@ -205,9 +210,9 @@ int32_t uart_mode_transform(hal_uart_mode_t mode_hal, uint32_t *mode_stm32l4)
     return ret;
 }
 ```
-然后逐一实现hal层的函数
+Then, implement the functions in HAL one by one.
 
-初始化
+Initiation operation:
 
 ```C
 int32_t hal_uart_init(uart_dev_t *uart)
@@ -362,7 +367,7 @@ void uart2_MspInit(void)
     HAL_NVIC_EnableIRQ(UART2_IRQn);
 }
 ```
-数据发送
+Send data:
 ```C
 int32_t hal_uart_send(uart_dev_t *uart, const void *data, uint32_t size, uint32_t timeout)
 {
@@ -377,7 +382,7 @@ int32_t hal_uart_send(uart_dev_t *uart, const void *data, uint32_t size, uint32_
 }
 ```
 
-数据接收
+Receive data:
 ```C
 int32_t hal_uart_recv(uart_dev_t *uart, void *data, uint32_t size, uint32_t timeout)
 {
@@ -391,7 +396,7 @@ int32_t hal_uart_recv(uart_dev_t *uart, void *data, uint32_t size, uint32_t time
     return ret;
 }
 ```
-设备关闭
+Finalize the project:
 ```C
 int32_t hal_uart_finalize(uart_dev_t *uart)
 {
@@ -459,7 +464,7 @@ void uart2_DeMspInit(void)
     UART2_RX_GPIO_CLK_DISABLE();
 }
 ```
-对应的hal_uart_stm32l4.h为：
+The corresponding hal_uart_stm32l4.h is :
 ```C
 /*
  * Copyright (C) 2015-2017 Alibaba Group Holding Limited
@@ -550,9 +555,9 @@ void uart2_DeMspInit(void)
 #endif /* __HAL_UART_STM32L4_H */
 
 ```
-完成以上代码即完成uart的hal层对接，可以通过hal层函数操作底层硬件，其他设备对接方式与此相同。
+When the mentioned code is completed, the porting of uart in HAL is completed, and you can operate on underlying hardwares through functions in HAL. Porting in other devices is similar to this.
 
-在系统初始化时，定义相应的句柄并初始化即可调用相应的函数进行数据收发
+When the system is initialized, you can call functions to send and receive data by defining corresponding handles and initialize them.
 ```C
 uart_dev_t uart_dev_com1;
 static void uart_init(void)
@@ -569,13 +574,13 @@ static void uart_init(void)
 }
 
 ```
-更多HAL层对接示例见platform/mcu/stm32l4xx/src/STM32L496G-Discovery/hal目录
+More porting examples in HAL can refer to platform/mcu/stm32l4xx/src/STM32L496G-Discovery/hal.
 
 
-## 2flash抽象层对接
-### 2.1 flash 抽象层对接
-flash抽象层移植代码示例，[参考实现](https://github.com/alibaba/AliOS-Things/blob/master/platform/mcu/stm32l4xx/hal/flash_port.c)。  
-主要涉及到以下函数的相关修改：
+## 2 porting in flash abstraction layer
+### 2.1 porting in flash abstraction layer
+Code example of porting in flash abstraction layer : [参考实现](https://github.com/alibaba/AliOS-Things/blob/master/platform/mcu/stm32l4xx/hal/flash_port.c)。  
+It mainly concerns the following function modification:
 ```C
   hal_logic_partition_t *hal_flash_get_info(hal_partition_t in_partition)
 
@@ -596,12 +601,22 @@ flash抽象层移植代码示例，[参考实现](https://github.com/alibaba/Ali
   int32_t hal_flash_dis_secure(hal_partition_t partition, uint32_t off_set, uint32_t size)
 ```
 
-### 2.2 KV组件移植（与flash hal层相关）
- * 开发者需要实现相关flash hal层接口；
- * 开发者需通过在Makefile中声明组件依赖关系：$(NAME)_COMPONENTS += modules.fs.kv；
- * 开发者需通过CONFIG_AOS_KV_PTN宏定义指定KV组件所使用的flash分区号；
- * 若开发者所使用的flash介质的最小擦除单位大于4096 bytes，需调整KV组件内的逻辑块大小（默认为4096 bytes）；
- * 开发者需通过CONFIG_AOS_KV_BUFFER_SIZE宏定义指定KV组件所使用的flash分区大小（不能小于2个kv组件的逻辑块大小，默认值为8192 bytes）；
- * kv键值长度限制：
-    * 最大键(key)长度小于255 bytes;
-    * 最大值(value)长度可通过ITEM_MAX_VAL_LEN宏定义进行设置，预设值为512 bytes。
+### 2.2 porting of KV 
+
+- developers need to implement related interfaces in flash HAL;
+
+- developers need to declare the dependency of components in Makefile : $(NAME) _COMPONENTS = modules.fs.kv;
+
+- developer needs to define the flash partition number used by the KV through CONFIG_AOS_KV_PTN 
+
+- if the minimum erasure unit of the flash used by developers is greater than 4096 bytes, the size of the logical block in KV should be adjusted (the default is 4096 bytes).
+
+- Developers need to define the size of the flash partition specified through CONFIG_AOS_KV_BUFFER_SIZE, which should more than 2 KV's logical block size, and the default value is 8192 bytes.
+
+- KV length limit:
+
+  - the maximum length should be less than 255 bytes;
+  - the maximum length can be set in definition of ITEM_MAX_VAL_LEN, with a default value of 512 bytes.
+
+  ​
+

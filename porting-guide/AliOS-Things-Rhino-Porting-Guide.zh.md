@@ -1,4 +1,9 @@
+[EN](Flash-and-KV-Storage-Porting-Guide.en) | 中文
+
+
+
 # 目录
+
   * [1 概述](#1概述)
 
   * [2 系统移植](#2系统移植)
@@ -61,13 +66,13 @@
 
 ### 2.2.2 时钟中断
   * 节拍率（HZ）  
-  节拍率是Rhino运行的源动力，其通过系统定时器设置，通常为100，即每秒有100次系统定时中断（cortex-m中使用SysTick定时器），其宏定义为：
-  **_RHINO_CONFIG_TICKS_PER_SECOND_**。
+      节拍率是Rhino运行的源动力，其通过系统定时器设置，通常为100，即每秒有100次系统定时中断（cortex-m中使用SysTick定时器），其宏定义为：
+        **_RHINO_CONFIG_TICKS_PER_SECOND_**。
 
   注: 设置具体硬件定时器的时候需要使用RHINO_CONFIG_TICKS_PER_SECOND来计算相应的定时中断时间。
 
   * 中断处理  
-  为了驱动Rhino的运行，需要在中断处理函数中调用krhino_tick_proc这个函数。示例代码如下:  
+      为了驱动Rhino的运行，需要在中断处理函数中调用krhino_tick_proc这个函数。示例代码如下:  
   ```
   void tick_interrupt(void) {
       krhino_intrpt_enter();
@@ -84,7 +89,7 @@
       krhino_init(); /* app task create */
       krhino_start();
   }
-  ``` 
+  ```
   注意：  
   **_(1) main函数中首先需要初始化堆，具体的注意事项请参考后续soc_impl.c的移植。_**  
   **_(2) driver_init()里面不能产生中断，否则整个系统在krhino_start()调用前会发生崩溃。_**
@@ -99,28 +104,28 @@
 ### 2.3.1 cpu体系架构移植
   核心系统的移植主要是指实现arch文件夹下各个port.h中所定义的接口，相关接口描述如下：
   * size_t cpu_intrpt_save(void)  
-  该接口主要完成关中断的操作，关中断的cpu状态需要返回。
+      该接口主要完成关中断的操作，关中断的cpu状态需要返回。
 
   * void cpu_intrpt_restore(size_t cpsr)  
-  该接口主要完成开中断的操作，需要设置现有的cpu状态cpsr。
+      该接口主要完成开中断的操作，需要设置现有的cpu状态cpsr。
 
   * void cpu_intrpt_switch(void)  
-  该接口主要完成中断切换时还原最高优先级的任务，需要取得最高优先级任务的栈指针并还原最高优先级任务的寄存器。
+      该接口主要完成中断切换时还原最高优先级的任务，需要取得最高优先级任务的栈指针并还原最高优先级任务的寄存器。
 
   * void cpu_task_switch(void)  
-  该接口主要完成任务切换，需要首先保存当前任务的寄存器，然后取得最高优先级任务的栈指针并还原最高优先级任务的寄存器。
+      该接口主要完成任务切换，需要首先保存当前任务的寄存器，然后取得最高优先级任务的栈指针并还原最高优先级任务的寄存器。
 
   * void cpu_first_task_start(void)  
-  该接口主要完成启动系统第一个任务，需要还原第一个任务的寄存器。
+      该接口主要完成启动系统第一个任务，需要还原第一个任务的寄存器。
 
   * void *cpu_task_stack_init(cpu_stack_t *base,size_t size, void *arg,task_entry_t entry)  
-  该接口主要完成任务堆栈的初始化，其中size以**字长**为单位。
+      该接口主要完成任务堆栈的初始化，其中size以**字长**为单位。
 
   * int32_t cpu_bitmap_clz(uint32_t val)  
-  该接口主要是通过类似Arm中的clz指令实现位图的快速查找，在**RHINO_CONFIG_BITMAP_HW**宏打开（置1）时用户需要使用cpu相关的指令实现该接口，在未打开时默认使用Rhino中的软件算法查找。
+      该接口主要是通过类似Arm中的clz指令实现位图的快速查找，在**RHINO_CONFIG_BITMAP_HW**宏打开（置1）时用户需要使用cpu相关的指令实现该接口，在未打开时默认使用Rhino中的软件算法查找。
 
   * RHINO_INLINE uint8_t cpu_cur_get(void)  
-  该接口在port.h中默认的单核实现如下：
+      该接口在port.h中默认的单核实现如下：
   ```
   RHINO_INLINE uint8_t cpu_cur_get(void) {
       return 0;
@@ -137,7 +142,7 @@
 
 ### 2.3.3调试模块移植
 * 串口驱动移植  
-串口主要用于打印日志。打印主要是使用printf，因为每个芯片的串口驱动不一样，所以需要对接aos_uart_send这个函数来完成针对printf的移植。
+  串口主要用于打印日志。打印主要是使用printf，因为每个芯片的串口驱动不一样，所以需要对接aos_uart_send这个函数来完成针对printf的移植。
 
 ## 2.4 移植模板
 Rhino内核的移植模版主要是参照现有的工程的移植。目前移植的有armv5以及cortex-m系列等cpu架构。 
@@ -233,10 +238,10 @@ Keil工程路径：projects\Keil\STM32L496G-Discovery\helloworld\
 主要配置项包括：
 
   * “Manage Project Items” 建立相关groups，包含需要编译的.c和.s文件；
-![](https://i.imgur.com/ffpFg4W.png)
+      ![](https://i.imgur.com/ffpFg4W.png)
 
   * 选择工程“Options for Target”，“C/C++”选项卡设置编译选项、建立编译依赖头文件；“Linker”选择默认链接脚本（或者自建立scatter）；“Debug”选择ST-Linker Debugger。
-![](https://i.imgur.com/0KAoEZz.png)
+      ![](https://i.imgur.com/0KAoEZz.png)
 
 其他选项请按需调整。
 

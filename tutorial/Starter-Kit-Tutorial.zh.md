@@ -1,3 +1,5 @@
+[EN](github-Starter Kit Tutorial.en) | 中文
+
 ## 步骤
 
 ### 下载/安装 Visual Studio Code
@@ -5,9 +7,9 @@ https://code.visualstudio.com/
 
 ### 安装 AliOS Studio 插件
 1. 安装 C/C++ 插件
-![](https://img.alicdn.com/tfs/TB1YVS4ghGYBuNjy0FnXXX5lpXa-3270-2182.png)
+  ![](https://img.alicdn.com/tfs/TB1YVS4ghGYBuNjy0FnXXX5lpXa-3270-2182.png)
 2. 安装 alios-studio 插件
-![](https://img.alicdn.com/tfs/TB1eFS4ghGYBuNjy0FnXXX5lpXa-3270-2182.png)
+  ![](https://img.alicdn.com/tfs/TB1eFS4ghGYBuNjy0FnXXX5lpXa-3270-2182.png)
 > 如果已有安装，请确保 alios-studio 插件版本升级到 0.7.1 以上
 
 ### 开发环境准备
@@ -53,11 +55,11 @@ Python 2 和 Git 安装完成以后，在 Git Bash 中安装/升级 `aos-cube`:
 #### 编译 helloworld
 
 1. 在 Visual Studio Code 中打开下载好的 AliOS Things 代码目录
-![](https://img.alicdn.com/tfs/TB1RJyMgf1TBuNjy0FjXXajyXXa-3270-2182.png)
-![](https://img.alicdn.com/tfs/TB1v6uPgeuSBuNjy1XcXXcYjFXa-3270-2182.png)
+  ![](https://img.alicdn.com/tfs/TB1RJyMgf1TBuNjy0FjXXajyXXa-3270-2182.png)
+  ![](https://img.alicdn.com/tfs/TB1v6uPgeuSBuNjy1XcXXcYjFXa-3270-2182.png)
 
 2. 点击下方状态栏 ![](https://img.alicdn.com/tfs/TB1HC9KgkyWBuNjy0FpXXassXXa-72-22.png) 开始编译
-编译过程如果发现缺少 toolchain 则会自动下载解压到正确位置。
+  编译过程如果发现缺少 toolchain 则会自动下载解压到正确位置。
 
 > 但如果配置后仍有找不到toolchain的情况，请注意：  
 > 可将 `arm-none-eabi-` 添加在全局PATH  
@@ -76,13 +78,13 @@ Python 2 和 Git 安装完成以后，在 Git Bash 中安装/升级 `aos-cube`:
 ```
 
 3. 编译完成后会显示各组件资源占用情况
-![](https://img.alicdn.com/tfs/TB1q.wUgntYBeNjy1XdXXXXyVXa-3270-2182.png)
+  ![](https://img.alicdn.com/tfs/TB1q.wUgntYBeNjy1XdXXXXyVXa-3270-2182.png)
 
 #### 烧录到 Starter Kit
 
 1. 通过 USB Micro 线缆连接好 Starter Kit 与电脑
 2. 点击下方状态栏 ![](https://img.alicdn.com/tfs/TB1TyipgbGYBuNjy0FoXXciBFXa-75-22.png) 完成固件烧录
-![](https://img.alicdn.com/tfs/TB1jW2ngeuSBuNjSsplXXbe8pXa-3270-2182.png)
+  ![](https://img.alicdn.com/tfs/TB1jW2ngeuSBuNjSsplXXbe8pXa-3270-2182.png)
 
 打开串口，可以看到 `app_delayed_action` 在1秒时启动，每5秒触发一次。
 ```
@@ -90,7 +92,7 @@ Python 2 和 Git 安装完成以后，在 Git Bash 中安装/升级 `aos-cube`:
  [   6.000]<V> AOS [app_delayed_action#9] : app_delayed_action:9 app
  [  11.000]<V> AOS [app_delayed_action#9] : app_delayed_action:9 app
  [  16.000]<V> AOS [app_delayed_action#9] : app_delayed_action:9 app
- ```
+```
 
 ### GUI 应用实例
 双击左侧 `BUILD TARGET` 视图中的 `starterkitgui@starterkit` 开始编译 Starter Kit 的 GUI demo，将 Starter Kit 开发板与电脑通过 USB 连接好以后，点击 `Upload` 烧录固件。

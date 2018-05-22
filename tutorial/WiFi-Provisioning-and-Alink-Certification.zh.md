@@ -1,3 +1,5 @@
+[EN](WiFi-Provisioning-and-Alink-Certification.en) | 中文
+
 在完成WiFi和协议栈的移植后，可以进行配网测试与认证。
 
 AliOS Things中的alinkapp（位于`example/alinkapp/`中）可以用来进行Alink测试和认证。注意：alinkapp是一个集配网、alink连云于一体的APP，需要WiFi HAL以及socket接口的支持，运行此APP前，请确保WiFi HAL和socket移植（通常是LwIP协议栈或者其他支持socket的组件）都已经完成。
@@ -7,7 +9,7 @@ AliOS Things中的alinkapp（位于`example/alinkapp/`中）可以用来进行Al
 - 下载DemoAPP，地址：https://open.aliplus.com/download/
   点击进入“接入阿里智能-厂测包”，下载并安装“开放平台厂测包”。
 - 打开APP，在APP环境切换中选择开启配网模组测试列表，用来打开模组认证配网入口，然后杀掉app重新登录。
-![配网条件预置截图](https://img.alicdn.com/tfs/TB1zAlEgS_I8KJjy0FoXXaFnVXa-634-1004.png)
+  ![配网条件预置截图](https://img.alicdn.com/tfs/TB1zAlEgS_I8KJjy0FoXXaFnVXa-634-1004.png)
 
 ## 一键配网
 通过一键配网，可以对设备进行联网、激活和绑定等操作，使设备连接到阿里云平台。
@@ -20,7 +22,7 @@ AliOS Things中的alinkapp（位于`example/alinkapp/`中）可以用来进行Al
 - 设备联网成功后，APP界面进入设备激活界面。
 - 在命令行通过“active_alink”命令，或者通过按键事件触发激活指令。
 - 激活成功后，设备即绑定到手机APP。一键配网步骤完成。
-![一键配网步骤截图](https://img.alicdn.com/tfs/TB1QFiggILJ8KJjy0FnXXcFDpXa-1968-942.png)
+  ![一键配网步骤截图](https://img.alicdn.com/tfs/TB1QFiggILJ8KJjy0FnXXcFDpXa-1968-942.png)
 
 ## 热点配网
 通过热点配网测试，可以进一步验证WiFi移植以及平台配网逻辑的有效性。请按照以下步骤进行：
@@ -33,7 +35,7 @@ AliOS Things中的alinkapp（位于`example/alinkapp/`中）可以用来进行Al
 - 在“配网失败”界面，选择“热点模式”。
 - 热点模式下，APP界面可以选择配网设备，并往配网设备发送SSID和密码等信息。
 - 同一键配网，设备联网成功后，进入激活状态。此时，设备端通过激活命令或者按键进行激活。
-![热点配网步骤截图](https://img.alicdn.com/tfs/TB1ApiggILJ8KJjy0FnXXcFDpXa-1442-1098.png)
+  ![热点配网步骤截图](https://img.alicdn.com/tfs/TB1ApiggILJ8KJjy0FnXXcFDpXa-1442-1098.png)
 
 ## 2pps和5pps测试
 在一键配网和热点配网测试完成后，基本验证了WiFi流程工作正常。通过2pps和5pps等性能测试，可以更加充分地验证移植工作。以下是2pps和5pps测试的步骤：
@@ -44,4 +46,4 @@ AliOS Things中的alinkapp（位于`example/alinkapp/`中）可以用来进行Al
 - 在测试选择界面，选择“性能测试”。
 - 在用例列表界面，选择“低频指令（2pps）压测设备响应成功率[Release]”测试项进行测试。如果是5pps测试，该步骤选择“高频指令（5pps）压测设备响应成功率[Release]”测试项。
 - 测试将耗时12小时左右完成。
-![2pps和5pps测试步骤截图](https://img.alicdn.com/tfs/TB1fnpLgMvD8KJjy0FlXXagBFXa-2004-770.png)
+  ![2pps和5pps测试步骤截图](https://img.alicdn.com/tfs/TB1fnpLgMvD8KJjy0FlXXagBFXa-2004-770.png)
