@@ -40,6 +40,10 @@ WiFi子板介绍：略
 
 ![ESP8266_evb](https://raw.githubusercontent.com/chenlf123/MarkdownPhotos/master/AliOS-Things/ESP8266_evb.png)
 
+#### 1.1.4 开发板获取：
+
+https://item.taobao.com/item.htm?id=570014022304
+
 ### 1.2 开发板连接方法
 
 #### 1.2.1 WiFi子板连接
