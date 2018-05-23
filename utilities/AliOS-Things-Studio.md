@@ -40,7 +40,7 @@ pip install --user aos-cube
 
 从GitHub克隆：
 `git clone https://github.com/alibaba/AliOS-Things.git`  
-或者从镜像站点：
+或者从国内镜像站点：
 `git clone https://gitee.com/alios-things/AliOS-Things.git`
 
 
