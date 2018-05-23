@@ -1,4 +1,4 @@
-# 手把手教你在CB2201开发板上使用MQTT通道上云
+# C-SKY IoT开发板（CB2201）快速上阿里云指南
 
 本文基于 [AliOS Things](https://github.com/alibaba/AliOS-Things) 1.3.x版本，手把手教你在C-SKY CB2201开发板上使用MQTT通道上云
 
@@ -8,17 +8,33 @@
 
 #### 1.1.1 CB2201开发板介绍
 
-**①** CB2201开发板是杭州中天微自主设计的一款用于开发 IoT 应用的开发板。板上集成 CH2201 芯片，集成了 CPU 调试器CKLink，只需要一根 USB 线就可以进行供电、调试、下载等操作。
+**①** CB2201开发板是杭州中天微自主设计的一款用于开发 IoT 应用的开发板。
 
-**②** CH2201芯片内部集成C-SKY CK802T CPU核，集成AES、SHA、CRC、TRNG等安全IP。
+**②** 板上集成 CH2201 芯片，集成 CPU 调试器CKLink，只需要一根 USB 线就可以进行供电、调试、下载等操作。
 
-**③** 超低功耗设计，低功耗模式下，CH2201芯片核心电流小于3uA，使用QFP-64-0.4mm封装。
+**③** 集成两个子板接口，每个子板接口中都集成了UART/SPI/IIC/ADC/PWM/GPIO等外设，可以连接各类接口兼容的功能子板，包括中天微设计的ENC28J60 SPI有线网卡子板，ESP8266-WiFi子板，传感器子板等。
 
-**④** 集成两个子板接口，每个子板接口中都集成了UART/SPI/IIC/ADC/PWM/GPIO等外设，可以连接各类接口兼容的功能子板，包括中天微设计的ENC28J60 SPI有线网卡子板，ESP8266-WiFi子板，传感器子板等。
+#### 1.1.2 CH2201芯片介绍
+
+**①** 内置32BIT C-SKY CK802T CPU@up to 48MHz
+
+**②** 256KB XIP eFlash，80KB SRAM
+
+**③** REE/TEE运行环境隔离
+
+**④** 硬件加解密引擎，支持AES、RSA、SHA、TRNG等算法
+
+**⑥** 34个独立可编程、复用通用输入输出接口，包括：SPI×2, UART×3, I2C×2, ADC×16, PWM×4, GPIO×34, I2S×1, ACMP×1
+
+**⑦** 定时器相关资源：CoreTIM×1, RTC×2, Timer×2, WDT×1
+
+**⑧** 待机功耗 <3uA
+
+**⑨** 使用QFP-64-0.4mm封装
 
 ![CB2201](https://raw.githubusercontent.com/chenlf123/MarkdownPhotos/master/AliOS-Things/CB2201.png)
 
-#### 1.1.2 ESP8266 WiFi子板
+#### 1.1.3 ESP8266 WiFi子板
 
 WiFi子板介绍：略
 
