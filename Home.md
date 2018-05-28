@@ -18,6 +18,7 @@ Please refer to [AliOS Things Technical Overview](AliOS-Things-Technical-Overvie
   - [Setup: IAR](AliOS-Things-lorawanapp-@IAR)
   - [Setup: Keil](AliOS-Things-lorawanapp-@Keil)
   - [Setup: Visual Studio Code](AliOS-Things-lorawanapp-@VSC)
+- [Linkkit Tutorial](AliOS-Things-Linkkit-Application.zh)
 - [LinkVoice Tutorial](LinkVoice-Application)
 - Hardware Setup
   - [MK3060](MK3060-Hardware-Setup)
@@ -46,7 +47,6 @@ Please refer to [AliOS Things Technical Overview](AliOS-Things-Technical-Overvie
   - [uData Framework](AliOS-Things-uData-Framework-Porting-Guide)
   - [uData Sensor Driver](AliOS-Things-uData-Sensor-Driver-Porting-Guide)
   - [VFS](AliOS-Things-VFS-Porting-Guide)
-  - [Linkkit](AliOS-Things-Linkkit-Porting-Guide.zh)
 - [Test](AliOS-Things-Porting-Test-Guide)
 
 ## [Utilities](AliOS-Things-Utilities)

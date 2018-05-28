@@ -1,5 +1,5 @@
 # 目录
-  * [1 移植概要](#1-移植概要)
+  * [1 概要](#1-概要)
   * [2 接口实现](#2-接口实现)
     * [2.1 修改设备凭证](#21-修改设备凭证)
     * [2.2 修改TSL信息](#22-修改tsl信息)
@@ -14,17 +14,26 @@
   * [4 用例执行](#4-用例执行)
 
 ------
-# 1 移植概要
-  linkkit移植前先确认以下功能已经具备：
+# 1 概要
+  使用linkkit接入阿里的 [智能生活开放平台](https://living.aliyun.com/#/)前先确认以下功能已经具备：
 1. 设备能够连接到阿里的 [智能生活开放平台](https://living.aliyun.com/#/)
 2. 已经通过[智能生活开放平台](https://living.aliyun.com/#/)获取到了设备的激活码，并得到设备联网需要的`ProductKey`、`ProductSecret`、`DeviceName`、`DeviceSecret`。
 3. 根据设备的功能定义，获取到物的模型（TSL），即一段json格式的描述信息。
 
-  linkkit移植需要进行如下的几步：
+  使用linkkit需要进行如下的几步：
 1. 修改设备凭证：`ProductKey`、`ProductSecret`、`DeviceName`、`DeviceSecret`。
 2. 设置TSL信息。
 3. 实现linkkit函数接口：
     * linkkit服务程序初始化: `linkkit_start()`和`linkkit_ops_t`结构体中的回调函数
+        * `on_connect()`
+        * `on_disconnect()`
+        * `raw_data_arrived()`
+        * `thing_create()`
+        * `thing_enable()`
+        * `thing_disable()`
+        * `thing_call_service()`
+        * `thing_prop_changed()`
+4. 其他会用到的linkkit函数：
     * 事件分发处理： `linkkit_dispatch()`
     * 创建物的对象： `linkkit_set_tsl()`
     * 设置对象的TSL属性： `linkkit_set_value()`

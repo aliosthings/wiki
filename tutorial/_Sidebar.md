@@ -17,6 +17,7 @@
   - [Setup: IAR](AliOS-Things-lorawanapp-@IAR)
   - [Setup: Keil](AliOS-Things-lorawanapp-@Keil)
   - [Setup: Visual Studio Code](AliOS-Things-lorawanapp-@VSC)
+- [Linkkit Tutorial](AliOS-Things-Linkkit-Application.zh)
 - [LinkVoice Tutorial](LinkVoice-Application)
 - Hardware Setup
   - [MK3060](MK3060-Hardware-Setup)
