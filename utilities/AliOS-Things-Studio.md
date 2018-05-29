@@ -38,7 +38,9 @@ $ pip install --user wheel
 $ pip install --user aos-cube
 ```
 
-细节可参考 [AliOS-Things-Windows-Environment-Setup](https://github.com/alibaba/AliOS-Things/wiki/AliOS-Things-Windows-Environment-Setup) **`[注意]`** 请确定下在运行完 `pip install aos-cube`后`esptool, pyserial, scons` 和 `aos-cube` 全部被成功安装, 如果失败需要自行一步一步的安装这些依赖包.
+细节可参考 [AliOS-Things-Windows-Environment-Setup](https://github.com/alibaba/AliOS-Things/wiki/AliOS-Things-Windows-Environment-Setup) 
+
+**`[注意]`** 请确定下在运行完 `pip install aos-cube`后`esptool, pyserial, scons` 和 `aos-cube` 全部被成功安装, 如果失败需要自行一步一步的安装这些依赖包.
 
 ```bash
 如果只是升级aos-cube，可以按下述步骤:
