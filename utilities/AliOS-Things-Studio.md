@@ -20,7 +20,9 @@ https://code.visualstudio.com/
 
 安装 python pip 包管理器，然后安装 `aos-cube` 到全局环境:
 ```
-pip install --user aos-cube
+$ pip install --user setuptools
+$ pip install --user wheel
+$ pip install --user aos-cube
 ```
 
 #### Windows
@@ -29,12 +31,22 @@ pip install --user aos-cube
 - [Python 2](https://www.python.org/downloads/)
 - [Git (带 Git Bash)](https://git-scm.com/downloads)
 
-Python 2 和 Git 安装完成以后，在 Git Bash 中安装 `aos-cube`:
+Python 2 和 Git 安装完成以后，在 Git Bash 中安装 `aos-cube` 和`相关的packages`:
 ```
-pip install --user aos-cube
+$ pip install --user setuptools
+$ pip install --user wheel
+$ pip install --user aos-cube
 ```
 
-细节可参考 [AliOS-Things-Windows-Environment-Setup](https://github.com/alibaba/AliOS-Things/wiki/AliOS-Things-Windows-Environment-Setup)  
+细节可参考 [AliOS-Things-Windows-Environment-Setup](https://github.com/alibaba/AliOS-Things/wiki/AliOS-Things-Windows-Environment-Setup) **`[注意]`** 请确定下在运行完 `pip install aos-cube`后`esptool, pyserial, scons` 和 `aos-cube` 全部被成功安装, 如果失败需要自行一步一步的安装这些依赖包.
+
+```bash
+如果只是升级aos-cube，可以按下述步骤:
+
+$ pip install --upgrade setuptools
+$ pip install --upgrade wheel
+$ pip install --upgrade aos-cube
+```
 
 ### 下载 AliOS Things 代码
 
