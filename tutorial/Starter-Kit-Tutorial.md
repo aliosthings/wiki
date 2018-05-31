@@ -1,7 +1,5 @@
 EN| [中文](Starter-Kit-Tutorial.zh)
 
-# Starter Kit Tutorial
-
 ## Steps
 
 ### Download/install Visual Studio Code
