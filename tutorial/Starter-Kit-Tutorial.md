@@ -51,7 +51,7 @@ After Python 2 and Git have been installed, install/upgrade `aos-cube`: `pip ins
 ### Download AliOS Things code
 
 Copy from GitHub : `git clone https://github.com/alibaba/AliOS-Things.git`
-Or from mirror site : `git clone https://code.aliyun.com/vivid8710/AliOS-Things.git`
+Or from mirror site : `git clone https://gitee.com/alios-things/AliOS-Things.git`
 
 #### Start compiling helloworld
 
