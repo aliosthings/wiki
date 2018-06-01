@@ -1,7 +1,7 @@
 # AliOS Things 连接自测指南
 
-## 申请测试设备活码
-申请方法详见[AliOS Things认证流程](Process)
+## 下载测试使用的APP 
+详见[自有品牌APP和公版APP的介绍](https://living.aliyun.com/doc#muti-app.html)
 
 ## 测试前设置
 ### 权限配置
