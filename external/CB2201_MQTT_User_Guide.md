@@ -134,7 +134,7 @@ AliOS-Things可以通过命令行和AliOS-Things IDE开发，详见下面说明�
 
 ### 4.1 安装烧录软件
 
-1、烧录软件获取：链接：https://pan.baidu.com/s/1miW9D5cj1c43xJFzVHUMxQ 密码：pmpy
+1、烧录软件获取：链接：https://pan.baidu.com/s/1CcbCXZ3SJwfBL13_MP9SIg 密码：s6j5
 
 2、解压后，双击CSKYFlashProgrammer.exe打开烧录软件
 
