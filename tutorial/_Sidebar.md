@@ -12,6 +12,7 @@
   - [Mac](AliOS-Things-MAC-Environment-Setup)
   - [Windows](AliOS-Things-Windows-Environment-Setup)
 - [SIG BLE Mesh Setup Guide](AliOS-Things-SIG-BLE-mesh-Setup-Guides)
+- [BLE Tutorial](linkkit_ble)
 - [LoRaWAN Tutorial](AliOS-Things-lorawanapp)
   - [Application Example](AliOS-Things-lorawanapp-example)
   - [Setup: IAR](AliOS-Things-lorawanapp-@IAR)
