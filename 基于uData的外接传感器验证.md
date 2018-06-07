@@ -17,7 +17,9 @@ developer kit开发板环境配置请参考链接： https://github.com/alibaba/
 代码链接：https://github.com/andy2012zwj/AliOS-Things/tree/aos_udata
 
 打开代码链接，可以通过以下方式下载代码
-![](https://i.imgur.com/EPtgfHl.png)
+![](https://i.imgur.com/7LjS6d4.png)
+
+![](https://i.imgur.com/AoAtQN8.png)
 
 ## 3 代码移植
 uData介绍以及传感器驱动移植请参考以下链接：https://github.com/alibaba/AliOS-Things/wiki/AliOS-Things-uData-Sensor-Driver-Porting-Guide.zh
