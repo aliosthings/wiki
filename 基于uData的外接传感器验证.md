@@ -16,9 +16,10 @@ developer kit开发板环境配置请参考链接： https://github.com/alibaba/
 ## 2 代码下载
 代码链接：https://github.com/andy2012zwj/AliOS-Things/tree/aos_udata
 
-打开代码链接，可以通过以下方式下载代码
+打开代码链接后，可以通过以下方式下载代码。首先选择代码分支；
 ![](https://i.imgur.com/7LjS6d4.png)
 
+然后选择zip格式下载；
 ![](https://i.imgur.com/AoAtQN8.png)
 
 ## 3 代码移植
