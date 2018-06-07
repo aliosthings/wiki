@@ -1,4 +1,5 @@
 - 开发板配置
+- 代码下载
 - 代码移植
 - 功能调试
 
@@ -12,8 +13,13 @@
 
 developer kit开发板环境配置请参考链接： https://github.com/alibaba/AliOS-Things/wiki/AliOS-Things-Studio
 
+## 2 代码下载
+代码链接：https://github.com/andy2012zwj/AliOS-Things/tree/aos_udata
 
-## 2 代码移植
+打开代码链接，可以通过以下方式下载代码
+![](https://i.imgur.com/EPtgfHl.png)
+
+## 3 代码移植
 uData介绍以及传感器驱动移植请参考以下链接：https://github.com/alibaba/AliOS-Things/wiki/AliOS-Things-uData-Sensor-Driver-Porting-Guide.zh
 以，在developer kit板上，需要注意的地方是总线配置：
 ```
@@ -23,11 +29,8 @@ i2c_dev_t  ####_ctx = {
 };
 
 ```
-
-## 3 功能调试
+## 4 功能调试
 下面以developer kit板为例说明linkkit用例的调试过程。
-
-代码路径：
 #### 4.1 编译
 example\uDataapp目录下已集成了相关的用例代码，2、3两个章节完成配置修改后，执行以下命令则可以编译用例
 aos make udataapp@developerkit
