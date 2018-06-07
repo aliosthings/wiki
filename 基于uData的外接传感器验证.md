@@ -48,5 +48,7 @@ aos make udataapp@developerkit
 
 ![](https://i.imgur.com/sXXs2SJ.png)
 其中物理传感器对应的服务类型，请参考结构体udata_type_e；
+
 物理传感器的上报的数据单位，请参考以下链接中的《传感器数据单位》章节
+
 https://github.com/alibaba/AliOS-Things/wiki/AliOS-Things-uData-Sensor-Driver-Porting-Guide.zh
