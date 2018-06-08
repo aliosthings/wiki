@@ -2,6 +2,7 @@
 - 代码下载
 - 代码移植
 - 功能调试
+- 驱动代码提交
 
 ## 1 开发板配置
 我们验证选用的开发板是基于STM32L496VGTx芯片研发的一款物联网开发板。其内核为ARM 32位Cortex-M4 CPU，最高80MHZ的主频率，1MB的闪存，320KB的SRAM，最多支持136个高速IO口，还支持SPI,CAN,I2C,I2S,USB,UART等常用的外设接口。
@@ -52,3 +53,10 @@ aos make udataapp@developerkit
 物理传感器的上报的数据单位，请参考以下链接中的《传感器数据单位》章节
 
 https://github.com/alibaba/AliOS-Things/wiki/AliOS-Things-uData-Sensor-Driver-Porting-Guide.zh
+
+驱动代码提交
+如果功能测试完成无误，则可以通过以下链接的方式向AliOS Things提交代码和入申请：
+
+https://lark.alipay.com/aliosthings/wiki/workflow-githubcontrib
+
+待AliOS对其做相关的认证，认证完成后，则可以集成到AliOS Things中。
