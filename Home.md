@@ -84,3 +84,4 @@ Please refer to [AliOS Things Technical Overview](AliOS-Things-Technical-Overvie
 * [ESP8266在AliOS Things上的入门开发指南](https://blog.csdn.net/lan120576664/article/details/80198219)
 * [C-SKY IoT开发板（CB2201）快速上阿里云指南](CB2201_MQTT_User_Guide)
 * [Ameba RTL8710BN + AliOS Things 开发](https://blog.csdn.net/lxdongabc/article/details/80403024)
+* [基于AliOS Things Developer Kit开发板的外接传感器开发教程](基于AliOS-Things-Developer-Kit开发板的外接传感器开发教程)
