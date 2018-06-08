@@ -54,7 +54,7 @@ aos make udataapp@developerkit
 
 https://github.com/alibaba/AliOS-Things/wiki/AliOS-Things-uData-Sensor-Driver-Porting-Guide.zh
 
-驱动代码提交
+## 5 驱动代码提交
 如果功能测试完成无误，则可以通过以下链接的方式向AliOS Things提交代码和入申请：
 
 https://lark.alipay.com/aliosthings/wiki/workflow-githubcontrib
