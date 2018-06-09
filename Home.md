@@ -20,7 +20,7 @@ Please refer to [AliOS Things Technical Overview](AliOS-Things-Technical-Overvie
   - [Setup: Visual Studio Code](AliOS-Things-lorawanapp-@VSC)
 - [Linkkit Tutorial](AliOS-Things-Linkkit-Application.zh)
 - [LinkVoice Tutorial](LinkVoice-Application)
-- [Sensor porting Tutorial based on Developer Kit](LinkVoice-Application)
+* [Sensor porting Tutorial based on Developer Kit](基于AliOS Things Developer Kit开发板的外接传感器开发教程)
 - Hardware Setup
   - [MK3060](MK3060-Hardware-Setup)
 - [WiFi Provisioning and Alink Certification](WiFi-Provisioning-and-Alink-Certification)
