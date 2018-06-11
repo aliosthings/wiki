@@ -21,6 +21,7 @@ Please refer to [AliOS Things Technical Overview](AliOS-Things-Technical-Overvie
   - [Setup: Visual Studio Code](AliOS-Things-lorawanapp-@VSC)
 - [Linkkit Tutorial](AliOS-Things-Linkkit-Application.zh)
 - [LinkVoice Tutorial](LinkVoice-Application)
+- [BoneEngine@Lite_Tutorial](boneengine_lite_description)
 - [Sensor Porting Guide Based On AliOS Things Developer Kit](基于AliOS-Things-Developer-Kit开发板的外接传感器开发教程)
 - Hardware Setup
   - [MK3060](MK3060-Hardware-Setup)
