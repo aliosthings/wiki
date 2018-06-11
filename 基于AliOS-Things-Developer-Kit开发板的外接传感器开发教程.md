@@ -17,6 +17,7 @@ developer kit开发板环境配置请参考链接： https://github.com/alibaba/
 ## 2 代码下载
 代码下载前，请确认已在github注册账号，链接及注册流程如下：
 - https://github.com/
+
 **为了便于后续的代码的审核提交，请用公司邮箱注册github账号**
 ![](https://i.imgur.com/q0JhzHJ.png)
 
