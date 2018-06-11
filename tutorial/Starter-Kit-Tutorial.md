@@ -1,4 +1,4 @@
-EN| [中文](Starter-Kit-Tutorial.zh)
+EN | [中文](Starter-Kit-Tutorial.zh)
 
 ## Steps
 

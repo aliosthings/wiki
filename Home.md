@@ -5,6 +5,7 @@ Please refer to [AliOS Things Technical Overview](AliOS-Things-Technical-Overvie
 - [Quick Start](Quick-Start)
 - [Hello World](AliOS-Things-APP-DEV-Guide)
 - [Starter Kit Tutorial](Starter-Kit-Tutorial)
+- [Developer Kit Tutorial](Developer-Kit-Tutorial)
 - [Add a New Board Example](Add-a-new-board-example)
 - [Add a New Component Example](Add-a-new-component-example)
 - [Environment Setup](AliOS-Things-Environment-Setup)
@@ -20,6 +21,7 @@ Please refer to [AliOS Things Technical Overview](AliOS-Things-Technical-Overvie
   - [Setup: Visual Studio Code](AliOS-Things-lorawanapp-@VSC)
 - [Linkkit Tutorial](AliOS-Things-Linkkit-Application.zh)
 - [LinkVoice Tutorial](LinkVoice-Application)
+- [Sensor Porting Guide Based On AliOS Things Developer Kit](基于AliOS-Things-Developer-Kit开发板的外接传感器开发教程)
 - Hardware Setup
   - [MK3060](MK3060-Hardware-Setup)
 - [WiFi Provisioning and Alink Certification](WiFi-Provisioning-and-Alink-Certification)
@@ -84,3 +86,4 @@ Please refer to [AliOS Things Technical Overview](AliOS-Things-Technical-Overvie
 * [ESP8266在AliOS Things上的入门开发指南](https://blog.csdn.net/lan120576664/article/details/80198219)
 * [C-SKY IoT开发板（CB2201）快速上阿里云指南](CB2201_MQTT_User_Guide)
 * [Ameba RTL8710BN + AliOS Things 开发](https://blog.csdn.net/lxdongabc/article/details/80403024)
+* [基于AliOS Things Developer Kit开发板的外接传感器开发教程](基于AliOS-Things-Developer-Kit开发板的外接传感器开发教程)
