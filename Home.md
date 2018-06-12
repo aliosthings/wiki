@@ -14,6 +14,7 @@ Please refer to [AliOS Things Technical Overview](AliOS-Things-Technical-Overvie
 - [LoRaWAN Tutorial](AliOS-Things-lorawanapp)
 - [Linkkit Tutorial](AliOS-Things-Linkkit-Application.zh)
 - [LinkVoice Tutorial](LinkVoice-Application)
+- [BoneEngine@Lite_Tutorial](boneengine_lite_description)
 - [Sensor Porting Guide Based On AliOS Things Developer Kit](基于AliOS-Things-Developer-Kit开发板的外接传感器开发教程)
 - [WiFi Provisioning and Alink Certification](WiFi-Provisioning-and-Alink-Certification)
 - [Step by Step: MQTT to Cloud with STM32](stm32-networking)
