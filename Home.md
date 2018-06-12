@@ -59,15 +59,10 @@ Please refer to [AliOS Things Technical Overview](AliOS-Things-Technical-Overvie
 - [uMesh Security](uMesh-Security)
 - [Coding Style](AliOS-Things-Coding-Style-Guide)
 
-## [Certification](Certification-Home)
-
-## [Contributing](contributing)
-
 ## BoneEngine@Lite
 - [BoneEngine@Lite description](boneengine_lite_description)
 - [BoneEngine@Lite technology](boneengine_lite_arch)
 - [BoneEngine@Lite tools](be-cli-tools)
-
 
 ## Community
 * [Technical Forum](https://github.com/alibaba/AliOS-Things/issues)
@@ -85,3 +80,7 @@ Please refer to [AliOS Things Technical Overview](AliOS-Things-Technical-Overvie
 * [C-SKY IoT开发板（CB2201）快速上阿里云指南](CB2201_MQTT_User_Guide)
 * [Ameba RTL8710BN + AliOS Things 开发](https://blog.csdn.net/lxdongabc/article/details/80403024)
 * [基于AliOS Things Developer Kit开发板的外接传感器开发教程](基于AliOS-Things-Developer-Kit开发板的外接传感器开发教程)
+
+## [Certification](Certification-Home)
+
+## [Contributing](contributing)
