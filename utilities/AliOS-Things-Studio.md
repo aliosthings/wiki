@@ -20,9 +20,9 @@ https://code.visualstudio.com/
 
 安装 python pip 包管理器，然后安装 `aos-cube` 到全局环境:
 ```
-$ pip install --user setuptools
-$ pip install --user wheel
-$ pip install --user aos-cube
+$ pip install --upgrade setuptools
+$ pip install --upgrade wheel
+$ pip install aos-cube
 ```
 
 #### Windows
