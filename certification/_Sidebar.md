@@ -1,12 +1,12 @@
 ### [1. 简介](Certification-Home)
 
 ### [2. AliOS Things 认证流程](Process)
-  * [2.1 移植适配](Process#step1)
-  * [2.2 认证提交](Process#step2)
-  * [2.2 商家自测](Process#step3)
-  * [2.2 硬件邮寄](Process#step4)
-  * [2.2 认证测试](Process#step5)
-  * [2.2 颁发证书](Process#step6)
+  * [2.1 移植适配](Certification-Process#step1)
+  * [2.2 认证提交](Certification-Process#step2)
+  * [2.2 商家自测](Certification-Process#step3)
+  * [2.2 硬件邮寄](Certification-Process#step4)
+  * [2.2 认证测试](Certification-Process#step5)
+  * [2.2 颁发证书](Certification-Process#step6)
 
 ### [3. AliOS Things 认证指南](Manual)
   * [3.1 AliOS Things 认证框架](Manual#framework)
