@@ -33,8 +33,8 @@ $ pip install aos-cube
 
 Python 2 和 Git 安装完成以后，在 Git Bash 中安装 `aos-cube` 和`相关的packages`:
 ```
-$ pip install --user setuptools
-$ pip install --user wheel
+$ pip install --upgrade setuptools
+$ pip install --upgrade wheel
 $ pip install --user aos-cube
 ```
 
