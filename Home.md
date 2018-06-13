@@ -29,18 +29,7 @@ Please refer to [AliOS Things Technical Overview](AliOS-Things-Technical-Overvie
 - [Linux simulation](AliOS-Things-Hardware#linux)
 
 ## [Porting Guide](AliOS-Things-Porting-Guide)
-- Components
-  - [Rhino](AliOS-Things-Rhino-Porting-Guide)
-  - [HAL](AliOS-Things-HAL-Porting-Guide)
-  - [Flash](Flash-and-KV-Storage-Porting-Guide)
-  - [WiFi](AliOS-Things-WiFi-Porting-Guide)
-  - [LwIP](AliOS-Things-LwIP-Porting-Guide)
-  - [SAL](AliOS-Things-SAL-Porting-Guide)
-  - [FOTA](AliOS-Things-FOTA-Porting-Guide)
-  - [BINS](AliOS-Things-BINS-Porting-Guide)
-  - [uData Framework](AliOS-Things-uData-Framework-Porting-Guide)
-  - [uData Sensor Driver](AliOS-Things-uData-Sensor-Driver-Porting-Guide)
-  - [VFS](AliOS-Things-VFS-Porting-Guide)
+- [Components](AliOS-Things-Porting-Guide)
 - [Test](AliOS-Things-Porting-Test-Guide)
 
 ## [Utilities](AliOS-Things-Utilities)

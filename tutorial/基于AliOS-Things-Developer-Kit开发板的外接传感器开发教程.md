@@ -7,6 +7,8 @@
 ## 1 开发板配置
 我们验证选用的开发板是基于STM32L496VGTx芯片研发的一款物联网开发板。其内核为ARM 32位Cortex-M4 CPU，最高80MHZ的主频率，1MB的闪存，320KB的SRAM，最多支持136个高速IO口，还支持SPI,CAN,I2C,I2S,USB,UART等常用的外设接口。
 
+***调试时，请使用右上角的USB1 ST_Link接口***
+
 ![](https://i.imgur.com/ColtF57.png)
 
 单板的背面有arduino接口，当前验证使用的外接sensor主要基于I2C总线进行连接。
