@@ -11,4 +11,4 @@
 * AliOS Things 安全测试
 * 等
 
-请首先阅读[AliOS Things 认证流程](Process)和[AliOS Things 自测指南](Manual)，了解认证服务的整体流程和认证需要自测的测试项。
+请首先阅读[AliOS Things 认证流程](Certification-Process)和[AliOS Things 自测指南](Manual)，了解认证服务的整体流程和认证需要自测的测试项。

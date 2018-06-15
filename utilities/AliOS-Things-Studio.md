@@ -20,9 +20,9 @@ https://code.visualstudio.com/
 
 安装 python pip 包管理器，然后安装 `aos-cube` 到全局环境:
 ```
-$ pip install --user setuptools
-$ pip install --user wheel
-$ pip install --user aos-cube
+$ pip install --upgrade setuptools
+$ pip install --upgrade wheel
+$ pip install aos-cube
 ```
 
 #### Windows
@@ -33,8 +33,8 @@ $ pip install --user aos-cube
 
 Python 2 和 Git 安装完成以后，在 Git Bash 中安装 `aos-cube` 和`相关的packages`:
 ```
-$ pip install --user setuptools
-$ pip install --user wheel
+$ pip install --upgrade setuptools
+$ pip install --upgrade wheel
 $ pip install --user aos-cube
 ```
 

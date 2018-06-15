@@ -53,27 +53,15 @@
 
 ### 2.2、设备端参数修改
 
-mqttapp程序所在源码为`AliOS-Things/example/mqttapp/`[mqtt-example.c](https://github.com/alibaba/AliOS-Things/blob/master/example/mqttapp/mqtt-example.c)。此时在云端获取的三个参数`ProductKey`，`DeviceName`和`DeviceSecret`分别对应代码中的`PRODUCT_KEY`，`DEVICE_NAME`和`DEVICE_SECRET`三个宏。
+mqttapp程序所在源码为AliOS-Things/example/mqttapp/mqtt-example.c，接入mqtt服务的信息在[framework/protocol/linkkit/iotkit/sdk-encap/imports/iot_import_product.h](https://github.com/alibaba/AliOS-Things/blob/master/framework/protocol/linkkit/iotkit/sdk-encap/imports/iot_import_product.h)。此时在云端获取的三个参数`ProductKey`，`ProductSecret`，`DeviceName`和`DeviceSecret`分别对应代码中的`PRODUCT_KEY`，`PRODUCT_SECRET`，`DEVICE_NAME`和`DEVICE_SECRET`三个宏。
 
 ```
-#if defined(MQTT_ID2_AUTH) && defined(TEST_ID2_DAILY)
-/*
-    #define PRODUCT_KEY             "OvNmiEYRDSY"
-    #define DEVICE_NAME             "sh_online_sample_mqtt"
-    #define DEVICE_SECRET           "v9mqGzepKEphLhXmAoiaUIR2HZ7XwTky"
-*/
+#elif  MQTT_TEST
+#define PRODUCT_KEY             "b1eszMRbDvz"                                                         
+#define DEVICE_NAME             "mqtt_test"
+#define DEVICE_SECRET           "CAaQz8Fc1JkFEyuzFhu4NpHSTlRSmRxV"
+#define PRODUCT_SECRET          "Fxx6nyYptOugnS6H"
 #else
-   // TODO: 在以下段落替换下列宏定义为你在IoT控制台申请到的设备信息
-/*
-    #define PRODUCT_KEY             "yfTuLfBJTiL"
-    #define DEVICE_NAME             "TestDeviceForDemo"
-    #define DEVICE_SECRET           "fSCl9Ns5YPnYN8Ocg0VEel1kXFnRlV6c"
-*/
-    #define PRODUCT_KEY             "UclsWI7AEBM"
-    #define DEVICE_NAME             "stm32bl475e"
-    #define DEVICE_SECRET           "sM7YOzNRdVIWPhxNr3r4MA4qzsPycxdP" 
-
-#endif
 ```
 
 ## 3、AliOS Things Mqttapp编译
