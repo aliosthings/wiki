@@ -73,3 +73,13 @@ LCD屏幕显示开机画面，开机完成后屏幕显示如下图所示：
 
 
 备注：此项操作后，您个人设置的一些参数会被清零。
+
+#NOTE:
+购买开发板AliOS Things Starter Kit和Developer kit，请扫描天猫旗舰店二维码：
+
+![](https://i.imgur.com/VxHonLB.png)
+
+获取在线技术支持，请扫描技术支持群：
+
+![](https://i.imgur.com/uyT4v0Y.png)
+![](https://i.imgur.com/rqjjjA0.jpg)
