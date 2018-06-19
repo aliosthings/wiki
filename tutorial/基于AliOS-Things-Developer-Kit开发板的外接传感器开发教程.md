@@ -42,6 +42,45 @@ i2c_dev_t  ####_ctx = {
 };
 
 ```
+如果需要在串口查看调试信息，则需要在udata_sample函数中，修改uData_subscribe的入参为物理传感器对应的类型；压力传感器如下所示：
+```
+typedef enum 
+{
+ UDATA_SERVICE_ACC = 0,     /* Accelerometer */ 
+ UDATA_SERVICE_MAG,         /* Magnetometer */
+ UDATA_SERVICE_GYRO,        /* Gyroscope */
+ UDATA_SERVICE_ALS,         /* Ambient light sensor */
+ UDATA_SERVICE_PS,          /* Proximity */
+ UDATA_SERVICE_BARO,        /* Barometer */
+ UDATA_SERVICE_TEMP,        /* Temperature  */
+ UDATA_SERVICE_UV,          /* Ultraviolet */
+ UDATA_SERVICE_HUMI,        /* Humidity */
+ UDATA_SERVICE_HALL,        /* HALL sensor */
+ UDATA_SERVICE_HR,          /* Heart Rate sensor */
+ UDATA_SERVICE_PEDOMETER,   
+ UDATA_SERVICE_PDR,     
+ UDATA_SERVICE_VDR,
+ UDATA_SERVICE_GPS,
+ 
+ UDATA_MAX_CNT, 
+}udata_type_e;
+
+int udata_sample(void)
+{
+    int ret = 0;
+
+    aos_register_event_filter(EV_UDATA, uData_report_demo, NULL);
+
+    ret = uData_subscribe(UDATA_SERVICE_BARO);
+    if (ret != 0) {
+        LOG("%s %s %s %d\n", uDATA_STR, __func__, ERROR_LINE, __LINE__);
+        return -1;
+    }
+
+    return 0;
+}
+
+```
 ## 4 功能调试
 下面以developer kit板为例说明linkkit用例的调试过程。
 #### 4.1 编译
