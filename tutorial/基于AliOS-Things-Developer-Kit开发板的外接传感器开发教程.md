@@ -13,7 +13,8 @@
 
 单板的背面有arduino接口，当前验证使用的外接sensor主要基于I2C总线进行连接。
 SCL以及SDA的高电平为3V
-![](https://i.imgur.com/ZYAZCht.png)
+
+![](https://i.imgur.com/nfThGYH.png)
 
 developer kit开发板环境配置请参考链接： https://github.com/alibaba/AliOS-Things/wiki/AliOS-Things-Studio
 
