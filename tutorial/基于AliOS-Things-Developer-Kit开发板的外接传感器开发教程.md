@@ -33,17 +33,38 @@ developer kit开发板环境配置请参考链接： https://github.com/alibaba/
 ![](https://i.imgur.com/AoAtQN8.png)
 
 ## 3 代码移植
-uData介绍以及传感器驱动移植请参考以下链接：https://github.com/alibaba/AliOS-Things/wiki/AliOS-Things-uData-Sensor-Driver-Porting-Guide.zh
-以，在developer kit板上，需要注意的地方是总线配置：
+### 3.1 驱动代码集成
+请参考以下链接完成uData架构下传感器驱动的移植：https://github.com/alibaba/AliOS-Things/wiki/AliOS-Things-uData-Sensor-Driver-Porting-Guide.zh
+### 3.2 总线配置
+在developer kit板上，我们是通过外接I2C3连接传感器，需要注意的地方是总线配置,port口为3，从设备的地址为8bit：
 ```
 i2c_dev_t  ####_ctx = {
     .port = 3, /*developer kit上外接I2C的port为3*/
-    .config.dev_addr = 0x5D, /* 从设备I2C地址 */
+    .config.dev_addr = 0x5D<<1, /* 从设备I2C地址，8bit */
 };
 
 ```
-如果需要在串口查看调试信息，则需要在udata_sample函数中，修改uData_subscribe的入参为物理传感器对应的类型；压力传感器如下所示：
+如果需要在串口查看调试信息，则需要在udata_sample函数中，修改函数udata_sample中的订阅的传感器service类型（路径：example\uDataapp\uData-example.c）；压力传感器如下所示：
 ```
+int udata_sample(void)
+{
+    int ret = 0;
+
+    aos_register_event_filter(EV_UDATA, uData_report_demo, NULL);
+
+    ret = uData_subscribe(UDATA_SERVICE_BARO);/*UDATA_SERVICE_BARO为压力传感器对应的service 类型*/
+    if (ret != 0) {
+        LOG("%s %s %s %d\n", uDATA_STR, __func__, ERROR_LINE, __LINE__);
+        return -1;
+    }
+
+    return 0;
+}
+
+```
+
+```
+/*service 类型*/
 typedef enum 
 {
  UDATA_SERVICE_ACC = 0,     /* Accelerometer */ 
@@ -64,23 +85,8 @@ typedef enum
  
  UDATA_MAX_CNT, 
 }udata_type_e;
-
-int udata_sample(void)
-{
-    int ret = 0;
-
-    aos_register_event_filter(EV_UDATA, uData_report_demo, NULL);
-
-    ret = uData_subscribe(UDATA_SERVICE_BARO);
-    if (ret != 0) {
-        LOG("%s %s %s %d\n", uDATA_STR, __func__, ERROR_LINE, __LINE__);
-        return -1;
-    }
-
-    return 0;
-}
-
 ```
+
 ## 4 功能调试
 下面以developer kit板为例说明linkkit用例的调试过程。
 #### 4.1 编译
