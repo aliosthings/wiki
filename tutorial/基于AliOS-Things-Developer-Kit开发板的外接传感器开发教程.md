@@ -44,6 +44,7 @@ i2c_dev_t  ####_ctx = {
 };
 
 ```
+### 3.3 服务订阅
 如果需要在串口查看调试信息，则需要在udata_sample函数中，修改函数udata_sample中的订阅的传感器service类型（路径：example\uDataapp\uData-example.c）；压力传感器如下所示：
 ```
 int udata_sample(void)
@@ -99,6 +100,7 @@ aos make udataapp@developerkit
 本示例采用ST-LINK工具烧写bin文件，用户也可参考developer kit板环境配置说明中的其他方法；
 ![](https://i.imgur.com/gB0snoy.png)
 #### 4.3 用例执行
+通过串口连接单板（串口速率为115200）
 烧录完成后，复位单板，开始运行；如果配置流程没有错误，则可以在串口看到sensor通过udata上报的数据。
 
 ![](https://i.imgur.com/sXXs2SJ.png)
