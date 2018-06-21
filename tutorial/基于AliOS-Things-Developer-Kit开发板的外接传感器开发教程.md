@@ -16,7 +16,9 @@ SCL以及SDA的高电平为3V
 
 ![](https://i.imgur.com/nfThGYH.png)
 
-developer kit开发板环境配置请参考链接： https://github.com/alibaba/AliOS-Things/wiki/AliOS-Things-Studio
+developer kit开发板环境配置请参考以下链接，建议采用一键式安装：
+https://github.com/alibaba/AliOS-Things/wiki/AliOS-Things-Windows-Environment-Setup
+https://github.com/alibaba/AliOS-Things/wiki/AliOS-Things-Linux-Environment-Setup
 
 ## 2 代码下载
 代码下载前，请确认已在github注册账号，链接及注册流程如下：
