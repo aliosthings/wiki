@@ -31,7 +31,8 @@ Please refer to [AliOS Things Technical Overview](AliOS-Things-Technical-Overvie
 ## [Porting Guide](AliOS-Things-Porting-Guide)
 - [Components](AliOS-Things-Porting-Guide)
 - [Test](AliOS-Things-Porting-Test-Guide)
-
+- [AliOS-Things-FreeRTOS-Porting-Guide](AliOS-Things-FreeRTOS-Porting-Guide)
+- 
 ## [Utilities](AliOS-Things-Utilities)
 - [AliOS Things Studio(IDE)](AliOS-Things-Studio)
 - [uCube(aos-cube)](AliOS-Things-uCube)
