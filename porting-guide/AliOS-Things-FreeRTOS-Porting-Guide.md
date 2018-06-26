@@ -1,5 +1,3 @@
-EN | [中文](FreeRTOS切换AliOS Things指导)
-
 本文主要指导如何将已经运行FreeRTOS的系统切换到Alios Things上。此文档包括了详细的OS目录结构对比、CPU移植必要点，以及OS接口替换指导。适用于指导在通用CPU体系上，FreeRTOS系统向Alios Things的整体迁移。
 参考版本：  
 FreeRTOS：FreeRTOSv10.0.1  
@@ -7,41 +5,41 @@ AliOS Things：AOS-R-1.3.0
 
 ## 目录  
 
-- [1 主要特性对比](#1主要特性对比)
-	- [1.1 内核功能](#1内核功能)
-	- [1.2 实时性](#1实时性)
-	- [1.3 代码体积以及占用的RAM大小](#1代码体积以及占用的RAM大小)
+- [1 主要特性对比](#1-主要特性对比)
+	- [1.1 内核功能](#11-内核功能)
+	- [1.2 实时性](#12-实时性)
+	- [1.3 代码体积以及占用的RAM大小](#13-代码体积以及占用的RAM大小)
 
-- [2 通用CPU移植修改点](#1通用CPU移植修改点)
-	- [2.1 已经支持的CPU移植](#1已经支持的CPU移植)
-	- [2.2 尚不支持的CPU移植](#1尚不支持的CPU移植)
-		- [2.2.1 CPU porting](#1CPU%20porting)
-		- [2.2.2 系统tick](#1系统tick)
-		- [2.2.3 C库](#1C库)
-		- [2.2.4 基本输入输出](#1基本输入输出)
-		- [2.2.5 运行示例example](#1运行示例example)
-		- [2.2.6 内核可配置项](#1内核可配置项)
-		- [2.2.7 系统初始化](#1系统初始化)
-		- [2.2.8 上层应用调用aos接口说明](#1上层应用调用aos接口说明)  
+- [2 通用CPU移植修改点](#2-通用CPU移植修改点)
+	- [2.1 已经支持的CPU移植](#21-已经支持的CPU移植)
+	- [2.2 尚不支持的CPU移植](#22-尚不支持的CPU移植)
+		- [2.2.1 CPU porting](#221-CPU-porting)
+		- [2.2.2 系统tick](#222-系统tick)
+		- [2.2.3 C库](#223-C库)
+		- [2.2.4 基本输入输出](#224-基本输入输出)
+		- [2.2.5 运行示例example](#225-运行示例example)
+		- [2.2.6 内核可配置项](#226-内核可配置项)
+		- [2.2.7 系统初始化](#227-系统初始化)
+		- [2.2.8 上层应用调用aos接口说明](#228-上层应用调用aos接口说明)  
 
-- [3 OS API对比参考](#1OS%20API对比参考)  
-	- [3.1 Task API](#1Task%20API)
-	- [3.2 Buf Queue API](#1Buf%20Queue%20API)
-	- [3.3 Queue API](#1Queue%20API)
-	- [3.4 Semaphore & Mutex API](#1Semaphore%20&%20Mutex%20API)
-	- [3.5 Timer API](#1Timer%20API)
-	- [3.6 Event API](#1Event%20API)
-	- [3.7 Co-routines API](#1Co-routines%20API)
-	- [3.8 smp多核 API](#1smp多核%20API)
-	- [3.9 内核头文件包含](#1内核头文件包含)
+- [3 OS API对比参考](#3-OS-20API对比参考)  
+	- [3.1 Task API](#31-Task-API)
+	- [3.2 Buf Queue API](#32-Buf-Queue-API)
+	- [3.3 Queue API](#33-Queue-API)
+	- [3.4 Semaphore & Mutex API](#34-Semaphore--Mutex-API)
+	- [3.5 Timer API](#35-Timer-API)
+	- [3.6 Event API](#36-Event-API)
+	- [3.7 Co-routines API](#37-Co-routines-API)
+	- [3.8 smp多核 API](#38-smp多核-API)
+	- [3.9 内核头文件包含](#39-内核头文件包含)
 
 - [4 编译方式说明](#1编译方式说明)
-	- [4.1 内核涉及文件部署](#1内核涉及文件部署I)
-	- [4.2 Keil\iar\e2studio相关IDE](#1Keil\iar\e2studio相关IDE)
-	- [4.3 Gcc(linux\vscode) 编译命令说明](#1Gcc(linux\vscode)%20编译命令说明)
+	- [4.1 内核涉及文件部署](#41-内核涉及文件部署I)
+	- [4.2 Keil\iar\e2studio相关IDE](#42-Keiliare2studio相关IDE)
+	- [4.3 Gcc(linux\vscode) 编译命令说明](#43-Gcclinuxvscode-编译命令说明)
 
-- [5 内核移植认证](#1内核移植认证)  
-- [6 移植问题反馈途径](#1移植问题反馈途径)
+- [5 内核移植认证](#5-内核移植认证)  
+- [6 移植问题反馈途径](#6-移植问题反馈途径)
 
 
 ## 1 主要特性对比
