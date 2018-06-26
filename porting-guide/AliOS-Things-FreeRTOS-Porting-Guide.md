@@ -13,14 +13,14 @@ AliOS Things：AOS-R-1.3.0
 
 ## 目录  
 
-- [一 主要特性对比](#一-主要特性对比)
-	- [1.1 内核功能](#11-内核功能)
-	- [1.2 实时性](#12-实时性)
-	- [1.3 代码体积以及占用的RAM大小](#13-代码体积以及占用的ram大小)
+- [一 主要特性对比](#一主要特性对比)
+	- [1.1 内核功能](#11内核功能)
+	- [1.2 实时性](#12实时性)
+	- [1.3 代码体积以及占用的RAM大小](#13代码体积以及占用的ram大小)
 
-- [二 通用CPU移植修改点](#二-通用cpu移植修改点)
-	- [2.1 已经支持的CPU移植](#21-已经支持的cpu移植)
-	- [2.2 尚不支持的CPU移植](#22-尚不支持的cpu移植)
+- [二 通用CPU移植修改点](#二通用cpu移植修改点)
+	- [2.1 已经支持的CPU移植](#21已经支持的cpu移植)
+	- [2.2 尚不支持的CPU移植](#22尚不支持的cpu移植)
 		- [2.2.1 CPU porting](#221-cpu-porting)
 		- [2.2.2 系统tick](#222-系统tick)
 		- [2.2.3 C库](#223-c库)
@@ -30,24 +30,24 @@ AliOS Things：AOS-R-1.3.0
 		- [2.2.7 系统初始化](#227-系统初始化)
 		- [2.2.8 上层应用调用aos接口说明](#228-上层应用调用aos接口说明)  
 
-- [三 OS API对比参考](#三-OS-api对比参考)  
-	- [3.1 Task API](#31-task-api)
-	- [3.2 Buf Queue API](#32-buf-queue-api)
-	- [3.3 Queue API](#33-queue-api)
-	- [3.4 Semaphore & Mutex API](#34-semaphore--mutex-api)
-	- [3.5 Timer API](#35-timer-api)
-	- [3.6 Event API](#36-event-api)
-	- [3.7 Co-routines API](#37-co-routines-api)
-	- [3.8 smp多核 API](#38-smp多核-api)
-	- [3.9 内核头文件包含](#39-内核头文件包含)
+- [三 OS API对比参考](#三OS-api对比参考)  
+	- [3.1 Task API](#31task-api)
+	- [3.2 Buf Queue API](#32buf-queue-api)
+	- [3.3 Queue API](#33queue-api)
+	- [3.4 Semaphore & Mutex API](#34semaphore--mutex-api)
+	- [3.5 Timer API](#35timer-api)
+	- [3.6 Event API](#36event-api)
+	- [3.7 Co-routines API](#37co-routines-api)
+	- [3.8 smp多核 API](#38smp多核-api)
+	- [3.9 内核头文件包含](#39内核头文件包含)
 
-- [四 编译方式说明](#四-编译方式说明)
-	- [4.1 内核涉及文件部署](#41-内核涉及文件部署)
-	- [4.2 Keil\iar\e2studio相关IDE](#42-Keiliare2studio相关ide)
-	- [4.3 Gcc(linux\vscode) 编译命令说明](#43-gcclinuxvscode-编译命令说明)
+- [四 编译方式说明](#四编译方式说明)
+	- [4.1 内核涉及文件部署](#41内核涉及文件部署)
+	- [4.2 Keil\iar\e2studio相关IDE](#42Keiliare2studio相关ide)
+	- [4.3 Gcc(linux\vscode) 编译命令说明](#43gcclinuxvscode-编译命令说明)
 
-- [五 内核移植认证](#五-内核移植认证)  
-- [六 移植问题反馈途径](#六-移植问题反馈途径)
+- [五 内核移植认证](#五内核移植认证)  
+- [六 移植问题反馈途径](#六移植问题反馈途径)
 
 
 一、主要特性对比
