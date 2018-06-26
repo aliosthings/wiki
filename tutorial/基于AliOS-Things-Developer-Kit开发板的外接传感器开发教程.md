@@ -116,6 +116,6 @@ https://github.com/alibaba/AliOS-Things/wiki/AliOS-Things-uData-Sensor-Driver-Po
 ## 5 驱动代码提交
 如果功能测试完成无误，则可以参考以下链接中外部代码提交方式，向AliOS Things提交代码和入申请：
 
-https://lark.alipay.com/aliosthings/wiki/workflow-githubcontrib
+https://github.com/alibaba/AliOS-Things/wiki/contributing.zh
 
 待AliOS对其做相关的认证后，则可以集成到AliOS Things中。
