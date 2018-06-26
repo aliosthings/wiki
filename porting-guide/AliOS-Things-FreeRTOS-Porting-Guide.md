@@ -101,12 +101,11 @@ AliOS Things支持硬件列表
 Tick相关的需要有两处修改：  
 ##### 2.2.2.1 tick中断挂接
 在tick中断处理接口内部需要调用`krhino_tick_proc`，并且在处理前后需要加入`krhino_intrpt_enter`和`krhino_intrpt_exit`  
-样例：  
-```  
-    krhino_intrpt_enter();    
+样例： 
+ 
+    krhino_intrpt_enter();  
     krhino_tick_proc();    
-    krhino_intrpt_exit();    
-```
+    krhino_intrpt_exit();      
 对应FreeRTOS中`xPortSysTickHandler`或`FreeRTOS_Tick_Handler`处理。  
 
 ##### 2.2.2.2 tick频率配置  
@@ -140,19 +139,17 @@ OS运行后，需要有基本的打印输出功能，即`printf`能工作；对�
 
 ##### 2.2.6.2 内核内存裁剪  
 对于内存裁剪，不同的CPU由于需要保存的栈上下文有区别，所以在不同的平台上会有区别。基本考虑点是任务的上下文大小，任务内部的处理需要的大致栈大小。参考缩减任务栈配置：  
+  
 
-```  
-RHINO_CONFIG_TIMER_TASK_STACK_SIZE  128
-RHINO_CONFIG_K_DYN_TASK_STACK      128
-RHINO_CONFIG_IDLE_TASK_STACK_SIZE    100
-RHINO_CONFIG_CPU_USAGE_TASK_STACK  100
-```
+    RHINO_CONFIG_TIMER_TASK_STACK_SIZE  128    
+    RHINO_CONFIG_K_DYN_TASK_STACK      128  
+    RHINO_CONFIG_IDLE_TASK_STACK_SIZE    100  
+    RHINO_CONFIG_CPU_USAGE_TASK_STACK  100  
+
 需要运行上层协议栈时，  
 打开`RHINO_CONFIG_WORKQUEUE`项配置栈大小： 
-``` 
-#define RHINO_CONFIG_WORKQUEUE_STACK_SIZE     512  
- 
-```
+
+`#define RHINO_CONFIG_WORKQUEUE_STACK_SIZE     512 `   
 
 上述栈大小是系统运行的建议大小，尚不是系统极限能运行的大小。如果在一个系统中，对于内存使用需要使用到极致，可以按照两个步骤来估算极限值：  
 A、	直接估算法：  
@@ -187,24 +184,21 @@ B、实际运行检测调整
 此方式并没有将剩余RAM的空间都直接交给OS管理，需要用户自己来调整大小。  
 对应的krhino的堆空间初始化为：  
 
-```  
+```
 k_mm_region_t g_mm_region[] = {{(uint8_t *) &__heap_base, (size_t) &Heap_Size}}; 
 ```
 
 ###### 2.2.6.3.3 数组定义 
 （参考文件：`platform\mcu\nrf52xxx\aos\ soc_impl.c`）
 直接定义一个数组：  
-```  
-#define HEAP_BUFFER_SIZE 1024*20
-uint8_t g_heap_buf[HEAP_BUFFER_SIZE];
- 
-```
+
+    #define HEAP_BUFFER_SIZE 1024*20  
+    uint8_t g_heap_buf[HEAP_BUFFER_SIZE];
 此方式也没有将剩余RAM的空间都直接交给OS管理，需要用户自己来调整大小。  
 对应的krhino的堆空间初始化为：  
-```  
-k_mm_region_t g_mm_region[] = {{g_heap_buf, HEAP_BUFFER_SIZE}};
- 
-```
+
+`k_mm_region_t g_mm_region[] = {{g_heap_buf, HEAP_BUFFER_SIZE}};`
+
 
 #### 2.2.7 系统初始化  
 
@@ -255,14 +249,12 @@ AliOS Things的内核模块本身使用带`krhino_`的接口，此接口一般�
 
 FreeRTOS接口：  
 
-``` 
-BaseType_t xTaskCreate(	TaskFunction_t pxTaskCode,
-							const char * const pcName,									                    const configSTACK_DEPTH_TYPE usStackDepth,
+    BaseType_t xTaskCreate(	TaskFunction_t pxTaskCode,
+							const char * const pcName,				
+    						const configSTACK_DEPTH_TYPE usStackDepth,
 							void * const pvParameters,
 							UBaseType_t uxPriority,
 							TaskHandle_t * const pxCreatedTask )
- 
-```
 
 Rhino接口替换说明：  
 ![](https://i.imgur.com/T38IuiK.png)
@@ -272,25 +264,23 @@ Rhino接口替换说明：
 ##### 3.1.2.2 xTaskCreateStatic  
 
 FreeRTOS接口：
-```  
-TaskHandle_t xTaskCreateStatic(	TaskFunction_t pxTaskCode,
-									const char * const pcName,											            const uint32_t ulStackDepth,
+ 
+    TaskHandle_t xTaskCreateStatic(	TaskFunction_t pxTaskCode,
+									const char * const pcName,			   const uint32_t ulStackDepth,
 									void * const pvParameters,
 									UBaseType_t uxPriority,
 									StackType_t * const puxStackBuffer,
 									StaticTask_t * const pxTaskBuffer )
  
-```
+
 Rhino接口替换说明：  
 
 ![](https://i.imgur.com/YCN2eKx.png)
 
 ##### 3.1.2.3 vTaskDelete    
 FreeRTOS接口：  
-```  
-void vTaskDelete( TaskHandle_t xTaskToDelete )
- 
-```
+`void vTaskDelete( TaskHandle_t xTaskToDelete )`  
+
 Rhino接口替换说明：  
 
 ![](https://i.imgur.com/aoSzdFn.png)
@@ -298,20 +288,17 @@ Rhino接口替换说明：
 
 ##### 3.1.2.4 vTaskDelay
 FreeRTOS接口：  
-```  
-void vTaskDelay( const TickType_t xTicksToDelay )
  
-```
+`void vTaskDelay( const TickType_t xTicksToDelay )`
+
 Rhino接口替换说明：  
 
 ![](https://i.imgur.com/L2cqUiX.png)  
 
 ##### 3.1.2.5 vTaskDelayUntil
 FreeRTOS接口：  
-```  
-void vTaskDelayUntil( TickType_t * const pxPreviousWakeTime, const TickType_t xTimeIncrement )
  
-```
+    void vTaskDelayUntil( TickType_t * const pxPreviousWakeTime, const TickType_t xTimeIncrement )
 Rhino接口替换说明：
 
 ![](https://i.imgur.com/xqh6qjl.png)
@@ -320,10 +307,9 @@ Rhino接口替换说明：
 ##### 3.1.2.6 uxTaskPriorityGet  
 
 FreeRTOS接口：  
-```  
-UBaseType_t uxTaskPriorityGet( TaskHandle_t xTask )
  
-```
+`UBaseType_t uxTaskPriorityGet( TaskHandle_t xTask )`
+
 Rhino接口替换说明：  
 ![](https://i.imgur.com/doxYoD5.png)  
 
@@ -331,19 +317,17 @@ Rhino接口替换说明：
 ##### 3.1.2.7 vTaskPrioritySet  
  
 FreeRTOS接口：  
-```  
-void vTaskPrioritySet( TaskHandle_t xTask, UBaseType_t uxNewPriority )
  
-```
+`void vTaskPrioritySet( TaskHandle_t xTask, UBaseType_t uxNewPriority )`
+
 Rhino接口替换说明：  
 ![](https://i.imgur.com/jLFbo0V.png)
 
 ##### 3.1.2.8 vTaskSuspend
-FreeRTOS接口：  
-```  
-void vTaskSuspend( TaskHandle_t xTaskToSuspend )
+FreeRTOS接口： 
  
-```
+`void vTaskSuspend( TaskHandle_t xTaskToSuspend )`
+
 Rhino接口替换说明：  
 
 ![](https://i.imgur.com/vq1aEpJ.png)
@@ -352,10 +336,9 @@ Rhino接口替换说明：
 ##### 3.1.2.9 vTaskResume
 
 FreeRTOS接口：  
-```  
-void vTaskResume( TaskHandle_t xTaskToResume )
- 
-```
+  
+`void vTaskResume( TaskHandle_t xTaskToResume )`
+
 Rhino接口替换说明：  
 
 ![](https://i.imgur.com/ARZbNdS.png)  
@@ -363,10 +346,9 @@ Rhino接口替换说明：
   
 ##### 3.1.2.10 xTaskResumeFromISR  
 FreeRTOS接口：  
-```  
-BaseType_t xTaskResumeFromISR( TaskHandle_t xTaskToResume )
+
+`BaseType_t xTaskResumeFromISR( TaskHandle_t xTaskToResume )`
  
-```
 Rhino接口替换说明：  
 
 ![](https://i.imgur.com/4hseqtu.png)
@@ -374,29 +356,26 @@ Rhino接口替换说明：
 
 ##### 3.1.2.11 xTaskAbortDelay 
 FreeRTOS接口：  
-```  
-BaseType_t xTaskAbortDelay( TaskHandle_t xTask )
+  
+`BaseType_t xTaskAbortDelay( TaskHandle_t xTask )`
  
-```
 Rhino接口替换说明：  
 ![](https://i.imgur.com/l5iq4C2.png)
 
 ##### 3.1.2.12 vTaskSetThreadLocalStoragePointer
 FreeRTOS接口：  
-```  
-void vTaskSetThreadLocalStoragePointer( TaskHandle_t xTaskToSet, BaseType_t xIndex, void *pvValue )
  
-```
+    void vTaskSetThreadLocalStoragePointer( TaskHandle_t xTaskToSet, BaseType_t xIndex, void *pvValue )
+ 
 Rhino接口替换说明：  
 
 ![](https://i.imgur.com/Ej5JABf.png)
 
 ##### 3.1.2.13 pvTaskGetThreadLocalStoragePointer
 FreeRTOS接口：  
-```  
-void *pvTaskGetThreadLocalStoragePointer( TaskHandle_t xTaskToQuery, BaseType_t xIndex )
+
+    void *pvTaskGetThreadLocalStoragePointer( TaskHandle_t xTaskToQuery, BaseType_t xIndex )
  
-```
 Rhino接口替换说明：  
 ![](https://i.imgur.com/sIgUoFj.png)
 
@@ -404,11 +383,9 @@ Rhino接口替换说明：
 ##### 3.1.2.14 uxTaskGetSystemState
 
 FreeRTOS接口：  
-
-```  
-UBaseType_t uxTaskGetSystemState( TaskStatus_t * const pxTaskStatusArray, const UBaseType_t uxArraySize, uint32_t * const pulTotalRunTime )
+  
+    UBaseType_t uxTaskGetSystemState( TaskStatus_t * const pxTaskStatusArray, const UBaseType_t uxArraySize, uint32_t * const pulTotalRunTime )
  
-```
 Rhino接口替换说明：  
 ![](https://i.imgur.com/gr84fne.png)
 
@@ -416,20 +393,18 @@ Rhino接口替换说明：
 ##### 3.1.2.15 vTaskGetInfo
 
 FreeRTOS接口：  
-```  
-void vTaskGetInfo( TaskHandle_t xTask, TaskStatus_t *pxTaskStatus, BaseType_t xGetFreeStackSpace, eTaskState eState )
+
+    void vTaskGetInfo( TaskHandle_t xTask, TaskStatus_t *pxTaskStatus, BaseType_t xGetFreeStackSpace, eTaskState eState )
  
-```
 Rhino接口替换说明：  
 
 ![](https://i.imgur.com/mxkbXIB.png)
 
 ##### 3.1.2.16 xTaskGetApplicationTaskTag
 FreeRTOS接口：  
-```  
-TaskHookFunction_t xTaskGetApplicationTaskTag( TaskHandle_t xTask )
+
+`TaskHookFunction_t xTaskGetApplicationTaskTag( TaskHandle_t xTask )`
  
-```
 Rhino接口替换说明：  
 
 ![](https://i.imgur.com/c4MdAAN.png)  
@@ -438,10 +413,9 @@ Rhino接口替换说明：
 ##### 3.1.2.17 xTaskGetCurrentTaskHandle
 
 FreeRTOS接口：  
-```  
-TaskHandle_t xTaskGetCurrentTaskHandle( void )
+
+`TaskHandle_t xTaskGetCurrentTaskHandle( void )`
  
-```
 Rhino接口替换说明：  
 
 ![](https://i.imgur.com/9neOh3F.png)
@@ -449,10 +423,9 @@ Rhino接口替换说明：
 
 ##### 3.1.2.18 xTaskGetHandle
 FreeRTOS接口：  
-```  
-TaskHandle_t xTaskGetHandle( const char *pcNameToQuery )
+  
+`TaskHandle_t xTaskGetHandle( const char *pcNameToQuery )`
  
-```
 Rhino接口替换说明：  
 
 ![](https://i.imgur.com/C2gTjta.png)
@@ -461,10 +434,9 @@ Rhino接口替换说明：
 ##### 3.1.2.19 xTaskGetIdleTaskHandle
 
 FreeRTOS接口：  
-```  
-TaskHandle_t xTaskGetIdleTaskHandle( void )
  
-```
+`TaskHandle_t xTaskGetIdleTaskHandle( void )`
+ 
 Rhino接口替换说明：  
 ![](https://i.imgur.com/FcRybVd.png)
 
@@ -472,20 +444,18 @@ Rhino接口替换说明：
 ##### 3.1.2.20 uxTaskGetStackHighWaterMark
 
 FreeRTOS接口：  
-```  
-UBaseType_t uxTaskGetStackHighWaterMark( TaskHandle_t xTask )
  
-```
+`UBaseType_t uxTaskGetStackHighWaterMark( TaskHandle_t xTask )`
+ 
 Rhino接口替换说明：  
 
 ![](https://i.imgur.com/FFbBXPe.png)
 
 ##### 3.1.2.21 eTaskGetState
 FreeRTOS接口：  
-```  
-eTaskState eTaskGetState( TaskHandle_t xTask )
+
+`eTaskState eTaskGetState( TaskHandle_t xTask )`
  
-```
 Rhino接口替换说明：  
 
 ![](https://i.imgur.com/eqYU0KL.png)
@@ -494,29 +464,25 @@ Rhino接口替换说明：
 ##### 3.1.2.22 pcTaskGetName
 FreeRTOS接口：  
 
-```  
-char *pcTaskGetName( TaskHandle_t xTaskToQuery )
+`char *pcTaskGetName( TaskHandle_t xTaskToQuery )`
  
-```
 Rhino接口替换说明：  
 ![](https://i.imgur.com/N1zGG6P.png)
 
 ##### 3.1.2.23 xTaskGetTickCount
 FreeRTOS接口：  
-```  
-TickType_t xTaskGetTickCount( void )
+
+`TickType_t xTaskGetTickCount( void )`
  
-```
 Rhino接口替换说明：  
 ![](https://i.imgur.com/EXrogOb.png)
 
 ##### 3.1.2.24 xTaskGetTickCountFromISR
 
 FreeRTOS接口：  
-```  
-TickType_t xTaskGetTickCountFromISR( void )
+
+`TickType_t xTaskGetTickCountFromISR( void )`
  
-```
 Rhino接口替换说明：  
 
 ![](https://i.imgur.com/C0N1iKG.png)
@@ -526,10 +492,9 @@ Rhino接口替换说明：
 ##### 3.1.2.25 vTaskList
 
 FreeRTOS接口：  
-```  
-void vTaskList( char * pcWriteBuffer )
  
-```
+`void vTaskList( char * pcWriteBuffer )`
+ 
 Rhino接口替换说明：  
 
 ![](https://i.imgur.com/KLvUsAj.png)
@@ -538,10 +503,9 @@ Rhino接口替换说明：
 ##### 3.1.2.26 xTaskCallApplicationTaskHook
 
 FreeRTOS接口：  
-```  
-BaseType_t xTaskCallApplicationTaskHook( TaskHandle_t xTask, void *pvParameter )
+  
+    BaseType_t xTaskCallApplicationTaskHook( TaskHandle_t xTask, void *pvParameter )
  
-```
 Rhino接口替换说明：  
 ![](https://i.imgur.com/AX1OVm0.png)
 
@@ -549,10 +513,9 @@ Rhino接口替换说明：
 ##### 3.1.2.27 vTaskSetApplicationTaskTag
 
 FreeRTOS接口：  
-```  
-void vTaskSetApplicationTaskTag( TaskHandle_t xTask, TaskHookFunction_t pxHookFunction )
+
+    void vTaskSetApplicationTaskTag( TaskHandle_t xTask, TaskHookFunction_t pxHookFunction )
  
-```
 Rhino接口替换说明：  
 
 ![](https://i.imgur.com/UQwGDVN.png)
@@ -561,10 +524,9 @@ Rhino接口替换说明：
 ##### 3.1.2.28 vTaskSetTimeOutState
 
 FreeRTOS接口：  
-```  
-void vTaskSetTimeOutState( TimeOut_t * const pxTimeOut )
+
+`void vTaskSetTimeOutState( TimeOut_t * const pxTimeOut )`
  
-```
 Rhino接口替换说明：  
 ![](https://i.imgur.com/QMOBKwU.png)
 
@@ -572,10 +534,9 @@ Rhino接口替换说明：
 ##### 3.1.2.29 xTaskCheckForTimeOut
 
 FreeRTOS接口：  
-```  
-BaseType_t xTaskCheckForTimeOut( TimeOut_t * const pxTimeOut, TickType_t * const pxTicksToWait )
+  
+    BaseType_t xTaskCheckForTimeOut( TimeOut_t * const pxTimeOut, TickType_t * const pxTicksToWait )
  
-```
 Rhino接口替换说明：  
 ![](https://i.imgur.com/j4pE90q.png)
 
@@ -584,20 +545,18 @@ Rhino接口替换说明：
 ##### 3.1.2.30 xTaskGetSchedulerState
 
 FreeRTOS接口：  
-```  
-BaseType_t xTaskGetSchedulerState( void )
+
+`BaseType_t xTaskGetSchedulerState( void )`
  
-```
 Rhino接口替换说明：  
 ![](https://i.imgur.com/65Yzf26.png)
 
 ##### 3.1.2.31 uxTaskGetNumberOfTasks
 
 FreeRTOS接口：  
-```  
-UBaseType_t uxTaskGetNumberOfTasks( void )
+
+`UBaseType_t uxTaskGetNumberOfTasks( void )`
  
-```
 Rhino接口替换说明：  
 
 ![](https://i.imgur.com/eiYFKDw.png)
@@ -606,20 +565,18 @@ Rhino接口替换说明：
 ##### 3.1.2.32 vTaskGetRunTimeStats
 
 FreeRTOS接口：  
-```  
-void vTaskGetRunTimeStats( char *pcWriteBuffer )
+  
+`void vTaskGetRunTimeStats( char *pcWriteBuffer )`
  
-```
 Rhino接口替换说明：  
 ![](https://i.imgur.com/Tph6Bh8.png)
 
 ##### 3.1.2.33 taskYIELD
 
 FreeRTOS接口：  
-```  
-#define taskYIELD()					portYIELD()
+
+`#define taskYIELD()					portYIELD()`
  
-```
 Rhino接口替换说明：  
 ![](https://i.imgur.com/Tt0lUYD.png)
 
@@ -627,10 +584,9 @@ Rhino接口替换说明：
 ##### 3.1.2.34 taskENTER_CRITICAL
 
 FreeRTOS接口：  
-```  
-#define taskENTER_CRITICAL()		portENTER_CRITICAL()
  
-```
+`#define taskENTER_CRITICAL()		portENTER_CRITICAL()`
+ 
 Rhino接口替换说明：  
 
 ![](https://i.imgur.com/Qg1jKWq.png)
@@ -640,10 +596,9 @@ Rhino接口替换说明：
 ##### 3.1.2.35 taskEXIT_CRITICAL
 
 FreeRTOS接口：  
-```  
-#define taskEXIT_CRITICAL()          portEXIT_CRITICAL()
+
+`#define taskEXIT_CRITICAL()          portEXIT_CRITICAL()`
  
-```
 Rhino接口替换说明：  
 
 ![](https://i.imgur.com/CzdTpZy.png)
@@ -651,20 +606,18 @@ Rhino接口替换说明：
 ##### 3.1.2.36 taskENTER_CRITICAL_FROM_ISR
 
 FreeRTOS接口：  
-```  
-#define taskENTER_CRITICAL_FROM_ISR() portSET_INTERRUPT_MASK_FROM_ISR()
+
+`#define taskENTER_CRITICAL_FROM_ISR() portSET_INTERRUPT_MASK_FROM_ISR()`
  
-```
 Rhino接口替换说明：  
 ![](https://i.imgur.com/uqb83ew.png)
 
 ##### 3.1.2.37 taskEXIT_CRITICAL_FROM_ISR
 
 FreeRTOS接口：  
-```  
-#define taskEXIT_CRITICAL_FROM_ISR( x ) portCLEAR_INTERRUPT_MASK_FROM_ISR( x )
+  
+`#define taskEXIT_CRITICAL_FROM_ISR( x ) portCLEAR_INTERRUPT_MASK_FROM_ISR( x )`
  
-```
 Rhino接口替换说明：  
 ![](https://i.imgur.com/3xHPvQ8.png)
 
@@ -672,10 +625,9 @@ Rhino接口替换说明：
 ##### 3.1.2.38 taskDISABLE_INTERRUPTS
 
 FreeRTOS接口：  
-```  
-#define taskDISABLE_INTERRUPTS()	portDISABLE_INTERRUPTS()
  
-```
+`#define taskDISABLE_INTERRUPTS()	portDISABLE_INTERRUPTS()`
+ 
 Rhino接口替换说明：  
 ![](https://i.imgur.com/RK29J3n.png)
 
@@ -683,10 +635,9 @@ Rhino接口替换说明：
 ##### 3.1.2.39 taskENABLE_INTERRUPTS
 
 FreeRTOS接口：  
-```  
-#define taskENABLE_INTERRUPTS()		portENABLE_INTERRUPTS()
- 
-```
+  
+`#define taskENABLE_INTERRUPTS()		portENABLE_INTERRUPTS()`
+
 Rhino接口替换说明：  
 ![](https://i.imgur.com/fYdt6cp.png)
 
@@ -694,20 +645,18 @@ Rhino接口替换说明：
 ##### 3.1.2.40 vTaskStartScheduler
 
 FreeRTOS接口：  
-```  
-void vTaskStartScheduler( void )
  
-```
+`void vTaskStartScheduler( void )`
+ 
 Rhino接口替换说明：  
 ![](https://i.imgur.com/6akfMvg.png)
 
 ##### 3.1.2.41 vTaskEndScheduler
 
 FreeRTOS接口：  
-```  
-void vTaskEndScheduler( void )
- 
-```
+  
+`void vTaskEndScheduler( void )`
+
 Rhino接口替换说明：  
 ![](https://i.imgur.com/JpxrQkq.png)
 
@@ -715,10 +664,9 @@ Rhino接口替换说明：
 ##### 3.1.2.42 vTaskStepTick
 
 FreeRTOS接口：  
-```  
-void vTaskStepTick( const TickType_t xTicksToJump )
  
-```
+`void vTaskStepTick( const TickType_t xTicksToJump )`
+ 
 Rhino接口替换说明：  
 ![](https://i.imgur.com/OanRt5L.png)
 
@@ -726,20 +674,18 @@ Rhino接口替换说明：
 ##### 3.1.2.43 vTaskSuspendAll
 
 FreeRTOS接口：  
-```  
-void vTaskSuspendAll( void )
  
-```
+`void vTaskSuspendAll( void )`
+ 
 Rhino接口替换说明：  
 ![](https://i.imgur.com/AwWbwY4.png)
 
 ##### 3.1.2.44 xTaskResumeAll
 
 FreeRTOS接口：  
-```  
-BaseType_t xTaskResumeAll( void )
- 
-```
+  
+`BaseType_t xTaskResumeAll( void )`
+
 Rhino接口替换说明：  
 ![](https://i.imgur.com/U3EYLhr.png)
 
@@ -747,10 +693,9 @@ Rhino接口替换说明：
 ##### 3.1.2.45 xTaskCreateRestricted
 
 FreeRTOS接口：  
-```  
-BaseType_t xTaskCreateRestricted( const TaskParameters_t * const pxTaskDefinition, TaskHandle_t *pxCreatedTask )
+  
+    BaseType_t xTaskCreateRestricted( const TaskParameters_t * const pxTaskDefinition, TaskHandle_t *pxCreatedTask )
  
-```
 Rhino接口替换说明：  
 ![](https://i.imgur.com/soA2nHJ.png)
 
@@ -758,10 +703,9 @@ Rhino接口替换说明：
 ##### 3.1.2.46 vTaskAllocateMPURegions
 
 FreeRTOS接口：  
-```  
-void vTaskAllocateMPURegions( TaskHandle_t xTaskToModify, const MemoryRegion_t * const xRegions )
  
-```
+    void vTaskAllocateMPURegions( TaskHandle_t xTaskToModify, const MemoryRegion_t * const xRegions )
+ 
 Rhino接口替换说明：  
 ![](https://i.imgur.com/9ClJ7f9.png)
 
@@ -769,10 +713,9 @@ Rhino接口替换说明：
 ##### 3.1.2.47 vPortSwitchToUserMode
 
 FreeRTOS接口：  
-```  
-void vPortSwitchToUserMode( void )
+  
+`void vPortSwitchToUserMode( void )`
  
-```
 Rhino接口替换说明：  
 
 ![](https://i.imgur.com/jnb4QxX.png)
@@ -781,11 +724,10 @@ Rhino接口替换说明：
 ##### 3.1.2.48 xTaskNotifyGive
 
 FreeRTOS接口：  
-```  
-#define xTaskNotifyGive( xTaskToNotify ) xTaskGenericNotify( ( xTaskToNotify ), ( 0 ), eIncrement, NULL )
-BaseType_t xTaskGenericNotify( TaskHandle_t xTaskToNotify, uint32_t ulValue, eNotifyAction eAction, uint32_t *pulPreviousNotificationValue )
+  
+    #define xTaskNotifyGive( xTaskToNotify ) xTaskGenericNotify( ( xTaskToNotify ), ( 0 ), eIncrement, NULL )
+    BaseType_t xTaskGenericNotify( TaskHandle_t xTaskToNotify, uint32_t ulValue, eNotifyAction eAction, uint32_t *pulPreviousNotificationValue )
  
-```
 Rhino接口替换说明：  
 ![](https://i.imgur.com/RAxdWu0.png)
 
@@ -793,10 +735,9 @@ Rhino接口替换说明：
 ##### 3.1.2.49 vTaskNotifyGiveFromISR
 
 FreeRTOS接口：  
-```  
-Void vTaskNotifyGiveFromISR(TaskHandle_t xTaskToNotify, BaseType_t *pxHigherPriorityTaskWoken )
  
-```
+    Void vTaskNotifyGiveFromISR(TaskHandle_t xTaskToNotify, BaseType_t *pxHigherPriorityTaskWoken )
+ 
 Rhino接口替换说明：  
 ![](https://i.imgur.com/lEA3KT0.png)
 
@@ -805,33 +746,30 @@ Rhino接口替换说明：
 ##### 3.1.2.50 ulTaskNotifyTake
 
 FreeRTOS接口：  
-```  
-uint32_t ulTaskNotifyTake( BaseType_t xClearCountOnExit, TickType_t xTicksToWait )
-```
+ 
+`uint32_t ulTaskNotifyTake( BaseType_t xClearCountOnExit, TickType_t xTicksToWait )`
+
 Rhino接口替换说明：  
 ![](https://i.imgur.com/5aLXRuC.png)
 
 
 ##### 3.1.2.51 xTaskNotify
 
-FreeRTOS接口：  
-```  
-#define xTaskNotify( xTaskToNotify, ulValue, eAction ) xTaskGenericNotify( ( xTaskToNotify ), ( ulValue ), ( eAction ), NULL )
-BaseType_t xTaskGenericNotify( TaskHandle_t xTaskToNotify, uint32_t ulValue, eNotifyAction eAction, uint32_t *pulPreviousNotificationValue )
+  
+    #define xTaskNotify( xTaskToNotify, ulValue, eAction ) xTaskGenericNotify( ( xTaskToNotify ), ( ulValue ), ( eAction ), NULL )
+    BaseType_t xTaskGenericNotify( TaskHandle_t xTaskToNotify, uint32_t ulValue, eNotifyAction eAction, uint32_t *pulPreviousNotificationValue )
 
-```
 Rhino接口替换说明：  
 ![](https://i.imgur.com/uOP7rX0.png)
 
 ##### 3.1.2.52 xTaskNotifyAndQuery
 
 FreeRTOS接口：  
-```  
-#define xTaskNotifyAndQuery( xTaskToNotify, ulValue, eAction, pulPreviousNotifyValue ) xTaskGenericNotify( ( xTaskToNotify ), ( ulValue ), ( eAction ), ( pulPreviousNotifyValue ) )
+ 
+    #define xTaskNotifyAndQuery( xTaskToNotify, ulValue, eAction, pulPreviousNotifyValue ) xTaskGenericNotify( ( xTaskToNotify ), ( ulValue ), ( eAction ), ( pulPreviousNotifyValue ) )
 
-BaseType_t xTaskGenericNotify( TaskHandle_t xTaskToNotify, uint32_t ulValue, eNotifyAction eAction, uint32_t *pulPreviousNotificationValue )
+    BaseType_t xTaskGenericNotify( TaskHandle_t xTaskToNotify, uint32_t ulValue, eNotifyAction eAction, uint32_t *pulPreviousNotificationValue )
 
-```
 Rhino接口替换说明：  
 ![](https://i.imgur.com/Dwf2NsZ.png)
 
@@ -839,13 +777,12 @@ Rhino接口替换说明：
 ##### 3.1.2.53 xTaskNotifyAndQueryFromISR
 
 FreeRTOS接口：  
-```  
-#define xTaskNotifyAndQueryFromISR(xTaskToNotify, ulValue, eAction, pulPreviousNotificationValue, pxHigherPriorityTaskWoken)
-xTaskGenericNotifyFromISR( (xTaskToNotify), (ulValue), (eAction), ( pulPreviousNotificationValue ), ( pxHigherPriorityTaskWoken ) )
+ 
+    #define xTaskNotifyAndQueryFromISR(xTaskToNotify, ulValue, eAction, pulPreviousNotificationValue, pxHigherPriorityTaskWoken)
+    xTaskGenericNotifyFromISR( (xTaskToNotify), (ulValue), (eAction), ( pulPreviousNotificationValue ), ( pxHigherPriorityTaskWoken ) )
 
-BaseType_t xTaskGenericNotifyFromISR( TaskHandle_t xTaskToNotify, uint32_t ulValue, eNotifyAction eAction, uint32_t *pulPreviousNotificationValue, BaseType_t *pxHigherPriorityTaskWoken )
+    BaseType_t xTaskGenericNotifyFromISR( TaskHandle_t xTaskToNotify, uint32_t ulValue, eNotifyAction eAction, uint32_t *pulPreviousNotificationValue, BaseType_t *pxHigherPriorityTaskWoken )
 
-```
 Rhino接口替换说明：  
 ![](https://i.imgur.com/qlWhxHL.png)
 
@@ -853,10 +790,9 @@ Rhino接口替换说明：
 ##### 3.1.2.54 xTaskNotifyFromISR
 
 FreeRTOS接口：  
-```  
-#define xTaskNotifyFromISR( xTaskToNotify, ulValue, eAction, pxHigherPriorityTaskWoken ) xTaskGenericNotifyFromISR( ( xTaskToNotify ), ( ulValue ), ( eAction ), NULL, ( pxHigherPriorityTaskWoken ) )
 
-```
+    #define xTaskNotifyFromISR( xTaskToNotify, ulValue, eAction, pxHigherPriorityTaskWoken ) xTaskGenericNotifyFromISR( ( xTaskToNotify ), ( ulValue ), ( eAction ), NULL, ( pxHigherPriorityTaskWoken ) )
+
 Rhino接口替换说明：  
 ![](https://i.imgur.com/BwHuWVB.png)
 
@@ -864,19 +800,18 @@ Rhino接口替换说明：
 ##### 3.1.2.55 xTaskNotifyWait
 
 FreeRTOS接口：  
-```  
-BaseType_t xTaskNotifyWait( uint32_t ulBitsToClearOnEntry, uint32_t ulBitsToClearOnExit, uint32_t *pulNotificationValue, TickType_t xTicksToWait )
+ 
+    BaseType_t xTaskNotifyWait( uint32_t ulBitsToClearOnEntry, uint32_t ulBitsToClearOnExit, uint32_t *pulNotificationValue, TickType_t xTicksToWait )
 
-```
 Rhino接口替换说明：  
 ![](https://i.imgur.com/qEwNI5v.png)
 
 ##### 3.1.2.56 xTaskNotifyStateClear
 
 FreeRTOS接口：  
-```  
-BaseType_t xTaskNotifyStateClear( TaskHandle_t xTask )
-```
+
+`BaseType_t xTaskNotifyStateClear( TaskHandle_t xTask )`
+
 Rhino接口替换说明：  
 ![](https://i.imgur.com/unoSUpH.png)
 
@@ -896,12 +831,11 @@ Buf Queue 内部包含了一个FIFO缓冲区，每一次发送数据包到Buf Qu
 ##### 3.2.2.1 xQueueCreate
 
 FreeRTOS接口：  
-```  
-#define xQueueCreate( uxQueueLength, uxItemSize ) xQueueGenericCreate( ( uxQueueLength ), ( uxItemSize ), ( queueQUEUE_TYPE_BASE ) )
 
-QueueHandle_t xQueueGenericCreate( const UBaseType_t uxQueueLength, const UBaseType_t uxItemSize, const uint8_t ucQueueType )
+    #define xQueueCreate( uxQueueLength, uxItemSize ) xQueueGenericCreate( ( uxQueueLength ), ( uxItemSize ), ( queueQUEUE_TYPE_BASE ) )
 
-```
+    QueueHandle_t xQueueGenericCreate( const UBaseType_t uxQueueLength, const UBaseType_t uxItemSize, const uint8_t ucQueueType )
+
 Rhino接口替换说明：  
 ![](https://i.imgur.com/iITWs9a.png)
 
@@ -909,45 +843,42 @@ Rhino接口替换说明：
 ##### 3.2.2.2 xQueueCreateStatic
 
 FreeRTOS接口：  
-```  
-#define xQueueCreateStatic( uxQueueLength, uxItemSize, pucQueueStorage, pxQueueBuffer ) xQueueGenericCreateStatic( ( uxQueueLength ), ( uxItemSize ), ( pucQueueStorage ), ( pxQueueBuffer ), ( queueQUEUE_TYPE_BASE ) )
+  
+    #define xQueueCreateStatic( uxQueueLength, uxItemSize, pucQueueStorage, pxQueueBuffer ) xQueueGenericCreateStatic( ( uxQueueLength ), ( uxItemSize ), ( pucQueueStorage ), ( pxQueueBuffer ), ( queueQUEUE_TYPE_BASE ) )
 
-QueueHandle_t xQueueGenericCreateStatic( const UBaseType_t uxQueueLength, const UBaseType_t uxItemSize, uint8_t *pucQueueStorage, StaticQueue_t *pxStaticQueue, const uint8_t ucQueueType )
+    QueueHandle_t xQueueGenericCreateStatic( const UBaseType_t uxQueueLength, const UBaseType_t uxItemSize, uint8_t *pucQueueStorage, StaticQueue_t *pxStaticQueue, const uint8_t ucQueueType )
 
-```
 Rhino接口替换说明：  
 ![](https://i.imgur.com/rlKp4Wk.png)
 
 ##### 3.2.2.3 vQueueDelete
 
 FreeRTOS接口：  
-```  
-void vQueueDelete( QueueHandle_t xQueue )
-```
+ 
+`void vQueueDelete( QueueHandle_t xQueue )`
+
 Rhino接口替换说明：  
 ![](https://i.imgur.com/mM1nP4S.png)
 
 ##### 3.2.2.4 xQueueSend
 
 FreeRTOS接口：  
-```  
-#define xQueueSend( xQueue, pvItemToQueue, xTicksToWait ) xQueueGenericSend( ( xQueue ), ( pvItemToQueue ), ( xTicksToWait ), queueSEND_TO_BACK )
 
-BaseType_t xQueueGenericSend( QueueHandle_t xQueue, const void * const pvItemToQueue, TickType_t xTicksToWait, const BaseType_t xCopyPosition )
+    #define xQueueSend( xQueue, pvItemToQueue, xTicksToWait ) xQueueGenericSend( ( xQueue ), ( pvItemToQueue ), ( xTicksToWait ), queueSEND_TO_BACK )
 
-```
+    BaseType_t xQueueGenericSend( QueueHandle_t xQueue, const void * const pvItemToQueue, TickType_t xTicksToWait, const BaseType_t xCopyPosition )
+
 Rhino接口替换说明：  
 ![](https://i.imgur.com/1Pu9A4A.png)
 
 ##### 3.2.2.5 xQueueSendFromISR
 
 FreeRTOS接口：  
-```  
-#define xQueueSendFromISR( xQueue, pvItemToQueue, pxHigherPriorityTaskWoken ) xQueueGenericSendFromISR( ( xQueue ), ( pvItemToQueue ), ( pxHigherPriorityTaskWoken ), queueSEND_TO_BACK )
+  
+    #define xQueueSendFromISR( xQueue, pvItemToQueue, pxHigherPriorityTaskWoken ) xQueueGenericSendFromISR( ( xQueue ), ( pvItemToQueue ), ( pxHigherPriorityTaskWoken ), queueSEND_TO_BACK )
 
-BaseType_t xQueueGenericSendFromISR( QueueHandle_t xQueue, const void * const pvItemToQueue, BaseType_t * const pxHigherPriorityTaskWoken, const BaseType_t xCopyPosition )
+    BaseType_t xQueueGenericSendFromISR( QueueHandle_t xQueue, const void * const pvItemToQueue, BaseType_t * const pxHigherPriorityTaskWoken, const BaseType_t xCopyPosition )
 
-```
 Rhino接口替换说明：  
 
 ![](https://i.imgur.com/n2DJirX.png)
@@ -957,12 +888,11 @@ Rhino接口替换说明：
 ##### 3.2.2.6 xQueueSendToBack
 
 FreeRTOS接口：  
-```  
-#define xQueueSendToBack( xQueue, pvItemToQueue, xTicksToWait ) xQueueGenericSend( ( xQueue ), ( pvItemToQueue ), ( xTicksToWait ), queueSEND_TO_BACK )
+ 
+    #define xQueueSendToBack( xQueue, pvItemToQueue, xTicksToWait ) xQueueGenericSend( ( xQueue ), ( pvItemToQueue ), ( xTicksToWait ), queueSEND_TO_BACK )
 
-BaseType_t xQueueGenericSend( QueueHandle_t xQueue, const void * const pvItemToQueue, TickType_t xTicksToWait, const BaseType_t xCopyPosition )
+    BaseType_t xQueueGenericSend( QueueHandle_t xQueue, const void * const pvItemToQueue, TickType_t xTicksToWait, const BaseType_t xCopyPosition )
 
-```
 Rhino接口替换说明：  
 ![](https://i.imgur.com/Bmscnur.png)
 
@@ -970,12 +900,11 @@ Rhino接口替换说明：
 ##### 3.2.2.7 xQueueSendToBackFromISR
 
 FreeRTOS接口：  
-```  
-#define xQueueSendToBackFromISR( xQueue, pvItemToQueue, pxHigherPriorityTaskWoken ) xQueueGenericSendFromISR( ( xQueue ), ( pvItemToQueue ), ( pxHigherPriorityTaskWoken ), queueSEND_TO_BACK )
+ 
+    #define xQueueSendToBackFromISR( xQueue, pvItemToQueue, pxHigherPriorityTaskWoken ) xQueueGenericSendFromISR( ( xQueue ), ( pvItemToQueue ), ( pxHigherPriorityTaskWoken ), queueSEND_TO_BACK )
 
-BaseType_t xQueueGenericSendFromISR( QueueHandle_t xQueue, const void * const pvItemToQueue, BaseType_t * const pxHigherPriorityTaskWoken, const BaseType_t xCopyPosition )
+    BaseType_t xQueueGenericSendFromISR( QueueHandle_t xQueue, const void * const pvItemToQueue, BaseType_t * const pxHigherPriorityTaskWoken, const BaseType_t xCopyPosition )
 
-```
 Rhino接口替换说明：  
 ![](https://i.imgur.com/hbrjHDS.png)
 
@@ -983,33 +912,31 @@ Rhino接口替换说明：
 ##### 3.2.2.8 xQueueSendToFront
 
 FreeRTOS接口：  
-```  
-#define xQueueSendToFront( xQueue, pvItemToQueue, xTicksToWait ) xQueueGenericSend( ( xQueue ), ( pvItemToQueue ), ( xTicksToWait ), queueSEND_TO_FRONT )
+  
+    #define xQueueSendToFront( xQueue, pvItemToQueue, xTicksToWait ) xQueueGenericSend( ( xQueue ), ( pvItemToQueue ), ( xTicksToWait ), queueSEND_TO_FRONT )
 
-BaseType_t xQueueGenericSend( QueueHandle_t xQueue, const void * const pvItemToQueue, TickType_t xTicksToWait, const BaseType_t xCopyPosition )
+    BaseType_t xQueueGenericSend( QueueHandle_t xQueue, const void * const pvItemToQueue, TickType_t xTicksToWait, const BaseType_t xCopyPosition )
 
-```
 Rhino接口替换说明：  
 ![](https://i.imgur.com/bqga28L.png)
 
 ##### 3.2.2.9 xQueueSendToFrontFromISR
 
 FreeRTOS接口：  
-```  
-#define xQueueSendToFrontFromISR( xQueue, pvItemToQueue, pxHigherPriorityTaskWoken ) xQueueGenericSendFromISR( ( xQueue ), ( pvItemToQueue ), ( pxHigherPriorityTaskWoken ), queueSEND_TO_FRONT )
+  
+    #define xQueueSendToFrontFromISR( xQueue, pvItemToQueue, pxHigherPriorityTaskWoken ) xQueueGenericSendFromISR( ( xQueue ), ( pvItemToQueue ), ( pxHigherPriorityTaskWoken ), queueSEND_TO_FRONT )
 
-BaseType_t xQueueGenericSendFromISR( QueueHandle_t xQueue, const void * const pvItemToQueue, BaseType_t * const pxHigherPriorityTaskWoken, const BaseType_t xCopyPosition )
+    BaseType_t xQueueGenericSendFromISR( QueueHandle_t xQueue, const void * const pvItemToQueue, BaseType_t * const pxHigherPriorityTaskWoken, const BaseType_t xCopyPosition )
 
-```
 Rhino接口替换说明：  
 ![](https://i.imgur.com/CJsfB1w.png)
 
 ##### 3.2.2.10 xQueueReceive
 
 FreeRTOS接口：  
-```  
-BaseType_t xQueueReceive( QueueHandle_t xQueue, void * const pvBuffer, TickType_t xTicksToWait )
-```
+ 
+    BaseType_t xQueueReceive( QueueHandle_t xQueue, void * const pvBuffer, TickType_t xTicksToWait )
+
 Rhino接口替换说明：  
 
 ![](https://i.imgur.com/j4mfGES.png)
@@ -1017,18 +944,18 @@ Rhino接口替换说明：
 ##### 3.2.2.11 xQueueReceiveFromISR
 
 FreeRTOS接口：  
-``` 
-BaseType_t xQueueReceiveFromISR( QueueHandle_t xQueue, void * const pvBuffer, BaseType_t * const pxHigherPriorityTaskWoken )
-```
+ 
+     BaseType_t xQueueReceiveFromISR( QueueHandle_t xQueue, void * const pvBuffer, BaseType_t * const pxHigherPriorityTaskWoken )
+
 Rhino接口替换说明：  
 ![](https://i.imgur.com/mtywR14.png)
 
 ##### 3.2.2.12 uxQueueMessagesWaiting
 
 FreeRTOS接口：  
-```  
-UBaseType_t uxQueueMessagesWaiting( const QueueHandle_t xQueue )
-```
+  
+`UBaseType_t uxQueueMessagesWaiting( const QueueHandle_t xQueue )`
+
 Rhino接口替换说明：  
 ![](https://i.imgur.com/W52sP1B.png)
 
@@ -1036,9 +963,9 @@ Rhino接口替换说明：
 ##### 3.2.2.13 uxQueueSpacesAvailable
 
 FreeRTOS接口：  
-```  
-UBaseType_t uxQueueMessagesWaiting( const QueueHandle_t xQueue )
-```
+ 
+`UBaseType_t uxQueueMessagesWaiting( const QueueHandle_t xQueue )`
+
 Rhino接口替换说明：  
 ![](https://i.imgur.com/I7UvthD.png)
 
@@ -1047,11 +974,10 @@ Rhino接口替换说明：
 ##### 3.2.2.14 xQueueReset
 
 FreeRTOS接口：  
-```  
-#define xQueueReset( xQueue ) xQueueGenericReset( xQueue, pdFALSE )
-BaseType_t MPU_xQueueGenericReset( QueueHandle_t pxQueue, BaseType_t xNewQueue )
+ 
+    #define xQueueReset( xQueue ) xQueueGenericReset( xQueue, pdFALSE )
+    BaseType_t MPU_xQueueGenericReset( QueueHandle_t pxQueue, BaseType_t xNewQueue )
 
-```
 Rhino接口替换说明：  
 ![](https://i.imgur.com/G7bg9K5.png)
 
@@ -1060,24 +986,22 @@ Rhino接口替换说明：
 ##### 3.2.2.15 xQueueOverwrite
 
 FreeRTOS接口：  
-```  
-#define xQueueOverwrite( xQueue, pvItemToQueue ) xQueueGenericSend( ( xQueue ), ( pvItemToQueue ), 0, queueOVERWRITE )
+ 
+    #define xQueueOverwrite( xQueue, pvItemToQueue ) xQueueGenericSend( ( xQueue ), ( pvItemToQueue ), 0, queueOVERWRITE )
 
-BaseType_t xQueueGenericSend( QueueHandle_t xQueue, const void * const pvItemToQueue, TickType_t xTicksToWait, const BaseType_t xCopyPosition )
+    BaseType_t xQueueGenericSend( QueueHandle_t xQueue, const void * const pvItemToQueue, TickType_t xTicksToWait, const BaseType_t xCopyPosition )
 
-```
 Rhino接口替换说明：  
 ![](https://i.imgur.com/E5Tn66i.png)
 
 ##### 3.2.2.16 xQueueOverwriteFromISR
 
 FreeRTOS接口：  
-```  
-#define xQueueOverwriteFromISR( xQueue, pvItemToQueue, pxHigherPriorityTaskWoken ) xQueueGenericSendFromISR( ( xQueue ), ( pvItemToQueue ), ( pxHigherPriorityTaskWoken ), queueOVERWRITE )
 
-BaseType_t xQueueGenericSendFromISR( QueueHandle_t xQueue, const void * const pvItemToQueue, BaseType_t * const pxHigherPriorityTaskWoken, const BaseType_t xCopyPosition )
+    #define xQueueOverwriteFromISR( xQueue, pvItemToQueue, pxHigherPriorityTaskWoken ) xQueueGenericSendFromISR( ( xQueue ), ( pvItemToQueue ), ( pxHigherPriorityTaskWoken ), queueOVERWRITE )
 
-```
+    BaseType_t xQueueGenericSendFromISR( QueueHandle_t xQueue, const void * const pvItemToQueue, BaseType_t * const pxHigherPriorityTaskWoken, const BaseType_t xCopyPosition )
+
 Rhino接口替换说明：  
 
 ![](https://i.imgur.com/sWLHPSL.png)
@@ -1086,18 +1010,18 @@ Rhino接口替换说明：
 ##### 3.2.2.17 xQueuePeek
 
 FreeRTOS接口：  
-```  
-BaseType_t xQueuePeek( QueueHandle_t xQueue, void * const pvBuffer, TickType_t xTicksToWait )
-```
+
+    BaseType_t xQueuePeek( QueueHandle_t xQueue, void * const pvBuffer, TickType_t xTicksToWait )
+
 Rhino接口替换说明：  
 ![](https://i.imgur.com/mRjaaoE.png)
 
 ##### 3.2.2.18 xQueuePeekFromISR
 
 FreeRTOS接口：  
-```  
-BaseType_t xQueuePeekFromISR( QueueHandle_t xQueue,  void * const pvBuffer )
-```
+  
+`BaseType_t xQueuePeekFromISR( QueueHandle_t xQueue,  void * const pvBuffer )`
+
 Rhino接口替换说明：  
 ![](https://i.imgur.com/ejBGObN.png)
 
@@ -1105,9 +1029,9 @@ Rhino接口替换说明：
 ##### 3.2.2.19 vQueueAddToRegistry
 
 FreeRTOS接口：  
-``` 
-void vQueueAddToRegistry( QueueHandle_t xQueue, const char *pcQueueName )
-```
+
+`void vQueueAddToRegistry( QueueHandle_t xQueue, const char *pcQueueName )`
+
 Rhino接口替换说明：  
 ![](https://i.imgur.com/Fa2qAGy.png)
 
@@ -1115,9 +1039,9 @@ Rhino接口替换说明：
 ##### 3.2.2.20 vQueueUnregisterQueue
 
 FreeRTOS接口：  
-```  
-void vQueueUnregisterQueue( QueueHandle_t xQueue )
-```
+ 
+`void vQueueUnregisterQueue( QueueHandle_t xQueue )`
+
 Rhino接口替换说明：  
 ![](https://i.imgur.com/D5oEPN6.png)
 
@@ -1126,9 +1050,9 @@ Rhino接口替换说明：
 ##### 3.2.2.21 pcQueueGetName
 
 FreeRTOS接口：  
-```  
-const char *pcQueueGetName( QueueHandle_t xQueue )
-```
+  
+`const char *pcQueueGetName( QueueHandle_t xQueue )`
+
 Rhino接口替换说明：  
 
 ![](https://i.imgur.com/ro9UDFK.png)
@@ -1138,9 +1062,9 @@ Rhino接口替换说明：
 ##### 3.2.2.22 xQueueIsQueueFullFromISR
 
 FreeRTOS接口：  
-```  
-BaseType_t xQueueIsQueueFullFromISR( const QueueHandle_t xQueue )
-```
+ 
+`BaseType_t xQueueIsQueueFullFromISR( const QueueHandle_t xQueue )`
+
 Rhino接口替换说明：  
 
 ![](https://i.imgur.com/FY7ZE0W.png)
@@ -1149,9 +1073,9 @@ Rhino接口替换说明：
 ##### 3.2.2.23 xQueueIsQueueEmptyFromISR
 
 FreeRTOS接口：  
-```  
-BaseType_t xQueueIsQueueEmptyFromISR( const QueueHandle_t xQueue )
-```
+
+`BaseType_t xQueueIsQueueEmptyFromISR( const QueueHandle_t xQueue )`
+
 Rhino接口替换说明：  
 
 ![](https://i.imgur.com/hr0Ap0c.png)
@@ -1160,9 +1084,9 @@ Rhino接口替换说明：
 ##### 3.2.2.24 xQueueCreateSet
 
 FreeRTOS接口：  
-```  
-QueueSetHandle_t xQueueCreateSet( const UBaseType_t uxEventQueueLength )
-```
+ 
+`QueueSetHandle_t xQueueCreateSet( const UBaseType_t uxEventQueueLength )`
+
 Rhino接口替换说明：  
 ![](https://i.imgur.com/bwwr6u9.png)
 
@@ -1170,9 +1094,9 @@ Rhino接口替换说明：
 ##### 3.2.2.25 xQueueRemoveFromSet
 
 FreeRTOS接口：  
-```  
-BaseType_t xQueueRemoveFromSet( QueueSetMemberHandle_t xQueueOrSemaphore, QueueSetHandle_t xQueueSet )
-```
+  
+    BaseType_t xQueueRemoveFromSet( QueueSetMemberHandle_t xQueueOrSemaphore, QueueSetHandle_t xQueueSet )
+
 Rhino接口替换说明：  
 ![](https://i.imgur.com/POPzbzq.png)
 
@@ -1181,18 +1105,18 @@ Rhino接口替换说明：
 ##### 3.2.2.26 xQueueSelectFromSet
 
 FreeRTOS接口：  
-``` 
-QueueSetMemberHandle_t xQueueSelectFromSet( QueueSetHandle_t xQueueSet, TickType_t const xTicksToWait )
-```
+
+    QueueSetMemberHandle_t xQueueSelectFromSet( QueueSetHandle_t xQueueSet, TickType_t const xTicksToWait )
+
 Rhino接口替换说明：  
 ![](https://i.imgur.com/M6yDdc3.png)
 
 ##### 3.2.2.27 xQueueSelectFromSetFromISR
 
 FreeRTOS接口：  
-``` 
-QueueSetMemberHandle_t xQueueSelectFromSetFromISR( QueueSetHandle_t xQueueSet )
-```
+
+`QueueSetMemberHandle_t xQueueSelectFromSetFromISR( QueueSetHandle_t xQueueSet )`
+
 Rhino接口替换说明：  
 ![](https://i.imgur.com/YnKcoE5.png)
 
@@ -1221,12 +1145,11 @@ Queue内部也有一个FIFO缓冲区, 每一次发送数据包到Queue只会把�
 ##### 3.4.2.1 xSemaphoreCreateBinary
 
 FreeRTOS接口：  
-```  
-#define xSemaphoreCreateBinary() xQueueGenericCreate( ( UBaseType_t ) 1, semSEMAPHORE_QUEUE_ITEM_LENGTH, queueQUEUE_TYPE_BINARY_SEMAPHORE )
+  
+    #define xSemaphoreCreateBinary() xQueueGenericCreate( ( UBaseType_t ) 1, semSEMAPHORE_QUEUE_ITEM_LENGTH, queueQUEUE_TYPE_BINARY_SEMAPHORE )
 
-QueueHandle_t xQueueGenericCreate( const UBaseType_t uxQueueLength, const UBaseType_t uxItemSize, const uint8_t ucQueueType )
+    QueueHandle_t xQueueGenericCreate( const UBaseType_t uxQueueLength, const UBaseType_t uxItemSize, const uint8_t ucQueueType )
 
-```
 Rhino接口替换说明：  
 
 ![](https://i.imgur.com/pROdyM1.png)
@@ -1235,13 +1158,11 @@ Rhino接口替换说明：
 
 ##### 3.4.2.2 xSemaphoreCreateBinaryStatic
 
-FreeRTOS接口：  
-``` 
-#define xSemaphoreCreateBinaryStatic( pxStaticSemaphore ) xQueueGenericCreateStatic( ( UBaseType_t ) 1, semSEMAPHORE_QUEUE_ITEM_LENGTH, NULL, pxStaticSemaphore, queueQUEUE_TYPE_BINARY_SEMAPHORE )
 
-QueueHandle_t xQueueGenericCreateStatic( const UBaseType_t uxQueueLength, const UBaseType_t uxItemSize, uint8_t *pucQueueStorage, StaticQueue_t *pxStaticQueue, const uint8_t ucQueueType )
+    #define xSemaphoreCreateBinaryStatic( pxStaticSemaphore ) xQueueGenericCreateStatic( ( UBaseType_t ) 1, semSEMAPHORE_QUEUE_ITEM_LENGTH, NULL, pxStaticSemaphore, queueQUEUE_TYPE_BINARY_SEMAPHORE )
 
-```
+    QueueHandle_t xQueueGenericCreateStatic( const UBaseType_t uxQueueLength, const UBaseType_t uxItemSize, uint8_t *pucQueueStorage, StaticQueue_t *pxStaticQueue, const uint8_t ucQueueType )
+
 Rhino接口替换说明：  
 ![](https://i.imgur.com/ejzFecc.png)
 
@@ -1249,12 +1170,11 @@ Rhino接口替换说明：
 ##### 3.4.2.3 xSemaphoreCreateCounting
 
 FreeRTOS接口：  
-``` 
-#define xSemaphoreCreateCounting( uxMaxCount, uxInitialCount ) xQueueCreateCountingSemaphore( ( uxMaxCount ), ( uxInitialCount ) )
 
-QueueHandle_t xQueueCreateCountingSemaphore( const UBaseType_t uxMaxCount, const UBaseType_t uxInitialCount )
+    #define xSemaphoreCreateCounting( uxMaxCount, uxInitialCount ) xQueueCreateCountingSemaphore( ( uxMaxCount ), ( uxInitialCount ) )
 
-```
+    QueueHandle_t xQueueCreateCountingSemaphore( const UBaseType_t uxMaxCount, const UBaseType_t uxInitialCount )
+
 Rhino接口替换说明：  
 ![](https://i.imgur.com/H77tGez.png)
 
@@ -1262,24 +1182,22 @@ Rhino接口替换说明：
 ##### 3.4.2.4 xSemaphoreCreateCountingStatic
 
 FreeRTOS接口：  
-```  
-#define xSemaphoreCreateCountingStatic( uxMaxCount, uxInitialCount, pxSemaphoreBuffer ) xQueueCreateCountingSemaphoreStatic( ( uxMaxCount ), ( uxInitialCount ), ( pxSemaphoreBuffer ) )
+  
+    #define xSemaphoreCreateCountingStatic( uxMaxCount, uxInitialCount, pxSemaphoreBuffer ) xQueueCreateCountingSemaphoreStatic( ( uxMaxCount ), ( uxInitialCount ), ( pxSemaphoreBuffer ) )
 
-QueueHandle_t xQueueCreateCountingSemaphoreStatic( const UBaseType_t uxMaxCount, const UBaseType_t uxInitialCount, StaticQueue_t *pxStaticQueue )
+    QueueHandle_t xQueueCreateCountingSemaphoreStatic( const UBaseType_t uxMaxCount, const UBaseType_t uxInitialCount, StaticQueue_t *pxStaticQueue )
 
-```
 Rhino接口替换说明：  
 ![](https://i.imgur.com/gEUg8GS.png)
 
 ##### 3.4.2.5 xSemaphoreCreateMutex
 
 FreeRTOS接口：  
-``` 
-#define xSemaphoreCreateMutex() xQueueCreateMutex( queueQUEUE_TYPE_MUTEX )
 
-QueueHandle_t xQueueCreateMutex( const uint8_t ucQueueType )
+    #define xSemaphoreCreateMutex() xQueueCreateMutex( queueQUEUE_TYPE_MUTEX )
 
-```
+    QueueHandle_t xQueueCreateMutex( const uint8_t ucQueueType )
+
 Rhino接口替换说明：  
 ![](https://i.imgur.com/x5Qjaw4.png)
 
@@ -1287,12 +1205,11 @@ Rhino接口替换说明：
 ##### 3.4.2.6 xSemaphoreCreateMutexStatic
 
 FreeRTOS接口：  
-```  
-#define xSemaphoreCreateMutexStatic( pxMutexBuffer ) xQueueCreateMutexStatic( queueQUEUE_TYPE_MUTEX, ( pxMutexBuffer ) )
+ 
+    #define xSemaphoreCreateMutexStatic( pxMutexBuffer ) xQueueCreateMutexStatic( queueQUEUE_TYPE_MUTEX, ( pxMutexBuffer ) )
 
-QueueHandle_t xQueueCreateMutexStatic( const uint8_t ucQueueType, StaticQueue_t *pxStaticQueue )
+    QueueHandle_t xQueueCreateMutexStatic( const uint8_t ucQueueType, StaticQueue_t *pxStaticQueue )
 
-```
 Rhino接口替换说明：  
 ![](https://i.imgur.com/tKTl1fS.png)
 
@@ -1300,12 +1217,11 @@ Rhino接口替换说明：
 ##### 3.4.2.7 xSemCreateRecursiveMutex
 
 FreeRTOS接口：  
-``` 
-#define xSemaphoreCreateRecursiveMutex() xQueueCreateMutex( queueQUEUE_TYPE_RECURSIVE_MUTEX )
+ 
+    #define xSemaphoreCreateRecursiveMutex() xQueueCreateMutex( queueQUEUE_TYPE_RECURSIVE_MUTEX )
 
-QueueHandle_t xQueueCreateMutex( const uint8_t ucQueueType )
+    QueueHandle_t xQueueCreateMutex( const uint8_t ucQueueType )
 
-```
 Rhino接口替换说明：  
 ![](https://i.imgur.com/fLR1n3G.png)
 
@@ -1314,12 +1230,11 @@ Rhino接口替换说明：
 ##### 3.4.2.8 xSemCreateRecursiveMutexStatic
 
 FreeRTOS接口：  
-```  
-#define xSemaphoreCreateRecursiveMutexStatic( pxStaticSemaphore ) xQueueCreateMutexStatic( queueQUEUE_TYPE_RECURSIVE_MUTEX, pxStaticSemaphore )
+  
+    #define xSemaphoreCreateRecursiveMutexStatic( pxStaticSemaphore ) xQueueCreateMutexStatic( queueQUEUE_TYPE_RECURSIVE_MUTEX, pxStaticSemaphore )
 
-QueueHandle_t xQueueCreateMutexStatic( const uint8_t ucQueueType, StaticQueue_t *pxStaticQueue )
+    QueueHandle_t xQueueCreateMutexStatic( const uint8_t ucQueueType, StaticQueue_t *pxStaticQueue )
 
-```
 Rhino接口替换说明：  
 
 ![](https://i.imgur.com/XCmUWtM.png)
@@ -1327,12 +1242,11 @@ Rhino接口替换说明：
 ##### 3.4.2.9 vSemaphoreDelete
 
 FreeRTOS接口：  
-```  
-#define vSemaphoreDelete( xSemaphore ) vQueueDelete( ( QueueHandle_t ) ( xSemaphore ) )
+  
+    #define vSemaphoreDelete( xSemaphore ) vQueueDelete( ( QueueHandle_t ) ( xSemaphore ) )
 
-void vQueueDelete( QueueHandle_t xQueue )
+    void vQueueDelete( QueueHandle_t xQueue )
 
-```
 Rhino接口替换说明：  
 ![](https://i.imgur.com/XmWnJSb.png)
 
@@ -1341,11 +1255,10 @@ Rhino接口替换说明：
 ##### 3.4.2.10 xSemaphoreGetMutexHolder
 
 FreeRTOS接口：  
-```  
-#define xSemaphoreGetMutexHolder( xSemaphore ) xQueueGetMutexHolder( ( xSemaphore ) )
-void* xQueueGetMutexHolder( QueueHandle_t xSemaphore )
+ 
+    #define xSemaphoreGetMutexHolder( xSemaphore ) xQueueGetMutexHolder( ( xSemaphore ) )
+    void* xQueueGetMutexHolder( QueueHandle_t xSemaphore )
 
-```
 Rhino接口替换说明：  
 ![](https://i.imgur.com/Mp8UW8O.png)
 
@@ -1353,12 +1266,11 @@ Rhino接口替换说明：
 ##### 3.4.2.11 uxSemaphoreGetCount
 
 FreeRTOS接口：  
-``` 
-#define uxSemaphoreGetCount( xSemaphore ) uxQueueMessagesWaiting( ( QueueHandle_t ) ( xSemaphore ) )
 
-UBaseType_t uxQueueMessagesWaiting( const QueueHandle_t xQueue )
+    #define uxSemaphoreGetCount( xSemaphore ) uxQueueMessagesWaiting( ( QueueHandle_t ) ( xSemaphore ) )
 
-```
+    UBaseType_t uxQueueMessagesWaiting( const QueueHandle_t xQueue )
+
 Rhino接口替换说明：  
 ![](https://i.imgur.com/fHdaHY5.png)
 
@@ -1366,13 +1278,12 @@ Rhino接口替换说明：
 ##### 3.4.2.12 xSemaphoreTake
 
 FreeRTOS接口：  
-```  
-#define xSemaphoreTake( xSemaphore, xBlockTime )   \
-xQueueSemaphoreTake( ( xSemaphore ), ( xBlockTime ) )
 
-BaseType_t xQueueSemaphoreTake( QueueHandle_t xQueue, TickType_t xTicksToWait )
+    #define xSemaphoreTake( xSemaphore, xBlockTime )   \
+    xQueueSemaphoreTake( ( xSemaphore ), ( xBlockTime ) )
 
-```
+    BaseType_t xQueueSemaphoreTake( QueueHandle_t xQueue, TickType_t xTicksToWait )
+
 Rhino接口替换说明：  
 ![](https://i.imgur.com/veIy7hz.png)
 
@@ -1381,13 +1292,12 @@ Rhino接口替换说明：
 ##### 3.4.2.13 xSemaphoreTakeRecursive
 
 FreeRTOS接口：    
-``` 
-#define xSemaphoreTakeRecursive( xMutex, xBlockTime )  \
-xQueueTakeMutexRecursive( ( xMutex ), ( xBlockTime ) )
+ 
+    #define xSemaphoreTakeRecursive( xMutex, xBlockTime )  \
+    xQueueTakeMutexRecursive( ( xMutex ), ( xBlockTime ) )
 
-BaseType_t xQueueTakeMutexRecursive( QueueHandle_t xMutex, TickType_t xTicksToWait )
+    BaseType_t xQueueTakeMutexRecursive( QueueHandle_t xMutex, TickType_t xTicksToWait )
 
-```
 Rhino接口替换说明：  
 ![](https://i.imgur.com/FYipMlK.png)
 
@@ -1396,26 +1306,24 @@ Rhino接口替换说明：
 ##### 3.4.2.14 xSemaphoreTakeFromISR
 
 FreeRTOS接口：  
-``` 
-#define xSemaphoreTakeFromISR( xSemaphore, pxHigherPriorityTaskWoken )    \
-xQueueReceiveFromISR( ( QueueHandle_t ) ( xSemaphore ), NULL, ( pxHigherPriorityTaskWoken ) )
 
-BaseType_t xQueueReceiveFromISR( QueueHandle_t xQueue, void * const pvBuffer, BaseType_t * const pxHigherPriorityTaskWoken )
+    #define xSemaphoreTakeFromISR( xSemaphore, pxHigherPriorityTaskWoken )    \
+    xQueueReceiveFromISR( ( QueueHandle_t ) ( xSemaphore ), NULL, ( pxHigherPriorityTaskWoken ) )
 
-```
+    BaseType_t xQueueReceiveFromISR( QueueHandle_t xQueue, void * const pvBuffer, BaseType_t * const pxHigherPriorityTaskWoken )
+
 Rhino接口替换说明：  
 ![](https://i.imgur.com/DThCBi9.png)
 
 ##### 3.4.2.15 xSemaphoreGive
 
 FreeRTOS接口：  
-```  
-#define xSemaphoreGive( xSemaphore )   \
-xQueueGenericSend( ( QueueHandle_t ) ( xSemaphore ), NULL, semGIVE_BLOCK_TIME, queueSEND_TO_BACK )
+ 
+    #define xSemaphoreGive( xSemaphore )   \
+    xQueueGenericSend( ( QueueHandle_t ) ( xSemaphore ), NULL, semGIVE_BLOCK_TIME, queueSEND_TO_BACK )
 
-BaseType_t xQueueGenericSend( QueueHandle_t xQueue, const void * const pvItemToQueue, TickType_t xTicksToWait, const BaseType_t xCopyPosition )
+    BaseType_t xQueueGenericSend( QueueHandle_t xQueue, const void * const pvItemToQueue, TickType_t xTicksToWait, const BaseType_t xCopyPosition )
 
-```
 Rhino接口替换说明：  
 ![](https://i.imgur.com/8esEHEP.png)
 
@@ -1423,25 +1331,23 @@ Rhino接口替换说明：
 ##### 3.4.2.16 xSemaphoreGiveRecursive
 
 FreeRTOS接口：  
-``` 
-#define xSemaphoreGiveRecursive( xMutex )      xQueueGiveMutexRecursive( ( xMutex ) )
 
-BaseType_t xQueueGiveMutexRecursive( QueueHandle_t xMutex )
+    #define xSemaphoreGiveRecursive( xMutex )      xQueueGiveMutexRecursive( ( xMutex ) )
 
-```  
+    BaseType_t xQueueGiveMutexRecursive( QueueHandle_t xMutex )
+ 
 Rhino接口替换说明：  
 ![](https://i.imgur.com/p6mHQZD.png)
 
 ##### 3.4.2.17 xSemaphoreGiveFromISR
 
 FreeRTOS接口：  
-```  
-#define xSemaphoreGiveFromISR( xSemaphore, pxHigherPriorityTaskWoken )   \
-xQueueGiveFromISR( ( QueueHandle_t ) ( xSemaphore ), ( pxHigherPriorityTaskWoken ) )
+  
+    #define xSemaphoreGiveFromISR( xSemaphore, pxHigherPriorityTaskWoken )   \
+    xQueueGiveFromISR( ( QueueHandle_t ) ( xSemaphore ), ( pxHigherPriorityTaskWoken ) )
 
-BaseType_t xQueueGiveFromISR( QueueHandle_t xQueue, BaseType_t * const pxHigherPriorityTaskWoken )
+    BaseType_t xQueueGiveFromISR( QueueHandle_t xQueue, BaseType_t * const pxHigherPriorityTaskWoken )
 
-```
 Rhino接口替换说明：  
 
 ![](https://i.imgur.com/nI4H2rS.png)
@@ -1461,12 +1367,12 @@ Rhino接口替换说明：
 ##### 3.5.2.1 xTimerCreate
 
 FreeRTOS接口：  
-```  
-TimerHandle_t xTimerCreate(	const char * const pcTimerName,											          const TickType_t xTimerPeriodInTicks,
+ 
+    TimerHandle_t xTimerCreate(	const char * const pcTimerName,											          const TickType_t xTimerPeriodInTicks,
 								const UBaseType_t uxAutoReload,
 								void * const pvTimerID,
 								TimerCallbackFunction_t pxCallbackFunction )
-```
+
 Rhino接口替换说明：  
 
 ![](https://i.imgur.com/k2XKh8o.png)
@@ -1475,14 +1381,14 @@ Rhino接口替换说明：
 ##### 3.5.2.2 xTimerCreateStatic
 
 FreeRTOS接口：  
-```  
-TimerHandle_t xTimerCreateStatic(	const char * const pcTimerName,	
+
+    TimerHandle_t xTimerCreateStatic(	const char * const pcTimerName,	
 										const TickType_t xTimerPeriodInTicks,
 										const UBaseType_t uxAutoReload,
 										void * const pvTimerID,
 										TimerCallbackFunction_t pxCallbackFunction,
 										StaticTimer_t *pxTimerBuffer )
-```
+
 Rhino接口替换说明：  
 
 ![](https://i.imgur.com/D5TTE1W.png)
@@ -1491,9 +1397,9 @@ Rhino接口替换说明：
 ##### 3.5.2.3 xTimerIsTimerActive
 
 FreeRTOS接口：  
-```  
-BaseType_t xTimerIsTimerActive( TimerHandle_t xTimer )
-```
+
+`BaseType_t xTimerIsTimerActive( TimerHandle_t xTimer )`
+
 Rhino接口替换说明：  
 
 ![](https://i.imgur.com/CRAyAcG.png)
@@ -1502,11 +1408,10 @@ Rhino接口替换说明：
 ##### 3.5.2.4 xTimerStart
 
 FreeRTOS接口：  
-```  
-#define xTimerStart( xTimer, xTicksToWait )      \
-xTimerGenericCommand( (xTimer), tmrCOMMAND_START, ( xTaskGetTickCount() ), NULL, ( xTicksToWait ) )
 
-```
+    #define xTimerStart( xTimer, xTicksToWait )      \
+    xTimerGenericCommand( (xTimer), tmrCOMMAND_START, ( xTaskGetTickCount() ), NULL, ( xTicksToWait ) )
+
 Rhino接口替换说明：  
 
 ![](https://i.imgur.com/ELlFWuI.png)
@@ -1515,9 +1420,9 @@ Rhino接口替换说明：
 ##### 3.5.2.5 xTimerStop
 
 FreeRTOS接口：  
-```  
-#define xTimerStop( xTimer, xTicksToWait ) xTimerGenericCommand( ( xTimer ), tmrCOMMAND_STOP, 0U, NULL, ( xTicksToWait ) )
-```
+ 
+    #define xTimerStop( xTimer, xTicksToWait ) xTimerGenericCommand( ( xTimer ), tmrCOMMAND_STOP, 0U, NULL, ( xTicksToWait ) )
+
 Rhino接口替换说明：  
 ![](https://i.imgur.com/dEdjWxD.png)
 
@@ -1525,9 +1430,9 @@ Rhino接口替换说明：
 ##### 3.5.2.6 xTimerChangePeriod
 
 FreeRTOS接口：  
-```  
-#define xTimerChangePeriod( xTimer, xNewPeriod, xTicksToWait ) xTimerGenericCommand( ( xTimer ), tmrCOMMAND_CHANGE_PERIOD, ( xNewPeriod ), NULL, ( xTicksToWait ) )
-```
+
+    #define xTimerChangePeriod( xTimer, xNewPeriod, xTicksToWait ) xTimerGenericCommand( ( xTimer ), tmrCOMMAND_CHANGE_PERIOD, ( xNewPeriod ), NULL, ( xTicksToWait ) )
+
 Rhino接口替换说明：  
 ![](https://i.imgur.com/frlnRgw.png)
 
@@ -1535,9 +1440,9 @@ Rhino接口替换说明：
 ##### 3.5.2.7 xTimerDelete
 
 FreeRTOS接口：  
-```  
-#define xTimerDelete( xTimer, xTicksToWait ) xTimerGenericCommand( ( xTimer ), tmrCOMMAND_DELETE, 0U, NULL, ( xTicksToWait ) )
-```
+
+    #define xTimerDelete( xTimer, xTicksToWait ) xTimerGenericCommand( ( xTimer ), tmrCOMMAND_DELETE, 0U, NULL, ( xTicksToWait ) )
+
 Rhino接口替换说明：  
 ![](https://i.imgur.com/t2UjSAQ.png)
 
@@ -1547,9 +1452,9 @@ Rhino接口替换说明：
 ##### 3.5.2.8 xTimerReset
 
 FreeRTOS接口：  
-```  
-#define xTimerReset( xTimer, xTicksToWait ) xTimerGenericCommand( ( xTimer ), tmrCOMMAND_RESET, ( xTaskGetTickCount() ), NULL, ( xTicksToWait ) )
-```
+ 
+    #define xTimerReset( xTimer, xTicksToWait ) xTimerGenericCommand( ( xTimer ), tmrCOMMAND_RESET, ( xTaskGetTickCount() ), NULL, ( xTicksToWait ) )
+
 Rhino接口替换说明：  
 ![](https://i.imgur.com/GG114Vn.png)
 
@@ -1558,12 +1463,11 @@ Rhino接口替换说明：
 ##### 3.5.2.9 xTimerStartFromISR
 
 FreeRTOS接口：  
-```  
-#define xTimerStartFromISR( xTimer, pxHigherPriorityTaskWoken )               \
-xTimerGenericCommand( ( xTimer ), tmrCOMMAND_START_FROM_ISR,          \
-( xTaskGetTickCountFromISR() ), ( pxHigherPriorityTaskWoken ), 0U )
+ 
+    #define xTimerStartFromISR( xTimer, pxHigherPriorityTaskWoken )               \
+            xTimerGenericCommand( ( xTimer ), tmrCOMMAND_START_FROM_ISR,          \
+            ( xTaskGetTickCountFromISR() ), ( pxHigherPriorityTaskWoken ), 0U )
 
-```
 Rhino接口替换说明：  
 ![](https://i.imgur.com/hZLwJ4B.png)
 
@@ -1571,12 +1475,11 @@ Rhino接口替换说明：
 ##### 3.5.2.10 xTimerStopFromISR
 
 FreeRTOS接口：  
-```  
-#define xTimerStopFromISR( xTimer, pxHigherPriorityTaskWoken )                \
-xTimerGenericCommand( ( xTimer ), tmrCOMMAND_STOP_FROM_ISR,            \
-0, ( pxHigherPriorityTaskWoken ), 0U )
 
-```
+    #define xTimerStopFromISR( xTimer, pxHigherPriorityTaskWoken )                \
+            xTimerGenericCommand( ( xTimer ), tmrCOMMAND_STOP_FROM_ISR,           \
+            0, ( pxHigherPriorityTaskWoken ), 0U )
+
 Rhino接口替换说明：  
 ![](https://i.imgur.com/ETQzITv.png)
 
@@ -1584,12 +1487,11 @@ Rhino接口替换说明：
 ##### 3.5.2.11 xTimerChangePeriodFromISR
 
 FreeRTOS接口：  
-```  
-#define xTimerChangePeriodFromISR( xTimer, xNewPeriod, pxHigherPriorityTaskWoken )    \
-xTimerGenericCommand( ( xTimer ), tmrCOMMAND_CHANGE_PERIOD_FROM_ISR,        \
-( xNewPeriod ), ( pxHigherPriorityTaskWoken ), 0U )
 
-```
+    #define xTimerChangePeriodFromISR( xTimer, xNewPeriod, pxHigherPriorityTaskWoken )  \
+            xTimerGenericCommand( ( xTimer ), tmrCOMMAND_CHANGE_PERIOD_FROM_ISR,        \
+			( xNewPeriod ), ( pxHigherPriorityTaskWoken ), 0U )
+
 Rhino接口替换说明：  
 ![](https://i.imgur.com/tUmNtv2.png)
 
@@ -1599,10 +1501,9 @@ Rhino接口替换说明：
 ##### 3.5.2.12 pcTimerGetName
 
 FreeRTOS接口：  
-```  
-const char * pcTimerGetName( TimerHandle_t xTimer )
+ 
+`const char * pcTimerGetName( TimerHandle_t xTimer )`
 
-```
 Rhino接口替换说明：  
 ![](https://i.imgur.com/ccVOWz9.png)
 
@@ -1612,12 +1513,12 @@ Rhino接口替换说明：
 ##### 3.5.2.13 xTimerResetFromISR
 
 FreeRTOS接口：  
-```  
-#define xTimerResetFromISR( xTimer, pxHigherPriorityTaskWoken )                    \
-xTimerGenericCommand( ( xTimer ), tmrCOMMAND_RESET_FROM_ISR,                \
-( xTaskGetTickCountFromISR() ), ( pxHigherPriorityTaskWoken ), 0U )
+ 
+	#define xTimerResetFromISR( xTimer, pxHigherPriorityTaskWoken )                    \
+		   xTimerGenericCommand( ( xTimer ), tmrCOMMAND_RESET_FROM_ISR,                \
+			( xTaskGetTickCountFromISR() ), ( pxHigherPriorityTaskWoken ), 0U )
 
-```
+
 Rhino接口替换说明：  
 ![](https://i.imgur.com/SPgHdiZ.png)
 
@@ -1626,18 +1527,18 @@ Rhino接口替换说明：
 ##### 3.5.2.14 pvTimerGetTimerID
 
 FreeRTOS接口：  
-```  
-void *pvTimerGetTimerID( const TimerHandle_t xTimer )
-```
+  
+`void *pvTimerGetTimerID( const TimerHandle_t xTimer )`
+
 Rhino接口替换说明：  
 ![](https://i.imgur.com/6KY3c3k.png)
 
 ##### 3.5.2.15 vTimerSetTimerID
 
 FreeRTOS接口：  
-```  
-void vTimerSetTimerID( TimerHandle_t xTimer, void *pvNewID )
-```
+ 
+`void vTimerSetTimerID( TimerHandle_t xTimer, void *pvNewID )`
+
 Rhino接口替换说明：  
 ![](https://i.imgur.com/tbPKck9.png)
 
@@ -1645,9 +1546,9 @@ Rhino接口替换说明：
 ##### 3.5.2.16 xTimerGetPeriod
 
 FreeRTOS接口：  
-```  
-TickType_t xTimerGetPeriod( TimerHandle_t xTimer )
-```
+ 
+`TickType_t xTimerGetPeriod( TimerHandle_t xTimer )`
+
 Rhino接口替换说明：  
 ![](https://i.imgur.com/rYA5MFd.png)
 
@@ -1656,18 +1557,18 @@ Rhino接口替换说明：
 ##### 3.5.2.17 xTimerGetExpiryTime
 
 FreeRTOS接口：  
-```  
-TickType_t xTimerGetExpiryTime( TimerHandle_t xTimer )
-```
+  
+`TickType_t xTimerGetExpiryTime( TimerHandle_t xTimer )`
+
 Rhino接口替换说明：  
 ![](https://i.imgur.com/zHjFmIP.png)
 
 ##### 3.5.2.18 xTimerPendFunctionCall
 
 FreeRTOS接口：  
-```  
-BaseType_t xTimerPendFunctionCall( PendedFunction_t xFunctionToPend, void *pvParameter1, uint32_t ulParameter2, TickType_t xTicksToWait )
-```
+ 
+    BaseType_t xTimerPendFunctionCall( PendedFunction_t xFunctionToPend, void *pvParameter1, uint32_t ulParameter2, TickType_t xTicksToWait )
+
 Rhino接口替换说明：  
 
 ![](https://i.imgur.com/FGUbyvQ.png)
@@ -1676,9 +1577,9 @@ Rhino接口替换说明：
 ##### 3.5.2.19 xTimerPendFunctionCallFromISR
 
 FreeRTOS接口：  
-```  
-BaseType_t xTimerPendFunctionCallFromISR( PendedFunction_t xFunctionToPend, void *pvParameter1, uint32_t ulParameter2, BaseType_t *pxHigherPriorityTaskWoken )
-```
+ 
+    BaseType_t xTimerPendFunctionCallFromISR( PendedFunction_t xFunctionToPend, void *pvParameter1, uint32_t ulParameter2, BaseType_t *pxHigherPriorityTaskWoken )
+
 Rhino接口替换说明：  
 ![](https://i.imgur.com/gBQGluf.png)
 
@@ -1694,9 +1595,9 @@ Rhino接口替换说明：
 ##### 3.6.2.1 xEventGroupCreate
 
 FreeRTOS接口：  
-```  
-EventGroupHandle_t xEventGroupCreate( void )
-```
+
+`EventGroupHandle_t xEventGroupCreate( void )`
+
 Rhino接口替换说明：  
 ![](https://i.imgur.com/PpXcyBG.png)
 
@@ -1704,9 +1605,9 @@ Rhino接口替换说明：
 ##### 3.6.2.2 xEventGroupCreateStatic
 
 FreeRTOS接口：  
-```  
-EventGroupHandle_t xEventGroupCreateStatic( StaticEventGroup_t *pxEventGroupBuffer )
-```
+  
+`EventGroupHandle_t xEventGroupCreateStatic( StaticEventGroup_t *pxEventGroupBuffer )`
+
 Rhino接口替换说明：  
 ![](https://i.imgur.com/I5tO36p.png)
 
@@ -1715,9 +1616,9 @@ Rhino接口替换说明：
 ##### 3.6.2.3 vEventGroupDelete
 
 FreeRTOS接口：  
-```  
-void vEventGroupDelete( EventGroupHandle_t xEventGroup )
-```
+
+`void vEventGroupDelete( EventGroupHandle_t xEventGroup )`
+
 Rhino接口替换说明：  
 
 ![](https://i.imgur.com/2Ynq756.png)
@@ -1727,9 +1628,9 @@ Rhino接口替换说明：
 ##### 3.6.2.4 xEventGroupWaitBits
 
 FreeRTOS接口：  
-```  
-EventBits_t xEventGroupWaitBits( EventGroupHandle_t xEventGroup, const EventBits_t uxBitsToWaitFor, const BaseType_t xClearOnExit, const BaseType_t xWaitForAllBits, TickType_t xTicksToWait )
-```
+
+    EventBits_t xEventGroupWaitBits( EventGroupHandle_t xEventGroup, const EventBits_t uxBitsToWaitFor, const BaseType_t xClearOnExit, const BaseType_t xWaitForAllBits, TickType_t xTicksToWait )
+
 Rhino接口替换说明：  
 ![](https://i.imgur.com/WAaAZXl.png)
 
@@ -1737,9 +1638,9 @@ Rhino接口替换说明：
 ##### 3.6.2.5 xEventGroupSetBits
 
 FreeRTOS接口：  
-```  
-EventBits_t xEventGroupSetBits( EventGroupHandle_t xEventGroup, const EventBits_t uxBitsToSet )
-```
+ 
+    EventBits_t xEventGroupSetBits( EventGroupHandle_t xEventGroup, const EventBits_t uxBitsToSet )
+
 Rhino接口替换说明：  
 ![](https://i.imgur.com/6lXloZb.png)
 
@@ -1749,9 +1650,9 @@ Rhino接口替换说明：
 ##### 3.6.2.6 xEventGroupSetBitsFromISR
 
 FreeRTOS接口：  
-```  
-BaseType_t xEventGroupSetBitsFromISR( EventGroupHandle_t xEventGroup, const EventBits_t uxBitsToSet, BaseType_t *pxHigherPriorityTaskWoken )
-```
+  
+    BaseType_t xEventGroupSetBitsFromISR( EventGroupHandle_t xEventGroup, const EventBits_t uxBitsToSet, BaseType_t *pxHigherPriorityTaskWoken )
+
 Rhino接口替换说明：  
 ![](https://i.imgur.com/IPC6LUw.png)
 
@@ -1761,9 +1662,9 @@ Rhino接口替换说明：
 ##### 3.6.2.7 xEventGroupClearBits
 
 FreeRTOS接口：  
-```  
-EventBits_t xEventGroupClearBits( EventGroupHandle_t xEventGroup, const EventBits_t uxBitsToClear )
-```
+
+    EventBits_t xEventGroupClearBits( EventGroupHandle_t xEventGroup, const EventBits_t uxBitsToClear )
+
 Rhino接口替换说明：  
 ![](https://i.imgur.com/7QwsaOM.png)
 
@@ -1771,9 +1672,9 @@ Rhino接口替换说明：
 ##### 3.6.2.8 xEventGroupClearBitsFromISR
 
 FreeRTOS接口：  
-```  
-BaseType_t xEventGroupClearBitsFromISR( EventGroupHandle_t xEventGroup, const EventBits_t uxBitsToClear )
-```
+ 
+    BaseType_t xEventGroupClearBitsFromISR( EventGroupHandle_t xEventGroup, const EventBits_t uxBitsToClear )
+
 Rhino接口替换说明：  
 ![](https://i.imgur.com/9mV0CQv.png)
 
@@ -1781,12 +1682,11 @@ Rhino接口替换说明：
 ##### 3.6.2.9 xEventGroupGetBits
 
 FreeRTOS接口：  
-```  
-#define xEventGroupGetBits( xEventGroup ) xEventGroupClearBits( xEventGroup, 0 )
+ 
+    #define xEventGroupGetBits( xEventGroup ) xEventGroupClearBits( xEventGroup, 0 )
 
-EventBits_t xEventGroupClearBits( EventGroupHandle_t xEventGroup, const EventBits_t uxBitsToClear )
+    EventBits_t xEventGroupClearBits( EventGroupHandle_t xEventGroup, const EventBits_t uxBitsToClear )
 
-```
 Rhino接口替换说明：  
 ![](https://i.imgur.com/YqPeFhf.png)
 
@@ -1794,10 +1694,9 @@ Rhino接口替换说明：
 ##### 3.6.2.10 xEventGroupGetBitsFromISR
 
 FreeRTOS接口：  
-```  
-EventBits_t xEventGroupGetBitsFromISR( EventGroupHandle_t xEventGroup )
+ 
+`EventBits_t xEventGroupGetBitsFromISR( EventGroupHandle_t xEventGroup )`
 
-```
 Rhino接口替换说明：  
 ![](https://i.imgur.com/gLzlhl9.png)
 
@@ -1806,10 +1705,9 @@ Rhino接口替换说明：
 ##### 3.6.2.11 xEventGroupSync
 
 FreeRTOS接口：  
-```  
-EventBits_t xEventGroupSync( EventGroupHandle_t xEventGroup, const EventBits_t uxBitsToSet, const EventBits_t uxBitsToWaitFor, TickType_t xTicksToWait )
+  
+    EventBits_t xEventGroupSync( EventGroupHandle_t xEventGroup, const EventBits_t uxBitsToSet, const EventBits_t uxBitsToWaitFor, TickType_t xTicksToWait )
 
-```
 Rhino接口替换说明：  
 ![](https://i.imgur.com/Ychbcbn.png)
 
@@ -1833,9 +1731,9 @@ Rhino相关Smp说明，请参考：https://yq.aliyun.com/articles/589967
 
 ### 3.9 内核头文件包含
 Krhino的头文件包含统一使用：  
-```  
-#include “k_api.h”
-```
+ 
+`#include “k_api.h”`
+
 
 
 ## 4 编译方式说明  
@@ -1861,18 +1759,17 @@ AliOS Things提供了基本的内核测试用例集，用于内核移植后的�
 在上面目录下提供了两个测试文件rhino_test.c和aos_test.c。其中rhino_test.c针对于纯内核的移植，aos_test.c针对于至少包含kernel层的移植，见章节2.8描述，其测试任务主要参考下面的《AliOS Things Kernel 测试指南参考》。  
 目前主要的认证项都会带aos层，如果只关注rhino_test.c相关纯内核的验证，需要做以下修改：  
 	*修改rhino_test.c配置项，如：
-```  
-/*以下字符定义可任取名字，不能为空*/
-#define SYSINFO_ARCH        " MIPS"                    
-#define SYSINFO_MCU         " RDA"
-#define SYSINFO_DEVICE_NAME " RDA8955"
-#define SYSINFO_APP_VERSION "1.3.0"
+ 
+	/*以下字符定义可任取名字，不能为空*/
+	#define SYSINFO_ARCH        " MIPS"                    
+	#define SYSINFO_MCU         " RDA"
+	#define SYSINFO_DEVICE_NAME " RDA8955"
+	#define SYSINFO_APP_VERSION "1.3.0"
 
-/*kv和yloop不属于纯krhino模块，需要关闭*/
-#define TEST_CONFIG_KV_ENABLED                  (0)
-#define TEST_CONFIG_YLOOP_ENABLED               (0)
+	/*kv和yloop不属于纯krhino模块，需要关闭*/
+	#define TEST_CONFIG_KV_ENABLED                  (0)
+	#define TEST_CONFIG_YLOOP_ENABLED               (0)
 
-```
 	*将rhino_test.c和cut.c\ cut.h加入编译体系
 可以将`test\testcase\certificate_test`目录下此三个直接拷贝到对应mcu下，新建一个test目录并加入到makefile；其他IDE直接添加编译文件。
 	*在主任务中调用`test_certificate`执行测试用例认证直到用例通过即可。
