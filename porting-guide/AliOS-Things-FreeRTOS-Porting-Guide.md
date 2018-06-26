@@ -1,5 +1,3 @@
-EN | [中文](FreeRTOS切换AliOS Things指导)
-
 本文主要指导如何将已经运行FreeRTOS的系统切换到Alios Things上。此文档包括了详细的OS目录结构对比、CPU移植必要点，以及OS接口替换指导。适用于指导在通用CPU体系上，FreeRTOS系统向Alios Things的整体迁移。
 参考版本：  
 FreeRTOS：FreeRTOSv10.0.1  
