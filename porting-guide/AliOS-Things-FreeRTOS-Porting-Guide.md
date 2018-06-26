@@ -30,7 +30,7 @@ AliOS Things：AOS-R-1.3.0
 	- [3.5 Timer API](#1Timer%20API)
 	- [3.6 Event API](#1Event%20API)
 	- [3.7 Co-routines API](#1Co-routines%20API)
-	- [3.8 smp多核 API](#1smp多核%20API)
+	- [3.8 smp多核 API](#38-smp多核-api)
 	- [3.9 内核头文件包含](#1内核头文件包含)
 
 - [4 编译方式说明](#1编译方式说明)
