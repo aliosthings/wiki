@@ -156,7 +156,7 @@ fork成功后，在可以在自己名下看到AliOS-Things的代码
 然后和入代码修改，和入的代码主要包括以下四个部分：
 1. 新增的sensor驱动文件
 2. sensor.mk中增加该驱动源文件
-3. sensor.mk中增加相应的编译宏（***并注释掉***），待用户使用时自行开启
+3. sensor.mk中增加相应的编译宏（***并注释掉，待用户使用时自行开启***）
 ![](https://i.imgur.com/em98eh1.png)
 4. 在sensor_init函数中调用相应的sensor初始化接口（***并用编译宏隔离***）
 ![](https://i.imgur.com/cZcrBsJ.png)
