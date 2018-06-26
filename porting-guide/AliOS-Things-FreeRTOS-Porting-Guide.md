@@ -1,9 +1,9 @@
 EN | [中文](FreeRTOS切换AliOS Things指导)
 
 本文主要指导如何将已经运行FreeRTOS的系统切换到Alios Things上。此文档包括了详细的OS目录结构对比、CPU移植必要点，以及OS接口替换指导。适用于指导在通用CPU体系上，FreeRTOS系统向Alios Things的整体迁移。
-参考版本：
-FreeRTOS：FreeRTOSv10.0.1
-AliOS Things：AOS-R-1.3.0
+参考版本：  
+FreeRTOS：FreeRTOSv10.0.1  
+AliOS Things：AOS-R-1.3.0  
 
 ## 目录  
 
@@ -15,7 +15,7 @@ AliOS Things：AOS-R-1.3.0
 - [2 通用CPU移植修改点](#1通用CPU移植修改点)
 	- [2.1 已经支持的CPU移植](#1已经支持的CPU移植)
 	- [2.2 尚不支持的CPU移植](#1尚不支持的CPU移植)
-		- [2.2.1 CPU porting](#1CPU porting)
+		- [2.2.1 CPU porting](#1CPU%20porting)
 		- [2.2.2 系统tick](#1系统tick)
 		- [2.2.3 C库](#1C库)
 		- [2.2.4 基本输入输出](#1基本输入输出)
@@ -24,21 +24,21 @@ AliOS Things：AOS-R-1.3.0
 		- [2.2.7 系统初始化](#1系统初始化)
 		- [2.2.8 上层应用调用aos接口说明](#1上层应用调用aos接口说明)  
 
-- [3 OS API对比参考](#1OS API对比参考)
-	- [3.1 Task API](#1Task API)
-	- [3.2 Buf Queue API](#1Buf Queue API)
-	- [3.3 Queue API](#1Queue API)
-	- [3.4 Semaphore & Mutex API](#1Semaphore & Mutex API)
-	- [3.5 Timer API](#1Timer API)
-	- [3.6 Event API](#1Event API)
-	- [3.7 Co-routines API](#1Co-routines API)
-	- [3.8 smp多核 API](#1smp多核 API)
+- [3 OS API对比参考](#1OS%20API对比参考)  
+	- [3.1 Task API](#1Task%20API)
+	- [3.2 Buf Queue API](#1Buf%20Queue%20API)
+	- [3.3 Queue API](#1Queue%20API)
+	- [3.4 Semaphore & Mutex API](#1Semaphore%20&%20Mutex%20API)
+	- [3.5 Timer API](#1Timer%20API)
+	- [3.6 Event API](#1Event%20API)
+	- [3.7 Co-routines API](#1Co-routines%20API)
+	- [3.8 smp多核 API](#1smp多核%20API)
 	- [3.9 内核头文件包含](#1内核头文件包含)
 
 - [4 编译方式说明](#1编译方式说明)
 	- [4.1 内核涉及文件部署](#1内核涉及文件部署I)
 	- [4.2 Keil\iar\e2studio相关IDE](#1Keil\iar\e2studio相关IDE)
-	- [4.3 Gcc(linux\vscode) 编译命令说明](#1Gcc(linux\vscode) 编译命令说明)
+	- [4.3 Gcc(linux\vscode) 编译命令说明](#1Gcc(linux\vscode)%20编译命令说明)
 
 - [5 内核移植认证](#1内核移植认证)  
 - [6 移植问题反馈途径](#1移植问题反馈途径)
@@ -75,7 +75,7 @@ TCB多出的4个字节是因为Rhino为了解决优先级反转嵌套而引入�
 
 
 ## 2 通用CPU移植修改点  
-对于AliOS Things已经支持的CPU，相关的arch\cpu文件可以直接使用，只需要加入编译体系即可；对于尚未支持的CPU，只需要对照相关移植点修改即可。  
+对于AliOS Things已经支持的CPU，相关的`arch\cpu`文件可以直接使用，只需要加入编译体系即可；对于尚未支持的CPU，只需要对照相关移植点修改即可。  
 AliOS Things支持硬件列表  
 ![](https://i.imgur.com/0IoSWoa.png)
 ![](https://i.imgur.com/wvfoa5S.png)
@@ -105,14 +105,14 @@ Tick相关的需要有两处修改：
 在tick中断处理接口内部需要调用`krhino_tick_proc`，并且在处理前后需要加入`krhino_intrpt_enter`和`krhino_intrpt_exit`  
 样例：  
 ```  
-    krhino_intrpt_enter();  
-    krhino_tick_proc();  
-    krhino_intrpt_exit();  
+    krhino_intrpt_enter();    
+    krhino_tick_proc();    
+    krhino_intrpt_exit();    
 ```
 对应FreeRTOS中`xPortSysTickHandler`或`FreeRTOS_Tick_Handler`处理。  
 
 ##### 2.2.2.2 tick频率配置  
-需要将tick中断的频率配置给相应的寄存器。AliOS Things 在k_config.h中有相关`RHINO_CONFIG_TICKS_PER_SECOND`的设定。对应替换`configTICK_RATE_HZ`的设置即可。
+需要将tick中断的频率配置给相应的寄存器。AliOS Things 在`k_config.h`中有相关`RHINO_CONFIG_TICKS_PER_SECOND`的设定。对应替换`configTICK_RATE_HZ`的设置即可。
 ![](https://i.imgur.com/oGBOiMA.png)
 
 #### 2.2.3 C库  
@@ -126,16 +126,16 @@ OS内已经实现了分别针对armcc、gcc、iar三种编译体系的C库函数
 
 #### 2.2.4 基本输入输出  
 
-OS运行后，需要有基本的打印输出功能，即printf能工作；对于需要能在串口执行命令的需求下，还需要有获取串口字符串功能。一般通过重构下述接口实现:  
+OS运行后，需要有基本的打印输出功能，即`printf`能工作；对于需要能在串口执行命令的需求下，还需要有获取串口字符串功能。一般通过重构下述接口实现:  
 ![](https://i.imgur.com/JD7wM9g.png)
 
 #### 2.2.5 运行示例example  
 
-在目录example下提供了各种OS上app运行实例，对于基本的内核移植，可以参考example\rhinorun将该实例运行起来，即表示内核基本的任务、tick中断能够正常运行。  
+在目录example下提供了各种OS上app运行实例，对于基本的内核移植，可以参考`example\rhinorun`将该实例运行起来，即表示内核基本的任务、tick中断能够正常运行。  
 
 #### 2.2.6 内核可配置项  
 
-K_config.h文件中包含了所有内核裁剪配置，包括模块裁剪、内存裁剪。可以根据不同的模块需求，以及内存大小来进行修改裁剪。  
+`K_config.h`文件中包含了所有内核裁剪配置，包括模块裁剪、内存裁剪。可以根据不同的模块需求，以及内存大小来进行修改裁剪。  
 
 ##### 2.2.6.1 内核模块裁剪  
 ![](https://i.imgur.com/7iqqPBn.png)
@@ -148,10 +148,11 @@ RHINO_CONFIG_TIMER_TASK_STACK_SIZE  128
 RHINO_CONFIG_K_DYN_TASK_STACK      128
 RHINO_CONFIG_IDLE_TASK_STACK_SIZE    100
 RHINO_CONFIG_CPU_USAGE_TASK_STACK  100
-
-需要运行上层协议栈时，
-打开RHINO_CONFIG_WORKQUEUE项配置栈大小：
-#define RHINO_CONFIG_WORKQUEUE_STACK_SIZE     512
+```
+需要运行上层协议栈时，  
+打开`RHINO_CONFIG_WORKQUEUE`项配置栈大小： 
+``` 
+#define RHINO_CONFIG_WORKQUEUE_STACK_SIZE     512  
  
 ```
 
@@ -188,7 +189,7 @@ B、实际运行检测调整
 此方式并没有将剩余RAM的空间都直接交给OS管理，需要用户自己来调整大小。  
 对应的krhino的堆空间初始化为：  
 
-```c  
+```  
 k_mm_region_t g_mm_region[] = {{(uint8_t *) &__heap_base, (size_t) &Heap_Size}}; 
 ```
 
@@ -227,7 +228,7 @@ k_mm_region_t g_mm_region[] = {{g_heap_buf, HEAP_BUFFER_SIZE}};
 
 #### 2.2.8 上层应用调用aos接口说明  
  
-AliOS Things的内核模块本身使用带krhino_的接口，此接口一般是内核本身或者纯内核的软件系统使用；对于应用来说，统一提供aos_的内核应用接口，原则上上层应用，包括协议栈不再独立调用krhino开头的接口。Aos_rhino.c内抽象出了上层所有需要使用的内核功能，并且尽可能将参数精简，以达到用户使用方便的目的。  
+AliOS Things的内核模块本身使用带`krhino_`的接口，此接口一般是内核本身或者纯内核的软件系统使用；对于应用来说，统一提供aos_的内核应用接口，原则上上层应用，包括协议栈不再独立调用`krhino`开头的接口。Aos_rhino.c内抽象出了上层所有需要使用的内核功能，并且尽可能将参数精简，以达到用户使用方便的目的。  
 另外，通过aos层，还可以封装其他如freertos、posix的接口，可参考aos_freertos.c和aos_posix.c文件。Aos层的OS接口作为一个抽象层，原则上可以封装所有类似其他OS的功能接口。  
 关于aos层的接口说明，请参考：https://living.aliyun.com/doc#ok40t4.html  
 
@@ -1852,14 +1853,13 @@ IDE相关的编译工程都放在projects目录下，目前该目录下已经有
 ### 4.3 Gcc(linux\vscode) 编译命令说明  
 
 该部分在github上有详细步骤，此处不另做说明。  
-Linux下编译使用快速指导：https://github.com/alibaba/AliOS-Things/wiki/Quick-Start  
-Vscode下开发使用说明：https://github.com/alibaba/AliOS-Things/wiki/AliOS-Things-Studio  
-
+Linux下编译使用快速指导： [Quick-Start](Quick-Start)    
+Vscode下开发使用说明：[AliOS-Things-Studio](AliOS-Things-Studio)   
 
 ## 5 内核移植认证  
 
 AliOS Things提供了基本的内核测试用例集，用于内核移植后的测试验证，所有移植的平台都需要运行该测试样例，确保内核功能的正确性。  
-内核测试集目录：test\testcase\certificate_test  
+内核测试集目录：`test\testcase\certificate_test`  
 在上面目录下提供了两个测试文件rhino_test.c和aos_test.c。其中rhino_test.c针对于纯内核的移植，aos_test.c针对于至少包含kernel层的移植，见章节2.8描述，其测试任务主要参考下面的《AliOS Things Kernel 测试指南参考》。  
 目前主要的认证项都会带aos层，如果只关注rhino_test.c相关纯内核的验证，需要做以下修改：  
 	*修改rhino_test.c配置项，如：
@@ -1876,11 +1876,11 @@ AliOS Things提供了基本的内核测试用例集，用于内核移植后的�
 
 ```
 	*将rhino_test.c和cut.c\ cut.h加入编译体系
-可以将test\testcase\certificate_test目录下此三个直接拷贝到对应mcu下，新建一个test目录并加入到makefile；其他IDE直接添加编译文件。
-	*在主任务中调用test_certificate执行测试用例认证直到用例通过即可。
+可以将`test\testcase\certificate_test`目录下此三个直接拷贝到对应mcu下，新建一个test目录并加入到makefile；其他IDE直接添加编译文件。
+	*在主任务中调用`test_certificate`执行测试用例认证直到用例通过即可。
 
 上面属于纯krhino内核的测试方式，如果带aos接口层的测试请参考，  
-AliOS Things Kernel 测试指南：https://github.com/alibaba/AliOS-Things/wiki/Manual-API  
+AliOS Things Kernel 测试指南：[AliOS Things Kernel 测试指南](Manual-API#AliOS%20Things%20Kernel%20测试指南)  
 
 
 
