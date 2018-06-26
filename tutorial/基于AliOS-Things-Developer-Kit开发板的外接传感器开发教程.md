@@ -114,8 +114,67 @@ aos make udataapp@developerkit
 https://github.com/alibaba/AliOS-Things/wiki/AliOS-Things-uData-Sensor-Driver-Porting-Guide.zh
 
 ## 5 驱动代码提交
-如果功能测试完成无误，则可以参考以下链接中外部代码提交方式，向AliOS Things提交代码和入申请：
+如果功能测试完成无误，则可以参考以下链接中外部代码提交方式，向AliOS Things提交代码和入申请。
 
+由于当前传感器集成是使用的稳定的分支代码，而上传代码则需要到AliOS-Things的主干中，链接：https://github.com/alibaba/AliOS-Things
+
+代码上传之前请确保已通过公司注册github账号。并完成SSH key认证，已完成则跳过5.1节。
+
+#### 5.1 SSH key 认证
+在git bash下执行以下命令
+
+ssh-keygen -t rsa -C "example_mail@alibaba.com"
+
+example_mail@alibaba.com为自己注册github使用的公司邮箱
+
+打开生成的SSH key文件id_rsa.pub，可以看到SSH key值如下所示
+
+![](https://i.imgur.com/B4mGWPE.png)
+
+在github网站上添加该key值
+
+![](https://i.imgur.com/hHPQQAA.png)
+
+![](https://i.imgur.com/fH3NErZ.png)
+
+添加成功后如下所示：
+
+![](https://i.imgur.com/XHizOWp.png)
+
+#### 5.2 fork Alios-Things到自己名下
+
+![](https://i.imgur.com/Q6dMP2H.png)
+
+fork成功后，在可以在自己名下看到AliOS-Things的代码
+
+![](https://i.imgur.com/gdTT7or.png)
+
+#### 5.3 代码修改下载
+
+在git bash下通过以下命令下载自己分支的代码：
+
+git clone git@github.com:***yourname***/AliOS-Things.git
+
+yourname -- 即自己github账号的名字
+
+![](https://i.imgur.com/RgeFnnB.png)
+
+#### 5.4 代码上传
+
+每次代码上传之前，请同步AliOS-Things上master代码到自己名下的master
+
+然后和入代码修改，则可以通过以下命令上传代码到自己名下的master分支
+
+git add .
+
+git comment -m "add driver for sensor"
+
+git push origion master
+
+#### 5.5 提交pull request
+
+在自己的代码路径下，点击“pull request”，待CI运行成功后，由AliOS-Things团队和入到主干分支
+![](https://i.imgur.com/lr8u3Sk.png)
+
+详情也可参考该链接：
 https://github.com/alibaba/AliOS-Things/wiki/contributing.zh
-
-待AliOS对其做相关的认证后，则可以集成到AliOS Things中。
