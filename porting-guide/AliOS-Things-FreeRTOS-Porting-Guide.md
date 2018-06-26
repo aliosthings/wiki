@@ -30,7 +30,7 @@ AliOS Things：AOS-R-1.3.0
 		- [2.2.7 系统初始化](#227-系统初始化)
 		- [2.2.8 上层应用调用aos接口说明](#228-上层应用调用aos接口说明)  
 
-- [三 OS API对比参考](#三OS-api对比参考)  
+- [三 OS API对比参考](#三os-api对比参考)  
 	- [3.1 Task API](#31task-api)
 	- [3.2 Buf Queue API](#32buf-queue-api)
 	- [3.3 Queue API](#33queue-api)
@@ -205,9 +205,9 @@ Things就能适配上一个新的CPU。
 | cpu_task_stack_init     | pxPortInitialiseStack                         | 任务栈初始化                                                                                               |
 | cpu_cur_get             | 无。单核统一使用0，多核按照具体寄存器实际获取 | 当前核号                                                                                                   |
 
-#### 2.2.2 系统tick  
+### 2.2.2 系统tick  
 Tick相关的需要有两处修改：  
-##### 2.2.2.1 tick中断挂接
+#### 2.2.2.1 tick中断挂接
 在tick中断处理接口内部需要调用`krhino_tick_proc`，并且在处理前后需要加入`krhino_intrpt_enter`和`krhino_intrpt_exit`  
 样例： 
  
@@ -399,8 +399,8 @@ Things rhino接口替换参数细节。
 | vTaskResume                                                                                                        | krhino_task_resume                           | 恢复某个任务                                                                                          |
 | xTaskResumeFromISR                                                                                                 | krhino_task_resume                           | 从中断中恢复某个任务                                                                                  |
 | xTaskAbortDelay                                                                                                    | krhino_task_wait_abort                       | 中止一个正在睡眠的任务                                                                                |
-| SetThreadLocalStoragePointer                                                                                       | krhino_task_info_set                         | 设置任务的私有属性                                                                                    |
-| GetThreadLocalStoragePointer                                                                                       | krhino_task_info_get                         | 得到任务的私有属性                                                                                    |
+| vTaskSetThreadLocalStoragePointer                                                                                  | krhino_task_info_set                         | 设置任务的私有属性                                                                                    |
+| pvTaskGetThreadLocalStoragePointer                                                                                 | krhino_task_info_get                         | 得到任务的私有属性                                                                                    |
 | uxTaskGetSystemState                                                                                               | 直接读系统状态变量                           | 得到系统状态                                                                                          |
 | vTaskGetInfo                                                                                                       | 直接读任务的结构体信息内容                   | 得到task结构体信息                                                                                    |
 | xTaskGetApplicationTaskTag                                                                                         |                                              |                                                                                                       |
@@ -438,8 +438,6 @@ Things rhino接口替换参数细节。
 | xTaskCreateRestricted                                                                                              | MPU设计不同                                  | 针对MPU使用。MPU相关，FreeRTOS独有设计API，其他RTOS没有。Rhino的MPU设计采用静态保护的方式，设计不同。 |
 | vTaskAllocateMPURegions                                                                                            | MPU设计不同                                  |                                                                                                       |
 | vPortSwitchToUserMode                                                                                              | MPU设计不同                                  | 切换到用户模式。Freertos相关                                                                          |
-| xTaskGetHandle                                                                                                     | 直接读任务地址                               | 得到task的handle                                                                                      |
-| xTaskGetCurrentTaskHandle                                                                                          | 直接读系统变量                               | 得到当前任务的handle                                                                                  |
 | xTaskNotifyGive                                                                                                    | krhino_sem_give达到相同目的                  | 通知任务运行                                                                                          |
 | vTaskNotifyGiveFromISR                                                                                             | krhino_sem_give达到相同目的                  | 中断中通知任务运行                                                                                    |
 | ulTaskNotifyTake                                                                                                   | krhino_sem_take达到相同目的                  | 中断中获取通知                                                                                        |
