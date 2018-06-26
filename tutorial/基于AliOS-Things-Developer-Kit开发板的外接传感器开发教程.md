@@ -151,19 +151,17 @@ fork成功后，在可以在自己名下看到AliOS-Things的代码
 
 #### 5.3 代码修改下载
 
-在git bash下通过以下命令下载自己分支的代码：
-
-git clone git@github.com:***yourname***/AliOS-Things.git
-
-yourname -- 即自己github账号的名字
-
-![](https://i.imgur.com/RgeFnnB.png)
-
-#### 5.4 代码上传
-
 每次代码上传之前，请同步AliOS-Things上master代码到自己名下的master
 
-然后和入代码修改，则可以通过以下命令上传代码到自己名下的master分支
+然后和入代码修改，和入的代码主要包括以下四个部分：
+1. 新增的sensor驱动文件
+2. sensor.mk中增加该驱动源文件
+3. sensor.mk中增加相应的编译宏（***并注释掉***），待用户使用时自行开启
+![](https://i.imgur.com/em98eh1.png)
+4. 在sensor_init函数中调用相应的sensor初始化接口（***并用编译宏隔离***）
+![](https://i.imgur.com/cZcrBsJ.png)
+
+修改完成后，通过以下命令上传代码到自己名下的master分支
 
 git add .
 
