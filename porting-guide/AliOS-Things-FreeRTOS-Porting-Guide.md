@@ -1,3 +1,4 @@
+FreeRTOS切换AliOS Things指导
 
 本文主要指导如何将已经运行FreeRTOS的系统切换到Alios
 Things上。此文档包括了详细的OS目录结构对比、CPU移植必要点，以及OS接口替换指导。适用于指导在通用CPU体系上，FreeRTOS系统向Alios
@@ -13,40 +14,40 @@ AliOS Things：AOS-R-1.3.0
 ## 目录  
 
 - [一 主要特性对比](#一-主要特性对比)
-	- [1 内核功能](#1-内核功能)
-	- [2 实时性](#2-实时性)
-	- [3 代码体积以及占用的RAM大小](#3-代码体积以及占用的ram大小)
+	- [1.1 内核功能](#11-内核功能)
+	- [1.2 实时性](#12-实时性)
+	- [1.3 代码体积以及占用的RAM大小](#13-代码体积以及占用的ram大小)
 
 - [二 通用CPU移植修改点](#二-通用cpu移植修改点)
-	- [1 已经支持的CPU移植](#1-已经支持的cpu移植)
-	- [2 尚不支持的CPU移植](#2-尚不支持的cpu移植)
-		- [2.1 CPU porting](#21-cpu-porting)
-		- [2.2 系统tick](#22-系统tick)
-		- [2.3 C库](#23-c库)
-		- [2.4 基本输入输出](#24-基本输入输出)
-		- [2.5 运行示例example](#25-运行示例example)
-		- [2.6 内核可配置项](#26-内核可配置项)
-		- [2.7 系统初始化](#27-系统初始化)
-		- [2.8 上层应用调用aos接口说明](#28-上层应用调用aos接口说明)  
+	- [2.1 已经支持的CPU移植](#21-已经支持的cpu移植)
+	- [2.2 尚不支持的CPU移植](#22-尚不支持的cpu移植)
+		- [2.2.1 CPU porting](#221-cpu-porting)
+		- [2.2.2 系统tick](#222-系统tick)
+		- [2.2.3 C库](#223-c库)
+		- [2.2.4 基本输入输出](#224-基本输入输出)
+		- [2.2.5 运行示例example](#225-运行示例example)
+		- [2.2.6 内核可配置项](#226-内核可配置项)
+		- [2.2.7 系统初始化](#227-系统初始化)
+		- [2.2.8 上层应用调用aos接口说明](#228-上层应用调用aos接口说明)  
 
 - [三 OS API对比参考](#三-OS-api对比参考)  
-	- [1 Task API](#1-task-api)
-	- [2 Buf Queue API](#2-buf-queue-api)
-	- [3 Queue API](#3-queue-api)
-	- [4 Semaphore & Mutex API](#4-semaphore--mutex-api)
-	- [5 Timer API](#5-timer-api)
-	- [6 Event API](#6-event-api)
-	- [7 Co-routines API](#7-co-routines-api)
-	- [8 smp多核 API](#8-smp多核-api)
-	- [9 内核头文件包含](#9-内核头文件包含)
+	- [3.1 Task API](#31-task-api)
+	- [3.2 Buf Queue API](#32-buf-queue-api)
+	- [3.3 Queue API](#33-queue-api)
+	- [3.4 Semaphore & Mutex API](#34-semaphore--mutex-api)
+	- [3.5 Timer API](#35-timer-api)
+	- [3.6 Event API](#36-event-api)
+	- [3.7 Co-routines API](#37-co-routines-api)
+	- [3.8 smp多核 API](#38-smp多核-api)
+	- [3.9 内核头文件包含](#39-内核头文件包含)
 
-- [4 编译方式说明](#1编译方式说明)
-	- [1 内核涉及文件部署](#1-内核涉及文件部署)
-	- [2 Keil\iar\e2studio相关IDE](#2-Keiliare2studio相关ide)
-	- [3 Gcc(linux\vscode) 编译命令说明](#3-gcclinuxvscode-编译命令说明)
+- [四 编译方式说明](#四-编译方式说明)
+	- [4.1 内核涉及文件部署](#41-内核涉及文件部署)
+	- [4.2 Keil\iar\e2studio相关IDE](#42-Keiliare2studio相关ide)
+	- [4.3 Gcc(linux\vscode) 编译命令说明](#43-gcclinuxvscode-编译命令说明)
 
-- [5 内核移植认证](#5-内核移植认证)  
-- [6 移植问题反馈途径](#6-移植问题反馈途径)
+- [五 内核移植认证](#五-内核移植认证)  
+- [六 移植问题反馈途径](#六-移植问题反馈途径)
 
 
 一、主要特性对比
@@ -62,8 +63,8 @@ AliOS Things：AOS-R-1.3.0
 
 基本功能点，接口层面的见第后续章节
 
-1、内核功能
------------
+1.1、内核功能
+-------------
 
 | 功能模块          | FreeRTOS                                               | AliOS Things（rhino）                                       |
 |-------------------|--------------------------------------------------------|-------------------------------------------------------------|
@@ -78,8 +79,8 @@ AliOS Things：AOS-R-1.3.0
 | config配置项      | FreeRTOSConfig.h                                       | K_config.h                                                  |
 | CPU Arch          | Source\\portable\\                                     | platform\\arch                                              |
 
-2、实时性
----------
+1.2、实时性
+-----------
 
 | BenchMark         | Rhino    | FreeRTOS               |
 |-------------------|----------|------------------------|
@@ -112,8 +113,8 @@ delay时间大的话，在一些高实时性的领域，比如工业，医疗，
 disable
 sched，这是决定一个实时操作系统的软实时性的指标，从上表中可以看出rhino这块的时间为0，整个系统不关抢占，而freertos的设计比如分配内存等采用了关内核抢占的形式，所以这个时间是比较大的。从这两个实时性指标来看，rhino均占优势。
 
-3、代码体积以及占用的RAM大小
-----------------------------
+1.3、代码体积以及占用的RAM大小
+------------------------------
 
 **最小配置情况下（只运行一个idle task）**
 
@@ -133,7 +134,7 @@ TCB多出的4个字节是因为Rhino为了解决优先级反转嵌套而引入�
 =====================
 
 对于AliOS
-Things已经支持的CPU，相关的`arch\cpu`文件可以直接使用，只需要加入编译体系即可；对于尚未支持的CPU，只需要对照相关移植点修改即可。
+Things已经支持的CPU，相关的arch\\cpu文件可以直接使用，只需要加入编译体系即可；对于尚未支持的CPU，只需要对照相关移植点修改即可。
 
 AliOS Things支持硬件列表
 
@@ -173,22 +174,22 @@ AliOS Things支持硬件列表
 |---------------|--------------------|---------------|-----------------------|
 | Board目录     | platform\\arch目录 | platform\\mcu | projects              |
 
-1、已经支持的CPU移植
---------------------
+2.1、已经支持的CPU移植
+----------------------
 
 对于此类型CPU，AliOS Things工程内，已经支持了OS在该平台上运行所需的CPU
 arch代码，因此不需要额外的CPU架构相关的移植工作，可以跳过2.1 CPU
 porting章节，进行mcu相关的适配。
 
-2、尚不支持的CPU移植
---------------------
+2.2、尚不支持的CPU移植
+----------------------
 
 对于新增一个CPU类型（包括arch、mcu相关），我们需要关注几个重要移植点。完成这些移植点后，AliOS
 Things就能适配上一个新的CPU。
 
 主要移植点：
 
-### 2.1 CPU porting
+### 2.2.1 CPU porting
 
 如果需要新增CPU架构支持，在platform\\arch目录下增加相应目录。相应的文件参考已有命名和部署。
 
@@ -215,16 +216,16 @@ Tick相关的需要有两处修改：
     krhino_intrpt_exit();      
 对应FreeRTOS中`xPortSysTickHandler`或`FreeRTOS_Tick_Handler`处理。  
 
-#### 2.2.2 tick频率配置
+#### 2.2.2.2 tick频率配置
 
 需要将tick中断的频率配置给相应的寄存器。AliOS Things
-在k_config.h中有相关RHINO_CONFIG_TICKS_PER_SECOND的设定。对应替换configTICK_RATE_HZ的设置即可。
+在k_config.h中有相关`RHINO_CONFIG_TICKS_PER_SECOND`的设定。对应替换`configTICK_RATE_HZ`的设置即可。
 
 | Tick频率 | Rhino                         | Freertos           |
 |----------|-------------------------------|--------------------|
 | 宏设定   | RHINO_CONFIG_TICKS_PER_SECOND | configTICK_RATE_HZ |
 
-### 2.3 C库
+### 2.2.3 C库
 
 OS内已经实现了分别针对armcc、gcc、iar三种编译体系的C库函数对接。
 
@@ -236,7 +237,7 @@ OS内已经实现了分别针对armcc、gcc、iar三种编译体系的C库函数
 
 比如platform\\mcu\\stm32l475\\ stm32l475.mk中设定了\$(NAME)_COMPONENTS += libc
 
-### 2.4 基本输入输出
+### 2.2.4 基本输入输出
 
 OS运行后，需要有基本的打印输出功能，即printf能工作；对于需要能在串口执行命令的需求下，还需要有获取串口字符串功能。一般通过重构下述接口实现:
 
@@ -245,22 +246,22 @@ OS运行后，需要有基本的打印输出功能，即printf能工作；对于
 | 格式化打印 | PUTCHAR_PROTOTYPE | 参考内部调用hal_uart_send； Hal_uart为hal抽象层； 也可以根据特殊情况简化基本打印功能     |
 | 字符获取   | GETCHAR_PROTOTYPE | 参考内部调用hal_uart_recv_II； 内部必须实现**中断异步字符接收，禁止死循环查询，阻塞CPU** |
 
-### 2.5 运行示例example
+### 2.2.5 运行示例example
 
 在目录example下提供了各种OS上app运行实例，对于基本的内核移植，可以参考example\\rhinorun将该实例运行起来，即表示内核基本的任务、tick中断能够正常运行。
 
-### 2.6 内核可配置项
+### 2.2.6 内核可配置项
 
 K_config.h文件中包含了所有内核裁剪配置，包括模块裁剪、内存裁剪。可以根据不同的模块需求，以及内存大小来进行修改裁剪。
 
-#### 2.6.1 内核模块裁剪
+#### 2.2.6.1 内核模块裁剪
 
 | 内核模块裁剪 | 参考配置                                   | 说明                 |
 |--------------|--------------------------------------------|----------------------|
 | 纯krhino版本 | STM32L073RZ-Nucleo\\helloworld\\k_config.h | 内核运行必要的配置项 |
 | 联网上云版本 | Board\\b_l475e\\k_config.h                 | 通用参考配置         |
 
-#### 2.6.2 内核内存裁剪
+#### 2.2.6.2 内核内存裁剪
 
 对于内存裁剪，不同的CPU由于需要保存的栈上下文有区别，所以在不同的平台上会有区别。基本考虑点是任务的上下文大小，任务内部的处理需要的大致栈大小。参考缩减任务栈配置：
 
@@ -285,7 +286,7 @@ B、实际运行检测调整
 
 ![](media/b8dd8b6b01a05281722a1d1d2296f813.png)
 
-#### 2.6.3 内核使用堆的配置
+#### 2.2.6.3 内核使用堆的配置
 
 如果要使用内存申请功能，则需要打开RHINO_CONFIG_MM_TLF宏，来使能k_mm模块，并且配置对应的堆空间。
 
@@ -293,7 +294,7 @@ B、实际运行检测调整
 
 其基本原则是要预留一个内存空间作为堆使用，并将其交给g_mm_region管理。
 
-##### 2.6.3.1 链接脚本定义（建议方式）
+##### 2.2.6.3.1 链接脚本定义（建议方式）
 
 （参考文件：platform\\mcu\\nrf52xxx\\ nrf52_common.ld）
 
@@ -309,7 +310,7 @@ B、实际运行检测调整
 
 **注意**：这段内存分配给堆使用，并不是表示内存都耗尽了，而是将其交给OS管理，用户通过malloc出来的内存都是从其中申请。
 
-##### 2.6.3.2 汇编定义
+##### 2.2.6.3.2 汇编定义
 
 （参考文件：platform\\mcu\\stm32l4xx\\src\\STM32L496G-Discovery\\startup_stm32l496xx_keil.s）
 
@@ -323,7 +324,7 @@ B、实际运行检测调整
 |------------------------------------------------------------------------------------|
 
 
-##### 2.6.3.3 数组定义
+##### 2.2.6.3.3 数组定义
 
 （参考文件：platform\\mcu\\nrf52xxx\\aos\\ soc_impl.c）
 
@@ -341,9 +342,9 @@ B、实际运行检测调整
 |-----------------------------------------------------------------|
 
 
-### 2.7 系统初始化
+### 2.2.7 系统初始化
 
-#### 2.7.1 硬件初始化
+#### 2.2.7.1 硬件初始化
 
 | FreeRTOS                                             | Rhino                                              | 初始化流程（按序）                                                                                                                                  |
 |------------------------------------------------------|----------------------------------------------------|-----------------------------------------------------------------------------------------------------------------------------------------------------|
@@ -351,7 +352,7 @@ B、实际运行检测调整
 | prvSetupHardware                                     | 建议参考其他单板，修改为board_init，也可以直接使用 | 系统基本C相关初始化 注意： 不能有 printf、不能激活中断； 原因参考下面内核初始化描述                                                                 |
 | vApplicationSetupTimerInterrupt 或其他需要激活的中断 | 可以直接使用该函数                                 | 1、中断相关触发硬件初始化操作，目前主要是tick； 2、需要在主任务入口处sys_init调用，即任务调度被激活之后才能触发中断，因为中断处理后会使用调度功能。 |
 
-#### 2.7.2 内核初始化
+#### 2.2.7.2 内核初始化
 
 | FreeRTOS            | Rhino                      | 说明                                                                          |
 |---------------------|----------------------------|-------------------------------------------------------------------------------|
@@ -364,7 +365,7 @@ B、实际运行检测调整
 （1）、`krhino_start`前不能有OS相关的中断处理。原因是如果在内核运行前触发了某个中断，并且该中断使用了`krhino_intrpt_exit`处理，则会进入任务切换，而此时内核尚未开始调度；  
 （2）、`printf`、`malloc`相关的接口，在内核初始化后才能使用。原因是此类库函数被内核重定向，会调用内核接口`aos_malloc`，依赖内核的初始化。  
 
-### 2.8 上层应用调用aos接口说明
+### 2.2.8 上层应用调用aos接口说明
 
 AliOS
 Things的内核模块本身使用带`krhino_`的接口，此接口一般是内核本身或者纯内核的软件系统使用；对于应用来说，统一提供`aos_`的内核应用接口，原则上上层应用，包括协议栈不再独立调用`krhino`开头的接口。Aos_rhino.c内抽象出了上层所有需要使用的内核功能，并且尽可能将参数精简，以达到用户使用方便的目的。
@@ -380,10 +381,10 @@ Things的内核模块本身使用带`krhino_`的接口，此接口一般是内�
 Things和FreeRTOS系统在接口使用上虽然存在着一些差别，但是由于其定位类似，所以大部分功能接口都能找到对应的处理，或者通过简单的功能组合来实现。以下列出主要FreeRTOS和AliOS
 Things rhino接口替换参数细节。
 
-1、Task API
------------
+3.1、Task API
+-------------
 
-### 1.1 整体API对比
+### 3.1.1 整体API对比
 
 | FreeRTOS                                                                                                           | Rhino                                        | 说明                                                                                                  |
 |--------------------------------------------------------------------------------------------------------------------|----------------------------------------------|-------------------------------------------------------------------------------------------------------|
@@ -453,9 +454,9 @@ Things rhino接口替换参数细节。
 | 没有                                                                                                               | krhino_sched_policy_get                      | 得到指定任务的调度方式                                                                                |
 | 没有                                                                                                               | krhino_global_space_get                      | 得到系统的RAM使用。                                                                                   |
 
-### 1.2 具体接口详述
+### 3.1.2 具体接口详述
 
-#### 1.2.1 xTaskCreate
+#### 3.1.2.1 xTaskCreate
 
 FreeRTOS接口：
 
@@ -478,7 +479,7 @@ Rhino接口替换说明：
 |          | Autorun = 1                                                                                                                                                     |
 | 出参     | Task = pxCreatedTask;本质一样，注意类型定义匹配                                                                                                                 |
 
-#### 1.2.2 xTaskCreateStatic
+#### 3.1.2.2 xTaskCreateStatic
 
 FreeRTOS接口：
 
@@ -502,7 +503,7 @@ Rhino接口替换说明：
 |          | entry = pxTaskCode                                                                                                                                                                       |
 |          | Autorun = 1                                                                                                                                                                              |
 
-#### 1.2.3 vTaskDelete
+#### 3.1.2.3 vTaskDelete
 
 FreeRTOS接口：
 
@@ -518,7 +519,7 @@ Rhino接口替换说明：
 | 返回值   | 类型：kstat_t 返回成功或失败;           |
 | 入参     | Task = xTaskToDelete                    |
 
-#### 1.2.4 vTaskDelay
+#### 3.1.2.4 vTaskDelay
 
 FreeRTOS接口：
 
@@ -532,7 +533,7 @@ Rhino接口替换说明：
 |----------|-----------------------------------------|
 | 入参     | Ticks = xTicksToDelay                   |
 
-#### 1.2.5 vTaskDelayUntil
+#### 3.1.2.5 vTaskDelayUntil
 
 FreeRTOS接口：
 
@@ -546,17 +547,17 @@ Rhino接口替换说明：
 |----------|----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
 
 
-1.  rhino的关闭所有任务调度：krhino_sched_disable
+-   rhino的关闭所有任务调度：krhino_sched_disable
 
-2.  获取当前的tick数g_tick_count
+-   获取当前的tick数g_tick_count
 
-3.  krhino_task_sleep可睡眠当前任务
+-   krhino_task_sleep可睡眠当前任务
 
-4.  krhino_task_resume可唤醒某个任务
+-   krhino_task_resume可唤醒某个任务
 
-5.  krhino_sched_disable后，tick会继续触发，并且还是会不停更新任务状态，只是不发生调度切换，因此不需要额外执行阻塞后的任务补偿，在tick中断中自动处理。
+-   krhino_sched_disable后，tick会继续触发，并且还是会不停更新任务状态，只是不发生调度切换，因此不需要额外执行阻塞后的任务补偿，在tick中断中自动处理。
 
-#### 1.2.6 uxTaskPriorityGet
+#### 3.1.2.6 uxTaskPriorityGet
 
 FreeRTOS接口：
 
@@ -570,7 +571,7 @@ Rhino接口替换说明：
 |----------|------------------------------------------|
 
 
-#### 1.2.7 vTaskPrioritySet
+#### 3.1.2.7 vTaskPrioritySet
 
 FreeRTOS接口：
 
@@ -586,7 +587,7 @@ Rhino接口替换说明：
 |          | Pri = uxNewPriority： FreeRTOS优先级范围从最低优先级0 到最高优先级(configMAX_PRIORITIES - 1)； krhino任务优先级从最高优先级0到最低优先级(RHINO_CONFIG_PRI_MAX - 1) |
 | 出参     | old_pri：返回老优先级                                                                                                                                              |
 
-#### 1.2.8 vTaskSuspend
+#### 3.1.2.8 vTaskSuspend
 
 FreeRTOS接口：
 
@@ -600,7 +601,7 @@ Rhino接口替换说明：
 |----------|---------------------------------------------|
 | 入参     | Task = xTaskToSuspend                       |
 
-#### 1.2.9 vTaskResume
+#### 3.1.2.9 vTaskResume
 
 FreeRTOS接口：
 
@@ -614,7 +615,7 @@ Rhino接口替换说明：
 |----------|--------------------------------------------|
 | 入参     | Task = xTaskToResume                       |
 
-#### 1.2.10 xTaskResumeFromISR
+#### 3.1.2.10 xTaskResumeFromISR
 
 FreeRTOS接口：
 
@@ -628,7 +629,7 @@ Rhino接口替换说明：
 |----------|--------------------------------------------|
 | 入参     | Task = xTaskToResume                       |
 
-#### 1.2.11 xTaskAbortDelay
+#### 3.1.2.11 xTaskAbortDelay
 
 FreeRTOS接口：
 
@@ -642,7 +643,7 @@ Rhino接口替换说明：
 |----------|------------------------------------------------|
 | 入参     | Task = xTaskToResume                           |
 
-#### 1.2.12 vTaskSetThreadLocalStoragePointer
+#### 3.1.2.12 vTaskSetThreadLocalStoragePointer
 
 FreeRTOS接口：
 
@@ -658,7 +659,7 @@ Rhino接口替换说明：
 |          | idx = xIndex ：\< RHINO_CONFIG_TASK_INFO_NUM                          |
 |          | Info = pvValue                                                        |
 
-#### 1.2.13 pvTaskGetThreadLocalStoragePointer
+#### 3.1.2.13 pvTaskGetThreadLocalStoragePointer
 
 FreeRTOS接口：
 
@@ -674,7 +675,7 @@ Rhino接口替换说明：
 |          | Idx = xIndex                                                            |
 | 出参     | Info 表示返回内存地址，同pvTaskGetThreadLocalStoragePointer返回值       |
 
-#### 1.2.14 uxTaskGetSystemState
+#### 3.1.2.14 uxTaskGetSystemState
 
 FreeRTOS接口：
 
@@ -688,7 +689,7 @@ Rhino接口替换说明：
 |----------|------------------------------------------------------------------------------------------------------------------------------------------------------------------|
 
 
-#### 1.2.15 vTaskGetInfo
+#### 3.1.2.15 vTaskGetInfo
 
 FreeRTOS接口：
 
@@ -702,7 +703,7 @@ Rhino接口替换说明：
 |----------|---------------------------------------------------------------------------------------------------------|
 
 
-#### 1.2.16 xTaskGetApplicationTaskTag
+#### 3.1.2.16 xTaskGetApplicationTaskTag
 
 FreeRTOS接口：
 
@@ -716,7 +717,7 @@ Rhino接口替换说明：
 |----------|----|
 
 
-#### 1.2.17 xTaskGetCurrentTaskHandle
+#### 3.1.2.17 xTaskGetCurrentTaskHandle
 
 FreeRTOS接口：
 
@@ -730,7 +731,7 @@ Rhino接口替换说明：
 |----------|-------------------------------------|
 | 出参     | 当前任务句柄                        |
 
-#### 1.2.18 xTaskGetHandle
+#### 3.1.2.18 xTaskGetHandle
 
 FreeRTOS接口：
 
@@ -744,7 +745,7 @@ Rhino接口替换说明：
 |----------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
 
 
-#### 1.2.19 xTaskGetIdleTaskHandle
+#### 3.1.2.19 xTaskGetIdleTaskHandle
 
 FreeRTOS接口：
 
@@ -758,7 +759,7 @@ Rhino接口替换说明：
 |----------|----------------------------------|
 
 
-#### 1.2.20 uxTaskGetStackHighWaterMark
+#### 3.1.2.20 uxTaskGetStackHighWaterMark
 
 FreeRTOS接口：
 
@@ -773,7 +774,7 @@ Rhino接口替换说明：
 | 入参     | Task = xTask                                                       |
 | 出参     | \* free = uxTaskGetStackHighWaterMark返回值                        |
 
-#### 1.2.21 eTaskGetState
+#### 3.1.2.21 eTaskGetState
 
 FreeRTOS接口：
 
@@ -787,7 +788,7 @@ Rhino接口替换说明：
 |----------|------------------------------------------------------------|
 
 
-#### 1.2.22 pcTaskGetName
+#### 3.1.2.22 pcTaskGetName
 
 FreeRTOS接口：
 
@@ -801,7 +802,7 @@ Rhino接口替换说明：
 |----------|------------------------------------------------------|
 
 
-#### 1.2.23 xTaskGetTickCount
+#### 3.1.2.23 xTaskGetTickCount
 
 FreeRTOS接口：
 
@@ -815,7 +816,7 @@ Rhino接口替换说明：
 |----------|--------------------------------------|
 
 
-#### 1.2.24 xTaskGetTickCountFromISR
+#### 3.1.2.24 xTaskGetTickCountFromISR
 
 FreeRTOS接口：
 
@@ -829,7 +830,7 @@ Rhino接口替换说明：
 |----------|--------------------------------------|
 
 
-#### 1.2.25 vTaskList
+#### 3.1.2.25 vTaskList
 
 FreeRTOS接口：
 
@@ -843,7 +844,7 @@ Rhino接口替换说明：
 |----------|----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
 
 
-#### 1.2.26 xTaskCallApplicationTaskHook
+#### 3.1.2.26 xTaskCallApplicationTaskHook
 
 FreeRTOS接口：
 
@@ -857,7 +858,7 @@ Rhino接口替换说明：
 |----------|--------------------------------------------------------------------------------------------------|
 
 
-#### 1.2.27 vTaskSetApplicationTaskTag
+#### 3.1.2.27 vTaskSetApplicationTaskTag
 
 FreeRTOS接口：
 
@@ -871,7 +872,7 @@ Rhino接口替换说明：
 |----------|---------------------------------------------------------------------|
 
 
-#### 1.2.28 vTaskSetTimeOutState
+#### 3.1.2.28 vTaskSetTimeOutState
 
 FreeRTOS接口：
 
@@ -885,7 +886,7 @@ Rhino接口替换说明：
 |----------|-------------------------------------------------------|
 
 
-#### 1.2.29 xTaskCheckForTimeOut
+#### 3.1.2.29 xTaskCheckForTimeOut
 
 FreeRTOS接口：
 
@@ -899,7 +900,7 @@ Rhino接口替换说明：
 |----------|---------------------------------------------|
 
 
-#### 1.2.30 xTaskGetSchedulerState
+#### 3.1.2.30 xTaskGetSchedulerState
 
 FreeRTOS接口：
 
@@ -913,7 +914,7 @@ Rhino接口替换说明：
 |----------|---------------------------------------|
 
 
-#### 1.2.31 uxTaskGetNumberOfTasks
+#### 3.1.2.31 uxTaskGetNumberOfTasks
 
 FreeRTOS接口：
 
@@ -927,7 +928,7 @@ Rhino接口替换说明：
 |----------|-------------------------------------------------------------------------------------------------|
 
 
-#### 1.2.32 vTaskGetRunTimeStats
+#### 3.1.2.32 vTaskGetRunTimeStats
 
 FreeRTOS接口：
 
@@ -941,7 +942,7 @@ Rhino接口替换说明：
 |----------|----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
 
 
-#### 1.2.33 taskYIELD
+#### 3.1.2.33 taskYIELD
 
 FreeRTOS接口：
 
@@ -955,7 +956,7 @@ Rhino接口替换说明：
 |----------|--------------------------------------------------------------------------------------------------------------------------------------|
 
 
-#### 1.2.34 taskENTER*\_*CRITICAL
+#### 3.1.2.34 taskENTER*\_*CRITICAL
 
 FreeRTOS接口：
 
@@ -969,7 +970,7 @@ Rhino接口替换说明：
 |----------|-----------------------------------|
 
 
-#### 1.2.35 taskEXIT*\_CRITICAL*
+#### 3.1.2.35 taskEXIT*\_CRITICAL*
 
 FreeRTOS接口：
 
@@ -983,7 +984,7 @@ Rhino接口替换说明：
 |----------|----------------------------------|
 
 
-#### 1.2.36 [taskENTER_CRITICAL_FROM_ISR](http://www.freertos.org/taskENTER_CRITICAL_FROM_ISR_taskEXIT_CRITICAL_FROM_ISR.html)
+#### 3.1.2.36 [taskENTER_CRITICAL_FROM_ISR](http://www.freertos.org/taskENTER_CRITICAL_FROM_ISR_taskEXIT_CRITICAL_FROM_ISR.html)
 
 FreeRTOS接口：
 
@@ -997,7 +998,7 @@ Rhino接口替换说明：
 |----------|-----------------------------------|
 
 
-#### 1.2.37 taskEXIT_CRITICAL_FROM_ISR
+#### 3.1.2.37 taskEXIT_CRITICAL_FROM_ISR
 
 FreeRTOS接口：
 
@@ -1011,7 +1012,7 @@ Rhino接口替换说明：
 |----------|----------------------------------|
 
 
-#### 1.2.38 taskDISABLE_INTERRUPTS
+#### 3.1.2.38 taskDISABLE_INTERRUPTS
 
 FreeRTOS接口：
 
@@ -1025,7 +1026,7 @@ Rhino接口替换说明：
 |----------|-----------------------------------|
 
 
-#### 1.2.39 taskENABLE_INTERRUPTS
+#### 3.1.2.39 taskENABLE_INTERRUPTS
 
 FreeRTOS接口：
 
@@ -1039,7 +1040,7 @@ Rhino接口替换说明：
 |----------|----------------------------------|
 
 
-#### 1.2.40 vTaskStartScheduler
+#### 3.1.2.40 vTaskStartScheduler
 
 FreeRTOS接口：
 
@@ -1053,7 +1054,7 @@ Rhino接口替换说明：
 |----------|-----------------------------------|
 | 注意     | krhino_start前需要调用krhino_init |
 
-#### 1.2.41 vTaskEndScheduler
+#### 3.1.2.41 vTaskEndScheduler
 
 FreeRTOS接口：
 
@@ -1067,7 +1068,7 @@ Rhino接口替换说明：
 |----------|--------------|
 
 
-#### 1.2.42 vTaskStepTick
+#### 3.1.2.42 vTaskStepTick
 
 FreeRTOS接口：
 
@@ -1081,7 +1082,7 @@ Rhino接口替换说明：
 |----------|-------------------------------------------------------------------------------------------------------------------------------------------------------------|
 
 
-#### 1.2.43 vTaskSuspendAll
+#### 3.1.2.43 vTaskSuspendAll
 
 FreeRTOS接口：
 
@@ -1095,7 +1096,7 @@ Rhino接口替换说明：
 |----------|------------------------------------------------------------------------------------------------|
 
 
-#### 1.2.44 xTaskResumeAll
+#### 3.1.2.44 xTaskResumeAll
 
 FreeRTOS接口：
 
@@ -1109,7 +1110,7 @@ Rhino接口替换说明：
 |----------|---------------------------------------------------------------------------------------------------------------------------|
 
 
-#### 1.2.45 xTaskCreateRestricted
+#### 3.1.2.45 xTaskCreateRestricted
 
 FreeRTOS接口：
 
@@ -1123,7 +1124,7 @@ Rhino接口替换说明：
 |----------|-------------------------------------|
 
 
-#### 1.2.46 vTaskAllocateMPURegions
+#### 3.1.2.46 vTaskAllocateMPURegions
 
 FreeRTOS接口：
 
@@ -1137,7 +1138,7 @@ Rhino接口替换说明：
 |----------|-------------------------------------|
 
 
-#### 1.2.47 vPortSwitchToUserMode
+#### 3.1.2.47 vPortSwitchToUserMode
 
 FreeRTOS接口：
 
@@ -1151,7 +1152,7 @@ Rhino接口替换说明：
 |----------|---------------------------------------------------------------------------------------------|
 
 
-#### 1.2.48 xTaskNotifyGive
+#### 3.1.2.48 xTaskNotifyGive
 
 FreeRTOS接口：
 
@@ -1165,7 +1166,7 @@ Rhino接口替换说明：
 |----------|-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
 
 
-#### 1.2.49 vTaskNotifyGiveFromISR
+#### 3.1.2.49 vTaskNotifyGiveFromISR
 
 FreeRTOS接口：
 
@@ -1179,7 +1180,7 @@ Rhino接口替换说明：
 |----------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
 
 
-#### 1.2.50 ulTaskNotifyTake
+#### 3.1.2.50 ulTaskNotifyTake
 
 FreeRTOS接口：
 
@@ -1194,7 +1195,7 @@ Rhino接口替换说明：
 | 入参     | Sem：自定义并使用krhino_sem_create创建一个sem                                                                         |
 |          | Ticks = xTicksToWait                                                                                                  |
 
-#### 1.2.51 xTaskNotify
+#### 3.1.2.51 xTaskNotify
 
 FreeRTOS接口：
 
@@ -1208,7 +1209,7 @@ Rhino接口替换说明：
 |----------|--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
 
 
-#### 1.2.52 xTaskNotifyAndQuery
+#### 3.1.2.52 xTaskNotifyAndQuery
 
 FreeRTOS接口：
 
@@ -1222,7 +1223,7 @@ Rhino接口替换说明：
 |----------|---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
 
 
-#### 1.2.53 xTaskNotifyAndQueryFromISR
+#### 3.1.2.53 xTaskNotifyAndQueryFromISR
 
 FreeRTOS接口：
 
@@ -1236,7 +1237,7 @@ Rhino接口替换说明：
 |----------|---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
 
 
-#### 1.2.54 xTaskNotifyFromISR
+#### 3.1.2.54 xTaskNotifyFromISR
 
 FreeRTOS接口：
 
@@ -1250,7 +1251,7 @@ Rhino接口替换说明：
 |----------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
 
 
-#### 1.2.55 xTaskNotifyWait
+#### 3.1.2.55 xTaskNotifyWait
 
 FreeRTOS接口：
 
@@ -1264,7 +1265,7 @@ Rhino接口替换说明：
 |----------|-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
 
 
-#### 1.2.56 xTaskNotifyStateClear
+#### 3.1.2.56 xTaskNotifyStateClear
 
 FreeRTOS接口：
 
@@ -1278,10 +1279,10 @@ Rhino接口替换说明：
 |----------|---------------------------------------------|
 | 入参     | Task = xTask                                |
 
-2、Buf Queue API
-----------------
+3.2、Buf Queue API
+------------------
 
-### 2.1 整体API对比
+### 3.2.1 整体API对比
 
 Buf Queue 内部包含了一个FIFO缓冲区，每一次发送数据包到Buf
 Queue都会把整包数据发送到FIFO内部，取数据包的时候再从内部FIFO缓冲区copy数据出来，优点是使用方便，缺点是发送和接收数据包，涉及到两次copy数据，效率是问题。
@@ -1316,9 +1317,9 @@ Queue都会把整包数据发送到FIFO内部，取数据包的时候再从内�
 | xQueueSelectFromSet                                                                  | 业务不需要                                                      | 实现任务阻塞在多内核对象上                   |
 | xQueueSelectFromSetFromISR                                                           | 业务不需要                                                      | 实现任务阻塞在多内核对象上                   |
 
-### 2.2 具体接口详述
+### 3.2.2 具体接口详述
 
-#### 2.2.1 [xQueueCreate](http://www.freertos.org/a00116.html)
+#### 3.2.2.1 [xQueueCreate](http://www.freertos.org/a00116.html)
 
 FreeRTOS接口：
 
@@ -1336,7 +1337,7 @@ Rhino接口替换说明：
 |          | max_msg = uxItemSize：表示每一块的数据大小                                                                    |
 | 出参     | Queue：存放获取的kbuf_queue_t句柄                                                                             |
 
-#### 2.2.2 xQueueCreateStatic
+#### 3.2.2.2 xQueueCreateStatic
 
 FreeRTOS接口：
 
@@ -1355,7 +1356,7 @@ Rhino接口替换说明：
 |          | Size = uxQueueLength \* uxItemSize：表示缓冲区的总长度                                                              |
 |          | max_msg = uxItemSize：表示每一块的数据大小                                                                          |
 
-#### 2.2.3 vQueueDelete
+#### 3.2.2.3 vQueueDelete
 
 FreeRTOS接口：
 
@@ -1370,7 +1371,7 @@ Rhino接口替换说明：
 | 返回值   | 成功或失败                                         |
 | 入参     | Queue = xQueue：queue句柄                          |
 
-#### 2.2.4 xQueueSend
+#### 3.2.2.4 xQueueSend
 
 FreeRTOS接口：
 
@@ -1388,7 +1389,7 @@ Rhino接口替换说明：
 |          | Size ：必须小于创建时的max_msg。此设定是支持用户传入比max_msg小的任意长度内容，而不一定固定为max_msg。                                              |
 | 其他     | xTicksToWait ：FreeRTOS此设定是在buf满的情况下，将调用send_buf的任务暂时挂起一段时间；AliOS Things不使用此设置，buf满即返回错误RHINO_BUF_QUEUE_FULL |
 
-#### 2.2.5 xQueueSendFromISR
+#### 3.2.2.5 xQueueSendFromISR
 
 FreeRTOS接口：
 
@@ -1406,7 +1407,7 @@ Rhino接口替换说明：
 |          | Size ：必须小于创建时的max_msg。此设定是支持用户传入比max_msg小的内容，而不一定固定为max_msg                                     |
 | 其他     | AliOS Things该接口不需要区分是不是在中断中执行； pxHigherPriorityTaskWoken表示FreeRTOS是否有高优先级任务唤醒，krhino不需要关注。 |
 
-#### 2.2.6 xQueueSendToBack
+#### 3.2.2.6 xQueueSendToBack
 
 FreeRTOS接口：
 
@@ -1424,7 +1425,7 @@ Rhino接口替换说明：
 |          | Size ：必须小于创建时的max_msg。此设定是支持用户传入比max_msg小的内容，而不一定固定为max_msg                                                        |
 | 其他     | xTicksToWait ：FreeRTOS此设定是在buf满的情况下，将调用send_buf的任务暂时挂起一段时间；AliOS Things不使用此设置，buf满即返回错误RHINO_BUF_QUEUE_FULL |
 
-#### 2.2.7 xQueueSendToBackFromISR
+#### 3.2.2.7 xQueueSendToBackFromISR
 
 FreeRTOS接口：
 
@@ -1442,7 +1443,7 @@ Rhino接口替换说明：
 |          | Size ：必须小于创建时的max_msg。此设定是支持用户传入比max_msg小的内容，而不一定固定为max_msg                                    |
 | 其他     | Rhino该接口不需要区分是不是在中断中执行； pxHigherPriorityTaskWoken表示FreeRTOS是否有高优先级任务唤醒，AliOS Things不需要关注。 |
 
-#### 2.2.8 xQueueSendToFront
+#### 3.2.2.8 xQueueSendToFront
 
 FreeRTOS接口：
 
@@ -1456,7 +1457,7 @@ Rhino接口替换说明：
 |----------|----------------------------------------------------------------------------------------------------------------------------------|
 
 
-#### 2.2.9 [xQueueSendToFrontFromISR](http://www.freertos.org/xQueueSendToFrontFromISR.html)
+#### 3.2.2.9 [xQueueSendToFrontFromISR](http://www.freertos.org/xQueueSendToFrontFromISR.html)
 
 FreeRTOS接口：
 
@@ -1470,7 +1471,7 @@ Rhino接口替换说明：
 |----------|----------------------------------------------------------------------------------------------------------------------------------|
 
 
-#### 2.2.10 [xQueueReceive](http://www.freertos.org/a00118.html)
+#### 3.2.2.10 [xQueueReceive](http://www.freertos.org/a00118.html)
 
 FreeRTOS接口：
 
@@ -1488,7 +1489,7 @@ Rhino接口替换说明：
 |          | Msg = pvBuffer                                                                               |
 | 出参     | Size ：此设定是支持用户传入比max_msg小的任意长度内容，而不一定固定为max_msg。                |
 
-#### 2.2.11 [xQueueReceiveFromISR](http://www.freertos.org/a00120.html)
+#### 3.2.2.11 [xQueueReceiveFromISR](http://www.freertos.org/a00120.html)
 
 FreeRTOS接口：
 
@@ -1506,7 +1507,7 @@ Rhino接口替换说明：
 |          | Msg = pvBuffer                                                                               |
 | 出参     | Size ：此设定是支持用户传入比max_msg小的任意长度内容，而不一定固定为max_msg。                |
 
-#### 2.2.12 [uxQueueMessagesWaiting](http://www.freertos.org/a00018.html#ucQueueMessagesWaiting)
+#### 3.2.2.12 [uxQueueMessagesWaiting](http://www.freertos.org/a00018.html#ucQueueMessagesWaiting)
 
 FreeRTOS接口：
 
@@ -1522,7 +1523,7 @@ Rhino接口替换说明：
 | 入参     | queue                                                                             |
 | 出参     | Info ：返回包括当前cur_num等维测数据                                              |
 
-#### 2.2.13 uxQueueSpacesAvailable
+#### 3.2.2.13 uxQueueSpacesAvailable
 
 FreeRTOS接口：
 
@@ -1538,7 +1539,7 @@ Rhino接口替换说明：
 | 入参     | queue                                                                                                  |
 | 出参     | Info ：返回包括当前free_buf_size等维测数据 注意此free_buf_size单位为byte；FreeRTOS返回的是多少空闲块。 |
 
-#### 2.2.14 xQueueReset
+#### 3.2.2.14 xQueueReset
 
 FreeRTOS接口：
 
@@ -1552,7 +1553,7 @@ Rhino接口替换说明：
 |----------|------------------------------------------------------|
 | 入参     | Queue = xQueue                                       |
 
-#### 2.2.15 xQueueOverwrite
+#### 3.2.2.15 xQueueOverwrite
 
 FreeRTOS接口：
 
@@ -1566,7 +1567,7 @@ Rhino接口替换说明：
 |----------|---------------------------------------------------------------|
 
 
-#### 2.2.16 xQueueOverwriteFromISR
+#### 3.2.2.16 xQueueOverwriteFromISR
 
 FreeRTOS接口：
 
@@ -1580,7 +1581,7 @@ Rhino接口替换说明：
 |----------|---------------------------------------------------------------|
 
 
-#### 2.2.17 xQueuePeek
+#### 3.2.2.17 xQueuePeek
 
 FreeRTOS接口：
 
@@ -1594,7 +1595,7 @@ Rhino接口替换说明：
 |----------|-----------------------------------------------|
 
 
-#### 2.2.18 xQueuePeekFromISR
+#### 3.2.2.18 xQueuePeekFromISR
 
 FreeRTOS接口：
 
@@ -1608,7 +1609,7 @@ Rhino接口替换说明：
 |----------|-----------------------------------------------|
 
 
-#### 2.2.19 [vQueueAddToRegistry](http://www.freertos.org/vQueueAddToRegistry.html)
+#### 3.2.2.19 [vQueueAddToRegistry](http://www.freertos.org/vQueueAddToRegistry.html)
 
 FreeRTOS接口：
 
@@ -1622,7 +1623,7 @@ Rhino接口替换说明：
 |----------|----------------------------------------------------------------------------------------------------------------------------------------------------------------|
 
 
-#### 2.2.20 vQueueUnregisterQueue
+#### 3.2.2.20 vQueueUnregisterQueue
 
 FreeRTOS接口：
 
@@ -1636,7 +1637,7 @@ Rhino接口替换说明：
 |----------|--------------------------------------------------------------------------------------------------------------------------------------------------------------------|
 
 
-#### 2.2.21 pcQueueGetName
+#### 3.2.2.21 pcQueueGetName
 
 FreeRTOS接口：
 
@@ -1650,7 +1651,7 @@ Rhino接口替换说明：
 |----------|----------------------------------|
 
 
-#### 2.2.22 xQueueIsQueueFullFromISR
+#### 3.2.2.22 xQueueIsQueueFullFromISR
 
 FreeRTOS接口：
 
@@ -1665,7 +1666,7 @@ Rhino接口替换说明：
 | 入参     | Queue = xQueue                                                                    |
 | 出参     | Info-\> free_buf_size表示剩余内存大小                                             |
 
-#### 2.2.23 xQueueIsQueueEmptyFromISR
+#### 3.2.2.23 xQueueIsQueueEmptyFromISR
 
 FreeRTOS接口：
 
@@ -1680,7 +1681,7 @@ Rhino接口替换说明：
 | 入参     | Queue = xQueue                                                                    |
 | 出参     | Info-\> free_buf_size表示剩余内存大小                                             |
 
-#### 2.2.24 [xQueueCreateSet](http://www.freertos.org/xQueueCreateSet.html)
+#### 3.2.2.24 [xQueueCreateSet](http://www.freertos.org/xQueueCreateSet.html)
 
 FreeRTOS接口：
 
@@ -1694,7 +1695,7 @@ Rhino接口替换说明：
 |----------|------------------------------------------------------------------------------------------------------------|
 
 
-#### 2.2.25 xQueueRemoveFromSet
+#### 3.2.2.25 xQueueRemoveFromSet
 
 FreeRTOS接口：
 
@@ -1708,7 +1709,7 @@ Rhino接口替换说明：
 |----------|------------------------------------------------------------------------------------------------------------|
 
 
-#### 2.2.26 xQueueSelectFromSet
+#### 3.2.2.26 xQueueSelectFromSet
 
 FreeRTOS接口：
 
@@ -1722,7 +1723,7 @@ Rhino接口替换说明：
 |----------|------------------------------------------------------------------------------------------------------------|
 
 
-#### 2.2.27 xQueueSelectFromSetFromISR
+#### 3.2.2.27 xQueueSelectFromSetFromISR
 
 FreeRTOS接口：
 
@@ -1736,10 +1737,10 @@ Rhino接口替换说明：
 |----------|------------------------------------------------------------------------------------------------------------|
 
 
-3、Queue API
-------------
+3.3、Queue API
+--------------
 
-### 3.1整体API对比
+### 3.3.1整体API对比
 
 Queue内部也有一个FIFO缓冲区,
 每一次发送数据包到Queue只会把数据包的地址发送进去，也就是发送一个指针进去，取数据的时候也是只接收一个指针，效率会很快。Queue的设计解决了效率问题，但是使用上Queue稍微没有Buf
@@ -1758,14 +1759,14 @@ Queue方便。
 |                         | krhino_queue_info_get   | 获得队列信息                |
 |                         | krhino_queue_flush      | 重置queue                   |
 
-### 3.2 具体接口详述
+### 3.3.2 具体接口详述
 
 由于FreeRTOS无该功能，此模块不在此赘述。
 
-4、Semaphore & Mutex API
-------------------------
+3.4、Semaphore & Mutex API
+--------------------------
 
-### 4.1 整体API对比
+### 3.4.1 整体API对比
 
 | FreeRTOS                                                                                  | Rhino                   | 说明                                                                           |
 |-------------------------------------------------------------------------------------------|-------------------------|--------------------------------------------------------------------------------|
@@ -1789,7 +1790,7 @@ Queue方便。
 
 ### 4.2 具体接口详述
 
-#### 4.2.1 [xSemaphoreCreateBinary](http://www.freertos.org/xSemaphoreCreateBinary.html)
+#### 3.4.2.1 [xSemaphoreCreateBinary](http://www.freertos.org/xSemaphoreCreateBinary.html)
 
 FreeRTOS接口：
 
@@ -1807,7 +1808,7 @@ Rhino接口替换说明：
 | 出参     | event：返回句柄                                                                                                                                                                                                                                                                                                                                                                                                                                                                                               |
 | 说明     | 1、Krhino提供的k_sem模块计数初始可以设置任意值；k_mutex模块虽然也是只能0或者1，但是其内部实现了优先级反转功能；因此匹配FreeRTOS的二进制sem的接口，需要使用k_event来替代。 2、后续获取该event使用接口： kstat_t krhino_event_get(kevent_t \*event, uint32_t flags, uint8_t opt, uint32_t \*actl_flags, tick_t ticks)； 其中直接设置flags = 1，opt = RHINO_AND_CLEAR； 3、后续设置该event使用接口： kstat_t krhino_event_set(kevent_t \*event, uint32_t flags, uint8_t opt) 其中设置flags = 1，opt = RHINO_OR。 |
 
-#### 4.2.2 [xSemaphoreCreateBinaryStatic](http://www.freertos.org/xSemaphoreCreateBinaryStatic.html)
+#### 3.4.2.2 [xSemaphoreCreateBinaryStatic](http://www.freertos.org/xSemaphoreCreateBinaryStatic.html)
 
 FreeRTOS接口：
 
@@ -1825,7 +1826,7 @@ Rhino接口替换说明：
 |          | flags = 0：初值是0                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            |
 | 说明     | 1、Krhino提供的k_sem模块计数初始可以设置任意值；k_mutex模块虽然也是只能0或者1，但是其内部实现了优先级反转功能；因此匹配FreeRTOS的二进制sem的接口，需要使用k_event来替代。 2、后续获取该event使用接口： kstat_t krhino_event_get(kevent_t \*event, uint32_t flags, uint8_t opt, uint32_t \*actl_flags, tick_t ticks)； 其中直接设置flags = 1，opt = RHINO_AND_CLEAR； 3、后续设置该event使用接口： kstat_t krhino_event_set(kevent_t \*event, uint32_t flags, uint8_t opt) 其中设置flags = 1，opt = RHINO_OR。 |
 
-#### 4.2.3 xSemaphoreCreateCounting
+#### 3.4.2.3 xSemaphoreCreateCounting
 
 FreeRTOS接口：
 
@@ -1843,7 +1844,7 @@ Rhino接口替换说明：
 | 出参     | Sem：存放返回的sem句柄                                                                |
 | 说明：   | FreeRTOS该接口uxMaxCount参数不需要，krhino默认上限为-1                                |
 
-#### 4.2.4 xSemaphoreCreateCountingStatic
+#### 3.4.2.4 xSemaphoreCreateCountingStatic
 
 FreeRTOS接口：
 
@@ -1861,7 +1862,7 @@ Rhino接口替换说明：
 |          | Count = uxInitialCount                                                          |
 | 说明：   | FreeRTOS该接口uxMaxCount参数不需要，krhino默认上限为-1                          |
 
-#### 4.2.5 xSemaphoreCreateMutex
+#### 3.4.2.5 xSemaphoreCreateMutex
 
 FreeRTOS接口：
 
@@ -1877,7 +1878,7 @@ Rhino接口替换说明：
 | 入参     | Name：用户指定一名字，维测使用                                           |
 | 出参     | Mutex：返回的句柄                                                        |
 
-#### 4.2.6 xSemaphoreCreateMutexStatic
+#### 3.4.2.6 xSemaphoreCreateMutexStatic
 
 FreeRTOS接口：
 
@@ -1893,7 +1894,7 @@ Rhino接口替换说明：
 | 入参     | mutex = pxMutexBuffer：注意类型匹配，定义为ksem_t类型              |
 |          | Name：用户指定一名字，维测使用                                     |
 
-#### 4.2.7 xSemCreateRecursiveMutex
+#### 3.4.2.7 xSemCreateRecursiveMutex
 
 FreeRTOS接口：
 
@@ -1909,7 +1910,7 @@ Rhino接口替换说明：
 | 入参     | Name：用户指定一名字，维测使用                                           |
 | 出参     | Mutex：返回的句柄                                                        |
 
-#### 4.2.8 xSemCreateRecursiveMutexStatic
+#### 3.4.2.8 xSemCreateRecursiveMutexStatic
 
 FreeRTOS接口：
 
@@ -1925,7 +1926,7 @@ Rhino接口替换说明：
 | 入参     | mutex = pxMutexBuffer：注意类型匹配，定义为ksem_t类型              |
 |          | Name：用户指定一名字，维测使用                                     |
 
-#### 4.2.9 vSemaphoreDelete
+#### 3.4.2.9 vSemaphoreDelete
 
 FreeRTOS接口：
 
@@ -1951,7 +1952,7 @@ Rhino接口替换说明：
 
 >   kstat_t krhino_event_del(kevent_t \*event)
 
-#### 4.2.10 xSemaphoreGetMutexHolder
+#### 3.4.2.10 xSemaphoreGetMutexHolder
 
 FreeRTOS接口：
 
@@ -1965,7 +1966,7 @@ Rhino接口替换说明：
 |----------|-----------------------------------------|
 
 
-#### 4.2.11 uxSemaphoreGetCount
+#### 3.4.2.11 uxSemaphoreGetCount
 
 FreeRTOS接口：
 
@@ -1981,7 +1982,7 @@ Rhino接口替换说明：
 | 入参     | sem = xSemaphore                                                |
 | 出参     | Count：返回当前sem值                                            |
 
-#### 4.2.12 xSemaphoreTake
+#### 3.4.2.12 xSemaphoreTake
 
 FreeRTOS接口：
 
@@ -1997,7 +1998,7 @@ Rhino接口替换说明：
 | 入参     | sem = xSemaphore                                    |
 |          | Ticks = xBlockTime                                  |
 
-#### 4.2.13 xSemaphoreTakeRecursive
+#### 3.4.2.13 xSemaphoreTakeRecursive
 
 FreeRTOS接口：
 
@@ -2013,7 +2014,7 @@ Rhino接口替换说明：
 | 入参     | sem = xSemaphore                                    |
 |          | Ticks = xBlockTime                                  |
 
-#### 4.2.14 xSemaphoreTakeFromISR
+#### 3.4.2.14 xSemaphoreTakeFromISR
 
 FreeRTOS接口：
 
@@ -2027,7 +2028,7 @@ Rhino接口替换说明：
 |----------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
 
 
-#### 4.2.15 xSemaphoreGive
+#### 3.4.2.15 xSemaphoreGive
 
 FreeRTOS接口：
 
@@ -2042,7 +2043,7 @@ Rhino接口替换说明：
 | 返回值   | 成功或失败                            |
 | 入参     | sem = xSemaphore：sem句柄             |
 
-#### 4.2.16 xSemaphoreGiveRecursive
+#### 3.4.2.16 xSemaphoreGiveRecursive
 
 FreeRTOS接口：
 
@@ -2057,7 +2058,7 @@ Rhino接口替换说明：
 | 返回值   | 成功或失败                                    |
 | 入参     | mutex = xMutex：mutex句柄                     |
 
-#### 4.2.17 xSemaphoreGiveFromISR
+#### 3.4.2.17 xSemaphoreGiveFromISR
 
 FreeRTOS接口：
 
@@ -2072,10 +2073,10 @@ Rhino接口替换说明：
 | 返回值   | 成功或失败                            |
 | 入参     | sem = xSemaphore：sem句柄             |
 
-5、Timer API
-------------
+3.5、Timer API
+--------------
 
-### 5.1 整体API对比
+### 3.5.1 整体API对比
 
 | FreeRTOS                                                                      | Rhino                              | 说明                                                   |
 |-------------------------------------------------------------------------------|------------------------------------|--------------------------------------------------------|
@@ -2099,9 +2100,9 @@ Rhino接口替换说明：
 | [xTimerPendFunctionCall](http://www.freertos.org/xTimerPendFunctionCall.html) | Rhino中的单次timer触发可替代此API  | 延迟一段时间给后台任务回调函数                         |
 | xTimerPendFunctionCallFromISR                                                 | Rhino中的单次timer触发可替代此API  | 延迟一段时间给后台任务回调函数                         |
 
-### 5.2 具体接口详述
+### 3.5.2 具体接口详述
 
-#### 5.2.1 xTimerCreate
+#### 3.5.2.1 xTimerCreate
 
 FreeRTOS接口：
 
@@ -2122,7 +2123,7 @@ Rhino接口替换说明：
 |          | auto_run = uxAutoReload                                                                                                                                                                                       |
 | 出参     | Timer：返回句柄                                                                                                                                                                                               |
 
-#### 5.2.2 xTimerCreateStatic
+#### 3.5.2.2 xTimerCreateStatic
 
 FreeRTOS接口：
 
@@ -2143,7 +2144,7 @@ Rhino接口替换说明：
 |          | Arg = pvTimerID：此参数稍微有差别： Krhino此参数作为定时器处理的第二个参数传入；FreeRTOS将其pvTimerID存放入time结构体内，其处理函数只有一个参数为timer句柄，如果需要参数，将其存放在pvTimerID内，取出后处理。 |
 |          | auto_run = uxAutoReload                                                                                                                                                                                       |
 
-#### 5.2.3 xTimerIsTimerActive
+#### 3.5.2.3 xTimerIsTimerActive
 
 FreeRTOS接口：
 
@@ -2157,7 +2158,7 @@ Rhino接口替换说明：
 |----------|---------------------------------------------------------------|
 
 
-#### 5.2.4 xTimerStart
+#### 3.5.2.4 xTimerStart
 
 FreeRTOS接口：
 
@@ -2172,7 +2173,7 @@ Rhino接口替换说明：
 | 返回值   | 成功或失败                                                                             |
 | 入参     | timer = xTimer krhino的定时器管理不带延时触发，如果发现处理命令buf满了，直接返回错误。 |
 
-#### 5.2.5 xTimerStop
+#### 3.5.2.5 xTimerStop
 
 FreeRTOS接口：
 
@@ -2187,7 +2188,7 @@ Rhino接口替换说明：
 | 返回值   | 成功或失败                                                                             |
 | 入参     | timer = xTimer krhino的定时器管理不带延时触发，如果发现处理命令buf满了，直接返回错误。 |
 
-#### 5.2.6 xTimerChangePeriod
+#### 3.5.2.6 xTimerChangePeriod
 
 FreeRTOS接口：
 
@@ -2205,7 +2206,7 @@ Rhino接口替换说明：
 |          | Round = xNewPeriod                                                                |
 |          | krhino的定时器管理不带延时触发，如果发现处理命令buf满了，直接返回错误。           |
 
-#### 5.2.7 xTimerDelete
+#### 3.5.2.7 xTimerDelete
 
 FreeRTOS接口：
 
@@ -2221,7 +2222,7 @@ Rhino接口替换说明：
 | 入参     | timer = xTimer                                                          |
 | 说明     | krhino的定时器管理不带延时触发，如果发现处理命令buf满了，直接返回错误。 |
 
-#### 5.2.8 xTimerReset
+#### 3.5.2.8 xTimerReset
 
 FreeRTOS接口：
 
@@ -2235,7 +2236,7 @@ Rhino接口替换说明：
 |----------|---------------------------------------------------------------------------|
 
 
-#### 5.2.9 xTimerStartFromISR
+#### 3.5.2.9 xTimerStartFromISR
 
 FreeRTOS接口：
 
@@ -2251,7 +2252,7 @@ Rhino接口替换说明：
 | 入参     | timer = xTimer                                                                                                                                                  |
 | 说明     | krhino的定时器管理不带延时触发，如果发现处理命令buf满了，直接返回错误； 代码中此接口和xTimerStart处理一样；krhino的krhino_timer_start接口同样可以在中断中使用。 |
 
-#### 5.2.10 xTimerStopFromISR
+#### 3.5.2.10 xTimerStopFromISR
 
 FreeRTOS接口：
 
@@ -2267,7 +2268,7 @@ Rhino接口替换说明：
 | 入参     | timer = xTimer                              |
 | 说明     | pxHigherPriorityTaskWoken参数不关注         |
 
-#### 5.2.11 xTimerChangePeriodFromISR
+#### 3.5.2.11 xTimerChangePeriodFromISR
 
 FreeRTOS接口：
 
@@ -2285,7 +2286,7 @@ Rhino接口替换说明：
 |          | Round = xNewPeriod                                                                |
 |          | pxHigherPriorityTaskWoken参数不需要，用户不需要此判断。                           |
 
-#### 5.2.12 pcTimerGetName
+#### 3.5.2.12 pcTimerGetName
 
 FreeRTOS接口：
 
@@ -2299,7 +2300,7 @@ Rhino接口替换说明：
 |----------|----------------------|
 
 
-#### 5.2.13 xTimerResetFromISR
+#### 3.5.2.13 xTimerResetFromISR
 
 FreeRTOS接口：
 
@@ -2313,7 +2314,7 @@ Rhino接口替换说明：
 |----------|---------------------------------------------------------------------------|
 
 
-#### 5.2.14 pvTimerGetTimerID
+#### 3.5.2.14 pvTimerGetTimerID
 
 FreeRTOS接口：
 
@@ -2327,7 +2328,7 @@ Rhino接口替换说明：
 |----------|----------------------------------------------|
 
 
-#### 5.2.15 vTimerSetTimerID
+#### 3.5.2.15 vTimerSetTimerID
 
 FreeRTOS接口：
 
@@ -2341,7 +2342,7 @@ Rhino接口替换说明：
 |----------|----------------------------------------------|
 
 
-#### 5.2.16 xTimerGetPeriod
+#### 3.5.2.16 xTimerGetPeriod
 
 FreeRTOS接口：
 
@@ -2355,7 +2356,7 @@ Rhino接口替换说明：
 |----------|-----------------------------|
 
 
-#### 5.2.17 xTimerGetExpiryTime
+#### 3.5.2.17 xTimerGetExpiryTime
 
 FreeRTOS接口：
 
@@ -2369,7 +2370,7 @@ Rhino接口替换说明：
 |----------|---------------------------------------------|
 
 
-#### 5.2.18 [xTimerPendFunctionCall](http://www.freertos.org/xTimerPendFunctionCall.html)
+#### 3.5.2.18 [xTimerPendFunctionCall](http://www.freertos.org/xTimerPendFunctionCall.html)
 
 FreeRTOS接口：
 
@@ -2390,7 +2391,7 @@ Rhino接口替换说明：
 |          | auto_run = 1                                                                                                                                              |
 | 出参     | Timer：返回句柄                                                                                                                                           |
 
-#### 5.2.19 xTimerPendFunctionCallFromISR
+#### 3.5.2.19 xTimerPendFunctionCallFromISR
 
 FreeRTOS接口：
 
@@ -2404,10 +2405,10 @@ Rhino接口替换说明：
 |----------|--------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
 
 
-6、Event API
-------------
+3.6、Event API
+--------------
 
-### 6.1 整体API对比
+### 3.6.1 整体API对比
 
 | FreeRTOS                    | Rhino                            | 说明                  |
 |-----------------------------|----------------------------------|-----------------------|
@@ -2423,9 +2424,9 @@ Rhino接口替换说明：
 | xEventGroupGetBitsFromISR   | 直接读event结构体                | 中断中得到event的位   |
 | xEventGroupSync             | Rhion中可单用event组合达到此功能 | 多任务之间的同步      |
 
-### 6.2 具体接口详述
+### 3.6.2 具体接口详述
 
-#### 6.2.1 xEventGroupCreate
+#### 3.6.2.1 xEventGroupCreate
 
 FreeRTOS接口：
 
@@ -2442,7 +2443,7 @@ Rhino接口替换说明：
 |          | Flags = 0                                                                                |
 | 出参     | Event：返回事件句柄                                                                      |
 
-#### 6.2.2 xEventGroupCreateStatic
+#### 3.6.2.2 xEventGroupCreateStatic
 
 FreeRTOS接口：
 
@@ -2459,7 +2460,7 @@ Rhino接口替换说明：
 |          | Name：用户自定义名字，维测使用                                                     |
 |          | Flags = 0                                                                          |
 
-#### 6.2.3 vEventGroupDelete
+#### 3.6.2.3 vEventGroupDelete
 
 FreeRTOS接口：
 
@@ -2473,7 +2474,7 @@ Rhino接口替换说明：
 |----------|--------------------------------------------|
 | 入参     | Event = xEventGroup：注意类型匹配          |
 
-#### 6.2.4 xEventGroupWaitBits
+#### 3.6.2.4 xEventGroupWaitBits
 
 FreeRTOS接口：
 
@@ -2500,7 +2501,7 @@ Rhino接口替换说明：
 3.  如果正常获取、超时获取、超时未获取，都会返回设定前的event
     value（去掉高8bit的操作位）。
 
-#### 6.2.5 xEventGroupSetBits
+#### 3.6.2.5 xEventGroupSetBits
 
 FreeRTOS接口：
 
@@ -2517,7 +2518,7 @@ Rhino接口替换说明：
 |          | Flags = EventBits_t：krhino没有高8bit不能使用的限制                     |
 |          | Opt = RHINO_OR                                                          |
 
-#### 6.2.6 xEventGroupSetBitsFromISR
+#### 3.6.2.6 xEventGroupSetBitsFromISR
 
 FreeRTOS接口：
 
@@ -2534,7 +2535,7 @@ Rhino接口替换说明：
 |          | Flags = uxBitsToSet：krhino没有高8bit不能使用的限制                     |
 |          | Opt = RHINO_OR                                                          |
 
-#### 6.2.7 xEventGroupClearBits
+#### 3.6.2.7 xEventGroupClearBits
 
 FreeRTOS接口：
 
@@ -2551,7 +2552,7 @@ Rhino接口替换说明：
 |          | Flags = \~( uxBitsToClear)：krhino没有高8bit不能使用的限制              |
 |          | Opt = RHINO_AND                                                         |
 
-#### 6.2.8 xEventGroupClearBitsFromISR
+#### 3.6.2.8 xEventGroupClearBitsFromISR
 
 FreeRTOS接口：
 
@@ -2568,7 +2569,7 @@ Rhino接口替换说明：
 |          | Flags = \~( uxBitsToClear)：没有高8bit不能使用限制                      |
 |          | Opt = RHINO_AND                                                         |
 
-#### 6.2.9 xEventGroupGetBits
+#### 3.6.2.9 xEventGroupGetBits
 
 FreeRTOS接口：
 
@@ -2582,7 +2583,7 @@ Rhino接口替换说明：
 |----------|-----------------------|
 
 
-#### 6.2.10 xEventGroupGetBitsFromISR
+#### 3.6.2.10 xEventGroupGetBitsFromISR
 
 FreeRTOS接口：
 
@@ -2596,7 +2597,7 @@ Rhino接口替换说明：
 |----------|-----------------------|
 
 
-#### 6.2.11 xEventGroupSync
+#### 3.6.2.11 xEventGroupSync
 
 FreeRTOS接口：
 
@@ -2620,17 +2621,17 @@ Rhino接口替换说明：
 | 出参     | actl_flags：参考xEventGroupWaitBits接口对krhino_event_get具体说明。                                          |
 | 收尾处理 | 注意上面两个函数处理完后，需要清除标志：event-\> flags &= \~( uxBitsToWaitFor)                               |
 
-7、Co-routines API
-------------------
+3.7、Co-routines API
+--------------------
 
 目前业务上不需要co-routine的实现。
 
 建议替换为task或者work实现。
 
-8、smp多核 API
---------------
+3.8、smp多核 API
+----------------
 
-### 8.1 整体API对比
+### 3.8.1 整体API对比
 
 | FreeRTOS | Rhino                  | 说明                      |
 |----------|------------------------|---------------------------|
@@ -2640,14 +2641,14 @@ Rhino接口替换说明：
 | 无       | krhino_spin_lock       | 自旋锁加锁                |
 | 无       | rhino_spin_unlock      | 自旋锁解锁                |
 
-### 8.2 具体接口详述
+### 3.8.2 具体接口详述
 
 目前其他RTOS尚未支持该功能。
 
 Rhino相关Smp说明，请参考：https://yq.aliyun.com/articles/589967
 
-9、内核头文件包含
------------------
+3.9、内核头文件包含
+-------------------
 
 Krhino的头文件包含统一使用：
 
@@ -2658,8 +2659,8 @@ Krhino的头文件包含统一使用：
 四、编译方式说明
 ================
 
-1、内核涉及文件部署
--------------------
+4.1、内核涉及文件部署
+---------------------
 
 （工具链\\example\\arch\\mcu\\链接脚本\\初始化）
 
@@ -2674,13 +2675,13 @@ Krhino的头文件包含统一使用：
 | 库函数              | utility\\libc           | Gcc: newlib_stub.c Armcc: armcc_libc.c Iarcc: iar_libc.c           |
 | IDE相关工程         | projects                | 包含keil\\iar等                                                    |
 
-2、Keil\\iar\\e2studio相关IDE
------------------------------
+4.2、Keil\\iar\\e2studio相关IDE
+-------------------------------
 
 IDE相关的编译工程都放在projects目录下，目前该目录下已经有一些示例工程，用户可以自建工程。对应的工程文件按照不同IDE的实际情况点击运行即可。
 
-3、Gcc(linux\\vscode) 编译命令说明
-----------------------------------
+4.3、Gcc(linux\\vscode) 编译命令说明
+------------------------------------
 
 该部分在github上有详细步骤，此处不另做说明。
 
@@ -2690,10 +2691,16 @@ Vscode下开发使用说明：[AliOS-Things-Studio](AliOS-Things-Studio)
 五、内核移植认证
 ================
 
-AliOS Things提供了基本的内核测试用例集，用于内核移植后的测试验证，所有移植的平台都需要运行该测试样例，确保内核功能的正确性。  
-内核测试集目录：`test\testcase\certificate_test`  
-在上面目录下提供了两个测试文件rhino_test.c和aos_test.c。其中rhino_test.c针对于纯内核的移植，aos_test.c针对于至少包含kernel层的移植，见章节2.8描述，其测试任务主要参考下面的《AliOS Things Kernel 测试指南参考》。  
-目前主要的认证项都会带aos层，如果只关注rhino_test.c相关纯内核的验证，需要做以下修改：  
+AliOS
+Things提供了基本的内核测试用例集，用于内核移植后的测试验证，所有移植的平台都需要运行该测试样例，确保内核功能的正确性。
+
+内核测试集目录：`test\testcase\certificate_test` 
+
+在上面目录下提供了两个测试文件rhino_test.c和aos_test.c。其中rhino_test.c针对于纯内核的移植，aos_test.c针对于至少包含kernel层的移植，见章节2.8描述，其测试任务主要参考下面的《AliOS
+Things Kernel 测试指南参考》。
+
+目前主要的认证项都会带aos层，如果只关注rhino_test.c相关纯内核的验证，需要做以下修改：
+
 	*修改rhino_test.c配置项，如：
  
 	/*以下字符定义可任取名字，不能为空*/
