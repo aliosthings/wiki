@@ -284,7 +284,7 @@ B、实际运行检测调整
 下述图中“StackSize”表示任务栈总大小，“MinFreesize”表示该任务运行到目前为止未使用的栈，单位都是cpu_stack_t（4字节）；  
 如果系统未支持cli命令，可以使用`krhino_task_stack_min_free`接口来获取某任务的“MinFreesize”。 
 
-![](media/b8dd8b6b01a05281722a1d1d2296f813.png)
+![](https://i.imgur.com/uHZiLBr.png)
 
 #### 2.2.6.3 内核使用堆的配置
 
@@ -298,7 +298,7 @@ B、实际运行检测调整
 
 （参考文件：platform\\mcu\\nrf52xxx\\ nrf52_common.ld）
 
-![](media/8699e7e114f4faa45af9441c57a955f3.png)
+![](https://i.imgur.com/F0iI4TA.png)
 
 堆的起点heap_start定义为栈的结尾，堆的结尾heap_end定义为RAM的结尾，这样剩余RAM的空间都交给OS管理。
 
@@ -314,7 +314,7 @@ B、实际运行检测调整
 
 （参考文件：platform\\mcu\\stm32l4xx\\src\\STM32L496G-Discovery\\startup_stm32l496xx_keil.s）
 
-![](media/fcecb52abef42ced5de604a91b2642f4.png)
+![](https://i.imgur.com/RYv6Eo4.png)
 
 此方式并没有将剩余RAM的空间都直接交给OS管理，需要用户自己来调整大小。
 
@@ -360,7 +360,8 @@ B、实际运行检测调整
 
 初始化的流程都大同小异，其中CPU本身的启动加载按照不同板子的实际情况处理，此处仅说明OS部分的初始化。
 主要包括：内核模块初始化`krhino_start`;创建主任务`krhino_task_create`;内核启动`krhino_start`。  
-
+  
+![](https://i.imgur.com/pp7U44i.png)
 主任务会在`krhino_start`开始调度后进入，如果不创建主任务，则系统会默认进入OS自身创建的其他任务运行，比如idle任务。主任务入口一般初始化内核运行需要的相关硬件寄存器，比如tick时钟，串口等等。一些硬件初始化也可以放在`krhino_init`之前，但是需要注意在内核初始化前，禁止启动和内核相关的操作，主要包括激活带内核处理的中断，比如`tick\uart`，依赖内核的库函数：  
 （1）、`krhino_start`前不能有OS相关的中断处理。原因是如果在内核运行前触发了某个中断，并且该中断使用了`krhino_intrpt_exit`处理，则会进入任务切换，而此时内核尚未开始调度；  
 （2）、`printf`、`malloc`相关的接口，在内核初始化后才能使用。原因是此类库函数被内核重定向，会调用内核接口`aos_malloc`，依赖内核的初始化。  
