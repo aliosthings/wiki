@@ -150,7 +150,15 @@ fork成功后，在可以在自己名下看到AliOS-Things的代码
 ![](https://i.imgur.com/gdTT7or.png)
 
 #### 5.3 代码修改下载
+在git bash下通过以下命令下载自己分支的代码：
 
+git clone git@github.com:***yourname***/AliOS-Things.git
+
+yourname -- 即自己github账号的名字
+
+![](https://i.imgur.com/RgeFnnB.png)
+
+#### 5.4 代码上传
 每次代码上传之前，请同步AliOS-Things上master代码到自己名下的master
 
 然后和入代码修改，和入的代码主要包括以下四个部分：
