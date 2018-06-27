@@ -151,6 +151,10 @@ fork成功后，在可以在自己名下看到AliOS-Things的代码
 ![](https://i.imgur.com/gdTT7or.png)
 
 #### 5.3 代码修改下载
+邮箱修改：
+git config user.email xxx
+xxx -- 注册github时使用的本公司邮箱
+
 在git bash下通过以下命令下载自己分支的代码：
 
 git clone git@github.com:***yourname***/AliOS-Things.git
