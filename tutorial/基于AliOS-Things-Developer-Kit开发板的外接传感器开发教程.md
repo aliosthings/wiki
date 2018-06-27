@@ -35,6 +35,7 @@ https://github.com/alibaba/AliOS-Things/wiki/AliOS-Things-Studio
 然后选择zip格式下载；
 ![](https://i.imgur.com/AoAtQN8.png)
 
+安装了git bash的同学也可以通过命令行下载：git clone git@github.com:andy2012zwj/AliOS-Things.git
 ## 3 代码移植
 ### 3.1 驱动代码集成
 请参考以下链接完成uData架构下传感器驱动的移植：https://github.com/alibaba/AliOS-Things/wiki/AliOS-Things-uData-Sensor-Driver-Porting-Guide.zh
