@@ -184,9 +184,9 @@ yourname -- 即自己github账号的名字
 
 git add .
 
-git comment -m "add driver for sensor"
+git commit -m "add driver for sensor"
 
-git push origion master
+git push origin master
 
 #### 5.5 提交pull request
 
