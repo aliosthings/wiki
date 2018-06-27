@@ -181,12 +181,13 @@ yourname -- 即自己github账号的名字
 ![](https://i.imgur.com/cZcrBsJ.png)
 
 修改完成后，通过以下命令上传代码到自己名下的master分支
+查看修改后的文件： git status
 
-git add .
+添加要修改的文件信息到索引库： git add .
 
-git commit -m "add driver for sensor"
+添加文件修改到本地库，并添加log： git commit -m "add driver for sensor"
 
-git push origin master
+将修改推送到远程分支： git push origin master
 
 #### 5.5 提交pull request
 
