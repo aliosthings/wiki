@@ -181,6 +181,7 @@ yourname -- 即自己github账号的名字
 ![](https://i.imgur.com/cZcrBsJ.png)
 
 修改完成后，通过以下命令上传代码到自己名下的master分支
+
 查看修改后的文件： git status
 
 添加要修改的文件信息到索引库： git add .
