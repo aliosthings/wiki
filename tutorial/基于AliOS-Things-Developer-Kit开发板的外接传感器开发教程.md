@@ -157,7 +157,7 @@ git config user.email xxx
 xxx -- github提交时显示的本公司邮箱
 
 git用户名修改：
-git config user.email yyy
+git config user.name yyy
 
 yyy -- 注册github时显示的用户名
 
