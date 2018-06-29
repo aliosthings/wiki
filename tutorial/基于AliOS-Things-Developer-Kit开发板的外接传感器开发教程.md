@@ -196,3 +196,48 @@ yourname -- 即自己github账号的名字
 ![](https://i.imgur.com/lr8u3Sk.png)
 上传代码流程也可参考该链接：
 https://github.com/alibaba/AliOS-Things/wiki/contributing.zh
+
+
+## 6 自测流程
+
+1. 文件命名、函数命名、实现符合AliOS-Things下sensor驱动编程规范；
+
+   https://github.com/alibaba/AliOS-Things/wiki/AliOS-Things-Coding-Style-Guide
+
+2. 需要保证sensor可以成功初始化，uData上层服务可以能够正确读出数据，且数据单位与uData要求保持一致（如果有不合理的地方请提出）；
+
+3. 对于带有self-test功能的sensor，建议实现self-test接口；
+    可参考函数drv_acc_bosch_bma253_self_test（代码目录：AliOS-Things-master\device\sensor\drv\drv_acc_bosch_bma253.c）
+   代码链接： https://github.com/alibaba/AliOS-Things/wiki/AliOS-Things-Coding-Style-Guide
+
+
+```
+/*
+drv   -- 类型： i2c_dev_t*   说明： 驱动参数；
+data  -- 类型： int32_t*     说明： self-test测试返回的offset值，可参考结构体dev_sensor_info_t；
+返回值 -- 成功返回0；失败返回-1；
+*/
+
+static int drv_acc_bosch_bma253_self_test(i2c_dev_t* drv,int32_t* data)；
+
+/*并在相应sensor的ioctl函数中调用该接口*/
+static int drv_acc_bosch_bma253_ioctl(int cmd, unsigned long arg)
+{
+    int ret = 0;
+    dev_sensor_info_t *info = (dev_sensor_info_t *)arg;
+    switch(cmd){
+        
+        case SENSOR_IOCTL_SELF_TEST:{
+            ret = drv_acc_bosch_bma253_self_test(&bma253_ctx, info->data);
+            printf("%d   %d   %d\n",info->data[0],info->data[1],info->data[2]);
+            return ret;
+        }
+
+       default:break;
+    }
+
+    return 0;
+}
+
+```
+
