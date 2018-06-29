@@ -200,14 +200,19 @@ https://github.com/alibaba/AliOS-Things/wiki/contributing.zh
 
 ## 6 自测流程
 
+由于当前认证的用例带有检测仪器，不适合开发者验证。因此建议从以下几个方面实现自检自测：
+
 1. 文件命名、函数命名、实现符合AliOS-Things下sensor驱动编程规范；
 
    https://github.com/alibaba/AliOS-Things/wiki/AliOS-Things-Coding-Style-Guide
 
 2. 需要保证sensor可以成功初始化，uData上层服务可以能够正确读出数据，且数据单位与uData要求保持一致（如果有不合理的地方请提出）；
 
+   如果有条件，可以验证一下精度，在5%以内；
+
 3. 对于带有self-test功能的sensor，建议实现self-test接口；
-    可参考函数drv_acc_bosch_bma253_self_test（代码目录：AliOS-Things-master\device\sensor\drv\drv_acc_bosch_bma253.c）
+   可参考函数drv_acc_bosch_bma253_self_test（代码目录：AliOS-Things-master\device\sensor\drv\drv_acc_bosch_bma253.c）
+
    代码链接： https://github.com/alibaba/AliOS-Things/wiki/AliOS-Things-Coding-Style-Guide
 
 
