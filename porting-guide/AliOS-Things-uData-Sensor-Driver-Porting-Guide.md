@@ -1,4 +1,4 @@
-EN| [中文](AliOS-Things-uData-Sensor-Driver-Porting-Guide.en)
+EN| [中文](AliOS-Things-uData-Sensor-Driver-Porting-Guide.zh)
 
 - Introduction of uData framework
 
