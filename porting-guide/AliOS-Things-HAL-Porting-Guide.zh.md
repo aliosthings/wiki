@@ -211,7 +211,7 @@ int32_t uart_mode_transform(hal_uart_mode_t mode_hal, uint32_t *mode_stm32l4)
 然后逐一实现hal层的函数
 
 初始化
-
+如果要将某一个串口设置为标准输入输出端口，那么其对应uart_dev_t结构体中的port必须设置为0，且此时priv不可使用，其他串口无此要求。
 ```C
 int32_t hal_uart_init(uart_dev_t *uart)
 {

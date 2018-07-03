@@ -213,7 +213,7 @@ int32_t uart_mode_transform(hal_uart_mode_t mode_hal, uint32_t *mode_stm32l4)
 Then, implement the functions in HAL one by one.
 
 Initiation operation:
-
+If a serial port is to be set as a standard input/output port, the port in the corresponding uart_dev_t structure must be set to 0, and priv cannot be used at this time. Other serial ports do not have this requirement.
 ```C
 int32_t hal_uart_init(uart_dev_t *uart)
 {
