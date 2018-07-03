@@ -16,14 +16,17 @@
 | 2    | flash |
 | 3    | gpio  |
 | 4    | i2c   |
-| 5    | pwm   |
-| 6    | rng   |
-| 7    | rtc   |
-| 8    | sd    |
-| 9    | spi   |
-| 10   | timer |
-| 11   | uart  |
-| 12   | wdg   |
+| 5    | nand  |
+| 6    | nor   |
+| 7    | pwm   |
+| 8    | rng   |
+| 9    | rtc   |
+| 10   | sd    |
+| 11   | spi   |
+| 12   | timer |
+| 13   | uart  |
+| 14   | wdg   |
+| 15   | dac   |
 
 目前HAL抽象层的定义已经能兼容多家芯片公司的标准，比如STM32，Beken，全志，NXP等芯片厂商，用户可参照已有平台的HAL封装实现。
 
