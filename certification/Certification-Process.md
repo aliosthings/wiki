@@ -1,4 +1,4 @@
-EN | [中文](Process.zh) 
+EN | [中文](Certification-Process.zh) 
 
 # AliOS Things certification process
 
