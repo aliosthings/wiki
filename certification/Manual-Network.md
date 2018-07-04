@@ -1,148 +1,197 @@
-# AliOS Things 连接自测指南
+EN|[中文](Manual-Network.zh)
 
-## 下载测试使用的APP 
-详见[自有品牌APP和公版APP的介绍](https://living.aliyun.com/doc#muti-app.html)
+# AliOS Things Network Self Test Guide
 
-## 测试前设置
-### 权限配置
-<span data-type="color" style="color:#F5222D;">APP安装后最好允许所有的权限，防止因为权限的问题导致wifi设备配网失败</span>
-手机设置->安全设置->权限管理->demaopp->允许所有权限(不同手机设置路径可能不太一样)  
-如下图:![](assets/awss_1.png)
-### 注册测试账户
-1.安装demoapp后，请注册有效的测试账户（手机账号即可注册）
-如下图：![](assets/awss_2.png)
+## Download the app used for test
 
-### 用户登入成功界面
-<span data-type="color" style="color:#F5222D;">一个账户只能同时在一台手机上登入</span>
-登入成功界面如下图:![](assets/awss_3.png)
+Refer to [APP Introduction](https://living.aliyun.com/doc#muti-app.html)
 
-## 设备配网
-通过以下配网方式将设备添加至个人账户并绑定使用
-1. 一键配网
-2. 热点配网
-3. 零配
-4. 路由器配网
-5. 扫码添加
+## Settings before test
 
-### 一键配网
-**前置条件**：手机需要连接设备欲连接的路由器
-##### IOS 一键配网
-<span data-type="color" style="color:#F5222D;">IOS上默认先走一键配网方式，失败后可以继续一键配网或者选择热点配网</span>
-1.点击添加设备按钮,如下图：![](assets/awss_4.png)
+### Set permission
 
-2.选着设备类型（<span data-type="color" style="color:#F5222D;">请选择正确的产品类型，不正确的类型会配网失败</span>），点击添加  
+<span data-type="color" style="color:#F5222D;">Allow all the permission of the APP, or it may lead to failure of network distribution.</span>
+Settings->Security->Permission->DemoApp->allow all the permission (The steps are different in different mobile phone)  
+As follows:![](assets/awss_1.png)
+
+### Sign up a test account 
+
+1. Sign up a test account after installation（you can just use your phone number）.
+
+As follows：![](assets/awss_2.png)
+
+### Log in 
+
+<span data-type="color" style="color:#F5222D;">One account can only be used in one phone at the same time.</span>
+If you log in successfully, the interface will be as follows:![](assets/awss_3.png)
+
+## Network Configuration
+
+You can add devices to your personal account through following ways.
+
+1. SmartConfig
+2. Hot spot connection
+3. Zero configuration
+4. WiFi connection
+5. Scan to add
+
+### SmartConfig
+
+**Prerequisite**：Your mobile phone should connect to the router your device is to be connected to 
+
+##### IOS SmartConfig
+
+<span data-type="color" style="color:#F5222D;">IOS will try SmartConfig by default. If it failed, you could try again or start hot spot connection.</span>
+
+1.Click the button to add device：![](assets/awss_4.png)
+
+2.Select device type （<span data-type="color" style="color:#F5222D;">Please choose correct type, or it may lead to error.</span>），click to add. 
 ![](assets/awss_5.png)
 
-3.输入wifi密码<span data-type="color" style="color:#F5222D;">（请确保输入wifi密码正确，密码也不正确会配网失败）</span>再进行下一步   
+3.Enter wifi password.<span data-type="color" style="color:#F5222D;">(Make sure it is correct, or it may lead to error.）</span>  Enter the next step.
 ![](assets/awss_6.png)
 
-4.操作设备进入配网状态，设备进入配网状态后在demoapp上确认  
+4.Enter network mode. You can make sure it in demoapp. 
 ![](assets/awss_7.png)
 
-
-5.设备开始进入配网
+5.Start network connection.
 ![](assets/awss_8.png)
 
-6.配网成功后进行绑定，即可使用![](assets/awss_9.png)
+6.You can bind your device when you connect to network successfully. 
 
-##### Android 一键配网
-<span data-type="color" style="color:#F5222D;">Android的默认的是热点配网模式，需要等热点配网失败后才可以进行一键配网，所以在android上想进行一键配网，得先模拟热点失败的场景</span>
-方法一.手机关闭数据流量使热点配网失败  
-方法二.设备在进入配网状态，等意见配网时再让设备进入配网状态   
- 1.热点配网失败后选择“试试另一种配网方式”![](assets/awss_10.png)
+![](assets/awss_9.png)
 
- 2.再次操作设备进入配网状态，设备进入配网状态后手机上点击确认 
+##### Android SmartConfig
+
+<span data-type="color" style="color:#F5222D;">Android will try hot spot connection by default. So you could start smart connection only when you failed in hot spot connection. </span>
+Step 1: Close mobile data to make hot spot connection fail. 
+Step 2:  
+ 1.Select “Try another way” when hot spot connection failed.
+
+![](assets/awss_10.png)
+
+ 2.Enter connection mode again, and you should confirm it in your mobile phone.
 ![](assets/awss_11.png)
 
- 3.设备开始配网  
+ 3.Start connecting.  
 ![](assets/awss_12.png)
 
- 4.设备配网成功，开始绑定使用![](assets/awss_13.png)
+ 4.Bind your device when you connect to network successfully. 
 
-#### 热点配网
-**前置条件**:
- 1.手机插入SIM卡并开启数据流量  
- 2.手机连接需要配网的wifi网络 
-##### IOS 热点配网:
-<span data-type="color" style="color:#F5222D;">IOS手机默认的配网方式是一键配网，在ios上验证热点配网需要先模拟一键配网失败场景，然后在选择热点配网</span>
-模拟一键配网失败的场景
-方法一.设备不进入配网，等进行热点配网时在操作设备进入配网
-方法二.配网时先将网线的wlan扣断开，等提示一键配网失败后在重新插入  
- 1.一键配网失败的后，在界面上选择“试试另一种配网方式”
+![](assets/awss_13.png)
+
+#### Hot spot connection
+
+**Prerequisites**:
+
+1.Insert SIM card to your mobile phone and open mobile data.   
+
+ 2.Connect your phone to the 手机连接需要配网的wifi网络 
+
+##### IOS Hot spot connection:
+
+<span data-type="color" style="color:#F5222D;">IOS will try SmartConfig by default. So you could start hot spot connection only when you failed in smart connection. </span>
+Setp 1. Not start connection mode until hot spot connection start.
+Step 2. Close the WLAN first and open it again when smart connection failed.
+ 1.Select “Try another way” when smart connection failed.
 ![](assets/awss_14.png)
 
- 2.重新操作设备进入配网模式，然后在手机上确认
+ 2.Enter connection mode again, and you should confirm it in your mobile phone.
 ![](assets/awss_15.png)
 
-
- 3.根据界面提示，手动开启手机aha热点（ios需要手动开启）
+ 3.Open aha hot spot according to instruction.
 ![](assets/awss_16.png)
 
- 4.设备连接上aha热点后返回到demoapp上进行下一步操作
+ 4.Connect to aha and return to demoapp to start next step.
 ![](assets/awss_17.png)
 
- 5.设备连接上热点，等待手机获取待配网的设备信息
+ 5.Connect your device to the hot spot, and wait to get device information in your phone.
 ![](assets/awss_18.png)
 
- 6.手机获取待配网的设备信息后开始配网
+ 6.Start connection when your phone get device information.
 ![](assets/awss_19.png)
 
-
- 7.设备配网成功后提示手机切换网络，手动将手机的网络切回配网的wifi
+ 7.Connect your phone to WiFi again when your device connect to network successfully.
 ![](assets/awss_20.png)
 
- 8.手机收到配网成功信息，提示配网成功![](assets/awss_21.png)
+8.Get connection success information in your phone.
 
-##### Android 热点配网:
-<span data-type="color" style="color:#F5222D;">Android默认配网方式就是热点配网，可以自动实现aha热点的开启与wifi的切换（需要用户允许权限与开启数据流量）</span>
- 1.与一键配网一样，需要用户选择正确设备类型与输入wifi\_password，然后操作设备进入配网模式，android手机会自动开启aha与切换wifi,如下图所示:![](assets/awss_22.png)
+![](assets/awss_21.png)
 
-2.手机自动切换上网ap![](assets/awss_23.png)
+##### Android Hot spot connection:
+
+<span data-type="color" style="color:#F5222D;">Android's default connection mode is hot spot connection, so it will automatically open aha（Users should permit and open mobile data.）</span>
+
+1.Enter correct device type and wifi password. Enter connection mode. Android phone will automatically open aha and switch to wifi:
+
+![](assets/awss_22.png)
+
+2.Your phone will automatically connect to the app
+
+![](assets/awss_23.png)
 ![](assets/awss_24.png)
 
-3.配网成功开始绑定![](assets/awss_23.png)
+3.Bind your device after it connect to network successfully. 
 
-#### 零配
-待配网设备通过已配网设备获取到路由器的ssid与password,从而接入到wifi网络中  
-**前置条件**
- 1.需要用户名下已经绑定了一台支持零配的设备
+![](assets/awss_23.png)
 
-##### 操作步骤
-<span data-type="color" style="color:#F5222D;">零配在android和ios上的操作一致</span>
- 1.用户可以通过一键配网或者热点配网先添加一台支持零配的设备
- 2.待配网设备上电
- 3.添加添加，在本地发现设备列表中选着待配网设备，点击添加
+#### Zero configuration
+
+The device to be connected gets SSID and password from connected device, and connect to WiFi. 
+**Prerequisite**:
+ You should bind a device supporting zero configuration under your account.
+
+##### Steps:
+
+<span data-type="color" style="color:#F5222D;">Operation of zero configuration in android and ios are the same.</span>
+ 1.Add a device that supports zero configuration through SmartConfig or hot spot connection.
+ 2.Open the device to be connected.
+ 3.Add the device.
 ![](assets/awss_16.png)
 
- 4.操作设备进入配网，设备开始配网
+ 4.Start network connection.
 ![](assets/awss_27.png)
 
- 5.配网成功进行绑定使用![](assets/awss_28.png)
+ 5.Bind the device after successful connection.
 
-#### 路由器配网
-路由器配网方式是设备上电主动连接路由器的发现热点，在请求配网后由路由器自动完成配网的剩余流程
-**前置条件**
- 1.设备需要支持路由器配网（上电扫描adha的功能）
- 2.需要有集成配网功能的路由器（H3C）
- 3.账户已经绑定了H3C路由器，且手机连接在该路由器的wifi
-##### 操作步骤
- 1.手机连接上H3C路由器的网络，点击添加/绑定
+![](assets/awss_28.png)
+
+#### Router connection 
+
+**Prerequisites**:
+
+1. The device should support router connection 
+
+
+2. You need a router that has connection function（H3C）
+3. Your account should have bound H3C router and your phone connect to its WiFi.
+
+##### Steps:
+
+ 1.Connect your phone to the wifi from H3C, and click "Add/Bind"
 ![](assets/awss_29.png)
 
- 2.设备上电，等待设备连接发现热点后，app在本地发现列表中显示待配网设备![](assets/awss_30.png)
+ 2.Open the device, and wait the device to be found in device list.
 
- 3.App上选择发现的设备，点击添加
- 4.在设备上操作设备进入配网模式，设备开始配网
+![](assets/awss_30.png)
+
+ 3.Choose the device found in the App, and click to add it.
+ 4.Enter network mode and start network configuration.
 ![](assets/awss_31.png)
 
- 5.配网完成后，绑定开始使用![](assets/awss_32.png)
+5. Bind the device after successful connection.
 
-#### 局域网内绑定
-同一局域网内可以发现已经配好网但是没有绑定的设备，可以直接绑定，不需要再重新配网
-#### 常见配网失败的原因:
- 1.设备类型选择错误，导致wifi密码解析错误
- 2.Wifi密码输入错误，导致设备连接不上wifi
- 3.配网时没有是设备在正确的配网状态，导致设备不接收手机发出广播
- 4.手机权限没有允许，导致手机开启热点失败与切换wifi失败
- 5.手机未开启数据流量，导致热点配网时无法拿到解析password的密钥
- 6.配网时同时有其他同学在配网，存在互相的干扰
+   ​                                          ![](assets/awss_32.png)
+
+#### Bind within a LAN
+
+You can bind the devices within same LAN directly. 
+
+#### Common reasons of connection failure:
+
+ 1.False device type. 
+ 2.False WiFi password. 
+ 3.Your device is not in connection mode. 
+ 4.No permission in your phone to open hot spot and WiFi.
+ 5.Mobile data in your phone hasn't been opened.
+ 6.Others are connecting, which may lead to disturbance.
