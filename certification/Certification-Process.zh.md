@@ -1,4 +1,4 @@
-[EN](Process) | 中文
+[EN](Certification-Process) | 中文
 
 # AliOS Things 认证流程
 
