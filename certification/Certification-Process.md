@@ -53,7 +53,7 @@ You can mail your hardware during your test. The content should include, but not
 7. DuPont lines (if needed)
 
 ```
-Contact address：杭州市余杭区文一西路969号1号楼小邮局 (Small post office, 1969 West Wen Yi Road, Yuhang district, Hangzhou)
+Contact address：杭州市西湖区转塘河山路369号中大园区7号楼小邮局 (Small post office No.7, 369 He Shan Road, Xihu district, Hangzhou)
 Tel：18557515801
 Recipient：少舒
 
