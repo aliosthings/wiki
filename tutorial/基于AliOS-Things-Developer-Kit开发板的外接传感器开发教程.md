@@ -192,8 +192,15 @@ yourname -- 即自己github账号的名字
 
 #### 5.5 提交pull request
 
-在自己的代码路径下，点击“pull request”，待CI运行成功后，由AliOS-Things团队和入到主干分支
+在自己的代码路径下，点击“pull request”
 ![](https://i.imgur.com/lr8u3Sk.png)
+
+#### 5.6 签署CLA
+
+通过以下链接签署CLA -- https://cla-assistant.io/alibaba/AliOS-Things
+
+待CI运行成功后，由AliOS-Things团队和入到主干分支
+
 上传代码流程也可参考该链接：
 https://github.com/alibaba/AliOS-Things/wiki/contributing.zh
 
