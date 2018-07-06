@@ -186,7 +186,7 @@ yourname -- 即自己github账号的名字
 
 添加要修改的文件信息到索引库： git add .
 
-添加文件修改到本地库，并添加log，***log中需要注明传感器的型号***： git commit -m "add driver for sensor xxx"
+添加文件修改到本地库，并添加log，***log中需要注明传感器的型号***： git commit -m "add driver for sensor xxx"   xxx为传感器型号
 
 将修改推送到远程分支： git push origin master
 
