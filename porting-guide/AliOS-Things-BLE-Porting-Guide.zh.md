@@ -2,10 +2,10 @@ AliOS-Things-BLE-Porting-Guide |中文
 
 # 目录
 
-    * [1 协议栈介绍](#1协议栈介绍)
-    * [2 目录结构](#2目录结构)
-    * [3 代码移植](#3代码移植)
-    * [4 链接配置移植](4#链接配置移植)
+* [1 协议栈介绍](#1协议栈介绍)
+* [2 目录结构](#2目录结构)
+* [3 代码移植](#3代码移植)
+* [4 链接配置移植](4#链接配置移植)
 ---
 
 本文档针对需要对aos ble协议栈进行对接需求包括controller HCI层对接，代码编译配置文件。
@@ -20,6 +20,7 @@ aos ble协议栈支持bt 4.0/4.2/5.0 低功耗核心协议栈，对上提供GAP/
 - 可配置stack，包括ble功能，buffer大小，连接数目等
 # 2目录结构
 蓝牙协议栈相关的文件目录位于< /aos/kernel/protocols/bluetooth/>下：
+```
 ├── common
 │   ├── include
 │   │   ├── arch
@@ -51,7 +52,7 @@ aos ble协议栈支持bt 4.0/4.2/5.0 低功耗核心协议栈，对上提供GAP/
 │       └── bluetooth
 └── port
 └── include
-
+```
 其中比较重要的有：
 - /host
  ble协议栈，包含了HCI command ,HCI event处理，连接管理，核心协议的L2CAP，ATT，SMP的实现
