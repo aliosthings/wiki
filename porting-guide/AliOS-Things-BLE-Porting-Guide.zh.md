@@ -55,7 +55,7 @@ aos ble协议栈支持bt 4.0/4.2/5.0 低功耗核心协议栈，对上提供GAP/
 ```
 其中比较重要的有：
 - /host  
- ble协议栈，包含了HCI command ,HCI event处理，连接管理，核心协议的L2CAP，ATT，SMP的实现
+ ble协议栈，包含了HCI command ,HCI event处理，连接管理，核心协议L2CAP，ATT，SMP的实现
 - /controller  
  蓝牙controller的实现，主要是厂商提供，包括，HCI层实现，Linker Layer和Radio射频部分的控制逻辑。
 - /include/bluetooth  
@@ -71,7 +71,7 @@ aos ble协议栈支持bt 4.0/4.2/5.0 低功耗核心协议栈，对上提供GAP/
 - aos driver
    请参阅已支持的nordic nrf52xxx系列驱动移植事例，代码位于aos/platform/mcu/nrf52xxx目录，包含了常见硬件timer, UART, flash等常用驱动支持。
 - controller
-   请参阅支持的nordic nrf52xxx系列控制器移植事例，aos/kernel/protocols/bluetooth/controller目录下厂商实现了Link layer层,Radio收发逻辑，以及和HCI层对接协议栈的能力。
+   请参阅支持的nordic nrf52xxx系列控制器移植事例，aos/kernel/protocols/bluetooth/controller，厂商实现Link layer层,Radio收发逻辑，以及和HCI层对接
 - Host HCI层
    在kernel和driver适配基础上，需要对接HCI层，host部分收发处理接口在host/hci_core.c里:
    - `int bt_recv(struct net_buf *buf)`  
