@@ -54,15 +54,15 @@ aos ble协议栈支持bt 4.0/4.2/5.0 低功耗核心协议栈，对上提供GAP/
 └── include
 ```
 其中比较重要的有：
-- /host
+- /host  
  ble协议栈，包含了HCI command ,HCI event处理，连接管理，核心协议的L2CAP，ATT，SMP的实现
-- /controller
+- /controller  
  蓝牙controller的实现，主要是厂商提供，包括，HCI层实现，Linker Layer和Radio射频部分的控制逻辑。
-- /include/bluetooth
+- /include/bluetooth  
  协议栈接口header文件。
-- /hci_drivers
+- /hci_drivers  
  蓝牙HCI驱动，主要包含H4驱动文件。
-- /port/include/
+- /port/include/  
  蓝牙协议栈配置文件
 # 3代码移植
 代码移植工作集中在:
