@@ -6,6 +6,7 @@
   - [Flash](Flash-and-KV-Storage-Porting-Guide)
   - [WiFi](AliOS-Things-WiFi-Porting-Guide)
   - [LwIP](AliOS-Things-LwIP-Porting-Guide)
+  - [BLE](AliOS-Things-BLE-Porting-Guide)
   - [SAL](https://github.com/alibaba/AliOS-Things/tree/master/device/sal/README.md)
   - [FOTA](AliOS-Things-FOTA-Porting-Guide)
   - [BINS](AliOS-Things-BINS-Porting-Guide)
