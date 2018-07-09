@@ -89,14 +89,14 @@ aos ble协议栈支持bt 4.0/4.2/5.0 低功耗核心协议栈，对上提供GAP/
       };
       ```
      2. 虚拟HCI接口，一般针对SOC类型蓝牙controller，通过虚拟HCI层实现Link Layer层对协议栈对接，可参考controller/hci/hci_driver.c下nrf52xxx系列实现  
-     ```
-        static const struct bt_hci_driver drv = {
-                .name   = "Controller",
-                .bus    = BT_HCI_DRIVER_BUS_VIRTUAL,
-                .open   = hci_driver_open,
-                .send   = hci_driver_send,
-        };
-        ```
+      ```
+      static const struct bt_hci_driver drv = {
+          .name   = "Controller",
+          .bus    = BT_HCI_DRIVER_BUS_VIRTUAL,
+          .open   = hci_driver_open,
+          .send   = hci_driver_send,
+      };
+      ```
         - hci_driver_open除初始化hci，LL以外，还会开启两个aos task:prio_recv_thread_data和recv_thread_data 任务： prio_recv_thread_data对number of complete,cmd status,cmd complet event进行优先处理 ； recv_thread_data调用协议栈接口int bt_recv(struct net_buf *buf) 
         - hci_driver_send会根据hci数据类型对接controller的linker layer对应的 *hci_acl_handle* 和*hci_cmd_handle* 
 
