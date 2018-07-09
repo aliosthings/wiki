@@ -74,19 +74,20 @@ aos ble协议栈支持bt 4.0/4.2/5.0 低功耗核心协议栈，对上提供GAP/
    请参阅支持的nordic nrf52xxx系列控制器移植事例，aos/kernel/protocols/bluetooth/controller目录下厂商实现了Link layer层,Radio收发逻辑，以及和HCI层对接协议栈的能力。
 - Host HCI层
    在kernel和driver适配基础上，需要对接HCI层，host部分收发处理接口在host/hci_core.c里:
-   - int bt_recv(struct net_buf *buf)
+   - `int bt_recv(struct net_buf *buf)`  
      包含了HCI接收函数，根据hci数据类型调用对应的hci_acl()或者hci_event()
-   - int bt_hci_driver_register(const struct bt_hci_driver *drv)
-     注册hci层回调函数，在controller的HCI接口中调用
-     根据HCI适配不同，有两种HCI driver实现：
+   - `int bt_hci_driver_register(const struct bt_hci_driver *drv)`  
+     注册hci层回调函数，在controller的HCI接口中调用  
+     根据HCI适配不同，有两种HCI driver实现：  
      1. 实际物理层HCI比如UART H4接口的controller请参考bluetooth/hci_drivers/h4.c H4接口的实现事例,
-
+      ```
       static struct bt_hci_driver drv = {
           .name       = "H:4",
           .bus        = BT_HCI_DRIVER_BUS_UART,
           .open       = h4_open,
           .send       = h4_send,
       };
+      ```
      2. 虚拟HCI接口，一般针对SOC类型蓝牙controller，通过虚拟HCI层实现Link Layer层对协议栈对接，可参考controller/hci/hci_driver.c下nrf52xxx系列实现
         static const struct bt_hci_driver drv = {
                 .name   = "Controller",
