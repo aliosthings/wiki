@@ -44,6 +44,7 @@ https://github.com/alibaba/AliOS-Things/wiki/AliOS-Things-Studio
 ```
 i2c_dev_t  ####_ctx = {
     .port = 3, /*developer kit上外接I2C的port为3*/
+    .config.address_width = 8,
     .config.dev_addr = 0x5D<<1, /* 从设备I2C地址，8bit */
 };
 
