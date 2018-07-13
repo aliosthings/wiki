@@ -80,7 +80,9 @@ Define a global variable i2c\-dev\_t, and set teh I2C address of that device, re
 <pre><code>i2c_dev_t  ####_ctx = {
 
 ```
-.config.dev_addr = 0x5D, /* I2C address of that device */
+.port = 3, /*I2C port is 3*/
+.config.address_width = 8,
+.config.dev_addr = 0x5D<<1, /* I2C address of that device，8bit */
 ```
 
 };</code></pre>
