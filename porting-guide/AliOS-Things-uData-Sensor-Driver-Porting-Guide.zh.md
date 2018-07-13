@@ -61,7 +61,9 @@ struct _sensor_obj_t {
 ##### IO总线配置
 定义一个的i2c\-dev\_t的全局变量，并配置其中的设备I2C地址，参考如下：
 <pre><code>i2c_dev_t  ####_ctx = {
-    .config.dev_addr = 0x5D, /* 从设备I2C地址 */
+    .port = 3, /*developer kit上外接I2C的port为3*/
+    .config.address_width = 8,
+    .config.dev_addr = 0x5D<<1, /* 从设备I2C地址，8bit */
 };</code></pre>
 #### 接口函数实现
 所有的外设驱动都是以vfs形式来读写操作的，所以每一个驱动按需实现必要的接口函数： 
