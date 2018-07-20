@@ -22,10 +22,10 @@ AliOS Things can now support the following channels. You can select one of them:
 
 #### [- MQTT channel self test guide](Manual-Channel-MQTT)
 
-#### [- WSF channel self test guide](Manual-Channel-WSF)
+<!-- #### [- WSF channel self test guide](Manual-Channel-WSF) -->
 
 #### [- Linkkit channel self test guide](Manual-Channel-LinkKit)
 
-#### [- HTTP channel self test guide](Manual-Channel-HTTP)
+<!-- #### [- HTTP channel self test guide](Manual-Channel-HTTP) -->
 
-#### [- CoAP channel self test guide](Manual-Channel-CoAP)
+<!-- #### [- CoAP channel self test guide](Manual-Channel-CoAP) -->
