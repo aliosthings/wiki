@@ -786,4 +786,8 @@
 <br>1.3个心跳周期内，设备发现网络断开并尝试重连
 <br>2.网络恢复后1个心跳周期内设备重新上线
 <br><u>**备注**</u>：
+<<<<<<< HEAD
 <br>1.服务端相关操作详见[LinkKit通道测试指南](Manual-Channel-LinkKit)
+=======
+<br>1.服务端相关操作详见[LinkKit通道测试指南](Manual-Channel-LinkKit)
+>>>>>>> 67322679e0d373b6dace4fdd1a768a5efd2f5506
