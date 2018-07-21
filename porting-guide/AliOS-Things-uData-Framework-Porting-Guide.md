@@ -6,7 +6,7 @@ uData is designed based on traditional sensorhub. It is an IoT oriented sensorin
 
 There are two layers in uData Framework. One is kernel layer, mainly responsible for sensor driving and related static calibration, including axial calibration. The other is framework layer, mainly responsible for application service management, dynamic calibration management and external module interfaces. The specific design of uData will not be unfolded in this document, but the following diagram can be used as a summary reference. This article will mainly introduce the porting of uDate software framework in AliOS Things IoT OS.
 
-![](https://i.imgur.com/iSaUEYR.png)
+![](https://i.imgur.com/rH0f5R7.png)
 
 #### uData directory architecture
 

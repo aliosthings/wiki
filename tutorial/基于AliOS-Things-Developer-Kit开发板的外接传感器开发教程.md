@@ -186,14 +186,21 @@ yourname -- 即自己github账号的名字
 
 添加要修改的文件信息到索引库： git add .
 
-添加文件修改到本地库，并添加log： git commit -m "add driver for sensor"
+添加文件修改到本地库，并添加log，***log中需要注明传感器的型号***： git commit -m "add driver for sensor xxx"   xxx为传感器型号
 
 将修改推送到远程分支： git push origin master
 
 #### 5.5 提交pull request
 
-在自己的代码路径下，点击“pull request”，待CI运行成功后，由AliOS-Things团队和入到主干分支
+在自己的代码路径下，点击“pull request”
 ![](https://i.imgur.com/lr8u3Sk.png)
+
+#### 5.6 签署CLA
+
+通过以下链接签署CLA -- https://cla-assistant.io/alibaba/AliOS-Things
+
+待CI运行成功后，由AliOS-Things团队和入到主干分支
+
 上传代码流程也可参考该链接：
 https://github.com/alibaba/AliOS-Things/wiki/contributing.zh
 
