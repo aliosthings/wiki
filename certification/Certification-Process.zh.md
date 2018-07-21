@@ -35,7 +35,7 @@ AliOS Things已经在GitHub开源并且提供完善的移植文档。详见 [htt
 连接配网自测需要使用手机APP和特定的设备激活码，为了提高测试效率，自测前邮件申请测试激活码和测试使用的APP
 
 > 邮件地址：linkcertification@list.alibaba-inc.com<br>
-> 邮件主题：芯片认证测试设备申请-xxx公司
+> 邮件主题：芯片认证测试设备申请-xxx公司
 
 <a id="step5"></a>
 ### Step5. 完善信息
