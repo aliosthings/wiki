@@ -1,4 +1,3 @@
-[EN](Certification-Process) | 中文
 
 # AliOS Things 认证流程
 
@@ -10,7 +9,8 @@
 * [Step6. 设备寄样](#step6)
 * [Step7. 认证测试](#step7)
 * [Step8. 颁发证书](#step8)
-  ![](assets/process.png)
+
+![](assets/process.png)
 
 <a id="step1"></a>
 ### Step1. 移植适配
@@ -34,8 +34,8 @@ AliOS Things已经在GitHub开源并且提供完善的移植文档。详见 [htt
 资质审核通过后，商家根据自测用例列表进行自测，自测方法参见 [AliOS Things 自测指南](Manual)，自测过程中有任何问题可以通过钉钉沟通
 连接配网自测需要使用手机APP和特定的设备激活码，为了提高测试效率，自测前邮件申请测试激活码和测试使用的APP
 
-> 邮件地址：shaofa.lsf@alibaba-inc.com <br>
-> 邮件主题：配网测试设备申请-xxx公司
+> 邮件地址：linkcertification@list.alibaba-inc.com<br>
+> 邮件主题：芯片认证测试设备申请-xxx公司
 
 <a id="step5"></a>
 ### Step5. 完善信息
