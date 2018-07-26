@@ -77,6 +77,8 @@ Please refer to [AliOS Things Technical Overview](AliOS-Things-Technical-Overvie
 - [AliOS Things Developer Kit User Basic Operation Guide](AliOS-Things-Developer-Kit-User-Basic-Operation-Guide)
 - [AliOS Things Developer Kit Hardware Guide](AliOS-Things-Developer-Kit-Hardware-Guide)
 - [AliOS Things Developer Kit Quick Start Guide](AliOS-Things-Developer-Kit-Quick-Start-Guide)
+- [MW31硬件设计手册](MW31硬件设计手册)
+- [MW31模块boot文件更新以及程序升级指导](MW31模块boot文件更新以及程序升级指导)
 
 ## [Certification](Certification-Home)
 
