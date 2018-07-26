@@ -1,4 +1,3 @@
-[EN](Certification-Process) | 中文
 
 # AliOS Things 认证流程
 
@@ -10,7 +9,8 @@
 * [Step6. 设备寄样](#step6)
 * [Step7. 认证测试](#step7)
 * [Step8. 颁发证书](#step8)
-  ![](assets/process.png)
+
+![](assets/process.png)
 
 <a id="step1"></a>
 ### Step1. 移植适配
@@ -34,8 +34,8 @@ AliOS Things已经在GitHub开源并且提供完善的移植文档。详见 [htt
 资质审核通过后，商家根据自测用例列表进行自测，自测方法参见 [AliOS Things 自测指南](Manual)，自测过程中有任何问题可以通过钉钉沟通
 连接配网自测需要使用手机APP和特定的设备激活码，为了提高测试效率，自测前邮件申请测试激活码和测试使用的APP
 
-> 邮件地址：shaofa.lsf@alibaba-inc.com <br>
-> 邮件主题：配网测试设备申请-xxx公司
+> 邮件地址：linkcertification@list.alibaba-inc.com<br>
+> 邮件主题：芯片认证测试设备申请-xxx公司
 
 <a id="step5"></a>
 ### Step5. 完善信息
@@ -62,12 +62,12 @@ AliOS Things已经在GitHub开源并且提供完善的移植文档。详见 [htt
 > **注意：**
 > 1. <a style="color:#ff0000">务必确保邮寄的硬件与自测的硬件相同</a>
 > 2. <a style="color:#ff0000">为了避免二次邮寄，请务必一次性邮寄所有必需的硬件，邮寄前请通过钉钉或者电话确认</a>
-> 3. <a style="color:#ff0000">若邮寄物中包含电池等易燃易爆物品，请务必提供相关合格证书或检验报告</a>
+> 3. <a style="color:#ff0000">若邮寄物中包含电池等易燃易爆物品，请务必提供相关合格证书或检验报告</a>
 
 <a id="step7"></a>
 ### Step7. 认证测试
 在商家自测全部通过并且收到设备后，阿里小二开始进行认证测试。认证期间会使用[阿里云云效系统](https://rdc.aliyun.com)作为缺陷管理系统，请提前注册阿里云账号。
-> 为了提高认证效率，原则上认证周期不超过两个月，超期则判定为认证失败
+> 为了提高认证效率，原则上认证周期不超过两个月，超期则判定为认证失败
 
 <a id="step8"></a>
 ### Step8. 颁发证书

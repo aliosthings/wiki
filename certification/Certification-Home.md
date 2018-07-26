@@ -13,4 +13,4 @@ To ensure the steady operation of chips after porting, we offer **AliOS Things  
 - AliOS Things FOTA test
 - AliOS Things security test
 
-Please read [AliOS Things certification process](Certification-Process)和[AliOS Things self test guide](Manual) to know the general test process and test items.
+Please read [AliOS Things certification process](Certification-Process.zh)和[AliOS Things self test guide](Manual) to know the general test process and test items.
