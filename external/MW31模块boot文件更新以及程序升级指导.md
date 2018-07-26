@@ -1,7 +1,6 @@
-<center>![](https://i.imgur.com/Q8Jcei1.png)</center>
+![](https://i.imgur.com/Q8Jcei1.png)
 
-# <center>MW31 模块 boot 文件更新以及程序升级指导</center>
-                                  
+# MW31 模块 boot 文件更新以及程序升级指导
 ---
 
 ## <font color="#dd0000">注意：
@@ -98,7 +97,8 @@ AT+FOTA=619786,app-1.0.8-20180620.2010,<font color="#dd0000">http://192.168.9.10
 
 
 
-#NOTE:
+# NOTE:  
+
 购买开发板AliOS Things Starter Kit和Developer kit，请扫描天猫旗舰店二维码：
 
 ![](https://i.imgur.com/VxHonLB.png)
