@@ -59,7 +59,7 @@ SSID是WiFi名字，PASSWORD是密码，中间用英文逗号隔开。例如，�
 ![](https://i.imgur.com/TjDIHAI.jpg)
 
 ## 四、完善 FOTA 指令。
-FOTA升级的AT指令为：<font color="#dd0000">AT+FOTA=\<size>，\<version>，\<url>，\<md5>\r</font></br>。其中：  
+FOTA升级的AT指令为：AT+FOTA=\<size>，\<version>，\<url>，\<md5>\r。其中：  
 size可直接通过右键升级bin文件的属性来查询，文件大小为多少字节；
 version为编译的时候设定的，需要注意升级的版本要比模块本身使用的版本号要高；
 url为服务器上面的bin文件地址；
@@ -68,7 +68,7 @@ md5为校验码，通过计算工具可以计算出来，如下图：
 
 
 升级需要的4个参数值全部填写完成之后，我们会得到下面这样一条具体的指令语句。
-AT+FOTA=619786,app-1.0.8-20180620.2010,<font color="#dd0000">http://192.168.9.101:8085/boot_up_180615.bin</font></br>,4821682ac03b9e23a68914021ea0d2e7\r  
+AT+FOTA=619786,app-1.0.8-20180620.2010,http://192.168.9.101:8085/boot_up_180615.bin,4821682ac03b9e23a68914021ea0d2e7\r  
 然后再把整条语句复制到串口工具里面，点击发送。补丁下载完成服务器端会有显示，如下图：
 ![](https://i.imgur.com/jsBbIP9.jpg)
 
