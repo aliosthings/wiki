@@ -1,83 +1,87 @@
-# AliOS Things Kernel 测试指南
-AliOS Things Kernel 测试是为了保证AliOS Things移植到不同硬件平台后保持良好的兼容性，AliOS Things提供Kernel 测试用例集，用户将用例集移植到硬件平台后，通过工具导出Kernel 测试报告。详细测试步骤见下文。
+EN | [中文](Manual-API.zh)
 
-## 1. 下载测试用例集
+# AliOS Things Kernel test guide
 
-[AliOS Things Kernel 测试用例集](https://github.com/alibaba/AliOS-Things/blob/master/test/testcase/certificate_test)随AliOS Things在GitHub开源，用户下载AliOS Things源码后，在`{AliOS-Things-Root}/test/testcase/certificate_test`目录下可以找到测试用例集源码，文件目录结构如下：
+AliOS Things Kernel test aims to ensure that AliOS Things can be compatible with different hardware platforms. AliOS Things provides Kernel test case set, and users can export Kernel test reports after downloading use case sets to the hardware platform. The detailed test steps are shown below.
+
+## 1. Download test case set
+
+[AliOS Things Kernel test case set](https://github.com/alibaba/AliOS-Things/blob/master/test/testcase/certificate_test) is open-sourced with AliOS Things in GitHub. Users can find it in `{AliOS-Things-Root}/test/testcase/certificate_test` after download AliOS Things source code. The structure of files is: 
 
 ```
   .
-  |___aos_test.c              # aos_* API测试用例集
-  |___rhino_test.c            # krhino_* API测试用例集
-  |___certificate_test.mk     # gcc编译使用的Makefile
-  |___cutest                  # API测试框架
+  |___aos_test.c              # aos_* API test case set
+  |___rhino_test.c            # krhino_* API test case set
+  |___certificate_test.mk     # The makefile used to compile gcc
+  |___cutest                  # API test structure
       |___cut.c
       |___cut.h
 ```
 
-> `aos_test.c`与`rhino_test.c`功能相同，rhino\_test.c针对只移植了rhino微内核的MCU，通常二者选其一
+> `aos_test.c` has same function with `rhino_test.c`, except that `rhino_test.c` targets to MCU only with rhino. Generally, you only need one of them.
 >
-> Kernel 测试用例集下载地址：[www.github.com/alibaba/AliOS-Things.git](https://www.github.com/alibaba/AliOS-Things.git)
+> You can download Kernel test case set at：[www.github.com/alibaba/AliOS-Things.git](https://www.github.com/alibaba/AliOS-Things.git)
 
-## 2. 执行测试用例集
+## 2. Execute test case set
 
-### 2.1 修改测试用例集源码(aos_test.c/rhino_test.c)
+### 2.1 Modify test case set source code (aos_test.c/rhino_test.c)
 
-测试用例集中设置如下配置项，用户可以根据MCU RAM和移植情况修改配置项，各配置项说明如下：
+The test case set has the following configuration items. Users can modify them according to actual situation. The configuration items are described below: 
 
-| 配置项 | 配置说明 | 默认配置项 |
-| :--- | :--- | :--- |
-| SYSINFO\_MCU | 待测MCU型号 | 空（必填） |
-| SYSINFO\_ARCH | 待测MCU架构 | 空（必填） |
-| SYSINFO\_BORAD | 待测开发板型号 | 空（必填） |
-| TEST\_CONFIG\_MM\_ENABLED | 内存管理测试使能 | 1 |
-| TEST\_CONFIG\_MALLOC\_MAX\_SIZE | 堆内存分配最大值\(Byte\) | 1024 |
-| TEST\_CONFIG\_MALLOC\_FREE\_TIMES | 反复分配/释放堆内存次数 | 100000 |
-| TEST\_CONFIG\_TASK\_ENABLED | 任务管理测试使能 | 1 |
-| TEST\_CONFIG\_STACK\_SIZE | 任务栈大小\(Byte\) | 1024 |
-| TEST\_CONFIG\_MAX\_TASK\_COUNT | 创建最大任务数 | 10 |
-| TEST\_CONFIG\_CREATE\_TASK\_TIMES | 反复创建/销毁任务次数 | 10000 |
-| TEST\_CONFIG\_TASK\_COMM\_ENABLED | 任务间通信测试使能 | 1 |
-| TEST\_CONFIG\_SYNC\_TIMES | 任务间同步次数 | 100000 |
-| TEST\_CONFIG\_TIMER\_ENABLED | 定时器测试使能 | 1 |
-| TEST\_CONFIG\_KV\_ENABLED | KV测试使能 | 1 |
-| TEST\_CONFIG\_KV\_TIMES | 反复读写KV次数 | 10000 |
-| TEST\_CONFIG\_YLOOP\_ENABLED | Yloop测试使能 | 1 |
-| TEST\_CONFIG\_YLOOP\_EVENT\_COUNT | 注册Yloop事件数量 | 1000 |
-| TEST\_CONFIG\_YLOOP\_LOOP\_COUNT | 最大创建Yloop数量 | 10 |
+| Item                              | Description                          | Default item |
+| :-------------------------------- | :----------------------------------- | :----------- |
+| SYSINFO\_MCU                      | MCU type                             | empty (must) |
+| SYSINFO\_ARCH                     | MCU structure                        | empty (must) |
+| SYSINFO\_BORAD                    | development board type               | empty (must) |
+| TEST\_CONFIG\_MM\_ENABLED         | enable memory test                   | 1            |
+| TEST\_CONFIG\_MALLOC\_MAX\_SIZE   | maximum size of heap memory          | 1024         |
+| TEST\_CONFIG\_MALLOC\_FREE\_TIMES | times of assigning/ releasing memory | 100000       |
+| TEST\_CONFIG\_TASK\_ENABLED       | enable task test                     | 1            |
+| TEST\_CONFIG\_STACK\_SIZE         | size of task stack \(Byte\)          | 1024         |
+| TEST\_CONFIG\_MAX\_TASK\_COUNT    | maximum task number                  | 10           |
+| TEST\_CONFIG\_CREATE\_TASK\_TIMES | times of creating/ deleting task     | 10000        |
+| TEST\_CONFIG\_TASK\_COMM\_ENABLED | enable communication between tasks   | 1            |
+| TEST\_CONFIG\_SYNC\_TIMES         | times of intertask synchronization   | 100000       |
+| TEST\_CONFIG\_TIMER\_ENABLED      | enable timer test                    | 1            |
+| TEST\_CONFIG\_KV\_ENABLED         | enable KV test                       | 1            |
+| TEST\_CONFIG\_KV\_TIMES           | times of KV reading/writing          | 10000        |
+| TEST\_CONFIG\_YLOOP\_ENABLED      | enable Yloop test                    | 1            |
+| TEST\_CONFIG\_YLOOP\_EVENT\_COUNT | Yloop event number                   | 1000         |
+| TEST\_CONFIG\_YLOOP\_LOOP\_COUNT  | maximum Yloop number                 | 10           |
 
-### 2.1.1 gcc编译
+### 2.1.1 gcc compilation
 
-API测试用例集默认使用GCC编译，用户只需要执行以下简单命令就能生成测试固件，编译得到的固件在{AliOS-Things-Root}/out目录下
+The API test case set uses GCC to compile by default. Users can generate test firmware by executing the following commands. The firmware will be stored under {AliOS-Things-Root}/out directory.
 
 ```
 $ aos make yts@{board} test=certificate
 ```
 
-> 针对只移植了rhino微内核的暂时无法使用gcc编译方式
+> gcc can't be used for MCU only with rhino.
 
-### 2.1.2 Keil/IAR编译
+### 2.1.2 Keil/IAR compilation
 
-API测试用例集默认使用GCC编译，但是可以移植到Keil/IAR工程中，测试用例集的函数调用入口如下：
+API test case set use gcc for compilation by default, but it can be migrated to Keil/IAR project. You can call the function as followed: 
 
 ```cpp
-/* 将aos_test.c和cutest 或者 rhino_test.c和cutest 移植到Keil/IAR工程中，并调用该接口 */
+/* transplante aos_test.c and cutest or rhino_test.c and cutest to Keil/IAR project and call that interface */
 void certificate_test(void);
 ```
 
-### 2.1.3 导出测试报告
+### 2.1.3 Export test report 
 
-测试固件在开发板上成功运行后，使用[IoT调试测试工具](http://alios-things.oss-cn-shanghai.aliyuncs.com/AliOSThings/IoT调试测试工具.exe)将测试结果导出为PDF文档，该文档将作为AliOS Things Kernel 测试报告在认证申请阶段提交。
+When the test firmware is successfully executed in development board, you can use [IoT test tool](http://alios-things.oss-cn-shanghai.aliyuncs.com/AliOSThings/IoT调试测试工具.exe) to export the result as pfd file. This file needs to be submit 将测试结果导出为PDF文档，该文档将作为AliOS Things Kernel in certification application stage.
 
-> IoT调试测试工具下载地址：[http://alios-things.oss-cn-shanghai.aliyuncs.com/AliOSThings/IoT%E8%B0%83%E8%AF%95%E6%B5%8B%E8%AF%95%E5%B7%A5%E5%85%B7.exe](http://alios-things.oss-cn-shanghai.aliyuncs.com/AliOSThings/IoT调试测试工具.exe)
+> You can download IoT test tool at: http://alios-things.oss-cn-shanghai.aliyuncs.com/AliOSThings/IoT%E8%B0%83%E8%AF%95%E6%B5%8B%E8%AF%95%E5%B7%A5%E5%85%B7.exe](http://alios-things.oss-cn-shanghai.aliyuncs.com/AliOSThings/IoT调试测试工具.exe)
 
-IoT调试测试工具使用如下：
+ IoT test tool use steps: 
 
-* 选择设备串口号、波特率、数据位、停止位、校验位
-* 打开设备，如果打开设备成功，`打开设备`按钮将变为`关闭设备`
-* 操作开发板将设备重启，如果连接正常，软件将显示如下图，确认MCU、ARCH、开发板、内核版本无误后等待测试结束
-* 测试过程中，显示测试进度、用例执行情况、测试用例集的配置信息等
-* 测试成功后，`导出测试报告`将使能，用户可导出PDF格式的测试报告，同时测试报告会上传到阿里云并返回链接地址，见下图
+- Select serial port number, baud rate, data bits, stop bits, parity bits.
+- Turn on the device. If the device is successfully turned on, `turn on` button will become  `turn off`.
+- Restart the device. In normal condition, it will display as the following picture. Wait for the end of the test if you confirm the MCU, ARCH, development board, kernel version are right.
+
+- During the test, test progress, case execution status and configuration of test case set will be displayed. 
+- When the test is completed, `export test report` will enable users to export the test report in PDF format, and the report will be uploaded to the Ali cloud and return to the link address. See the following figure
 
 ![](assets/certification_api_tool.png)  
 ![](assets/certification_api_tool2.png)

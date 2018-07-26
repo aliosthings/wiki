@@ -98,8 +98,8 @@ be_osal_timer: 定时器接口
 * 基于alios编译并下载BoneEngine@Lite固件到BoneEngine@Lite支持的硬件上（例如mk3060，esp32devkit，developerkit等）。
 
   * 下面以 alios 的developerkit开发板举例编译和下载命令：
-  * 编译：```aos make BoneEngine@Lite_app@developerkit```
-  * 下载：```aos download BoneEngine@Lite_app@developerkit```
+  * 编译：```aos make tinyengine_app@developerkit```
+  * 下载：```aos upload tinyengine_app@developerkit```
 
 * 通过IDE或者be-cli来开发javascript应用。
 

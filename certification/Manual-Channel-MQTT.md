@@ -23,14 +23,19 @@
 ### 操作步骤
 为了配合工具使用，需要对设备代码做部分适配，详细操作步骤如下：
 1. 从GitHub[下载AliOS Things源码](https://github.com/alibaba/AliOS-Things.git)，`{SOURCE_ROOT}/example/mqttapp`目录是MQTT的基本用法
-2. 编译Linux平台下的虚拟设备，用于验证工具和设备代码符合预期：`aos make mqttapp@linuxhost`
-3. 在Linux平台下执行可执行程序：`./out/mqttapp@linuxhost/binary/mqtt@linuxhost.elf`
-4. 启动IoT调试测试工具，填写账号参数、设备参数和压测参数，创建压测任务
+2. 下载用于MQTT通道压测的[源码补丁](http://alios-things.oss-cn-shanghai.aliyuncs.com/AliOSThings/mqtttest.patch)
+3. 对`{SOURCE_ROOT}/example/mqttapp/mqtt-example.c`打补丁
+    ``` shell
+    $ patch {SOURCE?ROOT}/example/mqttapp/mqtt-example.c mqtttest.patch
+    ```
+4. 编译Linux平台下的虚拟设备，用于验证工具和设备代码符合预期：`aos make mqttapp@linuxhost`
+5. 在Linux平台下执行可执行程序：`./out/mqttapp@linuxhost/binary/mqtt@linuxhost.elf`
+6. 启动IoT调试测试工具，填写账号参数、设备参数和压测参数，创建压测任务
 ![](assets/iotkit_tool_2.png)
    > 1. 正确填写AccessKeyId、AccessKeySecret、ProductKey、DeviceName后，若设备在线则会显示绿色的亮点
-5. 在查看Linux下查看虚拟设备日志打印，若显示如下日志表示压测任务创建成功
+7. 在查看Linux下查看虚拟设备日志打印，若显示如下日志表示压测任务创建成功
 ![](assets/iotkit_tool_3.png)
-6. 编译目标平台下的真实固件，并在硬件测试：`aos make mqttapp@{board}`
+8. 编译目标平台下的真实固件，并在硬件测试：`aos make mqttapp@{board}`
 ### 日志查询
 压测过程中设备是否出现离线、是否存在丢包，可以通过日志系统准确的查询出来
 #### 离线查询

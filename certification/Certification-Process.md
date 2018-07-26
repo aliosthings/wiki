@@ -1,73 +1,75 @@
-# AliOS Things 认证流程
-* [Step1. 移植适配](#step1)
-* [Step2. 认证申请](#step2)
-* [Step3. 资质审核](#step3)
-* [Step4. 商家自测](#step4)
-* [Step5. 完善信息](#step5)
-* [Step6. 设备寄样](#step6)
-* [Step7. 认证测试](#step7)
-* [Step8. 颁发证书](#step8)
-![](assets/process.png)
+EN | [中文](Certification-Process.zh) 
 
-<a id="step1"></a>
-### Step1. 移植适配
-AliOS Things已经在GitHub开源并且提供完善的移植文档。详见 [https://github.com/alibaba/AliOS-Things.git](https://github.com/alibaba/AliOS-Things.git)
+# AliOS Things certification process
 
-<a id="step2"></a>
-### Step2. 认证申请
-认证申请步骤如下：
-1. 访问 [IoT认证支撑系统](https://certification.aliyun.com)，并服务申请
-2. 产品类型选择 **芯片**
-3. 根据实际通信类型选择 **Wi-Fi/BLE** 等
-4. 根据芯片能力选择套餐类型 **AliOS Things认证-基础版/高级版/专业版**，套餐包含的测试项见套餐页面
+- [Step1. Porting adaptation](https://github.com/alibaba/AliOS-Things/wiki/Process#step1)
+- [Step2. Certification application](https://github.com/alibaba/AliOS-Things/wiki/Process#step2)
+- [Step3. Self-test](https://github.com/alibaba/AliOS-Things/wiki/Process#step3)
+- [Step4. Mail hardwares](https://github.com/alibaba/AliOS-Things/wiki/Process#step4)
+- [Step5. Certification test](https://github.com/alibaba/AliOS-Things/wiki/Process#step5)
+- [Step6. Issue certificate](https://github.com/alibaba/AliOS-Things/wiki/Process#step6) 
+- ![img](https://github.com/alibaba/AliOS-Things/wiki/assets/process.png)
 
-<a id="step3"></a>
-### Step3. 资质审核
-提交认证后可以在 **首页** 查看申请进度，建议线下跟任务处理人沟通，加快审核进度。资质审核主要核对商家信息和产品基本信息，请在认证申请阶段务必详细准确填写
-> 原则上资质审核不超过两个工作日
+### Step1. Porting adaptation
 
-<a id="step4"></a>
-### Step4. 商家自测
-资质审核通过后，商家根据自测用例列表进行自测，自测方法参见 [AliOS Things 自测指南](Manual)，自测过程中有任何问题可以通过钉钉沟通
+AliOS Things has offered open-sourced porting guide in GitHub. You can go to <https://github.com/alibaba/AliOS-Things.git> for more details.
 
-<a id="step5"></a>
-### Step5. 完善信息
-资质审核通过且商家自测通过后，请查询[IoT认证支撑系统](https://certification.aliyun.com)首页，完善认证申请的详细信息，包括基本信息、软件信息、硬件信息和电子资料
-> 为了避免认证申请被驳回，请确保所填信息及上传的资料的**完整性**和**准确性**
+### Step2. Certification application
 
-<a id="step6"></a>
-### Step6. 设备寄样
-寄样前请首先邮件申请测试设备激活码，并在寄样前将测试激活码烧录至待邮寄设备中
+Steps for certification application are:
 
-> 邮件地址：shaofa.lsf@aliabab-inc.com
+1. Download [AliOS Things certification application form](http://alios-things.oss-cn-shanghai.aliyuncs.com/AliOSThings/AliOS%20Things%20%E8%AE%A4%E8%AF%81%E6%8F%90%E4%BA%A4%E7%94%B3%E8%AF%B7%E8%A1%A8.xlsm).
+2. Read and complete the application form.
+3. Prepare the electronic materials required in the form.
+4. Compress [AliOS Things certification application form](http://alios-things.oss-cn-shanghai.aliyuncs.com/AliOSThings/AliOS%20Things%20%E8%AE%A4%E8%AF%81%E6%8F%90%E4%BA%A4%E7%94%B3%E8%AF%B7%E8%A1%A8.xlsm) and all the electronic materials required, and name it as `AliOS Things certification application-{chip model}.zip`
+5. Send the above compressed to shaofa.lsf@alibaba-inc.com, and set the subject as`[AliOS Things certification application] {company name}`
 
-> 邮件主题：测试设备激活码申请-xxx公司
+> **Note：**
+>
+> 1. You should fill out the application form completely and provide all electronic materials.
+> 2. You should use standard email subject or it will be refused.
+> 3. The application will be no more than two rounds literally.
+> 4. The result will always be returned by email within 2 working days.
 
-邮寄内容包括但不限于：
-1. 开发板 5 套（含电源、连接线各5套）
-2. 调试下载器 2 套（若需要）
-3. 天线和通信卡 5套（若需要）
-4. 通信模块 5套（若需要）
-5. 串口线 5 套（Micro USB/Mini USB/DB9 RS232）
-6. 杜邦线若干（若需要）
-7. 等
+### Step3. Self-test
+
+When application is passed, vendors will be guided to carry out self tests. You need to log in Ali Cloud related system so you'd better sign up an account in advance.
+
+1. Log in at [IoT certification platform](https://certification.aliyun.com/), and inform our staff of your account. 
+2. Our staff will create self test task for you based on your application form. 
+3. Carry out your test. You can refer to [AliOS Things self test guide](https://github.com/alibaba/AliOS-Things/wiki/Manual).
+4. Upload your source code to GitHub after tests.
+
+### Step4. Mail hardwares
+
+You can mail your hardware during your test. The content should include, but not limited to:
+
+1. Paper version of  [AliOS Things certification application form](http://alios-things.oss-cn-shanghai.aliyuncs.com/AliOSThings/AliOS%20Things%20%E8%AE%A4%E8%AF%81%E6%8F%90%E4%BA%A4%E7%94%B3%E8%AF%B7%E8%A1%A8.xlsm) (fill in as `Step2. certification application`)
+2. 5 sets of development boards（including 5 sets of power source and connection line）
+3. 2 sets of debug downloader (if needed)
+4. 5 sets of antenna and communication card (if needed)
+5. 5 sets of communication module (if needed)
+6. 5  sets of serial port line (Micro USB/Mini USB/DB9 RS232)
+7. DuPont lines (if needed)
 
 ```
-邮寄地址：杭州市余杭区文一西路969号8号楼小邮局
-联系电话：18557515801
-收件人：少舒
+Contact address：杭州市西湖区转塘河山路369号中大园区7号楼小邮局 (Small post office No.7, 369 He Shan Road, Xihu district, Hangzhou)
+Tel：18557515801
+Recipient：少舒
+
 ```
 
-> **注意：**
-> 1. <a style="color:#ff0000">务必确保邮寄的硬件与自测的硬件相同</a>
-> 2. <a style="color:#ff0000">为了避免二次邮寄，请务必一次性邮寄所有必需的硬件，邮寄前请通过钉钉或者电话确认</a>
-> 3. <a style="color:#ff0000">若邮寄物中包含电池等易燃易爆物品，请务必提供相关合格证书或检验报告</a>
+> **Note：**
+>
+> 1. Ensure that the mailed hardware is the same as the self tested hardware.
+> 2. Please send all necessary hardware at once. You can confirm with us by e-mail or telephone before mail.
 
-<a id="step7"></a>
-### Step7. 认证测试
-在商家自测全部通过并且收到设备后，阿里小二开始进行认证测试。认证期间会使用[阿里云云效系统](https://rdc.aliyun.com)作为缺陷管理系统，请提前注册阿里云账号。
-> 为了提高认证效率，原则上认证周期不超过两个月，超期则判定为认证失败
+### Step5. Certification test
 
-<a id="step8"></a>
-### Step8. 颁发证书
-待所有认证测试项全部通过后，阿里云IoT会在[IoT认证支撑平台](https://certification.aliyun.com)颁发线上的AliOS Things认证证书。
+When you have passed self-tests and we received your mailed hardware, we will start certification tests. During tests, [Ali RDC system](https://rdc.aliyun.com/) will be used to manage errors, so please sign up in advance.
+
+> In principle, certification test will take no more than 30 days.
+
+### Step6. Issue certificate
+
+When all the certification tests are passed, we will issue an online AliOS Things certificate in [IoT certification platform](https://certification.aliyun.com/).

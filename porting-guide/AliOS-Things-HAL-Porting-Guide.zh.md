@@ -16,14 +16,17 @@
 | 2    | flash |
 | 3    | gpio  |
 | 4    | i2c   |
-| 5    | pwm   |
-| 6    | rng   |
-| 7    | rtc   |
-| 8    | sd    |
-| 9    | spi   |
-| 10   | timer |
-| 11   | uart  |
-| 12   | wdg   |
+| 5    | nand  |
+| 6    | nor   |
+| 7    | pwm   |
+| 8    | rng   |
+| 9    | rtc   |
+| 10   | sd    |
+| 11   | spi   |
+| 12   | timer |
+| 13   | uart  |
+| 14   | wdg   |
+| 15   | dac   |
 
 目前HAL抽象层的定义已经能兼容多家芯片公司的标准，比如STM32，Beken，全志，NXP等芯片厂商，用户可参照已有平台的HAL封装实现。
 
@@ -211,7 +214,7 @@ int32_t uart_mode_transform(hal_uart_mode_t mode_hal, uint32_t *mode_stm32l4)
 然后逐一实现hal层的函数
 
 初始化
-
+如果要将某一个串口设置为标准输入输出端口，那么其对应uart_dev_t结构体中的port必须设置为0，且此时priv不可使用，其他串口无此要求。
 ```C
 int32_t hal_uart_init(uart_dev_t *uart)
 {

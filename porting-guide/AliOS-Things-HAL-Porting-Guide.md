@@ -16,14 +16,17 @@ Hardware Abstraction Layer (HAL) widely exists in various operating systems, who
 | 2    | flash |
 | 3    | gpio  |
 | 4    | i2c   |
-| 5    | pwm   |
-| 6    | rng   |
-| 7    | rtc   |
-| 8    | sd    |
-| 9    | spi   |
-| 10   | timer |
-| 11   | uart  |
-| 12   | wdg   |
+| 5    | nand  |
+| 6    | nor   |
+| 7    | pwm   |
+| 8    | rng   |
+| 9    | rtc   |
+| 10   | sd    |
+| 11   | spi   |
+| 12   | timer |
+| 13   | uart  |
+| 14   | wdg   |
+| 15   | dac   |
 
 The current definition of HAL has already been compatible with the standards of many chip companies, such as STM32, Beken, NXP. Users can refer to the HAL encapsulation of existing platforms.
 
@@ -213,7 +216,7 @@ int32_t uart_mode_transform(hal_uart_mode_t mode_hal, uint32_t *mode_stm32l4)
 Then, implement the functions in HAL one by one.
 
 Initiation operation:
-
+If a serial port is to be set as a standard input/output port, the port in the corresponding uart_dev_t structure must be set to 0, and priv cannot be used at this time. Other serial ports do not have this requirement.
 ```C
 int32_t hal_uart_init(uart_dev_t *uart)
 {

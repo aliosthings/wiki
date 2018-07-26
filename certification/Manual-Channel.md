@@ -1,20 +1,31 @@
-# AliOS Things 通道自测指南
-## AliOS Things 通道介绍
-> 通道是指AliOS Things中提供的应用层连接协议
+EN | [中文](Manual-Channel.zh)
 
-通道在网络协议栈中的位置如下：
+# AliOS Things Channel Test Guide
+
+## AliOS Things Channel Overview
+
+> Channel is adaptation layer connection protocol provided by AliOS Things
+
+Channel's location in network protocol stack:
 
 ![](assets/certificate_channel.png)
 
-## AliOS Things 通道自测指南
-通道自测涉及到设备联网，请首先参考[推荐测试环境](Recommend)并选择可靠的配测设备。
-### 测试拓扑
+## AliOS Things Channel Test Guide
+
+Channel test is related to network. You can refer to [Recommend test environment](Recommend) and select an available device.
+
+### Test topology
 
 ![](assets/channel-topu.png)
 
-目前AliOS Things支持以下通道，请根据实际移植的通道类型，选择下列通道中的一种进行自测
-#### [- MQTT 通道自测指南](Manual-Channel-MQTT)
-#### [- WSF 通道自测指南](Manual-Channel-WSF)
-#### [- Linkkit 通道自测指南](Manual-Channel-LinkKit)
-#### [- HTTP 通道自测指南](Manual-Channel-HTTP)
-#### [- CoAP 通道自测指南](Manual-Channel-CoAP)
+AliOS Things can now support the following channels. You can select one of them:
+
+#### [- MQTT channel self test guide](Manual-Channel-MQTT)
+
+#### [- WSF channel self test guide](Manual-Channel-WSF)
+
+#### [- Linkkit channel self test guide](Manual-Channel-LinkKit)
+
+#### [- HTTP channel self test guide](Manual-Channel-HTTP)
+
+#### [- CoAP channel self test guide](Manual-Channel-CoAP)
