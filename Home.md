@@ -46,6 +46,7 @@ Please refer to [AliOS Things Technical Overview](AliOS-Things-Technical-Overvie
 - [Build System](AliOS-Things-build-system)
 - [Debugging](Debugging-Overview)
 - [uMesh Security](uMesh-Security)
+- [OTA Flash Partitions Overview](OTA-Flash-Partitions-Overview)
 - [Coding Style](AliOS-Things-Coding-Style-Guide)
 
 ## BoneEngine@Lite
