@@ -31,6 +31,7 @@ Please refer to [AliOS Things Technical Overview](AliOS-Things-Technical-Overvie
 ## [Porting Guide](AliOS-Things-Porting-Guide)
 - [Components](AliOS-Things-Porting-Guide)
 - [Test](AliOS-Things-Porting-Test-Guide)
+- [Porting from FreeRTOS](AliOS-Things-FreeRTOS-Porting-Guide.zh)
 
 ## [Utilities](AliOS-Things-Utilities)
 - [AliOS Things Studio(IDE)](AliOS-Things-Studio)
