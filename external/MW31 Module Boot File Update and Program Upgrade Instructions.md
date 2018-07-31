@@ -1,17 +1,18 @@
 ![](https://i.imgur.com/Q8Jcei1.png)
 
-# MW31 模块 boot 文件更新以及程序升级指导
+# MW31 Module Boot File Update and Program Upgrade Instructions
 ---
 
-## <font color="#dd0000">注意：
-1.本次boot 文件更新仅针对固件版本为APP-1.0.0-20180409.1719的MW31模块，执行前请先查询固件版本，非该版本请不要执行更新操作。  
-2.固件版本查询方式:  
-&nbsp;&nbsp; a. USB 端口输入：AT+FWVER?\r  
-&nbsp;&nbsp; b. debug 端口输入：version  
-3.boot 文件更新前请先熟悉 FOTA 升级操作。  
-4.执行操作前请先关闭电脑防火墙以及杀毒软件，防止FOTA操作被拒绝。  
-5.请确保更新前的准备条件完备之后再进行更新。  
-6.本次更新只是为MW31模块增加支持串口升级的功能，如果您的开发过程中不涉及对MW31模块的程序和功能更改，也可以不执行该更新操作。不执行更新操作并不影响MW31模块在Starter Kit和Developer Kit上的数据传输功能和性能。</font></br>
+## <font color="#dd0000">注意事项：
+1.	本指导文档包含WiFi模块boot文件（boot_upxxx.bin）更新和固件（mw32deckitc_crc.bin）版本升级两部分，只适用于windows平台。
+2.	升级过程涉及到使用UART1（MCU-->debug口(用于交互和log输出)）和UART2（BK7231 wifi模组<->MCU）。
+3.	本次更新只是为WiFi模块增加支持串口升级的功能，若开发过程中不涉及对WiFi模块的程序和功能更改，可不执行该更新操作，对WiFi模块在A10（即Starter Kit板）和A20（即Developer Kit板）上的数据传输功能和性能没有影响。
+4.	boot文件更新仅针对固件版本为APP-1.0.0-20180409.1719的WiFi模块，执行前请先查询固件版本，非该版本请不要执行boot更新操作。
+5.	wifi模块固件版本查询有两种方式: a.如果A20使用的是出厂原始软件，可通过 UART1输入<AT+FWVER?\r>来查询。b.若A20已经烧录了自己编译的或者其它版本的软件，可通过3.3V串口线连接开发板上的UART2（至少需要连接TX，RX和GND三根线，接线方式请参考图1）后再启动对应串口的命令窗口中输入<version>来查询。
+6.	若A20使用的软件版本非出厂版本，请先刷回出厂版本（出厂版本请转至[上海诺行信息技术有限公司网站](http://www.notioni.com/#/source) 下载，操作步骤为在alios-things/build/cmd下面有osx/linux/win的stlink烧录工具，命令行手动烧录。如win平台:
+$ win32/st-flash.exe erase；$ win32/st-flash.exe --reset write $path_developerkit_bin  0x08000000），避免出现AT命令不识别等问题导致升级失败。
+7.	执行操作前请先关闭电脑防火墙以及杀毒软件，防止FOTA操作被拒绝。
+8.	请确保更新前的准备条件完备之后再进行更新。</font></br>
 
 ## 准备条件：
 1.搭载有MW31模块的开发板，模块能够联网。  
@@ -105,5 +106,4 @@ AT+FOTA=619786,app-1.0.8-20180620.2010,http://192.168.9.101:8085/boot_up_180615.
 
 获取在线技术支持，请扫描技术支持群：
 
-![](https://i.imgur.com/uyT4v0Y.png)
 ![](https://i.imgur.com/rqjjjA0.jpg)
