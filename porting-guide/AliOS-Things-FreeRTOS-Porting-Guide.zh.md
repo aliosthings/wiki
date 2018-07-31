@@ -37,7 +37,7 @@ AliOS Things：AOS-R-1.3.2
 	- [3.8 AOS Mem API](#38-aos-mem-api)
 	- [3.9 其他系统相关接口](#39-其他系统相关接口)  
 
-- [四 内核API对比参考](#四内核API对比参考)  
+- [四 内核API对比参考](#四内核api对比参考)  
 	- [4.1 Task API](#41task-api)
 	- [4.2 Buf Queue API](#42buf-queue-api)
 	- [4.3 Queue API](#43queue-api)
