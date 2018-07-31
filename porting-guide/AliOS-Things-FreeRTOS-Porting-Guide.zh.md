@@ -11,14 +11,14 @@ FreeRTOS：FreeRTOSv10.0.1
 AliOS Things：AOS-R-1.3.2
 ## 目录  
 
-- [一 主要特性对比](#一-主要特性对比)
-	- [1.1 内核功能](#11-内核功能)
-	- [1.2 实时性](#12-实时性)
-	- [1.3 代码体积以及占用的RAM大小](#13-代码体积以及占用的ram大小)
+- [一 主要特性对比](#一主要特性对比)
+	- [1.1 内核功能](#11内核功能)
+	- [1.2 实时性](#12实时性)
+	- [1.3 代码体积以及占用的RAM大小](#13代码体积以及占用的ram大小)
 
-- [二 通用CPU移植修改点](#二-通用cpu移植修改点)
-	- [2.1 已经支持的CPU移植](#21-已经支持的cpu移植)
-	- [2.2 尚不支持的CPU移植](#22-尚不支持的cpu移植)
+- [二 通用CPU移植修改点](#二通用cpu移植修改点)
+	- [2.1 已经支持的CPU移植](#21已经支持的cpu移植)
+	- [2.2 尚不支持的CPU移植](#22尚不支持的cpu移植)
 		- [2.2.1 CPU porting](#221-cpu-porting)
 		- [2.2.2 系统tick](#222-系统tick)
 		- [2.2.3 C库](#223-c库)
@@ -26,7 +26,7 @@ AliOS Things：AOS-R-1.3.2
 		- [2.2.5 运行示例example](#225-运行示例example)
 		- [2.2.6 内核可配置项](#226-内核可配置项)
 		- [2.2.7 系统初始化](#227-系统初始化)
-- [三 AOS API适配指导](#三-AOS-API适配指导)  
+- [三 AOS API适配指导](#三aos-api适配指导)  
 	- [3.1 AOS Task API](#31-aos-task-api)
 	- [3.2 AOS Queue API](#32-aos-queue-api)
 	- [3.3 AOS Sem API](#33-aos-sem-api)
@@ -37,25 +37,25 @@ AliOS Things：AOS-R-1.3.2
 	- [3.8 AOS Mem API](#38-aos-mem-api)
 	- [3.9 其他系统相关接口](#39-其他系统相关接口)  
 
-- [四 内核API对比参考](#三-内核API对比参考)  
-	- [4.1 Task API](#41-task-api)
-	- [4.2 Buf Queue API](#42-buf-queue-api)
-	- [4.3 Queue API](#43-queue-api)
-	- [4.4 Semaphore & Mutex API](#44-semaphore--mutex-api)
-	- [4.5 Timer API](#45-timer-api)
-	- [4.6 Event API](#46-event-api)
+- [四 内核API对比参考](#四内核API对比参考)  
+	- [4.1 Task API](#41task-api)
+	- [4.2 Buf Queue API](#42buf-queue-api)
+	- [4.3 Queue API](#43queue-api)
+	- [4.4 Semaphore & Mutex API](#44semaphore--mutex-api)
+	- [4.5 Timer API](#45timer-api)
+	- [4.6 Event API](#46event-api)
 	- [4.7 Mem API](#47-mem-api)
-	- [4.8 Co-routines API](#48-co-routines-api)
-	- [4.9 smp多核 API](#49-smp多核-api)
-	- [4.10 内核头文件包含](#410-内核头文件包含)
+	- [4.8 Co-routines API](#48co-routines-api)
+	- [4.9 smp多核 API](#49smp多核-api)
+	- [4.10 内核头文件包含](#410内核头文件包含)
 
-- [五 编译方式说明](#五-编译方式说明)
-	- [5.1 内核涉及文件部署](#51-内核涉及文件部署)
-	- [5.2 Keil\iar\e2studio相关IDE](#52-Keiliare2studio相关ide)
-	- [5.3 Gcc(linux\vscode) 编译命令说明](#53-gcclinuxvscode-编译命令说明)
+- [五 编译方式说明](#五编译方式说明)
+	- [5.1 内核涉及文件部署](#51内核涉及文件部署)
+	- [5.2 Keil\iar\e2studio相关IDE](#52Keiliare2studio相关ide)
+	- [5.3 Gcc(linux\vscode) 编译命令说明](#53gcclinuxvscode-编译命令说明)
 
-- [六 内核移植认证](#六-内核移植认证)  
-- [七 移植问题反馈途径](#七-移植问题反馈途径)
+- [六 内核移植认证](#六内核移植认证)  
+- [七 移植问题反馈途径](#七移植问题反馈途径)
 
 一、主要特性对比
 ================
@@ -70,7 +70,7 @@ AliOS Things：AOS-R-1.3.2
 
 基本功能点，接口层面的见第后续章节
 
-1.2、内核功能
+1.1、内核功能
 -------------
 
 AliOS Things的内核rhino模块和FreeRTOS的相应模块功能基本能够对应上。AliOS
