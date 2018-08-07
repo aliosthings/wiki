@@ -71,6 +71,7 @@ Please refer to [AliOS Things Technical Overview](AliOS-Things-Technical-Overvie
 * [C-SKY IoT开发板（CB2201）快速上阿里云指南](CB2201_MQTT_User_Guide)
 * [Ameba RTL8710BN + AliOS Things 开发](https://blog.csdn.net/lxdongabc/article/details/80403024)
 * [基于AliOS Things Developer Kit开发板的外接传感器开发教程](基于AliOS-Things-Developer-Kit开发板的外接传感器开发教程)
+* [AliOS Things 学习心得](https://gitee.com/walker2048/LearningAOS) by [walker2048](https://gitee.com/walker2048)
 - [AliOS Things Starter Kit Brief](AliOS-Things-Starter-Kit-Brief)
 - [AliOS Things Starter Kit User Basic Operation Guide](AliOS-Things-Starter-Kit-User-Basic-Operation-Guide)
 - [AliOS Things Starter Kit Hardware Guide](AliOS-Things-Starter-Kit-Hardware-Guide)
