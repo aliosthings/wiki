@@ -8,7 +8,7 @@
 
 ## 配置环境
 
-您可以尝试一键安装脚本[Setup Script for Linux/Mac](http://p28phe5s5.bkt.clouddn.com/setup_linux_osx.sh),
+您可以尝试一键安装脚本[Setup Script for Linux/Mac](https://alios-things-public.oss-cn-hangzhou.aliyuncs.com/setup_linux_osx.sh),
 或者按以下命令手动安装依赖的软件包
 例：在一台 Ubuntu 16.04 LTS (Xenial Xerus) 64-bit PC 上
 ```bash
