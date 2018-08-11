@@ -5,7 +5,7 @@ If you are on Windows or Mac, maybe you'd like to turn directly to our [IDE](Ali
 
 ## Setup environment
 
-You can either try [Setup Script for Linux/Mac](http://p28phe5s5.bkt.clouddn.com/setup_linux_osx.sh), or manually do steps below,  
+You can either try [Setup Script for Linux/Mac](http://47.52.140.44/aos-setup/setup_linux_osx.sh), or manually do steps below,  
 e.g. on a Ubuntu 16.04 LTS (Xenial Xerus) 64-bit PC
 
 ```bash
