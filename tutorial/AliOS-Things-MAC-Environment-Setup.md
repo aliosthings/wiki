@@ -1,7 +1,7 @@
 
 感谢 @dupig  
    
-也可以尝试爱好者提供的**一键安装脚本**：[Setup Script for Mac](http://p28phe5s5.bkt.clouddn.com/setup_osx.zip)。下载解压后在Terminal里运行以下命令即可完成环境安装配置。
+也可以尝试爱好者提供的**一键安装脚本**：[Setup Script for Mac](http://47.52.140.44/aos-setup/setup_osx.zip)。下载解压后在Terminal里运行以下命令即可完成环境安装配置。
 ```bash
 cd ~/Downloads/setup_osx && bash setup_osx.sh
 ```
