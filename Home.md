@@ -13,6 +13,7 @@ Please refer to [AliOS Things Technical Overview](AliOS-Things-Technical-Overvie
 - [SIG BLE Mesh Setup Guide](AliOS-Things-SIG-BLE-mesh-Setup-Guides)
 - [LoRaWAN Tutorial](AliOS-Things-lorawanapp)
 - [Linkkit Tutorial](AliOS-Things-Linkkit-Application.zh)
+- [OTA Tutorial](OTA-Tutorial)
 - [LinkVoice Tutorial](LinkVoice-Application)
 - [BoneEngine@Lite Tutorial](boneengine_gpio_led_example)
 - [Sensor Porting Guide Based On AliOS Things Developer Kit](基于AliOS-Things-Developer-Kit开发板的外接传感器开发教程)
