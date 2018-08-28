@@ -2,8 +2,8 @@
 
 可以尝试爱好者提供的一键安装脚本：[Setup Script for Linux/Mac](https://alios-things-public.oss-cn-hangzhou.aliyuncs.com/setup_linux_osx.sh)。
 
-## 依赖及aos-cube安装
-以 Ubuntu 16.04 LTS (Xenial Xerus) 64-bit PC 版本为例，安装下列 pkg：
+## 安装python和aos-cube
+aos-cube是 AliOS Things 基于Python开发的项目管理工具包，依赖 Python 2.7 版本（64bits，2.7.14已验证）。主要分为两部分：python和pip安装、基于pip安装aos-cube及相关的依赖包。
 > 注意：请安装 python 2.7
 ```
 # 安装python和pip
@@ -24,10 +24,29 @@ $ pip install --trusted-host=mirrors.aliyun.com -i https://mirrors.aliyun.com/py
 $ pip install --trusted-host=mirrors.aliyun.com -i https://mirrors.aliyun.com/pypi/simple/   wheel
 $ pip install --trusted-host=mirrors.aliyun.com -i https://mirrors.aliyun.com/pypi/simple/   aos-cube
 
-#### 如需要使用doubanio作备用源，如需指定版本，可改成如aos-cube==0.2.50
+### 如需要使用doubanio作备用源，如需指定版本，可改成如aos-cube==0.2.50
 $ pip install  --trusted-host pypi.doubanio.com -i  http://pypi.doubanio.com/simple/  aos-cube
 ```
+因涉及多种开发环境和具体版本的依赖，针对开发者的实际情况，还给出一种简单方便且不影响当前系统环境的方法----基于虚拟环境virtualenv的方法，以便备用。前提：上述python和pip安装完成；具体步骤如下：
+```
+# pip 安装 virtualenv, 如安装成功，可以在pip list查看版本
+$ python -m pip install virtualenv
 
+# 如遇网络问题，可使用阿里云镜像
+$ pip install --trusted-host=mirrors.aliyun.com -i https://mirrors.aliyun.com/pypi/simple/ virtualenv
+
+# 建立虚拟环境，如安装到~/venv(可更改)
+$ virtualenv  ~/venv --no-download
+
+# 启动虚拟环境，下面执行使用 '.'
+$ . ~/venv/bin/activate
+
+# 安装 aos-cube和必要的依赖包
+$ `请参考上述b)aos-cube及相关依赖安装`
+
+# 退出虚拟环境
+$ deactivate
+```
 
 ## 交叉工具链
 
