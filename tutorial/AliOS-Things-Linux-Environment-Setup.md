@@ -6,15 +6,29 @@
 以 Ubuntu 16.04 LTS (Xenial Xerus) 64-bit PC 版本为例，安装下列 pkg：
 > 注意：请安装 python 2.7
 ```
+# 安装python和pip
 $ sudo apt-get install -y python
-$ sudo apt-get install -y gcc-multilib
-$ sudo apt-get install -y libssl-dev libssl-dev:i386
-$ sudo apt-get install -y libncurses5-dev libncurses5-dev:i386
-$ sudo apt-get install -y libreadline-dev libreadline-dev:i386
 $ sudo apt-get install -y python-pip
-$ sudo apt-get install -y minicom
-$ pip install --user -U aos-cube
+
+# 完成python和pip安装后，再安装依赖库和aos-cube，步骤如下：
+$ python -m pip install setuptools
+$ python -m pip install wheel
+$ python -m pip install aos-cube
+
+# 如果在安装aos-cube遇到网络问题，可使用国内镜像源，步骤如下：
+### 安装/升级 pip
+$python -m pip install --trusted-host=mirrors.aliyun.com -i https://mirrors.aliyun.com/pypi/simple/ --upgrade pip
+
+### 基于pip依次安装第三方包和aos-cube
+$ pip install --trusted-host=mirrors.aliyun.com -i https://mirrors.aliyun.com/pypi/simple/   setuptools
+$ pip install --trusted-host=mirrors.aliyun.com -i https://mirrors.aliyun.com/pypi/simple/   wheel
+$ pip install --trusted-host=mirrors.aliyun.com -i https://mirrors.aliyun.com/pypi/simple/   aos-cube
+
+#### 如需要使用doubanio作备用源，如需指定版本，可改成如aos-cube==0.2.50
+$ pip install  --trusted-host pypi.doubanio.com -i  http://pypi.doubanio.com/simple/  aos-cube
 ```
+
+
 ## 交叉工具链
 
 在 AliOS Things 源码的目录下面，运行：
