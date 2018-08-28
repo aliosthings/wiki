@@ -33,7 +33,7 @@ sudo sysctl -p
 
 ### 开发环境准备
 
-#### Linux/Mac
+#### Linux/Mac中安装aos-cube
 
 安装：
 - [Python 2](https://www.python.org/downloads/)
@@ -45,8 +45,9 @@ $ pip install --upgrade setuptools
 $ pip install --upgrade wheel
 $ pip install aos-cube
 ```
+>如遇网络问题可参考[这里](https://github.com/alibaba/AliOS-Things/wiki/AliOS-Things-Linux-Environment-Setup#%E5%AE%89%E8%A3%85python%E5%92%8Caos-cube)
 
-#### Windows
+#### Windows中安装aos-cube
 可以直接使用我们准备好的一键安装包：http://p28phe5s5.bkt.clouddn.com/setup_windows.zip  
 也可以手动安装以下软件/工具:  
 - [Python 2](https://www.python.org/downloads/)
@@ -59,7 +60,7 @@ $ pip install --upgrade wheel
 $ pip install --user aos-cube
 ```
 
-细节可参考 [AliOS-Things-Windows-Environment-Setup](https://github.com/alibaba/AliOS-Things/wiki/AliOS-Things-Windows-Environment-Setup) 
+>细节可参考 [AliOS-Things-Windows-Environment-Setup](https://github.com/alibaba/AliOS-Things/wiki/AliOS-Things-Windows-Environment-Setup) 
 
 **`[注意]`** 请确定下在运行完 `pip install aos-cube`后`esptool, pyserial, scons` 和 `aos-cube` 全部被成功安装, 如果失败需要自行一步一步的安装这些依赖包.
 
