@@ -11,7 +11,7 @@ aos-cube 是 AliOS Things 在 Python 下面开发的项目管理工具包，依�
 安装配置完成 Python 后，使用 pip 安装 aos-cube：
 
 `> pip install aos-cube`
-
+> 注意：如遇到网络问题，请参考[安装python和aos](https://github.com/alibaba/AliOS-Things/wiki/AliOS-Things-Linux-Environment-Setup#%E5%AE%89%E8%A3%85python%E5%92%8Caos-cube)
 ## 交叉工具链
 Windows 工具链可以在链接 [GCC](https://launchpad.net/gcc-arm-embedded/+download) 下载 Windows的exe安装，勾选 Add path to environment variable 选项：
 
