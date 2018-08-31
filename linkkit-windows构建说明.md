@@ -2,6 +2,7 @@
 
 - 目前linkkit在windows上只支持编译出两类.a，一类提供给linkitapp单品类应用的链接，一类提供给linkkit_gateway网关类应用链接
 - 可以支持keil/iar工具链的编译，但是keil/iar **对配网目前不支持**
+- 目前linkkit整体对非linux的目标平台，不支持uota
 
 ## 文件结构
 
