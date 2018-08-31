@@ -1,9 +1,9 @@
 ## 概述
 
 - 目前linkkit在windows上只支持编译出两类.a，一类提供给linkitapp单品类应用的链接，一类提供给linkkit_gateway网关类应用链接
-- 可以支持keil/iar工具链的编译
+- 可以支持keil/iar工具链的编译，但是keil/iar **对配网目前不支持**
 
-## 文件
+## 文件结构
 
 - 修改 win_boar_conf.mk 文件，用户自己加入要添加的board选项，以及相应的工具链位置
 - win.makefile是主makfile，其中指定了一些特定的编译选项，若要修改也可以在其中修改
