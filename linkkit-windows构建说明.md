@@ -1,8 +1,10 @@
 ## 概述
 
+- 该windows makefile可以提供linkkit sdk在windows上编译的能力，主要是针对嵌入式平台
 - 目前linkkit在windows上只支持编译出两类.a，一类提供给linkitapp单品类应用的链接，一类提供给linkkit_gateway网关类应用链接
-- 可以支持keil/iar工具链的编译，但是keil/iar **对配网目前不支持**
-- 目前linkkit整体对非linux的目标平台，不支持uota
+- 可以支持keil/iar工具链的编译
+- 目前配网awss代码暂不支持用iar编译，keil和gcc可以
+- 目前ota依赖具体aos或者linux平台，对一般嵌入式平台暂不支持ota
 
 ## 文件结构
 
