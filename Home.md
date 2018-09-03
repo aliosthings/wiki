@@ -20,6 +20,11 @@ Please refer to [AliOS Things Technical Overview](AliOS-Things-Technical-Overvie
 - [Step by Step: MQTT to Cloud with STM32](stm32-networking)
 - [Video Tutorial](AliOS-Things-Video-Tutorial)
 
+## [Certification](Certification-Home)
+- [AliOS Things Certification](https://github.com/AITC-LinkCertification/AITC-Manual/wiki/AliOS-Things%E8%AE%A4%E8%AF%81)
+- [Commercial Certification](https://github.com/AITC-LinkCertification/AITC-Manual/wiki/%E6%A8%A1%E7%BB%84%E8%AE%A4%E8%AF%81)
+- [LinkWAN Certification](https://github.com/AITC-LinkCertification/AITC-Manual/wiki/Link-WAN%E8%AE%A4%E8%AF%81)
+
 ## [Hardware](AliOS-Things-Hardware)
 - [ARM](AliOS-Things-Hardware#arm)
 - [Xtensa](AliOS-Things-Hardware#xtensa)
@@ -83,6 +88,5 @@ Please refer to [AliOS Things Technical Overview](AliOS-Things-Technical-Overvie
 - [MW31硬件设计手册](MW31硬件设计手册)
 - [MW31模块boot文件更新以及程序升级指导](MW31_Upgrade_Guide)
 
-## [Certification](Certification-Home)
 
 ## [Contributing](contributing)

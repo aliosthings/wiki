@@ -7,7 +7,7 @@
 - **[Utilities](AliOS-Things-Utilities)**
 - **[API Reference](AliOS-Things-API-Guide)**
 - **[Technical Docs](AliOS-Things-Technical-Overview)**
-- **[Certification](Certification-Home)**
+- **[Certification](https://github.com/AITC-LinkCertification/AITC-Manual/wiki)**
 - **[Contributing](contributing)**
 - **[Community](#community)**
 - **[Contributor's Guide](#practical-guide-from-contributors)**
