@@ -1,4 +1,4 @@
-![](http://o7spigzvd.bkt.clouddn.com/aos-logo-hd-vertical.png)
+![](https://img.alicdn.com/tfs/TB1f5X2vsUrBKNjSZPxXXX00pXa-973-973.png)
 ==============================================================
 
 - **[Tutorial](Quick-Start)**
