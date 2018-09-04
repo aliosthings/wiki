@@ -1,4 +1,4 @@
-![](https://img.alicdn.com/tfs/TB1f5X2vsUrBKNjSZPxXXX00pXa-973-973.png)
+![](https://img.alicdn.com/tfs/TB1e1U7vyAnBKNjSZFvXXaTKXXa-973-200.png)
 ==============================================================
 
 - **[Tutorial](Quick-Start)**
