@@ -17,7 +17,7 @@ Windows 工具链可以在链接 [GCC](https://launchpad.net/gcc-arm-embedded/+d
 
 ![](https://img.alicdn.com/tfs/TB16JofcWagSKJjy0FaXXb0dpXa-865-620.png)
 
-在 AliOS Things 源码的目录下面，运行：
+在 AliOS Things 源码的目录下面，推荐在 [Git Bash](https://git-scm.com/download/win) 中运行：
 
 ```
 $ aos make helloworld@mk3060
