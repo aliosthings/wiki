@@ -4,7 +4,6 @@
 - [CLI](AliOS-Things-API-CLI-Guide)
 - [CLOUD](AliOS-Things-API-CLOUD-Guide)
 - [HAL](AliOS-Things-API-HAL-Guide)
-  - [OTA](AliOS-Things-API-HAL-OTA-Guide)
   - [TRACE](AliOS-Things-API-HAL-TRACE-Guide)
   - [WiFi](AliOS-Things-API-HAL-WiFi-Guide)
 - SoC
