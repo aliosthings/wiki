@@ -82,7 +82,7 @@ sensor_io_dev_t bme280_ctx;
 如果传感器支持I2C总线，定义一个的i2c\_dev\_t的全局变量，并配置其中的设备I2C地址，参考如下：
 <pre><code>i2c_dev_t  ####_ctx_i2c = {
     .port = 3,                  /*传感器使用的I2C的port口为3*/
-    .config.dev_addr = 0x5D<<1, /* 从设备I2C地址，8bit */
+    .config.dev_addr = BME280_I2C_ADDR, /*从设备I2C地址，8bit */
 };</code></pre>
 
 如果传感器支持SPI总线，同样定义一个的spi\_dev\_t的全局变量，并配置其中的设备SPI地址，参考如下：
