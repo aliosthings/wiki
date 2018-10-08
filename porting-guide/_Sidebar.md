@@ -8,7 +8,7 @@
   - [LwIP](AliOS-Things-LwIP-Porting-Guide)
   - [BLE](AliOS-Things-BLE-Porting-Guide.zh)
   - [SAL](https://github.com/alibaba/AliOS-Things/tree/master/device/sal/README.md)
-  - [FOTA](AliOS-Things-FOTA-Porting-Guide)
+  - [OTA](AliOS-Things-OTA-Porting-Guide)
   - [BINS](AliOS-Things-BINS-Porting-Guide)
   - [uData Framework](AliOS-Things-uData-Framework-Porting-Guide)
   - [uData Sensor Driver](AliOS-Things-uData-Sensor-Driver-Porting-Guide)
