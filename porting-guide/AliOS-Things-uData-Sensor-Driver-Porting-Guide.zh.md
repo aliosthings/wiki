@@ -81,7 +81,7 @@ sensor_io_dev_t bme280_ctx;
 对于支持I2C和SPI两种总线的传感器，可以为I2C和SPI分别定义配置信息的变量，并通过函数对bme280\_ctx进行赋值。
 如果传感器支持I2C总线，定义一个的i2c\_dev\_t的全局变量，并配置其中的设备I2C地址，参考如下：
 <pre><code>i2c_dev_t  ####_ctx_i2c = {
-    .port = 3,                  /*传感器使用的I2C的port口为3*/
+    .port = 3,                          /*传感器使用的I2C的port口为3*/
     .config.dev_addr = BME280_I2C_ADDR, /*从设备I2C地址，8bit */
 };</code></pre>
 
@@ -111,7 +111,7 @@ sensor_io_dev_t bme280_ctx;
 当前senor hal层的总线接口支持I2C和SPI两种方式访问传感器，具体接口说明如下：
 <pre><code>
 /***************************************************
-传感器数据读取接口
+传感器数据读操作接口
 参数：
 dev: 传感器驱动数据类型描述， 类型: sensor_io_dev_t
 reg: 寄存器保存的地址空间， 类型: uint8_t*
@@ -126,7 +126,7 @@ int32_t sensor_io_read(sensor_io_dev_t* dev, uint8_t* reg, uint8_t* data, uint16
 
 
 /***************************************************
-传感器数据写入接口
+传感器数据写操作接口
 参数：
 dev: 传感器驱动数据类型描述， 类型: sensor_io_dev_t
 reg: 寄存器保存的地址空间， 类型: uint8_t*
