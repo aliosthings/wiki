@@ -25,18 +25,22 @@ middleware/uagent/uota/hal/ota\_hal\_plat.h
 platform/mcu/moc108/port/ota\_port.c
 接口列表:
 
-01 ota\_init\n
-02 ota\_write\n
+01 ota\_init
+
+02 ota\_write
+
 03 ota\_read
+
 04 ota\_set\_boot
+
 05 ota\_rollback
 
 操作系统移植层接口列表：
 对应文件:
 middleware/uagent/uota/hal/ota\_hal\_os.h
 middleware/uagent/uota/hal/ota\_hal\_os.c
-
 接口列表:
+
 01 ota\_malloc
 
 02 ota\_free
