@@ -1,189 +1,863 @@
-## 1.1 背景
+## 1 背景
 OTA升级作为物联网设备的一项基础功能，可以快速修复软件漏洞，更新系统,对于快速迭代的物联网产品是刚性需求；目前IOT设备种类繁多，但并未提供统一的OTA升级方案，针对日益发展的IOT设备，开发者迫切需要一套云端一体化的OTA升级方案来满足快速迭代的产品开发周期，同时降低产品开发和部署的成本。
 
-## 1.2 目标
+## 2 目标
 对于接入AliOS Things的物联网设备，阿里巴巴云端和设备端OTA组件为用户提供云端一体化的OTA升级服务; 对于使用OTA升级服务的用户只需按照此文档实现移植层接口后就可以轻松使用阿里巴巴物联网OTA升级服务。
 
-## 1.3 使用对象
-<span data-type="color" style="color:windowtext">使用AliOS Things RTOS、AliOS Things Linux Edition的开发者或用户。</span>
+## 3 使用对象
+<span data-type="color" style="color:windowtext">使用AliOS Things 的开发者或用户，代码路径:</span>[https://github.com/alibaba/AliOS-Things.git](https://github.com/alibaba/AliOS-Things.git)<span data-type="color" style="color:rgb(36, 41, 46)"><span data-type="background" style="background-color:rgb(255, 255, 255)"> </span></span>分支:rel\_2.0.0
 
-## 1.4 移植指引
-
-OTA设备端软件架构如下图所示，OTA核心组件为通用组件，设备端OTA整体功能移植到不同的平台和操作系统，需分别实现如图标注为__<span data-type="color" style="color:#F5222D">粉色的底层平台接口移植层</span>__和__<span data-type="color" style="color:#F5222D">操作系统接口移植层</span>__，如操作系统使用AliOS Things RTOS或<span data-type="color" style="color:windowtext">Linux Edition默认已内置</span><span data-type="color" style="color:#262626">支持OTA核心组件，操作系统移植接口已完成对接</span><span data-type="color" style="color:windowtext">，新芯片或者模组导入只需简单</span>__<span data-type="color" style="color:#F5222D">实现底层平台移植层接口（5个接口）</span>__<span data-type="color" style="color:#262626">就可以正常使用AliOS 云端一体化的OTA服务</span><span data-type="color" style="color:windowtext">。</span>
-
+## 4 移植使用说明
+AliOS Things OTA设备端软件架构如下图所示，OTA核心组件为通用组件，设备端OTA整体功能移植到不同的平台和操作系统，需分别实现如图标注为__<span data-type="color" style="color:#F5222D">粉色的底层平台接口移植层</span>__和__<span data-type="color" style="color:#F5222D">操作系统接口移植层</span>__，AliOS Things<span data-type="color" style="color:#262626">操作系统移植接口已完成对接</span><span data-type="color" style="color:windowtext">，因此使用时无需移植，新芯片或者模组导入只需简单</span>__<span data-type="color" style="color:#F5222D">实现底层平台移植层接口(5个回调函数接口)</span>__<span data-type="color" style="color:#262626">就可以正常使用AliOS Things云端一体化的OTA服务</span><span data-type="color" style="color:windowtext">。差分升级需要配合boot移植差分还原模块，目前只在平台8266和3080平台上面支持。</span>
 
 
 
-![image.png | left | 747x481](https://cdn.nlark.com/lark/0/2018/png/111302/1535815192305-1cce8071-844e-4850-bbe3-765679a4c6d3.png "")
+
+![image.png | left | 747x481](https://img.alicdn.com/tfs/TB1kr3JgrvpK1RjSZFqXXcXUVXa-2013-1284.png "")
 
 
+## 
+## 5 移植接口详细说明
 
-## 1.5 移植接口列表
+### 5.1 启动服务接口
 
-平台移植层接口列表：
-对应文件:
-middleware/uagent/uota/hal/ota\_hal\_plat.h
-platform/mcu/moc108/port/ota\_port.c
-接口列表:
+在设备连接上阿里云之后，可以通过调用ota\_service\_init(NULL)接口启动OTA服务,默认接口参数为空，将使用系统默认烧录的四元组，也可以手动传入四元组等参数启动，默认传输协议支持MQTT，固件下载协议支持HTTPs。
 
-01 ota\_init
+```c
+typedef struct {
+    int   inited;  /*If is inted*/
+    char  pk[PRODUCT_KEY_MAXLEN + 1];/*Product Key*/
+    char  ps[PRODUCT_SECRET_MAXLEN + 1];/*Product secret*/
+    char  dn[DEVICE_NAME_MAXLEN + 1];/*Device name*/
+    char  ds[DEVICE_SECRET_MAXLEN + 1];/*Device secret*/
+    char  uuid[64];
+    int   trans_protcol;  /*default:0--> MQTT 1-->COAP*/
+    int   dl_protcol;     /*default:3--> HTTPS 1-->COAP 2-->HTTP*/
+    int   sign_type;      /*default:0--> sha256 1--> md5 2-->RSA*/
+    int   firm_size;
+    char* dl_url;         /*Dowdload URL*/
+    void* h_coap;
+} ota_service_manager;
 
-02 ota\_write
+int ota_service_init(ota_service_manager* context);
+```
 
-03 ota\_read
+### 5.2 底层平台移植层接口
 
-04 ota\_set\_boot
+OTA回调函数的实现代码位于`platform/mcu/xxx/hal/ota_port.c,`init实现初始化OTA分区及分区固件大小检查擦除，ota\_write实现对下载数据解释后分段写入OTA分区中，ota\_read完成从flash读出数据，ota\_set\_boot用于升级成功时告诉boot下次启动到新升级的分区, ota\_rollback用于乒乓升级升级时与bootloader共同完成回滚到老的分区，在平台初始化的时候会调用hal\_ota\_register\_module(&ota\_hal\_module)注册上述回调接口。
 
-05 ota\_rollback
+```c
+struct hal_ota_module_s {
+    hal_module_base_t base;
 
-操作系统移植层接口列表：
-对应文件:
-middleware/uagent/uota/hal/ota\_hal\_os.h
-middleware/uagent/uota/hal/ota\_hal\_os.c
-接口列表:
+    /* Link to HW */
+    int (*init)(hal_ota_module_t *m, void *something);
+    int (*ota_write)(hal_ota_module_t *m, volatile uint32_t *off_set,
+                     uint8_t *in_buf , uint32_t in_buf_len);
+    int (*ota_read)(hal_ota_module_t *m,  volatile uint32_t *off_set,
+                    uint8_t *out_buf , uint32_t out_buf_len);
+    int (*ota_set_boot)(hal_ota_module_t *m, void *something);
+    int (*ota_rollback)(hal_ota_module_t *m, void *something);
+};
+```
 
-01 ota\_malloc
 
-02 ota\_free
+### init
 
-03 ota\_mutex\_init
+| 函数原型 | int (\*init)(hal\_ota\_module\_t \*m, void \*something); |
+| :--- | :--- |
+| 描述 | 实现初始化OTA分区及分区固件大小检查擦。 |
 
-04 ota\_mutex\_lock
 
-05 ota\_mutex\_unlock
-
-06 void ota\_mutex\_destroy
-
-07 ota\_semaphore\_init
-
-08 ota\_semaphore\_wait
-
-09 ota\_semaphore\_post
-
-10 ota\_semaphore\_destroy
-
-11 ota\_thread\_create;
-
-12 ota\_thread\_exit
-
-13 ota\_timer\_create
-
-14 ota\_timer\_start
-
-15 ota\_msleep
-
-16 ota\_kv\_set
-
-17 ota\_kv\_get
-
-18 ota\_socket\_connect
-
-19 ota\_socket\_send
-
-20 ota\_socket\_recv
-
-21 ota\_socket\_close
-
-22 ota\_ssl\_connect
-
-23 ota\_ssl\_send
-
-24 ota\_ssl\_recv
-
-25 ota\_hal\_mqtt\_publish
-
-26 ota\_hal\_mqtt\_subscribe
-
-27 ota\_hal\_mqtt\_deinit\_instance
-
-28 ota\_hal\_mqtt\_init\_instance
-
-## 1.6 移植接口详细说明
+### 入参
 
 <div class="bi-table">
   <table>
     <colgroup>
-      <col width="50px" />
-      <col width="337px" />
-      <col width="364px" />
+      <col width="104px" />
+      <col width="158px" />
+      <col width="265px" />
+      <col width="242px" />
     </colgroup>
     <tbody>
       <tr>
-        <td rowspan="23" colSpan="1">
-          <div data-type="p">底层接口</div>
-        </td>
         <td rowspan="1" colSpan="1">
-          <div data-type="p">底层平台移植层接口（5个）</div>
-        </td>
-        <td rowspan="1" colSpan="1">
-          <div data-type="p">移植使用说明</div>
-        </td>
-      </tr>
-      <tr>
-        <td rowspan="1" colSpan="1">
-          <div data-type="p">hal_stat_t hal_ota_init(void *something); hal_stat_t hal_ota_write(hal_ota_module_t *m, volatile uint32_t*off_set,uint8_t *in_buf , uint32_t len); hal_stat_t hal_ota_read(hal_ota_module_t *m, volatile uint32_t*off_set,uint8_t *out_buf, uint32_t
-            len); hal_stat_t hal_ota_set_boot(hal_ota_module_t *m, void *something); hal_stat_t hal_ota_rollback(hal_ota_module_t *m, void *something);
+          <div data-type="alignment" data-value="center" style="text-align:center">
+            <div data-type="p"><strong>参数</strong></div>
           </div>
         </td>
         <td rowspan="1" colSpan="1">
-          <div data-type="p">新芯片或模组导入需实现平台移植层5个接口函数就可以使用OTA云端一体化服务，<strong><span data-type="color" style="color:#F5222D">前三个接口移植到AliOS请参考使用标准flash hal接口实现：文件路径kernel/rhino/hal/soc/flash.h。 </span></strong>init需要实现初始化OTA分区及分区检查擦除，write实现对下载数据解释后分段写入OTA分区中，read完成从flash读出数据，
-            <span
-              data-type="color" style="color:#262626">set_boot用于升级成功时告诉boot下次启动到新升级的分区,rollback用于与bootloader共同完成升级失败后回滚到老的分区</span>（<span data-type="color" style="color:#F5222D"><strong>仅适用于双备份分区升级方式</strong></span>）。</div>
-        </td>
-      </tr>
-      <tr>
-        <td rowspan="1" colSpan="1">
-          <div data-type="p">操作系统移植层接口（28个）</div>
-        </td>
-        <td rowspan="1" colSpan="1">
-          <div data-type="p">　</div>
-        </td>
-      </tr>
-      <tr>
-        <td rowspan="20" colSpan="1">
-          <div data-type="p">void *ota_malloc(uint32_tsize); void ota_free(void *ptr); void *ota_mutex_init(void); void ota_mutex_lock(void *mutex); void ota_mutex_unlock(void *mutex); void ota_mutex_destroy(void *mutex); void *ota_semaphore_init(void); int ota_semaphore_wait(void
-            *sem, uint32_t timeout_ms); void ota_semaphore_post(void *sem); void ota_semaphore_destroy(void *sem); int ota_thread_create(void **thread_handle,void *(*work_routine)(void*), void *arg, hal_os_thread_param_t *param, int *stack_used); void
-            ota_thread_exit(void *thread); void *ota_timer_create(const char *name, void (*func)(void *), void*user_data); int ota_timer_start(void *t, int ms); void ota_msleep(uint32_t ms); int ota_kv_set(const char *key, const void *val, int len, int
-            sync); int ota_kv_get(const char *key, void *buffer, int *buffer_len); int ota_socket_connect(char *host, int port); int ota_socket_send(int fd,  char*buf, size_t len); int ota_socket_recv(int fd,  char*buf, size_t len); void ota_socket_close(int
-            fd); void* ota_ssl_connect(const char *host, uint16_t port, const char*ca_crt,uint32_t ca_crt_len); int32_t ota_ssl_send(void* ssl,  char*buf, uint32_t len); int32_t ota_ssl_recv(void* ssl,  char*buf, uint32_t len); int ota_hal_mqtt_publish(char
-            *topic, int qos, void *data, int len); int ota_hal_mqtt_subscribe(char *topic, void (*cb)(char *topic, inttopic_len,                              void*payload, int payload_len, void *ctx), void *ctx); int ota_hal_mqtt_deinit_instance(void);
-            int ota_hal_mqtt_init_instance(char *productKey, char *deviceName, char*deviceSecret, int maxMsgSize);
+          <div data-type="alignment" data-value="center" style="text-align:center">
+            <div data-type="p"><strong>类型</strong></div>
           </div>
         </td>
-        <td rowspan="20" colSpan="1">
-          <div data-type="p"><span data-type="color" style="color:#262626">操作系统移植层接口，AliOS Things下已实现完成，无对接工作；但移植到新的操作系统上需重新确认对接（大部分可以复用）。</span></div>
+        <td rowspan="1" colSpan="1">
+          <div data-type="alignment" data-value="center" style="text-align:center">
+            <div data-type="p"><strong>描述</strong></div>
+          </div>
+        </td>
+        <td rowspan="1" colSpan="1">
+          <div data-type="alignment" data-value="center" style="text-align:center">
+            <div data-type="p"><strong>备注</strong></div>
+          </div>
         </td>
       </tr>
-      <tr></tr>
-      <tr></tr>
-      <tr></tr>
-      <tr></tr>
-      <tr></tr>
-      <tr></tr>
-      <tr></tr>
-      <tr></tr>
-      <tr></tr>
-      <tr></tr>
-      <tr></tr>
-      <tr></tr>
-      <tr></tr>
-      <tr></tr>
-      <tr></tr>
-      <tr></tr>
-      <tr></tr>
-      <tr></tr>
-      <tr></tr>
       <tr>
         <td rowspan="1" colSpan="1">
-          <div data-type="p">应用接口</div>
+          <div data-type="p">m</div>
         </td>
         <td rowspan="1" colSpan="1">
-          <div data-type="p">void ota_service_init(NULL)；</div>
+          <div data-type="p">hal_ota_module_t *</div>
         </td>
         <td rowspan="1" colSpan="1">
-          <div data-type="p">由系统或用户调用此接口注册成为后台服务</div>
+          <div data-type="p">hal_module_base_t 结构体句柄</div>
+        </td>
+        <td rowspan="1" colSpan="1">
+          <div data-type="p"></div>
+        </td>
+      </tr>
+      <tr>
+        <td rowspan="1" colSpan="1">
+          <div data-type="p">something</div>
+        </td>
+        <td rowspan="1" colSpan="1">
+          <div data-type="p">void *</div>
+        </td>
+        <td rowspan="1" colSpan="1">
+          <div data-type="p">传递初始化参数如偏移实现断点续传</div>
+        </td>
+        <td rowspan="1" colSpan="1">
+          <div data-type="p"></div>
         </td>
       </tr>
     </tbody>
   </table>
 </div>
+
+
+### 返回值
+
+<div class="bi-table">
+  <table>
+    <colgroup>
+      <col width="206px" />
+      <col width="624px" />
+    </colgroup>
+    <tbody>
+      <tr>
+        <td rowspan="1" colSpan="1">
+          <div data-type="alignment" data-value="center" style="text-align:center">
+            <div data-type="p"><strong>值</strong></div>
+          </div>
+        </td>
+        <td rowspan="1" colSpan="1">
+          <div data-type="alignment" data-value="center" style="text-align:center">
+            <div data-type="p"><strong>描述</strong></div>
+          </div>
+        </td>
+      </tr>
+      <tr>
+        <td rowspan="1" colSpan="1">
+          <div data-type="alignment" data-value="center" style="text-align:center">
+            <div data-type="p">0</div>
+          </div>
+        </td>
+        <td rowspan="1" colSpan="1">
+          <div data-type="p">初始化成功</div>
+        </td>
+      </tr>
+      <tr>
+        <td rowspan="1" colSpan="1">
+          <div data-type="alignment" data-value="center" style="text-align:center">
+            <div data-type="p">-1</div>
+          </div>
+        </td>
+        <td rowspan="1" colSpan="1">
+          <div data-type="p">初始化失败</div>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+
+
+---
+
+
+### ota\_write
+
+| __函数原型__ | int (\*ota\_write)(hal\_ota\_module\_t \*m, volatile uint32\_t \*off\_set, uint8\_t \*in\_buf , uint32\_t in\_buf\_len); |
+| :--- | :--- |
+| __描述__ | 写入固件到flash |
+
+
+### 入参
+
+<div class="bi-table">
+  <table>
+    <colgroup>
+      <col width="111px" />
+      <col width="174px" />
+      <col width="286px" />
+      <col width="258px" />
+    </colgroup>
+    <tbody>
+      <tr>
+        <td rowspan="1" colSpan="1">
+          <div data-type="alignment" data-value="center" style="text-align:center">
+            <div data-type="p"><strong>参数</strong></div>
+          </div>
+        </td>
+        <td rowspan="1" colSpan="1">
+          <div data-type="alignment" data-value="center" style="text-align:center">
+            <div data-type="p"><strong>类型</strong></div>
+          </div>
+        </td>
+        <td rowspan="1" colSpan="1">
+          <div data-type="alignment" data-value="center" style="text-align:center">
+            <div data-type="p"><strong>描述</strong></div>
+          </div>
+        </td>
+        <td rowspan="1" colSpan="1">
+          <div data-type="alignment" data-value="center" style="text-align:center">
+            <div data-type="p"><strong>备注</strong></div>
+          </div>
+        </td>
+      </tr>
+      <tr>
+        <td rowspan="1" colSpan="1">
+          <div data-type="p">m</div>
+        </td>
+        <td rowspan="1" colSpan="1">
+          <div data-type="p">hal_ota_module_t *</div>
+        </td>
+        <td rowspan="1" colSpan="1">
+          <div data-type="p">hal_module_base_t 结构体句柄</div>
+        </td>
+        <td rowspan="1" colSpan="1">
+          <div data-type="p"></div>
+        </td>
+      </tr>
+      <tr>
+        <td rowspan="1" colSpan="1">
+          <div data-type="p">off_set</div>
+        </td>
+        <td rowspan="1" colSpan="1">
+          <div data-type="p">volatile uint32_t *</div>
+        </td>
+        <td rowspan="1" colSpan="1">
+          <div data-type="p">指定flash地址的偏移量（offset）</div>
+        </td>
+        <td rowspan="1" colSpan="1">
+          <div data-type="p"></div>
+        </td>
+      </tr>
+      <tr>
+        <td rowspan="1" colSpan="1">
+          <div data-type="p">in_buf</div>
+        </td>
+        <td rowspan="1" colSpan="1">
+          <div data-type="p">uint8_t *</div>
+        </td>
+        <td rowspan="1" colSpan="1">
+          <div data-type="p">需要写入的数据</div>
+        </td>
+        <td rowspan="1" colSpan="1">
+          <div data-type="p"></div>
+        </td>
+      </tr>
+      <tr>
+        <td rowspan="1" colSpan="1">
+          <div data-type="p">in_buf_len</div>
+        </td>
+        <td rowspan="1" colSpan="1">
+          <div data-type="p">uint32_t</div>
+        </td>
+        <td rowspan="1" colSpan="1">
+          <div data-type="p">需要写入的数据长度</div>
+        </td>
+        <td rowspan="1" colSpan="1">
+          <div data-type="p"></div>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+
+### 返回值
+
+<div class="bi-table">
+  <table>
+    <colgroup>
+      <col width="206px" />
+      <col width="624px" />
+    </colgroup>
+    <tbody>
+      <tr>
+        <td rowspan="1" colSpan="1">
+          <div data-type="alignment" data-value="center" style="text-align:center">
+            <div data-type="p"><strong>值</strong></div>
+          </div>
+        </td>
+        <td rowspan="1" colSpan="1">
+          <div data-type="alignment" data-value="center" style="text-align:center">
+            <div data-type="p"><strong>描述</strong></div>
+          </div>
+        </td>
+      </tr>
+      <tr>
+        <td rowspan="1" colSpan="1">
+          <div data-type="alignment" data-value="center" style="text-align:center">
+            <div data-type="p">0</div>
+          </div>
+        </td>
+        <td rowspan="1" colSpan="1">
+          <div data-type="p">写入数据成功</div>
+        </td>
+      </tr>
+      <tr>
+        <td rowspan="1" colSpan="1">
+          <div data-type="alignment" data-value="center" style="text-align:center">
+            <div data-type="p">-1</div>
+          </div>
+        </td>
+        <td rowspan="1" colSpan="1">
+          <div data-type="p">写入数据失败</div>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+
+
+---
+
+
+## ota\_read
+
+
+| __函数原型__ | int (\*ota\_read)(hal\_ota\_module\_t \*m,  volatile uint32\_t \*off\_set,uint8\_t \*out\_buf , uint32\_t out\_buf\_len); |
+| :--- | :--- |
+| __描述__ | 从flash中读取数据到buffer中 |
+
+
+### 入参
+
+<div class="bi-table">
+  <table>
+    <colgroup>
+      <col width="111px" />
+      <col width="174px" />
+      <col width="286px" />
+      <col width="258px" />
+    </colgroup>
+    <tbody>
+      <tr>
+        <td rowspan="1" colSpan="1">
+          <div data-type="alignment" data-value="center" style="text-align:center">
+            <div data-type="p"><strong>参数</strong></div>
+          </div>
+        </td>
+        <td rowspan="1" colSpan="1">
+          <div data-type="alignment" data-value="center" style="text-align:center">
+            <div data-type="p"><strong>类型</strong></div>
+          </div>
+        </td>
+        <td rowspan="1" colSpan="1">
+          <div data-type="alignment" data-value="center" style="text-align:center">
+            <div data-type="p"><strong>描述</strong></div>
+          </div>
+        </td>
+        <td rowspan="1" colSpan="1">
+          <div data-type="alignment" data-value="center" style="text-align:center">
+            <div data-type="p"><strong>备注</strong></div>
+          </div>
+        </td>
+      </tr>
+      <tr>
+        <td rowspan="1" colSpan="1">
+          <div data-type="p">m</div>
+        </td>
+        <td rowspan="1" colSpan="1">
+          <div data-type="p">hal_ota_module_t *</div>
+        </td>
+        <td rowspan="1" colSpan="1">
+          <div data-type="p">hal_module_base_t 结构体句柄</div>
+        </td>
+        <td rowspan="1" colSpan="1">
+          <div data-type="p"></div>
+        </td>
+      </tr>
+      <tr>
+        <td rowspan="1" colSpan="1">
+          <div data-type="p">off_set</div>
+        </td>
+        <td rowspan="1" colSpan="1">
+          <div data-type="p">volatile uint32_t *</div>
+        </td>
+        <td rowspan="1" colSpan="1">
+          <div data-type="p">指定flash地址的偏移量（offset）</div>
+        </td>
+        <td rowspan="1" colSpan="1">
+          <div data-type="p"></div>
+        </td>
+      </tr>
+      <tr>
+        <td rowspan="1" colSpan="1">
+          <div data-type="p">out_buf</div>
+        </td>
+        <td rowspan="1" colSpan="1">
+          <div data-type="p">uint8_t *</div>
+        </td>
+        <td rowspan="1" colSpan="1">
+          <div data-type="p">读取flash数据到该buf中</div>
+        </td>
+        <td rowspan="1" colSpan="1">
+          <div data-type="p"></div>
+        </td>
+      </tr>
+      <tr>
+        <td rowspan="1" colSpan="1">
+          <div data-type="p">out_buf_len</div>
+        </td>
+        <td rowspan="1" colSpan="1">
+          <div data-type="p">uint32_t</div>
+        </td>
+        <td rowspan="1" colSpan="1">
+          <div data-type="p">需要读取的数据长度</div>
+        </td>
+        <td rowspan="1" colSpan="1">
+          <div data-type="p"></div>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+
+### 返回值
+
+<div class="bi-table">
+  <table>
+    <colgroup>
+      <col width="206px" />
+      <col width="624px" />
+    </colgroup>
+    <tbody>
+      <tr>
+        <td rowspan="1" colSpan="1">
+          <div data-type="alignment" data-value="center" style="text-align:center">
+            <div data-type="p"><strong>值</strong></div>
+          </div>
+        </td>
+        <td rowspan="1" colSpan="1">
+          <div data-type="alignment" data-value="center" style="text-align:center">
+            <div data-type="p"><strong>描述</strong></div>
+          </div>
+        </td>
+      </tr>
+      <tr>
+        <td rowspan="1" colSpan="1">
+          <div data-type="alignment" data-value="center" style="text-align:center">
+            <div data-type="p">0</div>
+          </div>
+        </td>
+        <td rowspan="1" colSpan="1">
+          <div data-type="p">读取数据成功</div>
+        </td>
+      </tr>
+      <tr>
+        <td rowspan="1" colSpan="1">
+          <div data-type="alignment" data-value="center" style="text-align:center">
+            <div data-type="p">-1</div>
+          </div>
+        </td>
+        <td rowspan="1" colSpan="1">
+          <div data-type="p">读取数据失败</div>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+
+
+---
+
+
+## ota\_set\_boot
+
+| __函数原型__ | int (\*ota\_set\_boot)(hal\_ota\_module\_t \*m, void \*something); |
+| :--- | :--- |
+| __描述__ | 设置启动参数 |
+
+
+### 入参
+
+<div class="bi-table">
+  <table>
+    <colgroup>
+      <col width="114px" />
+      <col width="173px" />
+      <col width="237px" />
+      <col width="302px" />
+    </colgroup>
+    <tbody>
+      <tr>
+        <td rowspan="1" colSpan="1">
+          <div data-type="alignment" data-value="center" style="text-align:center">
+            <div data-type="p"><strong>参数</strong></div>
+          </div>
+        </td>
+        <td rowspan="1" colSpan="1">
+          <div data-type="alignment" data-value="center" style="text-align:center">
+            <div data-type="p"><strong>类型</strong></div>
+          </div>
+        </td>
+        <td rowspan="1" colSpan="1">
+          <div data-type="alignment" data-value="center" style="text-align:center">
+            <div data-type="p"><strong>描述</strong></div>
+          </div>
+        </td>
+        <td rowspan="1" colSpan="1">
+          <div data-type="alignment" data-value="center" style="text-align:center">
+            <div data-type="p"><strong>备注</strong></div>
+          </div>
+        </td>
+      </tr>
+      <tr>
+        <td rowspan="1" colSpan="1">
+          <div data-type="p">m</div>
+        </td>
+        <td rowspan="1" colSpan="1">
+          <div data-type="p">hal_ota_module_t *</div>
+        </td>
+        <td rowspan="1" colSpan="1">
+          <div data-type="p">hal_module_base_t 结构体句柄</div>
+        </td>
+        <td rowspan="1" colSpan="1">
+          <div data-type="p"></div>
+        </td>
+      </tr>
+      <tr>
+        <td rowspan="1" colSpan="1">
+          <div data-type="p">something</div>
+        </td>
+        <td rowspan="1" colSpan="1">
+          <div data-type="p">void *</div>
+        </td>
+        <td rowspan="1" colSpan="1">
+          <div data-type="p">升级完成传递给boot的参数</div>
+        </td>
+        <td rowspan="1" colSpan="1">
+          <div data-type="p">参数请参考下面的说明</div>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+
+### 升级完成参数
+
+```c
+typedef struct  {
+    OTA_ENUM_UPDATE_TYPE update_type;
+    OTA_ENUM_RESULT_TYPE result_type;
+    OTA_ENUM_FIRMWARE_TYPE  firmware_type;
+    uint32_t splict_size;
+    uint8_t diff_version;
+    uint8_t rollback;
+} ota_finish_param_t;
+```
+
+详细说明：
+
+<div class="bi-table">
+  <table>
+    <colgroup>
+      <col width="90px" />
+      <col width="90px" />
+      <col width="90px" />
+    </colgroup>
+    <tbody>
+      <tr>
+        <td rowspan="3" colSpan="1">
+          <div data-type="alignment" data-value="center" style="text-align:center">
+            <div data-type="p"><strong>update_type</strong></div>
+          </div>
+        </td>
+        <td rowspan="1" colSpan="1">
+          <div data-type="p">OTA_KERNEL</div>
+        </td>
+        <td rowspan="1" colSpan="1">
+          <div data-type="p">更新内核</div>
+        </td>
+      </tr>
+      <tr>
+        <td rowspan="1" colSpan="1">
+          <div data-type="p">OTA_APP</div>
+        </td>
+        <td rowspan="1" colSpan="1">
+          <div data-type="p">更新app</div>
+        </td>
+      </tr>
+      <tr>
+        <td rowspan="1" colSpan="1">
+          <div data-type="p">OTA_ALL</div>
+        </td>
+        <td rowspan="1" colSpan="1">
+          <div data-type="p">更新内核和app</div>
+        </td>
+      </tr>
+      <tr>
+        <td rowspan="2" colSpan="1">
+          <div data-type="alignment" data-value="center" style="text-align:center">
+            <div data-type="p"><strong>result_type </strong></div>
+          </div>
+        </td>
+        <td rowspan="1" colSpan="1">
+          <div data-type="p">OTA_FINISH</div>
+        </td>
+        <td rowspan="1" colSpan="1">
+          <div data-type="p">更新完成</div>
+        </td>
+      </tr>
+      <tr>
+        <td rowspan="1" colSpan="1">
+          <div data-type="p">OTA_BREAKPOINT</div>
+        </td>
+        <td rowspan="1" colSpan="1">
+          <div data-type="p">更新中断</div>
+        </td>
+      </tr>
+      <tr height="34px">
+        <td rowspan="2" colSpan="1">
+          <div data-type="alignment" data-value="center" style="text-align:center">
+            <div data-type="p"><strong>firmware_type</strong></div>
+          </div>
+        </td>
+        <td rowspan="1" colSpan="1">
+          <div data-type="p">OTA_RAW</div>
+        </td>
+        <td rowspan="1" colSpan="1">
+          <div data-type="p">升级原始整包固件</div>
+        </td>
+      </tr>
+      <tr height="34px">
+        <td rowspan="1" colSpan="1">
+          <div data-type="p">OTA_DIFF</div>
+        </td>
+        <td rowspan="1" colSpan="1">
+          <div data-type="p">升级差分包固件</div>
+        </td>
+      </tr>
+      <tr height="34px">
+        <td rowspan="1" colSpan="1">
+          <div data-type="alignment" data-value="center" style="text-align:center">
+            <div data-type="p"><strong>splict_size</strong></div>
+          </div>
+        </td>
+        <td rowspan="1" colSpan="1">
+          <div data-type="p">差分升级分片大小</div>
+        </td>
+        <td rowspan="1" colSpan="1">
+          <div data-type="p"></div>
+        </td>
+      </tr>
+      <tr height="34px">
+        <td rowspan="1" colSpan="1">
+          <div data-type="alignment" data-value="center" style="text-align:center">
+            <div data-type="p"><strong>diff_version</strong></div>
+          </div>
+        </td>
+        <td rowspan="1" colSpan="1">
+          <div data-type="p">差分升级版本标识</div>
+        </td>
+        <td rowspan="1" colSpan="1">
+          <div data-type="p"></div>
+        </td>
+      </tr>
+      <tr height="34px">
+        <td rowspan="1" colSpan="1">
+          <div data-type="alignment" data-value="center" style="text-align:center">
+            <div data-type="p"><strong>rollback</strong></div>
+          </div>
+        </td>
+        <td rowspan="1" colSpan="1">
+          <div data-type="p">预留支持回滚标识</div>
+        </td>
+        <td rowspan="1" colSpan="1">
+          <div data-type="p"></div>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+
+### 返回值
+
+<div class="bi-table">
+  <table>
+    <colgroup>
+      <col width="206px" />
+      <col width="624px" />
+    </colgroup>
+    <tbody>
+      <tr>
+        <td rowspan="1" colSpan="1">
+          <div data-type="alignment" data-value="center" style="text-align:center">
+            <div data-type="p"><strong>值</strong></div>
+          </div>
+        </td>
+        <td rowspan="1" colSpan="1">
+          <div data-type="alignment" data-value="center" style="text-align:center">
+            <div data-type="p"><strong>描述</strong></div>
+          </div>
+        </td>
+      </tr>
+      <tr>
+        <td rowspan="1" colSpan="1">
+          <div data-type="alignment" data-value="center" style="text-align:center">
+            <div data-type="p">0</div>
+          </div>
+        </td>
+        <td rowspan="1" colSpan="1">
+          <div data-type="p">设置成功</div>
+        </td>
+      </tr>
+      <tr>
+        <td rowspan="1" colSpan="1">
+          <div data-type="alignment" data-value="center" style="text-align:center">
+            <div data-type="p">-1</div>
+          </div>
+        </td>
+        <td rowspan="1" colSpan="1">
+          <div data-type="p">设置失败</div>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+
+## ota\_rollback
+
+| __函数原型__ | int (\*ota\_rollback)(hal\_ota\_module\_t \*m, void \*something);; |
+| :--- | :--- |
+| __描述__ | 配合boot实现升级失败启动计数回滚到老的版本 |
+
+
+### 入参
+
+<div class="bi-table">
+  <table>
+    <colgroup>
+      <col width="114px" />
+      <col width="173px" />
+      <col width="237px" />
+      <col width="302px" />
+    </colgroup>
+    <tbody>
+      <tr>
+        <td rowspan="1" colSpan="1">
+          <div data-type="alignment" data-value="center" style="text-align:center">
+            <div data-type="p"><strong>参数</strong></div>
+          </div>
+        </td>
+        <td rowspan="1" colSpan="1">
+          <div data-type="alignment" data-value="center" style="text-align:center">
+            <div data-type="p"><strong>类型</strong></div>
+          </div>
+        </td>
+        <td rowspan="1" colSpan="1">
+          <div data-type="alignment" data-value="center" style="text-align:center">
+            <div data-type="p"><strong>描述</strong></div>
+          </div>
+        </td>
+        <td rowspan="1" colSpan="1">
+          <div data-type="alignment" data-value="center" style="text-align:center">
+            <div data-type="p"><strong>备注</strong></div>
+          </div>
+        </td>
+      </tr>
+      <tr>
+        <td rowspan="1" colSpan="1">
+          <div data-type="p">m</div>
+        </td>
+        <td rowspan="1" colSpan="1">
+          <div data-type="p">hal_ota_module_t *</div>
+        </td>
+        <td rowspan="1" colSpan="1">
+          <div data-type="p">hal_module_base_t 结构体句柄</div>
+        </td>
+        <td rowspan="1" colSpan="1">
+          <div data-type="p"></div>
+        </td>
+      </tr>
+      <tr>
+        <td rowspan="1" colSpan="1">
+          <div data-type="p">something</div>
+        </td>
+        <td rowspan="1" colSpan="1">
+          <div data-type="p">void *</div>
+        </td>
+        <td rowspan="1" colSpan="1">
+          <div data-type="p">实现回滚参数如启动计数参数</div>
+        </td>
+        <td rowspan="1" colSpan="1">
+          <div data-type="p"></div>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+
+
+## 6 OTA移植demo
+
+以linux host上demo为例子，移植实现上述底层平台移植接口（以读写文件模拟读写存储设备）后，可通过在linux host上demo验证OTA下载通道逻辑，更详细的用户使用手册说明文档如下:[https://github.com/alibaba/AliOS-Things/wiki/OTA-Tutorial](https://github.com/alibaba/AliOS-Things/wiki/OTA-Tutorial)
+1） 按照AliOS Things wiki文档按装好集成编译工具，并下载好源码
+AliOS Things 文档链接：[https://github.com/alibaba/AliOS-Things/wiki](https://github.com/alibaba/AliOS-Things/wiki)；
+2） 在编译AliOS Things OTA Linux host  Demo程序 
+      aos make clean;
+      aos make otaapp@linuxhost
+3)  Linuxhost下运行OTA Demo程序，确保PC正常联网并获取到IP地址
+     ./otaapp@linuxhost.elf
+
+
+![image | left | 706x90](https://img.alicdn.com/tfs/TB1fHatgNTpK1RjSZFMXXbG_VXa-1368-174.png "")
+
+
+4）从云端创建产品，获取产品信息pk，dn，ds， ps，执行命令行运行
+     OTA\_APP "a16UKrlKekO" "gateway\_test01" "AT2XFOPOIbJaKfXsKeaEhabJ8TLhMQYp" "RDluqbn3LQazrdqM"
+
+
+![image | left | 706x145](https://img.alicdn.com/tfs/TB1wLOngHPpK1RjSZFFXXa5PpXa-1488-305.png "")
+
+如上图打印显示对应的ota设备pk，dn注册OTA服务成功（__<span data-type="color" style="color:rgb(245, 34, 45)">注意确保设备信息PK，DN等正确</span>__）：
+
+5）通过云端界面选择验证固件，点击确认后可以看到设备端OTA升级开始：
+
+
+![image | left | 644x586](https://img.alicdn.com/tfs/TB1VjylgPDpK1RjSZFrXXa78VXa-746-679.png "")
+
+
+
+
+![image | left | 726x142](https://img.alicdn.com/tfs/TB14tOogHrpK1RjSZTEXXcWAVXa-1477-287.png "")
+
+
+升级完成，在Linux host下会将文件写入到当前目录的文件名字为alinkapp@linuxhost.elf文件中。 
+
+
+![image | left | 726x96](https://img.alicdn.com/tfs/TB1AlmogIbpK1RjSZFyXXX_qFXa-1480-196.png "")
+
+6) Linuxhost上验证完下载通道后可以编译运行对应设备端目标平台固件验证：
+    aos  make otaapp@mk3060
+烧录固件到对应设备平台后，运行和执行下载方式通linuxhost，区别在于平台移植接口的实现与对应平台存储接口对接，将对应固件更新写入对应的存储设备，并让更新设备正常启动。
