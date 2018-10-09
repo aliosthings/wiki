@@ -25,9 +25,13 @@ middleware/uagent/uota/hal/ota\_hal\_plat.h
 platform/mcu/moc108/port/ota\_port.c
 接口列表:
 01 ota\_init
+
 02 ota\_write
+
 03 ota\_read
+
 04 ota\_set\_boot
+
 05 ota\_rollback
 
 操作系统移植层接口列表：
@@ -37,41 +41,60 @@ middleware/uagent/uota/hal/ota\_hal\_os.c
 
 接口列表:
 01 ota\_malloc
+
 02 ota\_free
+
 03 ota\_mutex\_init
+
 04 ota\_mutex\_lock
+
 05 ota\_mutex\_unlock
+
 06 void ota\_mutex\_destroy
+
 07 ota\_semaphore\_init
+
 08 ota\_semaphore\_wait
+
 09 ota\_semaphore\_post
+
 10 ota\_semaphore\_destroy
+
 11 ota\_thread\_create;
+
 12 ota\_thread\_exit
+
 13 ota\_timer\_create
+
 14 ota\_timer\_start
+
 15 ota\_msleep
+
 16 ota\_kv\_set
+
 17 ota\_kv\_get
-18ota\_socket\_connect
+
+18 ota\_socket\_connect
+
 19 ota\_socket\_send
+
 20 ota\_socket\_recv
+
 21 ota\_socket\_close
+
 22 ota\_ssl\_connect
+
 23 ota\_ssl\_send
+
 24 ota\_ssl\_recv
+
 25 ota\_hal\_mqtt\_publish
+
 26 ota\_hal\_mqtt\_subscribe
+
 27 ota\_hal\_mqtt\_deinit\_instance
+
 28 ota\_hal\_mqtt\_init\_instance
-
-
-
-
-
-
-
-
 
 ## 1.6 移植接口详细说明
 
