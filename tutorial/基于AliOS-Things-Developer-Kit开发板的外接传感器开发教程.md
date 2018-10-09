@@ -34,8 +34,6 @@ https://github.com/alibaba/AliOS-Things/wiki/AliOS-Things-Studio
 安装了git bash的同学也可以通过命令行下载：git clone git@github.com:alibaba/AliOS-Things.git
 
 也可以选择zip格式下载；
-![](https://i.imgur.com/aAiul1q.png)
-
 
 
 代码下载完成后，可按照以下patch修改代码，使其支持I2C3。
@@ -73,18 +71,15 @@ index 90c860c2..fbd4a0c5 100644
 请参考以下链接完成uData架构下传感器驱动的移植：https://github.com/alibaba/AliOS-Things/wiki/AliOS-Things-uData-Sensor-Driver-Porting-Guide.zh
 ### 3.2 总线配置
 在developer kit板上，我们是通过外接I2C3连接传感器，需要注意的地方是总线配置,port口为3，从设备的地址为8bit：
-<pre><code>
-i2c_dev_t  ####_ctx = {
+<pre><code>i2c_dev_t  ####_ctx = {
     .port = 3,                          /*developer kit上外接I2C的port为3*/
     .config.address_width = 8,
     .config.dev_addr = BME280_I2C_ADDR, /* 从设备I2C地址，8bit */
 };
-
 </code></pre>
 ### 3.3 服务订阅
 如果需要在串口查看调试信息，则需要在udata_sample函数中，修改函数udata_sample中的订阅的传感器service类型（路径：example\uDataapp\uData-example.c）；压力传感器如下所示：
-<pre><code>
-int udata_sample(void)
+<pre><code>int udata_sample(void)
 {
     int ret = 0;
 
@@ -101,8 +96,7 @@ int udata_sample(void)
 }
 </code></pre>
 
-<pre><code>
-/*service 类型*/
+<pre><code>/*service 类型*/
 typedef enum 
 {
  UDATA_SERVICE_ACC = 0,     /* Accelerometer */ 
@@ -249,13 +243,11 @@ https://github.com/alibaba/AliOS-Things/wiki/contributing.zh
 
    代码链接： https://github.com/alibaba/AliOS-Things/wiki/AliOS-Things-Coding-Style-Guide
 
-<pre><code>
-/*
+<pre><code>/*
 drv   -- 类型： i2c_dev_t*   说明： 驱动参数；
 data  -- 类型： int32_t*     说明： self-test测试返回的offset值，可参考结构体dev_sensor_info_t；
 返回值 -- 成功返回0；失败返回-1；
 */
-
 static int drv_acc_bosch_bma253_self_test(i2c_dev_t* drv,int32_t* data)；
 
 /*并在相应sensor的ioctl函数中调用该接口*/
@@ -276,6 +268,5 @@ static int drv_acc_bosch_bma253_ioctl(int cmd, unsigned long arg)
 
     return 0;
 }
-
 </code></pre>
 
