@@ -15,7 +15,7 @@ AliOS Things OTA移植指南文档：[https://github.com/alibaba/AliOS-Things/wi
 
 
 
-![image.png | left | 747x467](https://img.alicdn.com/tfs/TB1s2HsgpzqK1RjSZFvXXcB7VXa-2013-1258.png "")
+![image.png | left | 747x467](https://img.alicdn.com/tfs/TB1kr3JgrvpK1RjSZFqXXcXUVXa-2013-1284.png "")
 
 
 # 3.操作流程
