@@ -8,7 +8,7 @@
 
 阿里云智能生活开放平台固件升级文档:[https://living.aliyun.com/doc#fxvw5z.html](https://living.aliyun.com/doc#fxvw5z.html)
 
-设备端AliOS Things OTA移植指南文档：[https://github.com/alibaba/AliOS-Things/wiki/AliOS-Things-OTA-Porting-Guide](https://github.com/alibaba/AliOS-Things/wiki/AliOS-Things-OTA-Porting-Guide)
+AliOS Things OTA移植指南文档：[https://github.com/alibaba/AliOS-Things/wiki/AliOS-Things-OTA-Porting-Guide](https://github.com/alibaba/AliOS-Things/wiki/AliOS-Things-OTA-Porting-Guide)
 
 <span data-type="color" style="color:#F5222D">使用过程如遇到问题注意先参考第4章和第5章的问题排查步骤及常见问题示例自查</span>。
 
