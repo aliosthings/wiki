@@ -13,7 +13,7 @@ AliOS Things OTA设备端软件架构如下图所示，OTA核心组件为通用�
 
 
 
-![image.png | left | 747x481](https://img.alicdn.com/tfs/TB1kr3JgrvpK1RjSZFqXXcXUVXa-2013-1284.png "")
+![image.png | left | 747x481](https://img.alicdn.com/tfs/TB1MUKpgPTpK1RjSZKPXXa3UpXa-1320-986.png "")
 
 
 ## 
