@@ -1,15 +1,17 @@
 # 1.使用说明
-本手册的使用对象为<span data-type="color" style="color:rgb(0, 0, 0)"><span data-type="background" style="background-color:rgb(255, 255, 255)">使用AliOS Things OTA的开发者或用户，目标开发板为庆科3060，编译环境为ubuntu linux，</span></span>对应github上最新代码路径: [https://github.com/alibaba/AliOS-Things.git](https://github.com/alibaba/AliOS-Things.git)  分支:rel\_2.0.0，云端平台为阿里云物联网开发平台。
+### 1.1.使用对象为使用AliOS的开发者或用户
+### 1.2.开发板为庆科3060
+### 1.3.编译环境为安装有ubuntu linux的PC或虚拟机
+### 1.4.代码路径:[https://github.com/alibaba/AliOS-Things.git](https://github.com/alibaba/AliOS-Things.git) 分支:rel\_2.0.0
+### 1.5.云平台为阿里云物联网开发平台
+### 1.6.参考文档
+[AliOS Things OTA移植指南文档](https://github.com/alibaba/AliOS-Things/wiki/AliOS-Things-OTA-Porting-Guide)
+[阿里云物联网平台固件升级文档](https://help.aliyun.com/document_detail/58328.html)
+[阿里云智能生活开放平台固件升级文档](https://living.aliyun.com/doc#fxvw5z.html)
 
-AliOS Things OTA移植指南文档：[https://github.com/alibaba/AliOS-Things/wiki/AliOS-Things-OTA-Porting-Guide](https://github.com/alibaba/AliOS-Things/wiki/AliOS-Things-OTA-Porting-Guide)
+阿里云平台主要包括物联网平台和[智能生活开放平台](https://living.aliyun.com)两大平台；针对智能开放平台目前只推出了基础的整包升级服务，针对物联网平台推出了整包升级(提供基础整包固件升级)，差分升级 (提供差分增量包固件升级)，安全升级（提供安全数字签名验证升级）服务。默认选择的是整包升级，开发者或用户可以根据应用场景选择使用差分升级和安全升级。
 
-阿里云物联网平台固件升级文档:[https://help.aliyun.com/document\_detail/58328.html?spm=a2c4g.11186623.4.2.25f2341dBEVAk9](https://help.aliyun.com/document_detail/58328.html?spm=a2c4g.11186623.4.2.25f2341dBEVAk9)
-
-阿里云智能生活开放平台固件升级文档:[https://living.aliyun.com/doc#fxvw5z.html](https://living.aliyun.com/doc#fxvw5z.html)
-
-<span data-type="color" style="color:#F5222D">使用过程如遇到问题注意先参考第4章和第5章的问题排查步骤及常见问题示例自查</span>。
-
-阿里云云端主要包括物联网平台(https://iot.console.aliyun.com)和智能生活开放平台(飞燕:https://living.aliyun.com)两大平台；针对智能开放平台目前只推出了基础的整包升级服务，针对物联网平台推出了整包升级（提供基础整包固件升级），差分升级（提供差分增量包固件升级），安全升级（提供安全数字签名验证升级）服务。默认选择的是整包升级，开发者或用户可以根据应用场景选择使用差分升级和安全升级。
+<span data-type="color" style="color:#F5222D"><strong>使用过程如遇到问题注意先参考第4章和第5章的问题排查步骤及常见问题示例自查</strong></span><strong>。</strong>
 
 # 2.软件框架
 
