@@ -1,10 +1,10 @@
 # 1.使用说明
-**1.使用对象为使用AliOS的开发者或用户**
-### 1.2.开发板为庆科3060
-### 1.3.编译环境为安装有ubuntu linux的PC或虚拟机
-### 1.4.代码路径:[https://github.com/alibaba/AliOS-Things.git](https://github.com/alibaba/AliOS-Things.git) 分支:rel\_2.0.0
-### 1.5.云平台为阿里云物联网开发平台
-### 1.6.参考文档
+**- 使用对象为使用AliOS的开发者或用户**
+**- 开发板为庆科3060**
+**- 编译环境为安装有ubuntu linux的PC或虚拟机**
+**- 代码路径:[https://github.com/alibaba/AliOS-Things.git](https://github.com/alibaba/AliOS-Things.git) 分支:rel\_2.0.0**
+**- 云平台为阿里云物联网开发平台**
+**- 参考文档:**
 [AliOS Things OTA移植指南文档](https://github.com/alibaba/AliOS-Things/wiki/AliOS-Things-OTA-Porting-Guide)
 [阿里云物联网平台固件升级文档](https://help.aliyun.com/document_detail/58328.html)
 [阿里云智能生活开放平台固件升级文档](https://living.aliyun.com/doc#fxvw5z.html)
