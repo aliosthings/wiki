@@ -35,6 +35,7 @@
 ⑦  云端推送固件，设备端接收固件，并做完整性校验(<span data-type="color" style="color:#F5222D">安全升级开启会验证数字签名</span>)
 ⑧  设备端完成固件校验，进入系统升级
 ⑨  系统重启后，上报新版本信息到云端(<span data-type="color" style="color:#F5222D">注意:云端检查新上报的版本与上传固件的版本一致才会显示成功</span>)
+
 # 3.详细步骤
 ### 3.1.下载代码并选择OTA Demo程序和开发板
 从github上下载AliOS Things代码并选择OTA Demo程序如“aos/app/example/otaapp”，otaapp专门用来测试OTA的功能，选定后接下来需要根据使用的开发板类型编译出对应的固件;
