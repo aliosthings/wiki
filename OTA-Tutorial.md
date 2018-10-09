@@ -127,18 +127,18 @@ OTA移植指南文档：[https://github.com/alibaba/AliOS-Things/wiki/AliOS-Thin
 
 
 # 3.问题排查步骤
-1. 云端问题排查：产品四元组信息，固件版本，升级方式等确保正确；
-2. 连接通道问题排查：检查是否上线，排除连接通道问题;
-3. 下载通道问题排查：可以在linux host上运行otaapp demo看是否能正常从云端下载文件;
-4. 设备端固件校验及写入问题排查：通过分析出差log定位，如需帮助提供设备端完整log;
+3.1. 云端问题排查：产品四元组信息，固件版本，升级方式等确保正确；
+3.2. 连接通道问题排查：检查是否上线，排除连接通道问题;
+3.3. 下载通道问题排查：可以在linux host上运行otaapp demo看是否能正常从云端下载文件;
+3.4. 设备端固件校验及写入问题排查：通过分析出差log定位，如需帮助提供设备端完整log;
     
 # 4.常见问题示例
 ## 3.1.版本不匹配升级失败(ota cancel,ota version don'tmatch dev version!)
 <span data-type="color" style="color:#8C8C8C">答：云端上传的固件版本和端侧的固件的版本格式要相同，并且云端版本要大于端侧版本。如设备端的版本:APP-1.0.0-xxxxxx，云端的版本:APP-2.0.0-xxxxxx. 手动更改版本地方：middleware\common\common.mk。</span>
-## 3.2.上传云端的OTA bin文件是哪个?
+## 4.2.上传云端的OTA bin文件是哪个?
 <span data-type="color" style="color:#8C8C8C">答：用于云端升级的OTA bin文件与端侧离线烧录的固件可能不一样，如mk3080是out/xxxx@mk3080/binary/ota_all.bin；mk3060是out/xxx@mk3060/binary/xxxx@mk3060.ota.md5.bin</span>
-## 3.3.升级成功后，网络连接信息丢失?
+## 4.3.升级成功后，网络连接信息丢失?
 <span data-type="color" style="color:#8C8C8C">答：原因是OTA升级过程中将网络连接信息的保存区域擦除了，解决办法：检查board.c的分区表，确保每个分区没有重叠。</span>
-## 3.4.3080网络linux环境下编译的OTA bin文件无法运行?
+## 4.4.3080网络linux环境下编译的OTA bin文件无法运行?
 <span data-type="color" style="color:#8C8C8C">答：此为已知问题,3080芯片原厂提供的生成OTA bin文件的工具windows下工作正常，linux下工具脚步无法生成正常的OTA bin文件格式。</span>
 __ __
