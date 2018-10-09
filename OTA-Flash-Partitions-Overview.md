@@ -2,7 +2,7 @@
 
 AliOS Things 由于功能需要，维护了一张flash分区表，这张表包括bootloader区、Application区、OTA TMP区以及parameters区，如下图：
 
-![](https://img.alicdn.com/tfs/TB1imUwG3mTBuNjy1XbXXaMrVXa-278-405.png)
+![](https://img.alicdn.com/tfs/TB1YLVbgNTpK1RjSZFKXXa2wXXa-965-523.jpg)
 
 上图的分区的简介:
 
