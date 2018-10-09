@@ -205,6 +205,8 @@ int drv_humi_bosch_bme280_init(void){
 </code></pre>
 如果传感器需要配置成中断模式触发，在初始化时需要配置以下带有注释说明的参数（以BMA253为例）；
 <pre><code>
+static gpio_irq_trigger_t bma253_irq_mode_rising = IRQ_TRIGGER_RISING_EDGE;
+
 int drv_acc_bosch_bma253_init(void)
 {
     int          ret = 0;
