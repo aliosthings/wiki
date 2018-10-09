@@ -9,7 +9,7 @@
 
 **(5)云平台:** 阿里云物联网开发平台
 
-**(6)参考文档: **
+**(6)参考文档:**
 
 [AliOS Things OTA移植指南文档](https://github.com/alibaba/AliOS-Things/wiki/AliOS-Things-OTA-Porting-Guide)
 [阿里云物联网平台固件升级文档](https://help.aliyun.com/document_detail/58328.html)
