@@ -1,6 +1,4 @@
 
-
-# AliOS Things Developer Kit Hardware Guide
 ---
 ## 0.注意
 > **注1：** Develoeprkit开发板由诺行负责设计/生产，硬件相关问题可通过本文末的二维码与诺行进行咨询与交流，这里仅列出开发板原理图和生产软件bin文件的[链接](http://www.notioni.com/#/source)   
