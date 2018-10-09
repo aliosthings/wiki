@@ -24,14 +24,11 @@ OTA设备端软件架构如下图所示，OTA核心组件为通用组件，设�
 middleware/uagent/uota/hal/ota\_hal\_plat.h
 platform/mcu/moc108/port/ota\_port.c
 接口列表:
-01 ota\_init
 
-02 ota\_write
-
+01 ota\_init\n
+02 ota\_write\n
 03 ota\_read
-
 04 ota\_set\_boot
-
 05 ota\_rollback
 
 操作系统移植层接口列表：
