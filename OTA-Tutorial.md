@@ -12,14 +12,14 @@
 
 <span data-type="color" style="color:#F5222D">使用过程如遇到问题注意先参考第4章和第5章的问题排查步骤及常见问题示例自查</span>。
 
-# 2.OTA软件框架
+# 2.软件框架
 
 
 
 ![image.png | left | 747x467](https://img.alicdn.com/tfs/TB1s2HsgpzqK1RjSZFvXXcB7VXa-2013-1258.png "")
 
 
-# 2.操作流程
+# 3.操作流程
 
 
 ![ztlc.png | center | 826x251](https://cdn.nlark.com/lark/0/2018/png/109397/1535092321717-10ebe54b-cbe7-48e1-b753-b0e3d5b3b233.png "")
