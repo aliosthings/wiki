@@ -9,7 +9,7 @@ Please refer to [AliOS Things Technical Overview](AliOS-Things-Technical-Overvie
 - [Add a New Board Example](Add-a-new-board-example)
 - [Add a New Component Example](Add-a-new-component-example)
 - [Environment Setup](AliOS-Things-Environment-Setup)
-- [AliOS Things CMSIS Pack integrated with ST CubeMX](Generate Keil IAR Project via ST CubeMX)
+- [AliOS Things CMSIS Pack integrated with ST CubeMX](https://github.com/alibaba/AliOS-Things/wiki/Generate%20Keil%20IAR%20Project%20via%20ST%20CubeMX)
 - [Auto generate keil/iar project](Auto-generate-keil-iar-project)
 - [SIG BLE Mesh Setup Guide](AliOS-Things-SIG-BLE-mesh-Setup-Guides)
 - [LoRaWAN Tutorial](AliOS-Things-lorawanapp)
