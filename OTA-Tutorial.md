@@ -1,5 +1,5 @@
 # 1.使用说明
-**1.1.使用对象为使用AliOS的开发者或用户**
+### 1.1.使用对象为使用AliOS的开发者或用户
 ### 1.2.开发板为庆科3060
 ### 1.3.编译环境为安装有ubuntu linux的PC或虚拟机
 ### 1.4.代码路径:[https://github.com/alibaba/AliOS-Things.git](https://github.com/alibaba/AliOS-Things.git) 分支:rel\_2.0.0
