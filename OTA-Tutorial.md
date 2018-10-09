@@ -2,8 +2,11 @@
 <span data-type="color" style="color:windowtext">阿里云云端主要包括物联网平台(https://iot.console.aliyun.com)和智能生活开放平台(飞燕:https://living.aliyun.com)两大平台；针对智能开放平台目前只推出了基础的整包升级服务，针对物联网平台推出了整包升级（提供基础整包固件上级），差分升级（提供差分增量包固件升级），安全升级（提供安全数字签名验证升级）服务。默认选择的是整包升级，开发者或用户可以根据应用场景选择使用差分升级和安全升级。</span>
 
 云端物联网平台固件升级文档:[https://help.aliyun.com/document\_detail/58328.html?spm=a2c4g.11186623.4.2.25f2341dBEVAk9](https://help.aliyun.com/document_detail/58328.html?spm=a2c4g.11186623.4.2.25f2341dBEVAk9)
+
 云端智能生活开放平台固件升级文档:[https://living.aliyun.com/doc#fxvw5z.html](https://living.aliyun.com/doc#fxvw5z.html)
+
 OTA移植指南文档：[https://github.com/alibaba/AliOS-Things/wiki/AliOS-Things-OTA-Porting-Guide](https://github.com/alibaba/AliOS-Things/wiki/AliOS-Things-OTA-Porting-Guide)
+
 <span data-type="color" style="color:#F5222D">使用过程如遇到问题注意先参考第4章和第5章的问题排查步骤及常见问题示例自查</span>。
 
 # 2.OTA软件框架
