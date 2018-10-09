@@ -4,11 +4,11 @@
 
 文档对应github上最新代码路径: https://github.com/alibaba/AliOS-Things.git  分支:rel_2.0.0
 
-云端物联网平台固件升级文档:[https://help.aliyun.com/document\_detail/58328.html?spm=a2c4g.11186623.4.2.25f2341dBEVAk9](https://help.aliyun.com/document_detail/58328.html?spm=a2c4g.11186623.4.2.25f2341dBEVAk9)
+阿里云物联网平台固件升级文档:[https://help.aliyun.com/document\_detail/58328.html?spm=a2c4g.11186623.4.2.25f2341dBEVAk9](https://help.aliyun.com/document_detail/58328.html?spm=a2c4g.11186623.4.2.25f2341dBEVAk9)
 
-云端智能生活开放平台固件升级文档:[https://living.aliyun.com/doc#fxvw5z.html](https://living.aliyun.com/doc#fxvw5z.html)
+阿里云智能生活开放平台固件升级文档:[https://living.aliyun.com/doc#fxvw5z.html](https://living.aliyun.com/doc#fxvw5z.html)
 
-设备端OTA移植指南文档：[https://github.com/alibaba/AliOS-Things/wiki/AliOS-Things-OTA-Porting-Guide](https://github.com/alibaba/AliOS-Things/wiki/AliOS-Things-OTA-Porting-Guide)
+设备端AliOS Things OTA移植指南文档：[https://github.com/alibaba/AliOS-Things/wiki/AliOS-Things-OTA-Porting-Guide](https://github.com/alibaba/AliOS-Things/wiki/AliOS-Things-OTA-Porting-Guide)
 
 <span data-type="color" style="color:#F5222D">使用过程如遇到问题注意先参考第4章和第5章的问题排查步骤及常见问题示例自查</span>。
 
