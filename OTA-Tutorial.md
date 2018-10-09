@@ -87,7 +87,7 @@
 以mk3060的板子为例，所以接下来主要介绍mk3060的下载过程，其他的开发板烧写工具稍有差异但下载操作流程类似。完成步骤4之后，到aos/out/otaapp@mk3060/binary/可找到对应固件如下图所示：
 
 
-![wjlb.png | center | 832x275.25748502994014](https://img.alicdn.com/tfs/TB1tFa5sXooBKNjSZPhXXc2CXXa-668-221.png "")
+![wjlb.png | center | 832x275.25748502994014](https://img.alicdn.com/tfs/TB1fsROgMDqK1RjSZSyXXaxEVXa-668-221.png "")
 
 <span data-type="color" style="color:#262626">将mk3060通过串口连接电脑，打开串口调试工具，波特率为921600，操作mk3060进入下载模式：mk3060有4个按钮，假定靠近usb口的按钮为1号按钮，需要同时按下1号+3号按钮，然后先放开1号，接着放开3号按键，此时mk3060将进入烧写模式，然后在命令行中输入write 0x13200，再选择发送Ymodem，</span>[将编译出来的低版本](mailto:将编译出来的otaapp@mk3060.bin)<span data-type="color" style="color:#F5222D">app-1.0.0-xxxxxx</span>[固件otaapp@mk3060.bin](mailto:将编译出来的otaapp@mk3060.bin)<span data-type="color" style="color:#262626">文件烧录到目标板中，</span>重启板子，输入命令：<span data-type="color" style="color:#00B050">netmgr connect </span><span data-type="color" style="color:red">ssid passwd</span>, 命令中的ssid和passwd 对应mk3060需要连接的路由器的SSID和密码；网络连接成功后将会看到IP地址等信息，如下图所示：
 
