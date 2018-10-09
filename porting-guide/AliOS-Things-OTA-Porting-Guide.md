@@ -821,9 +821,8 @@ typedef struct  {
 
 ## 6 OTA移植demo
 
-以linux host上demo为例子，移植实现上述底层平台移植接口（以读写文件模拟读写存储设备）后，可通过在linux host上demo验证OTA下载通道逻辑，更详细的用户使用手册说明文档如下:[https://github.com/alibaba/AliOS-Things/wiki/OTA-Tutorial](https://github.com/alibaba/AliOS-Things/wiki/OTA-Tutorial)
-1） 按照AliOS Things wiki文档按装好集成编译工具，并下载好源码
-AliOS Things 文档链接：[https://github.com/alibaba/AliOS-Things/wiki](https://github.com/alibaba/AliOS-Things/wiki)；
+以linux host上demo为例子，移植实现上述底层平台移植接口（以读写文件模拟读写存储设备）后，可通过在linux host上demo验证OTA下载通道逻辑，更详细的参见[AliOS Things OTA用户使用说明文档](https://github.com/alibaba/AliOS-Things/wiki/OTA-Tutorial)。
+1） 按照[AliOS Things wiki文档](https://github.com/alibaba/AliOS-Things/wiki)按装好集成编译工具，并下载好源码
 2） 在编译AliOS Things OTA Linux host  Demo程序 
       aos make clean;
       aos make otaapp@linuxhost
