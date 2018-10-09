@@ -165,43 +165,48 @@ Middlewares\Third\_Party\AliOSThings\aos\board\stm32l4xx\_universal\init\下面�
 
 经过以上的配置，应该就可以生成可以运行的BIN。当然如果还想上云，记得修改其中的四元组。目前四元组位于framework\protocol\linkkit\iotkit\sdk-encap\imports\iot\_import\_product.h
 
-# 基于helloworld为例生成STM32F4和STM32L4的IAR工程
-Scope:
-https://yuque.antfin-inc.com/aliosthings/wiki/gnlgym 介绍了如何基于AliOS Things Plugin生成Keil工程，本文介绍使用CubeMX生成AliOS Things Plugin的helloworld工程要点。由于生成的过程大部分与上面这篇文章相似，本文只介绍其中不同的地方。
-选择AliOS Things Plugin 组件
-这里注意的是在选择vfs组件的时候，不要选择"keil"变量，而是IAR变量，如下图
-Scope:
-https://yuque.antfin-inc.com/aliosthings/wiki/gnlgym 介绍了如何基于AliOS Things Plugin生成Keil工程，本文介绍使用CubeMX生成AliOS Things Plugin的helloworld工程要点。由于生成的过程大部分与上面这篇文章相似，本文只介绍其中不同的地方。
-选择AliOS Things Plugin 组件
+# 基于helloworld为例生成STM32F4和STM32L4的IAR工程要点
+
+## 选择AliOS Things Plugin 组件
 这里注意的是在选择vfs组件的时候，不要选择"keil"变量，而是IAR变量，如下图
 
 
+![image.png | left | 827x120](https://img.alicdn.com/tfs/TB1kpQxgCzqK1RjSZFjXXblCFXa-1586-231.png "")
 
 
-
-
-其它配置
+## 其它配置
 生成IAR工程的话需要选择Tool Chain 为EWARM
 
 
+![image.png | left | 700x680](https://img.alicdn.com/tfs/TB1lZ.ygsfpK1RjSZFOXXa6nFXa-700-680.png "")
 
 
-配置Keil工程及生成代码
+
+## 配置Keil工程及生成代码
 在生成的IAR工程中，对于其中字符串的宏定义需要更改下格式。原格式如下
-SYSINFO_APP_VERSION='\"app...\"'
+SYSINFO\_APP\_VERSION='\"app...\"'
 该格式适合KEIL MDK，但是不适合IAR，需要更改成诸如
-SYSINFO_APP_VERSION="app..."
+SYSINFO\_APP\_VERSION="app..."
 
+
+![image.png | left | 765x615](https://img.alicdn.com/tfs/TB1vHgAgrvpK1RjSZFqXXcXUVXa-765-615.png "")
 
 
 添加实际板卡信息，这个步骤在生成Keil工程也有，这里同样有，如下
 
 
+![image.png | left | 761x615](https://img.alicdn.com/tfs/TB1b8oUgyLaK1RjSZFxXXamPFXa-761-615.png "")
+
 
 取消掉"Require Prototype" option
 
 
+![image.png | left | 761x615](https://img.alicdn.com/tfs/TB1mxMQgxnaK1RjSZFBXXcW7VXa-761-615.png "")
+
 
 增加其它编译选项，如下图
+
+
+![image.png | left | 761x615](https://img.alicdn.com/tfs/TB1sZgAgAzoK1RjSZFlXXai4VXa-761-615.png "")
 
 
