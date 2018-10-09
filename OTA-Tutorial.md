@@ -126,7 +126,7 @@
 固件下载完成后，设备端对固件做完整性校验，如果用户选择了安全升级还会有数字验签，保证设备端接收到的固件安全可靠。具体可参见如下log图：
 
 
-![dlgjjb.png | center | 826x407](https://img.alicdn.com/tfs/TB1RERrssj_B1NjSZFHXXaDWpXa-1104-544.png "")
+![dlgjjb.png | center | 826x407](https://img.alicdn.com/tfs/TB1lkt6gOrpK1RjSZFhXXXSdXXa-1104-544.png "")
 
 从上图中可以看到sha256校验，固件本身的MD5等鉴别等信息，如果有任何一项校验失败，系统都将升级失败，保持原样固件运行。
 ## 3.8.设备端完成固件校验，进入系统升级
