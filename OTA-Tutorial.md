@@ -97,7 +97,7 @@
 完成配网功能后，输入命令：<span data-type="color" style="color:#00B050">OTA_APP </span><span data-type="color" style="color:red">pk dn ds  ps</span><span data-type="color" style="color:black">运行demo程序后若能在云端看到设备在线说明设备端云端连接已经建立，方可进入下一个步骤。</span>
 
 
-![zcyx.png | center | 826x509](https://img.alicdn.com/tfs/TB1IEpOgPDpK1RjSZFrXXa78VXa-1297-798.png "")
+![zcyx.png | center | 826x509](https://img.alicdn.com/tfs/TB1JEX0gMHqK1RjSZFgXXa7JXXa-1297-798.png "")
 
 从log信息中可以看到设备的devicename等信息，如果设置错误，设备会连接不成功，从log信息可以验证，设备的PK,DN,DS等信息是否正确。
 ## 3.6.待设备能正常上线，向云端上传高版本固件
