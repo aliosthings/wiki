@@ -50,7 +50,7 @@
 用户设备连云，需要登录云端获取四元组pk,dn,ds,ps，以阿里云物联网平台为例，登录[https://iot.console.aliyun.com](https://iot.console.aliyun.com/product/region/cn-shanghai)，进入物联网平台，如没有创建产品，需要创建产品如下图所示，<span data-type="color" style="color:rgb(51, 51, 51)"><span data-type="background" style="background-color:rgb(255, 255, 255)">如果未开通固件升级，选择扩展服务，单击固件升级下的使用服务。</span></span>
 
 
-![cjcp.png | center | 826x338](https://img.alicdn.com/tfs/TB1L7lzspkoBKNjSZFkXXb4tFXa-1848-756.png "")
+![cjcp.png | center | 826x338](https://img.alicdn.com/tfs/TB1nBxLgSzqK1RjSZPxXXc4tVXa-1848-756.png "")
 
 创建产品完成后，点击<span data-type="color" style="color:#00B050">设备管理---&gt;添加设备</span>，在已经创建的产品下添加一个设备，如下图所示：
 
