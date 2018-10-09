@@ -150,7 +150,7 @@ middleware/uagent/uota/hal/ota\_hal\_os.c
           </div>
         </td>
         <td rowspan="20" colSpan="1">
-          <div data-type="p"><span data-type="color" style="color:#262626">操作系统移植层接口，AliOS Things RTOS和Linux Edition下已实现完成，无对接工作；但移植到新的操作系统上需重新确认对接（大部分可以复用）。</span></div>
+          <div data-type="p"><span data-type="color" style="color:#262626">操作系统移植层接口，AliOS Things下已实现完成，无对接工作；但移植到新的操作系统上需重新确认对接（大部分可以复用）。</span></div>
         </td>
       </tr>
       <tr></tr>
@@ -180,7 +180,7 @@ middleware/uagent/uota/hal/ota\_hal\_os.c
           <div data-type="p">void ota_service_init(NULL)；</div>
         </td>
         <td rowspan="1" colSpan="1">
-          <div data-type="p">由系统或用户注册成为后台服务</div>
+          <div data-type="p">由系统或用户调用此接口注册成为后台服务</div>
         </td>
       </tr>
     </tbody>
