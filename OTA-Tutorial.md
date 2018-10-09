@@ -133,7 +133,7 @@ OTA移植指南文档：[https://github.com/alibaba/AliOS-Things/wiki/AliOS-Thin
 3.4. 设备端固件校验及写入问题排查：通过分析出差log定位，如需帮助提供设备端完整log;
     
 # 4.常见问题示例
-## 3.1.版本不匹配升级失败(ota cancel,ota version don'tmatch dev version!)
+## 4.1.版本不匹配升级失败(ota cancel,ota version don'tmatch dev version!)
 <span data-type="color" style="color:#8C8C8C">答：云端上传的固件版本和端侧的固件的版本格式要相同，并且云端版本要大于端侧版本。如设备端的版本:APP-1.0.0-xxxxxx，云端的版本:APP-2.0.0-xxxxxx. 手动更改版本地方：middleware\common\common.mk。</span>
 ## 4.2.上传云端的OTA bin文件是哪个?
 <span data-type="color" style="color:#8C8C8C">答：用于云端升级的OTA bin文件与端侧离线烧录的固件可能不一样，如mk3080是out/xxxx@mk3080/binary/ota_all.bin；mk3060是out/xxx@mk3060/binary/xxxx@mk3060.ota.md5.bin</span>
