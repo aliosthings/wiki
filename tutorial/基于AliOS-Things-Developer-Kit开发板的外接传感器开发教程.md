@@ -22,43 +22,76 @@ https://github.com/alibaba/AliOS-Things/wiki/AliOS-Things-Studio
 
 ## 2 代码下载
 代码下载前，请确认已在github注册账号，链接及注册流程如下：
+
 - https://github.com/
 
 **为了便于后续的代码的审核提交，注册github账号时请使用本公司的邮箱**
 ![](https://i.imgur.com/q0JhzHJ.png)
 
 打开以下代码链接后，可以通过以下方式下载代码。首先选择代码分支；
-- https://github.com/andy2012zwj/AliOS-Things/tree/aos_udata
+- https://github.com/alibaba/AliOS-Things
 
-![](https://i.imgur.com/7LjS6d4.png)
+安装了git bash的同学也可以通过命令行下载：git clone git@github.com:alibaba/AliOS-Things.git
 
-然后选择zip格式下载；
-![](https://i.imgur.com/AoAtQN8.png)
+也可以选择zip格式下载；
+![](https://i.imgur.com/aAiul1q.png)
 
-安装了git bash的同学也可以通过命令行下载：git clone git@github.com:andy2012zwj/AliOS-Things.git
+
+
+代码下载完成后，可按照以下patch修改代码，使其支持I2C3。
+<pre><code>
+diff --git a/board/developerkit/Src/i2c.c b/board/developerkit/Src/i2c.c
+index 90c860c2..fbd4a0c5 100644
+--- a/board/developerkit/Src/i2c.c
++++ b/board/developerkit/Src/i2c.c
+@@ -187,13 +187,20 @@ void HAL_I2C_MspInit(I2C_HandleTypeDef* i2cHandle)
+     PC0     ------> I2C3_SCL
+     PC1     ------> I2C3_SDA 
+     */
+-    GPIO_InitStruct.Pin = GPIO_PIN_0|GPIO_PIN_1;
++    GPIO_InitStruct.Pin = GPIO_PIN_0;
+     GPIO_InitStruct.Mode = GPIO_MODE_AF_OD;
+     GPIO_InitStruct.Pull = GPIO_PULLUP;
+     GPIO_InitStruct.Speed = GPIO_SPEED_FREQ_VERY_HIGH;
+     GPIO_InitStruct.Alternate = GPIO_AF4_I2C3;
+     HAL_GPIO_Init(GPIOC, &GPIO_InitStruct);
+ 
++    GPIO_InitStruct.Pin = GPIO_PIN_9;
++    GPIO_InitStruct.Mode = GPIO_MODE_AF_OD;
++    GPIO_InitStruct.Pull = GPIO_PULLUP;
++    GPIO_InitStruct.Speed = GPIO_SPEED_FREQ_VERY_HIGH;
++    GPIO_InitStruct.Alternate = GPIO_AF6_I2C3;
++    HAL_GPIO_Init(GPIOC, &GPIO_InitStruct);
++
+     /* I2C3 clock enable */
+     __HAL_RCC_I2C3_CLK_ENABLE();
+   /* USER CODE BEGIN I2C3_MspInit 1 */
+</code></pre>
+
 ## 3 代码移植
 ### 3.1 驱动代码集成
 请参考以下链接完成uData架构下传感器驱动的移植：https://github.com/alibaba/AliOS-Things/wiki/AliOS-Things-uData-Sensor-Driver-Porting-Guide.zh
 ### 3.2 总线配置
 在developer kit板上，我们是通过外接I2C3连接传感器，需要注意的地方是总线配置,port口为3，从设备的地址为8bit：
-```
+<pre><code>
 i2c_dev_t  ####_ctx = {
-    .port = 3, /*developer kit上外接I2C的port为3*/
+    .port = 3,                          /*developer kit上外接I2C的port为3*/
     .config.address_width = 8,
-    .config.dev_addr = 0x5D<<1, /* 从设备I2C地址，8bit */
+    .config.dev_addr = BME280_I2C_ADDR, /* 从设备I2C地址，8bit */
 };
 
-```
+</code></pre>
 ### 3.3 服务订阅
 如果需要在串口查看调试信息，则需要在udata_sample函数中，修改函数udata_sample中的订阅的传感器service类型（路径：example\uDataapp\uData-example.c）；压力传感器如下所示：
-```
+<pre><code>
 int udata_sample(void)
 {
     int ret = 0;
 
     aos_register_event_filter(EV_UDATA, uData_report_demo, NULL);
 
-    ret = uData_subscribe(UDATA_SERVICE_BARO);/*UDATA_SERVICE_BARO为压力传感器对应的service 类型*/
+    /*UDATA_SERVICE_BARO为压力传感器对应的service 类型*/
+    ret = uData_subscribe(UDATA_SERVICE_BARO);
     if (ret != 0) {
         LOG("%s %s %s %d\n", uDATA_STR, __func__, ERROR_LINE, __LINE__);
         return -1;
@@ -66,10 +99,9 @@ int udata_sample(void)
 
     return 0;
 }
+</code></pre>
 
-```
-
-```
+<pre><code>
 /*service 类型*/
 typedef enum 
 {
@@ -91,7 +123,7 @@ typedef enum
  
  UDATA_MAX_CNT, 
 }udata_type_e;
-```
+</code></pre>
 
 ## 4 功能调试
 下面以developer kit板为例说明linkkit用例的调试过程。
@@ -151,7 +183,7 @@ fork成功后，在可以在自己名下看到AliOS-Things的代码
 
 ![](https://i.imgur.com/gdTT7or.png)
 
-#### 5.3 代码修改下载
+#### 5.3 分支代码下载
 git邮箱修改：
 git config user.email example_mail@alibaba.com
 
@@ -173,13 +205,7 @@ yourname -- 即自己github账号的名字
 #### 5.4 代码上传
 每次代码上传之前，请同步AliOS-Things上master代码到自己名下的master
 
-然后和入代码修改，和入的代码主要包括以下四个部分：
-1. 新增的sensor驱动文件
-2. sensor.mk中增加该驱动源文件
-3. sensor.mk中增加相应的编译宏（***并注释掉，待用户使用时自行开启***）
-![](https://i.imgur.com/em98eh1.png)
-4. 在sensor_init函数中调用相应的sensor初始化接口（***并用编译宏隔离***）
-![](https://i.imgur.com/cZcrBsJ.png)
+然后和入代码修改，新增的sensor驱动文件
 
 修改完成后，通过以下命令上传代码到自己名下的master分支
 
@@ -223,8 +249,7 @@ https://github.com/alibaba/AliOS-Things/wiki/contributing.zh
 
    代码链接： https://github.com/alibaba/AliOS-Things/wiki/AliOS-Things-Coding-Style-Guide
 
-
-```
+<pre><code>
 /*
 drv   -- 类型： i2c_dev_t*   说明： 驱动参数；
 data  -- 类型： int32_t*     说明： self-test测试返回的offset值，可参考结构体dev_sensor_info_t；
@@ -252,5 +277,5 @@ static int drv_acc_bosch_bma253_ioctl(int cmd, unsigned long arg)
     return 0;
 }
 
-```
+</code></pre>
 
