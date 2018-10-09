@@ -37,8 +37,11 @@ Application区理论大小为：0x101000 – 0x1000 = 0x100000;
 ### 3.根据模组厂商文档，需要烧的配置文件:
 由文档可知地址：0x1FC000 ～ 0x200000 为配置文件存储区，所以parameters1~parameters4 只能从0x1FC000向低地址划分，即：
 > Parameters1 起始地址：0x1f6000 大小：0x1000
+
 > Parameters2 起始地址：0x1f7000 大小：0x2000
+
 > Parameters3 起始地址：0x1f9000 大小：0x1000
+
 > Parameters4 起始地址：0x1FA000 大小：0x1000
 ### 4.Application区和OTA Tmp区划分：
 根据步骤3可知OTA Tmp区的范围只能是parameters1 – bootloader跳转地址2， 即：0x1f6000 - 0x101000 = 0xF5000; 由于是乒乓升级，application区的大小应该和OTA Tmp区大小相等；
