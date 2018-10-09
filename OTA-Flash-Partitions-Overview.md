@@ -46,6 +46,5 @@ Application区理论大小为：0x101000 – 0x1000 = 0x100000;
 > Parameters4 起始地址：0x1FA000 大小：0x1000
 ### 4.Application区和OTA Tmp区划分：
 根据步骤3可知OTA Tmp区的范围只能是parameters1 – bootloader跳转地址2， 即：0x1f6000 - 0x101000 = 0xF5000; 由于是乒乓升级，application区的大小应该和OTA Tmp区大小相等;
-
 由以上4个步骤可完成整个分区表的划分，具体可查看：aos/board/esp8266/board.c文件。 
 
