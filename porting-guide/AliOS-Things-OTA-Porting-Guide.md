@@ -8,6 +8,8 @@ OTA升级作为物联网设备的一项基础功能，可以快速修复软件�
 <span data-type="color" style="color:windowtext">使用AliOS Things RTOS、AliOS Things Linux Edition的开发者或用户。</span>
 
 ## 1.4 移植指引
+文档对应github上最新代码路径: https://github.com/alibaba/AliOS-Things.git  分支:rel_2.0.0
+
 OTA设备端软件架构如下图所示，OTA核心组件为通用组件，设备端OTA整体功能移植到不同的平台和操作系统，需分别实现如图标注为__<span data-type="color" style="color:#F5222D">粉色的底层平台接口移植层</span>__和__<span data-type="color" style="color:#F5222D">操作系统接口移植层</span>__，如操作系统使用AliOS Things RTOS或<span data-type="color" style="color:windowtext">Linux Edition默认已内置</span><span data-type="color" style="color:#262626">支持OTA核心组件，操作系统移植接口已完成对接</span><span data-type="color" style="color:windowtext">，新芯片或者模组导入只需简单</span>__<span data-type="color" style="color:#F5222D">实现底层平台移植层接口（5个接口）</span>__<span data-type="color" style="color:#262626">就可以正常使用AliOS 云端一体化的OTA服务</span><span data-type="color" style="color:windowtext">。</span>
 
 
