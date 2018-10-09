@@ -1,1 +1,1 @@
-EN| [中文](Add-a-new-board-example.zh) 
+EN| [中文](Generate-Keil-IAR-Project-via-ST-CubeMX.zh) 
