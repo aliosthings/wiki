@@ -27,19 +27,20 @@ AliOS Things 由于功能需要，维护了一张flash分区表，这张表包�
 
 根据以上的划分原则，以esp8266 Flash大小为2Mbytes 升级空间为1024x1024模组为例划分各分区：
 
-1.	获取Flash 大小：Flash size = 2M bytes；地址空间为：0x000000 ~ 0x200000
-2.	Bootloader信息：
-    1. 支持乒乓升级；
-    2. Bootloader 跳转地址1 = 0x1000 ; 
-    3. Bootloader 跳转地址2 = 0x101000；
+1.获取Flash 大小：
+Flash size = 2M bytes；地址空间为：0x000000 ~ 0x200000
+2.Bootloader信息：
+1. 支持乒乓升级；
+2. Bootloader 跳转地址1 = 0x1000 ; 
+3. Bootloader 跳转地址2 = 0x101000；
 Application区理论大小为：0x101000 – 0x1000 = 0x100000;
-3.	根据模组厂商文档，需要烧的配置文件:
-    由文档可知地址：0x1FC000 ～ 0x200000 为配置文件存储区，所以parameters1~parameters4 只能从0x1FC000向低地址划分，即：
-    Parameters1 起始地址：0x1f6000 大小：0x1000
-    Parameters2 起始地址：0x1f7000 大小：0x2000
-    Parameters3 起始地址：0x1f9000 大小：0x1000
-    Parameters4 起始地址：0x1FA000 大小：0x1000
-4.	Application区和OTA Tmp区划分：
-    根据步骤3可知OTA Tmp区的范围只能是parameters1 – bootloader跳转地址2， 即：0x1f6000 - 0x101000 = 0xF5000; 由于是乒乓升级，application区的大小应该和OTA Tmp区大小相等；
-    由以上4个步骤可完成整个分区表的划分，具体可查看：aos/board/esp8266/board.c文件。 
+3.根据模组厂商文档，需要烧的配置文件:
+由文档可知地址：0x1FC000 ～ 0x200000 为配置文件存储区，所以parameters1~parameters4 只能从0x1FC000向低地址划分，即：
+Parameters1 起始地址：0x1f6000 大小：0x1000
+Parameters2 起始地址：0x1f7000 大小：0x2000
+Parameters3 起始地址：0x1f9000 大小：0x1000
+Parameters4 起始地址：0x1FA000 大小：0x1000
+4.Application区和OTA Tmp区划分：
+根据步骤3可知OTA Tmp区的范围只能是parameters1 – bootloader跳转地址2， 即：0x1f6000 - 0x101000 = 0xF5000; 由于是乒乓升级，application区的大小应该和OTA Tmp区大小相等；
+由以上4个步骤可完成整个分区表的划分，具体可查看：aos/board/esp8266/board.c文件。 
 
