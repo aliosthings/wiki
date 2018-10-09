@@ -104,7 +104,7 @@
 修改aos/middleware/common/common.mk将版本号app-1.0.0-\$(CURRENT\_TIME)改成app-2.0.0-\$(CURRENT\_TME),然后重复步骤4，生成高版本固件版本的固件<span data-type="color" style="color:#F5222D">app-2.0.0-xxxxxx</span>，如下图：
 
 
-![捕获2.JPG | center | 826x190](https://img.alicdn.com/tfs/TB1AFlSgHrpK1RjSZTEXXcWAVXa-1094-252.jpg "")
+![捕获2.JPG | center | 826x190](https://img.alicdn.com/tfs/TB1JZWkgNjaK1RjSZKzXXXVwXXa-1094-252.jpg "")
 
 编译完成后，[将otaapp@mk3060.ota.md5.bin](mailto:将otaapp@mk3060.ota.md5.bin)上传到云端，<span data-type="color" style="color:#F5222D">注意固件版本要填写正确，云端对文件有规则检查如后缀，字符等；</span><span data-type="color" style="color:#00B050">IOT云平台登录----&gt;物联网平台-------&gt;我的服务--------&gt;固件升级-------&gt;新增固件；</span><span data-type="color" style="color:black">此时会弹出如下图框，根据图框中带星号的标题填写内容及上传固件，需要注意的是，固件上传之前需要将固件名称中的</span><span data-type="color" style="color:#00B050">“@”</span><span data-type="color" style="color:black">和</span><span data-type="color" style="color:#00B050">“.”</span><span data-type="color" style="color:black">转换成</span><span data-type="color" style="color:#00B050">“_”</span><span data-type="color" style="color:black">只留最后一个</span><span data-type="color" style="color:#00B050">“.”</span><span data-type="color" style="color:black">;所以otaapp@mk3060.ota.md5.bin需要改成otaapp_mk3060_ota_md5.bin才能上传成功；下图中的</span><span data-type="color" style="color:#00B050">签名算法</span><span data-type="color" style="color:black">用于保证固件的完整性，以及安全功能，目前支持两种md5和sha256，我们推荐使用sha256.</span>
 
