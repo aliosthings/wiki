@@ -8,7 +8,7 @@ OTA升级作为物联网设备的一项基础功能，可以快速修复软件�
 <span data-type="color" style="color:windowtext">使用AliOS Things 的开发者或用户，代码路径:</span>[https://github.com/alibaba/AliOS-Things.git](https://github.com/alibaba/AliOS-Things.git)<span data-type="color" style="color:rgb(36, 41, 46)"><span data-type="background" style="background-color:rgb(255, 255, 255)"> </span></span>分支:rel\_2.0.0
 
 ## 4 移植使用说明
-AliOS Things OTA设备端软件架构如下图所示，OTA核心组件为通用组件，设备端OTA整体功能移植到不同的平台和操作系统，需分别实现如图标注为<span data-type="color" style="color:#F5222D">粉色的底层平台接口移植层</span>和<span data-type="color" style="color:#F5222D">操作系统接口移植层</span>，AliOS Things<span data-type="color" style="color:#262626">操作系统移植接口已完成对接</span><span data-type="color" style="color:windowtext">，因此使用时无需移植，新芯片或者模组导入只需简单</span><span data-type="color" style="color:#F5222D">实现底层平台移植层接口(**5个回调函数接口**)</span><span data-type="color" style="color:#262626">就可以正常使用AliOS Things云端一体化的OTA服务</span><span data-type="color" style="color:windowtext">。差分升级需要配合boot移植差分还原模块，目前只在平台8266和3080平台上面支持。</span>
+AliOS Things OTA设备端软件架构如下图所示，OTA核心组件为通用组件，设备端OTA整体功能移植到不同的平台和操作系统，需分别实现如图标注为<span data-type="color" style="color:#F5222D">粉色的底层平台接口移植层</span>和<span data-type="color" style="color:#F5222D">操作系统接口移植层</span>，AliOS Things<span data-type="color" style="color:#262626">操作系统移植接口已完成对接</span><span data-type="color" style="color:windowtext">，因此使用时无需移植，新芯片或者模组导入只需简单</span><span data-type="color" style="color:#F5222D">实现底层平台移植层接口(**5个回调函数接口**)</span><span data-type="color" style="color:#262626">就可以正常使用AliOS Things云端一体化的OTA服务</span><span data-type="color" style="color:windowtext">。差分升级需要配合修改boot移植差分还原模块，目前只在平台8266和3080平台上面支持。</span>
 
 
 
