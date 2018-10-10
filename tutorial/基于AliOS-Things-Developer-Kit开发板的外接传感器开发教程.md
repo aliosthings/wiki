@@ -144,7 +144,7 @@ https://github.com/alibaba/AliOS-Things/wiki/AliOS-Things-uData-Sensor-Driver-Po
 ## 5 驱动代码提交
 如果功能测试完成无误，则可以参考以下链接中外部代码提交方式，向AliOS Things提交代码和入申请。
 
-***由于当前传感器集成是使用的稳定的分支代码，而上传代码则需要到AliOS-Things的主干中***，主干代码链接：https://github.com/alibaba/AliOS-Things
+AliOS Things主干代码链接：https://github.com/alibaba/AliOS-Things
 
 代码上传之前请确保已通过公司注册github账号。并完成SSH key认证，已完成则跳过5.1节。
 
@@ -197,9 +197,7 @@ yourname -- 即自己github账号的名字
 ![](https://i.imgur.com/RgeFnnB.png)
 
 #### 5.4 代码上传
-每次代码上传之前，请同步AliOS-Things上master代码到自己名下的master
-
-然后和入代码修改，新增的sensor驱动文件
+每次代码上传之前，请同步AliOS-Things上master代码到自己名下的master，然后和入新增的sensor驱动文件。
 
 修改完成后，通过以下命令上传代码到自己名下的master分支
 
