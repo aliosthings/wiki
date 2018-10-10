@@ -1,3 +1,19 @@
+# Release Notes:
+## v0.6.3
+* 支持的APP如下:
+helloworld, mqttapp, ldapp 
+
+*  支持生成的工程如下:
+Keil MDK 5.0， IAR Embedded Workbench for ARM 8.30.1
+
+*  支持的board如下:
+developerkit
+stm32f429zi-nucleo
+其它stm32l4系列板卡(使用board template stm32l4universal）
+其它stm32f4系列板卡(使用board template stm32f4universal)
+
+注意的是，IAR目前仅支持生成helloworld app，ldapp目前仅适合developerkit
+
 # 基于mqttapp为例生成STM32F4和STM32L4的Keil工程
 STM32F4系列板卡和STM32L4系列板卡生成Keil工程步骤基本一样，仅区别在"配置Keil工程及生成代码"章节。本文以STM32L4系列板卡为例，STM32F4有区别的部分在(配置Keil工程及生成代码)也体现出。
 ## 准备材料:
