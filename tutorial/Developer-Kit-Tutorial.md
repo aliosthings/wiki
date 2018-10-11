@@ -42,7 +42,7 @@
 | mqttapp               | mqtt测试    | developer分支     |
 | linkkitapp      | 一键配网  | developer分支  |
 | simple_mqtt               | 升级版helloworld     | developer分支，[文档](https://linkdevelop.aliyun.com/device-doc#aos-helloworld.html)     |
-| ldapp      | LCD显示传感器数据  | developer分支，[文档](https://github.com/alibaba/AliOS-Things/tree/developer/example/ldapp/README.md)  |
+| ldapp      | LCD，传感器，云端  | developer分支，[文档](https://github.com/alibaba/AliOS-Things/tree/developer/example/ldapp/README.md)  |
 | linkdevelop.env_monitor | 环境监控   | developer分支，[文档](https://linkdevelop.aliyun.com/device-doc#aos-env_monitor.html)  |
 | linkdevelop.device_ctrl | 设备控制  | developer分支，[文档](https://linkdevelop.aliyun.com/device-doc#aos-device_control.html)  |
 | linkdevelop.hmi  | 人机交互  | developer分支，[文档](https://linkdevelop.aliyun.com/device-doc#aos-hmi.html)  |
