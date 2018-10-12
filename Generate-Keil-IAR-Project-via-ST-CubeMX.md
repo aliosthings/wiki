@@ -38,13 +38,6 @@ check通过点击OK，勾选checkbox，下载该插件。
 ### 在线更新AliOS Things PACK包
 每次后台有版本升级，用户仍然使用上述连接，操作步骤和上述一致的情况下，会下载到最新版本的PACK包
 
-### 离线加载AliOS Things PACK包
-离线加载AliOS Things Plugin PACK更简单，直接在Embedded Software Packages Manager中选择"From Local..."中打开已经获取到的PACK包就行，此时不需要PDSC文件。
-
-
-![image.png | left | 826x446](https://cdn.nlark.com/lark/0/2018/png/109792/1537174284501-a61994c0-b190-493e-86be-8e2ddcce5eac.png "")
-
-
 
 ## 创建CubeMX工程
 1. 以NUCLEO-STM32L433RC为例创建CubeMX工程
