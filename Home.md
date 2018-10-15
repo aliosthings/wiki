@@ -21,6 +21,7 @@ Please refer to [AliOS Things Technical Overview](AliOS-Things-Technical-Overvie
 - [WiFi Provisioning and Alink Certification](WiFi-Provisioning-and-Alink-Certification)
 - [Step by Step: MQTT to Cloud with STM32](stm32-networking)
 - [Video Tutorial](AliOS-Things-Video-Tutorial)
+- [AliOS Things power manage framework](https://github.com/alibaba/AliOS-Things/wiki/AliOS-Things-power-manage-framework)
 
 ## [Hardware](AliOS-Things-Hardware)
 - [ARM](AliOS-Things-Hardware#arm)
