@@ -1,5 +1,5 @@
 ## 介绍
-* Develoeprkit开发板由[诺行](www.notioni.com)负责设计/生产，需参照下述文档熟悉板载资源和硬件自测确保板子无任何硬件问题，如有疑问可在[诺行开发板钉钉群](https://i.imgur.com/rqjjjA0.jpg)沟通。  
+* Develoeprkit开发板由[诺行](http://www.notioni.com)负责设计/生产，需参照下述文档熟悉板载资源和硬件自测确保板子无任何硬件问题，如有疑问可在[诺行开发板钉钉群](https://i.imgur.com/rqjjjA0.jpg)沟通。  
     * [板子硬件资源](https://github.com/alibaba/AliOS-Things/wiki/AliOS-Things-Developer-Kit-Hardware-Guide)  
     * [硬件自测文档](https://github.com/alibaba/AliOS-Things/wiki/AliOS-Things-Developer-Kit-User-Basic-Operation-Guide)
     * [开发板原理图和生产软件bin文件](http://www.notioni.com/#/source)，恢复出厂设置方法：烧录出厂bin文件  
