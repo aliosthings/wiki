@@ -1,4 +1,42 @@
 [EN](Starter-Kit-Tutorial) | 中文
+
+## 注意
+> 注：本文主要介绍**Starter Kit开发板**相关内容，如果使用**Developer Kit开发板**请查看[这里](https://github.com/alibaba/AliOS-Things/wiki/Developer-Kit-Tutorial).
+
+## 介绍
+* Starter Kit开发板由[诺行](http://www.notioni.com)负责设计/生产，需参照下述文档熟悉板载资源和硬件自测确保板子无任何硬件问题，如有疑问可在[诺行开发板钉钉群](https://i.imgur.com/rqjjjA0.jpg)沟通。  
+    * [板子硬件资源](https://github.com/alibaba/AliOS-Things/wiki/AliOS-Things-Starter-Kit-Hardware-Guide)  
+    * [硬件自测文档](https://github.com/alibaba/AliOS-Things/wiki/AliOS-Things-Starter-Kit-User-Basic-Operation-Guide)
+    * [开发板原理图和生产软件bin文件](http://www.notioni.com/#/source)，恢复出厂设置方法：烧录出厂bin文件   
+* 基于AliOS Things提供了相关的应用示例，有关于OS的相关问题可在[github issue](https://github.com/alibaba/AliOS-Things/issues)提问，也可在[AliOS Things 技术交流钉钉群](https://img.alicdn.com/tfs/TB1wjmehmzqK1RjSZFjXXblCFXa-877-1268.jpg)进行技术交流。  
+
+## 板载硬件资源
+**主要模块:**
+* 传感器:
+     - 加速度计acc 和 陀螺仪gyro
+     - 光强light和接近光proximity
+* TFT LCD 
+* Audio Codec
+* MCU：STM32L433CCT6
+* 按键*4
+* WIFI模组：BK7231
+
+## AliOS Things开发准备
+* [开发环境搭建](https://linkdevelop.aliyun.com/device-doc#dev-prepare.html)，注：可使用IDE，也可以使用命令行。
+* 应用示例
+    >注：
+     完成上述环境搭建后会了解到下面的命令，其中example是指具体的demo名称  
+      * 编译命令 `aos make example@starterkit`   
+      * 烧录命令`aos upload example@starterkit`    
+
+
+| **Demos/Examples** | **Comments** | **Status** |
+| --------       | -------- | -------- |
+| helloworld       | 入门，串口打印log | [文档介绍](https://github.com/alibaba/AliOS-Things/tree/developer/example/helloworld) |
+| starterkitgui      | LCD显示，sensor, 录音/播放 | developer分支 |
+| simple_mqtt               | 升级版helloworld     | developer分支，[文档](https://linkdevelop.aliyun.com/device-doc#aos-helloworld.html)     |
+
+---
 ## 步骤
 
 ### 下载/安装 Visual Studio Code
