@@ -22,6 +22,7 @@ Please refer to [AliOS Things Technical Overview](AliOS-Things-Technical-Overvie
 - [Step by Step: MQTT to Cloud with STM32](stm32-networking)
 - [Video Tutorial](AliOS-Things-Video-Tutorial)
 - [AliOS Things power manage framework](https://github.com/alibaba/AliOS-Things/wiki/AliOS-Things-power-manage-framework)
+- [BLE Breeze Porting and Development Guide](https://github.com/alibaba/AliOS-Things/wiki/BLE-Breeze-porting-and-development-guide)
 
 ## [Hardware](AliOS-Things-Hardware)
 - [ARM](AliOS-Things-Hardware#arm)
