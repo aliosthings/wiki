@@ -1,13 +1,14 @@
 ## 注意
 > 本文主要介绍**Developer Kit开发板**相关内容，如果使用**Starter kit开发板**请查看[这里](https://github.com/alibaba/AliOS-Things/wiki/Starter-Kit-Tutorial.zh).  
 ## 介绍
-* Develoeprkit开发板由[诺行](http://www.notioni.com)负责设计/生产(**阿里不生产开发板，认证过程中**)，需参照下述文档熟悉板载资源和硬件自测确保板子无任何硬件问题，如有疑问可在[诺行开发板钉钉群](https://i.imgur.com/rqjjjA0.jpg)沟通，如下： 
+* Develoeprkit开发板由[诺行](http://www.notioni.com)负责设计/生产(**阿里不生产开发板，板子处于认证过程中**)，需参照下述文档熟悉板载资源和硬件自测确保板子无任何硬件问题，如有疑问可在[诺行开发板钉钉群](https://i.imgur.com/rqjjjA0.jpg)沟通，如下： 
     * [板子硬件资源](https://github.com/alibaba/AliOS-Things/wiki/AliOS-Things-Developer-Kit-Hardware-Guide)  
     * [硬件自测文档](https://github.com/alibaba/AliOS-Things/wiki/AliOS-Things-Developer-Kit-User-Basic-Operation-Guide)
     * [开发板原理图和生产软件bin文件](http://www.notioni.com/#/source)，恢复出厂设置方法：烧录出厂bin文件  
     * wifi模组固件升级，查看[这里](https://github.com/alibaba/AliOS-Things/wiki/MW31_Upgrade_Guide)确认是否需要升级，参考[附录视频](#参考视频教程)升级或找诺行支持
 
 * 基于AliOS Things提供了相关的应用示例，有关于OS的相关问题可在[github issue](https://github.com/alibaba/AliOS-Things/issues)提问，也可在[AliOS Things 技术交流钉钉群](https://img.alicdn.com/tfs/TB1wjmehmzqK1RjSZFjXXblCFXa-877-1268.jpg)进行技术交流。
+* 亦可查看AliOS Things支持的[更多开发板](https://github.com/alibaba/AliOS-Things/tree/master/board)
 
 ## 板载硬件资源
 ![board_res](https://img.alicdn.com/tfs/TB17oEJgQvoK1RjSZFNXXcxMVXa-674-508.png)  
