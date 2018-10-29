@@ -220,4 +220,37 @@ SYSINFO\_APP\_VERSION="app..."
 
 ![image.png | left | 761x615](https://img.alicdn.com/tfs/TB1sZgAgAzoK1RjSZFlXXai4VXa-761-615.png "")
 
+# v0.6.3 已知问题及work around:
+## STM32F429ZI-Nucleo
+生成工程后, 删除掉soc_init.c下述代码
+
+```c
+    /*gpio init*/
+    brd_gpio_init();
+    /*i2c pre init*/
+    hal_i2c_pre_init();
+    /*default can init*/
+    CAN_init();
+   /*##-3- Configure the NVIC #################################################*/
+  /* NVIC configuration for CAN1 Reception complete interrupt */
+    HAL_NVIC_SetPriority(CAN1_RX0_IRQn, 1, 0);
+    HAL_NVIC_EnableIRQ(CAN1_RX0_IRQn);
+```
+```c
+static int32_t brd_gpio_init(void)
+{
+    int32_t i;
+    int32_t ret = 0;
+    
+    for (i = 0; i < GPIO_TABLE_SZ; ++i) {
+        ret = hal_gpio_init(&brd_gpio_table[i]);
+        if (ret) {
+            printf("gpio %d in gpio table init fail \r\n", i);
+        }
+    }
+
+    return ret;
+   
+}
+```
 
