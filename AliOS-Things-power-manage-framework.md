@@ -44,7 +44,7 @@ MCU的平均运行电流在4mA左右，在添加电源管理模块后MCU的电�
 
     `GLOBAL_DEFINES += RHINO_CONFIG_CPU_PWR_MGMT=1`
 
-    `\$(NAME)_COMPONENTS := **rhino/pwrmgmt**`
+    `\$(NAME)_COMPONENTS := rhino/pwrmgmt`
 
 * （2）在应用初始化函数中（比如`application_start(int argc, char
 \*argv[])`）调用电源管理模块初始化函数。
