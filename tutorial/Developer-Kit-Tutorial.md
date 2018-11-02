@@ -41,6 +41,8 @@
 | --------       | -------- | -------- |
 | helloworld       | 入门，串口打印log | [文档介绍](https://github.com/alibaba/AliOS-Things/tree/developer/example/helloworld) |
 | developerkitgui       | LCD显示 | developer分支 |
+| cameraapp       | 拍照，存储，显示 | developer/master分支, [文档](https://github.com/alibaba/AliOS-Things/tree/developer/example/cameraapp) |
+| developerkitaudio       | 录音、回放，识别 | developer/master分支, [文档](https://github.com/alibaba/AliOS-Things/tree/master/app/example/developerkitaudio) |
 | qr               | 二维码     | developer分支，功能：如果扫到二维码后，串口会将二维码打印出来。按B键可以在LCD上显示二维码    |
 | udataapp               | sensor相关     | developer分支     |
 | mqttapp               | mqtt测试    | developer分支     |
