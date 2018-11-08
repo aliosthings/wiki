@@ -67,7 +67,8 @@ uData框架介绍 [https://yq.aliyun.com/articles/368257](https://yq.aliyun.com/
 
 uData框架介绍和移植文档可以参考上面链接。
 
-###MODBUS异同点###
+### MODBUS异同点 ###
+
 常规mems传感器轮询读取数据时可通过定时器读取，而使用MODBUS传感器时，读取超时时间可控，这里单独创建了一个task进行轮询读取注册成功的传感器驱动，轮询时间用户可根据自己需求修改。
 ![](https://cdn.nlark.com/lark/0/2018/png/111215/1541688679523-e66d3891-ebaa-4ab7-816b-63a23c69bfaa.png)
 
