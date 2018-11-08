@@ -1,10 +1,19 @@
 # uData MODBUS sensor porting guide #
 
-## MODBUS传感器驱动框架介绍 ##
+# uData MODBUS传感器驱动移植说明 #
+## MODBUS库API ##
+AliOS Things提供MODBUS库，相关API可以查看kernel下面的mbmaster_api.h
+
+    mb_status_t mb_rtc_init(mb_handler_t **handler,  uint8_t port, uint32_t baud_rate, mb_parity_t parity);   //初始化
+
+    mb_status_t mb_read_holding_reginster(mb_handler_t* req_handler, uint8_t slave_addr, uint16_t start_addr, uint16_t quantity, uint8_t *respond_buf, uint8_t *respond_count);//读取modbus寄存器
+
+
+## MODBUS传感器驱动介绍 ##
 ![](https://cdn.nlark.com/lark/0/2018/png/111215/1535434837701-fb78447d-04b7-456c-ad99-70032f6924d1.png)
 
 AliOS Things提供一套传感器uData框架，将MODBUS传感器抽象驱动节点，通过vfs接口open，read操作。
-AliOS Things还提供MODBUS协议库，MODBUS传感器驱动调用MODBUS库接口读取传感器数据。
+MODBUS传感器驱动调用MODBUS库接口读取传感器数据。
 
 
 MODBUS传感器驱动添加通过类似下面配置表修改
@@ -38,7 +47,31 @@ device\sensor\drv\sensor_drv_conf.h
     unsigned char  byte_reverse;  /* 是否数据反转 0: high bytes first, 1: low bytes first */
     unsigned short response_time; /* 读数据超时时间slave response time in ms */
     } modbus_sensor_t;
-    
+
+### MODBUS驱动初始化流程 ###
+1. 总线初始化，调用mb_rtc_init，传入句柄handler，UART端口，波特率，奇偶校验等参数。
+
+
+    mb_rtc_init(mb_handler_t **handler,  uint8_t port, uint32_t baud_rate, mb_parity_t parity);
+
+
+2. 加载传感器配置参数，配置参数在上面介绍的modbus_sensor_t modbus_sensors这个表中指定，用户也可以自己定义。
+3. 表中ability打开的传感器创建sensor_obj_t结构体节点，如下所示，可以通过vfs的open，read等接口打开传感器和读取传感器数据。
+![](https://cdn.nlark.com/lark/0/2018/png/111215/1541687845580-37ca4a23-6675-4fe6-b735-916904865454.png)
+
+
+## uData框架 ##
+uData框架移植文档参考 [https://github.com/alibaba/AliOS-Things/wiki/AliOS-Things-uData-Framework-Porting-Guide](https://github.com/alibaba/AliOS-Things/wiki/AliOS-Things-uData-Framework-Porting-Guide)
+
+uData框架介绍 [https://yq.aliyun.com/articles/368257](https://yq.aliyun.com/articles/368257)
+
+uData框架介绍和移植文档可以参考上面链接。
+
+###MODBUS异同点###
+常规mems传感器轮询读取数据时可通过定时器读取，而使用MODBUS传感器时，读取超时时间可控，这里单独创建了一个task进行轮询读取注册成功的传感器驱动，轮询时间用户可根据自己需求修改。
+![](https://cdn.nlark.com/lark/0/2018/png/111215/1541688679523-e66d3891-ebaa-4ab7-816b-63a23c69bfaa.png)
+
+
 ## 用户使用说明 ##
 
 ###  1、添加已经支持的传感器 ###
@@ -118,3 +151,40 @@ device\sensor\drv\sensor_drv_conf.h
     TAG_DEV_SENSOR_NUM_MAX,
     } sensor_tag_e;
     
+
+###  3、注册传感器服务 ###
+
+在uData.mk中打开相关服务的宏，如下所示，在static int udata_std_service_init(udata_type_e type)函数中会注册相关的服务。
+
+    GLOBAL_DEFINES += AOS_UDATA_SERVICE_ALS
+    GLOBAL_DEFINES += AOS_UDATA_SERVICE_PS
+    GLOBAL_DEFINES += AOS_UDATA_SERVICE_BARO
+    GLOBAL_DEFINES += AOS_UDATA_SERVICE_TEMP
+    GLOBAL_DEFINES += AOS_UDATA_SERVICE_UV
+    GLOBAL_DEFINES += AOS_UDATA_SERVICE_HUMI
+    GLOBAL_DEFINES += AOS_UDATA_SERVICE_NOISE
+    GLOBAL_DEFINES += AOS_UDATA_SERVICE_PM25
+    GLOBAL_DEFINES += AOS_UDATA_SERVICE_CO2
+    GLOBAL_DEFINES += AOS_UDATA_SERVICE_HCHO
+    GLOBAL_DEFINES += AOS_UDATA_SERVICE_TVOC
+
+###  4、订阅传感器数据 ###
+用户在自己APP种订阅需要传感器数据，如下所示。
+
+    ret = uData_subscribe(UDATA_SERVICE_TEMP);
+    if (ret != 0) {
+        LOG("%s %s %s %d\n", uDATA_STR, __func__, ERROR_LINE, __LINE__);
+    }
+    ret = uData_subscribe(UDATA_SERVICE_HUMI);
+    if (ret != 0) {
+        LOG("%s %s %s %d\n", uDATA_STR, __func__, ERROR_LINE, __LINE__);
+    }
+
+
+注册回调函数int uData_register_msg_handler(void *func);  在回调函数中会传入传感器数据。
+
+
+###  5、编译 ###
+编译时需要打开MODBUS宏，增加编译参数modbus_sensor_enable=1，已uDataapp为例
+
+    aos make uDataapp@developerkit modbus_sensor_enable=1
