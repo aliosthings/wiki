@@ -3,6 +3,7 @@
 WiFi设备需要连接WiFi热点（WiFi AP）之后才能与其它设备进行IP通信，对于没有键盘、没有触摸屏、没有Web Server的WiFi IoT设备而言，如何获取WiFi热点的SSID/密码是实现设备远程管理的第一个关键步骤。
 
 我们将WiFi设备获取到WiFi热点的SSID/密码的步骤称为WiFi配网，蓝牙辅助WiFi配网方案**适用于同时支持蓝牙BLE以及WiFi的设备**，该方案通过蓝牙BLE通道将WiFi热点的SSID/密码发送给WiFi设备，从而让WiFi设备可以连接到WiFi AP（通常为WiFi无线路由器）。蓝牙辅助WiFi配网的工作原理示意图如下：
+![ble_1](https://img.alicdn.com/tfs/TB1gEGdowDqK1RjSZSyXXaxEVXa-554-133.png)
 
 蓝牙辅助配网的步骤如下：
 * 用户在手机APP上选择需要配网的WiFi设备的产品型号
