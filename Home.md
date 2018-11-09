@@ -22,7 +22,7 @@ Please refer to [AliOS Things Technical Overview](AliOS-Things-Technical-Overvie
 - [Step by Step: MQTT to Cloud with STM32](stm32-networking)
 - [Video Tutorial](AliOS-Things-Video-Tutorial)
 - [AliOS Things power manage framework](https://github.com/alibaba/AliOS-Things/wiki/AliOS-Things-power-manage-framework)
-- [蓝牙辅助配网移植和开发指南](https://github.com/alibaba/AliOS-Things/wiki/蓝牙辅助配网移植和开发指南)
+- [蓝牙辅助WiFi配网开发说明](https://github.com/alibaba/AliOS-Things/wiki/蓝牙辅助WiFi配网开发说明)
 
 ## [Hardware](AliOS-Things-Hardware)
 - [ARM](AliOS-Things-Hardware#arm)
