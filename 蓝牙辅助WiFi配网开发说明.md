@@ -49,7 +49,7 @@ WiFi设备需要连接WiFi热点（WiFi AP）之后才能与其它设备进行IP
 ## 设备端开发说明
 
 ### 代码获取
-点击此处访问整个AliOS Things的最新代码，其中包含了Link Kit SDK（设备连接阿里云的多个软件功能模块）、蓝牙辅助WiFi配网。
+点击获取[AliOS Things最新代码](https://github.com/alibaba/AliOS-Things)，其中包含了Link Kit SDK（设备连接阿里云的多个软件功能模块）、蓝牙辅助WiFi配网。
 * 蓝牙辅助WiFi配网模块目录：network/bluetooth/breeze
 * Link Kit SDK：middleware/linkkit
 
