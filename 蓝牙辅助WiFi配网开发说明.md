@@ -3,6 +3,7 @@
 WiFi设备需要连接WiFi热点（WiFi AP）之后才能与其它设备进行IP通信，对于没有键盘、没有触摸屏、没有Web Server的WiFi IoT设备而言，如何获取WiFi热点的SSID/密码是实现设备远程管理的第一个关键步骤。
 
 我们将WiFi设备获取到WiFi热点的SSID/密码的步骤称为WiFi配网，蓝牙辅助WiFi配网方案**适用于同时支持蓝牙BLE以及WiFi的设备**，该方案通过蓝牙BLE通道将WiFi热点的SSID/密码发送给WiFi设备，从而让WiFi设备可以连接到WiFi AP（通常为WiFi无线路由器）。蓝牙辅助WiFi配网的工作原理示意图如下：
+
 ![ble_1](https://img.alicdn.com/tfs/TB1gEGdowDqK1RjSZSyXXaxEVXa-554-133.png)
 
 蓝牙辅助配网的步骤如下：
@@ -30,6 +31,8 @@ WiFi设备需要连接WiFi热点（WiFi AP）之后才能与其它设备进行IP
 ## 模组商/设备商开发过程
 如果您是一个WiFi的模组商或者设备商，您的模组/设备支持蓝牙BLE以及WiFi并且希望集成阿里云IoT提供的蓝牙辅助WiFi配网功能，那么可以按照下面的过程进行模组/设备开发：
 
+![ble_2](https://img.alicdn.com/tfs/TB1a.ejoAvoK1RjSZPfXXXPKFXa-585-56.png)
+
 **说明：**
 * 模组商/设备商在开发模组/设备时需要在阿里云IoT生活物联网平台进行产品定义，产品定义时“通讯方式”选择“WIFI”；
 * 设备需要与阿里云IoT生活物联网平台进行通信，因此设备上除了需要具有蓝牙辅助配网功能外，还需要集成阿里云IoT提供的其它软件模块，至少需要包含的软件模块包括MQTT连云、物模型、蓝牙辅助配网、AliOS Kernel，其它软件模块根据产品的需要进行选择；
@@ -41,6 +44,8 @@ WiFi设备需要连接WiFi热点（WiFi AP）之后才能与其它设备进行IP
 # 手机APP开发商开发过程
 
 如果您的手机APP需要对支持蓝牙辅助WiFi配网的设备进行配网，那么手机APP需要集成阿里云IoT提供的支持蓝牙辅助配网的手机SDK，过程如下所示：
+
+![ble_3](https://img.alicdn.com/tfs/TB1qCCfoxTpK1RjSZFKXXa2wXXa-581-61.png)
 
 **注：**
 * 手机配网SDK支持多种配网方式，手机APP开发者需要知道设备支持哪些配网方式，并可自行决定使用哪种配网方式对设备发起WiFi配网
