@@ -75,7 +75,7 @@ WiFi设备需要连接WiFi热点（WiFi AP）之后才能与其它设备进行IP
 * 配网linkType设置为ForceAliLinkTypeBLE
 
 ### 调试
-设备厂商可以使用DemoAPP调试设备是否正确集成了蓝牙配网参考。
+设备厂商可以使用[DemoAPP](https://github.com/alibaba/AliOS-Things/wiki/Android-配网-Demo-使用)调试设备是否正确集成了蓝牙配网参考。
 
 
 ## iOS系统
