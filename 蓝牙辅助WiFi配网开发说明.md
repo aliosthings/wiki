@@ -63,7 +63,7 @@ WiFi设备需要连接WiFi热点（WiFi AP）之后才能与其它设备进行IP
 # 手机端开发说明
 ## 安卓
 ### 编程指南系统
-请阅读[https://github.com/alibaba/AliOS-Things/wiki/Android-配网SDK开发说明](Android配网SDK开发说明)了解如何使用手机端配网SDK，该文档描述了所有的配网方案（包含蓝牙辅助配网）。蓝牙辅助配网和其它配网在使用方式上有以下几点区别：
+请阅读[https://github.com/alibaba/AliOS-Things/wiki/Android-配网SDK开发说明](android配网SDK开发说明)了解如何使用手机端配网SDK，该文档描述了所有的配网方案（包含蓝牙辅助配网）。蓝牙辅助配网和其它配网在使用方式上有以下几点区别：
 * APP需要先开启手机蓝牙
 * 配网参数需要增加ProductID，该参数可以在智能生活平台的商家后台获取
 * 配网linkType设置为ForceAliLinkTypeBLE
