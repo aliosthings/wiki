@@ -66,8 +66,27 @@ device\sensor\drv\sensor_drv_conf.h
 
 2. 加载传感器配置参数，配置参数在上面介绍的modbus_sensor_t modbus_sensors这个表中指定，用户也可以自己定义。
 3. 表中ability打开的传感器创建sensor_obj_t结构体节点，如下所示，可以通过vfs的open，read等接口打开传感器和读取传感器数据。
-![](https://cdn.nlark.com/lark/0/2018/png/111215/1541687845580-37ca4a23-6675-4fe6-b735-916904865454.png)
-
+```
+typedef struct _sensor_obj_t
+{
+    char *                 path;
+    sensor_tag_e           tag;
+    dev_io_port_e          io_port;
+    work_mode_e            mode;
+    void *                 data_buf;
+    uint32_t               data_len;
+    dev_power_mode_e       power;
+    gpio_dev_t             gpio;
+    dev_sensor_full_info_t info;
+    uint8_t                ref;
+    int (*open)(void);
+    int (*close)(void);
+    int (*read)(void *, size_t);
+    int (*write)(const void *buf, size_t len);
+    int (*ioctl)(int cmd, unsigned long arg);
+    void (*irq_handle)(void);
+} sensor_obj_t;
+```
 
 ## uData框架 ##
 uData框架移植文档参考 [https://github.com/alibaba/AliOS-Things/wiki/AliOS-Things-uData-Framework-Porting-Guide](https://github.com/alibaba/AliOS-Things/wiki/AliOS-Things-uData-Framework-Porting-Guide)
@@ -79,7 +98,30 @@ uData框架介绍和移植文档可以参考上面链接。
 ### MODBUS异同点 ###
 
 常规mems传感器轮询读取数据时可通过定时器读取，而使用MODBUS传感器时，读取超时时间不可控，这里单独创建了一个task进行轮询读取注册成功的传感器驱动，轮询时间用户可根据自己需求修改。
-![](https://cdn.nlark.com/lark/0/2018/png/111215/1541688679523-e66d3891-ebaa-4ab7-816b-63a23c69bfaa.png)
+```
+static void abs_data_polling(void *p)
+{
+    uint8_t i = 0;
+
+    uint64_t timestamp     = 0;
+    uint64_t pre_timestamp = 0;
+
+    while (1) {
+        aos_msleep(200);
+        timestamp = aos_now_ms();
+        for (i = 0; i < abs_data_cnt; i++) {
+            if ((timestamp - g_abs_data_db[i]->cur_timestamp) >=
+                g_abs_data_db[i]->interval) {
+                abs_sensor_read(g_abs_data_db[i]->tag);
+                timestamp                       = aos_now_ms();
+                pre_timestamp                   = timestamp;
+                g_abs_data_db[i]->cur_timestamp = timestamp;
+            }
+        }
+    }
+}
+```
+
 
 
 ## 用户使用说明 ##
