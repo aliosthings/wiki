@@ -31,7 +31,7 @@ device\sensor\drv\sensor_drv_conf.h
 ```
     
 数组结构体的注释如下：
- 
+ ```
     typedef struct
     {
     const char *   company;//厂商名
@@ -46,7 +46,7 @@ device\sensor\drv\sensor_drv_conf.h
     unsigned char  byte_reverse;  /* 是否数据反转 0: high bytes first, 1: low bytes first */
     unsigned short response_time; /* 读数据超时时间slave response time in ms */
     } modbus_sensor_t;
-
+```
 ### MODBUS驱动初始化流程 ###
 1. 总线初始化，调用mb_rtc_init，传入句柄handler，UART端口，波特率，奇偶校验等参数。
 
