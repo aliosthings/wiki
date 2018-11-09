@@ -17,7 +17,7 @@ MODBUS传感器驱动调用MODBUS库接口读取传感器数据。
 
 MODBUS传感器驱动添加通过类似下面配置表修改
 device\sensor\drv\sensor_drv_conf.h
-
+```
     const modbus_sensor_t modbus_sensors[] = {
     { "KunLunHaiAn", "JHFS-W1", "wind speed", dev_windspeed_path, TAG_DEV_WINDSPD,
       SENSOR_OPEN, 0X30, 0x002A, 1, 0, 50 },
@@ -28,7 +28,7 @@ device\sensor\drv\sensor_drv_conf.h
     { "KunLunHaiAn", "JHYL-W1", "today precipitation", dev_todayrainfall_path, TAG_DEV_TODAYRAIN,
       SENSOR_OPEN, 0X32, 0x0001, 1, 0, 50 },
     };
-
+```
     
 数组结构体的注释如下：
  
@@ -169,7 +169,7 @@ uData框架介绍和移植文档可以参考上面链接。
     GLOBAL_DEFINES += AOS_UDATA_SERVICE_TVOC
 
 ###  4、订阅传感器数据 ###
-用户在自己APP种订阅需要传感器数据，如下所示。
+用户在自己APP订阅需要传感器数据，如下所示。
 
     ret = uData_subscribe(UDATA_SERVICE_TEMP);
     if (ret != 0) {
@@ -185,6 +185,6 @@ uData框架介绍和移植文档可以参考上面链接。
 
 
 ###  5、编译 ###
-编译时需要打开MODBUS宏，增加编译参数modbus_sensor_enable=1，已uDataapp为例
+编译时需要打开MODBUS宏，增加编译参数modbus_sensor_enable=1，以uDataapp为例
 
     aos make uDataapp@developerkit modbus_sensor_enable=1
