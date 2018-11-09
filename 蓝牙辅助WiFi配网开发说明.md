@@ -75,7 +75,7 @@ WiFi设备需要连接WiFi热点（WiFi AP）之后才能与其它设备进行IP
 ## iOS系统
 
 ### 编程指南
-请阅读iOS配网SDK接口文档了解如何使用手机端配网SDK，该文档描述了所有的配网方案。蓝牙辅助配网和其它配网使用方式上有以下几点区别：
+请阅读[iOS配网开发说明](https://github.com/alibaba/AliOS-Things/wiki/iOS配网开发说明)了解如何使用手机端配网SDK，该文档描述了所有的配网方案。蓝牙辅助配网和其它配网使用方式上有以下几点区别：
 * APP需要先开启手机蓝牙
 * 设置待添加设备信息中，IMLCandDeviceModel 需要传入productId，并指定linkType 为ForceAliLinkTypeBLE
 
