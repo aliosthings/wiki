@@ -3,14 +3,14 @@
 
 | 依赖SDK | 概述 |
 | :--- | :--- |
-| [日志](https://lark.alipay.com/ilopdoc/guide/mobile-ios-sdk-log) | 基础依赖SDK，提供客户端统一日志打印，日志等级控制，分模块日志隔离等能力 |
-| [API 通道](https://lark.alipay.com/ilopdoc/guide/mobile-ios-sdk-apiclient) | 提供API通道能力，和基础环境配置信息 |
-| Breeze SDK | 提供蓝牙辅助配网支持 |
+| [日志](https://g.alicdn.com/aic/ilop-docs/2018.10.31/mobile-ios-sdk-log.html) | 基础依赖SDK，提供客户端统一日志打印，日志等级控制，分模块日志隔离等能力 |
+| [API 通道](https://g.alicdn.com/aic/ilop-docs/2018.10.31/mobile-ios-sdk-apiclient.html) | 提供API通道能力，和基础环境配置信息 |
+| [Breeze SDK](https://g.alicdn.com/aic/ilop-docs/2018.10.31/mobile-ios-sdk-ble.html) | 提供蓝牙辅助配网支持 |
 
 
 ## 初始化
 
-配网SDK 的初始化依赖 API 通道的初始化，请参见：[API 通道 - 初始化](https://lark.alipay.com/ilopdoc/guide/mobile-ios-sdk-apiclient#%E5%88%9D%E5%A7%8B%E5%8C%96)
+配网SDK 的初始化依赖 API 通道的初始化，请参见：[API 通道 - 初始化](https://g.alicdn.com/aic/ilop-docs/2018.10.31/mobile-ios-sdk-apiclient.html#%E5%88%9D%E5%A7%8B%E5%8C%96)
 
 ## 使用说明
 
@@ -71,7 +71,7 @@ IMLCandDeviceModel *model = self.localDeviceList[index];
 ```
 
 备注：其中（IMLCandDeviceModel \*）model 为本地发现待配设备或者云端拉取产品列表组装的model
-本地发现设备参见：本文下面 [设备发现](https://lark.alipay.com/ilopdoc/guide/mobile-ios-sdk-add-device#%E8%AE%BE%E5%A4%87%E5%8F%91%E7%8E%B0) 章节内容
+本地发现设备参见：本文 设备发现 章节内容
 
 其中 IMLCandDeviceModel 属性说明：
 
@@ -227,7 +227,7 @@ IMLCandDeviceModel *model = self.localDeviceList[index];
 插件Id 国内版：<span data-type="color" style="color:rgb(25, 31, 37)"><span data-type="background" style="background-color:rgb(255, 255, 255)">a123kfz2KdRdrfYc</span></span>
 插件Id 国际版：<span data-type="color" style="color:rgb(25, 31, 37)"><span data-type="background" style="background-color:rgb(255, 255, 255)">a223c2beCJQ2Xpk2</span></span>
 
-<span data-type="color" style="color:rgb(55, 61, 65)"><span data-type="background" style="background-color:rgb(245, 246, 250)">插件Id的具体使用方式，参考见Bone容器部分。也可以参考下面文档对应的</span></span>调用平台提供的配网插件部分，[https://lark.alipay.com/ilopdoc/guide/yzqy0q#8vpydz](https://lark.alipay.com/ilopdoc/guide/yzqy0q#8vpydz)
+<span data-type="color" style="color:rgb(55, 61, 65)"><span data-type="background" style="background-color:rgb(245, 246, 250)">插件Id的具体使用方式，参考见Bone容器部分。也可以参考下面文档对应的</span></span>调用平台提供的配网插件部分，
 
 
 
