@@ -60,7 +60,7 @@ WiFi设备需要连接WiFi热点（WiFi AP）之后才能与其它设备进行IP
 * Link Kit SDK：middleware/linkkit
 
 ### HAL接口适配
-请点击查看蓝牙辅助WiFi配网的[HAL定义以及说明](https://github.com/alibaba/AliOS-Things/wiki/蓝牙辅助WiFi配网HAL说明)
+请点击查看蓝牙辅助WiFi配网的[HAL定义以及说明](https://github.com/alibaba/AliOS-Things/wiki/蓝牙辅助WiFi配网HAL说明)。
 
 ### 用户接口编程指南
 本节描述如何对蓝牙配网进行初始化，以及如何使用该模块提供的[蓝牙辅助WiFi配网编程接口说明](https://github.com/alibaba/AliOS-Things/wiki/蓝牙辅助WiFi配网编程接口说明)。
