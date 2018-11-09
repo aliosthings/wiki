@@ -3,14 +3,14 @@
 
 | 依赖SDK | 概述 |
 | :--- | :--- |
-| [API 通道](https://lark.alipay.com/ilopdoc/guide/mobile-android-sdk-apiclient) | 提供云端 API 通道能力 |
-| [身份认证](https://lark.alipay.com/ilopdoc/guide/mobile-android-sdk-iotcredential) | 提供云端 API 通道身份认证 |
-| [Breeze SDK](https://yuque.antfin-inc.com/ilopdoc/guide/mobile-android-sdk-ble) | 提供蓝牙辅助配网支持 |
+| [API 通道](https://g.alicdn.com/aic/ilop-docs/2018.10.31/mobile-android-sdk-apiclient.html) | 提供云端 API 通道能力 |
+| [身份认证](https://g.alicdn.com/aic/ilop-docs/2018.10.31/mobile-android-sdk-iotcredential.html) | 提供云端 API 通道身份认证 |
+| [Breeze SDK](https://g.alicdn.com/aic/ilop-docs/2018.10.31/mobile-android-sdk-ble.html) | 提供蓝牙辅助配网支持 |
 
 
 ## 初始化
 
-配网SDK 的初始化依赖 [身份认证](https://lark.alipay.com/ilopdoc/guide/mobile-android-sdk-iotcredential) 模块的初始化，请参见：[身份认证 - 初始化](https://lark.alipay.com/ilopdoc/guide/mobile-android-sdk-iotcredential#初始化) （包含API通道初始化和账号初始化）。
+配网SDK 的初始化依赖[ 身份认证](https://g.alicdn.com/aic/ilop-docs/2018.10.31/mobile-android-sdk-iotcredential.html) 模块的初始化，请参见：[身份认证 - 初始化](https://g.alicdn.com/aic/ilop-docs/2018.10.31/mobile-android-sdk-iotcredential.html#%E5%88%9D%E5%A7%8B%E5%8C%96) （包含API通道初始化和账号初始化）。
 
 ## 使用方式
 本配网 SDK 对外主要提供设备发现，设备配网，以及获取设备端 token 的能力。
@@ -19,7 +19,7 @@
 关于设备发现相关 API，请参见：[LocalDeviceMgr](http://gaic.alicdn.com/ztms/ld-android-sdk-api-references-v2/com/aliyun/alink/business/devicecenter/api/discovery/LocalDeviceMgr.html) 。
 
 #### 启动设备发现
-发现本地的已配网设备，或者零配、路由器发现的待配设备。发现的待配设备信息可以作为后续设备配网的入参信息。如果需要对已发现的已配网设备做过滤（如过滤已绑定的设备，不支持的设备等），可以参考[产品过滤接口](https://lark.alipay.com/ilopdoc/guide/frzuro#%E6%9C%AC%E5%9C%B0%E5%8F%91%E7%8E%B0%E8%AE%BE%E5%A4%87%E5%88%97%E8%A1%A8%E4%BF%A1%E6%81%AF%E8%BF%87%E6%BB%A4)。
+发现本地的已配网设备，或者零配、路由器发现的待配设备。发现的待配设备信息可以作为后续设备配网的入参信息。如果需要对已发现的已配网设备做过滤（如过滤已绑定的设备，不支持的设备等），可以参考[产品过滤接口](https://g.alicdn.com/aic/ilop-docs/2018.10.31/frzuro.html#%E6%9C%AC%E5%9C%B0%E5%8F%91%E7%8E%B0%E8%AE%BE%E5%A4%87%E5%88%97%E8%A1%A8%E4%BF%A1%E6%81%AF%E8%BF%87%E6%BB%A4)。
 ```java
 // 开始发现设备
 LocalDeviceMgr.getInstance().startDiscovery(context, new IDiscoveryListener() {
@@ -171,3 +171,4 @@ BonePluginRegistry.register("BoneAddDeviceBiz",BoneAddDeviceBiz.class);
 BonePluginRegistry.register("BoneLocalDeviceMgr",BoneLocalDeviceMgr.class);
 BonePluginRegistry.register("BoneHotspotHelper",BoneHotspotHelper.class);
 ```
+
