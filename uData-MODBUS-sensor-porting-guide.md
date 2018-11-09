@@ -2,11 +2,21 @@
 
 ## MODBUS库API ##
 AliOS Things提供MODBUS库，相关API可以查看kernel下面的mbmaster_api.h
-
+```
     mb_status_t mb_rtc_init(mb_handler_t **handler,  uint8_t port, uint32_t baud_rate, mb_parity_t parity);   //初始化
+    /*  mb_handler_t **handler  入参句柄 */
+    /*  port                   UART端口 */
+    /*  baud_rate              波特率   */
+    /*  parity                 奇偶校验 */
 
     mb_status_t mb_read_holding_reginster(mb_handler_t* req_handler, uint8_t slave_addr, uint16_t start_addr, uint16_t quantity, uint8_t *respond_buf, uint8_t *respond_count);//读取modbus寄存器
-
+    /*  mb_handler_t **handler  入参句柄 */
+    /*  uint16_t slave_addr     从设备地址 */
+    /*  uint16_t start_addr     寄存器地址 */
+    /*  uint16_t quantity       寄存器数量   */
+    /*  uint8_t *respond_buf    出参数据 */
+   /*   uint8_t *respond_count  出参个数*/
+```
 
 ## MODBUS传感器驱动介绍 ##
 ![](https://cdn.nlark.com/lark/0/2018/png/111215/1535434837701-fb78447d-04b7-456c-ad99-70032f6924d1.png)
