@@ -16,7 +16,7 @@
 **ais_err_t ble_stack_init(ais_bt_init_t *ais_init)**
 该接口完成对BLE协议栈的初始化。
 
-**参数说明：**输入参数ais_init中指定了蓝牙service和characteristics，以及他们的权限属性等相关设置。具体包括：
+**参数说明**：输入参数ais_init中指定了蓝牙service和characteristics，以及他们的权限属性等相关设置。具体包括：
 * uuid_svc：service的uuid（type、value）信息；
 * rc/wc/ic/nc/ wwnrc：蓝牙配网SDK使用到的属性信息，包括他们的uuid、property、permission等信息，以及* * on_read/on_write/on_ccc_change回调函数（HAL实现代码负责调用，对端读取属性值时调用on_read，对端写入属性值时调用on_write，ccc属性值变更时调用on_ccc_change）；
 * on_connected/on_disconnected：回调函数，HAL代码负责调用（建立蓝牙连接时调用on_connected，断开蓝牙连接时调用on_disconnected）。
