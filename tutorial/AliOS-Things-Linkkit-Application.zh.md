@@ -15,9 +15,13 @@
 
 ------
 # 1 概要
-  使用linkkit接入阿里的 [智能生活开放平台](https://living.aliyun.com/#/)前先确认以下功能已经具备：
-1. 设备能够连接到阿里的 [智能生活开放平台](https://living.aliyun.com/#/)
+> 注：AliOS-Things的linkkit组件目前可以连接到[智能生活开放平台](https://living.aliyun.com/#/) 和[LinkDevelop平台](https://linkdevelop.aliyun.com/)，本示例只连接到[智能生活开放平台](https://living.aliyun.com/#/)。
+
+   使用linkkit接入阿里的 [智能生活开放平台](https://living.aliyun.com/#/)前先确认以下功能已经具备：
+1. 设备能够连接到阿里的 [智能生活开放平台](https://living.aliyun.com/#/)。
 2. 已经通过[智能生活开放平台](https://living.aliyun.com/#/)获取到了设备的激活码，并得到设备联网需要的`ProductKey`、`ProductSecret`、`DeviceName`、`DeviceSecret`。
+> 注：如果是连接到LinkDevelop平台的话，就不需要使用`ProductSecret`。
+
 3. 根据设备的功能定义，获取到物的模型（TSL），即一段json格式的描述信息。
 
   使用linkkit需要进行如下的几步：
@@ -42,7 +46,9 @@
 ------
 # 2 接口实现
 ## 2.1 修改设备凭证
-根据云端产生的设备凭证，修改头文件`framework/protocol/linkkit/iotkit/sdk-encap/imports/iot_import_product.h`下的设备凭证信息。
+根据云端产生的设备凭证，需要修改对应代码中的设备凭证信息：
+* AliOS-Things 1.x.x版本：设备凭据信息在头文件`framework/protocol/linkkit/iotkit/sdk-encap/imports/iot_import_product.h`
+* AliOS-Things 2.x.x版本：设备凭据信息在对应example的代码中，比如`app/example/linkkitapp/linkkit_example_solo.c`
 
 ```c
 #define PRODUCT_KEY             "a1BDCKKSpdu"
@@ -50,6 +56,9 @@
 #define DEVICE_NAME             "MVwo1x7hB2pyEbXlLkzE"
 #define DEVICE_SECRET           "OKHWuIaMzwtJAjUzPRLG1rcYxFo43akU"
 ```
+
+> 注：如果是连接到LinkDevelop平台的话，就不需要定义`PRODUCT_SECRET`。
+
 ## 2.2 修改TSL信息
 
 在产品功能定义完成后，平台将自动生成JSON格式的TSL（即 Thing Specification Language），用来描述物的模型。该信息经过“压缩并转义”后，转换成C语言下的json格式，这样可以添加到设备端的TSL信息中。“压缩并转义”的方式可以参考链接：https://www.sojson.com/yasuo.html
