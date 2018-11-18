@@ -2120,9 +2120,9 @@ Rhino接口替换说明：
 | 返回值   | 成功或失败                                                                                                    |
 | 入参     | Name：作为维测使用，可自定义名字，重复不报错                                                                  |
 |          | Size = uxQueueLength \* uxItemSize：表示缓冲区的总长度                                                        |
-|          | max_msg = uxItemSize：表示每一块的数据大小                                                                    |
+|          | max_msg = uxItemSize：表示每一块的数据最大大小                                                                    |
 | 出参     | Queue：存放获取的kbuf_queue_t句柄                                                                             |
-
+| 注意     | FreeRTOS中原本匹配rhino中的RINGBUF_TYPE_FIX的固定大小分配方式，通过接口krhino_fix_buf_queue_create实现，其内存被划分为固定大小的块。而使用krhino_buf_queue_dyn_create则可以按照实际需要动态分配具体大小的数据块。                                                                            |
 #### 4.2.2.2 xQueueCreateStatic
 
 FreeRTOS接口：
@@ -2141,6 +2141,7 @@ Rhino接口替换说明：
 |          | Buf = pucQueueStorage ： 缓冲区的起始地址                                                                           |
 |          | Size = uxQueueLength \* uxItemSize：表示缓冲区的总长度                                                              |
 |          | max_msg = uxItemSize：表示每一块的数据大小                                                                          |
+| 注意     | FreeRTOS中原本匹配rhino中的RINGBUF_TYPE_FIX的固定大小分配方式，通过接口krhino_fix_buf_queue_create实现，其内存被划分为固定大小的块。而使用krhino_buf_queue_create则可以按照实际需要动态分配具体大小的数据块。                                                                            |
 
 #### 4.2.2.3 vQueueDelete
 
