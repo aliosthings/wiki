@@ -171,9 +171,8 @@ int32_t hal_gpio_clear_irq(gpio_dev_t *gpio)
 
 - [x] **Description**
 
-  Disables an interrupt trigger for an input GPIO pin.
-  Using this function on a gpio pin which has not been set up
-  using @ref hal_gpio_input_irq_enable is undefined.
+  Clear an interrupt status for an input GPIO pin.
+  Using this function on a gpio pin which has generated a interrupt.
 
 - [x] **Parameters**
 
