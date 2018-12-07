@@ -26,5 +26,5 @@ AliOS提供典型事例:breezeapp演示breeze的基本能力和服务。
 
 ![phone_app_2](https://img.alicdn.com/tfs/TB1gc9juwHqK1RjSZFgXXa7JXXa-928-1616.png)
 
-# 测试结果
+## 测试结果
 手机界面会相应提示和数据显示。
