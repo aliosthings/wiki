@@ -31,4 +31,4 @@ AliOS提供典型事例:breezeapp演示breeze的基本能力和服务。
 
 
 # 编程手册
-请参阅
+请参阅[Breeze用户编程接口说明](https://github.com/alibaba/AliOS-Things/wiki/Breeze-用户编程接口说明)
