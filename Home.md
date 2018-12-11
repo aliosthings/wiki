@@ -23,6 +23,7 @@ Please refer to [AliOS Things Technical Overview](AliOS-Things-Technical-Overvie
 - [Video Tutorial](AliOS-Things-Video-Tutorial)
 - [AliOS Things power manage framework](https://github.com/alibaba/AliOS-Things/wiki/AliOS-Things-power-manage-framework)
 - [蓝牙辅助WiFi配网开发说明](https://github.com/alibaba/AliOS-Things/wiki/蓝牙辅助WiFi配网开发说明)
+- [蓝牙Breeze使用说明](https://github.com/alibaba/AliOS-Things/wiki/蓝牙Breeze使用说明)
 
 ## [Hardware](AliOS-Things-Hardware)
 - [ARM](AliOS-Things-Hardware#arm)
