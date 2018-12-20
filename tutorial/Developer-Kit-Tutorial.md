@@ -5,7 +5,7 @@
     * [板子硬件资源](https://github.com/alibaba/AliOS-Things/wiki/AliOS-Things-Developer-Kit-Hardware-Guide)  
     * [硬件自测文档](https://github.com/alibaba/AliOS-Things/wiki/AliOS-Things-Developer-Kit-User-Basic-Operation-Guide)
     * [开发板原理图和生产软件bin文件](http://www.notioni.com/#/source)，恢复出厂设置方法：烧录出厂bin文件  
-    * wifi模组固件升级，查看[这里](https://github.com/alibaba/AliOS-Things/wiki/MW31_Upgrade_Guide)确认是否需要升级，参考[附录视频](#参考视频教程)升级或找诺行支持
+    * wifi模组固件升级，查看[这里](https://github.com/alibaba/AliOS-Things/wiki/wifi_upgrade_guide.md)确认是否需要升级，参考[附录视频](#参考视频教程)升级或找诺行支持
 
 * 基于AliOS Things提供了相关的应用示例，有关于OS的相关问题可在[github issue](https://github.com/alibaba/AliOS-Things/issues)提问，也可在[AliOS Things 技术交流钉钉群](https://img.alicdn.com/tfs/TB1wjmehmzqK1RjSZFjXXblCFXa-877-1268.jpg)进行技术交流。
 * 亦可查看AliOS Things支持的[更多开发板](https://github.com/alibaba/AliOS-Things/tree/master/board)
