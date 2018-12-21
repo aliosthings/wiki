@@ -4,7 +4,7 @@
 * 本文档配合[开发板入口](https://github.com/alibaba/AliOS-Things/wiki/Developer-Kit-Tutorial)介绍中所提的wifi模组升级。
 ## 1，准备
 #### 1.1，环境准备：
-   * 下载软件包[DK_wifi_update_package.zip](http://www.notioni.com/#/source) (含README.txt)，[USB驱动](https://www.st.com/en/development-tools/stsw-link009.html)或直接下载压缩包[en.stsw-link009-V2.0.1.zip](http://www.notioni.com/#/source) 
+   * 下载软件包[DK_wifi_update_package.zip](http://47.74.253.193:8091/media/source/resource/DK_wifi_update_package.zip) (含README.txt)，[USB驱动](https://www.st.com/en/development-tools/stsw-link009.html)或直接下载压缩包[en.stsw-link009-V2.0.1.zip](http://47.74.253.193:8091/media/source/resource/en.stsw-link009-V2.0.1.zip) 
    * 硬件：USB转串口（推荐内置CH340芯片,如下图），windows电脑。如下图接线(丝印：WIFI DL)
    * **注：两个串口分别是：MCU调试串口，wifi模组调试串口**  
  
