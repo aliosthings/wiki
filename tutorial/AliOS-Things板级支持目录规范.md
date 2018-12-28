@@ -1,7 +1,7 @@
 EN| [中文](AliOS-Things板级支持目录规范) 
 
 本文主要介绍AliOS
-Things新增单板支持，相关board\\platform目录、文件的部署规范，以及相关接口定义和使用的标准。相关代码合入AliOS
+Things新增单板支持，相关board/platform目录、文件的部署规范，以及相关接口定义和使用的标准。相关代码合入AliOS
 Things工程，都需要遵循此文档规范。
 代码提交和回流过程中，都会按照本规范进行代码检查，不符合的代码不予入库，请务必遵循。
 AliOS Things参考版本：AOS-R-2.0.0
@@ -21,21 +21,21 @@ arch:  Cortex-M4
 
 | 目录名         | 介绍                                                             |
 |----------------|------------------------------------------------------------------|
-| app\\example   | 通用用户运行实例，如helloworld实例，可直接使用，无特殊情况不修改 |
-| test\\develop  | 用户自定义特殊运行实例，满足某一特定场景时添加                   |
+| app/example   | 通用用户运行实例，如helloworld实例，可直接使用，无特殊情况不修改 |
+| test/develop  | 用户自定义特殊运行实例，满足某一特定场景时添加                   |
 | board          | 用户需要适配、可配置board级代码，系统启动相关代码                |
-| platform\\arch | 该CPU架构内核调度适配接口，可直接使用                            |
-| platform\\mcu  | 该MCU通用SDK以及对应的hal适配层                                  |
+| platform/arch | 该CPU架构内核调度适配接口，可直接使用                            |
+| platform/mcu  | 该MCU通用SDK以及对应的hal适配层                                  |
 
 1.1、example新增规范
 --------------------
 
-原则上不建议新增example，除非目前的example不能满足功能需求。app\\example下为通用运行实例，test\\develop为某些特定场景的实例；如果需要增加实例，无特殊情况，都优先往test\\develop中添加。
+原则上不建议新增example，除非目前的example不能满足功能需求。app/example下为通用运行实例，test/develop为某些特定场景的实例；如果需要增加实例，无特殊情况，都优先往test/develop中添加。
 
 ### 1.1.1、目录功能
 
 针对上层用户需要运行的具体实例出发，抽象出具体代表某个功能的实例工程，如基本的定时输出功能：helloworld,
-上云通道实例功能：mqttapp。app\\example目录下，为已经抽象的通用运行实例，原则上用户不需要修改，直接使用现行实例。
+上云通道实例功能：mqttapp。app/example目录下，为已经抽象的通用运行实例，原则上用户不需要修改，直接使用现行实例。
 
 ### 1.1.2、命名规范
 
@@ -123,8 +123,8 @@ $(NAME)_VERSION    :=                    #组件版本号
 $(NAME)_SUMMARY    :=                    #描述
 MODULE             := 1062               #固定
 HOST_ARCH          := Cortex-M4          #CPU arch
-HOST_MCU_FAMILY    := aamcu_demo         #归属MCU系列，需要对应platform\mcu
-SUPPORT_MBINS      := no                 #是否支持app\kernel的bin分离
+HOST_MCU_FAMILY    := aamcu_demo         #归属MCU系列，需要对应platform/mcu
+SUPPORT_MBINS      := no                 #是否支持app/kernel的bin分离
 HOST_MCU_NAME      := aamcu1_demo        # MCU子系列类型
 ENABLE_VFP         := 1                  #是否支持浮点数
 $(NAME)_SOURCES       +=                 #board组件包含.c文件
@@ -135,7 +135,7 @@ GLOBAL_ASMFLAGS       +=                 #汇编编译选项
 GLOBAL_LDFLAGS        +=                 #链接选项
 GLOBAL_DEFINES        +=                 #用户自定义宏   
 注意：
-（1）、其中HOST_MCU_FAMILY的定义需要对应platform\mcu下具体某mcu目录名。HOST_MCU_NAME表示具体的mcu子系列。
+（1）、其中HOST_MCU_FAMILY的定义需要对应platform/mcu下具体某mcu目录名。HOST_MCU_NAME表示具体的mcu子系列。
 （2）、用户可以通过GLOBAL_DEFINES定义宏，如GLOBAL_DEFINES += CONFIG_AOS_CLI_BOARD或者GLOBAL_DEFINES += CONFIG_AOS_KV_BLK_BITS=14。当然也可以直接在编译选项 GLOBAL_CFLAGS使用-D定义。
 
 ```
@@ -164,12 +164,12 @@ arch目录下主要是基本的CPU架构相关的porting，主要包括开关中
 
 | 一级目录 CPU arch | 二级目录 Process arch | 三级目录(具体情况可选) Compiler Type | 四级目录(具体情况可选) Process series |
 |-------------------|-----------------------|--------------------------------------|---------------------------------------|
-| ARM               | armv5                 | armcc\\gcc\\iccarm                   |                                       |
-|                   | armv6m                | armcc\\gcc\\iccarm                   | m0                                    |
-|                   | armv7m                | armcc\\gcc\\iccarm                   | m3                                    |
+| ARM               | armv5                 | armcc/gcc/iccarm                   |                                       |
+|                   | armv6m                | armcc/gcc/iccarm                   | m0                                    |
+|                   | armv7m                | armcc/gcc/iccarm                   | m3                                    |
 |                   |                       |                                      | m4                                    |
 |                   |                       |                                      | m7                                    |
-|                   | armv7a                | armcc\\gcc\\iccarm                   | a5                                    |
+|                   | armv7a                | armcc/gcc/iccarm                   | a5                                    |
 |                   |                       |                                      | a7                                    |
 |                   |                       |                                      | a9                                    |
 
@@ -227,7 +227,7 @@ Dir\File                          Description                           Necessar
 ```
 #### 1.3.2.4、函数命名规范
 
-统一按照样例aamcu_demo\\hal下列出的各模块hal API实现。
+统一按照样例aamcu_demo/hal下列出的各模块hal API实现。
 
 #### 1.3.2.5、mk编写规范（aos.mk）
 
@@ -289,7 +289,7 @@ GLOBAL_DEFINES       +=                 #用户自定义宏
 2.2、HAL定义规范
 ----------------
 
-**规范**：hal相关接口的命名和声明统一参照目录aamcu_demo\\hal下提供的样例demo实现。
+**规范**：hal相关接口的命名和声明统一参照目录aamcu_demo/hal下提供的样例demo实现。
 
 3、初始化流程规范
 =================
@@ -312,7 +312,7 @@ GLOBAL_DEFINES       +=                 #用户自定义宏
 
 **主任务创建规范：**
 
-内核初始化本身只会创建内部任务，如idle\\timer任务；初始化流程中需要创建主任务，供用户app运行。统一通过krhino接口如krhino_task_dyn_create来创建主任务；主任务的入口统一为**sys_init**。
+内核初始化本身只会创建内部任务，如idle/timer任务；初始化流程中需要创建主任务，供用户app运行。统一通过krhino接口如krhino_task_dyn_create来创建主任务；主任务的入口统一为**sys_init**。
 
 **接口使用限制说明：**
 
@@ -331,7 +331,7 @@ krhino_init前不调用malloc、printf函数。原因是此类库函数被内核
 
 最后，在非多bin的情况下，统一调用application_start进入上层app入口；多bin情况下，由aos_components_init内部分发处理。
 
-**参考代码**（board\\aaboard_demo\\startup\\ startup.c）**：**
+**参考代码**（board/aaboard_demo/startup/startup.c）**：**
 
 （1）、系统初始化示例：
 
@@ -391,7 +391,7 @@ int application_start(int argc, char *argv[])
 AliOS
 Things提供了基本的内核测试用例集，用于内核移植后的测试验证，所有移植的平台都需要运行该测试样例，确保内核功能的正确性。
 
-内核测试集目录：test\\testcase\\certificate_test
+内核测试集目录：test/testcase/certificate_test
 
 在上面目录下提供了两个测试文件rhino_test.c和aos_test.c。其中rhino_test.c针对于纯内核的移植，aos_test.c针对于至少包含AOS
 API层的移植，其测试任务主要参考下面的《AliOS Things Kernel 测试指南参考》。
@@ -411,9 +411,9 @@ API层的移植，其测试任务主要参考下面的《AliOS Things Kernel 测
 #define TEST_CONFIG_KV_ENABLED                  (0)
 #define TEST_CONFIG_YLOOP_ENABLED               (0)
 ```
--   将rhino_test.c和cut.c\\ cut.h加入编译体系
+-   将rhino_test.c和cut.c/cut.h加入编译体系
 
-可以将test\\testcase\\certificate_test目录下此三个直接拷贝到对应mcu下，新建一个test目录并加入到makefile；其他IDE直接添加编译文件。
+可以将test/testcase/certificate_test目录下此三个直接拷贝到对应mcu下，新建一个test目录并加入到makefile；其他IDE直接添加编译文件。
 
 -   在主任务中调用test_certificate执行测试用例认证直到用例通过即可。
 
@@ -430,7 +430,7 @@ AliOS Things Kernel
 
 公共代码原则上避免修改，以影响其他单板。通用文件修改后，需要确认不影响其他工程的编译和运行。如果影响公共代码，需要清晰说明：是修复bug、增加新特性、或是改进功能，并介绍如何完成的。
 
-公共代码范围：目前除新增board目录、新增mcu目录，新增test\\develop目录，其他目录或者文件都视为公共文件，包括app\\example目录。修改后，都可能影响其他单板。
+公共代码范围：目前除新增board目录、新增mcu目录，新增test/develop目录，其他目录或者文件都视为公共文件，包括app/example目录。修改后，都可能影响其他单板。
 
 5.2、License准则
 ----------------
