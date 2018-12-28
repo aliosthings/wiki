@@ -23,13 +23,13 @@ arch:  Cortex-M4
 
 | 目录名         | 介绍                                                             |
 |----------------|------------------------------------------------------------------|
-| app\\example   | 通用用户运行实例，如helloworld实例，可直接使用，无特殊情况不修改 |
-| test\\develop  | 用户自定义特殊运行实例，满足某一特定场景时添加                   |
+| app/example   | 通用用户运行实例，如helloworld实例，可直接使用，无特殊情况不修改 |
+| test/develop  | 用户自定义特殊运行实例，满足某一特定场景时添加                   |
 | board          | 用户需要适配、可配置board级代码，系统启动相关代码                |
-| platform\\arch | 该CPU架构内核调度适配接口，可直接使用                            |
-| platform\\mcu  | 该MCU通用SDK以及对应的hal适配层                                  |
+| platform/arch | 该CPU架构内核调度适配接口，可直接使用                            |
+| platform/mcu  | 该MCU通用SDK以及对应的hal适配层                                  |
 
-注意：platform\\arch下已经适配了目前主流的CPU架构。其他目录结构，如build目录存放了通用的编译体系，用户一般情况下不需要修改；kernel目录下为内核代码，对于移植来说不需要修改。
+注意：platform/arch下已经适配了目前主流的CPU架构。其他目录结构，如build目录存放了通用的编译体系，用户一般情况下不需要修改；kernel目录下为内核代码，对于移植来说不需要修改。
 
 1.2 编译环境相关介绍
 --------------------
@@ -59,9 +59,9 @@ arch:  Cortex-M4
 | 生成文件                             | 介绍                   |
 |--------------------------------------|------------------------|
 | config.mk                            | 编译工程所有的配置选项 |
-| binary\\helloworld\@aaboard_demo.bin | 可执行bin文件          |
-| binary\\helloworld\@aaboard_demo.elf | 可执行elf文件          |
-| binary\\helloworld\@aaboard_demo.map | 生成map文件            |
+| binary/helloworld\@aaboard_demo.bin | 可执行bin文件          |
+| binary/helloworld\@aaboard_demo.elf | 可执行elf文件          |
+| binary/helloworld\@aaboard_demo.map | 生成map文件            |
 
 2、移植指导及规范
 =================
@@ -72,14 +72,14 @@ arch:  Cortex-M4
 
 移植一个新单板，需要先考虑其属于哪种CPU架构，来适配对应的CPU调度接口；第二步添加该MCU通用的设备驱动；然后在board模块下添加相应的板级、外设驱动程序；最后按照需要编写该单板需要运行的example实例。
 
-如果移植依赖的某个要素已经存在，则可直接使用，比如要新增一个stm32f429zi单板，其基于Cortex-M4的CPU架构，而Platform\\arch已经有相关实现，则可直接使用。
+如果移植依赖的某个要素已经存在，则可直接使用，比如要新增一个stm32f429zi单板，其基于Cortex-M4的CPU架构，而Platform/arch已经有相关实现，则可直接使用。
 
 以下章节按照移植顺序，说明新增一个单板涉及到的所有模块适配工作。
 
 2.1新增CPU架构
 --------------
 
-涉及目录：platform\\arch
+涉及目录：platform/arch
 
 ### 2.1.1 已支持CPU架构
 
@@ -90,7 +90,7 @@ arch目录下已经实现了基本通用的CPU架构的porting，如果新增单
 | CPU Arch | Processor series |
 |----------|------------------|
 | ARM      | ARM9             |
-|          | Cortex-M0\\M0+   |
+|          | Cortex-M0/M0+   |
 |          | Cortex-M3        |
 |          | Cortex-M4        |
 |          | Cortex-M7        |
@@ -109,7 +109,7 @@ arch目录下已经实现了基本通用的CPU架构的porting，如果新增单
 
 ### 2.1.2 新增CPU适配点
 
-对于系统中已经支持的CPU架构，可以直接使用对应的platform\\arch模块，如果需要新增CPU架构支持，需要适配下面几个接口，其对所有CPU架构通用：
+对于系统中已经支持的CPU架构，可以直接使用对应的platform/arch模块，如果需要新增CPU架构支持，需要适配下面几个接口，其对所有CPU架构通用：
 
 | CPU Porting接口      | 说明                                                                                                       |
 |----------------------|------------------------------------------------------------------------------------------------------------|
@@ -129,12 +129,12 @@ arch目录下已经实现了基本通用的CPU架构的porting，如果新增单
 
 | 一级目录 CPU arch | 二级目录 Process arch | 三级目录(具体情况可选) Compiler Type | 四级目录(具体情况可选) Process series |
 |-------------------|-----------------------|--------------------------------------|---------------------------------------|
-| ARM               | armv5                 | armcc\\gcc\\iccarm                   |                                       |
-|                   | armv6m                | armcc\\gcc\\iccarm                   | m0                                    |
-|                   | armv7m                | armcc\\gcc\\iccarm                   | m3                                    |
+| ARM               | armv5                 | armcc/gcc/iccarm                   |                                       |
+|                   | armv6m                | armcc/gcc/iccarm                   | m0                                    |
+|                   | armv7m                | armcc/gcc/iccarm                   | m3                                    |
 |                   |                       |                                      | m4                                    |
 |                   |                       |                                      | m7                                    |
-|                   | armv7a                | armcc\\gcc\\iccarm                   | a5                                    |
+|                   | armv7a                | armcc/gcc/iccarm                   | a5                                    |
 |                   |                       |                                      | a7                                    |
 |                   |                       |                                      | a9                                    |
 
@@ -171,7 +171,7 @@ ifeq ($(HOST_ARCH),Cortex-M4)             #区分Process serie
 2.2新增mcu
 ----------
 
-涉及目录：platform\\mcu。
+涉及目录：platform/mcu。
 
 mcu目录存放其原始SDK驱动文件，以及hal驱动对接层。
 
@@ -306,7 +306,7 @@ GLOBAL_ASMFLAGS       +=                  #汇编编译选项
 GLOBAL_LDFLAGS        +=                  #链接选项
 GLOBAL_DEFINES        +=                  #用户自定义宏   
 注意：
-（1）、其中HOST_MCU_FAMILY的定义需要对应platform\mcu下具体某mcu目录名。HOST_MCU_NAME表示具体的mcu子系列。
+（1）、其中HOST_MCU_FAMILY的定义需要对应platform/mcu下具体某mcu目录名。HOST_MCU_NAME表示具体的mcu子系列。
 （2）、用户可以通过GLOBAL_DEFINES定义宏，如GLOBAL_DEFINES += CONFIG_AOS_CLI_BOARD或者GLOBAL_DEFINES += CONFIG_AOS_KV_BLK_BITS=14。当然也可以直接在编译选项 GLOBAL_CFLAGS使用-D定义。
 
 ```
@@ -322,11 +322,11 @@ HOST_MCU_NAME     := aamcu1_demo
 2.4新增example
 --------------
 
-涉及目录：app\\example 和 test\\develop
+涉及目录：app/example 和 test/develop
 
 example目录主要存放用户实际需要运行的程序，默认用户app统一入口为application_start。
 
-原则上不建议新增example，除非目前的example不能满足功能需求。app\\example下为通用运行实例，test\\develop为某些特定场景的实例；如果需要增加实例，无特殊情况，都优先往test\\develop中添加。
+原则上不建议新增example，除非目前的example不能满足功能需求。app/example下为通用运行实例，test/develop为某些特定场景的实例；如果需要增加实例，无特殊情况，都优先往test/develop中添加。
 
 ### 2.4.1 example目录规范
 
@@ -363,7 +363,7 @@ GLOBAL_DEFINES        +=                    #全局宏定义
 3.1 CPU arch
 ------------
 
-第一项关键移植特性点就是CPU的架构支持。对于系统中已经支持的CPU架构，可以直接使用对应的platform\\arch模块，如果需要新增CPU架构支持，参考章节2.1。
+第一项关键移植特性点就是CPU的架构支持。对于系统中已经支持的CPU架构，可以直接使用对应的platform/arch模块，如果需要新增CPU架构支持，参考章节2.1。
 
 3.2 系统tick
 ------------
@@ -382,7 +382,7 @@ krhino_intrpt_exit();
 ```
 修改位置：
 
-参考board\\aaboard_demo\\startup\\board.c中SysTick_Handler实现。
+参考board/aaboard_demo/startup/board.c中SysTick_Handler实现。
 
 可按照实际情况在对应驱动代码中直接修改。
 
@@ -393,7 +393,7 @@ krhino_intrpt_exit();
 
 修改位置：
 
-参考board\\aaboard_demo\\startup\\board.c中board_init的实现，通过RHINO_CONFIG_TICKS_PER_SECOND配置时钟频率。
+参考board/aaboard_demo/tartup/board.c中board_init的实现，通过RHINO_CONFIG_TICKS_PER_SECOND配置时钟频率。
 
 可按照实际情况对应驱动代码中修改。
 
@@ -404,12 +404,12 @@ krhino_intrpt_exit();
 
 修改位置：
 
-参考platform\\mcu\\aamcu_demo\\hal\\hal_uart.c
+参考platform/mcu/aamcu_demo/hal/hal_uart.c
 
 3.4 内核可配置项（k_config.h）
 ------------------------------
 
-k_config.h文件中包含了所有内核裁剪配置，包括模块裁剪、内存裁剪。可以根据不同的模块需求，以及内存大小来进行修改裁剪。k_config.h统一规范放在对应board的config目录下，参考：board\\aaboard_demo\\config\\k_config.h
+k_config.h文件中包含了所有内核裁剪配置，包括模块裁剪、内存裁剪。可以根据不同的模块需求，以及内存大小来进行修改裁剪。k_config.h统一规范放在对应board的config目录下，参考：board/aaboard_demo/config/k_config.h
 
 ### 3.4.1 内核模块裁剪
 
@@ -451,7 +451,7 @@ k_config.c
 
 其基本原则是要预留一个内存空间作为堆使用，并将其交给g_mm_region管理。
 
-参考文件board\\aaboard_demo\\config\\k_config.c关于堆空间的说明。
+参考文件board/aaboard_demo/config/k_config.c关于堆空间的说明。
 
 ### 3.5.1 链接脚本定义（建议方式）
 
@@ -523,13 +523,13 @@ k_mm_region_t g_mm_region[] = {{g_heap_buf, HEAP_BUFFER_SIZE}};
 
 (3)、krhino_init前不调用malloc、printf函数。原因是此类库函数被内核重定向，会调用内核接口aos_malloc，依赖内核的初始化;
 
-(4)、内核初始化本身只会创建内部任务，如idle\\timer任务；初始化流程中需要创建主任务，供用户app运行。统一通过krhino接口如krhino_task_dyn_create来创建主任务；主任务的入口统一为**sys_init;**
+(4)、内核初始化本身只会创建内部任务，如idle/timer任务；初始化流程中需要创建主任务，供用户app运行。统一通过krhino接口如krhino_task_dyn_create来创建主任务；主任务的入口统一为**sys_init;**
 
 (5)、在sys_init中，可以添加相关中断激活程序的驱动，比如开始tick计数并触发可能的tick中断，具体实现参考对应单板；如果需要初始化相关中间件和协议栈模块，使用aos_components_init接口；最后，在非多bin的情况下，统一调用application_start进入上层app入口；多bin情况下，由aos_components_init内部分发处理。
 
 ### 3.6.2 系统初始化示例
 
-**参考代码**（board\\aaboard_demo\\startup\\ startup.c）**：**
+**参考代码**（board/aaboard_demo/startup/startup.c）**：**
 
 **系统初始化示例：**
 ```
@@ -584,7 +584,7 @@ int application_start(int argc, char *argv[])
 AliOS
 Things提供了基本的内核测试用例集，用于内核移植后的测试验证，所有移植的平台都需要运行该测试样例，确保内核功能的正确性。
 
-内核测试集目录：test\\testcase\\certificate_test
+内核测试集目录：test/testcase/certificate_test
 
 在上面目录下提供了两个测试文件rhino_test.c和aos_test.c。其中rhino_test.c针对于纯内核rhino的测试，aos_test.c针对于至少包含AOS
 API层的移植，其测试任务主要参考下面的《AliOS Things Kernel 测试指南参考》。
@@ -603,9 +603,9 @@ API层的移植，其测试任务主要参考下面的《AliOS Things Kernel 测
 #define TEST_CONFIG_KV_ENABLED                  (0)
 #define TEST_CONFIG_YLOOP_ENABLED               (0)
 ```
--   将rhino_test.c和cut.c\\ cut.h加入编译体系
+-   将rhino_test.c和cut.c/cut.h加入编译体系
 
-可以将test\\testcase\\certificate_test目录下此三个直接拷贝到对应mcu下，新建一个test目录并加入到makefile；其他IDE直接添加编译文件。
+可以将test/testcase/certificate_test目录下此三个直接拷贝到对应mcu下，新建一个test目录并加入到makefile；其他IDE直接添加编译文件。
 
 -   在主任务中调用test_certificate执行测试用例认证直到用例通过即可。
 
@@ -622,7 +622,7 @@ AliOS Things Kernel
 
 公共代码原则上避免修改，以影响其他单板。通用文件修改后，需要确认不影响其他工程的编译和运行。如果影响公共代码，需要清晰说明：是修复bug、增加新特性、或是改进功能，并介绍如何完成的。
 
-公共代码范围：目前除新增board目录、新增mcu目录，新增test\\develop目录，其他目录或者文件都视为公共文件，包括app\\example目录。修改后，都可能影响其他单板。
+公共代码范围：目前除新增board目录、新增mcu目录，新增test/develop目录，其他目录或者文件都视为公共文件，包括app/example目录。修改后，都可能影响其他单板。
 
 5.2、License准则
 ----------------
