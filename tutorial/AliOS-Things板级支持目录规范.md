@@ -21,11 +21,11 @@ arch:  Cortex-M4
 
 | 目录名         | 介绍                                                             |
 |----------------|------------------------------------------------------------------|
-| App\\example   | 通用用户运行实例，如helloworld实例，可直接使用，无特殊情况不修改 |
+| app\\example   | 通用用户运行实例，如helloworld实例，可直接使用，无特殊情况不修改 |
 | test\\develop  | 用户自定义特殊运行实例，满足某一特定场景时添加                   |
 | board          | 用户需要适配、可配置board级代码，系统启动相关代码                |
-| Platform\\arch | 该CPU架构内核调度适配接口，可直接使用                            |
-| Platform\\mcu  | 该MCU通用SDK以及对应的hal适配层                                  |
+| platform\\arch | 该CPU架构内核调度适配接口，可直接使用                            |
+| platform\\mcu  | 该MCU通用SDK以及对应的hal适配层                                  |
 
 1.1、example新增规范
 --------------------
