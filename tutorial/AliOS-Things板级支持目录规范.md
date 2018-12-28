@@ -50,11 +50,17 @@ arch: Cortex-M4
 **运行实例入口统一使用**application_start函数。用户在该接口内添加具体实现。
 
 ### 1.1.5、Mk编写规范（aos.mk）
+```
+NAME := helloworld                        #example名，和目录统一
+$(NAME)_MBINS_TYPE := app                 #在多bin情况下，归属kernel还是app
+$(NAME)_VERSION := 1.0.0                  #menuconfig组件版本号
+$(NAME)_SUMMARY := Hello World            #描述                  
+$(NAME)_SOURCES      +=                   #example.c文件
+$(NAME)_COMPONENTS   +=                   #依赖其他组件名
+GLOBAL_INCLUDES      +=                   #全局头文件
+GLOBAL_DEFINES       +=                   #全局宏定义
 
-| NAME := helloworld \#example名，和目录统一 \$(NAME)_MBINS_TYPE := app \#在多bin情况下，归属kernel还是app \$(NAME)_VERSION := 1.0.0 \#menuconfig组件版本号 \$(NAME)_SUMMARY := Hello World \#描述 \$(NAME)_SOURCES += \#example.c文件 \$(NAME)_COMPONENTS += \#依赖其他组件名 GLOBAL_INCLUDES += \#全局头文件 GLOBAL_DEFINES += \#全局宏定义 |
-|---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-
-
+```
 1.2、board新增规范
 ------------------
 
