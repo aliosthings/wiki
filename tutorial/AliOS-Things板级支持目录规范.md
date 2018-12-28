@@ -59,7 +59,6 @@ $(NAME)_SOURCES      +=                   #example.c文件
 $(NAME)_COMPONENTS   +=                   #依赖其他组件名
 GLOBAL_INCLUDES      +=                   #全局头文件
 GLOBAL_DEFINES       +=                   #全局宏定义
-
 ```
 1.2、board新增规范
 ------------------
@@ -86,11 +85,29 @@ board目录下文件结构部署和命名需要遵循下面布局规则，以aab
 | startup.c        | 无特殊情况统一C程序主入口为main； 内部调用单板初始化board_init; 内部调用krhino接口初始化内核； 内部创建主任务入口sys_init。 （具体见初始化流程规范） |
 
 ### 1.2.5、Mk编写规范（aos.mk）
+```
+NAME := board_aaboard_demo               #board_+单板名                   
+$(NAME)_MBINS_TYPE := kernel             #在多bin情况下，归属kernel还是app
+$(NAME)_VERSION    :=                    #组件版本号
+$(NAME)_SUMMARY    :=                    #描述
+MODULE             := 1062               #固定
+HOST_ARCH          := Cortex-M4          #CPU arch
+HOST_MCU_FAMILY    := aamcu_demo         #归属MCU系列，需要对应platform\mcu
+SUPPORT_MBINS      := no                 #是否支持app\kernel的bin分离
+HOST_MCU_NAME      := aamcu1_demo        # MCU子系列类型
+ENABLE_VFP         := 1                  #是否支持浮点数
+$(NAME)_SOURCES       +=                 #board组件包含.c文件
+$(NAME)_COMPONENTS    +=                 #依赖其他组件名
+GLOBAL_INCLUDES       +=                 #头文件
+GLOBAL_CFLAGS         +=                 #c文件编译选项 
+GLOBAL_ASMFLAGS       +=                 #汇编编译选项 
+GLOBAL_LDFLAGS        +=                 #链接选项
+GLOBAL_DEFINES        +=                 #用户自定义宏   
+注意：
+（1）、其中HOST_MCU_FAMILY的定义需要对应platform\mcu下具体某mcu目录名。HOST_MCU_NAME表示具体的mcu子系列。
+（2）、用户可以通过GLOBAL_DEFINES定义宏，如GLOBAL_DEFINES += CONFIG_AOS_CLI_BOARD或者GLOBAL_DEFINES += CONFIG_AOS_KV_BLK_BITS=14。当然也可以直接在编译选项 GLOBAL_CFLAGS使用-D定义。
 
-| NAME := board_aaboard_demo \#board_+单板名 \$(NAME)_MBINS_TYPE := kernel \#在多bin情况下，归属kernel还是app \$(NAME)_VERSION := \#组件版本号 \$(NAME)_SUMMARY := \#描述 MODULE := 1062 \#固定 HOST_ARCH := Cortex-M4 \#CPU arch HOST_MCU_FAMILY := aamcu_demo \#归属MCU系列，需要对应platform\\mcu SUPPORT_MBINS := no \#是否支持app\\kernel的bin分离 HOST_MCU_NAME := aamcu1_demo \# MCU子系列类型 ENABLE_VFP := 1 \#是否支持浮点数 \$(NAME)_SOURCES += \#board组件包含.c文件 \$(NAME)_COMPONENTS += \#依赖其他组件名 GLOBAL_INCLUDES += \#头文件 GLOBAL_CFLAGS += \#c文件编译选项 GLOBAL_ASMFLAGS += \#汇编编译选项 GLOBAL_LDFLAGS += \#链接选项 GLOBAL_DEFINES += \#用户自定义宏 注意： （1）、其中HOST_MCU_FAMILY的定义需要对应platform\\mcu下具体某mcu目录名。HOST_MCU_NAME表示具体的mcu子系列。 （2）、用户可以通过GLOBAL_DEFINES定义宏，如GLOBAL_DEFINES += CONFIG_AOS_CLI_BOARD或者GLOBAL_DEFINES += CONFIG_AOS_KV_BLK_BITS=14。当然也可以直接在编译选项 GLOBAL_CFLAGS使用-D定义。 |
-|--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-
-
+```
 1.3、platform新增规范
 ---------------------
 
@@ -145,10 +162,17 @@ CPU arch统一对接下述接口
 
 arch mk添加规范如下（以armv7m为例）：
 
-| NAME := armv7m \#Process arch名 \$(NAME)_MBINS_TYPE := kernel \#多bin情况下，归属kernel还是app \$(NAME)_VERSION := 0.0.1.0 \#menuconfig版本号 \$(NAME)_SUMMARY := arch for armv7m \#描述 \$(NAME)_SOURCES += \#组件包含.c文件 GLOBAL_INCLUDES += \#包含头文件 ifeq (\$(COMPILER),armcc) \#区分编译器 ifeq (\$(HOST_ARCH),Cortex-M4) \#区分Process series |
-|----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+```
+NAME := armv7m                            #Process arch名  
+$(NAME)_MBINS_TYPE := kernel              #多bin情况下，归属kernel还是app
+$(NAME)_VERSION    := 0.0.1.0             #menuconfig版本号
+$(NAME)_SUMMARY    := arch for armv7m     #描述              
+$(NAME)_SOURCES       +=                  #组件包含.c文件
+GLOBAL_INCLUDES       +=                  #包含头文件   
+ifeq ($(COMPILER),armcc)                  #区分编译器
+ifeq ($(HOST_ARCH),Cortex-M4)             #区分Process series
 
-
+```
 ### 1.3.2、mcu子目录新增规范
 
 #### 1.3.2.1、目录功能
@@ -175,29 +199,48 @@ mcu的mk文件，其描述了当前mcu组件需要的编译文件和编译选项
 
 示例：
 
-| aamcu_demo \#mcu主目录 \|-- aos.mk \# 该mcu主mk \|-- aamcu1_demo.mk \# aamcu1_demo \|-- aamcu2_demo.mk \# aamcu2_demo |
-|-----------------------------------------------------------------------------------------------------------------------|
+```
+aamcu_demo                              #mcu主目录                         
+    |-- aos.mk                          # 该mcu主mk
+    |-- aamcu1_demo.mk                  # aamcu1_demo
+    |-- aamcu2_demo.mk                  # aamcu2_demo
 
+```
 
 在对应board如aaboard_demo的aos.mk文件引用此mcu模块名时，使用格式：
 
 示例：
 
-| HOST_MCU_FAMILY := aamcu_demo HOST_MCU_NAME := aamcu1_demo |
-|------------------------------------------------------------|
-
-
+```
+HOST_MCU_FAMILY    := aamcu_demo
+HOST_MCU_NAME      := aamcu1_demo
+```
 在mcu的主aos.mk中需要分别对子mcu进行引用，使用格式：
 
-| ifeq (\$(HOST_MCU_NAME), aamcu1_demo) include \$(SOURCE_ROOT)platform/mcu/\$(PLATFORM_MCU_BOARD)/aamcu1_demo.mk else ifeq (\$(HOST_MCU_NAME),aamcu2_demo) include \$(SOURCE_ROOT)platform/mcu/\$(PLATFORM_MCU_BOARD)/aamcu2_demo.mk endif |
-|-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-
+```
+ifeq ($(HOST_MCU_NAME), aamcu1_demo)
+include $(SOURCE_ROOT)platform/mcu/$(PLATFORM_MCU_BOARD)/aamcu1_demo.mk
+else ifeq ($(HOST_MCU_NAME),aamcu2_demo)
+include $(SOURCE_ROOT)platform/mcu/$(PLATFORM_MCU_BOARD)/aamcu2_demo.mk
+endif
+```
 
 **aos**.mk其他必须包含项：
 
-| NAME := mcu_aamcu_demo \#主MCU名，需要和目录名一致 \$(NAME)_MBINS_TYPE := kernel \#多bin情况下，归属kernel还是app \$(NAME)_VERSION := 0.0.1 \#menuconfig组件版本号 \$(NAME)_SUMMARY := driver & sdk \#描述 \$(NAME)_SOURCES += \#MCU组件包含.c文件 \$(NAME)_COMPONENTS += \#依赖其他组件名 GLOBAL_INCLUDES += \#头文件 GLOBAL_CFLAGS += \#c文件编译选项 GLOBAL_ASMFLAGS += \#汇编编译选项 GLOBAL_LDFLAGS += \#链接选项 GLOBAL_DEFINES += \#用户自定义宏 |
-|---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+```
+NAME := mcu_aamcu_demo                  #主MCU名，需要和目录名一致  
+$(NAME)_MBINS_TYPE   := kernel          #多bin情况下，归属kernel还是app
+$(NAME)_VERSION      := 0.0.1           #menuconfig组件版本号
+$(NAME)_SUMMARY      := driver & sdk    #描述               
+$(NAME)_SOURCES      +=                 #MCU组件包含.c文件
+$(NAME)_COMPONENTS   +=                 #依赖其他组件名
+GLOBAL_INCLUDES      +=                 #头文件
+GLOBAL_CFLAGS        +=                 #c文件编译选项 
+GLOBAL_ASMFLAGS      +=                 #汇编编译选项 
+GLOBAL_LDFLAGS       +=                 #链接选项
+GLOBAL_DEFINES       +=                 #用户自定义宏 
 
+```
 
 2、接口定义使用规范
 ===================
@@ -256,21 +299,55 @@ krhino_init前不调用malloc、printf函数。原因是此类库函数被内核
 
 （1）、系统初始化示例：
 
-| int main(void) { /\*irq initialized is approved here.But irq triggering is forbidden, which will enter CPU scheduling. Put them in sys_init which will be called after aos_start. Irq for task schedule should be enabled here, such as PendSV for cortex-M4. \*/ board_init(); //including aos_heap_set(); flash_partition_init(); /\*kernel init, malloc can use after this!\*/ krhino_init(); /\*main task to run \*/ krhino_task_dyn_create(&g_main_task, "main_task", 0, OS_MAIN_TASK_PRI, 0, OS_MAIN_TASK_STACK, (task_entry_t)sys_init, 1); /\*kernel start schedule!\*/ krhino_start(); /\*never run here\*/ return 0; } |
-|----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-
+```
+int main(void)
+{
+    /*irq initialized is approved here.But irq triggering is forbidden, which will enter CPU scheduling.
+    Put them in sys_init which will be called after aos_start.
+    Irq for task schedule should be enabled here, such as PendSV for cortex-M4.
+    */
+    board_init();   //including aos_heap_set();  flash_partition_init();
+    /*kernel init, malloc can use after this!*/
+    krhino_init();
+    /*main task to run */
+    krhino_task_dyn_create(&g_main_task, "main_task", 0, OS_MAIN_TASK_PRI, 0, OS_MAIN_TASK_STACK, (task_entry_t)sys_init, 1);
+    /*kernel start schedule!*/
+    krhino_start();
+    /*never run here*/
+    return 0;
+}   
+```
 
 （2）、主任务初始化示例：
 
-| static void sys_init(void) { /\* user code start\*/ /\*insert driver to enable irq for example: starting to run tick time. drivers to trigger irq is forbidden before aos_start, which will start core schedule. \*/ /\*user_trigger_irq();\*/ //for example /\*aos components init including middleware and protocol and so on !\*/ aos_components_init(\&kinit); \#ifndef AOS_BINS application_start(kinit.argc, kinit.argv); /\* jump to app/example entry \*/ \#endif } |
-|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-
-
+```
+static void sys_init(void)
+{
+    /* user code start*/
+    /*insert driver to enable irq for example: starting to run tick time.
+     drivers to trigger irq is forbidden before aos_start, which will start core schedule.
+    */
+    /*user_trigger_irq();*/  //for example
+    /*aos components init including middleware and protocol and so on !*/
+    aos_components_init(&kinit);
+    #ifndef AOS_BINS
+    application_start(kinit.argc, kinit.argv);  /* jump to app/example entry */
+    #endif
+} 
+```
 （3）、用户app入口示例（参考app\\example\\helloworld\\helloworld.c）：
 
-| int application_start(int argc, char \*argv[]) { int count = 0; printf("nano entry here!\\r\\n"); while(1) { printf("hello world! count %d \\r\\n", count++); aos_msleep(1000); }; } |
-|--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-
+```
+int application_start(int argc, char *argv[])
+{
+    int count = 0;
+    printf("nano entry here!\r\n");
+    while(1) {
+        printf("hello world! count %d \r\n", count++);
+        aos_msleep(1000);
+    };
+}
+```
 
 4、内核认证
 ===========
@@ -287,10 +364,17 @@ API层的移植，其测试任务主要参考下面的《AliOS Things Kernel 测
 
 -   修改rhino_test.c配置项，如：
 
-| /\*以下字符定义可任取名字，不能为空\*/ \#define SYSINFO_ARCH " MIPS"                                                                                                                                                            |
-|---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| \#define SYSINFO_MCU " RDA" \#define SYSINFO_DEVICE_NAME " RDA8955" \#define SYSINFO_APP_VERSION "2.0.0" /\*kv和yloop不属于纯krhino模块，需要关闭\*/ \#define TEST_CONFIG_KV_ENABLED (0) \#define TEST_CONFIG_YLOOP_ENABLED (0) |
+```
+/*以下字符定义可任取名字，不能为空*/
+#define SYSINFO_ARCH        " MIPS"                    
+#define SYSINFO_MCU         " RDA"
+#define SYSINFO_DEVICE_NAME " RDA8955"
+#define SYSINFO_APP_VERSION "2.0.0"
 
+/*kv和yloop不属于纯krhino模块，需要关闭*/
+#define TEST_CONFIG_KV_ENABLED                  (0)
+#define TEST_CONFIG_YLOOP_ENABLED               (0)
+```
 -   将rhino_test.c和cut.c\\ cut.h加入编译体系
 
 可以将test\\testcase\\certificate_test目录下此三个直接拷贝到对应mcu下，新建一个test目录并加入到makefile；其他IDE直接添加编译文件。
