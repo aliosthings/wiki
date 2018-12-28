@@ -23,13 +23,13 @@ arch:  Cortex-M4
 
 | 目录名         | 介绍                                                             |
 |----------------|------------------------------------------------------------------|
-| App\\example   | 通用用户运行实例，如helloworld实例，可直接使用，无特殊情况不修改 |
+| app\\example   | 通用用户运行实例，如helloworld实例，可直接使用，无特殊情况不修改 |
 | test\\develop  | 用户自定义特殊运行实例，满足某一特定场景时添加                   |
 | board          | 用户需要适配、可配置board级代码，系统启动相关代码                |
-| Platform\\arch | 该CPU架构内核调度适配接口，可直接使用                            |
-| Platform\\mcu  | 该MCU通用SDK以及对应的hal适配层                                  |
+| platform\\arch | 该CPU架构内核调度适配接口，可直接使用                            |
+| platform\\mcu  | 该MCU通用SDK以及对应的hal适配层                                  |
 
-注意：Platform\\arch下已经适配了目前主流的CPU架构。其他目录结构，如build目录存放了通用的编译体系，用户一般情况下不需要修改；kernel目录下为内核代码，对于移植来说不需要修改。
+注意：platform\\arch下已经适配了目前主流的CPU架构。其他目录结构，如build目录存放了通用的编译体系，用户一般情况下不需要修改；kernel目录下为内核代码，对于移植来说不需要修改。
 
 1.2 编译环境相关介绍
 --------------------
@@ -79,11 +79,11 @@ arch:  Cortex-M4
 2.1新增CPU架构
 --------------
 
-涉及目录：Platform\\arch
+涉及目录：platform\\arch
 
 ### 2.1.1 已支持CPU架构
 
-Arch目录下已经实现了基本通用的CPU架构的porting，如果新增单板的CPU架构在此列表中，则跳过本章节进入新增MCU描述。
+arch目录下已经实现了基本通用的CPU架构的porting，如果新增单板的CPU架构在此列表中，则跳过本章节进入新增MCU描述。
 
 下面是支持的arch列表：
 
@@ -171,9 +171,9 @@ ifeq ($(HOST_ARCH),Cortex-M4)             #区分Process serie
 2.2新增mcu
 ----------
 
-涉及目录：Platform\\mcu。
+涉及目录：platform\\mcu。
 
-Mcu目录存放其原始SDK驱动文件，以及hal驱动对接层。
+mcu目录存放其原始SDK驱动文件，以及hal驱动对接层。
 
 外设驱动以及用户对于单板的配置代码不放入此目录，以便该SDK能支持该MCU下所有系列单板。
 
@@ -244,7 +244,7 @@ $(NAME)_COMPONENTS += platform/arch/arm/armv7m
 
 涉及目录：board
 
-Board中主要存放外设驱动，板级初始化、以及用户对该board的驱动适配文件。
+board中主要存放外设驱动，板级初始化、以及用户对该board的驱动适配文件。
 
 ### 2.3.1 board目录规范
 
@@ -324,9 +324,9 @@ HOST_MCU_NAME     := aamcu1_demo
 
 涉及目录：app\\example 和 test\\develop
 
-Example目录主要存放用户实际需要运行的程序，默认用户app统一入口为application_start。
+example目录主要存放用户实际需要运行的程序，默认用户app统一入口为application_start。
 
-原则上不建议新增example，除非目前的example不能满足功能需求。App\\example下为通用运行实例，test\\develop为某些特定场景的实例；如果需要增加实例，无特殊情况，都优先往test\\develop中添加。
+原则上不建议新增example，除非目前的example不能满足功能需求。app\\example下为通用运行实例，test\\develop为某些特定场景的实例；如果需要增加实例，无特殊情况，都优先往test\\develop中添加。
 
 ### 2.4.1 example目录规范
 
@@ -409,7 +409,7 @@ krhino_intrpt_exit();
 3.4 内核可配置项（k_config.h）
 ------------------------------
 
-K_config.h文件中包含了所有内核裁剪配置，包括模块裁剪、内存裁剪。可以根据不同的模块需求，以及内存大小来进行修改裁剪。K_config.h统一规范放在对应board的config目录下，参考：board\\aaboard_demo\\config\\k_config.h
+k_config.h文件中包含了所有内核裁剪配置，包括模块裁剪、内存裁剪。可以根据不同的模块需求，以及内存大小来进行修改裁剪。k_config.h统一规范放在对应board的config目录下，参考：board\\aaboard_demo\\config\\k_config.h
 
 ### 3.4.1 内核模块裁剪
 
