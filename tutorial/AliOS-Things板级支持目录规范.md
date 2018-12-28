@@ -30,7 +30,7 @@ arch:  Cortex-M4
 1.1、example新增规范
 --------------------
 
-原则上不建议新增example，除非目前的example不能满足功能需求。App\\example下为通用运行实例，test\\develop为某些特定场景的实例；如果需要增加实例，无特殊情况，都优先往test\\develop中添加。
+原则上不建议新增example，除非目前的example不能满足功能需求。app\\example下为通用运行实例，test\\develop为某些特定场景的实例；如果需要增加实例，无特殊情况，都优先往test\\develop中添加。
 
 ### 1.1.1、目录功能
 
