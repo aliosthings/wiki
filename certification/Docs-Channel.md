@@ -1,6 +1,2 @@
-# AliOS Things 通道测试规范
-
-### [MQTT 通道测试规范](Docs-Channel-MQTT)
-<!-- ### [WSF 通道测试规范](#wsf) -->
-### [LinkKit 通道测试规范](Docs-Channel-Linkkit)
-<!-- ### [CoAP 通道测试规范](#coap) -->
+<br><br>
+### [阿里云IoT技术认证文档升级，点击前往查阅！](https://dev.iot.aliyun.com/doc)
