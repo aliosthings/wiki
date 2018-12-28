@@ -4,11 +4,12 @@ Please refer to [AliOS Things Technical Overview](AliOS-Things-Technical-Overvie
 ## [Tutorial](Quick-Start)
 - [Quick Start](Quick-Start)
 - [Hello World](AliOS-Things-APP-DEV-Guide)
+- [Environment Setup](AliOS-Things-Environment-Setup)
+- [Directory specifications for board level support](AliOS Things板级支持目录规范)
 - [Starter Kit Tutorial](Starter-Kit-Tutorial)
 - [Developer Kit Tutorial](Developer-Kit-Tutorial)
 - [Add a New Board Example](Add-a-new-board-example)
 - [Add a New Component Example](Add-a-new-component-example)
-- [Environment Setup](AliOS-Things-Environment-Setup)
 - [Auto generate keil/iar project](Auto-generate-keil-iar-project)
 - [SIG BLE Mesh Setup Guide](AliOS-Things-SIG-BLE-mesh-Setup-Guides)
 - [LoRaWAN Tutorial](AliOS-Things-lorawanapp)
@@ -30,6 +31,7 @@ Please refer to [AliOS Things Technical Overview](AliOS-Things-Technical-Overvie
 
 ## [Porting Guide](AliOS-Things-Porting-Guide)
 - [Components](AliOS-Things-Porting-Guide)
+- [Kernel and driver porting guide](AliOS Things内核驱动移植指导)
 - [Test](AliOS-Things-Porting-Test-Guide)
 - [Porting from FreeRTOS](AliOS-Things-FreeRTOS-Porting-Guide.zh)
 
