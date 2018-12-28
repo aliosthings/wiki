@@ -58,7 +58,7 @@ helloworld
 
 **运行实例入口统一使用**application_start函数。用户在该接口内添加具体实现。
 
-### 1.1.5、Mk编写规范（aos.mk）
+### 1.1.5、mk编写规范（aos.mk）
 ```
 NAME := helloworld                        #example名，和目录统一
 $(NAME)_MBINS_TYPE := app                 #在多bin情况下，归属kernel还是app
@@ -115,7 +115,7 @@ Dir\File                          Description                                   
 | board.c          | 统一单板初始化接口：board_init                                                                                                                       |
 | startup.c        | 无特殊情况统一C程序主入口为main； 内部调用单板初始化board_init; 内部调用krhino接口初始化内核； 内部创建主任务入口sys_init。 （具体见初始化流程规范） |
 
-### 1.2.5、Mk编写规范（aos.mk）
+### 1.2.5、mk编写规范（aos.mk）
 ```
 NAME := board_aaboard_demo               #board_+单板名                   
 $(NAME)_MBINS_TYPE := kernel             #在多bin情况下，归属kernel还是app
@@ -142,7 +142,7 @@ GLOBAL_DEFINES        +=                 #用户自定义宏
 1.3、platform新增规范
 ---------------------
 
-Platform目录分为arch和mcu两个子目录，arch存放CPU架构相关的调度代码，mcu存放通用的BSP驱动代码和hal对接层。
+platform目录分为arch和mcu两个子目录，arch存放CPU架构相关的调度代码，mcu存放通用的BSP驱动代码和hal对接层。
 
 ### 1.3.1、arch子目录新增规范
 
@@ -150,7 +150,7 @@ Platform目录分为arch和mcu两个子目录，arch存放CPU架构相关的调�
 
 #### 1.3.1.1、目录功能
 
-Arch目录下主要是基本的CPU架构相关的porting，主要包括开关中断实现、任务切换、中断上下文切换等功能。
+arch目录下主要是基本的CPU架构相关的porting，主要包括开关中断实现、任务切换、中断上下文切换等功能。
 
 #### 1.3.1.2、命名规范
 
@@ -187,7 +187,7 @@ CPU arch统一对接下述接口
 | cpu_task_stack_init  | 任务栈初始化                                                                                               |
 | cpu_cur_get          | 获取当前核号                                                                                               |
 
-#### 1.3.1.5、Mk编写规范（aos.mk）
+#### 1.3.1.5、mk编写规范（aos.mk）
 
 没有例外情况，统一在二级Process arch目录添加对应的编译mk文件。
 
@@ -229,7 +229,7 @@ Dir\File                          Description                           Necessar
 
 统一按照样例aamcu_demo\\hal下列出的各模块hal API实现。
 
-#### 1.3.2.5、Mk编写规范（aos.mk）
+#### 1.3.2.5、mk编写规范（aos.mk）
 
 mcu的mk文件，其描述了当前mcu组件需要的编译文件和编译选项。
 
@@ -286,7 +286,7 @@ GLOBAL_DEFINES       +=                 #用户自定义宏
 
 **规范**：对于纯内核系统，或者内核本身、bsp相关代码使用krhino接口；对于上层连接协议栈、app统一使用aos接口。
 
-2.2、Hal定义规范
+2.2、HAL定义规范
 ----------------
 
 **规范**：hal相关接口的命名和声明统一参照目录aamcu_demo\\hal下提供的样例demo实现。
