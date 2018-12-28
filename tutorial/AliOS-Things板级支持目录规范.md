@@ -1,4 +1,4 @@
-EN| [中文](AliOS Things板级支持目录规范) 
+EN| [中文](AliOS-Things板级支持目录规范) 
 
 本文主要介绍AliOS
 Things新增单板支持，相关board\\platform目录、文件的部署规范，以及相关接口定义和使用的标准。相关代码合入AliOS
