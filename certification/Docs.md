@@ -1,7 +1,2 @@
-# AliOS Things Test Guide
-#### [- AliOS Things Channel Test Guide](Docs-Channel)
-#### [- AliOS Things FOTA Test Guide](Docs-FOTA)
-#### [- AliOS Things Network Test Guide](Docs-Network)
-#### [- AliOS Things uMesh Test Guide](Docs-uMesh)
-#### [- AliOS Things Security Test Guide](Docs-Security)
-#### [- AliOS Things Local Test Guide](Docs-Local)
+<br><br>
+### [阿里云IoT技术认证文档升级，点击前往查阅！](https://dev.iot.aliyun.com/doc)
