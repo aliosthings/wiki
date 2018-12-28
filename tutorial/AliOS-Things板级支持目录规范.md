@@ -371,7 +371,7 @@ static void sys_init(void)
     #endif
 } 
 ```
-（3）、用户app入口示例（参考app\\example\\helloworld\\helloworld.c）：
+（3）、用户app入口示例（参考app/example/helloworld/helloworld.c）：
 
 ```
 int application_start(int argc, char *argv[])
