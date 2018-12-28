@@ -66,10 +66,8 @@ arch:  Cortex-M4
 2、移植指导及规范
 =================
 
-按照上述章节描述，对于移植工作主要涉及四个模块的内容，可以概述为移植四要素：CPU、MCU、board以及example。在移植中由于存在依赖关系，实际会依次按照这四个模块来进行适配。
-
-![](https://i.imgur.com/b8Zxxt9.png)
-
+按照上述章节描述，对于移植工作主要涉及四个模块的内容，可以概述为移植四要素：CPU、MCU、board以及example。在移植中由于存在依赖关系，实际会依次按照这四个模块来进行适配。  
+![](https://i.imgur.com/Z7IYbBQ.png)   
 移植一个新单板，需要先考虑其属于哪种CPU架构，来适配对应的CPU调度接口；第二步添加该MCU通用的设备驱动；然后在board模块下添加相应的板级、外设驱动程序；最后按照需要编写该单板需要运行的example实例。
 
 如果移植依赖的某个要素已经存在，则可直接使用，比如要新增一个stm32f429zi单板，其基于Cortex-M4的CPU架构，而Platform/arch已经有相关实现，则可直接使用。
@@ -509,10 +507,8 @@ k_mm_region_t g_mm_region[] = {{g_heap_buf, HEAP_BUFFER_SIZE}};
 
 主要包括：board初始化，内核模块初始化krhino_init，创建主任务krhino_task_dyn_create
 
-，内核启动krhino_start。
-
-![](https://i.imgur.com/GGQFu3u.png)
-
+，内核启动krhino_start。  
+![](https://i.imgur.com/uYMciCc.png)  
 主任务会在krhino_start开始调度后进入，如果不创建主任务，则系统会默认进入OS自身创建的其他任务运行，比如idle任务。
 
 注意事项：
