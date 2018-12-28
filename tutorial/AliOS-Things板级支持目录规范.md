@@ -10,9 +10,9 @@ AliOS Things参考版本：AOS-R-2.0.0
 
 board: aaboard_demo ;
 
-mcu: aamcu_demo;
+mcu:   aamcu_demo;
 
-arch: Cortex-M4
+arch:  Cortex-M4
 
 1、目录结构规范
 ===============
@@ -44,6 +44,15 @@ arch: Cortex-M4
 ### 1.1.3、目录结构规范
 
 文件部署规范如下，以helloworld示例，
+```
+helloworld
+|-- helloworld.c       # helloworld source code, including app entry ”application_start”
+|-- Config.in          # menuconfig config file
+|-- aos.mk             # aos build system file(for make)
+|-- k_app_config.h     # aos app config file, has higher priority than k_config.h
+|-- ucube.py           # aos build system file(for scons)
+|-- README.md
+```
 
 ### 1.1.4、函数命名规范
 
@@ -74,7 +83,28 @@ board取名需要使用标准通用名，能方便检索获取到相关单板信
 ### 1.2.3、目录结构规范
 
 board目录下文件结构部署和命名需要遵循下面布局规则，以aaboard_demo单板为例
-
+```
+Dir\File                          Description                                        Necessary for kernel run
+|-- drivers                  # board peripheral driver                                         N
+|-- config
+|   |-- board.h              # board config file, define for user, such as uart port num       Y
+|   |-- k_config.c           # user's kernel hook and mm memory region define                  Y
+|   |-- k_config.h           # kernel config file .h                                           Y
+|   |-- partition_conf.c     # board flash config file                                         N
+|-- startup
+|   |-- board.c              # board_init implement                                            Y
+|   |-- startup.c            # main entry file                                                 Y
+|   |-- startup_gcc.s        # board startup assember for gcc                                  Y
+|   |-- startup_iar.s        # board startup assember for iar                                  Y
+|   |-- startup_keil.s       # board startup assember for keil                                 Y
+|-- aaboard_demo.icf         # linkscript file for iar                                         Y
+|-- aaboard_demo.ld          # linkscript file for gcc                                         Y
+|-- aaboard_demo.sct         # linkscript file for sct                                         Y
+|-- aos.mk                   # board makefile                                                  Y
+|-- Config.in                # menuconfig component config                                     Y
+|-- ucube.py                 # aos build system file(for scons)                                N
+|-- README.md                                                                                  Y
+```
 ### 1.2.4、函数命名规范
 
 | **文件**         | **函数名**                                                                                                                                           |
@@ -185,7 +215,15 @@ Mcu目录存放其原始SDK驱动文件，以及hal驱动对接层。
 Mcu命令需要使用业界通用名，能直观方便检索到相关信息为准。
 
 #### 1.3.2.3、目录结构规范
-
+```
+Dir\File                          Description                           Necessary for kernel run
+|-- drivers                 # board peripheral driver                                Y
+|-- hal                     # hal API layer, hal uart is necessary                   Y
+|-- aos.mk                  # mcu makefile                                           Y
+|-- Config.in               # menuconfig component config                            Y
+|-- ucube.py                # aos build system file(for scons)                       N
+|-- README.md                                                                        Y
+```
 #### 1.3.2.4、函数命名规范
 
 统一按照样例aamcu_demo\\hal下列出的各模块hal API实现。
