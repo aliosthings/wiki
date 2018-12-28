@@ -3,7 +3,7 @@ EN| [中文](AliOS-Things板级支持目录规范)
 本文主要介绍AliOS
 Things新增单板支持，相关board\\platform目录、文件的部署规范，以及相关接口定义和使用的标准。相关代码合入AliOS
 Things工程，都需要遵循此文档规范。
-
+代码提交和回流过程中，都会按照本规范进行代码检查，不符合的代码不予入库，请务必遵循。
 AliOS Things参考版本：AOS-R-2.0.0
 
 参考示例规范单板：
@@ -104,6 +104,7 @@ Dir\File                          Description                                   
 |-- Config.in                # menuconfig component config                                     Y
 |-- ucube.py                 # aos build system file(for scons)                                N
 |-- README.md                                                                                  Y
+注：gcc、keil、iar任意支持一种即可，无需全部支持，即startup_xx.s和链接文件只需实现一套即可
 ```
 ### 1.2.4、函数命名规范
 
