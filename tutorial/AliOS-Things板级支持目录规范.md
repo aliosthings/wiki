@@ -171,7 +171,6 @@ $(NAME)_SOURCES       +=                  #组件包含.c文件
 GLOBAL_INCLUDES       +=                  #包含头文件   
 ifeq ($(COMPILER),armcc)                  #区分编译器
 ifeq ($(HOST_ARCH),Cortex-M4)             #区分Process series
-
 ```
 ### 1.3.2、mcu子目录新增规范
 
@@ -204,7 +203,6 @@ aamcu_demo                              #mcu主目录
     |-- aos.mk                          # 该mcu主mk
     |-- aamcu1_demo.mk                  # aamcu1_demo
     |-- aamcu2_demo.mk                  # aamcu2_demo
-
 ```
 
 在对应board如aaboard_demo的aos.mk文件引用此mcu模块名时，使用格式：
@@ -239,7 +237,6 @@ GLOBAL_CFLAGS        +=                 #c文件编译选项
 GLOBAL_ASMFLAGS      +=                 #汇编编译选项 
 GLOBAL_LDFLAGS       +=                 #链接选项
 GLOBAL_DEFINES       +=                 #用户自定义宏 
-
 ```
 
 2、接口定义使用规范
