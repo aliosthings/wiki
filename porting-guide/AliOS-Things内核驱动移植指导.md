@@ -180,7 +180,15 @@ Mcu目录存放其原始SDK驱动文件，以及hal驱动对接层。
 ### 2.2.1 mcu目录规范
 
 主要目录结构：
-
+```
+Dir\File                          Description                       Necessary for kernel run
+|-- drivers                # board peripheral driver                           Y
+|-- hal                    # hal API layer, hal uart is necessary              Y
+|-- aos.mk                 # mcu makefile                                      Y
+|-- Config.in              # menuconfig component config                       Y
+|-- ucube.py               # aos build system file(for scons)                  N
+|-- README.md                                                                  Y
+```
 ### 2.2.2 mcu mk文件编写
 
 mcu的mk文件，其描述了当前mcu组件需要的编译文件和编译选项。
@@ -243,6 +251,29 @@ Board中主要存放外设驱动，板级初始化、以及用户对该board的�
 board取名需要使用官方通用名，能方便检索到相关信息
 
 board目录下文件结构部署和命名需要遵循下面布局规则，以aaboard_demo单板为例：
+```
+Dir\File                          Description                                       Necessary for kernel run
+|-- drivers                  # board peripheral driver                                         N
+|-- config
+|   |-- board.h              # board config file, define for user, such as uart port num       Y
+|   |-- k_config.c           # user's kernel hook and mm memory region define                  Y
+|   |-- k_config.h           # kernel config file .h                                           Y
+|   |-- partition_conf.c     # board flash config file                                         N
+|-- startup
+|   |-- board.c              # board_init implement                                            Y
+|   |-- startup.c            # main entry file                                                 Y
+|   |-- startup_gcc.s        # board startup assember for gcc                                  Y
+|   |-- startup_iar.s        # board startup assember for iar                                  Y
+|   |-- startup_keil.s       # board startup assember for keil                                 Y
+|-- aaboard_demo.icf         # linkscript file for iar                                         Y
+|-- aaboard_demo.ld          # linkscript file for gcc                                         Y
+|-- aaboard_demo.sct         # linkscript file for sct                                         Y
+|-- aos.mk                   # board makefile                                                  Y
+|-- Config.in                # menuconfig component config                                     Y
+|-- ucube.py                 # aos build system file(for scons)                                N
+|-- README.md                                                                                  Y
+
+```
 
 board相关初始化使用的函数名需规范统一，参照如下：
 
@@ -286,7 +317,7 @@ GLOBAL_DEFINES        +=                  #用户自定义宏
 例如对于aaboard_demo单板，其要关联MCU是aamcu_demo系列下的aamcu1_demo，在aaboard_demo目录下的aos.mk设置如下：
 ```
 HOST_MCU_FAMILY   := aamcu_demo
-HOST_MCU_NAME    := aamcu1_demo
+HOST_MCU_NAME     := aamcu1_demo
 ```
 2.4新增example
 --------------
@@ -345,9 +376,9 @@ Tick相关的需要有两处修改：
 
 样例：
 ```
-    krhino_intrpt_enter();
-    krhino_tick_proc();
-    krhino_intrpt_exit();
+krhino_intrpt_enter();
+krhino_tick_proc();
+krhino_intrpt_exit();
 ```
 修改位置：
 
