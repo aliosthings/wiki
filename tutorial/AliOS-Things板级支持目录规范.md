@@ -319,7 +319,7 @@ GLOBAL_DEFINES       +=                 #用户自定义宏
 krhino_init前不调用malloc、printf函数。原因是此类库函数被内核重定向，会调用内核接口aos_malloc，依赖内核的初始化。
 
 **系统初始化流程规范如下：**  
-![](https://i.imgur.com/oxUBiNT.png)  
+![](https://i.imgur.com/Lct5XZT.png) 
 
 主任务会在krhino_start开始调度后进入，如果不创建主任务，则系统会默认进入OS自身创建的其他任务运行，比如idle任务。
 
