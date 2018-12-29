@@ -13,10 +13,14 @@ mcu:   aamcu_demo;
 
 arch:  Cortex-M4
 
-1、基本介绍
+
+@[TOC]目录  
+
+
+# 1、基本介绍
 ===========
 
-1.1 目录结构介绍
+## 1.1 目录结构介绍
 ----------------
 
 下述为新增一个单板支持，必须关注的几个目录项：
@@ -31,7 +35,7 @@ arch:  Cortex-M4
 
 注意：platform/arch下已经适配了目前主流的CPU架构。其他目录结构，如build目录存放了通用的编译体系，用户一般情况下不需要修改；kernel目录下为内核代码，对于移植来说不需要修改。
 
-1.2 编译环境相关介绍
+## 1.2 编译环境相关介绍
 --------------------
 
 ### 1.2.1 编译环境安装
@@ -63,7 +67,7 @@ arch:  Cortex-M4
 | binary/helloworld\@aaboard_demo.elf | 可执行elf文件          |
 | binary/helloworld\@aaboard_demo.map | 生成map文件            |
 
-2、移植指导及规范
+# 2、移植指导及规范
 =================
 
 按照上述章节描述，对于移植工作主要涉及四个模块的内容，可以概述为移植四要素：CPU、MCU、board以及example。在移植中由于存在依赖关系，实际会依次按照这四个模块来进行适配。  
@@ -74,7 +78,7 @@ arch:  Cortex-M4
 
 以下章节按照移植顺序，说明新增一个单板涉及到的所有模块适配工作。
 
-2.1新增CPU架构
+## 2.1新增CPU架构
 --------------
 
 涉及目录：platform/arch
@@ -166,7 +170,7 @@ GLOBAL_INCLUDES       +=                  #包含头文件
 ifeq ($(COMPILER),armcc)                  #区分编译器
 ifeq ($(HOST_ARCH),Cortex-M4)             #区分Process serie
 ```
-2.2新增mcu
+## 2.2新增mcu
 ----------
 
 涉及目录：platform/mcu。
@@ -237,7 +241,7 @@ GLOBAL_DEFINES      +=                     #用户自定义宏
 ```
 $(NAME)_COMPONENTS += platform/arch/arm/armv7m   
 ```
-2.3新增board
+## 2.3新增board
 ------------
 
 涉及目录：board
@@ -317,7 +321,7 @@ GLOBAL_DEFINES        +=                  #用户自定义宏
 HOST_MCU_FAMILY   := aamcu_demo
 HOST_MCU_NAME     := aamcu1_demo
 ```
-2.4新增example
+## 2.4新增example
 --------------
 
 涉及目录：app/example 和 test/develop
@@ -351,19 +355,19 @@ GLOBAL_INCLUDES       +=                    #全局头文件
 GLOBAL_DEFINES        +=                    #全局宏定义
 ```
 
-3、代码适配修改点说明
+# 3、代码适配修改点说明
 =====================
 
 上一章节按照目录结构来说明适配新单板关注的目录结构，此章节针对特定移植点来说明具体关键特性的实现。对于一项移植工作，建立完相应的目录结构，并完成或者核对相关适配点的修改后，才能完成适配工作。此章节还可以对适配工作后的核对工作提供参考。
 
 以下具体列出新单板适配的关键特性点。
 
-3.1 CPU arch
+## 3.1 CPU arch
 ------------
 
 第一项关键移植特性点就是CPU的架构支持。对于系统中已经支持的CPU架构，可以直接使用对应的platform/arch模块，如果需要新增CPU架构支持，参考章节2.1。
 
-3.2 系统tick
+## 3.2 系统tick
 ------------
 
 Tick相关的需要有两处修改：
@@ -395,7 +399,7 @@ krhino_intrpt_exit();
 
 可按照实际情况对应驱动代码中修改。
 
-3.3 基本串口打印
+## 3.3 基本串口打印
 ----------------
 
 系统需要支持基本的串口打印功能，库函数_write_r已经对接到hal_uart_send接口，因此对接相应的hal接口即可。
@@ -404,7 +408,7 @@ krhino_intrpt_exit();
 
 参考platform/mcu/aamcu_demo/hal/hal_uart.c
 
-3.4 内核可配置项（k_config.h）
+## 3.4 内核可配置项（k_config.h）
 ------------------------------
 
 k_config.h文件中包含了所有内核裁剪配置，包括模块裁剪、内存裁剪。可以根据不同的模块需求，以及内存大小来进行修改裁剪。k_config.h统一规范放在对应board的config目录下，参考：board/aaboard_demo/config/k_config.h
@@ -437,7 +441,7 @@ RHINO_CONFIG_CPU_USAGE_TASK_STACK   100
 
 ![](https://i.imgur.com/AYZBfhX.png)
 
-3.5 内核堆配置（k_config.c）
+## 3.5 内核堆配置（k_config.c）
 ----------------------------
 
 k_config.c
@@ -498,7 +502,7 @@ uint8_t g_heap_buf[HEAP_BUFFER_SIZE];
 ```
 k_mm_region_t g_mm_region[] = {{g_heap_buf, HEAP_BUFFER_SIZE}};
 ```
-3.6 系统初始化（startup.c）
+# 3.6 系统初始化（startup.c）
 ---------------------------
 
 ### 3.6.1 初始化相关规范流程
@@ -574,7 +578,7 @@ int application_start(int argc, char *argv[])
     };
 }
 ```
-4、内核测试认证指导
+# 4、内核测试认证指导
 ===================
 
 AliOS
@@ -610,17 +614,17 @@ API层的移植，其测试任务主要参考下面的《AliOS Things Kernel 测
 AliOS Things Kernel
 测试指南：<https://github.com/alibaba/AliOS-Things/wiki/Manual-API>
 
-5、代码合入整体原则
+# 5、代码合入整体原则
 ===================
 
-5.1、公共代码修改
+## 5.1、公共代码修改
 -----------------
 
 公共代码原则上避免修改，以影响其他单板。通用文件修改后，需要确认不影响其他工程的编译和运行。如果影响公共代码，需要清晰说明：是修复bug、增加新特性、或是改进功能，并介绍如何完成的。
 
 公共代码范围：目前除新增board目录、新增mcu目录，新增test/develop目录，其他目录或者文件都视为公共文件，包括app/example目录。修改后，都可能影响其他单板。
 
-5.2、License准则
+## 5.2、License准则
 ----------------
 
 -   原创为主尊重版权，请作者的标明自己的 copyright
@@ -644,7 +648,7 @@ AliOS Things Kernel
 -   允许使用的 license: BSD, MIT, Apache License Version 2.0, Zlib, CDDL
     等宽松开源许可证
 
-5.3、CI验证通过
+## 5.3、CI验证通过
 ---------------
 
 -   Build: 代码 autobuild, PV build 通过
