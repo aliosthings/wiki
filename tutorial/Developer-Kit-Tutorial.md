@@ -46,7 +46,7 @@
 | qr               | 二维码     | developer分支，功能：如果扫到二维码后，串口会将二维码打印出来。按B键可以在LCD上显示二维码    |
 | udataapp               | sensor相关     | developer分支     |
 | mqttapp               | mqtt测试    | developer分支     |
-| linkkitapp      | 一键配网  | developer分支  |
+| linkkitapp      | 一键配网（受限），建议等2.1正式版本发布  | developer分支  |
 | simple_mqtt               | 升级版helloworld     | developer分支，[文档](https://linkdevelop.aliyun.com/device-doc#aos-helloworld.html)     |
 | ldapp      | LCD，传感器，云端  | developer分支，[文档](https://github.com/alibaba/AliOS-Things/tree/developer/example/ldapp/README.md)  |
 | linkdevelop.env_monitor | 环境监控   | developer分支，[文档](https://linkdevelop.aliyun.com/device-doc#aos-env_monitor.html)  |
